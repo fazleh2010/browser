@@ -24,7 +24,7 @@ import browser.termallod.utils.Mathmatices;
 public class Language implements Constants {
 
     private HashMap<String, String[]> langAlphabet = new HashMap<String, String[]>();
-    private String SLASH_SEPERATOR= "-" ;
+    private String UNDERSCORE= "_" ;
 
     public Language(File file) {
         try {
@@ -47,7 +47,7 @@ public class Language implements Constants {
         String[] pickedNumbers = new String[alphebets.length / 2];
         if (alphebets.length > 1) {
             for (int i = 1; i < alphebets.length; i = i + 2) {
-                pickedNumbers[i / 2] = alphebets[i - 1] + SLASH_SEPERATOR + alphebets[i];
+                pickedNumbers[i / 2] = alphebets[i - 1] + UNDERSCORE + alphebets[i];
                 index++;
             }
         }

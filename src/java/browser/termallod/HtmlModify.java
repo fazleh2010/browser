@@ -6,6 +6,7 @@
 package browser.termallod;
 
 import browser.termallod.datamanager.DataManager;
+import java.util.ArrayList;
 import java.util.List;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,10 +21,14 @@ public class HtmlModify {
     private Document oldDocument;
     private DataManager dataManager;
     private Document newDocument;
+    private String path;
+    private String DEFINITION = "definition";
+    private String localhost = "http://localhost/";
 
-    public HtmlModify(Document oldDocument, String language, DataManager dataManager, List<String> terms) {
+    public HtmlModify(Document oldDocument, String language, DataManager dataManager, List<String> terms, String path) {
         this.oldDocument = oldDocument;
         this.dataManager = dataManager;
+        this.path = path;
         this.newDocument = this.changeBody(oldDocument, language, terms);
     }
 
@@ -35,38 +40,66 @@ public class HtmlModify {
     }
 
     private void modiyCurrentPage(Element body, String language, List<String> terms) {
+        String alphebetPair = dataManager.getAlphabets(language)[0];
         Element divAlphabet = body.getElementsByClass("currentpage").get(0);
         divAlphabet.append("<span>" + dataManager.getAlphabets(language)[0] + "</span>");
         for (Integer index = 1; index < dataManager.getAlphabets(language).length; index++) {
             String alphabet = dataManager.getAlphabets(language)[index];
-            String li = getAlphebet(alphabet);
+            String li = getAlphebetLi(alphabet);
             divAlphabet.append(li);
         }
 
         Element divTerm = body.getElementsByClass("result-list1 wordlist-oxford3000 list-plain").get(0);
         for (String term : terms) {
-            String liString = getTerm(term);
+            String liString = getTermLi(language, alphebetPair, term);
             divTerm.append(liString);
+        }
+        
+        Element divPageUper = body.getElementsByClass("paging_links inner").get(0);
+        List<String> pageUperliS = getPageLi(alphebetPair,4);
+        for (String li : pageUperliS) {
+            divPageUper.append(li);
+        }
+        
+        Element divPageDown = body.getElementsByClass("paging_links inner_down").get(0);
+        List<String> liS = getPageLi(alphebetPair,4);
+        for (String li : liS) {
+            divPageDown.append(li);
         }
 
     }
 
-    private String getTerm(String term) {
+    private String getTermLi(String language, String alphebetPair, String term) {
         //<li><a href="https://www.oxfordlearnersdictionaries.com/definition/english/abandon_1" title="abandon definition">abandon</a> </li>
         String title = "title=" + '"' + term + " definition" + '"';
-        String url = "https://www.oxfordlearnersdictionaries.com/definition/english/" + term + "_1";
+        //real version
+        //String url = this.path+"/"+DEFINITION+"/" +language+"/" +alphebetPair +"/" +term + "_1";
+        String url = localhost+"project"+"/"+DEFINITION+"/"+"termDefination.php";
         String a = "<a href=" + url + " " + title + ">" + term + "</a>";
         String li = "\n<li>" + a + "</li>\n";
         return li;
     }
 
-    private String getAlphebet(String alphabet) {
+    private String getAlphebetLi(String alphabet) {
         //Elements divAlphabet = body.getElementsByClass("side-selector__left");
         //Element content = body.getElementById("entries-selector");
-        String url = "https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_" + alphabet + "/";
+        String url = localhost+"project"+"/"+DEFINITION+"/"+alphabet + "_"+"example.php";
         String a = "<a href=" + url + ">" + alphabet + "</a>";
         String li = "\n<li>" + a + "</li>\n";
         return li;
+    }
+    
+    private List<String> getPageLi(String alphabet,Integer pages) {
+        //Elements divAlphabet = body.getElementsByClass("side-selector__left");
+        //Element content = body.getElementById("entries-selector");
+        List<String> liS=new ArrayList<String>();
+        for(Integer page=2;page<=pages;page++){
+        String url = localhost+"project"+"/"+DEFINITION+"/"+alphabet + "_"+page+ "_"+"example.php";
+        String a = "<a href=" + url + ">" + page + "</a>";
+        String li = "\n<li>" + a + "</li>\n";
+        liS.add(li);
+        }
+        return liS;
     }
 
     public Document test2(String language, List<String> alphabets, List<String> terms, Document template) {

@@ -16,7 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.nodes.Document;
-import browser.termallod.api.PopulateListofTerms;
 import browser.termallod.datamanager.LanguageTermPage;
 import browser.termallod.datamanager.Ntriple;
 import browser.termallod.utils.FileRelatedUtils;
@@ -30,10 +29,10 @@ public class BrowserHtml implements Constants {
 
     private static String PATH = "src/java/browser/termallod/";
     private static File inputFile = new File(PATH + "listOfTermsFinal.html");
-    private static File configFile = new File(PATH + "/data/" + "language.conf");
-    private static File termFile = new File(PATH + "/data/" + "AB_1.txt");
-    private static File outputFile = new File(PATH + "output.html");
-    private static String TermPathSetB = PATH + "/data/setB/";
+    private static File configFile = new File(PATH + "data/" + "language.conf");
+    private static File termFile = new File(PATH + "data/" + "AB_1.txt");
+    private static String termHtml = PATH + "html/";
+    private static String TermPathSetB = PATH + "data/setB/";
 
     public static void main(String[] args) {
         File[] categories = FileRelatedUtils.getFiles(TermPathSetB, ".ntriple");
@@ -49,39 +48,14 @@ public class BrowserHtml implements Constants {
                     List<String> terms=partition.get(page);
                     HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(inputFile);
                     Document oldDocument = htmlReaderWriter.getInputDocument();
-                    HtmlModify modifyHtml = new HtmlModify(oldDocument, eng, dataManager, terms);
+                    HtmlModify modifyHtml = new HtmlModify(oldDocument, eng, dataManager, terms,termHtml);
                     htmlReaderWriter.writeHtml(modifyHtml.getNewDocument(), outputFile);
+                    break;
                 }
- 
+                break;
             }
-
-           
+           break;
         }
-
-        /*String alphabet = dataManager.getAlphabets(eng)[0];
-        TreeMap<Integer, List<String>> pageTerms = dataManager.getLangTerms(eng);
-        for (Integer page : pageTerms.keySet()) {
-            File outputFile = new File(PATH + "/html/" + "output" + "_" + page + ".html");
-            List<String> terms = pageTerms.get(page);
-            HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(inputFile);
-            Document oldDocument = htmlReaderWriter.getInputDocument();
-            HtmlModify modifyHtml = new HtmlModify(oldDocument, eng, dataManager, terms);
-            htmlReaderWriter.writeHtml(modifyHtml.getNewDocument(), outputFile);
-        }*/
     }
     
-                  
-                
-                    /*System.out.println(page);
-                    TreeSet<String> terms = pageTerms.get(page);
-                    System.out.println(terms);*/
-                    /*File outputFile = new File(PATH + "/html/" + "output" + "_" + page + ".html");
-                   
-                    HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(inputFile);
-                    Document oldDocument = htmlReaderWriter.getInputDocument();
-                    HtmlModify modifyHtml = new HtmlModify(oldDocument, eng, dataManager, terms);
-                    htmlReaderWriter.writeHtml(modifyHtml.getNewDocument(), outputFile);*/
-                  
-                
-
 }
