@@ -28,7 +28,7 @@ import browser.termallod.utils.Partition;
  */
 public class BrowserHtml implements Constants {
 
-    private static String PATH = "src/java/tbx2rdf/utils/virtuoso/";
+    private static String PATH = "src/java/browser/termallod/";
     private static File inputFile = new File(PATH + "listOfTermsFinal.html");
     private static File configFile = new File(PATH + "/data/" + "language.conf");
     private static File termFile = new File(PATH + "/data/" + "AB_1.txt");
