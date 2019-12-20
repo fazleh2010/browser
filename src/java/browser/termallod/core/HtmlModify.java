@@ -5,12 +5,13 @@
  */
 package browser.termallod.core;
 
+import browser.termallod.core.api.HtmlConverter;
+import static browser.termallod.core.api.HtmlConverter.HTML_EXTENSION;
+import static browser.termallod.core.api.HtmlConverter.UNDERSCORE;
 import browser.termallod.core.api.LanguageManager;
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -19,65 +20,87 @@ import org.jsoup.nodes.Element;
  *
  * @author elahi
  */
-public class HtmlModify {
+public class HtmlModify{
 
     private Document oldDocument;
     private final AlphabetTermPage alphabetTermPage;
     private final Document newDocument;
-    private final String path;
     private final String localhost;
     private final String DEFINITION;
-    private final LanguageManager languageManager;
+    private final PageContentGenerator pageContentGenerator;
+    private final String categoryName;
 
-    public HtmlModify(Document oldDocument, String language, AlphabetTermPage alphabetTermPage, List<String> terms, String path, String localhost, String DEFINITION, LanguageManager languageManager) throws Exception {
+    public HtmlModify(Document oldDocument, String language, AlphabetTermPage alphabetTermPage, List<String> terms, String path, String localhost, String DEFINITION, String alphabetFileLocCons, PageContentGenerator pageContentGenerator) throws Exception {
         this.oldDocument = oldDocument;
         this.alphabetTermPage = alphabetTermPage;
-        this.path = path;
         this.localhost = localhost;
         this.DEFINITION = DEFINITION;
-        this.languageManager = languageManager;
+        this.pageContentGenerator = pageContentGenerator;
+        this.categoryName=alphabetFileLocCons;
         this.newDocument = this.changeBody(oldDocument, language, terms);
     }
 
     public Document changeBody(Document oldDocument, String language, List<String> terms) throws Exception {
         Element body = oldDocument.body();
         //String currentPageAlphabet = body.getElementsByClass("currentpage").get(0).getAllElements().get(1).text();
-        modiyCurrentPage(body, language, terms);
+        modiyPage(body, language, terms);
         return oldDocument;
     }
 
-    private void modiyCurrentPage(Element body, String language, List<String> terms) throws Exception {
-        String alphebetPair = alphabetTermPage.getAlpahbetPair();
-        Element divAlphabet = body.getElementsByClass("currentpage").get(0);
-        divAlphabet.append("<span>" + alphebetPair + "</span>");
-        List<String> alphabetPairs = languageManager.getLangAlphabetPairSorted(language);
-        for (Integer index = 0; index < alphabetPairs.size(); index++) {
-            String pair = alphabetPairs.get(index);
-            if (!pair.contains(alphebetPair)) {
-                String li = getAlphebetLi(pair);
-                divAlphabet.append(li);
-            }
+    private void modiyPage(Element body, String language, List<String> terms) throws Exception {
+         String alphebetPair = alphabetTermPage.getAlpahbetPair();
+         Integer numberofPages=alphabetTermPage.getNumberOfPages();
+         //currently not
+         Integer emptyTerm=alphabetTermPage.getEmptyTerm();
+         createAlphabet(body, language,alphebetPair);
+         createTerms(body, terms, language, alphebetPair,emptyTerm);
+         createUperPageNumber(body, alphebetPair,numberofPages);
+         createLowerPageNumber(body, alphebetPair,numberofPages);
 
+    }
+
+    private void createLowerPageNumber(Element body, String alphebetPair,Integer numberofPages) {
+        Element divPageDown = body.getElementsByClass("paging_links inner_down").get(0);
+        List<String> liS = getPageLi(alphebetPair, numberofPages);
+        for (String li : liS) {
+            divPageDown.append(li);
         }
+    }
 
-        Element divTerm = body.getElementsByClass("result-list1 wordlist-oxford3000 list-plain").get(0);
+    private void createUperPageNumber(Element body, String alphebetPair, Integer numberofPages) {
+        Element divPageUper = body.getElementsByClass("paging_links inner").get(0);
+        List<String> pageUperliS = getPageLi(alphebetPair, numberofPages);
+        for (String li : pageUperliS) {
+            divPageUper.append(li);
+        }
+    }
+
+    private void createTerms(Element body, List<String> terms, String language, String alphebetPair,Integer emptyTerm) {
+        Element divTerm = body.getElementsByClass("result-list1 wordlist-oxford3000 list-plain").get(0);        
         for (String term : terms) {
             String liString = getTermLi(language, alphebetPair, term);
             divTerm.append(liString);
         }
+        /*for (Integer index=0;index<emptyTerm;index++) {
+            String liString = "";
+            divTerm.append(liString);
+        }*/
+        
+    }
 
-        Element divPageUper = body.getElementsByClass("paging_links inner").get(0);
-        List<String> pageUperliS = getPageLi(alphebetPair, 4);
-        for (String li : pageUperliS) {
-            divPageUper.append(li);
+    private String createAlphabet(Element body, String language,String alphebetPair) throws Exception {
+        Element divAlphabet = body.getElementsByClass("currentpage").get(0);
+        divAlphabet.append("<span>" + alphebetPair + "</span>");
+        List<String> alphabetPairsExists = pageContentGenerator.getAlpahbetTermsExists(language);
+        for (String pair:alphabetPairsExists) {
+            if (!pair.contains(alphebetPair)) {
+                String alphabetFileName=categoryName+UNDERSCORE+language+UNDERSCORE+pair+UNDERSCORE+"0"+HTML_EXTENSION;
+                String li = getAlphebetLi(pair,alphabetFileName);
+                divAlphabet.append(li);
+            }
+            
         }
-
-        Element divPageDown = body.getElementsByClass("paging_links inner_down").get(0);
-        List<String> liS = getPageLi(alphebetPair, 4);
-        for (String li : liS) {
-            divPageDown.append(li);
-        }
-
+        return alphebetPair;
     }
 
     private String getTermLi(String language, String alphebetPair, String term) {
@@ -85,16 +108,16 @@ public class HtmlModify {
         String title = "title=" + '"' + term + " definition" + '"';
         //real version
         //String url = this.path+"/"+DEFINITION+"/" +language+"/" +alphebetPair +"/" +term + "_1";
-        String url = localhost + "project" + "/" + DEFINITION + "/" + "termDefination.php";
+        String url = localhost +"termDefination.php";
         String a = "<a href=" + url + " " + title + ">" + term + "</a>";
         String li = "\n<li>" + a + "</li>\n";
         return li;
     }
 
-    private String getAlphebetLi(String alphabet) {
+    private String getAlphebetLi(String alphabet,String alphabetFileName) {
         //Elements divAlphabet = body.getElementsByClass("side-selector__left");
         //Element content = body.getElementById("entries-selector");
-        String url = localhost + "project" + "/" + DEFINITION + "/" + alphabet + "_" + "example.php";
+        String url = localhost + alphabetFileName;
         String a = "<a href=" + url + ">" + alphabet + "</a>";
         String li = "\n<li>" + a + "</li>\n";
         return li;

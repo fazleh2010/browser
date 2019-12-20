@@ -15,12 +15,16 @@ public class AlphabetTermPage {
 
     private Partition<String> partition = null;
     private Integer numberOfPages=null;
+    private Integer emptyTerm=null;
     private String alpahbetPair=null;
 
     public AlphabetTermPage( String alpahbetPair, Partition<String> partition) {
-        this.alpahbetPair=alpahbetPair.toUpperCase();
+        this.alpahbetPair=alpahbetPair;
         this.partition=partition;
         this.numberOfPages=partition.size();
+        /*if(numberOfPages<100){
+            emptyTerm=100-numberOfPages;
+        }*/
     }
 
     public Partition<String> getPartition() {
@@ -35,9 +39,8 @@ public class AlphabetTermPage {
         return alpahbetPair;
     }
 
-    @Override
-    public String toString() {
-        return "AlphabetTermPage{" + "partition=" + partition + ", numberOfPages=" + numberOfPages + ", alpahbetPair=" + alpahbetPair + '}';
+    public Integer getEmptyTerm() {
+        return emptyTerm;
     }
     
 

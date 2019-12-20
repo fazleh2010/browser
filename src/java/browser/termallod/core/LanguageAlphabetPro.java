@@ -50,6 +50,7 @@ public class LanguageAlphabetPro implements LanguageManager {
         List<String> alphebetsPairList = new ArrayList<String>();
         for (Integer index = 0; index < alphebets.length;) {
             String pair = alphebets[index] + this.UNDERSCORE + alphebets[index + 1];
+            pair=pair.toUpperCase();
             alphabetsPair.put(alphebets[index], pair);
             alphabetsPair.put(alphebets[index + 1], pair);
             alphebetsPairList.add(pair);

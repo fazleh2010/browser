@@ -6,7 +6,7 @@
 package browser.termallod.core.main;
 
 import browser.termallod.core.AlphabetTermPage;
-import browser.termallod.core.HtmlConverter;
+import browser.termallod.core.HtmlToConverter;
 import browser.termallod.core.LanguageAlphabetPro;
 import browser.termallod.core.Ntriple;
 import browser.termallod.core.PageContentGenerator;
@@ -29,35 +29,31 @@ import browser.termallod.utils.Partition;
  * @author elahi
  */
 public class Main {
+
     public static String PATH = "src/java/browser/termallod/";
     public static File MAIN_PAGE_TEMPLATE = new File(PATH + "listOfTermsFinal.html");
     public static File configFile = new File(PATH + "data/" + "language.conf");
-    public static String termHtml = PATH + "html/";
     public static String GENTERM_PATH = PATH + "data/genterm/";
-    public static String  DEFINITION = "definition";
-    public static String localhost = "http://localhost/";
-    public static String NTRIPLE_EXTENSION= ".ntriple";
+    public static String NTRIPLE_EXTENSION = ".ntriple";
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         File[] files = FileRelatedUtils.getFiles(GENTERM_PATH, NTRIPLE_EXTENSION);
         LanguageManager languageManager = new LanguageAlphabetPro(configFile);
 
-        for (File file : files) {
-            Ntriple ntriple = new Ntriple((GENTERM_PATH + file.getName()),languageManager);
+        for (File categoryFile : files) {
+            Ntriple ntriple = new Ntriple((GENTERM_PATH + categoryFile.getName()), languageManager);
             PageContentGenerator pageContentGenerator = new PageContentGenerator(ntriple);
             for (String language : pageContentGenerator.getLanguages()) {
-                List<AlphabetTermPage> alphabetTermPageList=pageContentGenerator.getLangPages(language);
-                System.out.println(alphabetTermPageList.toString());
-                /*for(AlphabetTermPage alphabetTermPage:alphabetTermPageList){
-                    HtmlConverter htmlConverter=new HtmlConverter(PATH,file,MAIN_PAGE_TEMPLATE,language,alphabetTermPage,languageManager);
-                }*/
-               
+                List<AlphabetTermPage> alphabetTermPageList = pageContentGenerator.getLangPages(language);
+                for (AlphabetTermPage alphabetTermPage : alphabetTermPageList) {
+                    String categoryName=categoryFile.getName().replace(".ntriple", "");
+                    HtmlToConverter htmlConverter = new HtmlToConverter(PATH, categoryName, MAIN_PAGE_TEMPLATE, language, alphabetTermPage, pageContentGenerator);
+                }
+
                 break;
             }
             break;
         }
     }
-
-   
 
 }

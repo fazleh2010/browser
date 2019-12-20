@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class PageContentGenerator {
 
     private HashMap<String, List<AlphabetTermPage>> langPages = new HashMap<String, List<AlphabetTermPage>>();
+    private HashMap<String, List<String>> alpahbetTermsExists = new HashMap<String,  List<String>>();
     public Integer numberofElementEachPage = 100;
 
     public PageContentGenerator(Ntriple ntriple) throws Exception {
@@ -37,13 +38,16 @@ public class PageContentGenerator {
         for (String language : langSortedTerms.keySet()) {
             TreeMap<String, List<String>> alpahbetTerms = langSortedTerms.get(language);
             List<AlphabetTermPage> alphabetTermPageList = new ArrayList<AlphabetTermPage>();
+            List<String> alphabetListExists = new ArrayList<String>();
             for (String alphabetPair : alpahbetTerms.keySet()) {
                 List<String> termList = alpahbetTerms.get(alphabetPair);
                 Collections.sort(termList);
                 Partition<String> partition = Partition.ofSize(termList, this.numberofElementEachPage);
                 AlphabetTermPage alphabetTermPage = new AlphabetTermPage(alphabetPair, partition);
                 alphabetTermPageList.add(alphabetTermPage);
+                alphabetListExists.add(alphabetPair);
             }
+            this.alpahbetTermsExists.put(language, alphabetListExists);
             langTerms.put(language, alphabetTermPageList);
         }
         return langTerms;
@@ -54,6 +58,13 @@ public class PageContentGenerator {
             return langPages.get(language);
         }
         return new ArrayList<AlphabetTermPage>();
+    }
+
+    public List<String> getAlpahbetTermsExists(String language) {
+        if (alpahbetTermsExists.containsKey(language)) {
+            return alpahbetTermsExists.get(language);
+        }
+        return new ArrayList<String>();
     }
 
     public Set<String> getLanguages() {
@@ -88,14 +99,14 @@ public class PageContentGenerator {
             }
         }
     }*/
-
     private void display() {
-       for(String language:this.langPages.keySet()){
-           List<AlphabetTermPage> pages=langPages.get(language);
-           for(AlphabetTermPage page:pages){
-               System.out.print(page);
-           }
-           
-       }
+        for (String language : this.langPages.keySet()) {
+            List<AlphabetTermPage> pages = langPages.get(language);
+            for (AlphabetTermPage page : pages) {
+                System.out.print(page);
+            }
+
+        }
     }
+
 }
