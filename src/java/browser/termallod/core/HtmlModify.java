@@ -20,7 +20,7 @@ import org.jsoup.nodes.Element;
  *
  * @author elahi
  */
-public class HtmlModify{
+public class HtmlModify {
 
     private Document oldDocument;
     private final AlphabetTermPage alphabetTermPage;
@@ -36,7 +36,7 @@ public class HtmlModify{
         this.localhost = localhost;
         this.DEFINITION = DEFINITION;
         this.pageContentGenerator = pageContentGenerator;
-        this.categoryName=alphabetFileLocCons;
+        this.categoryName = alphabetFileLocCons;
         this.newDocument = this.changeBody(oldDocument, language, terms);
     }
 
@@ -48,35 +48,35 @@ public class HtmlModify{
     }
 
     private void modiyPage(Element body, String language, List<String> terms) throws Exception {
-         String alphebetPair = alphabetTermPage.getAlpahbetPair();
-         Integer numberofPages=alphabetTermPage.getNumberOfPages();
-         //currently not
-         Integer emptyTerm=alphabetTermPage.getEmptyTerm();
-         createAlphabet(body, language,alphebetPair);
-         createTerms(body, terms, language, alphebetPair,emptyTerm);
-         createUperPageNumber(body, alphebetPair,numberofPages);
-         createLowerPageNumber(body, alphebetPair,numberofPages);
+        String alphebetPair = alphabetTermPage.getAlpahbetPair();
+        Integer numberofPages = alphabetTermPage.getNumberOfPages();
+        //currently not
+        Integer emptyTerm = alphabetTermPage.getEmptyTerm();
+        createAlphabet(body, language, alphebetPair);
+        createTerms(body, terms, language, alphebetPair, emptyTerm);
+        createUperPageNumber(body, language, alphebetPair, numberofPages);
+        createLowerPageNumber(body, language, alphebetPair, numberofPages);
 
     }
 
-    private void createLowerPageNumber(Element body, String alphebetPair,Integer numberofPages) {
+    private void createLowerPageNumber(Element body, String language, String alphebetPair, Integer numberofPages) {
         Element divPageDown = body.getElementsByClass("paging_links inner_down").get(0);
-        List<String> liS = getPageLi(alphebetPair, numberofPages);
+        List<String> liS = getPageLi(language, alphebetPair, numberofPages);
         for (String li : liS) {
             divPageDown.append(li);
         }
     }
 
-    private void createUperPageNumber(Element body, String alphebetPair, Integer numberofPages) {
+    private void createUperPageNumber(Element body, String language, String alphebetPair, Integer numberofPages) {
         Element divPageUper = body.getElementsByClass("paging_links inner").get(0);
-        List<String> pageUperliS = getPageLi(alphebetPair, numberofPages);
+        List<String> pageUperliS = getPageLi(language, alphebetPair, numberofPages);
         for (String li : pageUperliS) {
             divPageUper.append(li);
         }
     }
 
-    private void createTerms(Element body, List<String> terms, String language, String alphebetPair,Integer emptyTerm) {
-        Element divTerm = body.getElementsByClass("result-list1 wordlist-oxford3000 list-plain").get(0);        
+    private void createTerms(Element body, List<String> terms, String language, String alphebetPair, Integer emptyTerm) {
+        Element divTerm = body.getElementsByClass("result-list1 wordlist-oxford3000 list-plain").get(0);
         for (String term : terms) {
             String liString = getTermLi(language, alphebetPair, term);
             divTerm.append(liString);
@@ -85,20 +85,20 @@ public class HtmlModify{
             String liString = "";
             divTerm.append(liString);
         }*/
-        
+
     }
 
-    private String createAlphabet(Element body, String language,String alphebetPair) throws Exception {
+    private String createAlphabet(Element body, String language, String alphebetPair) throws Exception {
         Element divAlphabet = body.getElementsByClass("currentpage").get(0);
         divAlphabet.append("<span>" + alphebetPair + "</span>");
         List<String> alphabetPairsExists = pageContentGenerator.getAlpahbetTermsExists(language);
-        for (String pair:alphabetPairsExists) {
+        for (String pair : alphabetPairsExists) {
             if (!pair.contains(alphebetPair)) {
-                String alphabetFileName=categoryName+UNDERSCORE+language+UNDERSCORE+pair+UNDERSCORE+"0"+HTML_EXTENSION;
-                String li = getAlphebetLi(pair,alphabetFileName);
+                String alphabetFileName = categoryName + UNDERSCORE + language + UNDERSCORE + pair + UNDERSCORE + "0" + HTML_EXTENSION;
+                String li = getAlphebetLi(pair, alphabetFileName);
                 divAlphabet.append(li);
             }
-            
+
         }
         return alphebetPair;
     }
@@ -108,13 +108,13 @@ public class HtmlModify{
         String title = "title=" + '"' + term + " definition" + '"';
         //real version
         //String url = this.path+"/"+DEFINITION+"/" +language+"/" +alphebetPair +"/" +term + "_1";
-        String url = localhost +"termDefination.php";
+        String url = localhost + "termDefination.php";
         String a = "<a href=" + url + " " + title + ">" + term + "</a>";
         String li = "\n<li>" + a + "</li>\n";
         return li;
     }
 
-    private String getAlphebetLi(String alphabet,String alphabetFileName) {
+    private String getAlphebetLi(String alphabet, String alphabetFileName) {
         //Elements divAlphabet = body.getElementsByClass("side-selector__left");
         //Element content = body.getElementById("entries-selector");
         String url = localhost + alphabetFileName;
@@ -123,13 +123,15 @@ public class HtmlModify{
         return li;
     }
 
-    private List<String> getPageLi(String alphabet, Integer pages) {
+    private List<String> getPageLi(String language, String pair, Integer pages) {
         //Elements divAlphabet = body.getElementsByClass("side-selector__left");
         //Element content = body.getElementById("entries-selector");
         List<String> liS = new ArrayList<String>();
-        for (Integer page = 2; page <= pages; page++) {
-            String url = localhost + "project" + "/" + DEFINITION + "/" + alphabet + "_" + page + "_" + "example.php";
-            String a = "<a href=" + url + ">" + page + "</a>";
+        String pageUrl = null;
+        for (Integer page = 2; page <pages; page++) {
+            pageUrl = localhost + categoryName + UNDERSCORE + language + UNDERSCORE + pair + UNDERSCORE + page + HTML_EXTENSION;
+            System.out.println(pageUrl);
+            String a = "<a href=" + pageUrl + ">" + page + "</a>";
             String li = "\n<li>" + a + "</li>\n";
             liS.add(li);
         }

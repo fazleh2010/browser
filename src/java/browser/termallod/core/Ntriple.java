@@ -52,7 +52,7 @@ public class Ntriple {
                         String[] infor = rdfNode.toString().split(LANGUAGE_SEPERATE_SYMBOLE);;
                         String language = infor[1].toLowerCase();
                         String term = infor[0].toLowerCase();
-                        //System.out.println(language+" "+term);
+                        System.out.println(language+" "+term);
                         if (langTerms.containsKey(language)) {
                             langTerms = ifElementExist(language, term, langTerms);
 
@@ -102,6 +102,7 @@ public class Ntriple {
         HashMap<String, String> alphabetPairs;
         try {
             alphabetPairs = this.languageInfo.getLangAlphabetHash(language);
+            term=term.trim();
             String letter = term.substring(0, 1);
             if (alphabetPairs.containsKey(letter)) {
                 String pair = alphabetPairs.get(letter);
