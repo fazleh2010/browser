@@ -6,6 +6,7 @@
 package browser.termallod.utils;
 
 import java.util.List;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
@@ -15,10 +16,10 @@ import java.util.stream.Collectors;
  */
 public class Mathmatices {
 
-    public static boolean isOdd(String alphebets[]) {
+    public static boolean isOdd(Set<String> alphebets) {
         int x;
 
-        return ifOdd(alphebets.length);
+        return ifOdd(alphebets.size());
     }
 
     /*public static List<Object> getNumberofPages(List<String> list, Integer numberElementsEachPage) {
