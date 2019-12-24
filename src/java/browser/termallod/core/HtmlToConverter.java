@@ -28,11 +28,12 @@ public class HtmlToConverter implements HtmlConverter {
     public void convertToHtml(String PATH, String categoryName, File templateFile, String language, AlphabetTermPage alphabetTermPage, PageContentGenerator pageContentGenerator) throws Exception {
         Partition partition = alphabetTermPage.getPartition();
         for (Integer page = 0; page < partition.size(); page++) {
-            File outputFile =generateFileName(PATH, page, categoryName, language, alphabetTermPage);
+            Integer currentPageNumber=page+1;
+            File outputFile =generateFileName(PATH, currentPageNumber, categoryName, language, alphabetTermPage);
             List<String> terms = partition.get(page);
             HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
             Document templateHtml = htmlReaderWriter.getInputDocument();
-            HtmlModify modifyHtml = new HtmlModify(templateHtml, language, alphabetTermPage, terms, LIST_OF_TERMS_PAGE_LOCATION, LOCALHOST_URL, TERM_DEFINATION_LOCATION, categoryName,pageContentGenerator);
+            HtmlModify modifyHtml = new HtmlModify(templateHtml, language, alphabetTermPage, terms, LIST_OF_TERMS_PAGE_LOCATION, LOCALHOST_URL, TERM_DEFINATION_LOCATION, categoryName,pageContentGenerator,currentPageNumber);
             htmlReaderWriter.writeHtml(modifyHtml.getNewDocument(), outputFile);
         }
     }

@@ -26,14 +26,16 @@ public class HtmlModify {
     private final String DEFINITION;
     private final PageContentGenerator pageContentGenerator;
     private final String categoryName;
+    private final Integer currentPageNumber;
 
-    public HtmlModify(Document oldDocument, String language, AlphabetTermPage alphabetTermPage, List<String> terms, String path, String localhost, String DEFINITION, String alphabetFileLocCons, PageContentGenerator pageContentGenerator) throws Exception {
+    public HtmlModify(Document oldDocument, String language, AlphabetTermPage alphabetTermPage, List<String> terms, String path, String localhost, String DEFINITION, String alphabetFileLocCons, PageContentGenerator pageContentGenerator, Integer currentPageNumber) throws Exception {
         this.oldDocument = oldDocument;
         this.alphabetTermPage = alphabetTermPage;
         this.localhost = localhost;
         this.DEFINITION = DEFINITION;
         this.pageContentGenerator = pageContentGenerator;
         this.categoryName = alphabetFileLocCons;
+        this.currentPageNumber = currentPageNumber;
         this.newDocument = this.changeBody(oldDocument, language, terms);
     }
 
@@ -58,15 +60,27 @@ public class HtmlModify {
 
     private void createLowerPageNumber(Element body, String language, String alphebetPair, Integer numberofPages) {
         Element divPageDown = body.getElementsByClass("paging_links inner_down").get(0);
+        //Element divCurrentPage = body.getElementsByClass("activepage").get(0);
+        //this.assignCurrentPageNumber(divCurrentPage);
         List<String> liS = getPageLi(language, alphebetPair, numberofPages);
+        if (liS.isEmpty()) {
+            return;
+        }
         for (String li : liS) {
             divPageDown.append(li);
         }
     }
 
+    /*private void assignCurrentPageNumber(Element divCurrentPage) {
+     divCurrentPage.append("<span>"+this.currentPageNumber+"</span> </li>");
+        
+    }*/
     private void createUperPageNumber(Element body, String language, String alphebetPair, Integer numberofPages) {
         Element divPageUper = body.getElementsByClass("paging_links inner").get(0);
         List<String> pageUperliS = getPageLi(language, alphebetPair, numberofPages);
+        if (pageUperliS.isEmpty()) {
+            return;
+        }
         for (String li : pageUperliS) {
             divPageUper.append(li);
         }
@@ -91,7 +105,7 @@ public class HtmlModify {
         List<String> alphabetPairsExists = pageContentGenerator.getAlpahbetTermsExists(language);
         for (String pair : alphabetPairsExists) {
             if (!pair.contains(alphebetPair)) {
-                String alphabetFileName = categoryName + UNDERSCORE + language + UNDERSCORE + pair + UNDERSCORE + "0" + HTML_EXTENSION;
+                String alphabetFileName = categoryName + UNDERSCORE + language + UNDERSCORE + pair + UNDERSCORE + "1" + HTML_EXTENSION;
                 String li = getAlphebetLi(pair, alphabetFileName);
                 divAlphabet.append(li);
             }
@@ -125,11 +139,17 @@ public class HtmlModify {
         //Element content = body.getElementById("entries-selector");
         List<String> liS = new ArrayList<String>();
         String pageUrl = null;
-        for (Integer page = 1; page <pages; page++) {
-            pageUrl = localhost + categoryName + UNDERSCORE + language + UNDERSCORE + pair + UNDERSCORE + page + HTML_EXTENSION;
-            System.out.println(pageUrl);
-            String a = "<a href=" + pageUrl + ">" + page + "</a>";
-            String li = "\n<li>" + a + "</li>\n";
+        String li = "";
+        /*"<span>" + this.currentPageNumber + "</span>";
+        liS.add(li);*/
+        if (pages == 1) {
+            return new ArrayList<String>();
+        }
+        for (Integer page = 0; page < pages; page++) {
+            Integer pageNumber = (page + 1);
+            pageUrl = localhost + categoryName + UNDERSCORE + language + UNDERSCORE + pair + UNDERSCORE + pageNumber + HTML_EXTENSION;
+            String a = "<a href=" + pageUrl + ">" + pageNumber + "</a>";
+            li = "\n<li>" + a + "</li>\n";
             liS.add(li);
         }
         return liS;
