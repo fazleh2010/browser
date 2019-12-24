@@ -5,11 +5,8 @@
  */
 package browser.termallod.core;
 
-import browser.termallod.core.api.HtmlConverter;
 import static browser.termallod.core.api.HtmlConverter.HTML_EXTENSION;
 import static browser.termallod.core.api.HtmlConverter.UNDERSCORE;
-import browser.termallod.core.api.LanguageManager;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import org.jsoup.Jsoup;
@@ -128,7 +125,7 @@ public class HtmlModify {
         //Element content = body.getElementById("entries-selector");
         List<String> liS = new ArrayList<String>();
         String pageUrl = null;
-        for (Integer page = 2; page <pages; page++) {
+        for (Integer page = 1; page <pages; page++) {
             pageUrl = localhost + categoryName + UNDERSCORE + language + UNDERSCORE + pair + UNDERSCORE + page + HTML_EXTENSION;
             System.out.println(pageUrl);
             String a = "<a href=" + pageUrl + ">" + page + "</a>";
