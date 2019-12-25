@@ -6,23 +6,17 @@
 package browser.termallod.core.main;
 
 import browser.termallod.core.AlphabetTermPage;
-import browser.termallod.core.HtmlToConverter;
+import browser.termallod.core.HtmlPageGenerator;
+import browser.termallod.core.HtmlReaderWriter;
 import browser.termallod.core.LanguageAlphabetPro;
 import browser.termallod.core.Ntriple;
 import browser.termallod.core.PageContentGenerator;
 import browser.termallod.core.api.LanguageManager;
 import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.TreeMap;
-import java.util.TreeSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.apache.commons.io.FileUtils;
 import org.jsoup.nodes.Document;
 import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.utils.Partition;
+import java.util.List;
 
 /**
  *
@@ -37,6 +31,7 @@ public class Main {
     public static String NTRIPLE_EXTENSION = ".ntriple";
 
     public static void main(String[] args) throws Exception {
+        Main main=new Main();
         File[] files = FileRelatedUtils.getFiles(GENTERM_PATH, NTRIPLE_EXTENSION);
         LanguageManager languageManager = new LanguageAlphabetPro(configFile);
 
@@ -47,13 +42,27 @@ public class Main {
                 List<AlphabetTermPage> alphabetTermPageList = pageContentGenerator.getLangPages(language);
                 for (AlphabetTermPage alphabetTermPage : alphabetTermPageList) {
                     String categoryName=categoryFile.getName().replace(".ntriple", "");
-                    HtmlToConverter htmlConverter = new HtmlToConverter(PATH, categoryName, MAIN_PAGE_TEMPLATE, language, alphabetTermPage, pageContentGenerator);
+                    main.generateHtml(PATH, categoryName, MAIN_PAGE_TEMPLATE, language, alphabetTermPage, pageContentGenerator);
                 }
 
                 break;
             }
             break;
         }
+    }
+    
+    
+    private void generateHtml(String baseDir, String categoryName, File templateFile, String language, AlphabetTermPage alphabetTermPage, PageContentGenerator pageContentGenerator) throws Exception {
+        Partition partition = alphabetTermPage.getPartition();
+        for (Integer page = 0; page < partition.size(); page++) {
+            Integer currentPageNumber=page+1;
+            List<String> terms = partition.get(page);
+            HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
+            Document templateHtml = htmlReaderWriter.getInputDocument();
+            HtmlPageGenerator htmlPage = new HtmlPageGenerator(templateHtml, language, alphabetTermPage, terms,categoryName,pageContentGenerator,currentPageNumber);
+            htmlReaderWriter.writeHtml(htmlPage.getGeneratedHtmlPage(), htmlPage.getHtmlFileName());
+        }
+
     }
 
 }

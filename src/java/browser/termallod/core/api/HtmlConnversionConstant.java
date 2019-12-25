@@ -13,7 +13,7 @@ import java.io.File;
  *
  * @author elahi
  */
-public interface HtmlConverter {
+public interface HtmlConnversionConstant {
 
     public static String PATH = "src/java/browser/termallod/";
     public static String LIST_OF_TERMS_PAGE_LOCATION = PATH + "html/";
@@ -22,6 +22,5 @@ public interface HtmlConverter {
     public static String HTML_EXTENSION =".html";
     public String UNDERSCORE = "_";
 
-    public void convertToHtml(String PATH, String categoryName, File templateFile, String language, AlphabetTermPage alphabetTermPage, PageContentGenerator pageContentGenerator) throws Exception;
 
 }
