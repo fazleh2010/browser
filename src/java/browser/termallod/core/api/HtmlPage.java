@@ -20,11 +20,11 @@ import org.jsoup.nodes.Element;
  */
 public interface HtmlPage {
 
-    public static String PATH = "src/java/browser/termallod/";
+    public static String PATH = "src/java/browser/termallod/data/";
     public static String LIST_OF_TERMS_PAGE_LOCATION = PATH + "html/";
     public static String TERM_DEFINATION_LOCATION = LIST_OF_TERMS_PAGE_LOCATION + "definition";
-    //public static String LOCALHOST_URL = "http://localhost/";
-    public static String LOCALHOST_URL = "http://scdemo.techfak.uni-bielefeld.de/termeallod/";
+    public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "http://localhost/";
+    //public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "https://webtentacle1.techfak.uni-bielefeld.de/";
     
     public static String HTML_EXTENSION = ".html";
     public static Integer INITIAL_PAGE = 1;
@@ -35,6 +35,7 @@ public interface HtmlPage {
             put("nl", "Dutch");
         }
     };
+    
 
     public String createAlphabet(Element body, String alphebetPair, PageContentGenerator pageContentGenerator) throws Exception;
 

@@ -21,15 +21,18 @@ public class HtmlPageGenerator implements HtmlPage {
     private final Document generatedHtmlPage;
     private final Integer currentPageNumber;
     private final String language;
-    private final String categoryName;
+    private final String ontologyFileName;
+    private  String categoryType="";
     private File htmlFileName = null;
 
     public HtmlPageGenerator(Document templateHtml, String language, AlphabetTermPage alphabetTermPage, List<String> terms, String categoryName, PageContentGenerator pageContentGenerator, Integer currentPageNumber) throws Exception {
         this.currentPageNumber = currentPageNumber;
         this.language = language;
-        this.categoryName = categoryName;
+        this.ontologyFileName = categoryName;
+        String []ontology=ontologyFileName.split("_");
+        this.categoryType=ontology [1];
         this.generatedHtmlPage = this.generateHtmlFromTemplate(templateHtml, terms, pageContentGenerator, alphabetTermPage);
-        this.htmlFileName = generateHtmlFileName(LIST_OF_TERMS_PAGE_LOCATION, currentPageNumber, language, alphabetTermPage);
+        this.htmlFileName = outputFileName(currentPageNumber, alphabetTermPage);
     }
 
     private Document generateHtmlFromTemplate(Document templateHtml, List<String> terms, PageContentGenerator pageContentGenerator, AlphabetTermPage alphabetTermPage) throws Exception {
@@ -60,7 +63,7 @@ public class HtmlPageGenerator implements HtmlPage {
                 String languageDetail = languageMapper.get(language);
                 String pair = pageContentGenerator.getLanguageInitpage(language);
                 pair = getAlphabetFileName(pair, language);
-                String url = LOCALHOST_URL + pair;
+                String url = LOCALHOST_URL_LIST_OF_TERMS_PAGE + this.ontologyFileName+"/"+""+pair;
                 String option = "<li>&#8227; <a href=" + "\"" + url + "\"" + ">" + languageDetail + "</a></li>";
                 options += option;
             }
@@ -70,10 +73,6 @@ public class HtmlPageGenerator implements HtmlPage {
         divLanguage.append(form);
     }
 
-    private String getAlphabetFileName(String intialFileName, String langCode) {
-        intialFileName = categoryName + UNDERSCORE + langCode + UNDERSCORE + intialFileName + UNDERSCORE + INITIAL_PAGE + HTML_EXTENSION;
-        return intialFileName;
-    }
 
     @Override
     public String createAlphabet(Element body, String alphebetPair, PageContentGenerator pageContentGenerator) throws Exception {
@@ -137,7 +136,7 @@ public class HtmlPageGenerator implements HtmlPage {
         //String url = this.path+"/"+DEFINITION+"/" +language+"/" +alphebetPair +"/" +term + "_1";
         String url = generateTermDetailFileName(alphabetTermPage, term);
         //String url = LOCALHOST_URL + "termDefination.php";
-        System.out.println(url);
+        //System.out.println(url);
         String a = "<a href=" + url + " " + title + ">" + term + "</a>";
         String li = "\n<li>" + a + "</li>\n";
         return li;
@@ -146,9 +145,14 @@ public class HtmlPageGenerator implements HtmlPage {
     private String getAlphebetLi(String alphabet, String alphabetFileName) {
         //Elements divAlphabet = body.getElementsByClass("side-selector__left");
         //Element content = body.getElementById("entries-selector");
-        String url = LOCALHOST_URL + alphabetFileName;
+        /*String ontologyLocation="";
+        if(categoryOntologyMapper.containsKey(this.categoryName)){
+            ontologyLocation=categoryOntologyMapper.get(categoryName);
+        }*/
+        String url = LOCALHOST_URL_LIST_OF_TERMS_PAGE + this.ontologyFileName+"/"+alphabetFileName;
         String a = "<a href=" + url + ">" + alphabet + "</a>";
-        String li = "\n<li>" + a + "</li>\n";
+        String li = "<li>" + a + "</li>";
+        
         return li;
     }
 
@@ -165,7 +169,7 @@ public class HtmlPageGenerator implements HtmlPage {
         }
         for (Integer page = 0; page < pages; page++) {
             Integer pageNumber = (page + 1);
-            pageUrl = LOCALHOST_URL + categoryName + UNDERSCORE + language + UNDERSCORE + pair + UNDERSCORE + pageNumber + HTML_EXTENSION;
+            pageUrl = LOCALHOST_URL_LIST_OF_TERMS_PAGE +ontologyFileName +File.separator +this.categoryType+UNDERSCORE + language + UNDERSCORE + pair + UNDERSCORE + pageNumber + HTML_EXTENSION;
             String a = "<a href=" + pageUrl + ">" + pageNumber + "</a>";
             li = "\n<li>" + a + "</li>\n";
             liS.add(li);
@@ -183,16 +187,22 @@ public class HtmlPageGenerator implements HtmlPage {
         return "\n<li>" + a + "</li>\n";
 
     }
+    
+    private String getAlphabetFileName(String intialFileName, String langCode) {
+        intialFileName = categoryType + UNDERSCORE + langCode + UNDERSCORE + intialFileName + UNDERSCORE + INITIAL_PAGE + HTML_EXTENSION;
+        return intialFileName;
+    }
 
-    private File generateHtmlFileName(String LIST_OF_TERMS_PAGE_LOCATION, Integer page, String language, AlphabetTermPage alphabetTermPage) {
-        String outputfileString = categoryName + "_" + language + "_";
-        File outputFile = new File(LIST_OF_TERMS_PAGE_LOCATION + outputfileString + alphabetTermPage.getAlpahbetPair() + "_" + page + HTML_EXTENSION);
+    private File outputFileName(Integer page, AlphabetTermPage alphabetTermPage) {
+        String outputfileString = this.categoryType + "_" + language + "_";
+        outputfileString =PATH+this.ontologyFileName +"/"+ outputfileString + alphabetTermPage.getAlpahbetPair() + "_" + page + HTML_EXTENSION;
+        File outputFile = new File(outputfileString);
         return outputFile;
     }
 
     private String generateTermDetailFileName( AlphabetTermPage alphabetTermPage, String term) {
-        String outputfileString = categoryName + "_" + language + "_";
-        outputfileString =  LOCALHOST_URL  + outputfileString + alphabetTermPage.getAlpahbetPair() + "_" + this.currentPageNumber + "_" + term + HTML_EXTENSION;
+        String outputfileString = ontologyFileName + "_" + language + "_";
+        outputfileString =  LOCALHOST_URL_LIST_OF_TERMS_PAGE  + outputfileString + alphabetTermPage.getAlpahbetPair() + "_" + this.currentPageNumber + "_" + term + HTML_EXTENSION;
         return outputfileString;
     }
 
