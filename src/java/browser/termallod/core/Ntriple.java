@@ -52,7 +52,7 @@ public class Ntriple {
                         String[] infor = rdfNode.toString().split(LANGUAGE_SEPERATE_SYMBOLE);;
                         String language = infor[1].toLowerCase();
                         String term = infor[0].toLowerCase();
-                        System.out.println(language+" "+term);
+                        System.out.println(language + " " + term);
                         if (langTerms.containsKey(language)) {
                             langTerms = ifElementExist(language, term, langTerms);
 
@@ -84,16 +84,21 @@ public class Ntriple {
         String pair;
         pair = this.getAlphabetPair(language, term);
         TreeMap<String, List<String>> alpahbetTerms = langTerms.get(language);
-        if (alpahbetTerms.containsKey(pair)) {
-            List<String> terms = alpahbetTerms.get(pair);
-            terms.add(term);
-            alpahbetTerms.put(pair, terms);
-            langTerms.put(language, alpahbetTerms);
-        } else {
-            List<String> terms = new ArrayList<String>();
-            terms.add(term);
-            alpahbetTerms.put(pair, terms);
-            langTerms.put(language, alpahbetTerms);
+        try {
+            if (alpahbetTerms.containsKey(pair)) {
+                List<String> terms = alpahbetTerms.get(pair);
+                terms.add(term);
+                alpahbetTerms.put(pair, terms);
+                langTerms.put(language, alpahbetTerms);
+            } else {
+                List<String> terms = new ArrayList<String>();
+                terms.add(term);
+                alpahbetTerms.put(pair, terms);
+                langTerms.put(language, alpahbetTerms);
+            }
+        } catch (NullPointerException e) {
+            //  Block of code to handle errors
+            
         }
         return langTerms;
     }
@@ -102,7 +107,7 @@ public class Ntriple {
         HashMap<String, String> alphabetPairs;
         try {
             alphabetPairs = this.languageInfo.getLangAlphabetHash(language);
-            term=term.trim();
+            term = term.trim();
             String letter = term.substring(0, 1);
             if (alphabetPairs.containsKey(letter)) {
                 String pair = alphabetPairs.get(letter);

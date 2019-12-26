@@ -11,10 +11,6 @@ import java.util.List;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import browser.termallod.core.api.HtmlPage;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  *
@@ -54,71 +50,27 @@ public class HtmlPageGenerator implements HtmlPage {
         createLowerPageNumber(body, alphebetPair, numberofPages);
         return templateHtml;
     }
-
-    /* @Override
+    
+     @Override
     public void createLangSelectBox(Element body, PageContentGenerator pageContentGenerator) throws Exception {
-       Element divLanguage = body.getElementsByClass("langauge selection box").get(0);
-        String options = "";
-        String option = "";
-        //String url=HtmlPage.LOCALHOST_URL;
-        Integer index=0;
+        Element divLanguage = body.getElementsByClass("langauge selection box").get(0);
+        String options = "<ul class=" + "\"" + "language-list" + "\"" + ">";
         for (String language : pageContentGenerator.getLanguages()) {
             if (languageMapper.containsKey(language)) {
                 String languageDetail = languageMapper.get(language);
                 String pair = pageContentGenerator.getLanguageInitpage(language);
                 pair = getAlphabetFileName(pair, language);
                 String url = LOCALHOST_URL + pair;
-                if(index==0){
-                   option = "\n" + "<option value=" + "\""+ "\"" + " selected=" + "\""+ "selected"+"\"" + languageDetail + "</option>" + "\n";
-                   index++;
-                 }
-                option = "\n" + "<option value=" + "\""+url +"\"" +">"+languageDetail + "</option>" + "\n";
+                String option = "<li>&#8227; <a href=" + "\"" + url + "\"" + ">" + languageDetail + "</a></li>";
                 options += option;
             }
-
         }
-
-        //<form name="store" id="store" method="post" action="" id="FORM_ID" >
-        //<select id="mySelect" onchange="myFunction()">
-        String selection =  "\n" + "<select name=" + "\"" + "forma" + "\"" +" onchange=" + "\"" + "location = this.options[this.selectedIndex].value;" + "\"" + ">";
-        selection =selection+options+"</select>";
-        String form = "<form>" + selection + "</form>";
+        options= options +"</ul>";
+        String form = "<form>" + options + "</form>";
         divLanguage.append(form);
-        System.out.println(form);
+    }
 
-    }*/
- /*@Override
-    public void createLangSelectBox(Element body, PageContentGenerator pageContentGenerator) throws Exception {
-       Element divLanguage = body.getElementsByClass("langauge selection box").get(0);
-        String options = "";
-        String option = "";
-        //String url=HtmlPage.LOCALHOST_URL;
-        Integer index=0;
-        for (String language : pageContentGenerator.getLanguages()) {
-            if (languageMapper.containsKey(language)) {
-                String languageDetail = languageMapper.get(language);
-                String pair = pageContentGenerator.getLanguageInitpage(language);
-                pair = getAlphabetFileName(pair, language);
-                String url = LOCALHOST_URL + pair;
-                if(index==0){
-                   option = "\n" + "<option value=" + "\""+ "\"" + " selected=" + "\""+ "selected"+"\"" + languageDetail + "</option>" + "\n";
-                   index++;
-                 }
-                option = "\n" + "<option value=" + "\""+url +"\"" +">"+languageDetail + "</option>" + "\n";
-                options += option;
-            }
-
-        }
-
-        //<form name="store" id="store" method="post" action="" id="FORM_ID" >
-        //<select id="mySelect" onchange="myFunction()">
-        String selection =  "\n" + "<select name=" + "\"" + "forma" + "\"" +" onchange=" + "\"" + "location = this.options[this.selectedIndex].value;" + "\"" + ">";
-        selection =selection+options+"</select>";
-        String form = "<form>" + selection + "</form>";
-        divLanguage.append(form);
-        System.out.println(form);
-
-    }*/
+  
     private String getAlphabetFileName(String intialFileName, String langCode) {
         intialFileName = categoryName + UNDERSCORE + langCode + UNDERSCORE + intialFileName + UNDERSCORE + INITIAL_PAGE + HTML_EXTENSION;
         return intialFileName;
@@ -273,23 +225,70 @@ public class HtmlPageGenerator implements HtmlPage {
         <li>&#8227; <a href="" > Preferences</a></li>
         <li>&#8227; <a href="" > logout</a></li>
      */
-    @Override
+    
+      /* @Override
     public void createLangSelectBox(Element body, PageContentGenerator pageContentGenerator) throws Exception {
-        Element divLanguage = body.getElementsByClass("langauge selection box").get(0);
-        String options = "<ul class=" + "\"" + "language-list" + "\"" + ">";
+       Element divLanguage = body.getElementsByClass("langauge selection box").get(0);
+        String options = "";
+        String option = "";
+        //String url=HtmlPage.LOCALHOST_URL;
+        Integer index=0;
         for (String language : pageContentGenerator.getLanguages()) {
             if (languageMapper.containsKey(language)) {
                 String languageDetail = languageMapper.get(language);
                 String pair = pageContentGenerator.getLanguageInitpage(language);
                 pair = getAlphabetFileName(pair, language);
                 String url = LOCALHOST_URL + pair;
-                String option = "<li>&#8227; <a href=" + "\"" + url + "\"" + ">" + languageDetail + "</a></li>";
+                if(index==0){
+                   option = "\n" + "<option value=" + "\""+ "\"" + " selected=" + "\""+ "selected"+"\"" + languageDetail + "</option>" + "\n";
+                   index++;
+                 }
+                option = "\n" + "<option value=" + "\""+url +"\"" +">"+languageDetail + "</option>" + "\n";
                 options += option;
             }
+
         }
-        options= options +"</ul>";
-        String form = "<form>" + options + "</form>";
+
+        //<form name="store" id="store" method="post" action="" id="FORM_ID" >
+        //<select id="mySelect" onchange="myFunction()">
+        String selection =  "\n" + "<select name=" + "\"" + "forma" + "\"" +" onchange=" + "\"" + "location = this.options[this.selectedIndex].value;" + "\"" + ">";
+        selection =selection+options+"</select>";
+        String form = "<form>" + selection + "</form>";
         divLanguage.append(form);
         System.out.println(form);
-    }
+
+    }*/
+ /*@Override
+    public void createLangSelectBox(Element body, PageContentGenerator pageContentGenerator) throws Exception {
+       Element divLanguage = body.getElementsByClass("langauge selection box").get(0);
+        String options = "";
+        String option = "";
+        //String url=HtmlPage.LOCALHOST_URL;
+        Integer index=0;
+        for (String language : pageContentGenerator.getLanguages()) {
+            if (languageMapper.containsKey(language)) {
+                String languageDetail = languageMapper.get(language);
+                String pair = pageContentGenerator.getLanguageInitpage(language);
+                pair = getAlphabetFileName(pair, language);
+                String url = LOCALHOST_URL + pair;
+                if(index==0){
+                   option = "\n" + "<option value=" + "\""+ "\"" + " selected=" + "\""+ "selected"+"\"" + languageDetail + "</option>" + "\n";
+                   index++;
+                 }
+                option = "\n" + "<option value=" + "\""+url +"\"" +">"+languageDetail + "</option>" + "\n";
+                options += option;
+            }
+
+        }
+
+        //<form name="store" id="store" method="post" action="" id="FORM_ID" >
+        //<select id="mySelect" onchange="myFunction()">
+        String selection =  "\n" + "<select name=" + "\"" + "forma" + "\"" +" onchange=" + "\"" + "location = this.options[this.selectedIndex].value;" + "\"" + ">";
+        selection =selection+options+"</select>";
+        String form = "<form>" + selection + "</form>";
+        divLanguage.append(form);
+        System.out.println(form);
+
+    }*/
+   
 }
