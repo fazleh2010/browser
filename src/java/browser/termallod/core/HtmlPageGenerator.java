@@ -40,7 +40,7 @@ public class HtmlPageGenerator implements HtmlPage {
         Integer emptyTerm = alphabetTermPage.getEmptyTerm();
         this.createLangSelectBox(body, pageContentGenerator);
         createAlphabet(body, alphebetPair, pageContentGenerator);
-        createTerms(body, terms, alphebetPair, emptyTerm);
+        createTerms(body, terms, alphebetPair, emptyTerm,alphabetTermPage);
 
         /*Element divCurrentPageUpper = body.getElementsByClass("activepageUpper").get(0);
         this.assignCurrentPageNumber(divCurrentPageUpper);
@@ -50,8 +50,8 @@ public class HtmlPageGenerator implements HtmlPage {
         createLowerPageNumber(body, alphebetPair, numberofPages);
         return templateHtml;
     }
-    
-     @Override
+
+    @Override
     public void createLangSelectBox(Element body, PageContentGenerator pageContentGenerator) throws Exception {
         Element divLanguage = body.getElementsByClass("langauge selection box").get(0);
         String options = "<ul class=" + "\"" + "language-list" + "\"" + ">";
@@ -65,12 +65,11 @@ public class HtmlPageGenerator implements HtmlPage {
                 options += option;
             }
         }
-        options= options +"</ul>";
+        options = options + "</ul>";
         String form = "<form>" + options + "</form>";
         divLanguage.append(form);
     }
 
-  
     private String getAlphabetFileName(String intialFileName, String langCode) {
         intialFileName = categoryName + UNDERSCORE + langCode + UNDERSCORE + intialFileName + UNDERSCORE + INITIAL_PAGE + HTML_EXTENSION;
         return intialFileName;
@@ -118,10 +117,10 @@ public class HtmlPageGenerator implements HtmlPage {
     }
 
     @Override
-    public void createTerms(Element body, List<String> terms, String alphebetPair, Integer emptyTerm) {
+    public void createTerms(Element body, List<String> terms, String alphebetPair, Integer emptyTerm,AlphabetTermPage alphabetTermPage) {
         Element divTerm = body.getElementsByClass("result-list1 wordlist-oxford3000 list-plain").get(0);
         for (String term : terms) {
-            String liString = getTermLi(alphebetPair, term);
+            String liString = getTermLi(alphebetPair, term,alphabetTermPage);
             divTerm.append(liString);
         }
         /*for (Integer index=0;index<emptyTerm;index++) {
@@ -131,12 +130,14 @@ public class HtmlPageGenerator implements HtmlPage {
 
     }
 
-    private String getTermLi(String alphebetPair, String term) {
+    private String getTermLi(String alphebetPair, String term,AlphabetTermPage alphabetTermPage) {
         //<li><a href="https://www.oxfordlearnersdictionaries.com/definition/english/abandon_1" title="abandon definition">abandon</a> </li>
         String title = "title=" + '"' + term + " definition" + '"';
         //real version
         //String url = this.path+"/"+DEFINITION+"/" +language+"/" +alphebetPair +"/" +term + "_1";
-        String url = LOCALHOST_URL + "termDefination.php";
+        String url = generateTermDetailFileName(alphabetTermPage, term);
+        //String url = LOCALHOST_URL + "termDefination.php";
+        System.out.println(url);
         String a = "<a href=" + url + " " + title + ">" + term + "</a>";
         String li = "\n<li>" + a + "</li>\n";
         return li;
@@ -189,6 +190,12 @@ public class HtmlPageGenerator implements HtmlPage {
         return outputFile;
     }
 
+    private String generateTermDetailFileName( AlphabetTermPage alphabetTermPage, String term) {
+        String outputfileString = categoryName + "_" + language + "_";
+        outputfileString =  LOCALHOST_URL  + outputfileString + alphabetTermPage.getAlpahbetPair() + "_" + this.currentPageNumber + "_" + term + HTML_EXTENSION;
+        return outputfileString;
+    }
+
     public Document getGeneratedHtmlPage() {
         return generatedHtmlPage;
     }
@@ -225,8 +232,7 @@ public class HtmlPageGenerator implements HtmlPage {
         <li>&#8227; <a href="" > Preferences</a></li>
         <li>&#8227; <a href="" > logout</a></li>
      */
-    
-      /* @Override
+ /* @Override
     public void createLangSelectBox(Element body, PageContentGenerator pageContentGenerator) throws Exception {
        Element divLanguage = body.getElementsByClass("langauge selection box").get(0);
         String options = "";
@@ -290,5 +296,4 @@ public class HtmlPageGenerator implements HtmlPage {
         System.out.println(form);
 
     }*/
-   
 }

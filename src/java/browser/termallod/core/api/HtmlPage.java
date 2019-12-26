@@ -5,6 +5,7 @@
  */
 package browser.termallod.core.api;
 
+import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.PageContentGenerator;
 import java.util.AbstractMap;
 import java.util.HashMap;
@@ -22,7 +23,9 @@ public interface HtmlPage {
     public static String PATH = "src/java/browser/termallod/";
     public static String LIST_OF_TERMS_PAGE_LOCATION = PATH + "html/";
     public static String TERM_DEFINATION_LOCATION = LIST_OF_TERMS_PAGE_LOCATION + "definition";
-    public static String LOCALHOST_URL = "http://localhost/";
+    //public static String LOCALHOST_URL = "http://localhost/";
+    public static String LOCALHOST_URL = "http://scdemo.techfak.uni-bielefeld.de/termeallod/";
+    
     public static String HTML_EXTENSION = ".html";
     public static Integer INITIAL_PAGE = 1;
     public String UNDERSCORE = "_";
@@ -41,6 +44,6 @@ public interface HtmlPage {
 
     public void createLowerPageNumber(Element body, String alphebetPair, Integer numberofPages);
 
-    public void createTerms(Element body, List<String> terms, String alphebetPair, Integer emptyTerm);
+    public void createTerms(Element body, List<String> terms, String alphebetPair, Integer emptyTerm,AlphabetTermPage alphabetTermPage);
 
 }
