@@ -45,7 +45,6 @@ public class Main {
                     main.generateHtml(PATH, categoryName, MAIN_PAGE_TEMPLATE, language, alphabetTermPage, pageContentGenerator);
                 }
 
-                break;
             }
             break;
         }

@@ -5,56 +5,45 @@
  */
 package browser.termallod.core;
 
-import browser.termallod.core.api.HtmlConnversionConstant;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import browser.termallod.core.api.HtmlPage;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  *
  * @author elahi
  */
-public class HtmlPageGenerator implements HtmlConnversionConstant {
+public class HtmlPageGenerator implements HtmlPage {
 
-    private final AlphabetTermPage alphabetTermPage;
     private final Document generatedHtmlPage;
-    private final PageContentGenerator pageContentGenerator;
-    private final String categoryName;
     private final Integer currentPageNumber;
     private final String language;
-    private File htmlFileName =null;
-
+    private final String categoryName;
+    private File htmlFileName = null;
 
     public HtmlPageGenerator(Document templateHtml, String language, AlphabetTermPage alphabetTermPage, List<String> terms, String categoryName, PageContentGenerator pageContentGenerator, Integer currentPageNumber) throws Exception {
-        this.alphabetTermPage = alphabetTermPage;
-        this.pageContentGenerator = pageContentGenerator;
-        this.categoryName = categoryName;
         this.currentPageNumber = currentPageNumber;
         this.language = language;
-        this.generatedHtmlPage = this.changeBody(templateHtml, terms);
-        this.htmlFileName =generateCategoryFileName(LIST_OF_TERMS_PAGE_LOCATION,currentPageNumber, categoryName, language, alphabetTermPage);
-    }
-    
-    private File generateCategoryFileName(String LIST_OF_TERMS_PAGE_LOCATION,Integer page, String categoryName, String language, AlphabetTermPage alphabetTermPage) {
-        String outputfileString = categoryName + "_" + language + "_";
-        File outputFile = new File(LIST_OF_TERMS_PAGE_LOCATION +outputfileString + alphabetTermPage.getAlpahbetPair() + "_" + page + HTML_EXTENSION);
-        return outputFile;
+        this.categoryName = categoryName;
+        this.generatedHtmlPage = this.generateHtmlFromTemplate(templateHtml, terms, pageContentGenerator, alphabetTermPage);
+        this.htmlFileName = generateHtmlFileName(LIST_OF_TERMS_PAGE_LOCATION, currentPageNumber, language, alphabetTermPage);
     }
 
-    public Document changeBody(Document templateHtml, List<String> terms) throws Exception {
+    private Document generateHtmlFromTemplate(Document templateHtml, List<String> terms, PageContentGenerator pageContentGenerator, AlphabetTermPage alphabetTermPage) throws Exception {
         Element body = templateHtml.body();
-        modiyPage(body, terms);
-        return templateHtml;
-    }
-
-    private void modiyPage(Element body, List<String> terms) throws Exception {
         String alphebetPair = alphabetTermPage.getAlpahbetPair();
         Integer numberofPages = alphabetTermPage.getNumberOfPages();
         //currently not
         Integer emptyTerm = alphabetTermPage.getEmptyTerm();
-        createAlphabet(body, alphebetPair);
+        this.createLangSelectBox(body, pageContentGenerator);
+        createAlphabet(body, alphebetPair, pageContentGenerator);
         createTerms(body, terms, alphebetPair, emptyTerm);
 
         /*Element divCurrentPageUpper = body.getElementsByClass("activepageUpper").get(0);
@@ -63,16 +52,87 @@ public class HtmlPageGenerator implements HtmlConnversionConstant {
         this.assignCurrentPageNumber(divCurrentPageLower);*/
         createUperPageNumber(body, alphebetPair, numberofPages);
         createLowerPageNumber(body, alphebetPair, numberofPages);
-
+        return templateHtml;
     }
 
-    private String createAlphabet(Element body, String alphebetPair) throws Exception {
+    /* @Override
+    public void createLangSelectBox(Element body, PageContentGenerator pageContentGenerator) throws Exception {
+       Element divLanguage = body.getElementsByClass("langauge selection box").get(0);
+        String options = "";
+        String option = "";
+        //String url=HtmlPage.LOCALHOST_URL;
+        Integer index=0;
+        for (String language : pageContentGenerator.getLanguages()) {
+            if (languageMapper.containsKey(language)) {
+                String languageDetail = languageMapper.get(language);
+                String pair = pageContentGenerator.getLanguageInitpage(language);
+                pair = getAlphabetFileName(pair, language);
+                String url = LOCALHOST_URL + pair;
+                if(index==0){
+                   option = "\n" + "<option value=" + "\""+ "\"" + " selected=" + "\""+ "selected"+"\"" + languageDetail + "</option>" + "\n";
+                   index++;
+                 }
+                option = "\n" + "<option value=" + "\""+url +"\"" +">"+languageDetail + "</option>" + "\n";
+                options += option;
+            }
+
+        }
+
+        //<form name="store" id="store" method="post" action="" id="FORM_ID" >
+        //<select id="mySelect" onchange="myFunction()">
+        String selection =  "\n" + "<select name=" + "\"" + "forma" + "\"" +" onchange=" + "\"" + "location = this.options[this.selectedIndex].value;" + "\"" + ">";
+        selection =selection+options+"</select>";
+        String form = "<form>" + selection + "</form>";
+        divLanguage.append(form);
+        System.out.println(form);
+
+    }*/
+ /*@Override
+    public void createLangSelectBox(Element body, PageContentGenerator pageContentGenerator) throws Exception {
+       Element divLanguage = body.getElementsByClass("langauge selection box").get(0);
+        String options = "";
+        String option = "";
+        //String url=HtmlPage.LOCALHOST_URL;
+        Integer index=0;
+        for (String language : pageContentGenerator.getLanguages()) {
+            if (languageMapper.containsKey(language)) {
+                String languageDetail = languageMapper.get(language);
+                String pair = pageContentGenerator.getLanguageInitpage(language);
+                pair = getAlphabetFileName(pair, language);
+                String url = LOCALHOST_URL + pair;
+                if(index==0){
+                   option = "\n" + "<option value=" + "\""+ "\"" + " selected=" + "\""+ "selected"+"\"" + languageDetail + "</option>" + "\n";
+                   index++;
+                 }
+                option = "\n" + "<option value=" + "\""+url +"\"" +">"+languageDetail + "</option>" + "\n";
+                options += option;
+            }
+
+        }
+
+        //<form name="store" id="store" method="post" action="" id="FORM_ID" >
+        //<select id="mySelect" onchange="myFunction()">
+        String selection =  "\n" + "<select name=" + "\"" + "forma" + "\"" +" onchange=" + "\"" + "location = this.options[this.selectedIndex].value;" + "\"" + ">";
+        selection =selection+options+"</select>";
+        String form = "<form>" + selection + "</form>";
+        divLanguage.append(form);
+        System.out.println(form);
+
+    }*/
+    private String getAlphabetFileName(String intialFileName, String langCode) {
+        intialFileName = categoryName + UNDERSCORE + langCode + UNDERSCORE + intialFileName + UNDERSCORE + INITIAL_PAGE + HTML_EXTENSION;
+        return intialFileName;
+    }
+
+    @Override
+    public String createAlphabet(Element body, String alphebetPair, PageContentGenerator pageContentGenerator) throws Exception {
         Element divAlphabet = body.getElementsByClass("currentpage").get(0);
         divAlphabet.append("<span>" + alphebetPair + "</span>");
         List<String> alphabetPairsExists = pageContentGenerator.getAlpahbetTermsExists(language);
         for (String pair : alphabetPairsExists) {
             if (!pair.contains(alphebetPair)) {
-                String alphabetFileName = categoryName + UNDERSCORE + language + UNDERSCORE + pair + UNDERSCORE + "1" + HTML_EXTENSION;
+                String alphabetFileName = getAlphabetFileName(pair, language);
+                //String alphabetFileName = categoryName + UNDERSCORE + language + UNDERSCORE + pair + UNDERSCORE + "1" + HTML_EXTENSION;
                 String li = getAlphebetLi(pair, alphabetFileName);
                 divAlphabet.append(li);
             }
@@ -81,7 +141,8 @@ public class HtmlPageGenerator implements HtmlConnversionConstant {
         return alphebetPair;
     }
 
-    private void createUperPageNumber(Element body, String alphebetPair, Integer numberofPages) {
+    @Override
+    public void createUperPageNumber(Element body, String alphebetPair, Integer numberofPages) {
         Element divPageUper = body.getElementsByClass("paging_links inner").get(0);
         List<String> pageUperliS = getPageLi(alphebetPair, numberofPages);
         if (pageUperliS.isEmpty()) {
@@ -92,7 +153,8 @@ public class HtmlPageGenerator implements HtmlConnversionConstant {
         }
     }
 
-    private void createLowerPageNumber(Element body, String alphebetPair, Integer numberofPages) {
+    @Override
+    public void createLowerPageNumber(Element body, String alphebetPair, Integer numberofPages) {
         Element divPageDown = body.getElementsByClass("paging_links inner_down").get(0);
         List<String> liS = getPageLi(alphebetPair, numberofPages);
         if (liS.isEmpty()) {
@@ -103,7 +165,8 @@ public class HtmlPageGenerator implements HtmlConnversionConstant {
         }
     }
 
-    private void createTerms(Element body, List<String> terms, String alphebetPair, Integer emptyTerm) {
+    @Override
+    public void createTerms(Element body, List<String> terms, String alphebetPair, Integer emptyTerm) {
         Element divTerm = body.getElementsByClass("result-list1 wordlist-oxford3000 list-plain").get(0);
         for (String term : terms) {
             String liString = getTermLi(alphebetPair, term);
@@ -168,6 +231,12 @@ public class HtmlPageGenerator implements HtmlConnversionConstant {
 
     }
 
+    private File generateHtmlFileName(String LIST_OF_TERMS_PAGE_LOCATION, Integer page, String language, AlphabetTermPage alphabetTermPage) {
+        String outputfileString = categoryName + "_" + language + "_";
+        File outputFile = new File(LIST_OF_TERMS_PAGE_LOCATION + outputfileString + alphabetTermPage.getAlpahbetPair() + "_" + page + HTML_EXTENSION);
+        return outputFile;
+    }
+
     public Document getGeneratedHtmlPage() {
         return generatedHtmlPage;
     }
@@ -176,4 +245,51 @@ public class HtmlPageGenerator implements HtmlConnversionConstant {
         return htmlFileName;
     }
 
+    /*<select name="forma" onchange="location = this.options[this.selectedIndex].value;">
+                                                <option value="" selected="selected">A-B</option>
+                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_C-D/">C-D</option>
+                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_E-G/">E-G</option>
+                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_H-K/">H-K</option>
+                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_L-N/">L-N</option>
+                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_O-P/">O-P</option>
+                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_Q-R/">Q-R</option>
+                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_S/">S</option>
+                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_T/">T</option>
+                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_U-Z/">U-Z</option>
+                                            </select>
+    
+    
+            <select name="forma" onchange="location = this.options[this.selectedIndex].value;">
+<option value="http://localhost/atc_en_A_B_1.html">English</option>
+
+<option value="http://localhost/atc_nl_A_B_1.html">Dutch</option>
+</select>
+
+    
+     */
+ /*<li>&#8227; <a href="" > Inbox</a></li>
+        <li>&#8227; <a href="" > Compose</a></li>
+        <li>&#8227; <a href="" > Reports</a></li>
+        <li>&#8227; <a href="" > Preferences</a></li>
+        <li>&#8227; <a href="" > logout</a></li>
+     */
+    @Override
+    public void createLangSelectBox(Element body, PageContentGenerator pageContentGenerator) throws Exception {
+        Element divLanguage = body.getElementsByClass("langauge selection box").get(0);
+        String options = "<ul class=" + "\"" + "language-list" + "\"" + ">";
+        for (String language : pageContentGenerator.getLanguages()) {
+            if (languageMapper.containsKey(language)) {
+                String languageDetail = languageMapper.get(language);
+                String pair = pageContentGenerator.getLanguageInitpage(language);
+                pair = getAlphabetFileName(pair, language);
+                String url = LOCALHOST_URL + pair;
+                String option = "<li>&#8227; <a href=" + "\"" + url + "\"" + ">" + languageDetail + "</a></li>";
+                options += option;
+            }
+        }
+        options= options +"</ul>";
+        String form = "<form>" + options + "</form>";
+        divLanguage.append(form);
+        System.out.println(form);
+    }
 }

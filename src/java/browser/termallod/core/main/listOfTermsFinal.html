@@ -11,7 +11,6 @@
         <link href="css/interface.css" rel="stylesheet" type="text/css" />
         <link href="css/oxford.css" rel="stylesheet" type="text/css" />
         <link href="css/responsive.css" rel="stylesheet" type="text/css" />
-      
     </head>
 
     <body >
@@ -53,9 +52,16 @@
                             </style>
                             <div class="langauge selection box">
 
-       
+
+
                               
 
+                                <script>
+                                    function myFunction() {
+                                    var url = document.getElementById("mySelect").value;
+                                    
+                                    }
+                                </script>
                             </div>
 
 
@@ -70,7 +76,18 @@
                                             </li>
                                         </ul>
                                         <div class='wl-select hide_all display_phone'>
-                                            
+                                            <select name="forma" onchange="location = this.options[this.selectedIndex].value;">
+                                                <option value="" selected="selected">A-B</option>
+                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_C-D/">C-D</option>
+                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_E-G/">E-G</option>
+                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_H-K/">H-K</option>
+                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_L-N/">L-N</option>
+                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_O-P/">O-P</option>
+                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_Q-R/">Q-R</option>
+                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_S/">S</option>
+                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_T/">T</option>
+                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_U-Z/">U-Z</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <!-- entries-selector -->

@@ -12,6 +12,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import browser.termallod.utils.Partition;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeSet;
 
 /**
  *
@@ -22,11 +24,15 @@ public class PageContentGenerator {
     private HashMap<String, List<AlphabetTermPage>> langPages = new HashMap<String, List<AlphabetTermPage>>();
     private HashMap<String, List<String>> alpahbetTermsExists = new HashMap<String,  List<String>>();
     public Integer numberofElementEachPage = 100;
+    private TreeSet<String> languages=new TreeSet();
+    private Map<String, String> languageInitpage = new HashMap<String, String>();
+
 
     public PageContentGenerator(Ntriple ntriple) throws Exception {
         TreeMap<String, TreeMap<String, List<String>>> langSortedTerms = ntriple.getLangSortedTerms();
         if (!langSortedTerms.isEmpty()) {
             this.langPages = this.preparePageTerms(langSortedTerms);
+            this.languages=new TreeSet(langPages.keySet());
         } else {
             throw new Exception("No list of terms found!!!");
         }
@@ -39,6 +45,9 @@ public class PageContentGenerator {
             TreeMap<String, List<String>> alpahbetTerms = langSortedTerms.get(language);
             List<AlphabetTermPage> alphabetTermPageList = new ArrayList<AlphabetTermPage>();
             List<String> alphabetListExists = new ArrayList<String>();
+            if(!alpahbetTerms.isEmpty()) {
+               this.languageInitpage.put(language, alpahbetTerms.keySet().iterator().next());
+            }
             for (String alphabetPair : alpahbetTerms.keySet()) {
                 List<String> termList = alpahbetTerms.get(alphabetPair);
                 Collections.sort(termList);
@@ -67,9 +76,19 @@ public class PageContentGenerator {
         return new ArrayList<String>();
     }
 
-    public Set<String> getLanguages() {
-        return langPages.keySet();
+    public TreeSet<String> getLanguages() {
+        return this.languages;
     }
+
+    public String getLanguageInitpage(String language) throws Exception{
+        if (languageInitpage.containsKey(language)) {
+            return languageInitpage.get(language);
+        }
+        else {
+            throw new Exception("No Alphabet pair!");
+        }
+    }
+    
 
     /*private HashMap<String, LanguageTermPage> preparePageTerms(TreeMap<String, List<String>> langSortedTerms) {
         HashMap<String, LanguageTermPage> langTerms = new HashMap<String, LanguageTermPage>();
