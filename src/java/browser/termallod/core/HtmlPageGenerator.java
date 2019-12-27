@@ -121,7 +121,12 @@ public class HtmlPageGenerator implements HtmlPage {
         for (String term : terms) {
             String liString = getTermLi(alphebetPair, term,alphabetTermPage);
             divTerm.append(liString);
+            /*File termFile =new File(termFileLocation(term));
+            HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(TERM_PAGE_TEMPLATE);
+            Document templateHtml = htmlReaderWriter.getInputDocument();
+            htmlReaderWriter.writeHtml(templateHtml, termFile);*/
         }
+        
         /*for (Integer index=0;index<emptyTerm;index++) {
             String liString = "";
             divTerm.append(liString);
@@ -134,7 +139,7 @@ public class HtmlPageGenerator implements HtmlPage {
         String title = "title=" + '"' + term + " definition" + '"';
         //real version
         //String url = this.path+"/"+DEFINITION+"/" +language+"/" +alphebetPair +"/" +term + "_1";
-        String url = generateTermDetailFileName(alphabetTermPage, term);
+        String url =generateTermUrl(term);
         //String url = LOCALHOST_URL + "termDefination.php";
         //System.out.println(url);
         String a = "<a href=" + url + " " + title + ">" + term + "</a>";
@@ -200,10 +205,20 @@ public class HtmlPageGenerator implements HtmlPage {
         return outputFile;
     }
 
-    private String generateTermDetailFileName( AlphabetTermPage alphabetTermPage, String term) {
-        String outputfileString = ontologyFileName + "_" + language + "_";
-        outputfileString =  LOCALHOST_URL_LIST_OF_TERMS_PAGE  + outputfileString + alphabetTermPage.getAlpahbetPair() + "_" + this.currentPageNumber + "_" + term + HTML_EXTENSION;
+    private String generateTermUrl(String term) {
+        String outputfileString =  LOCALHOST_URL_LIST_OF_TERMS_PAGE  + this.generateTermFileName()  +this.termFileExtension(term);
         return outputfileString;
+    }
+    private String generateTermFileName() {
+        String outputfileString = ontologyFileName +"/"+ "data"+"/"+this.categoryType+"/";
+        return outputfileString;
+    }
+    
+    private String termFileExtension(String term) {
+        return term.trim().replace(" ", "+")+"-" + language.toUpperCase()+HTML_EXTENSION;
+    }
+    private String termFileLocation(String term) {
+        return PATH+this.generateTermFileName()+this.termFileExtension(term) ;
     }
 
     public Document getGeneratedHtmlPage() {
@@ -306,4 +321,6 @@ public class HtmlPageGenerator implements HtmlPage {
         System.out.println(form);
 
     }*/
+
+    
 }
