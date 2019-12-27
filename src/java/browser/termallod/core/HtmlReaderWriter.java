@@ -5,7 +5,7 @@
  */
 package browser.termallod.core;
 
-import browser.termallod.core.main.Main;
+import browser.termallod.app.Main;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.core.main;
+package browser.termallod.app;
 
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.HtmlPageGenerator;
@@ -11,9 +11,6 @@ import browser.termallod.core.HtmlReaderWriter;
 import browser.termallod.core.LanguageAlphabetPro;
 import browser.termallod.core.Ntriple;
 import browser.termallod.core.PageContentGenerator;
-import browser.termallod.core.api.GenTerm;
-import browser.termallod.core.api.HtmlPage;
-import static browser.termallod.core.api.HtmlPage.PATH;
 import browser.termallod.core.api.LanguageManager;
 import java.io.File;
 import org.jsoup.nodes.Document;
@@ -25,26 +22,22 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
+import browser.termallod.constants.FilePathAndConstant;
 
 /**
  *
  * @author elahi
  */
-public class Main implements GenTerm {
-
-    public static String PATH = "src/java/browser/termallod/data/";
-    public static File MAIN_PAGE_TEMPLATE = new File("src/java/browser/termallod/" + "listOfTermsFinal.html");
-    public static File TERM_PAGE_TEMPLATE = new File("src/java/browser/termallod/" + "termDefination.html");
-    public static File configFile = new File(PATH + "conf/" + "language.conf");
-    public static String GENTERM_PATH = PATH + "genterm/";
-    public static String NTRIPLE_EXTENSION = ".ntriple";
-    public static String LIST_OF_TERMS_PAGE_LOCATION = PATH + "html/";
+public class Main implements FilePathAndConstant {
 
     public static void main(String[] args) throws Exception {
         Main main = new Main();
         main.cleanDirectory();
+        main.process(main);
+    }
 
-       File[] files = FileRelatedUtils.getFiles(GENTERM_PATH, NTRIPLE_EXTENSION);
+    private void process(Main main) throws Exception, IOException {
+        File[] files = FileRelatedUtils.getFiles(GENTERM_PATH, NTRIPLE_EXTENSION);
         LanguageManager languageManager = new LanguageAlphabetPro(configFile);
 
         for (File categoryFile : files) {
@@ -53,7 +46,7 @@ public class Main implements GenTerm {
             for (String language : pageContentGenerator.getLanguages()) {
                 List<AlphabetTermPage> alphabetTermPageList = pageContentGenerator.getLangPages(language);
                 for (AlphabetTermPage alphabetTermPage : alphabetTermPageList) {
-                    String categoryName = categoryFile.getName().replace(".ntriple", "");
+                    String categoryName = categoryFile.getName().replace(NTRIPLE_EXTENSION.trim(), "");
                     main.generateHtml(PATH, categoryName, MAIN_PAGE_TEMPLATE, language, alphabetTermPage, pageContentGenerator);
                 }
 
@@ -63,10 +56,11 @@ public class Main implements GenTerm {
 
     private void cleanDirectory() throws IOException {
         //deleting all previous files
-        for (String key : GenTerm.categoryOntologyMapper.keySet()) {
+        for (String key : FilePathAndConstant.categoryOntologyMapper.keySet()) {
             key = categoryOntologyMapper.get(key);
             String mainDir = PATH + key;
-            String termDir = PATH + key + File.separator + "data" + File.separator + key;
+            String[] infor = key.split("_");
+            String termDir = PATH + key + File.separator +dataPath + File.separator + infor[1];
             deleteDirectory(mainDir, termDir);
             createDirectory(mainDir, termDir);
         }

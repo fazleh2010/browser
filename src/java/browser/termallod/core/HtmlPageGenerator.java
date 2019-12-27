@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import browser.termallod.core.api.HtmlPage;
+import browser.termallod.constants.HtmlPage;
 
 /**
  *

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.core.api;
+package browser.termallod.constants;
 
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.PageContentGenerator;
@@ -19,24 +19,7 @@ import org.jsoup.nodes.Element;
  *
  * @author elahi
  */
-public interface HtmlPage {
-
-    public static String PATH = "src/java/browser/termallod/data/";
-    public static String LIST_OF_TERMS_PAGE_LOCATION = PATH + "html/";
-    public static File TERM_PAGE_TEMPLATE = new File("src/java/browser/termallod/" + "termDefination.html");
-    //public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "http://localhost/";
-    public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "https://webtentacle1.techfak.uni-bielefeld.de/";
-    
-    public static String HTML_EXTENSION = ".html";
-    public static Integer INITIAL_PAGE = 1;
-    public String UNDERSCORE = "_";
-    public Map<String, String> languageMapper = new HashMap<String, String>() {
-        {
-            put("en", "English");
-            put("nl", "Dutch");
-        }
-    };
-    
+public interface HtmlPage extends FilePathAndConstant{
 
     public String createAlphabet(Element body, String alphebetPair, PageContentGenerator pageContentGenerator) throws Exception;
 
