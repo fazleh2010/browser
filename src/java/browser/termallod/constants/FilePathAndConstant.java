@@ -25,6 +25,7 @@ public interface FilePathAndConstant {
     public static String NTRIPLE_EXTENSION = ".ntriple";
     public static String TURTLE_EXTENSION = ".ttl";
     public static String N_TRIPLE = "N-TRIPLE";
+    public static String TURTLE= "TURTLE";
     public static String LIST_OF_TERMS_PAGE_LOCATION = PATH + "html/";
     public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "http://localhost/";
     //public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "https://webtentacle1.techfak.uni-bielefeld.de/";

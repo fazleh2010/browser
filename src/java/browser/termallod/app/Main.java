@@ -33,15 +33,15 @@ public class Main implements FilePathAndConstant {
     public static void main(String[] args) throws Exception {
         Main main = new Main();
         main.cleanDirectory();
-        main.process(FilePathAndConstant.N_TRIPLE,FilePathAndConstant.NTRIPLE_EXTENSION);
+        main.process(FilePathAndConstant.TURTLE, FilePathAndConstant.TURTLE_EXTENSION);
     }
 
-    private void process(String modelType,String modelFileExtension) throws Exception, IOException {
+    private void process(String modelType, String modelFileExtension) throws Exception, IOException {
         File[] files = FileRelatedUtils.getFiles(GENTERM_PATH, modelFileExtension);
         LanguageManager languageManager = new LanguageAlphabetPro(configFile);
 
         for (File categoryFile : files) {
-            Ntriple ntriple = new Ntriple((GENTERM_PATH + categoryFile.getName()), languageManager,modelType);
+            Ntriple ntriple = new Ntriple((GENTERM_PATH + categoryFile.getName()), languageManager, modelType);
             PageContentGenerator pageContentGenerator = new PageContentGenerator(ntriple);
             for (String language : pageContentGenerator.getLanguages()) {
                 List<AlphabetTermPage> alphabetTermPageList = pageContentGenerator.getLangPages(language);
@@ -60,7 +60,7 @@ public class Main implements FilePathAndConstant {
             key = categoryOntologyMapper.get(key);
             String mainDir = PATH + key;
             String[] infor = key.split("_");
-            String termDir = PATH + key + File.separator +dataPath + File.separator + infor[1];
+            String termDir = PATH + key + File.separator + dataPath + File.separator + infor[1];
             deleteDirectory(mainDir, termDir);
             createDirectory(mainDir, termDir);
         }

@@ -55,7 +55,6 @@ public class HtmlReaderWriter {
     }
 
     private String getHtmlHeader(File file) throws FileNotFoundException, IOException {
-        System.out.println(file.getPath());
         BufferedReader reader = new BufferedReader(new FileReader(file));
         StringBuilder stringBuilder = new StringBuilder();
         char[] buffer = new char[10];

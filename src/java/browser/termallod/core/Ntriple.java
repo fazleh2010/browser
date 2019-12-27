@@ -98,7 +98,7 @@ public class Ntriple {
                 langTerms.put(language, alpahbetTerms);
             }
         } catch (NullPointerException e) {
-            //  Block of code to handle errors
+           System.out.println("Null pointer:"+ language+ " "+term);
             
         }
         return langTerms;
