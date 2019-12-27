@@ -23,6 +23,8 @@ public interface FilePathAndConstant {
     public static File configFile = new File(PATH + "conf/" + "language.conf");
     public static String GENTERM_PATH = PATH + "genterm/";
     public static String NTRIPLE_EXTENSION = ".ntriple";
+    public static String TURTLE_EXTENSION = ".ttl";
+    public static String N_TRIPLE = "N-TRIPLE";
     public static String LIST_OF_TERMS_PAGE_LOCATION = PATH + "html/";
     public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "http://localhost/";
     //public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "https://webtentacle1.techfak.uni-bielefeld.de/";

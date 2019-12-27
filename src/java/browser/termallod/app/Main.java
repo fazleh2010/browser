@@ -33,21 +33,21 @@ public class Main implements FilePathAndConstant {
     public static void main(String[] args) throws Exception {
         Main main = new Main();
         main.cleanDirectory();
-        main.process(main);
+        main.process(FilePathAndConstant.N_TRIPLE,FilePathAndConstant.NTRIPLE_EXTENSION);
     }
 
-    private void process(Main main) throws Exception, IOException {
-        File[] files = FileRelatedUtils.getFiles(GENTERM_PATH, NTRIPLE_EXTENSION);
+    private void process(String modelType,String modelFileExtension) throws Exception, IOException {
+        File[] files = FileRelatedUtils.getFiles(GENTERM_PATH, modelFileExtension);
         LanguageManager languageManager = new LanguageAlphabetPro(configFile);
 
         for (File categoryFile : files) {
-            Ntriple ntriple = new Ntriple((GENTERM_PATH + categoryFile.getName()), languageManager);
+            Ntriple ntriple = new Ntriple((GENTERM_PATH + categoryFile.getName()), languageManager,modelType);
             PageContentGenerator pageContentGenerator = new PageContentGenerator(ntriple);
             for (String language : pageContentGenerator.getLanguages()) {
                 List<AlphabetTermPage> alphabetTermPageList = pageContentGenerator.getLangPages(language);
                 for (AlphabetTermPage alphabetTermPage : alphabetTermPageList) {
-                    String categoryName = categoryFile.getName().replace(NTRIPLE_EXTENSION.trim(), "");
-                    main.generateHtml(PATH, categoryName, MAIN_PAGE_TEMPLATE, language, alphabetTermPage, pageContentGenerator);
+                    String categoryName = categoryFile.getName().replace(modelFileExtension.trim(), "");
+                    this.generateHtml(PATH, categoryName, MAIN_PAGE_TEMPLATE, language, alphabetTermPage, pageContentGenerator);
                 }
 
             }

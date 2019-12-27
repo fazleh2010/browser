@@ -24,13 +24,14 @@ import java.util.TreeMap;
 public class Ntriple {
 
     //Need to check the funtion whether it works propoerly
-    private static String N_TRIPLE = "N-TRIPLE";
-    private static String LANGUAGE_SEPERATE_SYMBOLE = "@";
-    private static LanguageManager languageInfo;
+    private  String MODEL_TYPE;
+    private  String LANGUAGE_SEPERATE_SYMBOLE = "@";
+    private  LanguageManager languageInfo;
 
     private TreeMap<String, TreeMap<String, List<String>>> langSortedTerms = new TreeMap<String, TreeMap<String, List<String>>>();
 
-    public Ntriple(String PATH, LanguageManager languageInfo) {
+    public Ntriple(String PATH, LanguageManager languageInfo,String MODEL_TYPE) {
+        this.MODEL_TYPE=MODEL_TYPE;
         this.languageInfo = languageInfo;
         this.langSortedTerms = this.readTermsAndLanguages(PATH);
         //System.out.println(langSortedTerms.toString());
@@ -42,7 +43,7 @@ public class Ntriple {
         Model model = ModelFactory.createDefaultModel();
         InputStream is = FileManager.get().open(fileNameOrUri);
         if (is != null) {
-            model.read(is, null, N_TRIPLE);
+            model.read(is, null, MODEL_TYPE);
             //model.write(System.out, "N-TRIPLE");
             List<RDFNode> rdfNodes = model.listObjects().toList();
             for (RDFNode rdfNode : rdfNodes) {
