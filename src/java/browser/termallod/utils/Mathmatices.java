@@ -19,7 +19,7 @@ public class Mathmatices {
     public static boolean isOdd(Set<String> alphebets) {
         int x;
 
-        return ifOdd(alphebets.size());
+        return isOdd(alphebets.size());
     }
 
     /*public static List<Object> getNumberofPages(List<String> list, Integer numberElementsEachPage) {
@@ -30,7 +30,7 @@ public class Mathmatices {
         return firstNElementsList;
     }*/
 
-    private static boolean ifOdd(Integer length) {
+    public static boolean isOdd(Integer length) {
         int x;
         x = length;
         if (x % 2 == 0) {

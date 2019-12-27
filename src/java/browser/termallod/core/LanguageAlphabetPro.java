@@ -6,10 +6,12 @@
 package browser.termallod.core;
 
 import browser.termallod.core.api.LanguageManager;
+import browser.termallod.utils.Mathmatices;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,13 +35,14 @@ public class LanguageAlphabetPro implements LanguageManager {
 
     }
 
-    private void generateLanguage(File file) throws FileNotFoundException, IOException {
+    private void generateLanguage(File propFile) throws FileNotFoundException, IOException {
         Properties props = new Properties();
-        props.load(new FileInputStream(file));
+        props.load(new InputStreamReader(new FileInputStream(propFile), "UTF-8"));
         Set<String> languages = props.stringPropertyNames();
         for (String languageName : languages) {
             String input = props.getProperty(languageName).toUpperCase();
             String[] alphebets = input.toLowerCase().split(" ");
+            System.out.println(languageName + " " + input);
             preparePair(languageName, alphebets);
         }
 
@@ -48,13 +51,32 @@ public class LanguageAlphabetPro implements LanguageManager {
     private void preparePair(String languageName, String[] alphebets) {
         HashMap<String, String> alphabetsPair = new HashMap<String, String>();
         List<String> alphebetsPairList = new ArrayList<String>();
+        String pair = null;
+       
         for (Integer index = 0; index < alphebets.length;) {
-            String pair = alphebets[index] + this.UNDERSCORE + alphebets[index + 1];
+            Integer nextIndex = index + 1;
+
+            if (nextIndex == alphebets.length) {
+                pair = alphebets[index];
+                pair = pair.toUpperCase();
+                alphabetsPair.put(alphebets[index], pair);
+                alphebetsPairList.add(pair);
+                break;
+            } else {
+                pair = alphebets[index] + this.UNDERSCORE + alphebets[nextIndex];
+                pair = pair.toUpperCase();
+                alphabetsPair.put(alphebets[index], pair);
+                alphabetsPair.put(alphebets[nextIndex], pair);
+                alphebetsPairList.add(pair);
+                index = index + 2;
+            }
+
+            /*String pair = alphebets[index] + this.UNDERSCORE + alphebets[index + 1];
             pair=pair.toUpperCase();
             alphabetsPair.put(alphebets[index], pair);
             alphabetsPair.put(alphebets[index + 1], pair);
             alphebetsPairList.add(pair);
-            index=index+2;
+            index=index+2;*/
         }
         langAlphabetPair.put(languageName, alphabetsPair);
         langAlphabetPairSorted.put(languageName, alphebetsPairList);
