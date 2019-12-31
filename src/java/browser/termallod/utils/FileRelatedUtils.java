@@ -5,8 +5,25 @@
  */
 package browser.termallod.utils;
 
+import browser.termallod.constants.FilePathAndConstant;
+import static browser.termallod.constants.FilePathAndConstant.PATH;
+import static browser.termallod.constants.FilePathAndConstant.categoryOntologyMapper;
+import static browser.termallod.constants.FilePathAndConstant.dataPath;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
 
 /**
@@ -14,15 +31,101 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
  * @author elahi
  */
 public class FileRelatedUtils {
-    
-     public static File[] getFiles(String fileDir, String ntriple) {
-         System.out.println("file name"+fileDir);
+
+    public static File[] getFiles(String fileDir, String ntriple) {
         File dir = new File(fileDir);
         FileFilter fileFilter = new WildcardFileFilter("*" + ntriple);
         File[] files = dir.listFiles(fileFilter);
         return files;
 
     }
-     
     
+    public static List<File> getFiles(String fileDir, String category,String extension) {
+        
+        String[] files=new File(fileDir).list();
+        List<File> selectedFiles=new ArrayList<File>();
+        for(String fileName:files) {
+            if(fileName.contains(category)&&fileName.contains(extension))
+                selectedFiles.add(new File(fileDir+fileName));
+        }
+        
+        return selectedFiles;
+
+    }
+
+    public static List<File> writeFile(TreeMap<String, TreeMap<String, List<String>>> langSortedTerms, String path) throws IOException {
+        List<File> files = new ArrayList<File>();
+        for (String language : langSortedTerms.keySet()) {
+            String str = "";
+            String fileName = path + "_" + language +".txt";
+            files.add(new File(fileName));
+            TreeMap<String, List<String>> alphabetPairTerms = langSortedTerms.get(language);
+            for (String pair : alphabetPairTerms.keySet()) {
+                List<String> terms = alphabetPairTerms.get(pair);
+                String line = pair + " = " + terms.toString().replace("[", "");
+                line = line.replace("]", "");
+                str += line + "\n";
+            }
+            stringToFile(str, fileName);
+        }
+        return files;
+    }
+
+    public static void stringToFile(String str, String fileName)
+            throws IOException {
+        if (new File(fileName).exists()) {
+            appendStringInFile(str, fileName);
+            return;
+        }
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+        writer.write(str);
+
+        writer.close();
+    }
+
+    public static void appendStringInFile(String textToAppend, String fileName) throws IOException {
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
+        writer.write(textToAppend);
+        writer.close();
+    }
+
+    public static void cleanDirectory(List<String> categorySet, String PATH, String TEXT_DIR) throws IOException {
+        //deleting all generated term filkes
+        for (String browser : categorySet) {
+            String sourceTextDir = getSourcePath(PATH, browser)+TEXT_DIR;
+            FileRelatedUtils.deleteDirectory(sourceTextDir);
+            FileRelatedUtils.createDirectory(sourceTextDir);
+        }
+    }
+
+    public static void cleanDirectory(Map<String, String> categoryOntologyMapper, String PATH, String dataPath) throws IOException {
+
+        //deleting all html files previous files
+        for (String key : categoryOntologyMapper.keySet()) {
+            key = categoryOntologyMapper.get(key);
+            String mainDir = PATH + key;
+            String[] infor = key.split("_");
+            String termDir = PATH + key + File.separator + dataPath +infor[1];
+            FileRelatedUtils.deleteDirectory(mainDir);
+            FileRelatedUtils.deleteDirectory(termDir);
+            FileRelatedUtils.createDirectory(mainDir);
+            FileRelatedUtils.createDirectory(termDir);
+        }
+
+    }
+
+    public static void deleteDirectory(String dir) throws IOException {
+        FileUtils.deleteDirectory(new File(dir));
+    }
+
+    public static void createDirectory(String dir) throws IOException {
+        Files.createDirectories(Paths.get(dir));
+    }
+
+    public static String getSourcePath(String PATH, String browser) {
+        String source = PATH + browser + File.separator;
+        return source;
+    }
+
 }

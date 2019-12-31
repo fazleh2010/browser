@@ -25,9 +25,7 @@ public interface HtmlPage extends FilePathAndConstant{
 
     public void createLangSelectBox(Element body, PageContentGenerator pageContentGenerator) throws Exception;
 
-    public void createUperPageNumber(Element body, String alphebetPair, Integer numberofPages);
-
-    public void createLowerPageNumber(Element body, String alphebetPair, Integer numberofPages);
+    public void createPageNumber(Element body, String elementName,String alphebetPair, Integer numberofPages);
 
     public void createTerms(Element body, List<String> terms, String alphebetPair, Integer emptyTerm,AlphabetTermPage alphabetTermPage);
 

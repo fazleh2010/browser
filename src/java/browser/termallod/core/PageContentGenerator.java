@@ -28,8 +28,7 @@ public class PageContentGenerator {
     private Map<String, String> languageInitpage = new HashMap<String, String>();
 
 
-    public PageContentGenerator(Ntriple ntriple) throws Exception {
-        TreeMap<String, TreeMap<String, List<String>>> langSortedTerms = ntriple.getLangSortedTerms();
+    public PageContentGenerator( TreeMap<String, TreeMap<String, List<String>>> langSortedTerms) throws Exception {
         if (!langSortedTerms.isEmpty()) {
             this.langPages = this.preparePageTerms(langSortedTerms);
             this.languages=new TreeSet(langPages.keySet());

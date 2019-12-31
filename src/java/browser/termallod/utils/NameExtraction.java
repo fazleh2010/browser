@@ -1,0 +1,34 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package browser.termallod.utils;
+
+import browser.termallod.constants.FilePathAndConstant;
+import static browser.termallod.constants.FilePathAndConstant.UNDERSCORE;
+import static browser.termallod.constants.FilePathAndConstant.iate;
+import java.io.File;
+
+/**
+ *
+ * @author elahi
+ */
+public class NameExtraction {
+
+    public static String getCategoryName(String browser, File categoryFile, String modelFileExtension) {
+        String categoryName = categoryFile.getName();
+        String[] info = categoryName.split(FilePathAndConstant.UNDERSCORE);
+        categoryName = info[0] + UNDERSCORE + info[1] + modelFileExtension;
+        categoryName = categoryName.replace(modelFileExtension.trim(), "");
+        return categoryName;
+    }
+
+    public static String getLanCode(File file, String MODEL_EXTENSION) {
+        String fileName = file.getName();
+        fileName = fileName.replace(MODEL_EXTENSION, "");
+        String[] info = fileName.split("_");
+        return info[2];
+    }
+
+}

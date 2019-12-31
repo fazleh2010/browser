@@ -42,7 +42,6 @@ public class LanguageAlphabetPro implements LanguageManager {
         for (String languageName : languages) {
             String input = props.getProperty(languageName).toUpperCase();
             String[] alphebets = input.toLowerCase().split(" ");
-            System.out.println(languageName + " " + input);
             preparePair(languageName, alphebets);
         }
 
@@ -145,4 +144,9 @@ public class LanguageAlphabetPro implements LanguageManager {
         }
         return langAlphabetHash;
     }*/
+
+    @Override
+    public boolean isLanguageExist(String language) throws Exception {
+        return langAlphabetPairSorted.containsKey(language);
+    }
 }
