@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)https://iate.europa.eu/home -->
+<html lang="en" class="gr__iate_europa_eu"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!--<base href="/">--><base href=".">
+
+        <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <link rel="icon" href="https://iate.europa.eu/assets/favicon_iate.ico">
+        <title>IATE - Search</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta http-equiv="cache-control" content="no-cache">
+
+        <meta name="description" content="The terminology database of the European Union">
+        <meta name="keywords" content="terminology, translation, terminology database, termbase, termbank, European Union">
+        <meta name="format-detection" content="telephone=no,date=no,address=no,email=no,url=no">
+        <meta name="robots" content="index">
+
+        <!--   CSS -->
+
+        <link rel="stylesheet" type="text/css" href="./IATE - Search_files/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="./IATE - Search_files/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./IATE - Search_files/animate.css">
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <link href="./IATE - Search_files/ie10-viewport-bug-workaround.css" rel="stylesheet">
+        <link href="./IATE - Search_files/iate2.css" rel="stylesheet">
+        <link href="./IATE - Search_files/ng2-select.css" rel="stylesheet">
+
+        <link rel="manifest" href="https://iate.europa.eu/manifest.json">
+        <meta name="theme-color" content="#1976d2">
+
+        <script type="text/javascript">
+            window.preventWhiteScreen = function () {
+                try {
+                    const rootHtml = document.getElementsByTagName("app-root")[0].textContent.trim();
+                    if (!rootHtml) {
+                        document.write(`<div class="container">
+                                            <img class="mt-4 mb-2" src="./assets/logos/iate_logo_positive.png" width="400" alt="iate logo">
+                                            <div class="alert alert-warning mt-3">
+                                                <strong>Impossible to load the interface.</strong><br>
+                                                Automatic refresh in 5 seconds.<br>
+                                                If the problem persists please try to clean your cache.<br>
+                                                <a href='mailto:iate@cdt.europa.eu'>Contact us</a> if you can not access the tool.
+                                            </div>
+                                        </div>`
+                        );
+                        localStorage.clear();
+                        setTimeout(() => { location.reload(); }, 5000);
+                    }
+                } catch (err) {
+                    localStorage.clear();
+                    location.reload();
+                }
+                return false;
+            }
+        </script>
+        <link rel="stylesheet" href="./IATE - Search_files/styles.463ef88f555891c6c74b.css"><style>.passive[_ngcontent-bom-c1] {
+                display: block;
+                padding: 3px 20px;
+                clear: both;
+                font-weight: normal;
+                line-height: @line-height-base;
+                white-space: nowrap;
+            }</style></head>
+
+    <body data-gr-c-s-loaded="true"><div id="keyboardnavigation" tabindex="0"></div>
+    <app-iate-root ng-version="7.2.15"><!----><!---->
+        <div class="pagesize" lang="en">
+
+            <app-iate-header-nav>
+                <nav class="navbar navbar-default navbar-header-full" id="header" role="banner">
+                    <!---->
+                    <div class="navbar-header">
+                        <a class="header-full-title logo" id="header_menu_homepage" title="Iate logo" href="https://iate.europa.eu/home">
+                        </a>
+                    </div>
+
+
+                    <div class="navbar-right" role="navigation">
+
+                        <!---->
+
+
+
+                        <!----><div class="login-dropdown dropdown">
+
+                            <a class="is_logged_off userLogin dropdown-toggle" data-toggle="dropdown" href="https://iate.europa.eu/#" id="header_login">
+
+                                <i aria-hidden="true" class="fa fa-lock"></i>
+                                <span>Log on</span>
+
+                            </a>
+
+
+                            <div class="dropdown-menu dropdown-menu-right animated-2x animated fadeIn">
+                                <a class="btn btn-sm btn-primary btn-block" id="header_login_ecas" type="button" href="https://webgate.ec.europa.eu/cas/login?acceptStrength=PASSWORD&amp;service=https://iate.europa.eu/login">
+                                    Log on with EU Login</a>
+                                <a class="btn btn-sm btn-default btn-block" id="header_login_generic" type="button" href="https://iate.europa.eu/login/generic">
+                                    Log on with a generic account</a>
+                                <a class="btn btn-sm btn-default btn-block" id="header_login_sync" type="button" href="https://iate.europa.eu/login/sync">
+                                    Synchronise IATE1 account</a>
+                                <a class="loginsmall" id="header_login_new" href="https://webgate.ec.europa.eu/cas/login?acceptStrength=PASSWORD&amp;service=https://iate.europa.eu/login">
+                                    Create NEW account using EU Login</a>
+                            </div>
+
+
+
+
+                        </div>
+
+
+
+                        <!---->
+
+
+
+
+                        <!----><div class="language-selection dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="https://iate.europa.eu/#" title="Language selection">
+                                en
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right animated-2x animated fadeIn">
+                                <ul>
+                                    <!----><li role="link" title="bg български">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                български
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">bg</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="cs čeština">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                čeština
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">cs</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="da dansk">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                dansk
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">da</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="de Deutsch">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                Deutsch
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">de</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="et eesti">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                eesti
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">et</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="el ελληνικά">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                ελληνικά
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">el</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="en English">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                English
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">en</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="es español">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                español
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">es</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="fr français">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                français
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">fr</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="ga Gaeilge">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                Gaeilge
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">ga</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="hr hrvatski">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                hrvatski
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">hr</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="it italiano">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                italiano
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">it</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="lv latviešu">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                latviešu
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">lv</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="lt lietuvių">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                lietuvių
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">lt</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="hu magyar">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                magyar
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">hu</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="mt Malti">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                Malti
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">mt</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="nl Nederlands">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                Nederlands
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">nl</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="pl polski">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                polski
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">pl</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="pt português">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                português
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">pt</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="ro română">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                română
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">ro</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="sk slovenčina">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                slovenčina
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">sk</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="sl slovenščina">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                slovenščina
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">sl</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="fi suomi">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                suomi
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">fi</span>
+                                            </div>
+                                        </div>
+
+                                    </li><li role="link" title="sv svenska">
+                                        <div aria-hidden="true" class="row">
+                                            <div class="col-xs-7">
+                                                svenska
+                                            </div>
+                                            <div aria-hidden="true" class="col-xs-5">
+                                                <span class="langcode langcodeactive">sv</span>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <section aria-label="Main Menu" class="nav-tabs-responsive top-level-menu">
+
+                        <ul class="nav nav-tabs navbar-left hidden-xs" id="top-menu">
+                            <li routerlinkactive="active">
+                                <a class="top-menu" id="header_menu_search" title="Search" aria-label="Search" href="https://iate.europa.eu/search">
+
+                                    <i aria-hidden="true" class="fa fa-search"></i>
+                                </a>
+                            </li>
+                            <!---->
+                            <!---->
+
+                            <!---->
+
+                            <li id="header_menu_info" routerlinkactive="active">
+                                <a class="top-menu has-submenu" title="Info" aria-label="Info" href="https://iate.europa.eu/info">
+                                    <i aria-hidden="true" class="fa fa-info-circle"></i>
+                                </a>
+                            </li>
+
+                        </ul>
+
+
+
+
+
+                        <div class="clearfix"></div>
+
+                    </section>
+
+
+                </nav>
+
+
+
+
+                <!---->
+
+                <!----></app-iate-header-nav>
+            <app-error-manager-component><div class="toaster">
+
+
+
+
+
+
+                    <!---->
+
+
+
+
+                </div></app-error-manager-component>
+
+            <div class="tab-content main-content" role="main">
+                <router-outlet></router-outlet><app-home><!---->
+
+
+                    <div class="mt-4 clearfix"></div>
+
+                    <app-iate-search>
+                        <!----><form novalidate="" class="ng-untouched ng-pristine ng-invalid">
+                            <div class="tab-pane" id="basicSearch" role="search">
+                                <div class="container">
+
+
+
+                                    <section aria-label="Search">
+
+                                        <div class="widget searchbar">
+                                            <div class="overborder static">
+
+
+
+
+
+                                                <div class="input-group search-group">
+
+                                                    <app-autosuggest formcontrolname="term" class="ng-untouched ng-pristine ng-invalid">
+
+
+                                                        <div class="custom-select">
+                                                            <input autocomplete="off" class="static" id="searchQuery" type="text" placeholder="Search">
+
+                                                            <!---->
+                                                        </div></app-autosuggest>
+
+                                                    <div class="input-group-btn">
+
+
+                                                        <!---->
+
+                                                        <!----><button class="btn btn-default" id="btnCreate" tabindex="0" type="submit" title="Search" aria-label="Search">
+                                                            <i aria-hidden="true" class="fa fa-search"></i>
+                                                        </button>
+
+                                                        <!---->
+
+
+                                                    </div>
+                                                </div>
+
+
+                                                <!---->
+
+                                                <!---->
+
+
+
+
+
+                                            </div>
+
+
+                                            <div class="clearfix mt-2"></div>
+
+
+
+
+
+                                            <!---->
+
+
+
+
+
+
+
+
+                                            <div class="row">
+                                                <div class="col-xs-6 invertcolumn">
+                                                    <button class="pull-left btn label label-default pointer lastqueries-label" keyboardaccess="" role="button" tabindex="0" aria-expanded="false">
+                                                        Last Queries
+                                                        <!---->
+                                                        <!----><span aria-hidden="true">(+)</span>
+                                                    </button>
+                                                    <a class="pull-left ml-1 btn label label-default pointer lastqueries-label" id="btnReset" keyboardaccess="" tabindex="0" title="Reset Search settings">
+
+                                                        <i aria-hidden="true" class="fa fa-times-circle-o"> </i>
+                                                        Reset Search settings
+                                                    </a>
+
+
+                                                    <!---->
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+
+                                                <div aria-live="assertive" class="col-xs-6">
+
+
+
+                                                    <!----><!---->
+
+
+
+
+
+                                                    <a class="pull-right mt-1" id="expandSearch" keyboardaccess="" role="button" tabindex="0" aria-expanded="false">
+                                                        <span>Open expanded search</span>
+                                                        <span aria-hidden="true" class="resicon ml-1 expand"></span>
+                                                    </a>
+
+
+
+
+
+
+
+
+
+
+
+                                                </div>
+                                            </div>
+
+
+                                            <!---->
+
+
+                                            <div class="clearfix mt-1"></div>
+                                        </div>
+                                    </section>
+
+
+                                    <div class="row clearfix">
+
+                                        <!----><div class="col-sm-6">
+                                            <app-language index="sl"><div aria-label="Source language" class="ng-untouched ng-pristine ng-invalid">
+
+                                                    <app-context-menu keyboardaccess=""><div class="contextual nohelp" title="" tabindex="0">
+                                                            <div class="content">
+
+                                                                <h3 aria-expanded="true">
+                                                                    <span aria-label="mandatory" class="mandatory-mark"></span> Source language
+
+                                                                    <!----><i aria-hidden="true" class="fa float-right pointer fa-caret-up"></i>
+                                                                </h3>
+
+
+                                                            </div>
+                                                            <span aria-hidden="true" class="fa fa-bars"></span>
+
+                                                        </div>
+                                                        <div class="clearfix"></div>
+
+                                                        <context-menu _nghost-bom-c1=""><div _ngcontent-bom-c1="" class="dropdown angular2-contextmenu">
+                                                                <!---->
+                                                            </div>
+                                                        </context-menu></app-context-menu>
+
+                                                    <!----><select class="blind">
+                                                        <option value="">Nothing selected</option>
+
+                                                        <!----><option value="bg">Bulgarian</option><option value="cs">Czech</option><option value="da">Danish</option><option value="de">German</option><option value="el">Greek</option><option value="en">English</option><option value="es">Spanish</option><option value="et">Estonian</option><option value="fi">Finnish</option><option value="fr">French</option><option value="ga">Irish</option><option value="hr">Croatian</option><option value="hu">Hungarian</option><option value="it">Italian</option><option value="lt">Lithuanian</option><option value="lv">Latvian</option><option value="mt">Maltese</option><option value="nl">Dutch</option><option value="pl">Polish</option><option value="pt">Portuguese</option><option value="ro">Romanian</option><option value="sk">Slovak</option><option value="sl">Slovenian</option><option value="sv">Swedish</option><option value="la">Latin</option><option value="mul">Multiple languages</option><option value="any">Any language</option>
+                                                    </select>
+
+
+
+
+                                                    <!----><div aria-hidden="true">
+
+                                                        <div class="widget search-languages source">
+                                                            <div aria-live="polite">
+                                                                <dl tabindex="0" class="EU-languages test_sl">
+                                                                    <caption class="blind">,
+                                                                        Source language (select with
+                                                                        arrows).
+                                                                    </caption>
+
+                                                                    <!----><!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_bg" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_bg">
+                                                                            <!----><!---->
+                                                                            bg
+
+                                                                            <!---->
+
+
+                                                                            <span>Bulgarian</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_cs" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_cs">
+                                                                            <!----><!---->
+                                                                            cs
+
+                                                                            <!---->
+
+
+                                                                            <span>Czech</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_da" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_da">
+                                                                            <!----><!---->
+                                                                            da
+
+                                                                            <!---->
+
+
+                                                                            <span>Danish</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_de" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_de">
+                                                                            <!----><!---->
+                                                                            de
+
+                                                                            <!---->
+
+
+                                                                            <span>German</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_el" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_el">
+                                                                            <!----><!---->
+                                                                            el
+
+                                                                            <!---->
+
+
+                                                                            <span>Greek</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_en" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_en">
+                                                                            <!----><!---->
+                                                                            en
+
+                                                                            <!---->
+
+
+                                                                            <span>English</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_es" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_es">
+                                                                            <!----><!---->
+                                                                            es
+
+                                                                            <!---->
+
+
+                                                                            <span>Spanish</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_et" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_et">
+                                                                            <!----><!---->
+                                                                            et
+
+                                                                            <!---->
+
+
+                                                                            <span>Estonian</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_fi" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_fi">
+                                                                            <!----><!---->
+                                                                            fi
+
+                                                                            <!---->
+
+
+                                                                            <span>Finnish</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_fr" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_fr">
+                                                                            <!----><!---->
+                                                                            fr
+
+                                                                            <!---->
+
+
+                                                                            <span>French</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_ga" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_ga">
+                                                                            <!----><!---->
+                                                                            ga
+
+                                                                            <!---->
+
+
+                                                                            <span>Irish</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_hr" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_hr">
+                                                                            <!----><!---->
+                                                                            hr
+
+                                                                            <!---->
+
+
+                                                                            <span>Croatian</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_hu" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_hu">
+                                                                            <!----><!---->
+                                                                            hu
+
+                                                                            <!---->
+
+
+                                                                            <span>Hungarian</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_it" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_it">
+                                                                            <!----><!---->
+                                                                            it
+
+                                                                            <!---->
+
+
+                                                                            <span>Italian</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_lt" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_lt">
+                                                                            <!----><!---->
+                                                                            lt
+
+                                                                            <!---->
+
+
+                                                                            <span>Lithuanian</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_lv" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_lv">
+                                                                            <!----><!---->
+                                                                            lv
+
+                                                                            <!---->
+
+
+                                                                            <span>Latvian</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_mt" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_mt">
+                                                                            <!----><!---->
+                                                                            mt
+
+                                                                            <!---->
+
+
+                                                                            <span>Maltese</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_nl" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_nl">
+                                                                            <!----><!---->
+                                                                            nl
+
+                                                                            <!---->
+
+
+                                                                            <span>Dutch</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_pl" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_pl">
+                                                                            <!----><!---->
+                                                                            pl
+
+                                                                            <!---->
+
+
+                                                                            <span>Polish</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_pt" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_pt">
+                                                                            <!----><!---->
+                                                                            pt
+
+                                                                            <!---->
+
+
+                                                                            <span>Portuguese</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_ro" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_ro">
+                                                                            <!----><!---->
+                                                                            ro
+
+                                                                            <!---->
+
+
+                                                                            <span>Romanian</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_sk" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_sk">
+                                                                            <!----><!---->
+                                                                            sk
+
+                                                                            <!---->
+
+
+                                                                            <span>Slovak</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_sl" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_sl">
+                                                                            <!----><!---->
+                                                                            sl
+
+                                                                            <!---->
+
+
+                                                                            <span>Slovenian</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_sv" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_sv">
+                                                                            <!----><!---->
+                                                                            sv
+
+                                                                            <!---->
+
+
+                                                                            <span>Swedish</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_la" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_la">
+                                                                            <!----><!---->
+                                                                            la
+
+                                                                            <!---->
+
+
+                                                                            <span>Latin</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang">
+                                                                        <input formcontrolname="language" type="radio" id="sl_mul" class="ng-untouched ng-pristine ng-invalid">
+                                                                        <label for="sl_mul">
+                                                                            <!----><!---->
+                                                                            mul
+
+                                                                            <!---->
+
+
+                                                                            <span>Multiple languages</span>
+                                                                        </label>
+                                                                    </dd>
+                                                                    <!---->
+                                                                    <!---->
+
+
+
+
+                                                                </dl>
+                                                            </div>
+                                                            <!---->
+
+
+
+                                                        </div>
+
+                                                        <div class="clearfix"></div>
+
+                                                        <div class="widget pull-right res-container">
+
+                                                            <!---->
+                                                            <!---->
+
+                                                        </div>
+
+                                                        <div class="clearfix"></div>
+
+                                                    </div>
+                                                    <!---->
+
+
+
+
+                                                    <!---->
+
+                                                    <div class="clearfix"></div>
+                                                </div></app-language>
+                                        </div>
+
+                                        <!----><div class="col-sm-6">
+                                            <app-multi-language index="tl">
+                                                <div aria-label="Target language">
+
+
+                                                    <app-context-menu keyboardaccess=""><div class="contextual" title="IATE will search for entries containing both the term you are looking for in your source language and at least one equivalent term in any of the target languages you specify here, or Latin (la) or Multilingual (mul)." tabindex="0">
+                                                            <div class="content">
+
+                                                                <h3 aria-expanded="true">
+                                                                    <span aria-label="mandatory" class="mandatory-mark"></span> Target language
+
+                                                                    <!----><i aria-hidden="true" class="fa float-right pointer fa-caret-up"></i>
+                                                                </h3>
+
+
+
+                                                            </div>
+                                                            <span aria-hidden="true" class="fa fa-bars"></span>
+
+                                                        </div>
+                                                        <div class="clearfix"></div>
+
+                                                        <context-menu _nghost-bom-c1=""><div _ngcontent-bom-c1="" class="dropdown angular2-contextmenu">
+                                                                <!---->
+                                                            </div>
+                                                        </context-menu></app-context-menu>
+
+                                                    <!----><select class="blind" multiple="">
+                                                        <option value="">Nothing selected</option>
+                                                        <option value="all">all</option>
+                                                        <!---->
+                                                        <!----><option value="bg">Bulgarian</option><option value="cs">Czech</option><option value="da">Danish</option><option value="de">German</option><option value="el">Greek</option><option value="en">English</option><option value="es">Spanish</option><option value="et">Estonian</option><option value="fi">Finnish</option><option value="fr">French</option><option value="ga">Irish</option><option value="hr">Croatian</option><option value="hu">Hungarian</option><option value="it">Italian</option><option value="lt">Lithuanian</option><option value="lv">Latvian</option><option value="mt">Maltese</option><option value="nl">Dutch</option><option value="pl">Polish</option><option value="pt">Portuguese</option><option value="ro">Romanian</option><option value="sk">Slovak</option><option value="sl">Slovenian</option><option value="sv">Swedish</option><option value="la">Latin</option><option value="mul">Multiple languages</option>
+                                                    </select>
+
+
+
+
+
+                                                    <!----><div aria-hidden="true">
+                                                        <div class="widget search-languages source">
+                                                            <div aria-live="polite">
+                                                                <dl class="EU-languages" tabindex="0">
+
+
+                                                                    <!----><!---->
+                                                                    <!----><dd class="language EU-lang" id="bg">
+                                                                        <input type="checkbox" id="tl_bg" value="bg" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_bg" aria-hidden="true" aria-label="bg, press enter to select">
+                                                                            bg
+                                                                            <span>Bulgarian</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="cs">
+                                                                        <input type="checkbox" id="tl_cs" value="cs" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_cs" aria-hidden="true" aria-label="cs, press enter to select">
+                                                                            cs
+                                                                            <span>Czech</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="da">
+                                                                        <input type="checkbox" id="tl_da" value="da" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_da" aria-hidden="true" aria-label="da, press enter to select">
+                                                                            da
+                                                                            <span>Danish</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="de">
+                                                                        <input type="checkbox" id="tl_de" value="de" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_de" aria-hidden="true" aria-label="de, press enter to select">
+                                                                            de
+                                                                            <span>German</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="el">
+                                                                        <input type="checkbox" id="tl_el" value="el" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_el" aria-hidden="true" aria-label="el, press enter to select">
+                                                                            el
+                                                                            <span>Greek</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="en">
+                                                                        <input type="checkbox" id="tl_en" value="en" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_en" aria-hidden="true" aria-label="en, press enter to select">
+                                                                            en
+                                                                            <span>English</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="es">
+                                                                        <input type="checkbox" id="tl_es" value="es" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_es" aria-hidden="true" aria-label="es, press enter to select">
+                                                                            es
+                                                                            <span>Spanish</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="et">
+                                                                        <input type="checkbox" id="tl_et" value="et" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_et" aria-hidden="true" aria-label="et, press enter to select">
+                                                                            et
+                                                                            <span>Estonian</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="fi">
+                                                                        <input type="checkbox" id="tl_fi" value="fi" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_fi" aria-hidden="true" aria-label="fi, press enter to select">
+                                                                            fi
+                                                                            <span>Finnish</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="fr">
+                                                                        <input type="checkbox" id="tl_fr" value="fr" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_fr" aria-hidden="true" aria-label="fr, press enter to select">
+                                                                            fr
+                                                                            <span>French</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="ga">
+                                                                        <input type="checkbox" id="tl_ga" value="ga" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_ga" aria-hidden="true" aria-label="ga, press enter to select">
+                                                                            ga
+                                                                            <span>Irish</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="hr">
+                                                                        <input type="checkbox" id="tl_hr" value="hr" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_hr" aria-hidden="true" aria-label="hr, press enter to select">
+                                                                            hr
+                                                                            <span>Croatian</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="hu">
+                                                                        <input type="checkbox" id="tl_hu" value="hu" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_hu" aria-hidden="true" aria-label="hu, press enter to select">
+                                                                            hu
+                                                                            <span>Hungarian</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="it">
+                                                                        <input type="checkbox" id="tl_it" value="it" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_it" aria-hidden="true" aria-label="it, press enter to select">
+                                                                            it
+                                                                            <span>Italian</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="lt">
+                                                                        <input type="checkbox" id="tl_lt" value="lt" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_lt" aria-hidden="true" aria-label="lt, press enter to select">
+                                                                            lt
+                                                                            <span>Lithuanian</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="lv">
+                                                                        <input type="checkbox" id="tl_lv" value="lv" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_lv" aria-hidden="true" aria-label="lv, press enter to select">
+                                                                            lv
+                                                                            <span>Latvian</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="mt">
+                                                                        <input type="checkbox" id="tl_mt" value="mt" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_mt" aria-hidden="true" aria-label="mt, press enter to select">
+                                                                            mt
+                                                                            <span>Maltese</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="nl">
+                                                                        <input type="checkbox" id="tl_nl" value="nl" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_nl" aria-hidden="true" aria-label="nl, press enter to select">
+                                                                            nl
+                                                                            <span>Dutch</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="pl">
+                                                                        <input type="checkbox" id="tl_pl" value="pl" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_pl" aria-hidden="true" aria-label="pl, press enter to select">
+                                                                            pl
+                                                                            <span>Polish</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="pt">
+                                                                        <input type="checkbox" id="tl_pt" value="pt" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_pt" aria-hidden="true" aria-label="pt, press enter to select">
+                                                                            pt
+                                                                            <span>Portuguese</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="ro">
+                                                                        <input type="checkbox" id="tl_ro" value="ro" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_ro" aria-hidden="true" aria-label="ro, press enter to select">
+                                                                            ro
+                                                                            <span>Romanian</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="sk">
+                                                                        <input type="checkbox" id="tl_sk" value="sk" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_sk" aria-hidden="true" aria-label="sk, press enter to select">
+                                                                            sk
+                                                                            <span>Slovak</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="sl">
+                                                                        <input type="checkbox" id="tl_sl" value="sl" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_sl" aria-hidden="true" aria-label="sl, press enter to select">
+                                                                            sl
+                                                                            <span>Slovenian</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="sv">
+                                                                        <input type="checkbox" id="tl_sv" value="sv" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_sv" aria-hidden="true" aria-label="sv, press enter to select">
+                                                                            sv
+                                                                            <span>Swedish</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="la">
+                                                                        <input type="checkbox" id="tl_la" value="la" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_la" aria-hidden="true" aria-label="la, press enter to select">
+                                                                            la
+                                                                            <span>Latin</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+                                                                    <!---->
+                                                                    <!----><dd class="language EU-lang" id="mul">
+                                                                        <input type="checkbox" id="tl_mul" value="mul" class="ng-untouched ng-pristine ng-valid">
+                                                                        <label for="tl_mul" aria-hidden="true" aria-label="mul, press enter to select">
+                                                                            mul
+                                                                            <span>Multiple languages</span>
+                                                                        </label>
+
+
+                                                                    </dd>
+
+
+
+
+
+
+
+
+
+
+
+                                                                    <!----><dd class="language EU-lang" id="all">
+                                                                        <!---->
+                                                                        <!----><input id="all_targets" type="checkbox" value="all">
+                                                                        <label for="all_targets">
+                                                                            <i aria-hidden="true" class="fa fa-clone" aria-description="Display all available target languages"></i>
+                                                                            <span>Display all available target languages</span>
+                                                                        </label>
+                                                                    </dd>
+
+
+
+
+                                                                    <!---->
+
+
+
+                                                                </dl>
+                                                            </div>
+                                                            <!---->
+
+
+
+                                                        </div>
+
+
+
+                                                        <div class="clearfix"></div>
+
+                                                        <!---->
+
+                                                        <div class="clearfix"></div>
+                                                    </div>
+
+                                                    <!---->
+
+
+                                                    <div class="clearfix"></div>
+
+                                                </div></app-multi-language>
+                                        </div>
+                                    </div>
+
+
+                                    <custom-alert><div>
+                                            <!---->
+                                        </div></custom-alert>
+
+
+                                </div>
+                            </div>
+                        </form>
+
+
+                        <router-outlet></router-outlet></app-iate-search>
+
+
+                    <div class="container mt-4">
+
+
+
+                        <hr class="mt-4 mb-4">
+
+                        <div class="row mb-2">
+
+                            <!----><div class="col-md-6  mt-4">
+                                <div class="row mb-2">
+                                    <div class="col-md-6" tabindex="0">
+
+
+
+                                        <div class="widget rounded bordered mt-1">
+                                            <h3>Searches last week</h3>
+                                            <p class="mt-1 mb-1 text-center bigfigure"> 301 498</p>
+                                        </div>
+
+
+                                        <div class="widget rounded bordered mt-1">
+                                            <h3>Number of entries</h3>
+                                            <p class="mt-1 mb-1 text-center bigfigure">1 016 933</p>
+                                        </div>
+
+
+
+                                        <div class="widget rounded bordered mt-1">
+                                            <h3>New terms last week</h3>
+                                            <p class="mt-1 mb-1 text-center bigfigure"> 309
+                                            </p>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="col-md-6" tabindex="0">
+
+                                        <div class="widget rounded bordered mt-1">
+                                            <h3>Number of terms</h3>
+                                            <p class="mt-1 mb-1 text-center bigfigure">8 028 279</p>
+                                        </div>
+
+                                        <div class="widget rounded bordered mt-1">
+                                            <h3>Modifications last week</h3>
+                                            <p class="mt-1 mb-1 text-center bigfigure"> 413</p>
+                                        </div>
+
+
+
+                                        <div class="widget rounded bordered mt-1">
+                                            <h3>Terms deleted last week</h3>
+                                            <p class="mt-1 mb-1 text-center bigfigure"> 257
+                                            </p>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <h1 class="c2 mt-4" tabindex="0">About IATE</h1>
+                                <p tabindex="0">IATE (<b>I</b>nter<b>a</b>ctive <b>T</b>erminology for <b>E</b>urope) is the EU's terminology database. It has been used in the EU institutions and agencies since summer 2004 for the collection, dissemination and management of EU-specific terminology. The project was launched in 1999 with the aim of providing a web-based infrastructure for all EU terminology resources, enhancing the availability and standardisation of the information.</p>
+
+                                <div class="row mt-4 mb-1">
+
+                                    <div class="col-md-6 mt-1">
+                                        <a class="btn btn-sm btn-block btn-primary" type="button" href="https://iate.europa.eu/about">
+                                            <span><i aria-hidden="true" class="fa fa-info-circle"></i>
+                                                About IATE</span>
+                                        </a>
+                                        <a class="btn btn-sm btn-block btn-primary" type="button" href="https://iate.europa.eu/download-iate">
+                                            <span><i aria-hidden="true" class="fa fa-download"></i> Download IATE</span>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-md-6 mt-1">
+                                        <a class="btn btn-sm btn-block btn-primary" type="button" href="https://iate.europa.eu/faq">
+                                            <span><i aria-hidden="true" class="fa fa-question-circle"></i>
+                                                FAQ</span>
+                                        </a>
+                                        <!----><a class="btn btn-sm btn-block btn-primary" target="_blank" type="button" href="https://iate.europa.eu/assets/i18n/en/static_pages/brochure.pdf">
+                                            <span><i aria-hidden="true" class="fa fa-file-text-o"></i>
+                                                IATE brochure</span>
+                                        </a>
+                                        <!---->
+                                    </div>
+                                </div>
+
+
+
+                                <!---->
+
+
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+
+                    </div></app-home>
+
+            </div>
+            <div class="clearfix mt-3 mb-3"></div>
+        </div>
+        <app-iate-footer><footer aria-label="footer" class="footer" role="contentinfo">
+
+                <div class="row">
+
+                    <div class="col-sm-6 mt-1 mb-2">
+                        <img alt="iate logo" src="./IATE - Search_files/iate_logo.png">
+                    </div>
+
+                    <div class="col-sm-3 mt-1">
+
+
+
+                        <a class="important" aria-label="Download IATE" href="https://iate.europa.eu/download-iate">
+                            <i class="fa fa-download"></i>
+                            Download IATE
+                        </a>
+
+
+
+
+
+                        <!---->
+
+                        <a class="important" aria-label="IATE for developers" href="https://iate.europa.eu/developers">
+                            <i class="fa fa-code"></i>
+                            IATE for developers
+                        </a>
+
+
+
+                    </div>
+
+                    <div class="col-sm-3 mt-1">
+
+                        <a aria-label="About IATE" href="https://iate.europa.eu/about">
+                            <i class="fa fa-info-circle"></i>
+                            About IATE
+                        </a>
+
+
+                        <a aria-label="FAQ" href="https://iate.europa.eu/faq">
+                            <i class="fa fa-question-circle"></i>
+                            FAQ
+                        </a>
+
+
+                        <a aria-label="Legal notice" href="https://iate.europa.eu/legal-notice">
+                            <i class="fa fa-gavel"></i>
+                            Legal notice
+                        </a>
+
+
+                        <a aria-label="Accessibility statement" href="https://iate.europa.eu/accessibility">
+                            <i class="fa fa-low-vision"></i>
+                            Accessibility statement
+                        </a>
+
+
+                        <a target="_blank" href="mailto:iate@cdt.europa.eu" aria-label="Contact">
+                            <i class="fa fa-envelope-o"></i>
+                            Contact
+                        </a>
+
+
+
+
+                    </div>
+
+
+
+
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <p class="mt-2">
+                            Last build date : 16.12.2019 12:46 (2.12.0)
+                            <small>
+                                [<a class="inline-div" aria-label="Release note" href="https://iate.europa.eu/info/release-note">
+                                    Release note
+                                </a>]
+                            </small>
+                        </p>
+                    </div>
+                </div>
+
+            </footer></app-iate-footer>
+
+
+
+        <!----><!---->
+        <!---->
+
+        <!---->
+
+
+        <!---->
+
+    </app-iate-root>
+
+
+    <script type="text/javascript">
+
+        const lastversion = localStorage.getItem('lastversion');
+        // console.log('last version ', lastversion);
+
+        function cleanCache(version) {
+            // console.log('cleaning!', version)
+            localStorage.clear();
+            localStorage.setItem('lastversion', version);
+            location.reload();
+        }
+
+
+        try {
+            const Http = new XMLHttpRequest();
+            const url = './assets/version.json';
+            Http.open("GET", url);
+            Http.send();
+            Http.onreadystatechange = (e) => {
+
+                try {
+                    // console.log(Http.readyState);
+                    if (Http.readyState === 4) {
+                        // console.log(Http.responseText);
+
+
+                        const response = JSON.parse(Http.responseText);
+                        const newversion = response.version;
+                        // console.log('new', newversion);
+                        if (newversion !== lastversion) {
+                            // console.log('should reload!');
+
+                            cleanCache(newversion);
+
+                        }
+
+
+                    }
+                } catch (err) {
+                    // console.log('error json');
+                    cleanCache(lastversion);
+                }
+
+            }
+        } catch (err) {
+            // console.log('error');
+            cleanCache(lastversion);
+
+        }
+
+        // localStorage.setItem('jwt', 'caccapupu');
+    </script>
+
+    <!-- JavaScript -->
+
+    <script src="./IATE - Search_files/jquery.min.js"></script>
+    <script src="./IATE - Search_files/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./IATE - Search_files/ie10-viewport-bug-workaround.js"></script>
+    <!-- treeview -->
+    <script type="text/javascript" src="./IATE - Search_files/bootstrap-treeview.js"></script>
+
+    <script src="./IATE - Search_files/keyboardmenu.js"></script>
+    <script src="./IATE - Search_files/Chart.bundle.min.js"></script>
+    <script>
+        __Zone_enable_cross_context_check = true;
+    </script>
+
+
+
+
+
+
+    <script>
+
+        function check_cookies() {
+            if (localStorage.getItem('cookies_accepted') === 'accepted') {
+
+
+
+
+                var link = document.createElement('link');
+                link.href = 'https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&amp;subset=cyrillic-ext,greek-ext,latin-ext';
+                link.rel = 'stylesheet';
+
+
+                // console.log('consent, embedding font');
+                document.head.append(link);
+
+
+                // console.log('consent, embedding piwik');
+
+                var script = document.createElement('script');
+                script.src = '//europa.eu/webtools/load.js';
+                script.type = 'text/javascript';
+
+
+                document.body.append(script);
+            } else if (localStorage.getItem('cookies_accepted') !== 'refused') {
+
+
+                var cookie_popup = document.createElement('div');
+                cookie_popup.id = 'cookies_popup'
+                cookie_popup.innerHTML = `
+                   <span>This site uses cookies. Find out more on how we use those cookies and how you can change your settings <a href = './legal-notice' > clicking here </a>.</span>
+                   <span class='pull-right'>
+                    <button class='btn btn-xs btn-primary' onclick='accept_cookies()'>I accept cookies</button> 
+                    <button class='btn btn-xs btn-default' onclick='refuse_cookies()'>I refuse cookies</button>
+                   </span>
+                   <div class='clearfix'>
+
+                `;
+                document.body.append(cookie_popup);
+
+                // console.log(cookie_popup)
+            }
+
+        }
+
+        function accept_cookies() {
+            localStorage.setItem('cookies_accepted', 'accepted');
+            document.getElementById('cookies_popup').hidden = true;
+            check_cookies();
+        }
+        function refuse_cookies() {
+            localStorage.setItem('cookies_accepted', 'refused');
+            document.getElementById('cookies_popup').hidden = true;
+        }
+
+        check_cookies();
+    </script><div id="cookies_popup">
+        <span>This site uses cookies. Find out more on how we use those cookies and how you can change your settings <a href="https://iate.europa.eu/legal-notice"> clicking here </a>.</span>
+        <span class="pull-right">
+            <button class="btn btn-xs btn-primary" onclick="accept_cookies()">I accept cookies</button> 
+            <button class="btn btn-xs btn-default" onclick="refuse_cookies()">I refuse cookies</button>
+        </span>
+        <div class="clearfix">
+
+        </div></div>
+
+
+
+    <script type="application/json">
+        { "utility": "piwik", "siteID": "89", "sitePath": ["iate.europa.eu"],"is404": false, "instance": "europa.eu", "mode": "auto"}
+    </script>
+
+
+
+
+
+    <noscript>Please enable JavaScript to continue using this application.</noscript>
+    <script type="text/javascript" src="./IATE - Search_files/runtime.d26b0b800f411dfbed4a.js"></script><script type="text/javascript" src="./IATE - Search_files/polyfills.e31bb4ddc51ed1cb8e2c.js"></script><script type="text/javascript" src="./IATE - Search_files/scripts.8677a95dea1ed3832bb3.js"></script><script type="text/javascript" src="./IATE - Search_files/main.34eeeeeb8a06dfbdeb79.js"></script>
+
+
+</body></html>

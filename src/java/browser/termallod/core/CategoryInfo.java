@@ -5,17 +5,18 @@
  */
 package browser.termallod.core;
 
+import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.utils.NameExtraction;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 /**
  *
@@ -26,37 +27,30 @@ public class CategoryInfo {
     private String browser = null;
     private String langCode = null;
     private String categoryName = null;
+    private Map<String, File> pairFile = new TreeMap<String, File>();
     private TreeMap<String, List<String>> langSortedTerms = new TreeMap<String, List<String>>();
 
-    public CategoryInfo(String browser, File file, String model_extension) throws IOException, IOException, IOException, IOException, IOException {
+    public CategoryInfo(String browser, String langCode, List<File> files, String model_extension) throws IOException, IOException, IOException, IOException, IOException {
         this.browser = browser;
-        this.categoryName = NameExtraction.getCategoryName(browser, file, model_extension);
-        this.langCode = NameExtraction.getLanCode(file, model_extension);
-        this.getValuesFromTextFile(file);
+        this.langCode = langCode;
+        for (File file : files) {
+            this.categoryName = NameExtraction.getCategoryName(browser, file, model_extension);
+            String pair = NameExtraction.getPairName(file, categoryName, langCode, model_extension);
+            this.pairFile.put(pair, file);
+            this.getValuesFromTextFile(file, pair);
+            //break;
+        }
+        this.print(langSortedTerms);
+
     }
 
-    private void getValuesFromTextFile(File file) throws FileNotFoundException, IOException {
-        FileReader fr = new FileReader(file);
-        BufferedReader br = new BufferedReader(fr);
-        String line;
-        langSortedTerms = new TreeMap<String, List<String>>();
-        while ((line = br.readLine()) != null) {
-            if (line.contains("=")) {
-                //System.out.println(line);
-                String[] strArray = line.split("=");
-                String pair = strArray[0].trim();
-                List<String> newTerms = this.getTerms(strArray[1].trim());
-                if (langSortedTerms.containsKey(pair)) {
-                    List<String> existTerms = langSortedTerms.get(pair);
-                    existTerms.addAll(newTerms);
-                    langSortedTerms.put(pair, existTerms);
-                } else {
-                    langSortedTerms.put(pair, newTerms);
-                }
+    private void getValuesFromTextFile(File propFile, String pair) throws FileNotFoundException, IOException {
+        Properties props = FileRelatedUtils.getPropertyHash(propFile);
+        Set<String> termSet = props.stringPropertyNames();
+        List<String> termList = new ArrayList<String>(termSet);
+        Collections.sort(termList);
+        langSortedTerms.put(pair, termList);
 
-            }
-
-        }
     }
 
     public String getBrowser() {
@@ -71,34 +65,20 @@ public class CategoryInfo {
         return langSortedTerms;
     }
 
-    private List<String> getTerms(String line) {
-        String[] myStringArray = line.split(",");
-        TreeSet<String> termSet = new TreeSet(Arrays.asList(myStringArray));
-        List<String> terms = new ArrayList<String>(termSet.size());
-        terms.addAll(termSet);
-        return terms;
-    }
-
     public String getLangCode() {
         return langCode;
     }
 
-    @Override
-    public String toString() {
-        return "CategoryInfo{" + "browser=" + browser + ", langCode=" + langCode + ", categoryName=" + categoryName + "\n"+" langSortedTerms=" + "\n"+ this.print(langSortedTerms) + '}';
+    public File getPairFile(String pair) {
+        return pairFile.get(pair);
     }
 
-   private String print(TreeMap<String, List<String>> langSortedTerms) {
-       String str="";
+    public void print(TreeMap<String, List<String>> langSortedTerms) {
         for (String pair : langSortedTerms.keySet()) {
-            String line =pair+ "\n";
+            String line = pair + "\n";
             List<String> terms = langSortedTerms.get(pair);
-            for (String term : terms) {
-                line+=term+ "\n";
-                str+=line;
-            }
+            System.out.println(line + terms.toString());
         }
-        return str;
     }
 
 }

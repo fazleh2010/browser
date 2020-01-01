@@ -11,6 +11,7 @@ import java.util.List;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import browser.termallod.constants.HtmlPage;
+import browser.termallod.utils.StringMatcherUtil;
 
 /**
  *
@@ -29,11 +30,10 @@ public class HtmlPageGenerator implements HtmlPage {
         this.currentPageNumber = currentPageNumber;
         this.language = language;
         this.ontologyFileName = categoryName;
-        System.out.println(ontologyFileName);
         String[] ontology = ontologyFileName.split("_");
         this.categoryType = ontology[1];
         this.generatedHtmlPage = this.generateHtmlFromTemplate(templateHtml, terms, pageContentGenerator, alphabetTermPage);
-        this.htmlFileName = outputFileName(currentPageNumber, alphabetTermPage);
+        this.htmlFileName = new File(PATH + this.ontologyFileName + "/" + createFileName(alphabetTermPage.getAlpahbetPair(), language, currentPageNumber));
     }
 
     private Document generateHtmlFromTemplate(Document templateHtml, List<String> terms, PageContentGenerator pageContentGenerator, AlphabetTermPage alphabetTermPage) throws Exception {
@@ -42,7 +42,10 @@ public class HtmlPageGenerator implements HtmlPage {
         Integer numberofPages = alphabetTermPage.getNumberOfPages();
         //currently not
         Integer emptyTerm = alphabetTermPage.getEmptyTerm();
-        this.createLangSelectBox(body, pageContentGenerator);
+        if(!this.categoryType.contains(iate)){
+           this.createLangSelectBox(body, pageContentGenerator);
+        }
+
         createAlphabet(body, alphebetPair, pageContentGenerator);
         createTerms(body, terms, alphebetPair, emptyTerm, alphabetTermPage);
 
@@ -52,9 +55,9 @@ public class HtmlPageGenerator implements HtmlPage {
         this.assignCurrentPageNumber(divCurrentPageLower);*/
         //createUperPageNumber(body, alphebetPair, numberofPages);
         //upper page number
-        createPageNumber(body, "paging_links inner",alphebetPair, numberofPages);
+        createPageNumber(body, "paging_links inner", alphebetPair, numberofPages);
         //lower page number
-        createPageNumber(body, "paging_links inner_down",alphebetPair, numberofPages);
+        createPageNumber(body, "paging_links inner_down", alphebetPair, numberofPages);
         return templateHtml;
     }
 
@@ -66,7 +69,7 @@ public class HtmlPageGenerator implements HtmlPage {
             if (languageMapper.containsKey(languageCode)) {
                 String languageDetail = languageMapper.get(languageCode);
                 String pair = pageContentGenerator.getLanguageInitpage(languageCode);
-                String url=this.makeUrlLink(pair, languageCode,INITIAL_PAGE);
+                String url = this.createUrlLink(pair, languageCode, INITIAL_PAGE);
                 String option = "<li>&#8227; <a href=" + "\"" + url + "\"" + ">" + languageDetail + "</a></li>";
                 options += option;
             }
@@ -84,7 +87,7 @@ public class HtmlPageGenerator implements HtmlPage {
         for (String pair : alphabetPairsExists) {
             if (!pair.contains(alphebetPair)) {
                 //String alphabetFileName = categoryName + UNDERSCORE + language + UNDERSCORE + pair + UNDERSCORE + "1" + HTML_EXTENSION;
-                String li = getAlphebetLi(pair,INITIAL_PAGE);
+                String li = getAlphebetLi(pair, INITIAL_PAGE);
                 divAlphabet.append(li);
             }
 
@@ -92,9 +95,8 @@ public class HtmlPageGenerator implements HtmlPage {
         return alphebetPair;
     }
 
-
     @Override
-    public void createPageNumber(Element body, String elementName,String alphebetPair, Integer numberofPages) {
+    public void createPageNumber(Element body, String elementName, String alphebetPair, Integer numberofPages) {
         //Element divPageDown = body.getElementsByClass("paging_links inner_down").get(0);
         Element divPage = body.getElementsByClass(elementName).get(0);
 
@@ -130,7 +132,9 @@ public class HtmlPageGenerator implements HtmlPage {
         String title = "title=" + '"' + term + " definition" + '"';
         //real version
         //String url = this.path+"/"+DEFINITION+"/" +language+"/" +alphebetPair +"/" +term + "_1";
-        String url = generateTermUrl(term);
+        String url = generateTermUrl(term, alphabetTermPage);
+        term=StringMatcherUtil.decripted(term);
+        System.out.println(term+"..."+url);
         //String url = LOCALHOST_URL + "termDefination.php";
         //System.out.println(url);
         String a = "<a href=" + url + " " + title + ">" + term + "</a>";
@@ -138,17 +142,17 @@ public class HtmlPageGenerator implements HtmlPage {
         return li;
     }
 
-    private String getAlphebetLi(String pair,Integer pageNumber) {
+    private String getAlphebetLi(String pair, Integer pageNumber) {
         //Elements divAlphabet = body.getElementsByClass("side-selector__left");
         //Element content = body.getElementById("entries-selector");
         /*String ontologyLocation="";
         if(categoryOntologyMapper.containsKey(this.categoryName)){
             ontologyLocation=categoryOntologyMapper.get(categoryName);
         }*/
-        String url = this.makeUrlLink(pair,language, pageNumber);
+        String url = this.createUrlLink(pair, language, pageNumber);
         //String url = LOCALHOST_URL_LIST_OF_TERMS_PAGE + alphabetFileName;
         String a = "<a href=" + url + ">" + pair + "</a>";
-        String li = "\n"+"<li>" + a + "</li>"+"\n";
+        String li = "\n" + "<li>" + a + "</li>" + "\n";
         return li;
     }
 
@@ -165,7 +169,7 @@ public class HtmlPageGenerator implements HtmlPage {
         }
         for (Integer page = 0; page < pages; page++) {
             Integer pageNumber = (page + 1);
-            pageUrl = makeUrlLink(pair, language,pageNumber);
+            pageUrl = createUrlLink(pair, language, pageNumber);
             String a = "<a href=" + pageUrl + ">" + pageNumber + "</a>";
             li = "\n<li>" + a + "</li>\n";
             liS.add(li);
@@ -173,9 +177,12 @@ public class HtmlPageGenerator implements HtmlPage {
         return liS;
     }
 
-    private String makeUrlLink(String pair, String languageCode,Integer pageNumber) {
-        //pageUrl = LOCALHOST_URL_LIST_OF_TERMS_PAGE +ontologyFileName +File.separator +this.categoryType+UNDERSCORE + language + UNDERSCORE + pair + UNDERSCORE + pageNumber + HTML_EXTENSION;
-        return LOCALHOST_URL_LIST_OF_TERMS_PAGE + browser + UNDERSCORE + languageCode + UNDERSCORE + pair + UNDERSCORE + pageNumber + HTML_EXTENSION;
+    private String createUrlLink(String pair, String languageCode, Integer pageNumber) {
+        return LOCALHOST_URL_LIST_OF_TERMS_PAGE + this.createFileName(pair, languageCode, pageNumber);
+    }
+
+    private String createFileName(String pair, String languageCode, Integer pageNumber) {
+        return browser + UNDERSCORE + languageCode + UNDERSCORE + pair + UNDERSCORE + pageNumber + HTML_EXTENSION;
     }
 
     private void assignCurrentPageNumber(Element divCurrentPage) {
@@ -189,18 +196,10 @@ public class HtmlPageGenerator implements HtmlPage {
 
     }
 
-    private File outputFileName(Integer page, AlphabetTermPage alphabetTermPage) {
-        String outputfileString =  language + "_";
-        outputfileString = PATH + this.ontologyFileName + "/" + outputfileString + alphabetTermPage.getAlpahbetPair() + "_" + page + HTML_EXTENSION;
-        File outputFile = new File(outputfileString);
-        return outputFile;
-    }
-
-    private String generateTermUrl(String term) {
+    /*private String generateTermUrl(String term) {
         String outputfileString = LOCALHOST_URL_LIST_OF_TERMS_PAGE + this.generateTermFileName() + this.termFileExtension(term);
         return outputfileString;
-    }
-
+    }*/
     private String generateTermFileName() {
         String outputfileString = ontologyFileName + "/" + "data" + "/" + this.categoryType + "/";
         return outputfileString;
@@ -208,6 +207,11 @@ public class HtmlPageGenerator implements HtmlPage {
 
     private String termFileExtension(String term) {
         return term.trim().replace(" ", "+") + "-" + language.toUpperCase() + HTML_EXTENSION;
+    }
+
+    private String generateTermUrl(String term, AlphabetTermPage alphabetTermPage) {
+        //return "test";
+        return alphabetTermPage.getUrl(term);
     }
 
     private String termFileLocation(String term) {
@@ -221,97 +225,4 @@ public class HtmlPageGenerator implements HtmlPage {
     public File getHtmlFileName() {
         return htmlFileName;
     }
-
-    /*<select name="forma" onchange="location = this.options[this.selectedIndex].value;">
-                                                <option value="" selected="selected">A-B</option>
-                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_C-D/">C-D</option>
-                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_E-G/">E-G</option>
-                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_H-K/">H-K</option>
-                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_L-N/">L-N</option>
-                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_O-P/">O-P</option>
-                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_Q-R/">Q-R</option>
-                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_S/">S</option>
-                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_T/">T</option>
-                                                <option value="https://www.oxfordlearnersdictionaries.com/wordlist/english/oxford3000/Oxford3000_U-Z/">U-Z</option>
-                                            </select>
-    
-    
-            <select name="forma" onchange="location = this.options[this.selectedIndex].value;">
-<option value="http://localhost/atc_en_A_B_1.html">English</option>
-
-<option value="http://localhost/atc_nl_A_B_1.html">Dutch</option>
-</select>
-
-    
-     */
- /*<li>&#8227; <a href="" > Inbox</a></li>
-        <li>&#8227; <a href="" > Compose</a></li>
-        <li>&#8227; <a href="" > Reports</a></li>
-        <li>&#8227; <a href="" > Preferences</a></li>
-        <li>&#8227; <a href="" > logout</a></li>
-     */
- /* @Override
-    public void createLangSelectBox(Element body, PageContentGenerator pageContentGenerator) throws Exception {
-       Element divLanguage = body.getElementsByClass("langauge selection box").get(0);
-        String options = "";
-        String option = "";
-        //String url=HtmlPage.LOCALHOST_URL;
-        Integer index=0;
-        for (String language : pageContentGenerator.getLanguages()) {
-            if (languageMapper.containsKey(language)) {
-                String languageDetail = languageMapper.get(language);
-                String pair = pageContentGenerator.getLanguageInitpage(language);
-                pair = getAlphabetFileName(pair, language);
-                String url = LOCALHOST_URL + pair;
-                if(index==0){
-                   option = "\n" + "<option value=" + "\""+ "\"" + " selected=" + "\""+ "selected"+"\"" + languageDetail + "</option>" + "\n";
-                   index++;
-                 }
-                option = "\n" + "<option value=" + "\""+url +"\"" +">"+languageDetail + "</option>" + "\n";
-                options += option;
-            }
-
-        }
-
-        //<form name="store" id="store" method="post" action="" id="FORM_ID" >
-        //<select id="mySelect" onchange="myFunction()">
-        String selection =  "\n" + "<select name=" + "\"" + "forma" + "\"" +" onchange=" + "\"" + "location = this.options[this.selectedIndex].value;" + "\"" + ">";
-        selection =selection+options+"</select>";
-        String form = "<form>" + selection + "</form>";
-        divLanguage.append(form);
-        System.out.println(form);
-
-    }*/
- /*@Override
-    public void createLangSelectBox(Element body, PageContentGenerator pageContentGenerator) throws Exception {
-       Element divLanguage = body.getElementsByClass("langauge selection box").get(0);
-        String options = "";
-        String option = "";
-        //String url=HtmlPage.LOCALHOST_URL;
-        Integer index=0;
-        for (String language : pageContentGenerator.getLanguages()) {
-            if (languageMapper.containsKey(language)) {
-                String languageDetail = languageMapper.get(language);
-                String pair = pageContentGenerator.getLanguageInitpage(language);
-                pair = getAlphabetFileName(pair, language);
-                String url = LOCALHOST_URL + pair;
-                if(index==0){
-                   option = "\n" + "<option value=" + "\""+ "\"" + " selected=" + "\""+ "selected"+"\"" + languageDetail + "</option>" + "\n";
-                   index++;
-                 }
-                option = "\n" + "<option value=" + "\""+url +"\"" +">"+languageDetail + "</option>" + "\n";
-                options += option;
-            }
-
-        }
-
-        //<form name="store" id="store" method="post" action="" id="FORM_ID" >
-        //<select id="mySelect" onchange="myFunction()">
-        String selection =  "\n" + "<select name=" + "\"" + "forma" + "\"" +" onchange=" + "\"" + "location = this.options[this.selectedIndex].value;" + "\"" + ">";
-        selection =selection+options+"</select>";
-        String form = "<form>" + selection + "</form>";
-        divLanguage.append(form);
-        System.out.println(form);
-
-    }*/
 }

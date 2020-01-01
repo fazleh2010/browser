@@ -23,6 +23,13 @@ public class NameExtraction {
         categoryName = categoryName.replace(modelFileExtension.trim(), "");
         return categoryName;
     }
+    
+    public static String getPairName(File categoryFile,String categoryName, String langCode,String modelFileExtension) {
+        String pair=categoryFile.getName().replace(categoryName, "");
+        pair=pair.replace(UNDERSCORE+langCode+UNDERSCORE, "");
+        pair=pair.replace(modelFileExtension, "");
+        return pair;
+    }
 
     public static String getLanCode(File file, String MODEL_EXTENSION) {
         String fileName = file.getName();

@@ -13,9 +13,10 @@ import browser.termallod.constants.FilePathAndConstant;
 import browser.termallod.core.api.LanguageManager;
 import browser.termallod.utils.NameExtraction;
 import browser.termallod.utils.FileRelatedUtils;
+import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.FileManager;
 import java.io.File;
 import java.io.InputStream;
@@ -24,14 +25,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
 
-
-public class RdfReading implements FilePathAndConstant {
+public class RdfReader implements FilePathAndConstant {
 
     private String MODEL_TYPE;
     private String LANGUAGE_SEPERATE_SYMBOLE = "@";
     private LanguageManager languageInfo;
 
-    public RdfReading(String rdfDir, LanguageManager languageInfo, String MODEL_TYPE, String MODEL_EXTENSION, String dataSaveDir) throws Exception {
+    public RdfReader(String rdfDir, LanguageManager languageInfo, String MODEL_TYPE, String MODEL_EXTENSION, String dataSaveDir) throws Exception {
         this.MODEL_TYPE = MODEL_TYPE;
         this.languageInfo = languageInfo;
         File[] files = FileRelatedUtils.getFiles(rdfDir, MODEL_EXTENSION);
@@ -44,68 +44,66 @@ public class RdfReading implements FilePathAndConstant {
     }
 
     private List<File> readTermsAndLanguages(String fileNameOrUri, String dataSaveDir) throws Exception {
-        TreeMap<String, TreeMap<String, List<String>>> langTerms = getLanguageAndTerms(fileNameOrUri);
+        TreeMap<String, TreeMap<String, List<TermInfo>>> langTerms = getLanguageAndTerms(fileNameOrUri);
         return FileRelatedUtils.writeFile(langTerms, dataSaveDir);
     }
 
     // dont change List to set. then the sorting breaks;
-    private TreeMap<String, TreeMap<String, List<String>>> getLanguageAndTerms(String fileNameOrUri) throws Exception {
-        TreeMap<String, TreeMap<String, List<String>>> langTerms = new TreeMap<String, TreeMap<String, List<String>>>();
+    private TreeMap<String, TreeMap<String, List<TermInfo>>> getLanguageAndTerms(String fileNameOrUri) throws Exception {
+        TreeMap<String, TreeMap<String, List<TermInfo>>> langTerms = new TreeMap<String, TreeMap<String, List<TermInfo>>>();
         Model model = ModelFactory.createDefaultModel();
         InputStream is = FileManager.get().open(fileNameOrUri);
         if (is != null) {
             model.read(is, null, MODEL_TYPE);
-            //model.write(System.out, "N-TRIPLE");
-            List<RDFNode> rdfNodes = model.listObjects().toList();
-            for (RDFNode rdfNode : rdfNodes) {
-                //testrdfNode(rdfNode);
-                if (rdfNode.isLiteral()) {
-                    if (rdfNode.toString().toLowerCase().contains(LANGUAGE_SEPERATE_SYMBOLE)) {
-                        String[] infor = rdfNode.toString().split(LANGUAGE_SEPERATE_SYMBOLE);;
-                        String language = infor[1].toLowerCase();
-                        String term = infor[0].toLowerCase();
-                        if (!languageInfo.isLanguageExist(language)) {
-                            continue;
-                        }
-                        if (langTerms.containsKey(language)) {
-                            langTerms = ifElementExist(language, term, langTerms);
+            StmtIterator stmtIterator = model.listStatements();
+            while (stmtIterator.hasNext()) {
+                Triple triple = stmtIterator.nextStatement().asTriple();
+                if (triple.getObject().toString().contains("@")) {
+                    String language = triple.getObject().getLiteralLanguage().toLowerCase().trim();
+                    TermInfo term=new TermInfo(triple);
+                    if (!languageInfo.isLanguageExist(language)) {
+                        continue;
+                    }
+                    if (langTerms.containsKey(language)) {
+                        langTerms = ifElementExist(language, term, langTerms);
 
-                        } else {
-                            langTerms = ifElementNotExist(language, term, langTerms);
-                        }
+                    } else {
+                        langTerms = ifElementNotExist(language, term, langTerms);
                     }
                 }
+
             }
 
         } else {
-            System.err.println("cannot read " + fileNameOrUri);;
+            //System.err.println("cannot read " + fileNameOrUri);;
         }
         return langTerms;
     }
 
-    private TreeMap<String, TreeMap<String, List<String>>> ifElementNotExist(String language, String term, TreeMap<String, TreeMap<String, List<String>>> langTerms) {
+   
+    private TreeMap<String, TreeMap<String, List<TermInfo>>> ifElementNotExist(String language, TermInfo term, TreeMap<String, TreeMap<String, List<TermInfo>>> langTerms) {
         String pair;
-        pair = this.getAlphabetPair(language, term);
-        TreeMap<String, List<String>> alpahbetTerms = new TreeMap<String, List<String>>();
-        List<String> terms = new ArrayList<String>();
+        pair = this.getAlphabetPair(language, term.getTermString());
+        TreeMap<String, List<TermInfo>> alpahbetTerms = new TreeMap<String, List<TermInfo>>();
+        List<TermInfo> terms = new ArrayList<TermInfo>();
         terms.add(term);
         alpahbetTerms.put(pair, terms);
         langTerms.put(language, alpahbetTerms);
         return langTerms;
     }
 
-    private TreeMap<String, TreeMap<String, List<String>>> ifElementExist(String language, String term, TreeMap<String, TreeMap<String, List<String>>> langTerms) {
+    private TreeMap<String, TreeMap<String, List<TermInfo>>> ifElementExist(String language, TermInfo term, TreeMap<String, TreeMap<String, List<TermInfo>>> langTerms) {
         String pair;
-        pair = this.getAlphabetPair(language, term);
-        TreeMap<String, List<String>> alpahbetTerms = langTerms.get(language);
+        pair = this.getAlphabetPair(language, term.getTermString());
+        TreeMap<String, List<TermInfo>> alpahbetTerms = langTerms.get(language);
         try {
             if (alpahbetTerms.containsKey(pair)) {
-                List<String> terms = alpahbetTerms.get(pair);
+                List<TermInfo> terms = alpahbetTerms.get(pair);
                 terms.add(term);
                 alpahbetTerms.put(pair, terms);
                 langTerms.put(language, alpahbetTerms);
             } else {
-                List<String> terms = new ArrayList<String>();
+                List<TermInfo> terms = new ArrayList<TermInfo>();
                 terms.add(term);
                 alpahbetTerms.put(pair, terms);
                 langTerms.put(language, alpahbetTerms);

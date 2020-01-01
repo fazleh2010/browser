@@ -42,7 +42,7 @@ public class LanguageAlphabetPro implements LanguageManager {
         for (String languageName : languages) {
             String input = props.getProperty(languageName).toUpperCase();
             String[] alphebets = input.toLowerCase().split(" ");
-            preparePair(languageName, alphebets);
+            preparePair(languageName.trim(), alphebets);
         }
 
     }

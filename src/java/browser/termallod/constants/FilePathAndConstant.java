@@ -25,7 +25,9 @@ public interface FilePathAndConstant {
     public static String textPath = "text/";
     public static String rdfPath = "rdf/";
     public static String TEMPLATE_LOCATION = "src/java/browser/termallod/template/";
-    public static File MAIN_PAGE_TEMPLATE = new File(TEMPLATE_LOCATION + "listOfTermsFinal.html");
+    public static File MAIN_PAGE_TEMPLATE_IATE = new File(TEMPLATE_LOCATION + "iateTemplate.html");
+    public static File MAIN_PAGE_TEMPLATE_GENTERM = new File(TEMPLATE_LOCATION + "gentermTemplate.html");
+
     public static File TERM_PAGE_TEMPLATE = new File(TEMPLATE_LOCATION + "termDefination.html");
     public static File configFile = new File(PATH + "conf/" + "language.conf");
     //public static String GENTERM_PATH = PATH + "genterm/";
@@ -37,8 +39,8 @@ public interface FilePathAndConstant {
     public static String TURTLE = "TURTLE";
     public static String TEXT = "TEXT";
     public static String LIST_OF_TERMS_PAGE_LOCATION = PATH + "html/";
-    public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "http://localhost/";
-    //public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "";
+    //public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "http://localhost/";
+    public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "";
     //public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "https://webtentacle1.techfak.uni-bielefeld.de/";
     public static String HTML_EXTENSION = ".html";
     public static Integer INITIAL_PAGE = 1;

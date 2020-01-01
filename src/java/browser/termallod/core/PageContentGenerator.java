@@ -28,7 +28,7 @@ public class PageContentGenerator {
     private Map<String, String> languageInitpage = new HashMap<String, String>();
 
 
-    public PageContentGenerator( TreeMap<String, TreeMap<String, List<String>>> langSortedTerms) throws Exception {
+    public PageContentGenerator( TreeMap<String, CategoryInfo> langSortedTerms) throws Exception {
         if (!langSortedTerms.isEmpty()) {
             this.langPages = this.preparePageTerms(langSortedTerms);
             this.languages=new TreeSet(langPages.keySet());
@@ -38,20 +38,22 @@ public class PageContentGenerator {
         this.display();
     }
 
-    private HashMap<String, List<AlphabetTermPage>> preparePageTerms(TreeMap<String, TreeMap<String, List<String>>> langSortedTerms) {
+    private HashMap<String, List<AlphabetTermPage>> preparePageTerms(TreeMap<String, CategoryInfo> langSortedTerms) {
         HashMap<String, List<AlphabetTermPage>> langTerms = new HashMap<String, List<AlphabetTermPage>>();
         for (String language : langSortedTerms.keySet()) {
-            TreeMap<String, List<String>> alpahbetTerms = langSortedTerms.get(language);
+            CategoryInfo categoryInfo= langSortedTerms.get(language);
+            TreeMap<String, List<String>> alpahbetTerms =categoryInfo.getLangSortedTerms();
             List<AlphabetTermPage> alphabetTermPageList = new ArrayList<AlphabetTermPage>();
             List<String> alphabetListExists = new ArrayList<String>();
             if(!alpahbetTerms.isEmpty()) {
                this.languageInitpage.put(language, alpahbetTerms.keySet().iterator().next());
             }
             for (String alphabetPair : alpahbetTerms.keySet()) {
-                List<String> termList = alpahbetTerms.get(alphabetPair);
+                List<String> termSet = alpahbetTerms.get(alphabetPair);
+                List<String>termList=new ArrayList<String>(termSet);
                 Collections.sort(termList);
                 Partition<String> partition = Partition.ofSize(termList, this.numberofElementEachPage);
-                AlphabetTermPage alphabetTermPage = new AlphabetTermPage(alphabetPair, partition);
+                AlphabetTermPage alphabetTermPage = new AlphabetTermPage(alphabetPair,categoryInfo.getPairFile(alphabetPair), partition);
                 alphabetTermPageList.add(alphabetTermPage);
                 alphabetListExists.add(alphabetPair);
             }
@@ -87,36 +89,7 @@ public class PageContentGenerator {
             throw new Exception("No Alphabet pair!");
         }
     }
-    
-
-    /*private HashMap<String, LanguageTermPage> preparePageTerms(TreeMap<String, List<String>> langSortedTerms) {
-        HashMap<String, LanguageTermPage> langTerms = new HashMap<String, LanguageTermPage>();
-        for (String language : langSortedTerms.keySet()) {
-            List<String> termList = langSortedTerms.get(language);
-            Collections.sort(termList);
-            Partition<String> partition = Partition.ofSize(termList, this.numberofElementEachPage);
-            LanguageTermPage languageTermPage = new LanguageTermPage(language, partition);
-            langTerms.put(language, languageTermPage);
-        }
-        return langTerms;
-    }*/
- /*public List<AlphabetTermPage> getLangTerms(String language) {
-        if (langPages.containsKey(language)) {
-            return langPages.get(language);
-        }
-        return new ArrayList<AlphabetTermPage>();
-    }*/
-
- /*private void alphabetSeperation(TreeMap<String, List<String>> langSortedTerms) {
-        for (String language : langSortedTerms.keySet()) {
-            System.out.println(language);
-            List<String> terms = langSortedTerms.get(language);
-            for (String term : terms) {
-                
-               System.out.println(term);
-            }
-        }
-    }*/
+   
     private void display() {
         for (String language : this.langPages.keySet()) {
             List<AlphabetTermPage> pages = langPages.get(language);

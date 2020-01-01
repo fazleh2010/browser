@@ -9,17 +9,24 @@ import browser.termallod.constants.FilePathAndConstant;
 import static browser.termallod.constants.FilePathAndConstant.PATH;
 import static browser.termallod.constants.FilePathAndConstant.categoryOntologyMapper;
 import static browser.termallod.constants.FilePathAndConstant.dataPath;
+import browser.termallod.core.TermInfo;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -39,21 +46,22 @@ public class FileRelatedUtils {
         return files;
 
     }
-    
-    public static List<File> getFiles(String fileDir, String category,String extension) {
-        
-        String[] files=new File(fileDir).list();
-        List<File> selectedFiles=new ArrayList<File>();
-        for(String fileName:files) {
-            if(fileName.contains(category)&&fileName.contains(extension))
-                selectedFiles.add(new File(fileDir+fileName));
+
+    public static List<File> getFiles(String fileDir, String category, String extension) {
+
+        String[] files = new File(fileDir).list();
+        List<File> selectedFiles = new ArrayList<File>();
+        for (String fileName : files) {
+            if (fileName.contains(category) && fileName.contains(extension)) {
+                selectedFiles.add(new File(fileDir + fileName));
+            }
         }
-        
+
         return selectedFiles;
 
     }
 
-    public static List<File> writeFile(TreeMap<String, TreeMap<String, List<String>>> langSortedTerms, String path) throws IOException {
+    /*public static List<File> writeFile(TreeMap<String, TreeMap<String, List<String>>> langSortedTerms, String path) throws IOException {
         List<File> files = new ArrayList<File>();
         for (String language : langSortedTerms.keySet()) {
             String str = "";
@@ -69,6 +77,25 @@ public class FileRelatedUtils {
             stringToFile(str, fileName);
         }
         return files;
+    }*/
+    public static List<File> writeFile(TreeMap<String, TreeMap<String, List<TermInfo>>> langSortedTerms, String path) throws IOException {
+        List<File> files = new ArrayList<File>();
+        for (String language : langSortedTerms.keySet()) {
+            String str = "";
+            TreeMap<String, List<TermInfo>> alphabetPairTerms = langSortedTerms.get(language);
+            for (String pair : alphabetPairTerms.keySet()) {
+                String fileName = path + "_" + language + "_" + pair + ".txt";
+                List<TermInfo> terms = alphabetPairTerms.get(pair);
+                str = "";
+                for (TermInfo term : terms) {
+                    String line = term.getTermString() + " = " + term.getTermUrl();
+                    str += line + "\n";
+                }
+                stringToFile(str, fileName);
+            }
+
+        }
+        return files;
     }
 
     public static void stringToFile(String str, String fileName)
@@ -76,15 +103,23 @@ public class FileRelatedUtils {
         if (new File(fileName).exists()) {
             appendStringInFile(str, fileName);
             return;
+        } else {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+            writer.write(str);
+            writer.close();
         }
-        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-        writer.write(str);
 
-        writer.close();
+    }
+    
+    public static Properties getPropertyHash(File propFile) throws FileNotFoundException, IOException {
+        FileReader fr = new FileReader(propFile);
+        BufferedReader br = new BufferedReader(fr);
+        Properties props = new Properties();
+        props.load(new InputStreamReader(new FileInputStream(propFile), "UTF-8"));
+        return props;
     }
 
     public static void appendStringInFile(String textToAppend, String fileName) throws IOException {
-
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
         writer.write(textToAppend);
         writer.close();
@@ -93,7 +128,7 @@ public class FileRelatedUtils {
     public static void cleanDirectory(List<String> categorySet, String PATH, String TEXT_DIR) throws IOException {
         //deleting all generated term filkes
         for (String browser : categorySet) {
-            String sourceTextDir = getSourcePath(PATH, browser)+TEXT_DIR;
+            String sourceTextDir = getSourcePath(PATH, browser) + TEXT_DIR;
             FileRelatedUtils.deleteDirectory(sourceTextDir);
             FileRelatedUtils.createDirectory(sourceTextDir);
         }
@@ -106,7 +141,7 @@ public class FileRelatedUtils {
             key = categoryOntologyMapper.get(key);
             String mainDir = PATH + key;
             String[] infor = key.split("_");
-            String termDir = PATH + key + File.separator + dataPath +infor[1];
+            String termDir = PATH + key + File.separator + dataPath + infor[1];
             FileRelatedUtils.deleteDirectory(mainDir);
             FileRelatedUtils.deleteDirectory(termDir);
             FileRelatedUtils.createDirectory(mainDir);
