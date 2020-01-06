@@ -1,0 +1,9 @@
+xenon = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/xenon-cs
+yei = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/YEI-cs
+yamoussoukro = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Yamoussoukro-cs
+yorsko-antverpská_pravidla = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Yorsko-antverpsk%C3%A1+pravidla-cs
+yaoundé = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Yaound%C3%A9-cs
+yaren = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Yaren-cs
+yersinióza = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/yersini%C3%B3za-cs
+yessotoxin = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/yessotoxin-cs
+xenobiotická_sloučenina = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/xenobiotick%C3%A1+slou%C4%8Denina-cs

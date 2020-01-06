@@ -33,12 +33,17 @@ import java.util.TreeMap;
 public class Main implements FilePathAndConstant {
 
     private static LanguageManager languageManager = null;
-    private String lang="nl";
+    private String lang = "";
 
     public static void main(String[] args) throws Exception {
+        //listOfTerm();
+        termDefination();
+    }
+
+    private static void listOfTerm() throws Exception {
         Main main = new Main();
         main.inputLoader();
-        //main.process(categorySet, TEXT_EXTENSION);
+        main.process(categorySet, TEXT_EXTENSION);
     }
 
     private void inputLoader() throws Exception, IOException {
@@ -79,21 +84,20 @@ public class Main implements FilePathAndConstant {
             String categoryName = null;
             Map<String, List<File>> languageFiles = this.getLanguageFiles(files, MODEL_EXTENSION);
             for (String langCode : languageFiles.keySet()) {
-                if(langCode.contains(lang)){
-                List<File> temFiles = languageFiles.get(langCode);
-                CategoryInfo category = new CategoryInfo(source, langCode, temFiles, MODEL_EXTENSION);
-                langSortedTerms.put(category.getLangCode(), category);
-                categoryName = category.getCategoryName();
-                category.print(category.getLangSortedTerms());
+                if (langCode.contains(lang)) {
+                    List<File> temFiles = languageFiles.get(langCode);
+                    CategoryInfo category = new CategoryInfo(source, langCode, temFiles, MODEL_EXTENSION);
+                    langSortedTerms.put(category.getLangCode(), category);
+                    categoryName = category.getCategoryName();
+                    category.print(category.getLangSortedTerms());
                 }
             }
-            if(categoryBrowser.contains(iate)){
-               makeHtml(langSortedTerms, categoryName,MAIN_PAGE_TEMPLATE_IATE); 
+            if (categoryBrowser.contains(iate)) {
+                makeHtml(langSortedTerms, categoryName, MAIN_PAGE_TEMPLATE_IATE);
+            } else {
+                makeHtml(langSortedTerms, categoryName, MAIN_PAGE_TEMPLATE_GENTERM);
             }
-            else{
-                makeHtml(langSortedTerms, categoryName,MAIN_PAGE_TEMPLATE_GENTERM); 
-            }
-           
+
         }
     }
 
@@ -136,6 +140,9 @@ public class Main implements FilePathAndConstant {
 
         }
         return languageFiles;
+    }
+    
+    private static void termDefination() {
     }
 
 }

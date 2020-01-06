@@ -1,0 +1,17 @@
+xml,_indexálás_és_metaadatok_szolgálata = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/XML%2C+Index%C3%A1l%C3%A1s+%C3%A9s+Metaadatok+Szolg%C3%A1lata-hu
+yo!festival_(ifjúsági_falu_és_fesztivál) = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Yo%21Festival+%28ifj%C3%BAs%C3%A1gi+falu+%C3%A9s+fesztiv%C3%A1l%29-hu
+x-bar_grafikon = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/X-bar+grafikon-hu
+yo!fest_(ifjúsági_falu_és_fesztivál) = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/YO%21Fest+%28ifj%C3%BAs%C3%A1gi+falu+%C3%A9s+fesztiv%C3%A1l%29-hu
+yaoundé = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Yaound%C3%A9-hu
+york-antwerpeni_szabályok = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/York-Antwerpeni+szab%C3%A1lyok-hu
+xv._melléklet = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/XV.+mell%C3%A9klet-hu
+xenobiotikum = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/xenobiotikum-hu
+yellowhead-vírussal_való_fertőzöttség = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/yellowhead-v%C3%ADrussal+val%C3%B3+fert%C5%91z%C3%B6tts%C3%A9g-hu
+xenonívfény = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/xenon%C3%ADvf%C3%A9ny-hu
+youtube-csatorna = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/YouTube-csatorna-hu
+x-triszómia = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/X-trisz%C3%B3mia-hu
+ydg-h = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/YDG-H-hu
+xprt = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/XPRT-hu
+xsd = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/XSD-hu
+xvii._melléklet = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/XVII.+mell%C3%A9klet-hu
+xenonívlámpa = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/xenon%C3%ADvl%C3%A1mpa-hu
