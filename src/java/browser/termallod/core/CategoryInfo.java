@@ -38,7 +38,6 @@ public class CategoryInfo {
             String pair = NameExtraction.getPairName(file, categoryName, langCode, model_extension);
             this.pairFile.put(pair, file);
             this.getValuesFromTextFile(file, pair);
-            //break;
         }
         this.print(langSortedTerms);
 
@@ -49,6 +48,7 @@ public class CategoryInfo {
         Set<String> termSet = props.stringPropertyNames();
         List<String> termList = new ArrayList<String>(termSet);
         Collections.sort(termList);
+        System.out.println(termList.toString());
         langSortedTerms.put(pair, termList);
 
     }

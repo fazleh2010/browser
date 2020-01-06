@@ -33,11 +33,12 @@ import java.util.TreeMap;
 public class Main implements FilePathAndConstant {
 
     private static LanguageManager languageManager = null;
+    private String lang="nl";
 
     public static void main(String[] args) throws Exception {
         Main main = new Main();
         main.inputLoader();
-        main.process(categorySet, TEXT_EXTENSION);
+        //main.process(categorySet, TEXT_EXTENSION);
     }
 
     private void inputLoader() throws Exception, IOException {
@@ -78,7 +79,7 @@ public class Main implements FilePathAndConstant {
             String categoryName = null;
             Map<String, List<File>> languageFiles = this.getLanguageFiles(files, MODEL_EXTENSION);
             for (String langCode : languageFiles.keySet()) {
-                if(langCode.contains("en")){
+                if(langCode.contains(lang)){
                 List<File> temFiles = languageFiles.get(langCode);
                 CategoryInfo category = new CategoryInfo(source, langCode, temFiles, MODEL_EXTENSION);
                 langSortedTerms.put(category.getLangCode(), category);

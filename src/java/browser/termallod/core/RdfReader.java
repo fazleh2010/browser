@@ -36,6 +36,7 @@ public class RdfReader implements FilePathAndConstant {
         this.languageInfo = languageInfo;
         File[] files = FileRelatedUtils.getFiles(rdfDir, MODEL_EXTENSION);
         for (File categoryFile : files) {
+            System.out.println(categoryFile.getAbsolutePath());
             String categoryName = NameExtraction.getCategoryName(rdfDir, categoryFile, MODEL_EXTENSION);
             String fileNameOrUri = rdfDir + categoryFile.getName();
             this.readTermsAndLanguages(fileNameOrUri, dataSaveDir + categoryName);
@@ -83,12 +84,17 @@ public class RdfReader implements FilePathAndConstant {
    
     private TreeMap<String, TreeMap<String, List<TermInfo>>> ifElementNotExist(String language, TermInfo term, TreeMap<String, TreeMap<String, List<TermInfo>>> langTerms) {
         String pair;
+        try {
         pair = this.getAlphabetPair(language, term.getTermString());
         TreeMap<String, List<TermInfo>> alpahbetTerms = new TreeMap<String, List<TermInfo>>();
         List<TermInfo> terms = new ArrayList<TermInfo>();
         terms.add(term);
         alpahbetTerms.put(pair, terms);
         langTerms.put(language, alpahbetTerms);
+        } catch (NullPointerException e) {
+            System.out.println("Null pointer:" + language + " " + term);
+
+        }
         return langTerms;
     }
 
@@ -126,7 +132,7 @@ public class RdfReader implements FilePathAndConstant {
                 return pair;
             }
         } catch (Exception ex) {
-            System.out.println("No alphebet found for the lanague" + language);
+            //System.out.println("No alphebet found for the lanague" + language);
         }
 
         return null;

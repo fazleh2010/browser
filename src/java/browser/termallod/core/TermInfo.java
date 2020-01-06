@@ -20,15 +20,18 @@ public class TermInfo {
     public TermInfo(Triple triple) {
         termString = triple.getObject().getLiteralLexicalForm().toLowerCase().trim();
         termString = StringMatcherUtil.encripted(termString);
-        termUrl=triple.getSubject().toString();
-        termUrl = termUrl.substring(0, termUrl.lastIndexOf('#'));
-       
+        termUrl = triple.getSubject().toString();
+        try {
+            termUrl = termUrl.substring(0, termUrl.lastIndexOf('#'));
+        } catch (Exception ie) {
+            termUrl = triple.getSubject().toString();
+        }
 
     }
 
     TermInfo(String term, String url) {
-        this.termString=term;
-        this.termUrl=url;
+        this.termString = term;
+        this.termUrl = url;
     }
 
     public String getTermString() {
@@ -41,7 +44,6 @@ public class TermInfo {
     public String getTermDecripted() {
         return this.decripted(term);
     }*/
-
     public String getTermUrl() {
         return termUrl;
     }
