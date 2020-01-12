@@ -1,0 +1,16 @@
+žurnāls = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BEurn%C4%81ls-lv
+žāvēšana = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BE%C4%81v%C4%93%C5%A1ana-lv
+ženēvas_iniciatīva = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BDen%C4%93vas+iniciat%C4%ABva-lv
+ženēvas_konvencija_par_jūras_kara_spēku_sastāvā_esošo_ievainoto,_slimo_un_kuģu_katastrofās_cietušo_personu_stāvokļa_uzlabošanu = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BDen%C4%93vas+Konvencija+par+j%C5%ABras+kara+sp%C4%93ku+sast%C4%81v%C4%81+eso%C5%A1o+ievainoto%2C+slimo+un+ku%C4%A3u+katastrof%C4%81s+cietu%C5%A1o+personu+st%C4%81vok%C4%BCa+uzlabo%C5%A1anu-lv
+žaunu_tīkls = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BEaunu+t%C4%ABkls-lv
+ženēvas_konvencija_par_izturēšanos_pret_kara_gūstekņiem = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BDen%C4%93vas+Konvencija+par+iztur%C4%93%C5%A1anos+pret+kara+g%C5%ABstek%C5%86iem-lv
+ženēvas_vērtspapīru_konvencija = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BDen%C4%93vas+V%C4%93rtspap%C4%ABru+konvencija-lv
+žurku_inde = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BEurku+inde-lv
+žargona_nosaukums = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BEargona+nosaukums-lv
+žurka = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BEurka-lv
+žāvētava_ar_gāzu_netiešo_padevi = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BE%C4%81v%C4%93tava+ar+g%C4%81zu+netie%C5%A1o+padevi-lv
+ženēvas_konvencija_par_ievainoto_un_slimo_stāvokļa_uzlabošanu_aktīvajās_armijās = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BDen%C4%93vas+Konvencija+par+ievainoto+un+slimo+st%C4%81vok%C4%BCa+uzlabo%C5%A1anu+akt%C4%ABvaj%C4%81s+armij%C4%81s-lv
+ženēvas_konvencija_par_kontinentālo_šelfu = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BDen%C4%93vas+Konvencija+par+kontinent%C4%81lo+%C5%A1elfu-lv
+želatīns = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BEelat%C4%ABns-lv
+žebērkļu_šautene = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BEeb%C4%93rk%C4%BCu+%C5%A1autene-lv
+ženēvas_konvencija_par_civiliedzīvotāju_aizsardzību_kara_laikā = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BDen%C4%93vas+Konvencija+par+civiliedz%C4%ABvot%C4%81ju+aizsardz%C4%ABbu+kara+laik%C4%81-lv

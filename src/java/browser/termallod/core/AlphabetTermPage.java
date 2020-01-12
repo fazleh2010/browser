@@ -24,15 +24,27 @@ public class AlphabetTermPage {
     private Integer emptyTerm = null;
     private String alpahbetPair = null;
     private File file = null;
+    private Integer numericalValueOfPair = 0;
 
-    public AlphabetTermPage(String alpahbetPair, File file, Partition<String> partition) {
+    public AlphabetTermPage(String alpahbetPair, File file, Partition<String> partition, Integer numericalValueOfPair) {
         this.alpahbetPair = alpahbetPair;
         this.partition = partition;
         this.numberOfPages = partition.size();
+        this.numericalValueOfPair = numericalValueOfPair;
         this.file = file;
-        /*if(numberOfPages<100){
-            emptyTerm=100-numberOfPages;
-        }*/
+    }
+
+    public String getUrl(String term) {
+        Properties props;
+        String url = null;
+        try {
+            props = FileRelatedUtils.getPropertyHash(this.file);
+            url = props.getProperty(term);
+        } catch (IOException ex) {
+            Logger.getLogger(AlphabetTermPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return url;
     }
 
     public Partition<String> getPartition() {
@@ -51,17 +63,13 @@ public class AlphabetTermPage {
         return emptyTerm;
     }
 
-    public String getUrl(String term) {
-        Properties props;
-        String url =null;
-        try {
-            props = FileRelatedUtils.getPropertyHash(this.file);
-            url = props.getProperty(term);
-        } catch (IOException ex) {
-            Logger.getLogger(AlphabetTermPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public Integer getNumericalValueOfPair() {
+        return numericalValueOfPair;
+    }
 
-        return url;
+    @Override
+    public String toString() {
+        return "AlphabetTermPage{" + "numberOfPages=" + numberOfPages + ", alpahbetPair=" + alpahbetPair + ", numericalValueOfPair=" + numericalValueOfPair + '}';
     }
 
 }

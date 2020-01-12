@@ -16,7 +16,7 @@ public interface LanguageManager {
 
     public HashMap<String, String> getLangAlphabetHash(String language)throws Exception;
     public List<String> getLangAlphabetPairSorted(String language) throws Exception;
-    
+    public HashMap<String, List<String>> getLangAlphabetPairSorted();
     public boolean isLanguageExist(String language)throws Exception;
 
 

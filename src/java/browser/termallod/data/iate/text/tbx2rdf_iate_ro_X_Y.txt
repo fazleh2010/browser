@@ -1,0 +1,6 @@
+ypres = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Ypres-ro
+yemen = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Yemen-ro
+yaoundé = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Yaound%C3%A9-ro
+ytriu = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/ytriu-ro
+xml = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/XML-ro
+xenobiotic = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/xenobiotic-ro

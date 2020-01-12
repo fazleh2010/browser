@@ -51,7 +51,7 @@ public class LanguageAlphabetPro implements LanguageManager {
         HashMap<String, String> alphabetsPair = new HashMap<String, String>();
         List<String> alphebetsPairList = new ArrayList<String>();
         String pair = null;
-       
+
         for (Integer index = 0; index < alphebets.length;) {
             Integer nextIndex = index + 1;
 
@@ -144,9 +144,20 @@ public class LanguageAlphabetPro implements LanguageManager {
         }
         return langAlphabetHash;
     }*/
-
     @Override
     public boolean isLanguageExist(String language) throws Exception {
         return langAlphabetPairSorted.containsKey(language);
     }
+
+    @Override
+    public String toString() {
+        return "LanguageAlphabetPro{" + "langAlphabetPair="  + langAlphabetPairSorted + ", UNDERSCORE=" + UNDERSCORE + '}';
+    }
+
+    @Override
+    public HashMap<String, List<String>> getLangAlphabetPairSorted() {
+        return langAlphabetPairSorted;
+    }
+
+   
 }

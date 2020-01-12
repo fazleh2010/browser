@@ -22,10 +22,10 @@ import java.util.TreeSet;
 public class PageContentGenerator {
 
     private HashMap<String, List<AlphabetTermPage>> langPages = new HashMap<String, List<AlphabetTermPage>>();
-    private HashMap<String, List<String>> alpahbetTermsExists = new HashMap<String,  List<String>>();
     public Integer numberofElementEachPage = 100;
     private TreeSet<String> languages=new TreeSet();
     private Map<String, String> languageInitpage = new HashMap<String, String>();
+    
 
 
     public PageContentGenerator( TreeMap<String, CategoryInfo> langSortedTerms) throws Exception {
@@ -44,20 +44,19 @@ public class PageContentGenerator {
             CategoryInfo categoryInfo= langSortedTerms.get(language);
             TreeMap<String, List<String>> alpahbetTerms =categoryInfo.getLangSortedTerms();
             List<AlphabetTermPage> alphabetTermPageList = new ArrayList<AlphabetTermPage>();
-            List<String> alphabetListExists = new ArrayList<String>();
             if(!alpahbetTerms.isEmpty()) {
                this.languageInitpage.put(language, alpahbetTerms.keySet().iterator().next());
             }
+            Integer numericalValueOfPair=1;
             for (String alphabetPair : alpahbetTerms.keySet()) {
                 List<String> termSet = alpahbetTerms.get(alphabetPair);
                 List<String>termList=new ArrayList<String>(termSet);
                 Collections.sort(termList);
                 Partition<String> partition = Partition.ofSize(termList, this.numberofElementEachPage);
-                AlphabetTermPage alphabetTermPage = new AlphabetTermPage(alphabetPair,categoryInfo.getPairFile(alphabetPair), partition);
+                AlphabetTermPage alphabetTermPage = new AlphabetTermPage(alphabetPair,categoryInfo.getPairFile(alphabetPair), partition,numericalValueOfPair);
                 alphabetTermPageList.add(alphabetTermPage);
-                alphabetListExists.add(alphabetPair);
+                numericalValueOfPair++;
             }
-            this.alpahbetTermsExists.put(language, alphabetListExists);
             langTerms.put(language, alphabetTermPageList);
         }
         return langTerms;
@@ -70,12 +69,12 @@ public class PageContentGenerator {
         return new ArrayList<AlphabetTermPage>();
     }
 
-    public List<String> getAlpahbetTermsExists(String language) {
+    /*public List<String> getAlpahbetTermsExists(String language) {
         if (alpahbetTermsExists.containsKey(language)) {
             return alpahbetTermsExists.get(language);
         }
         return new ArrayList<String>();
-    }
+    }*/
 
     public TreeSet<String> getLanguages() {
         return this.languages;

@@ -1,4 +1,0 @@
-rapper -i ttl -o ntriples solar.ttl> solar.ntriple
-
-rapper -i ttl solar.ttl -o ntriples solar.ntriple
-

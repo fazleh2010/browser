@@ -32,6 +32,7 @@ public interface FilePathAndConstant {
     public static File configFile = new File(PATH + "conf/" + "language.conf");
     //public static String GENTERM_PATH = PATH + "genterm/";
     public static String IATE_PATH = PATH + "iate/";
+    public static String GENTERM_PATH = PATH + "genterm/";
     public static String NTRIPLE_EXTENSION = ".ntriple";
     public static String TURTLE_EXTENSION = ".ttl";
     public static String TEXT_EXTENSION = ".txt";
@@ -77,9 +78,59 @@ public interface FilePathAndConstant {
 
     public Map<String, String> languageMapper = new HashMap<String, String>() {
         {
+            put("bg", "Bulgarian");
+            put("cs", "Czech");
+            put("da", "Danish");
+            put("de", "German");
+            put("el", "Greek");
             put("en", "English");
+            put("es", "German");
+            put("et", "Estonian");
+            put("fi", "Finnish");
+            put("fr", "French");
+            put("ga", "Irish");
+            put("hr", "Croatian");
+            put("hu", "Hungarian");
+            put("it", "Italian");
+            put("It", "Lithuanian");
+            put("lv", "Latvian");
+            put("mt", "Maltese");
             put("nl", "Dutch");
+            put("ro", "Romanian");
+            put("sk", "Slovak");
+            put("sl", "Slovenian");
+            put("sv", "Swedish");
         }
     };
+    
+      /*<td><a href="browser_bg_%d0%90_%d0%91_1.html">Bulgarian</a></td> 
+            <td><a href="browser_cs_A_Á_1.html">Czech</a></td> 
+            <td><a href="browser_da_A_B_1.html">Danish</a></td> 
+            <td><a href="browser_de_A_B_1.html">German</a></td> 
+            <td><a href="browser_el_A_B_1.html">Greek</a></td> 
+            <td><a href="browser_en_A_B_1.html">English</a></td> 
+            <td><a href="browser_es_A_B_1.html">Spanish</a></td> 
+            <td><a href="browser_et_A_B_1.html">Estonian</a></td> 
+           </tr> 
+           <tr> 
+            <td><a href="browser_fi_A_B_1.html">Finnish</a></td> 
+            <td><a href="browser_fr_A_B_1.html">French</a></td> 
+            <td><a href="browser_ga_A_B_1.html">Irish</a></td> 
+            <td><a href="browser_hr_A_B_1.html">Croatian</a></td> 
+            <td><a href="browser_hu_A_Á_1.html">Hungarian</a></td> 
+            <td><a href="browser_it_A_B_1.html">Italian</a></td> 
+            <td><a href="browser_It_A_Ą_1.html">Lithuanian</a></td> 
+            <td><a href="browser_lv_A_Ā_1.html">Latvian</a></td> 
+    
+     <td><a href="browser_mt_A_B_1.html">Maltese</a></td> 
+            <td><a href="browser_nl_A_B_1.html">Dutch</a></td> 
+            <td><a href="browser_ro_A_Ă_1.html">Romanian</a></td> 
+            <td><a href="browser_sk_A_Á_1.html">Slovak</a></td> 
+            <td><a href="browser_sl_A_B_1.html">Slovenian</a></td> 
+            <td><a href="browser_sv_A_B_1.html">Swedish</a></td> 
+           </tr> 
+    
+    
+    */
 
 }

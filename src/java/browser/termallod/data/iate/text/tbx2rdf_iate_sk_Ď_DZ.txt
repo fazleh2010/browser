@@ -1,0 +1,11 @@
+ďatelina_hybridná = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C4%8Fatelina+hybridn%C3%A1-sk
+ďalší_postup = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C4%8Fal%C5%A1%C3%AD+postup-sk
+ďatelina_purpurová = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C4%8Fatelina+purpurov%C3%A1-sk
+ďalší_prenos = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C4%8Fal%C5%A1%C3%AD+prenos-sk
+ďatelina_egyptská = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C4%8Fatelina+egyptsk%C3%A1-sk
+ďalšie_vzdelávanie_a_odborná_príprava = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C4%8Fal%C5%A1ie+vzdel%C3%A1vanie+a+odborn%C3%A1+pr%C3%ADprava-sk
+ďatelina_plazivá = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C4%8Fatelina+plaziv%C3%A1-sk
+ďalšie_mechanizmy_presunu_rizika = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C4%8Fal%C5%A1ie+mechanizmy+presunu+rizika-sk
+ďalší_predaj = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C4%8Fal%C5%A1%C3%AD+predaj-sk
+ďumbier_lekársky = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C4%8Fumbier+lek%C3%A1rsky-sk
+ďalšie_zadávanie_zákaziek_zo_strany_subdodávateľa = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C4%8Fal%C5%A1ie+zad%C3%A1vanie+z%C3%A1kaziek+zo+strany+subdod%C3%A1vate%C4%BEa-sk

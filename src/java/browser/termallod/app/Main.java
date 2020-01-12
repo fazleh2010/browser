@@ -23,7 +23,9 @@ import browser.termallod.core.CategoryInfo;
 import browser.termallod.utils.NameExtraction;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 /**
@@ -33,16 +35,25 @@ import java.util.TreeMap;
 public class Main implements FilePathAndConstant {
 
     private static LanguageManager languageManager = null;
-    private String lang = "";
+    private static Set<String> lang =new HashSet<String>();
 
     public static void main(String[] args) throws Exception {
-        //listOfTerm();
-        termDefination();
+        lang.add("bg");
+        //lang.add("en");
+        //lang.add("cs");
+        /*lang.add("en");
+        lang.add("sl");
+        lang.add("mt");
+        lang.add("ro");
+        lang.add("hr");
+        lang.add("hu");*/
+        listOfTerm();
+        //termDefination();
     }
 
     private static void listOfTerm() throws Exception {
         Main main = new Main();
-        main.inputLoader();
+        //main.inputLoader();
         main.process(categorySet, TEXT_EXTENSION);
     }
 
@@ -84,7 +95,7 @@ public class Main implements FilePathAndConstant {
             String categoryName = null;
             Map<String, List<File>> languageFiles = this.getLanguageFiles(files, MODEL_EXTENSION);
             for (String langCode : languageFiles.keySet()) {
-                if (langCode.contains(lang)) {
+                if (lang.contains(langCode)) {
                     List<File> temFiles = languageFiles.get(langCode);
                     CategoryInfo category = new CategoryInfo(source, langCode, temFiles, MODEL_EXTENSION);
                     langSortedTerms.put(category.getLangCode(), category);
@@ -143,6 +154,7 @@ public class Main implements FilePathAndConstant {
     }
     
     private static void termDefination() {
+        
     }
 
 }
