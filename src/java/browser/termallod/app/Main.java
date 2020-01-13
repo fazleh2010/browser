@@ -19,6 +19,17 @@ import browser.termallod.utils.Partition;
 import java.io.IOException;
 import java.util.List;
 import browser.termallod.constants.FilePathAndConstant;
+import static browser.termallod.constants.FilePathAndConstant.MAIN_PAGE_TEMPLATE_GENTERM;
+import static browser.termallod.constants.FilePathAndConstant.MAIN_PAGE_TEMPLATE_IATE;
+import static browser.termallod.constants.FilePathAndConstant.PATH;
+import static browser.termallod.constants.FilePathAndConstant.TEXT_EXTENSION;
+import static browser.termallod.constants.FilePathAndConstant.categoryOntologyMapper;
+import static browser.termallod.constants.FilePathAndConstant.configFile;
+import static browser.termallod.constants.FilePathAndConstant.dataPath;
+import static browser.termallod.constants.FilePathAndConstant.iate;
+import static browser.termallod.constants.FilePathAndConstant.languageMapper;
+import static browser.termallod.constants.FilePathAndConstant.rdfPath;
+import static browser.termallod.constants.FilePathAndConstant.textPath;
 import browser.termallod.core.CategoryInfo;
 import browser.termallod.utils.NameExtraction;
 import java.util.ArrayList;
@@ -27,6 +38,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 /**
  *
@@ -35,9 +47,10 @@ import java.util.TreeMap;
 public class Main implements FilePathAndConstant {
 
     private static LanguageManager languageManager = null;
-    private static Set<String> lang =new HashSet<String>();
+    private static Set<String> lang =new TreeSet<String>();
 
     public static void main(String[] args) throws Exception {
+        //lang= new TreeSet<String>(languageMapper.keySet());
         lang.add("bg");
         //lang.add("en");
         //lang.add("cs");

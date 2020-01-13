@@ -5,6 +5,14 @@
  */
 package browser.termallod.core;
 
+import static browser.termallod.constants.FilePathAndConstant.HTML_EXTENSION;
+import static browser.termallod.constants.FilePathAndConstant.INITIAL_PAGE;
+import static browser.termallod.constants.FilePathAndConstant.LOCALHOST_URL_LIST_OF_TERMS_PAGE;
+import static browser.termallod.constants.FilePathAndConstant.PATH;
+import static browser.termallod.constants.FilePathAndConstant.UNDERSCORE;
+import static browser.termallod.constants.FilePathAndConstant.browser;
+import static browser.termallod.constants.FilePathAndConstant.iate;
+import static browser.termallod.constants.FilePathAndConstant.languageMapper;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +20,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import browser.termallod.constants.HtmlPage;
 import browser.termallod.utils.StringMatcherUtil;
-import browser.termallod.utils.UrlUtils;
 
 /**
  *
@@ -22,6 +29,7 @@ public class HtmlPageGenerator implements HtmlPage {
 
     private final Document generatedHtmlPage;
     private final Integer currentPageNumber;
+    private final Integer maximumNumberOfPages = 4;
     private final String language;
     private final String ontologyFileName;
     private String categoryType = "";
@@ -169,13 +177,31 @@ public class HtmlPageGenerator implements HtmlPage {
         if (pages == 1) {
             return new ArrayList<String>();
         }
-        for (Integer page = 0; page < pages; page++) {
+        if (this.currentPageNumber > INITIAL_PAGE) {
+            pageUrl = createUrlLink(language, currentPageNumber - 1);
+            String a = "<a href=" + pageUrl + ">" + "Previous" + "</a>";
+            li = "\n<li>" + a + "</li>\n";
+            liS.add(li);
+        }
+        Integer index = 0;
+        for (Integer page = this.currentPageNumber; page < pages; page++) {
             Integer pageNumber = (page + 1);
             pageUrl = createUrlLink(language, pageNumber);
             String a = "<a href=" + pageUrl + ">" + pageNumber + "</a>";
             li = "\n<li>" + a + "</li>\n";
             liS.add(li);
+            if (index > this.maximumNumberOfPages && (pageNumber + 1) < pages) {
+                pageUrl = createUrlLink(language, pageNumber + 1);
+                a = "<a href=" + pageUrl + ">" + "Next" + "</a>";
+                li = "\n<li>" + a + "</li>\n";
+                liS.add(li);
+                break;
+            }
+
+            index++;
+
         }
+
         return liS;
     }
 
@@ -184,7 +210,7 @@ public class HtmlPageGenerator implements HtmlPage {
     }
 
     private String createUrlLink(String languageCode, Integer pageNumber, AlphabetTermPage alphabetTermPage) {
-        return LOCALHOST_URL_LIST_OF_TERMS_PAGE + this.createFileNameUnicode(languageCode, pageNumber, alphabetTermPage);
+        return LOCALHOST_URL_LIST_OF_TERMS_PAGE + this.createFileNameWithPairNumber(languageCode, pageNumber, alphabetTermPage);
     }
 
     /*private String createFileNameUnicode(String languageCode, Integer pageNumber) {
@@ -193,13 +219,23 @@ public class HtmlPageGenerator implements HtmlPage {
         return browser + UNDERSCORE + languageCode + UNDERSCORE + pair + UNDERSCORE + pageNumber + HTML_EXTENSION;
     }*/
     private String createFileNameUnicode(String languageCode, Integer pageNumber) {
-        Integer pair = alphabetTermPage.getNumericalValueOfPair();
+        String pair = getPairValue(alphabetTermPage);
         return browser + UNDERSCORE + languageCode + UNDERSCORE + pair.toString() + UNDERSCORE + pageNumber + HTML_EXTENSION;
     }
 
-    private String createFileNameUnicode(String languageCode, Integer pageNumber, AlphabetTermPage alphabetTermPage) {
-        Integer pair = alphabetTermPage.getNumericalValueOfPair();
+    private String createFileNameWithPairNumber(String languageCode, Integer pageNumber, AlphabetTermPage alphabetTermPage) {
+        String pair = getPairValue(alphabetTermPage);
         return browser + UNDERSCORE + languageCode + UNDERSCORE + pair.toString() + UNDERSCORE + pageNumber + HTML_EXTENSION;
+    }
+
+    private String getPairValue(AlphabetTermPage alphabetTermPage1) {
+        String pair;
+        if (language.equals("en")) {
+            pair = alphabetTermPage1.getAlpahbetPair();
+        } else {
+            pair = alphabetTermPage1.getNumericalValueOfPair().toString();
+        }
+        return pair;
     }
 
     private void assignCurrentPageNumber(Element divCurrentPage) {
