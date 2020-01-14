@@ -48,26 +48,27 @@ public class Main implements FilePathAndConstant {
 
     private static LanguageManager languageManager = null;
     private static Set<String> lang =new TreeSet<String>();
+    public static Map<String, String> languageMapper = new HashMap<String, String>() {
+        {
+           
+             //put("ga", "Irish");
+             //put("hu", "Hungarian");
+             //put("It", "Lithuanian");
+             //put("el", "Greek");
+            
+        }
+    };
 
     public static void main(String[] args) throws Exception {
-        //lang= new TreeSet<String>(languageMapper.keySet());
-        lang.add("bg");
-        //lang.add("en");
-        //lang.add("cs");
-        /*lang.add("en");
-        lang.add("sl");
-        lang.add("mt");
-        lang.add("ro");
-        lang.add("hr");
-        lang.add("hu");*/
+        lang= new TreeSet<String>(languageMapper.keySet());
+       
         listOfTerm();
-        //termDefination();
     }
 
     private static void listOfTerm() throws Exception {
         Main main = new Main();
-        //main.inputLoader();
-        main.process(categorySet, TEXT_EXTENSION);
+        main.inputLoader();
+         //main.process(categorySet, TEXT_EXTENSION);
     }
 
     private void inputLoader() throws Exception, IOException {

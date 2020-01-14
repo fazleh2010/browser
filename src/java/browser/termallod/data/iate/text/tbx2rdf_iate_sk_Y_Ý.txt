@@ -1,5 +1,0 @@
-yessotoxín = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/yessotox%C3%ADn-sk
-yterbium = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/yterbium-sk
-yaren = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Yaren-sk
-yersinióza = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/yersini%C3%B3za-sk
-yamoussoukro = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Yamoussoukro-sk

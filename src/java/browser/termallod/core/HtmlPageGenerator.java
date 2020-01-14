@@ -153,6 +153,10 @@ public class HtmlPageGenerator implements HtmlPage {
     }
 
     private String getAlphebetLi(Integer pageNumber, AlphabetTermPage alphabetTermPage) {
+        //there is an error in Hungarian langauge link in HTML template, 
+        //since all static htmls are already generated so the problem is now solved by hardcoded.
+        //extreme bad solution but quick solution. 
+        
         //Elements divAlphabet = body.getElementsByClass("side-selector__left");
         //Element content = body.getElementById("entries-selector");
         /*String ontologyLocation="";
@@ -161,6 +165,11 @@ public class HtmlPageGenerator implements HtmlPage {
         }*/
         String url = this.createUrlLink(language, pageNumber, alphabetTermPage);
         //String url = LOCALHOST_URL_LIST_OF_TERMS_PAGE + alphabetFileName;
+        
+        if (language.contains("hu") && alphabetTermPage.getNumericalValueOfPair()==1) {
+                url = "browser_hu_A_1_1.html";
+            }
+        
         String a = "<a href=" + url + ">" + alphabetTermPage.getAlpahbetPair() + "</a>";
         String li = "\n" + "<li>" + a + "</li>" + "\n";
         return li;
@@ -174,11 +183,19 @@ public class HtmlPageGenerator implements HtmlPage {
         String li = "";
         /*"<span>" + this.currentPageNumber + "</span>";
         liS.add(li);*/
+        
+            //there is an error in Hungarian langauge link in HTML template, 
+            //since all static htmls are already generated so the problem is now solved by hardcoded.
+            //extreme bad solution but quick solution. 
+        
         if (pages == 1) {
             return new ArrayList<String>();
         }
         if (this.currentPageNumber > INITIAL_PAGE) {
             pageUrl = createUrlLink(language, currentPageNumber - 1);
+            if (language.contains("hu")&&this.currentPageNumber==2) {
+                pageUrl = "browser_hu_A_1_1.html";
+            }
             String a = "<a href=" + pageUrl + ">" + "Previous" + "</a>";
             li = "\n<li>" + a + "</li>\n";
             liS.add(li);
@@ -187,6 +204,10 @@ public class HtmlPageGenerator implements HtmlPage {
         for (Integer page = this.currentPageNumber; page < pages; page++) {
             Integer pageNumber = (page + 1);
             pageUrl = createUrlLink(language, pageNumber);
+            if (language.contains("hu") && pageNumber == 1) {
+                pageUrl = "browser_hu_A_1_1.html";
+            }
+
             String a = "<a href=" + pageUrl + ">" + pageNumber + "</a>";
             li = "\n<li>" + a + "</li>\n";
             liS.add(li);
@@ -228,12 +249,12 @@ public class HtmlPageGenerator implements HtmlPage {
         return browser + UNDERSCORE + languageCode + UNDERSCORE + pair.toString() + UNDERSCORE + pageNumber + HTML_EXTENSION;
     }
 
-    private String getPairValue(AlphabetTermPage alphabetTermPage1) {
+    private String getPairValue(AlphabetTermPage alphabetTermPage) {
         String pair;
         if (language.equals("en")) {
-            pair = alphabetTermPage1.getAlpahbetPair();
+            pair = alphabetTermPage.getAlpahbetPair();
         } else {
-            pair = alphabetTermPage1.getNumericalValueOfPair().toString();
+            pair = alphabetTermPage.getNumericalValueOfPair().toString();
         }
         return pair;
     }
