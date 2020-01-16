@@ -51,7 +51,7 @@ public class Main implements FilePathAndConstant {
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
            
-             //put("ga", "Irish");
+             put("ga", "Irish");
              //put("hu", "Hungarian");
              //put("It", "Lithuanian");
              //put("el", "Greek");
@@ -67,8 +67,8 @@ public class Main implements FilePathAndConstant {
 
     private static void listOfTerm() throws Exception {
         Main main = new Main();
-        main.inputLoader();
-         //main.process(categorySet, TEXT_EXTENSION);
+        //main.inputLoader();
+         main.process(categorySet, TEXT_EXTENSION);
     }
 
     private void inputLoader() throws Exception, IOException {
