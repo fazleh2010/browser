@@ -19,22 +19,11 @@ import browser.termallod.utils.Partition;
 import java.io.IOException;
 import java.util.List;
 import browser.termallod.constants.FilePathAndConstant;
-import static browser.termallod.constants.FilePathAndConstant.MAIN_PAGE_TEMPLATE_GENTERM;
-import static browser.termallod.constants.FilePathAndConstant.MAIN_PAGE_TEMPLATE_IATE;
-import static browser.termallod.constants.FilePathAndConstant.PATH;
-import static browser.termallod.constants.FilePathAndConstant.TEXT_EXTENSION;
-import static browser.termallod.constants.FilePathAndConstant.categoryOntologyMapper;
-import static browser.termallod.constants.FilePathAndConstant.configFile;
-import static browser.termallod.constants.FilePathAndConstant.dataPath;
-import static browser.termallod.constants.FilePathAndConstant.iate;
-import static browser.termallod.constants.FilePathAndConstant.languageMapper;
-import static browser.termallod.constants.FilePathAndConstant.rdfPath;
-import static browser.termallod.constants.FilePathAndConstant.textPath;
+import static browser.termallod.constants.FilePathAndConstant.*;
 import browser.termallod.core.CategoryInfo;
 import browser.termallod.utils.NameExtraction;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -51,8 +40,8 @@ public class Main implements FilePathAndConstant {
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
            
-             put("ga", "Irish");
-             //put("hu", "Hungarian");
+             //put("ga", "Irish");
+             put("hu", "Hungarian");
              //put("It", "Lithuanian");
              //put("el", "Greek");
             

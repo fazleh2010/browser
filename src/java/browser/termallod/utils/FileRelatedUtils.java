@@ -91,14 +91,14 @@ public class FileRelatedUtils {
                     String line = term.getTermString() + " = " + term.getTermUrl();
                     str += line + "\n";
                 }
-                stringToFile(str, fileName);
+                stringToFile_ApendIf_Exists(str, fileName);
             }
 
         }
         return files;
     }
 
-    public static void stringToFile(String str, String fileName)
+    public static void stringToFile_ApendIf_Exists(String str, String fileName)
             throws IOException {
         if (new File(fileName).exists()) {
             appendStringInFile(str, fileName);
@@ -110,7 +110,19 @@ public class FileRelatedUtils {
         }
 
     }
-    
+
+    public static void stringToFile_DeleteIf_Exists(String str, String fileName)
+            throws IOException {
+        File file = new File(fileName);
+        if (file.exists()) {
+            file.deleteOnExit();
+        }
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+            writer.write(str);
+            writer.close();
+
+    }
+
     public static Properties getPropertyHash(File propFile) throws FileNotFoundException, IOException {
         FileReader fr = new FileReader(propFile);
         BufferedReader br = new BufferedReader(fr);

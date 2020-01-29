@@ -30,11 +30,13 @@ public interface FilePathAndConstant {
 
     public static File TERM_PAGE_TEMPLATE = new File(TEMPLATE_LOCATION + "termDefination.html");
     public static File configFile = new File(PATH + "conf/" + "language.conf");
+    public static File AUTO_COMPLETION_TEMPLATE = new File(TEMPLATE_LOCATION + "autocompletionTemplate.js");
     //public static String GENTERM_PATH = PATH + "genterm/";
     public static String IATE_PATH = PATH + "iate/";
     public static String GENTERM_PATH = PATH + "genterm/";
     public static String NTRIPLE_EXTENSION = ".ntriple";
     public static String TURTLE_EXTENSION = ".ttl";
+    public static String JAVA_SCHRIPT_EXTENSION = ".js";
     public static String TEXT_EXTENSION = ".txt";
     public static String N_TRIPLE = "N-TRIPLE";
     public static String TURTLE = "TURTLE";

@@ -48,7 +48,7 @@ public class CategoryInfo {
         Set<String> termSet = props.stringPropertyNames();
         List<String> termList = new ArrayList<String>(termSet);
         Collections.sort(termList);
-        System.out.println(termList.toString());
+        //System.out.println(termList.toString());
         langSortedTerms.put(pair, termList);
 
     }
