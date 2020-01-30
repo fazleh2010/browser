@@ -53,15 +53,6 @@ public class MakeListOfTerm implements FilePathAndConstant {
 
     }
 
-    /*str += "];"+ "\n";
-        System.out.println(str);
-
-        InputStream input = new FileInputStream(AUTO_COMPLETION_TEMPLATE);
-        String line = IOUtils.toString(input, "UTF-8");
-        str += line + "\n";
-        FileRelatedUtils.stringToFile_DeleteIf_Exists(str, TEMPLATE_LOCATION + AUTO_COMPLETION_TEMPLATE.getName().replace(JAVA_SCHRIPT_EXTENSION, "")+"_"+"en"+JAVA_SCHRIPT_EXTENSION);
-
-    }*/
     private static void createAutoCompletionTemplate(String str) throws FileNotFoundException, IOException {
         InputStream input = new FileInputStream(AUTO_COMPLETION_TEMPLATE);
         String line = IOUtils.toString(input, "UTF-8");
@@ -81,15 +72,4 @@ public class MakeListOfTerm implements FilePathAndConstant {
         return text;
     }
 
-    /*public static String quote(String text) {
-    if (text.contains("\""))
-        return '"' + text.replaceAll("\"", "\"\"") + '"';
-    if (text.contains(",") || text.contains("'"))
-       return '"' + text + '"';
-    return text;
-}*/
 }
-
-/*/String variable="var countries = [\"Afghanistan\", \"Albania\", \"Algeria\"];";
-        //String variable = "var countries = [Afghanistan, Albania, Algeria];";
- */
