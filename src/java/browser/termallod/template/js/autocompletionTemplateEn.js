@@ -1,10 +1,14 @@
 window.termUrls = new Map();
-window.termUrls.set("c", "browser_en_C_D_1.html");
-window.termUrls.set("e", "browser_en_E_F_1.html");
-window.termUrls.set("g", "browser_en_G_H_1.html");
+termUrls.set("c", "browser_en_C_D_1.html");
+termUrls.set("e", "browser_en_E_F_1.html");
+termUrls.set("g", "browser_en_G_H_1.html");
+
+
 let arr = Array.from(termUrls.keys());
 window.valueOfTextField = "";
 window.text = "";
+document.getElementById("myInput").style.borderColor = "blue";
+ 
 autocomplete(document.getElementById("myInput"), arr);
 
 
@@ -118,6 +122,13 @@ function autocomplete(inp, arr) {
     document.getElementById("form_id").addEventListener("submit", myFunction);
     function myFunction() {
         window.valueOfTextField = window.termUrls.get(window.text);
+        if(document.getElementById("myInput").value == ""){
+           alert("search box is empty")
+          }
+        else{
         document.getElementById('form_id').action = window.location.href = window.valueOfTextField; //Will set it
-    }
+        }
+     }
+    
+    
 }

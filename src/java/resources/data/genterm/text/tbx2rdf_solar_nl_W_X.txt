@@ -1,0 +1,14 @@
+wikipedia_nl = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Wikipedia_nl-NL
+willardson,_r.k.2 = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Willardson%2C+R.K.2-NL
+willardson,_r.k.1 = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Willardson%2C+R.K.1-NL
+wafer = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/wafer-NL
+willemen,_j.a._willemen,_j.a. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Willemen%2C+J.A.+Willemen%2C+J.A.-NL
+woordenlijst = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Woordenlijst-NL
+whitaker,_j.c. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Whitaker%2C+J.C.-NL
+websters = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Websters-NL
+wikipedia_en = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Wikipedia_en-NL
+werkenindeindustrie = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Werkenindeindustrie-NL
+weitering,_h.h. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Weitering%2C+H.H.-NL
+witte,_h._de = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Witte%2C+H.+de-NL
+wissenburgh,_c. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Wissenburgh%2C+C.-NL
+white,_r.e. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/White%2C+R.E.-NL
