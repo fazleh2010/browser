@@ -25,9 +25,13 @@ public interface FilePathAndConstant {
     public static String textPath = "text/";
     public static String rdfPath = "rdf/";
     public static String TEMPLATE_LOCATION = "src/java/browser/termallod/template/";
-    public static File MAIN_PAGE_TEMPLATE_IATE = new File(TEMPLATE_LOCATION + "iateTemplate.html");
-    public static File MAIN_PAGE_TEMPLATE_GENTERM = new File(TEMPLATE_LOCATION + "gentermTemplate.html");
+    public static String MAIN_PAGE_TEMPLATE_IATE = "iateTemplate.html";
+    //public static File MAIN_PAGE_TEMPLATE_GENTERM = new File(TEMPLATE_LOCATION + "gentermTemplate.html");
+    public static String MAIN_PAGE_TEMPLATE_GENTERM_EN =  "gentermTemplateEn.html";
+    public static String MAIN_PAGE_TEMPLATE_GENTERM_NL =  "gentermTemplateNl.html";
 
+    
+    
     public static File TERM_PAGE_TEMPLATE = new File(TEMPLATE_LOCATION + "termDefination.html");
     public static File configFile = new File(PATH + "conf/" + "language.conf");
     public static File AUTO_COMPLETION_TEMPLATE = new File(TEMPLATE_LOCATION + "autocompletionTemplate.js");
@@ -62,11 +66,18 @@ public interface FilePathAndConstant {
     public Map<String, String> categoryOntologyMapper = new HashMap<String, String>() {
         {
             put(ate, "tbx2rdf_atc");
-            put(solar, "tbx2rdf_solarenergy");
+            put(solar, "tbx2rdf_solar");
             put(intaglio, "tbx2rdf_intaglio");
             put(wastemanagement, "tbx2rdf_wastemanagement");
             put(diseases, "tbx2rdf_diseases");
             put(iate, "tbx2rdf_iate");
+        }
+    };
+    
+     public Map<String, String> gentermTemplates = new HashMap<String, String>() {
+        {
+            put("en", "gentermTemplateEn.html");
+            put("nl", "gentermTemplateNl.html");
         }
     };
     

@@ -1,0 +1,12 @@
+warfarin = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/warfarin-EN
+withdrawal_period = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/withdrawal+period-EN
+weight_gain = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/weight+gain-EN
+weight_loss = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/weight+loss-EN
+wart_and_anti-corn_preparations = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/wart+and+anti-corn+preparations-EN
+white_to_off-white = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/white+to+off-white-EN
+xylometazoline = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/xylometazoline-EN
+weight_increase = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/weight+increase-EN
+wheeze = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/wheeze-EN
+xipamide = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/xipamide-EN
+xantinol_nicotinate = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/xantinol+nicotinate-EN
+xamoterol = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/xamoterol-EN

@@ -24,6 +24,7 @@ import browser.termallod.core.CategoryInfo;
 import browser.termallod.utils.NameExtraction;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -39,37 +40,31 @@ public class Main implements FilePathAndConstant {
     private static Set<String> lang =new TreeSet<String>();
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
-           
-             //put("ga", "Irish");
-             put("hu", "Hungarian");
-             //put("It", "Lithuanian");
-             //put("el", "Greek");
-            
+            put("en", "English");
+            put("nl", "Dutch");
         }
     };
+    public static Set<String> browserSet = new HashSet<String>();
+    
 
     public static void main(String[] args) throws Exception {
+        browserSet.add(genterm);
+        //browserSet.add(iate);
         lang= new TreeSet<String>(languageMapper.keySet());
-       
         listOfTerm();
     }
 
     private static void listOfTerm() throws Exception {
-        Main main = new Main();
-        //main.inputLoader();
-         main.process(categorySet, TEXT_EXTENSION);
+          inputLoader();
+          //process(categorySet, TEXT_EXTENSION);
     }
 
-    private void inputLoader() throws Exception, IOException {
+    private static void inputLoader() throws Exception, IOException {
         languageManager = new LanguageAlphabetPro(configFile);
         FileRelatedUtils.cleanDirectory(categorySet, PATH, textPath);
         FileRelatedUtils.cleanDirectory(categoryOntologyMapper, PATH, dataPath);
-        readRDFAndExtractInfo(PATH, categorySet, TURTLE, TURTLE_EXTENSION);
-    }
-
-    private void readRDFAndExtractInfo(String PATH, List<String> categorySet, String TURTLE, String TURTLE_EXTENSION) throws Exception {
         for (String browser : categorySet) {
-            if (browser.contains(iate)) {
+            if (browserSet.contains(browser)) {
                 String source = FileRelatedUtils.getSourcePath(PATH, browser);
                 File[] files = FileRelatedUtils.getFiles(source, TURTLE_EXTENSION);
                 String inputDir = source + rdfPath;
@@ -79,24 +74,25 @@ public class Main implements FilePathAndConstant {
         }
     }
 
-    private void process(List<String> categorySet, String MODEL_EXTENSION) throws Exception, IOException {
+
+    private static void process(List<String> categorySet, String MODEL_EXTENSION) throws Exception, IOException {
         FileRelatedUtils.cleanDirectory(categoryOntologyMapper, PATH, dataPath);
         for (String browser : categorySet) {
-            if (browser.contains(iate)) {
+             if (browserSet.contains(browser)) {
                 String source = FileRelatedUtils.getSourcePath(PATH, browser);
-                List<String> browsers = categoryBrowser.get(browser);
-                createHtmlForeachCategory(browsers, source, MODEL_EXTENSION);
+                List<String> categoties = categoryBrowser.get(browser);
+                createHtmlForEachCategory(categoties, source, MODEL_EXTENSION,browser);
             }
         }
     }
 
-    private void createHtmlForeachCategory(List<String> browsers, String source, String MODEL_EXTENSION) throws Exception {
+    private static void createHtmlForEachCategory(List<String> browsers, String source, String MODEL_EXTENSION,String browser) throws Exception {
         for (String categoryBrowser : browsers) {
             String ontologyName = categoryOntologyMapper.get(categoryBrowser);
             List<File> files = FileRelatedUtils.getFiles(source + textPath, ontologyName, MODEL_EXTENSION);
             TreeMap<String, CategoryInfo> langSortedTerms = new TreeMap<String, CategoryInfo>();
             String categoryName = null;
-            Map<String, List<File>> languageFiles = this.getLanguageFiles(files, MODEL_EXTENSION);
+            Map<String, List<File>> languageFiles = getLanguageFiles(files, MODEL_EXTENSION);
             for (String langCode : languageFiles.keySet()) {
                 if (lang.contains(langCode)) {
                     List<File> temFiles = languageFiles.get(langCode);
@@ -106,26 +102,29 @@ public class Main implements FilePathAndConstant {
                     category.print(category.getLangSortedTerms());
                 }
             }
+            if(!langSortedTerms.isEmpty()){
             if (categoryBrowser.contains(iate)) {
-                makeHtml(langSortedTerms, categoryName, MAIN_PAGE_TEMPLATE_IATE);
+                makeHtml(langSortedTerms, categoryName,browser);
             } else {
-                makeHtml(langSortedTerms, categoryName, MAIN_PAGE_TEMPLATE_GENTERM);
+                makeHtml(langSortedTerms, categoryName,browser);
+            }
             }
 
         }
     }
 
-    private void makeHtml(TreeMap<String, CategoryInfo> langSortedTerms, String categoryName, File MAIN_PAGE_TEMPLATE) throws Exception {
+    private static void makeHtml(TreeMap<String, CategoryInfo> langSortedTerms, String categoryName,String browser) throws Exception {
         PageContentGenerator pageContentGenerator = new PageContentGenerator(langSortedTerms);
         for (String language : pageContentGenerator.getLanguages()) {
             List<AlphabetTermPage> alphabetTermPageList = pageContentGenerator.getLangPages(language);
             for (AlphabetTermPage alphabetTermPage : alphabetTermPageList) {
-                this.generateHtml(PATH, categoryName, MAIN_PAGE_TEMPLATE, language, alphabetTermPage, pageContentGenerator);
+                File  MAIN_PAGE_TEMPLATE= getTemplate(browser,categoryName,language);
+                generateHtml(PATH, categoryName, MAIN_PAGE_TEMPLATE, language, alphabetTermPage, pageContentGenerator);
             }
         }
     }
 
-    private void generateHtml(String baseDir, String categoryName, File templateFile, String language, AlphabetTermPage alphabetTermPage, PageContentGenerator pageContentGenerator) throws Exception {
+    private static void generateHtml(String baseDir, String categoryName, File templateFile, String language, AlphabetTermPage alphabetTermPage, PageContentGenerator pageContentGenerator) throws Exception {
         Partition partition = alphabetTermPage.getPartition();
         for (Integer page = 0; page < partition.size(); page++) {
             Integer currentPageNumber = page + 1;
@@ -138,7 +137,7 @@ public class Main implements FilePathAndConstant {
 
     }
 
-    private Map<String, List<File>> getLanguageFiles(List<File> inputfiles, String model_extension) {
+    private static Map<String, List<File>> getLanguageFiles(List<File> inputfiles, String model_extension) {
         Map<String, List<File>> languageFiles = new HashMap<String, List<File>>();
         for (File file : inputfiles) {
             String langCode = NameExtraction.getLanCode(file, model_extension);
@@ -155,9 +154,18 @@ public class Main implements FilePathAndConstant {
         }
         return languageFiles;
     }
-    
-    private static void termDefination() {
-        
+
+    private static File getTemplate(String browser, String categoryName, String language) throws Exception {
+        if(browser.contains(genterm)&&language.contains("en"))
+            return new File(FilePathAndConstant.TEMPLATE_LOCATION+MAIN_PAGE_TEMPLATE_GENTERM_EN);
+        else if (browser.contains(genterm)&&language.contains("nl"))
+            return new File(FilePathAndConstant.TEMPLATE_LOCATION+MAIN_PAGE_TEMPLATE_GENTERM_NL);
+        else if (browser.contains(iate))
+            return new File(FilePathAndConstant.TEMPLATE_LOCATION+MAIN_PAGE_TEMPLATE_IATE);
+        else
+            throw new Exception("no HTML template file found");
     }
+    
+  
 
 }

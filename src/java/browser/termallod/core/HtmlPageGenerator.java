@@ -11,7 +11,6 @@ import static browser.termallod.constants.FilePathAndConstant.LOCALHOST_URL_LIST
 import static browser.termallod.constants.FilePathAndConstant.PATH;
 import static browser.termallod.constants.FilePathAndConstant.UNDERSCORE;
 import static browser.termallod.constants.FilePathAndConstant.browser;
-import static browser.termallod.constants.FilePathAndConstant.iate;
 import static browser.termallod.constants.FilePathAndConstant.languageMapper;
 import java.io.File;
 import java.util.ArrayList;
@@ -53,9 +52,11 @@ public class HtmlPageGenerator implements HtmlPage {
         Integer numberofPages = alphabetTermPage.getNumberOfPages();
         //currently not
         Integer emptyTerm = alphabetTermPage.getEmptyTerm();
-        if (!this.categoryType.contains(iate)) {
+        //this part of code is used to automatically generated language selection box
+        //currently it is hard coded in HTML template
+        /*if (!this.categoryType.contains(iate)) {
             this.createLangSelectBox(body, pageContentGenerator);
-        }
+        }*/
 
         createAlphabet(body, alphebetPair, pageContentGenerator);
         createTerms(body, terms, alphebetPair, emptyTerm, alphabetTermPage);

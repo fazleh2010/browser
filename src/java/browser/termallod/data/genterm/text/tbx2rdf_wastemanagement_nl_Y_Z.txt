@@ -1,0 +1,1 @@
+zero_burden-benadering = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/zero+burden-benadering-NL
