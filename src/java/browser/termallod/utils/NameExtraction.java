@@ -5,20 +5,19 @@
  */
 package browser.termallod.utils;
 
-import browser.termallod.constants.FilePathAndConstant;
-import static browser.termallod.constants.FilePathAndConstant.UNDERSCORE;
-import static browser.termallod.constants.FilePathAndConstant.iate;
+
+import browser.termallod.constants.Symbols;
 import java.io.File;
 
 /**
  *
  * @author elahi
  */
-public class NameExtraction {
+public class NameExtraction implements Symbols{
 
     public static String getCategoryName(String browser, File categoryFile, String modelFileExtension) {
         String categoryName = categoryFile.getName();
-        String[] info = categoryName.split(FilePathAndConstant.UNDERSCORE);
+        String[] info = categoryName.split(UNDERSCORE);
         categoryName = info[0] + UNDERSCORE + info[1] + modelFileExtension;
         categoryName = categoryName.replace(modelFileExtension.trim(), "");
         return categoryName;

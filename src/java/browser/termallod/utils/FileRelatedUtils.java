@@ -5,10 +5,6 @@
  */
 package browser.termallod.utils;
 
-import browser.termallod.constants.FilePathAndConstant;
-import static browser.termallod.constants.FilePathAndConstant.PATH;
-import static browser.termallod.constants.FilePathAndConstant.categoryOntologyMapper;
-import static browser.termallod.constants.FilePathAndConstant.dataPath;
 import browser.termallod.core.TermInfo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

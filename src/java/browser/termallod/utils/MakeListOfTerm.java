@@ -5,7 +5,8 @@
  */
 package browser.termallod.utils;
 
-import browser.termallod.constants.FilePathAndConstant;
+import browser.termallod.constants.FileAndCategory;
+import browser.termallod.constants.Templates;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -22,7 +23,7 @@ import org.apache.commons.io.IOUtils;
  *
  * @author elahi
  */
-public class MakeListOfTerm implements FilePathAndConstant {
+public class MakeListOfTerm implements Templates,FileAndCategory {
 
     public static void main(String[] argv) throws IOException {
         String source = FileRelatedUtils.getSourcePath(PATH, iate);

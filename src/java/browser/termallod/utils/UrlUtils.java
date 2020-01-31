@@ -5,19 +5,20 @@
  */
 package browser.termallod.utils;
 
-import browser.termallod.constants.FilePathAndConstant;
-import static browser.termallod.constants.FilePathAndConstant.configFile;
+import browser.termallod.constants.FileAndCategory;
+import browser.termallod.constants.Languages;
 import browser.termallod.core.LanguageAlphabetPro;
 import browser.termallod.core.api.LanguageManager;
 import java.io.IOException;
 import java.util.List;
 import java.util.TreeMap;
 
+
 /**
  *
  * @author elahi
  */
-public class UrlUtils implements FilePathAndConstant {
+public class UrlUtils implements FileAndCategory,Languages {
 
     public static String encode(String input_text) {
         return URLUTF8Encoder.encode(input_text);

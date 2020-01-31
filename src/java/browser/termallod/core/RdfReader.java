@@ -9,7 +9,6 @@ package browser.termallod.core;
  *
  * @author elahi
  */
-import browser.termallod.constants.FilePathAndConstant;
 import browser.termallod.core.api.LanguageManager;
 import browser.termallod.utils.NameExtraction;
 import browser.termallod.utils.FileRelatedUtils;
@@ -32,7 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
 
-public class RdfReader implements FilePathAndConstant {
+public class RdfReader {
 
     private String MODEL_TYPE;
     private String LANGUAGE_SEPERATE_SYMBOLE = "@";
@@ -138,8 +137,8 @@ public class RdfReader implements FilePathAndConstant {
             // Output query results    
             ResultSetFormatter.out(System.out, results, query);
 
-             // Important ‑ free up resources used running the query
-             qe.close();
+            // Important ‑ free up resources used running the query
+            qe.close();
 
         } else {
             //System.err.println("cannot read " + fileNameOrUri);;

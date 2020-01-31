@@ -19,7 +19,13 @@ import org.jsoup.nodes.Element;
  *
  * @author elahi
  */
-public interface HtmlPage extends FilePathAndConstant{
+public interface HtmlPage {
+    
+    public static String browser="browser";
+    public static String HTML_EXTENSION = ".html";
+    public String UNDERSCORE = "_";
+    public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "";
+    public static Integer INITIAL_PAGE = 1;
 
     public String createAlphabet(Element body, String alphebetPair, PageContentGenerator pageContentGenerator) throws Exception;
 
