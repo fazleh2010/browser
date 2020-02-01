@@ -1,2 +1,0 @@
-zoutgrein = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/zoutgrein-NL
-zwarte_kunst = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/zwarte+kunst-NL

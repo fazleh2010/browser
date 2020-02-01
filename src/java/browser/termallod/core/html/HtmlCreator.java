@@ -44,7 +44,7 @@ public class HtmlCreator implements FileAndCategory,Templates {
             List<File> files = FileRelatedUtils.getFiles(source + textPath, ontologyName, MODEL_EXTENSION);
             TreeMap<String, CategoryInfo> langSortedTerms = new TreeMap<String, CategoryInfo>();
             String categoryName = null;
-            Map<String, List<File>> languageFiles = getLanguageFiles(files, MODEL_EXTENSION);
+            Map<String, List<File>> languageFiles = FileRelatedUtils.getLanguageFiles(files, MODEL_EXTENSION);
             for (String langCode : languageFiles.keySet()) {
                 if (lang.contains(langCode)) {
                     List<File> temFiles = languageFiles.get(langCode);
@@ -101,22 +101,5 @@ public class HtmlCreator implements FileAndCategory,Templates {
         }
     }
 
-    private Map<String, List<File>> getLanguageFiles(List<File> inputfiles, String model_extension) {
-        Map<String, List<File>> languageFiles = new HashMap<String, List<File>>();
-        for (File file : inputfiles) {
-            String langCode = NameExtraction.getLanCode(file, model_extension);
-            if (languageFiles.containsKey(langCode)) {
-                List<File> files = languageFiles.get(langCode);
-                files.add(file);
-                languageFiles.put(langCode, files);
-            } else {
-                List<File> files = new ArrayList<File>();
-                files.add(file);
-                languageFiles.put(langCode, files);
-            }
-
-        }
-        return languageFiles;
-    }
 
 }

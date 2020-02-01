@@ -1,7 +1,0 @@
-roger,_a.m. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Roger%2C+A.M.-NL
-raymond,_c.f. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Raymond%2C+C.F.-NL
-redfield,_d. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Redfield%2C+D.-NL
-rittal = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Rittal-NL
-rickerby,_d.g. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Rickerby%2C+D.G.-NL
-renkema,_j. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Renkema%2C+J.-NL
-ryckevelde = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Ryckevelde-NL

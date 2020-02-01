@@ -56,6 +56,34 @@ public class FileRelatedUtils {
         return selectedFiles;
 
     }
+    
+    public static List<File> getFiles(String fileDir, String category, String language,String extension) {
+
+        String[] files = new File(fileDir).list();
+        List<File> selectedFiles = new ArrayList<File>();
+        for (String fileName : files) {
+            if (fileName.contains(category) && fileName.contains(language)&& fileName.contains(extension)) {
+                selectedFiles.add(new File(fileDir + fileName));
+            }
+        }
+
+        return selectedFiles;
+
+    }
+    
+    public static File getFile(String fileDir, String category, String language,String extension) {
+        String[] files = new File(fileDir).list();
+        File selectedFile = null;
+        for (String fileName : files) {
+            if (fileName.contains(category) && fileName.contains(language)&& fileName.contains(extension)) {
+                 selectedFile =new File(fileDir + fileName);
+            }
+        }
+        return selectedFile;
+    }
+    
+    
+    
 
     /*public static List<File> writeFile(TreeMap<String, TreeMap<String, List<String>>> langSortedTerms, String path) throws IOException {
         List<File> files = new ArrayList<File>();
@@ -156,6 +184,24 @@ public class FileRelatedUtils {
             FileRelatedUtils.createDirectory(termDir);
         }
 
+    }
+    
+    public static Map<String, List<File>> getLanguageFiles(List<File> inputfiles, String model_extension) {
+        Map<String, List<File>> languageFiles = new HashMap<String, List<File>>();
+        for (File file : inputfiles) {
+            String langCode = NameExtraction.getLanCode(file, model_extension);
+            if (languageFiles.containsKey(langCode)) {
+                List<File> files = languageFiles.get(langCode);
+                files.add(file);
+                languageFiles.put(langCode, files);
+            } else {
+                List<File> files = new ArrayList<File>();
+                files.add(file);
+                languageFiles.put(langCode, files);
+            }
+
+        }
+        return languageFiles;
     }
 
     public static void deleteDirectory(String dir) throws IOException {
