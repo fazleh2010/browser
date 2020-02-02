@@ -36,7 +36,7 @@ public class UrlUtils implements FileAndCategory,Languages {
         System.out.println(encodeText);
         System.out.println(decodeTest);
 
-        LanguageManager languageManager = new LanguageAlphabetPro(configFile);
+        LanguageManager languageManager = new LanguageAlphabetPro(LANGUAGE_CONFIG_FILE);
         TreeMap<String, String> langBox = new TreeMap<String, String>();
 
         for (String langCode : languageManager.getLangAlphabetPairSorted().keySet()) {

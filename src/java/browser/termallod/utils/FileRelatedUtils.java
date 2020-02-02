@@ -179,9 +179,9 @@ public class FileRelatedUtils {
             String[] infor = key.split("_");
             String termDir = PATH + key + File.separator + dataPath + infor[1];
             FileRelatedUtils.deleteDirectory(mainDir);
-            FileRelatedUtils.deleteDirectory(termDir);
+            //FileRelatedUtils.deleteDirectory(termDir);
             FileRelatedUtils.createDirectory(mainDir);
-            FileRelatedUtils.createDirectory(termDir);
+            //FileRelatedUtils.createDirectory(termDir);
         }
 
     }

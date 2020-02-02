@@ -18,12 +18,12 @@ import java.util.Map;
  */
 public interface FileAndCategory {
 
-    public static String PATH = "src/java/resources/data/";
-    public static String dataPath = "data/";
-    public static String textPath = "text/";
-    public static String rdfPath = "rdf/";
-    public static String GENTERM_PATH=PATH+File.separator;
-    public static File configFile = new File(PATH+"conf/" +"language.conf");
+    public static String BASE_PATH = "src/java/resources/data/";
+    public static String DATA_PATH = "data/";
+    public static String TEXT_PATH = "text/";
+    public static String RDF_PATH = "rdf/";
+    public static String GENTERM_PATH=BASE_PATH+File.separator;
+    public static File LANGUAGE_CONFIG_FILE = new File(BASE_PATH+"conf/" +"language.conf");
     public static String NTRIPLE_EXTENSION = ".ntriple";
     public static String TURTLE_EXTENSION = ".ttl";
     public static String JAVA_SCHRIPT_EXTENSION = ".js";
@@ -38,30 +38,30 @@ public interface FileAndCategory {
     public static String AUTO_COMPLETION_TEMPLATE_LOCATION = TEMPLATE_LOCATION +"js/";
 
 
-    public String solar = "solar";
-    public String atc = "atc";
-    public String diseases = "diseases";
-    public String intaglio = "intaglio";
-    public String wastemanagement = "wastemanagement";
-    public String iate = "iate";
-    public String genterm = "genterm";
-    public List<String> categorySet = new ArrayList<String>(Arrays.asList(genterm, iate));
+    public String SOLAR = "solar";
+    public String ATC = "atc";
+    public String DISEASES = "diseases";
+    public String INTAGLIO = "intaglio";
+    public String WASTEMANAGEMENT = "wastemanagement";
+    public String IATE = "iate";
+    public String GENTERM = "genterm";
+    public List<String> BROWSER_GROUPS = new ArrayList<String>(Arrays.asList(GENTERM, IATE));
 
-    public Map<String, String> categoryOntologyMapper = new HashMap<String, String>() {
+    public Map<String, String> CATEGORY_ONTOLOGIES = new HashMap<String, String>() {
         {
-            put(atc, "tbx2rdf_atc");
-            put(solar, "tbx2rdf_solar");
-            put(intaglio, "tbx2rdf_intaglio");
-            put(wastemanagement, "tbx2rdf_wastemanagement");
-            put(diseases, "tbx2rdf_diseases");
-            put(iate, "tbx2rdf_iate");
+            put(ATC, "tbx2rdf_atc");
+            put(SOLAR, "tbx2rdf_solar");
+            put(INTAGLIO, "tbx2rdf_intaglio");
+            put(WASTEMANAGEMENT, "tbx2rdf_wastemanagement");
+            put(DISEASES, "tbx2rdf_diseases");
+            put(IATE, "tbx2rdf_iate");
         }
     };
 
-    public Map<String, List<String>> categoryBrowser = new HashMap<String, List<String>>() {
+    public Map<String, List<String>> BROWSER_CATEGORIES = new HashMap<String, List<String>>() {
         {
-            put(genterm, new ArrayList<String>(Arrays.asList(atc, solar, intaglio, wastemanagement, diseases)));
-            put(iate, new ArrayList<String>(Arrays.asList(iate)));
+            put(GENTERM, new ArrayList<String>(Arrays.asList(ATC, SOLAR, INTAGLIO, WASTEMANAGEMENT, DISEASES)));
+            put(IATE, new ArrayList<String>(Arrays.asList(IATE)));
         }
     };
 

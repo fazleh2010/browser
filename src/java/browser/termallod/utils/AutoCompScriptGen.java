@@ -28,12 +28,12 @@ import org.apache.commons.io.IOUtils;
 public class AutoCompScriptGen implements FileAndCategory {
 
     public static void main(String[] argv) throws IOException, Exception {
-        for (String browser : categorySet) {
-            List<String> categories = FileAndCategory.categoryBrowser.get(browser);
-            String source = FileRelatedUtils.getSourcePath(PATH, browser);
+        for (String browser : BROWSER_GROUPS) {
+            List<String> categories = FileAndCategory.BROWSER_CATEGORIES.get(browser);
+            String source = FileRelatedUtils.getSourcePath(BASE_PATH, browser);
             for (String category : categories) {
-                 String ontologyName = categoryOntologyMapper.get(category);
-                List<File> files = FileRelatedUtils.getFiles(source + textPath, ontologyName, ".txt");
+                 String ontologyName = CATEGORY_ONTOLOGIES.get(category);
+                List<File> files = FileRelatedUtils.getFiles(source + TEXT_PATH, ontologyName, ".txt");
                 Map<String, List<File>> languageFiles = FileRelatedUtils.getLanguageFiles(files, ".txt");
                 for (String langCode : languageFiles.keySet()) {
                    

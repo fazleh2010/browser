@@ -39,8 +39,8 @@ public class HtmlCreator implements FileAndCategory{
 
     public void createHtmlForEachCategory(List<String> browsers, String source, String MODEL_EXTENSION, String browser) throws Exception {
         for (String categoryBrowser : browsers) {
-            String ontologyName = categoryOntologyMapper.get(categoryBrowser);
-            List<File> files = FileRelatedUtils.getFiles(source + textPath, ontologyName, MODEL_EXTENSION);
+            String ontologyName = CATEGORY_ONTOLOGIES.get(categoryBrowser);
+            List<File> files = FileRelatedUtils.getFiles(source + TEXT_PATH, ontologyName, MODEL_EXTENSION);
             TreeMap<String, CategoryInfo> langSortedTerms = new TreeMap<String, CategoryInfo>();
             String categoryName = null;
             Map<String, List<File>> languageFiles = FileRelatedUtils.getLanguageFiles(files, MODEL_EXTENSION);
@@ -54,7 +54,7 @@ public class HtmlCreator implements FileAndCategory{
                 }
             }
             if (!langSortedTerms.isEmpty()) {
-                if (categoryBrowser.contains(iate)) {
+                if (categoryBrowser.contains(IATE)) {
                     createHtmlForEachLanguage(langSortedTerms, categoryName, browser);
                 } else {
                     createHtmlForEachLanguage(langSortedTerms, categoryName, browser);
