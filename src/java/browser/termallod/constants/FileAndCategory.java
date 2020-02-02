@@ -35,7 +35,7 @@ public interface FileAndCategory {
     public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "";
 
     public String solar = "solar";
-    public String ate = "ate";
+    public String atc = "atc";
     public String diseases = "diseases";
     public String intaglio = "intaglio";
     public String wastemanagement = "wastemanagement";
@@ -45,7 +45,7 @@ public interface FileAndCategory {
 
     public Map<String, String> categoryOntologyMapper = new HashMap<String, String>() {
         {
-            put(ate, "tbx2rdf_atc");
+            put(atc, "tbx2rdf_atc");
             put(solar, "tbx2rdf_solar");
             put(intaglio, "tbx2rdf_intaglio");
             put(wastemanagement, "tbx2rdf_wastemanagement");
@@ -63,7 +63,7 @@ public interface FileAndCategory {
 
     public Map<String, List<String>> categoryBrowser = new HashMap<String, List<String>>() {
         {
-            put(genterm, new ArrayList<String>(Arrays.asList(ate, solar, intaglio, wastemanagement, diseases)));
+            put(genterm, new ArrayList<String>(Arrays.asList(atc, solar, intaglio, wastemanagement, diseases)));
             put(iate, new ArrayList<String>(Arrays.asList(iate)));
         }
     };

@@ -25,9 +25,9 @@ import org.apache.commons.io.IOUtils;
  *
  * @author elahi
  */
-public class MakeListOfTerm implements Templates, FileAndCategory {
+public class AutoCompScriptGen implements Templates, FileAndCategory {
 
-    public static void main(String[] argv) throws IOException {
+    public static void main(String[] argv) throws IOException, Exception {
 
         Set<String> lang = new HashSet<String>();
         lang.add("en");
@@ -43,6 +43,9 @@ public class MakeListOfTerm implements Templates, FileAndCategory {
                 for (String langCode : languageFiles.keySet()) {
                     if (lang.contains(langCode)) {
                         List<File> temFiles = languageFiles.get(langCode);
+                        if(temFiles.isEmpty()){
+                            throw new Exception("No files are found to process!!");
+                        }
                         for (File file : files) {
                             Integer index = 0;
                             Properties props = FileRelatedUtils.getPropertyHash(file);
@@ -51,11 +54,16 @@ public class MakeListOfTerm implements Templates, FileAndCategory {
                         }
                         Collections.sort(termList);
                         String str = getTerms(termList);
-                        System.out.println(str);
-                        /*File templatefile=FileRelatedUtils.getFile(AUTO_COMPLETION_TEMPLATE_LOCATION,category, langCode,"js");
-                        String outputFile=templatefile.getName().replace(JAVA_SCHRIPT_EXTENSION, "") + "_" + "en" + JAVA_SCHRIPT_EXTENSION;
-                         */
-                        //createAutoCompletionTemplate(templatefile,str,outputFile);
+                        //System.out.println(str);
+                        File templateFile=new File (AUTO_COMPLETION_TEMPLATE_LOCATION+"autoComp"+".js");
+                        String outputFileName=AUTO_COMPLETION_TEMPLATE_LOCATION+category+"_"+langCode+".js";
+                        
+                        if(templateFile.exists()){
+                           System.out.println(templateFile.getPath());
+                        }
+                        else
+                            throw new Exception(" no template find found for autocompletion!!");                         
+                             createAutoCompletionTemplate(templateFile,str,outputFileName);
                     }
                 }
             }
@@ -120,11 +128,11 @@ public class MakeListOfTerm implements Templates, FileAndCategory {
         return text;
     }
 
-    private static void createAutoCompletionTemplate(File templatefileName, String str, String outputFileName) throws FileNotFoundException, IOException {
+    private static void createAutoCompletionTemplate(File templatefileName, String str, String outputFile) throws FileNotFoundException, IOException {
         InputStream input = new FileInputStream(templatefileName);
         String line = IOUtils.toString(input, "UTF-8");
         str += line + "\n";
-        FileRelatedUtils.stringToFile_DeleteIf_Exists(str, outputFileName);
+        FileRelatedUtils.stringToFile_DeleteIf_Exists(str, outputFile);
 
     }
 
