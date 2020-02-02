@@ -6,7 +6,6 @@
 package browser.termallod.core.html;
 
 import browser.termallod.constants.FileAndCategory;
-import browser.termallod.constants.Templates;
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.CategoryInfo;
 import browser.termallod.core.PageContentGenerator;
@@ -27,7 +26,7 @@ import org.jsoup.nodes.Document;
  *
  * @author elahi
  */
-public class HtmlCreator implements FileAndCategory,Templates {
+public class HtmlCreator implements FileAndCategory{
 
     private Set<String> lang = new HashSet<String>();
     private String PATH;

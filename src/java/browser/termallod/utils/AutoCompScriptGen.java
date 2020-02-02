@@ -6,7 +6,6 @@
 package browser.termallod.utils;
 
 import browser.termallod.constants.FileAndCategory;
-import browser.termallod.constants.Templates;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -26,7 +25,7 @@ import org.apache.commons.io.IOUtils;
  *
  * @author elahi
  */
-public class AutoCompScriptGen implements Templates, FileAndCategory {
+public class AutoCompScriptGen implements FileAndCategory {
 
     public static void main(String[] argv) throws IOException, Exception {
         for (String browser : categorySet) {

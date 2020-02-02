@@ -38,8 +38,8 @@ public class Main  implements FileAndCategory{
 
     public static void main(String[] args) throws Exception {
         lang = new TreeSet<String>(languageMapper.keySet());
-        //inputLoader();
-         process(categorySet, TEXT_EXTENSION);
+        inputLoader();
+         //process(categorySet, TEXT_EXTENSION);
     }
 
     private static void inputLoader() throws Exception, IOException {
