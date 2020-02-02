@@ -1,9 +1,3 @@
-window.termUrls = new Map();
-termUrls.set("c", "browser_en_C_D_1.html");
-termUrls.set("e", "browser_en_E_F_1.html");
-termUrls.set("g", "browser_en_G_H_1.html");
-
-
 let arr = Array.from(termUrls.keys());
 window.valueOfTextField = "";
 window.text = "";

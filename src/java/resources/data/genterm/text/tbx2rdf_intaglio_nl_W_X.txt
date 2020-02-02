@@ -1,0 +1,2 @@
+watertoon = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/watertoon-NL
+wapensmederij = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/wapensmederij-NL

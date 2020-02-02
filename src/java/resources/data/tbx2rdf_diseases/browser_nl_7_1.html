@@ -1,0 +1,295 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"> 
+  <meta name="_csrf_header" content="X-CSRF-TOKEN"> 
+  <!--this location is for testing in local machine--> 
+  <link href="/css/interface.css" rel="stylesheet" type="text/css"> 
+  <link href="/css/oxford.css" rel="stylesheet" type="text/css"> 
+  <link href="/css/responsive.css" rel="stylesheet" type="text/css"> 
+  <!--this location is for original for production--> 
+  <!--link href="../static/css/interface.css" rel="stylesheet" type="text/css" />
+      <link href="../static/css/oxford.css" rel="stylesheet" type="text/css" />
+      <link href="../static/css/responsive.css" rel="stylesheet" type="text/css" /--> 
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;  
+}
+
+/*the container must be positioned relative:*/
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+      </style> 
+ </head> 
+ <body> 
+  <div id="ox-header" class=""> 
+   <div class="responsive_row flush-below top"> 
+    <div class="responsive_container responsive_display_on_smartphone"> 
+     <div class="menu_button"></div> 
+    </div> 
+    <div class="nav responsive_container main_nav"> 
+     <ul class="menu"> 
+      <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+      <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+     </ul> 
+    </div> 
+   </div> 
+   <div class="responsive_row"> 
+    <div id="ad_leftslot_container" class="ad_leftslot_container responsive_entry_left"> 
+     <div class="ac_leftslot sticky"> 
+      <div id="ad_leftslot_a" class="am-default "> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="responsive_entry_center"> 
+     <div class="responsive_display_on_hd" id="leaderboardHD"> 
+      <div class=""> 
+       <div id="ad_topslot_b" class="am-default "> 
+        <script type="text/javascript">googletag.cmd.push(function () {
+                           googletag.display('ad_topslot_b');
+                           });
+                        </script> 
+       </div> 
+      </div> 
+     </div> 
+     <div id="main_column" class="responsive_row"> 
+      <div class="middle_wrap wordlist-page"> 
+       <div class="responsive_row"> 
+        <h4>Language Selection:</h4> 
+        <div class="langauge selection box"> 
+         <table style="width:60%"> 
+          <tbody> 
+           <tr> 
+            <td><a href="browser_en_A_B_1.html">English</a></td> 
+            <td><a href="browser_nl_1_1.html">Dutch</a></td> 
+           </tr> 
+          </tbody> 
+         </table> 
+        </div> 
+        <h4>Search terms</h4> 
+        <!--Make sure the form has the autocomplete function switched off:--> 
+        <form autocomplete="off" id="form_id"> 
+         <div class="autocomplete" style="width:300px;"> 
+          <input id="myInput" type="text" placeholder="Search.."> 
+         </div> 
+         <input id="submit" type="submit"> 
+        </form> 
+        <script type="text/javascript" src="/css/tbx2rdf_diseases_nl.js"></script> 
+        <!--div class="mainsearch">
+                           <form id="search-form" method="get" action="browser_hu_10_1.html">
+                              <div class="dictionarySelector">
+                                 <div id="select_div">
+                                    <div>English</div>
+                                 </div>
+                              </div>
+                              <div class="searchfield">
+                                 <input type="text" id="q" name="q"
+                                    class="searchfield_input"/>
+                                 <a id="keyboard_icon" class="oup_icons responsive_hide_on_smartphone responsive_hide_on_tablet"></a>
+                                 <div id="keyboard_letters"></div>
+                              </div>
+                              <div class="inputSuggestions"></div>
+                              <label id="search-btn" class="oup_icons">
+                              <input type="submit" value="" />
+                              </label>
+                           </form>
+                        </div>
+                     </div--> 
+        <div class="side-selector clear_fix"> 
+         <div class="side-selector__left"> 
+          <!-- the topics --> 
+          <div id="entries-selector" class=""> 
+           <ul class="hide_phone"> 
+            <li class="currentpage"> <span>M_N</span> <li><a href="browser_nl_1_1.html">A_B</a></li>  <li><a href="browser_nl_2_1.html">C_D</a></li>  <li><a href="browser_nl_3_1.html">E_F</a></li>  <li><a href="browser_nl_4_1.html">G_H</a></li>  <li><a href="browser_nl_5_1.html">I_J</a></li>  <li><a href="browser_nl_6_1.html">K_L</a></li>  <li><a href="browser_nl_8_1.html">O_P</a></li>  <li><a href="browser_nl_9_1.html">Q_R</a></li>  <li><a href="browser_nl_10_1.html">S_T</a></li>  <li><a href="browser_nl_11_1.html">U_V</a></li>  <li><a href="browser_nl_12_1.html">W_X</a></li>  <li><a href="browser_nl_13_1.html">Y_Z</a></li> </li> 
+           </ul> 
+           <div class="wl-select hide_all display_phone"> 
+           </div> 
+          </div> 
+          <!-- entries-selector --> 
+         </div> 
+         <div class="side-selector__right"> 
+          <!-- the items of the selected topic --> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner"> 
+             <li class="activepageUpper"> </li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="entrylist1"> 
+           <ul class="result-list1 wordlist-oxford3000 list-plain">  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Maillette+de+Buy+Wenniger%2C+L.+2013-1-NL" title="maillette_de_buy_wenniger,_l._2013-1 definition">maillette de buy wenniger, l. 2013-1</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Maillette+de+Buy+Wenniger%2C+L.+2013-2-NL" title="maillette_de_buy_wenniger,_l._2013-2 definition">maillette de buy wenniger, l. 2013-2</a></li>  
+            <li><a href="_interval&nbsp;aneurysmacontrole_kan_verlengd_worden._nederlands_tijdschrift_voor_geneeskunde,_157,_c1647._[online]_http://www.ntvg.nl/publicatie/meta-analyse-interval-aneurysmacontrole-kan-verlengd-worden/volledig_[05.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases maillette+de+buy+wenninger%2c+l.+%282013%29.+meta-analyse%3a+interval%c2%a0aneurysmacontrole+kan+verlengd+worden.+nederlands+tijdschrift+voor+geneeskunde%2c+157%2c+c1647.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fmeta-analyse-interval-aneurysmacontrole-kan-verlengd-worden%2fvolledig+%5b05.07.2013%5d-nl title="maillette_de_buy_wenninger,_l._(2013)._meta-analyse definition">maillette de buy wenninger, l. (2013). meta-analyse</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/studie-naar-risicofactoren-voor-ruptuur-intracranieel-aneurysma_[05.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases maillette+de+buy+wenninger%2c+l.+%282013%29.+studie+naar+risicofactoren+voor+ruptuur+intracranieel+aneurysma.+nederlands+tijdschrift+voor+geneeskunde%2c+157%2c+c1705.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fstudie-naar-risicofactoren-voor-ruptuur-intracranieel-aneurysma+%5b05.07.2013%5d-nl title="maillette_de_buy_wenninger,_l._(2013)._studie_naar_risicofactoren_voor_ruptuur_intracranieel_aneurysma._nederlands_tijdschrift_voor_geneeskunde,_157,_c1705._[online]_http definition">maillette de buy wenninger, l. (2013). studie naar risicofactoren voor ruptuur intracranieel aneurysma. nederlands tijdschrift voor geneeskunde, 157, c1705. [online] http</a></li>  
+            <li><a href="_meerwaarde_van_centrumbehandeling._nederlands_tijdschrift_voor_geneeskunde,_141,_2001-4._[online]_http://www.ntvg.nl/publicatie/cystische-fibrose-meerwaarde-van-centrumbehandeling/volledig_[12.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases mannes%2c+g.p.m.+%26+heijerman%2c+h.g.m.+%281997%29.+cystische+fibrose%3a+meerwaarde+van+centrumbehandeling.+nederlands+tijdschrift+voor+geneeskunde%2c+141%2c+2001-4.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fcystische-fibrose-meerwaarde-van-centrumbehandeling%2fvolledig+%5b12.07.2013%5d-nl title="mannes,_g.p.m._&amp;_heijerman,_h.g.m._(1997)._cystische_fibrose definition">mannes, g.p.m. &amp; heijerman, h.g.m. (1997). cystische fibrose</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Mannes%2C+G.P.M.+%26+Heijerman%2C+H.G.M.+1997-NL" title="mannes,_g.p.m._&amp;_heijerman,_h.g.m._1997 definition">mannes, g.p.m. &amp; heijerman, h.g.m. 1997</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Marcellin%2C+P.%2C+et+al.+2008-NL" title="marcellin,_p.,_et_al._2008 definition">marcellin, p., et al. 2008</a></li>  
+            <li><a href="//www.nejm.org/doi/pdf/10.1056/nejmoa0802878_[29.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases marcellin%2c+p.%2c+heathcote%2c+e.j.%2c+buti%2c+m.%2c+gane%2c+e.%2c+de+man%2c+r.a.%2c+krastev%2c+z.%2c+et+al.+%282008%29.+tenofovir+disoproxil+fumarate+versus+adefovir+dipivoxil+for+chronic+hepatitis+b.+the+new+england+journal+of+medicine%2c+359%2c+2442-55.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2fpdf%2f10.1056%2fnejmoa0802878+%5b29.07.2013%5d-nl title="marcellin,_p.,_heathcote,_e.j.,_buti,_m.,_gane,_e.,_de_man,_r.a.,_krastev,_z.,_et_al._(2008)._tenofovir_disoproxil_fumarate_versus_adefovir_dipivoxil_for_chronic_hepatitis_b._the_new_england_journal_of_medicine,_359,_2442-55._[online]_http definition">marcellin, p., heathcote, e.j., buti, m., gane, e., de man, r.a., krastev, z., et al. (2008). tenofovir disoproxil fumarate versus adefovir dipivoxil for chronic hepatitis b. the new england journal of medicine, 359, 2442-55. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Marcocci%2C+C.%2C+et+al.+2011-NL" title="marcocci,_c.,_et_al._2011 definition">marcocci, c., et al. 2011</a></li>  
+            <li><a href="//www.nejm.org/doi/pdf/10.1056/nejmoa1012985_[02.08.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases marcocci%2c+c.%2c+kahaly%2c+g.j.%2c+krassas%2c+g.e.%2c+bartalena%2c+l.%2c+prummel%2c+m.%2c+stahl%2c+m.%2c+et+al.+%282011%29.+selenium+and+the+course+of+mild+graves%e2%80%99+orbitopathy.+the+new+england+journal+of+medicine%2c+364%2c+1920%c2%ad31.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2fpdf%2f10.1056%2fnejmoa1012985+%5b02.08.2013%5d-nl title="marcocci,_c.,_kahaly,_g.j.,_krassas,_g.e.,_bartalena,_l.,_prummel,_m.,_stahl,_m.,_et_al._(2011)._selenium_and_the_course_of_mild_graves’_orbitopathy._the_new_england_journal_of_medicine,_364,_1920­31._[online]_http definition">marcocci, c., kahaly, g.j., krassas, g.e., bartalena, l., prummel, m., stahl, m., et al. (2011). selenium and the course of mild graves’ orbitopathy. the new england journal of medicine, 364, 1920­31. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Marijon%2C+E.%2C+et+al.+2007-NL" title="marijon,_e.,_et_al._2007 definition">marijon, e., et al. 2007</a></li>  
+            <li><a href="//www.nejm.org/doi/pdf/10.1056/nejmoa065085_[31.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases marijon%2c+e.%2c+ou%2c+p.%2c+celermajer%2c+d.s.%2c+ferreira%2c+b.%2c+mocumbi%2c+a.o.%2c+jani%2c+d.%2c+et+al.+%282007%29.+prevalence+of+rheumatic+heart+disease+detected+by+echocardiographic+screening.+the+new+england+journal+of+medicine%2c+357%2c+470%c2%ad6.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2fpdf%2f10.1056%2fnejmoa065085+%5b31.07.2013%5d-nl title="marijon,_e.,_ou,_p.,_celermajer,_d.s.,_ferreira,_b.,_mocumbi,_a.o.,_jani,_d.,_et_al._(2007)._prevalence_of_rheumatic_heart_disease_detected_by_echocardiographic_screening._the_new_england_journal_of_medicine,_357,_470­6._[online]_http definition">marijon, e., ou, p., celermajer, d.s., ferreira, b., mocumbi, a.o., jani, d., et al. (2007). prevalence of rheumatic heart disease detected by echocardiographic screening. the new england journal of medicine, 357, 470­6. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Marinkovic%2C+M.%2C+et+al.+2002-NL" title="marinkovic,_m.,_et_al._2002 definition">marinkovic, m., et al. 2002</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/oogklachten-wijzend-op-een-tumor-elders-het-lichaam/volledig_[03.08.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases marinkovic%2c+m.%2c+van+lanschot%2c+j.j.b.%2c+schlingemann%2c+r.o.%2c+de+smet%2c+m.d.+%26+saeed%2c+p.+%282002%29.+oogklachten+wijzend+op+een+tumor+elders+in+het+lichaam.+nederlands+tijdschrift+voor+geneeskunde%2c+146%2c+2393-6.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2foogklachten-wijzend-op-een-tumor-elders-het-lichaam%2fvolledig+%5b03.08.2013%5d-nl title="marinkovic,_m.,_van_lanschot,_j.j.b.,_schlingemann,_r.o.,_de_smet,_m.d._&amp;_saeed,_p._(2002)._oogklachten_wijzend_op_een_tumor_elders_in_het_lichaam._nederlands_tijdschrift_voor_geneeskunde,_146,_2393-6._[online]_http definition">marinkovic, m., van lanschot, j.j.b., schlingemann, r.o., de smet, m.d. &amp; saeed, p. (2002). oogklachten wijzend op een tumor elders in het lichaam. nederlands tijdschrift voor geneeskunde, 146, 2393-6. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Maynard%2C+M.A.%2C+et+al.+2014-NL" title="maynard,_m.a.,_et_al._2014 definition">maynard, m.a., et al. 2014</a></li>  
+            <li><a href="//www.nejm.org/doi/full/10.1056/nejmoa1308893#t=article_[08.05.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases maynard%2c+m.a.%2c+marino-enriquez%2c+a.%2c+fletcher%2c+j.a.%2c+dorfman%2c+d.m.%2c+raut%2c+c.p.%2c+yassa%2c+l.%2c+et+al.+%282014%29.+thyroid+hormone+inactivation+in+gastrointestinal+stromal+tumors.+the+new+england+journal+of+medicine%2c+370%2c+1327-1334.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2ffull%2f10.1056%2fnejmoa1308893%23t%3darticle+%5b08.05.2014%5d-nl title="maynard,_m.a.,_marino-enriquez,_a.,_fletcher,_j.a.,_dorfman,_d.m.,_raut,_c.p.,_yassa,_l.,_et_al._(2014)._thyroid_hormone_inactivation_in_gastrointestinal_stromal_tumors._the_new_england_journal_of_medicine,_370,_1327-1334._[online]_http definition">maynard, m.a., marino-enriquez, a., fletcher, j.a., dorfman, d.m., raut, c.p., yassa, l., et al. (2014). thyroid hormone inactivation in gastrointestinal stromal tumors. the new england journal of medicine, 370, 1327-1334. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/MDH+E8-NL" title="mdh_e8 definition">mdh e8</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/medisch-woordenboek.nl-NL" title="medisch-woordenboek.nl definition">medisch-woordenboek.nl</a></li>  
+            <li><a href="//www.medisch-woordenboek.nl/_[23.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases medisch-woordenboek.nl.+%282012%29.+%5bonline%5d+http%3a%2f%2fwww.medisch-woordenboek.nl%2f+%5b23.07.2013%5d-nl title="medisch-woordenboek.nl._(2012)._[online]_http definition">medisch-woordenboek.nl. (2012). [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/MedTerms+Dictionary-NL" title="medterms_dictionary definition">medterms dictionary</a></li>  
+            <li><a href="//www.medterms.com/script/main/hp.asp_[23.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases medterms+dictionary.+%282012%29.+%5bonline%5d+http%3a%2f%2fwww.medterms.com%2fscript%2fmain%2fhp.asp+%5b23.07.2013%5d-nl title="medterms_dictionary._(2012)._[online]_http definition">medterms dictionary. (2012). [online] http</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/minderheid-van-oudere-pati%c3%abnten-met-schizofrenie-symptomatische-remissie/volledig_[02.08.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases meesters%2c+p.d.%2c+comijs%2c+h.c.%2c+de+haan%2c+l.%2c+smit%2c+j.h.%2c+eikelenboom%2c+p.%2c+beekman%2c+a.t.f.%2c+et+al.+%282012%29.+minderheid+van+oudere+pati%c3%abnten+met+schizofrenie+in+symptomatische+remissie.+nederlands+tijdschrift+voor+geneeskunde%2c+156%2c+a4701.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fminderheid-van-oudere-pati%25c3%25abnten-met-schizofrenie-symptomatische-remissie%2fvolledig+%5b02.08.2013%5d-nl title="meesters,_p.d.,_comijs,_h.c.,_de_haan,_l.,_smit,_j.h.,_eikelenboom,_p.,_beekman,_a.t.f.,_et_al._(2012)._minderheid_van_oudere_patiënten_met_schizofrenie_in_symptomatische_remissie._nederlands_tijdschrift_voor_geneeskunde,_156,_a4701._[online]_http definition">meesters, p.d., comijs, h.c., de haan, l., smit, j.h., eikelenboom, p., beekman, a.t.f., et al. (2012). minderheid van oudere patiënten met schizofrenie in symptomatische remissie. nederlands tijdschrift voor geneeskunde, 156, a4701. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Meesters%2C+P.D.%2C+et+al.+2012-NL" title="meesters,_p.d.,_et_al._2012 definition">meesters, p.d., et al. 2012</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/tazaroteencregraveme-vermindert-rimpels-zon-beschadigde-huid/volledig_[29.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases mekkes%2c+j.r.+%282002%29.+tazaroteencr%c3%a8me+vermindert+rimpels+in+zon-beschadigde+huid.+nederlands+tijdschrift+voor+geneeskdunde%2c+146%2c+642.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2ftazaroteencregraveme-vermindert-rimpels-zon-beschadigde-huid%2fvolledig+%5b29.07.2013%5d-nl title="mekkes,_j.r._(2002)._tazaroteencrème_vermindert_rimpels_in_zon-beschadigde_huid._nederlands_tijdschrift_voor_geneeskdunde,_146,_642._[online]_http definition">mekkes, j.r. (2002). tazaroteencrème vermindert rimpels in zon-beschadigde huid. nederlands tijdschrift voor geneeskdunde, 146, 642. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Mekkes%2C+J.R.+2002-NL" title="mekkes,_j.r._2002 definition">mekkes, j.r. 2002</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Mentz%2C+R.J.%2C+et+al.+2013-NL" title="mentz,_r.j.,_et_al._2013 definition">mentz, r.j., et al. 2013</a></li>  
+            <li><a href="_findings_from_ascend-hf._european_journal_of_heart_failure,_15(4),_456–464._[online]_http://www.ncbi.nlm.nih.gov/pmc/articles/pmc3605752/_[16.05.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases mentz%2c+r.j.%2c+hernandez%2c+a.f.%2c%c2%a0stebbins%2c+a.%2c%c2%a0ezekowitz%2c+j.a.%2c+felker%2c+g.m.%2c+heizer%2c+g.m.%2c+et+al.+%282013%29.+predictors+of+early+dyspnoea+relief+in+acute+heart+failure+and+the+association+with+30-day+outcomes%3a+findings+from+ascend-hf.+european+journal+of+heart+failure%2c+15%284%29%2c+456%e2%80%93464.+%5bonline%5d+http%3a%2f%2fwww.ncbi.nlm.nih.gov%2fpmc%2farticles%2fpmc3605752%2f+%5b16.05.2014%5d-nl title="mentz,_r.j.,_hernandez,_a.f.,&nbsp;stebbins,_a.,&nbsp;ezekowitz,_j.a.,_felker,_g.m.,_heizer,_g.m.,_et_al._(2013)._predictors_of_early_dyspnoea_relief_in_acute_heart_failure_and_the_association_with_30-day_outcomes definition">mentz, r.j., hernandez, a.f.,&nbsp;stebbins, a.,&nbsp;ezekowitz, j.a., felker, g.m., heizer, g.m., et al. (2013). predictors of early dyspnoea relief in acute heart failure and the association with 30-day outcomes</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Merck+Manual-NL" title="merck_manual definition">merck manual</a></li>  
+            <li><a href="//www.merckmanuals.com/professional/index.html_[2013/07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases merck+manual.+%282013%29.+%5bonline%5d+http%3a%2f%2fwww.merckmanuals.com%2fprofessional%2findex.html+%5b2013%2f07.2013%5d-nl title="merck_manual._(2013)._[online]_http definition">merck manual. (2013). [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Merideth%2C+M.A.%2C+et+al.+2008-NL" title="merideth,_m.a.,_et_al._2008 definition">merideth, m.a., et al. 2008</a></li>  
+            <li><a href="//www.nejm.org/doi/pdf/10.1056/nejmoa0706898_[17.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases merideth%2c+m.a.%2c+gordon%2cl.b.%2c+clauss%2c+s.%2c+sachdev%2c+v.%2c+smith%2c+a.c.m.%2c+perry%2c+m.b.%2c+et+al.+%282008%29.+phenotype+and+course+of+hutchinson%e2%80%93gilford+progeria+syndrome.+the+new+england+journal+of+medicine%2c+358%286%29%2c+599.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2fpdf%2f10.1056%2fnejmoa0706898+%5b17.07.2013%5d-nl title="merideth,_m.a.,_gordon,l.b.,_clauss,_s.,_sachdev,_v.,_smith,_a.c.m.,_perry,_m.b.,_et_al._(2008)._phenotype_and_course_of_hutchinson–gilford_progeria_syndrome._the_new_england_journal_of_medicine,_358(6),_599._[online]_http definition">merideth, m.a., gordon,l.b., clauss, s., sachdev, v., smith, a.c.m., perry, m.b., et al. (2008). phenotype and course of hutchinson–gilford progeria syndrome. the new england journal of medicine, 358(6), 599. [online] http</a></li>  
+            <li><a href="_niet_altijd_de_parotis!._nederlands_tijdschrift_voor_geneeskunde,_139,_481-4._[online]_http://www.ntvg.nl/publicatie/een-preauriculaire-zwelling-niet-altijd-de-parotis/volledig_[17.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases merkx%2c+m.a.w.+%26+bruaset%2c+i.+%281995%29.+een+preauriculaire+zwelling%3a+niet+altijd+de+parotis%21.+nederlands+tijdschrift+voor+geneeskunde%2c+139%2c+481-4.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2feen-preauriculaire-zwelling-niet-altijd-de-parotis%2fvolledig+%5b17.07.2013%5d-nl title="merkx,_m.a.w._&amp;_bruaset,_i._(1995)._een_preauriculaire_zwelling definition">merkx, m.a.w. &amp; bruaset, i. (1995). een preauriculaire zwelling</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Merkx%2C+M.A.W.+%26+Bruaset%2C+I.+1995-NL" title="merkx,_m.a.w._&amp;_bruaset,_i._1995 definition">merkx, m.a.w. &amp; bruaset, i. 1995</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Merriam-Webster-NL" title="merriam-webster definition">merriam-webster</a></li>  
+            <li><a href="//www.merriam-webster.com/_[23.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases merriam-webster.+%282014%29.+%5bonline%5d+http%3a%2f%2fwww.merriam-webster.com%2f+%5b23.07.2013%5d-nl title="merriam-webster._(2014)._[online]_http definition">merriam-webster. (2014). [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/MeSH+Browser-NL" title="mesh_browser definition">mesh browser</a></li>  
+            <li><a href="//www.nlm.nih.gov/mesh/mbrowser.html_[23.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases mesh+browser.+%282014%29.+%5bonline%5d+http%3a%2f%2fwww.nlm.nih.gov%2fmesh%2fmbrowser.html+%5b23.07.2013%5d-nl title="mesh_browser._(2014)._[online]_http definition">mesh browser. (2014). [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Metra%2C+M.%2C+et+al.+2010-NL" title="metra,_m.,_et_al._2010 definition">metra, m., et al. 2010</a></li>  
+            <li><a href="_results_from_the_pre-relax-ahf_study._european_journal_of_heart_failure,_12(10),_1130–1139._[online]_http://www.ncbi.nlm.nih.gov/pmc/articles/pmc2944016/_[16.05.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases metra%2c+m.%2c+teerlink%2c+j.r.%2c%c2%a0felker%2c+g.m.%2c+greenberg%2c+b.h.%2c+filippatos%2c+g.%2c+ponikowski%2c+p.%2c+et+al.+%282010%29.+dyspnoea+and+worsening+heart+failure+in+patients+with+acute+heart+failure%3a+results+from+the+pre-relax-ahf+study.+european+journal+of+heart+failure%2c+12%2810%29%2c+1130%e2%80%931139.+%5bonline%5d+http%3a%2f%2fwww.ncbi.nlm.nih.gov%2fpmc%2farticles%2fpmc2944016%2f+%5b16.05.2014%5d-nl title="metra,_m.,_teerlink,_j.r.,&nbsp;felker,_g.m.,_greenberg,_b.h.,_filippatos,_g.,_ponikowski,_p.,_et_al._(2010)._dyspnoea_and_worsening_heart_failure_in_patients_with_acute_heart_failure definition">metra, m., teerlink, j.r.,&nbsp;felker, g.m., greenberg, b.h., filippatos, g., ponikowski, p., et al. (2010). dyspnoea and worsening heart failure in patients with acute heart failure</a></li>  
+            <li><a href="_van_hersenschudding_tot_dementia._nederlands_tijdschrift_voor_geneeskunde,_155,_c808._[online]_http://www.ntvg.nl/publicatie/boksen-van-hersenschudding-tot-dementie_[06.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases mevius%2c+l.+%282011%29.+boksen%3a+van+hersenschudding+tot+dementia.+nederlands+tijdschrift+voor+geneeskunde%2c+155%2c+c808.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fboksen-van-hersenschudding-tot-dementie+%5b06.07.2013%5d-nl title="mevius,_l._(2011)._boksen definition">mevius, l. (2011). boksen</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/vallen-door-ssri%e2%80%99s-verpleeghuis/volledig_[18.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases mevius%2c+l.+%282012%29.+vallen+door+ssri%e2%80%99s+in+verpleeghuis.+nederlands+tijdschrift+voor+geneeskunde%2c+156%2c+c1229.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fvallen-door-ssri%25e2%2580%2599s-verpleeghuis%2fvolledig+%5b18.07.2013%5d-nl title="mevius,_l._(2012)._vallen_door_ssri’s_in_verpleeghuis._nederlands_tijdschrift_voor_geneeskunde,_156,_c1229._[online]_http definition">mevius, l. (2012). vallen door ssri’s in verpleeghuis. nederlands tijdschrift voor geneeskunde, 156, c1229. [online] http</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/veel-overlevenden-non-hodgkinlymfoom-zijn-vermoeid/volledig_[19.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases mevius%2c+l.+%282012%29.+veel+overlevenden+non-hodgkinlymfoom+zijn+vermoeid.+nederlands+tijdschrift+voor+geneeskunde%2c+156%2c+c1479.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fveel-overlevenden-non-hodgkinlymfoom-zijn-vermoeid%2fvolledig+%5b19.07.2013%5d-nl title="mevius,_l._(2012)._veel_overlevenden_non-hodgkinlymfoom_zijn_vermoeid._nederlands_tijdschrift_voor_geneeskunde,_156,_c1479._[online]_http definition">mevius, l. (2012). veel overlevenden non-hodgkinlymfoom zijn vermoeid. nederlands tijdschrift voor geneeskunde, 156, c1479. [online] http</a></li>  
+            <li><a href="_overleving_beperkt,_veel_comorbiditeit._nederlands_tijdschrift_voor_geneeskunde,_158,_c2114._[online]_http://www.ntvg.nl/publicatie/40-jaar-na-mustard-hartoperatie-overleving-beperkt-veel-comorbiditeit/volledig_[25.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases mevius%2c+l.+%282014%29.+40+jaar+na+mustard-hartoperatie%3a+overleving+beperkt%2c+veel+comorbiditeit.+nederlands+tijdschrift+voor+geneeskunde%2c+158%2c+c2114.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2f40-jaar-na-mustard-hartoperatie-overleving-beperkt-veel-comorbiditeit%2fvolledig+%5b25.04.2014%5d-nl title="mevius,_l._(2014)._40_jaar_na_mustard-hartoperatie definition">mevius, l. (2014). 40 jaar na mustard-hartoperatie</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Mevius%2C+L.+2011-NL" title="mevius,_l._2011 definition">mevius, l. 2011</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Mevius%2C+L.+2012-1-NL" title="mevius,_l._2012-1 definition">mevius, l. 2012-1</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Mevius%2C+L.+2012-2-NL" title="mevius,_l._2012-2 definition">mevius, l. 2012-2</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Mevius%2C+L.+2014-NL" title="mevius,_l._2014 definition">mevius, l. 2014</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/diagnose-beeld-213-een-zwangere-met-premature-contracties-en-vaginaal-bloedverlies/volledig_[29.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases michiels%2c+i.+%26+roumen%2c+f.j.m.e.+%282004%29.+diagnose+in+beeld+%28213%29.+een+zwangere+met+premature+contracties+en+vaginaal+bloedverlies.+nederlands+tijdschrift+voor+geneeskunde%2c+148%2c+2174.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fdiagnose-beeld-213-een-zwangere-met-premature-contracties-en-vaginaal-bloedverlies%2fvolledig+%5b29.07.2013%5d-nl title="michiels,_i._&amp;_roumen,_f.j.m.e._(2004)._diagnose_in_beeld_(213)._een_zwangere_met_premature_contracties_en_vaginaal_bloedverlies._nederlands_tijdschrift_voor_geneeskunde,_148,_2174._[online]_http definition">michiels, i. &amp; roumen, f.j.m.e. (2004). diagnose in beeld (213). een zwangere met premature contracties en vaginaal bloedverlies. nederlands tijdschrift voor geneeskunde, 148, 2174. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Michiels%2C+I.+%26+Roumen%2C+F.J.M.E.+2004-NL" title="michiels,_i._&amp;_roumen,_f.j.m.e._2004 definition">michiels, i. &amp; roumen, f.j.m.e. 2004</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/mijnwoordenboek+EN-NL" title="mijnwoordenboek_en definition">mijnwoordenboek en</a></li>  
+            <li><a href="//www.mijnwoordenboek.nl/_[23.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases mijnwoordenboek+en.+%282014%29.+%5bonline%5d+http%3a%2f%2fwww.mijnwoordenboek.nl%2f+%5b23.07.2013%5d-nl title="mijnwoordenboek_en._(2014)._[online]_http definition">mijnwoordenboek en. (2014). [online] http</a></li>  
+            <li><a href="//www.tno.nl/downloads/raa_in_nederland_97_07_09.112.pdf_[08.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases mohangoo%2c+a.d.+%26+buitendijk%2c+s.e.+%282009%29.+aangeboren+afwijkingen+in+nederland+1997-2007.%c2%a0gebaseerd+op+de+landelijke+verloskunde+en+neonatologie+registraties+leiden.+%28tno+kwaliteit+van+leven%29.+%5bonline%5d+http%3a%2f%2fwww.tno.nl%2fdownloads%2fraa_in_nederland_97_07_09.112.pdf+%5b08.07.2013%5d-nl title="mohangoo,_a.d._&amp;_buitendijk,_s.e._(2009)._aangeboren_afwijkingen_in_nederland_1997-2007.&nbsp;gebaseerd_op_de_landelijke_verloskunde_en_neonatologie_registraties_leiden._(tno_kwaliteit_van_leven)._[online]_http definition">mohangoo, a.d. &amp; buitendijk, s.e. (2009). aangeboren afwijkingen in nederland 1997-2007.&nbsp;gebaseerd op de landelijke verloskunde en neonatologie registraties leiden. (tno kwaliteit van leven). [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Mohangoo%2C+A.D.+%26+Buitendijk%2C+S.E.+2009-NL" title="mohangoo,_a.d._&amp;_buitendijk,_s.e._2009 definition">mohangoo, a.d. &amp; buitendijk, s.e. 2009</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Mol%2C+P.G.M.%2C+et+al.+2013-NL" title="mol,_p.g.m.,_et_al._2013 definition">mol, p.g.m., et al. 2013</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/vermijdbare-en-niet-vermijdbare-medicatiegerelateerde-schade-het-ziekenhuis/volledig_[19.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases mol%2c+p.g.m.%2c+van+den+bemt%2c+p.m.l.a.%2c+dequito%2c+a.b.%2c+van+doormaal%2c+j.e.%2c+zaal%2c+r.j.%2c+haaijer-ruskamp%2c+f.m.%2c+et+al.+%282013%29.+vermijdbare+en+niet-vermijdbare+medicatiegerelateerde+schade+in+het+ziekenhuis.+nederlands+tijdschrift+voor+geneeskunde%2c157%2c+a5051.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fvermijdbare-en-niet-vermijdbare-medicatiegerelateerde-schade-het-ziekenhuis%2fvolledig+%5b19.07.2013%5d-nl title="mol,_p.g.m.,_van_den_bemt,_p.m.l.a.,_dequito,_a.b.,_van_doormaal,_j.e.,_zaal,_r.j.,_haaijer-ruskamp,_f.m.,_et_al._(2013)._vermijdbare_en_niet-vermijdbare_medicatiegerelateerde_schade_in_het_ziekenhuis._nederlands_tijdschrift_voor_geneeskunde,157,_a5051._[online]_http definition">mol, p.g.m., van den bemt, p.m.l.a., dequito, a.b., van doormaal, j.e., zaal, r.j., haaijer-ruskamp, f.m., et al. (2013). vermijdbare en niet-vermijdbare medicatiegerelateerde schade in het ziekenhuis. nederlands tijdschrift voor geneeskunde,157, a5051. [online] http</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/een-vrouw-met-een-vulvaire-zwelling-een-zeldzame-uiting-van-het-klippel-trenaunay-weber-s/volledig_[29.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases molkenboer%2c+j.f.m.+%26+hermans%2c+r.h.m.+%282005%29.+een+vrouw+met+een+vulvaire+zwelling%2c+een+zeldzame+uiting+van+het+klippel-trenaunay-weber-syndroom.+nederlands+tijdschrift+voor+geneeskunde%2c+149%2c+2287-9.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2feen-vrouw-met-een-vulvaire-zwelling-een-zeldzame-uiting-van-het-klippel-trenaunay-weber-s%2fvolledig+%5b29.07.2013%5d-nl title="molkenboer,_j.f.m._&amp;_hermans,_r.h.m._(2005)._een_vrouw_met_een_vulvaire_zwelling,_een_zeldzame_uiting_van_het_klippel-trenaunay-weber-syndroom._nederlands_tijdschrift_voor_geneeskunde,_149,_2287-9._[online]_http definition">molkenboer, j.f.m. &amp; hermans, r.h.m. (2005). een vrouw met een vulvaire zwelling, een zeldzame uiting van het klippel-trenaunay-weber-syndroom. nederlands tijdschrift voor geneeskunde, 149, 2287-9. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Molkenboer%2C+J.F.M.+%26+Hermans%2C+R.H.M.+2005-NL" title="molkenboer,_j.f.m._&amp;_hermans,_r.h.m._2005 definition">molkenboer, j.f.m. &amp; hermans, r.h.m. 2005</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/de-standaard-kinderen-met-koorts-tweede-herziening-van-het-nederlands-huisartsen-genoots-0/volledig_[27.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases moll%2c+h.a.+%26+van+der+heijden%2c+a.j.+%282008%29.+de+standaard+%27kinderen+met+koorts%27+%28tweede+herziening%29+van+het+nederlands+huisartsen+genootschap%3b+reactie+vanuit+de+kindergeneeskunde.+nederlands+tijdschrift+voor+geneeskunde%2c+152%2c+2766-7.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fde-standaard-kinderen-met-koorts-tweede-herziening-van-het-nederlands-huisartsen-genoots-0%2fvolledig+%5b27.04.2014%5d-nl title="moll,_h.a._&amp;_van_der_heijden,_a.j._(2008)._de_standaard_'kinderen_met_koorts'_(tweede_herziening)_van_het_nederlands_huisartsen_genootschap;_reactie_vanuit_de_kindergeneeskunde._nederlands_tijdschrift_voor_geneeskunde,_152,_2766-7._[online]_http definition">moll, h.a. &amp; van der heijden, a.j. (2008). de standaard 'kinderen met koorts' (tweede herziening) van het nederlands huisartsen genootschap; reactie vanuit de kindergeneeskunde. nederlands tijdschrift voor geneeskunde, 152, 2766-7. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Moll%2C+H.A.+%26+van+der+Heijden%2C+A.J.+2008-NL" title="moll,_h.a._&amp;_van_der_heijden,_a.j._2008 definition">moll, h.a. &amp; van der heijden, a.j. 2008</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/onderzoek-bij-pati%c3%abnten-met-een-acute-buik/volledig_[15.05.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases moll+van+charante%2c+e.p.+%26+de+jongh%2c+t.o.h.+%282011%29.+onderzoek+bij+pati%c3%abnten+met+een+acute+buik.+nederlands+tijdschrift+voor+geneeskunde%2c+155%2c+a2658.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fonderzoek-bij-pati%25c3%25abnten-met-een-acute-buik%2fvolledig+%5b15.05.2014%5d-nl title="moll_van_charante,_e.p._&amp;_de_jongh,_t.o.h._(2011)._onderzoek_bij_patiënten_met_een_acute_buik._nederlands_tijdschrift_voor_geneeskunde,_155,_a2658._[online]_http definition">moll van charante, e.p. &amp; de jongh, t.o.h. (2011). onderzoek bij patiënten met een acute buik. nederlands tijdschrift voor geneeskunde, 155, a2658. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Moll+van+Charante%2C+E.P.+%26+de+Jongh%2C+T.O.H.+2011-NL" title="moll_van_charante,_e.p._&amp;_de_jongh,_t.o.h._2011 definition">moll van charante, e.p. &amp; de jongh, t.o.h. 2011</a></li>  
+            <li><a href="_elsevier_health_sciences._[online]_http://books.google.be/books?id=aw0zkzl0jgqc&amp;pg=pa121&amp;lpg=pa121&amp;dq=apex+%22the+top,+the+end%22&amp;source=bl&amp;ots=cczrh7ctos&amp;sig=rhbqxmrudeeoosu23jrxqbkuph0&amp;hl=nl&amp;sa=x&amp;ei=pl3vubtsionfpb_zgzgm&amp;ved=0cfoq6aewbg#v=onepage&amp;q=apex%20%22the%20top%2c%20the%20end%22&amp;f=false_[04.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases mosby.+%282013%29.+mosby%e2%80%99s+medical+dictionary.+st.+louis%2c+missouri%3a+elsevier+health+sciences.+%5bonline%5d+http%3a%2f%2fbooks.google.be%2fbooks%3fid%3daw0zkzl0jgqc%26pg%3dpa121%26lpg%3dpa121%26dq%3dapex%2b%2522the%2btop%2c%2bthe%2bend%2522%26source%3dbl%26ots%3dcczrh7ctos%26sig%3drhbqxmrudeeoosu23jrxqbkuph0%26hl%3dnl%26sa%3dx%26ei%3dpl3vubtsionfpb_zgzgm%26ved%3d0cfoq6aewbg%23v%3donepage%26q%3dapex%2520%2522the%2520top%252c%2520the%2520end%2522%26f%3dfalse+%5b04.07.2013%5d-nl title="mosby._(2013)._mosby’s_medical_dictionary._st._louis,_missouri definition">mosby. (2013). mosby’s medical dictionary. st. louis, missouri</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Mosby%E2%80%99s+Medical+Dictionary+2013-NL" title="mosby’s_medical_dictionary_2013 definition">mosby’s medical dictionary 2013</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Moss%2C+A.J.%2C+et+al.+2012-NL" title="moss,_a.j.,_et_al._2012 definition">moss, a.j., et al. 2012</a></li>  
+            <li><a href="//www.nejm.org/doi/full/10.1056/nejmoa1211107#t=article_[25.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases moss%2c+a.j.%2c+schuger%2c+c.%2c+beck%2c+c.a.%2c+brown%2c+m.w.%2c+cannom%2c+d.s.%2c+daubert%2c+j.p.%2c+et+al.+%282012%29.+reduction+in+inappropriate+therapy+and+mortality+through+icd+programming.+the+new+england+journal+of+medicine%2c+367%2c+2275-2283.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2ffull%2f10.1056%2fnejmoa1211107%23t%3darticle+%5b25.04.2014%5d-nl title="moss,_a.j.,_schuger,_c.,_beck,_c.a.,_brown,_m.w.,_cannom,_d.s.,_daubert,_j.p.,_et_al._(2012)._reduction_in_inappropriate_therapy_and_mortality_through_icd_programming._the_new_england_journal_of_medicine,_367,_2275-2283._[online]_http definition">moss, a.j., schuger, c., beck, c.a., brown, m.w., cannom, d.s., daubert, j.p., et al. (2012). reduction in inappropriate therapy and mortality through icd programming. the new england journal of medicine, 367, 2275-2283. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Moussian%2C+B.%2C+et+al.+2007-NL" title="moussian,_b.,_et_al._2007 definition">moussian, b., et al. 2007</a></li>  
+            <li><a href="//www.sciencedirect.com_[01.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases moussian%2c+b.%2c+veerkamp%2c+j.%2c+m%c3%bcller%2c+u.+%26+schwarz%2c+h.+%282007%29.+assembly+of+the+drosophila+larval+exoskeleton+requires+controlled+secretion+and+shaping+of+the+apical+plasma+membrane.+matrix+biology%2c+26%285%29%2c+337-347.+%5bonline%5d+http%3a%2f%2fwww.sciencedirect.com+%5b01.07.2013%5d-nl title="moussian,_b.,_veerkamp,_j.,_müller,_u._&amp;_schwarz,_h._(2007)._assembly_of_the_drosophila_larval_exoskeleton_requires_controlled_secretion_and_shaping_of_the_apical_plasma_membrane._matrix_biology,_26(5),_337-347._[online]_http definition">moussian, b., veerkamp, j., müller, u. &amp; schwarz, h. (2007). assembly of the drosophila larval exoskeleton requires controlled secretion and shaping of the apical plasma membrane. matrix biology, 26(5), 337-347. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/mucopurulent-NL" title="mucopurulent definition">mucopurulent</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Mueller%2C+C.%2C+et+al.+2004-NL" title="mueller,_c.,_et_al._2004 definition">mueller, c., et al. 2004</a></li>  
+            <li><a href="//www.nejm.org/doi/full/10.1056/nejmoa031681#t=article_[19.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases mueller%2c+c.%2c+scholer%2c+a.%2c+laule-kilian%2c+k.%2c+martina%2c+b.%2c+schindler%2c+c.%2c+buser%2c+p.%2c+et+al.+%282004%29.+use+of+b-type+natriuretic+peptide+in+the+evaluation+and+management+of+acute+dyspnea.+the+new+england+journal+of+medicine%2c+350%2c+647-654.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2ffull%2f10.1056%2fnejmoa031681%23t%3darticle+%5b19.07.2013%5d-nl title="mueller,_c.,_scholer,_a.,_laule-kilian,_k.,_martina,_b.,_schindler,_c.,_buser,_p.,_et_al._(2004)._use_of_b-type_natriuretic_peptide_in_the_evaluation_and_management_of_acute_dyspnea._the_new_england_journal_of_medicine,_350,_647-654._[online]_http definition">mueller, c., scholer, a., laule-kilian, k., martina, b., schindler, c., buser, p., et al. (2004). use of b-type natriuretic peptide in the evaluation and management of acute dyspnea. the new england journal of medicine, 350, 647-654. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Nadelman%2C+R.B.%2C+et+al.+2012-NL" title="nadelman,_r.b.,_et_al._2012 definition">nadelman, r.b., et al. 2012</a></li>  
+            <li><a href="//www.nejm.org/doi/pdf/10.1056/nejmoa1114362_[25.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases nadelman%2c+r.b.%2c+hanincov%c3%a1%2c+k.%2c+mukherjee%2c+p.%2c+liveris%2c+d.%2c+nowakowski%2c+j.%2c+mckenna%2c+d.%2c+et+al.+%282012%29.+differentiation+of+reinfection+from+relapse+in+recurrent+lyme+disease.+the+new+england+journal+of+medicine%2c+367%2c+1883-90.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2fpdf%2f10.1056%2fnejmoa1114362+%5b25.07.2013%5d-nl title="nadelman,_r.b.,_hanincová,_k.,_mukherjee,_p.,_liveris,_d.,_nowakowski,_j.,_mckenna,_d.,_et_al._(2012)._differentiation_of_reinfection_from_relapse_in_recurrent_lyme_disease._the_new_england_journal_of_medicine,_367,_1883-90._[online]_http definition">nadelman, r.b., hanincová, k., mukherjee, p., liveris, d., nowakowski, j., mckenna, d., et al. (2012). differentiation of reinfection from relapse in recurrent lyme disease. the new england journal of medicine, 367, 1883-90. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Nederlands-woordenboek-NL" title="nederlands-woordenboek definition">nederlands-woordenboek</a></li>  
+            <li><a href="//www.nederlands-woordenboek.com/_[23.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases nederlands-woordenboek.+%28s.d.%29.+%5bonline%5d+http%3a%2f%2fwww.nederlands-woordenboek.com%2f+%5b23.07.2013%5d-nl title="nederlands-woordenboek._(s.d.)._[online]_http definition">nederlands-woordenboek. (s.d.). [online] http</a></li>  
+            <li><a href="//www.ntvg.nl/_[06.05.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases nederlands+tijdschrift+voor+geneeskunde.+%28s.d.%29.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2f+%5b06.05.2014%5d-nl title="nederlands_tijdschrift_voor_geneeskunde._(s.d.)._[online]_http definition">nederlands tijdschrift voor geneeskunde. (s.d.). [online] http</a></li>  
+            <li><a href="_wjg,_18(27),_3565–3570._[online]_http://www.ncbi.nlm.nih.gov/pmc/articles/pmc3400858/_[18.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases nishiwaki%2c+s.%2c+araki%2c+h.%2c+hayashi%2c+m.%2c+takada%2c+j.+iwashita%2c+m.%2c+tagami%2c+a.%2c+et+al.+%282012%29.+inhibitory+effects+of+carbon+dioxide+insufflation+on+pneumoperitoneum+and+bowel+distension+after+percutaneous+endoscopic+gastrostomy.+world+journal+of+gastroenterol%3a+wjg%2c+18%2827%29%2c+3565%e2%80%933570.+%5bonline%5d+http%3a%2f%2fwww.ncbi.nlm.nih.gov%2fpmc%2farticles%2fpmc3400858%2f+%5b18.07.2013%5d-nl title="nishiwaki,_s.,_araki,_h.,_hayashi,_m.,_takada,_j._iwashita,_m.,_tagami,_a.,_et_al._(2012)._inhibitory_effects_of_carbon_dioxide_insufflation_on_pneumoperitoneum_and_bowel_distension_after_percutaneous_endoscopic_gastrostomy._world_journal_of_gastroenterol definition">nishiwaki, s., araki, h., hayashi, m., takada, j. iwashita, m., tagami, a., et al. (2012). inhibitory effects of carbon dioxide insufflation on pneumoperitoneum and bowel distension after percutaneous endoscopic gastrostomy. world journal of gastroenterol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Nishiwaki%2C+S.%2C+et+al.+2012-NL" title="nishiwaki,_s.,_et_al._2012 definition">nishiwaki, s., et al. 2012</a></li>  
+            <li><a href="//www.nejm.org/doi/full/10.1056/nejmoa0810489#t=article_[24.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases noordam%2c+c.%2c+dhir%2c+v.%2c+mcnelis%2c+j.c.%2c+schlereth%2c+f.%2c+hanley%2c+n.a.%2c+krone%2c+n.%2c+et+al.+%282009%29.+inactivating+papss2+mutations+in+a+patient+with+premature+pubarche.+the+new+england+journal+of+medicine%2c+360%2c+2310-2318.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2ffull%2f10.1056%2fnejmoa0810489%23t%3darticle+%5b24.04.2014%5d-nl title="noordam,_c.,_dhir,_v.,_mcnelis,_j.c.,_schlereth,_f.,_hanley,_n.a.,_krone,_n.,_et_al._(2009)._inactivating_papss2_mutations_in_a_patient_with_premature_pubarche._the_new_england_journal_of_medicine,_360,_2310-2318._[online]_http definition">noordam, c., dhir, v., mcnelis, j.c., schlereth, f., hanley, n.a., krone, n., et al. (2009). inactivating papss2 mutations in a patient with premature pubarche. the new england journal of medicine, 360, 2310-2318. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Noordam%2C+C.%2C+et+al.+2009-NL" title="noordam,_c.,_et_al._2009 definition">noordam, c., et al. 2009</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/39handlezen39-als-diagnosticum/volledig_[07.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases noordegraaf%2c+a.%2c+boonstra%2c+a.b.+%26+postmus%2c+p.e.+%282004%29.+%27handlezen%27+als+diagnosticum.+nederlands+tijdschrift+voor+geneeskunde%2c+148%2c+53-6.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2f39handlezen39-als-diagnosticum%2fvolledig+%5b07.07.2013%5d-nl title="noordegraaf,_a.,_boonstra,_a.b._&amp;_postmus,_p.e._(2004)._'handlezen'_als_diagnosticum._nederlands_tijdschrift_voor_geneeskunde,_148,_53-6._[online]_http definition">noordegraaf, a., boonstra, a.b. &amp; postmus, p.e. (2004). 'handlezen' als diagnosticum. nederlands tijdschrift voor geneeskunde, 148, 53-6. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Noordegraaf%2C+A.%2C+et+al.+2004-NL" title="noordegraaf,_a.,_et_al._2004 definition">noordegraaf, a., et al. 2004</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/NTvG-NL" title="ntvg definition">ntvg</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/klinisch-denken-en-beslissen-de-praktijk-een-pasgeborene-met-dyspnoe/volledig_[27.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases nusmeier%2c+a.%2c+de+jongste%2c+j.c.%2c+bos%2c+a.p.%2c+lam%2c+j.+%26+hoekstra%2c+m.o.+%282003%29.+klinisch+denken+en+beslissen+in+de+praktijk.+een+pasgeborene+met+dyspnoe.+nederlands+tijdschrift+voor+geneeskunde%2c+147%2c+1501-6.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fklinisch-denken-en-beslissen-de-praktijk-een-pasgeborene-met-dyspnoe%2fvolledig+%5b27.04.2014%5d-nl title="nusmeier,_a.,_de_jongste,_j.c.,_bos,_a.p.,_lam,_j._&amp;_hoekstra,_m.o._(2003)._klinisch_denken_en_beslissen_in_de_praktijk._een_pasgeborene_met_dyspnoe._nederlands_tijdschrift_voor_geneeskunde,_147,_1501-6._[online]_http definition">nusmeier, a., de jongste, j.c., bos, a.p., lam, j. &amp; hoekstra, m.o. (2003). klinisch denken en beslissen in de praktijk. een pasgeborene met dyspnoe. nederlands tijdschrift voor geneeskunde, 147, 1501-6. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Nusmeier%2C+A.%2C+et+al.+2003-NL" title="nusmeier,_a.,_et_al._2003 definition">nusmeier, a., et al. 2003</a></li>  
+            <li><a href="//www.ncbi.nlm.nih.gov/pmc/articles/pmc3198227/_[26.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases n%c3%bctzenadel%2c+w.+%282011%29.+failure+to+thrive+in+childhood.+deutsches+%c3%84rzteblatt+international%2c+108%2838%29%2c+643-649.+%5bonline%5d+http%3a%2f%2fwww.ncbi.nlm.nih.gov%2fpmc%2farticles%2fpmc3198227%2f+%5b26.07.2013%5d-nl title="nützenadel,_w._(2011)._failure_to_thrive_in_childhood._deutsches_ärzteblatt_international,_108(38),_643-649._[online]_http definition">nützenadel, w. (2011). failure to thrive in childhood. deutsches ärzteblatt international, 108(38), 643-649. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/N%C3%BCtzenadel%2C+W.+2011-NL" title="nützenadel,_w._2011 definition">nützenadel, w. 2011</a></li> 
+           </ul> 
+          </div> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner_down"> 
+             <li class="activepageLower"> </li> 
+            </ul> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <div id="ox-footer" class=""> 
+    <div class="responsive_row flush-below top"> 
+     <div class="responsive_container responsive_display_on_smartphone"> 
+      <div class="menu_button"></div> 
+     </div> 
+     <div class="nav responsive_container main_nav"> 
+      <ul class="menu"> 
+       <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+       <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+      </ul> 
+     </div> 
+    </div>          
+   </div>
+  </div>
+ </body>
+</html>

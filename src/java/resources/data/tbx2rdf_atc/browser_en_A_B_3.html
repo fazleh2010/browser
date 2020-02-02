@@ -1,0 +1,305 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"> 
+  <meta name="_csrf_header" content="X-CSRF-TOKEN"> 
+  <!--this location is for testing in local machine--> 
+  <link href="/css/interface.css" rel="stylesheet" type="text/css"> 
+  <link href="/css/oxford.css" rel="stylesheet" type="text/css"> 
+  <link href="/css/responsive.css" rel="stylesheet" type="text/css"> 
+  <!--this location is for original for production--> 
+  <!--link href="../static/css/interface.css" rel="stylesheet" type="text/css" />
+      <link href="../static/css/oxford.css" rel="stylesheet" type="text/css" />
+      <link href="../static/css/responsive.css" rel="stylesheet" type="text/css" /--> 
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;  
+}
+
+/*the container must be positioned relative:*/
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+      </style> 
+ </head> 
+ <body> 
+  <div id="ox-header" class=""> 
+   <div class="responsive_row flush-below top"> 
+    <div class="responsive_container responsive_display_on_smartphone"> 
+     <div class="menu_button"></div> 
+    </div> 
+    <div class="nav responsive_container main_nav"> 
+     <ul class="menu"> 
+      <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+      <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+     </ul> 
+    </div> 
+   </div> 
+   <div class="responsive_row"> 
+    <div id="ad_leftslot_container" class="ad_leftslot_container responsive_entry_left"> 
+     <div class="ac_leftslot sticky"> 
+      <div id="ad_leftslot_a" class="am-default "> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="responsive_entry_center"> 
+     <div class="responsive_display_on_hd" id="leaderboardHD"> 
+      <div class=""> 
+       <div id="ad_topslot_b" class="am-default "> 
+        <script type="text/javascript">googletag.cmd.push(function () {
+                           googletag.display('ad_topslot_b');
+                           });
+                        </script> 
+       </div> 
+      </div> 
+     </div> 
+     <div id="main_column" class="responsive_row"> 
+      <div class="middle_wrap wordlist-page"> 
+       <div class="responsive_row"> 
+        <h4>Language Selection:</h4> 
+        <div class="langauge selection box"> 
+         <table style="width:60%"> 
+          <tbody> 
+           <tr> 
+            <td><a href="browser_en_A_B_1.html">English</a></td> 
+            <td><a href="browser_nl_1_1.html">Dutch</a></td> 
+           </tr> 
+          </tbody> 
+         </table> 
+        </div> 
+        <h4>Search terms</h4> 
+        <!--Make sure the form has the autocomplete function switched off:--> 
+        <form autocomplete="off" id="form_id"> 
+         <div class="autocomplete" style="width:300px;"> 
+          <input id="myInput" type="text" placeholder="Search.."> 
+         </div> 
+         <input id="submit" type="submit"> 
+        </form> 
+        <script type="text/javascript" src="/css/tbx2rdf_atc_en.js"></script> 
+        <!--div class="mainsearch">
+                           <form id="search-form" method="get" action="browser_hu_10_1.html">
+                              <div class="dictionarySelector">
+                                 <div id="select_div">
+                                    <div>English</div>
+                                 </div>
+                              </div>
+                              <div class="searchfield">
+                                 <input type="text" id="q" name="q"
+                                    class="searchfield_input"/>
+                                 <a id="keyboard_icon" class="oup_icons responsive_hide_on_smartphone responsive_hide_on_tablet"></a>
+                                 <div id="keyboard_letters"></div>
+                              </div>
+                              <div class="inputSuggestions"></div>
+                              <label id="search-btn" class="oup_icons">
+                              <input type="submit" value="" />
+                              </label>
+                           </form>
+                        </div>
+                     </div--> 
+        <div class="side-selector clear_fix"> 
+         <div class="side-selector__left"> 
+          <!-- the topics --> 
+          <div id="entries-selector" class=""> 
+           <ul class="hide_phone"> 
+            <li class="currentpage"> <span>A_B</span> <li><a href="browser_en_C_D_1.html">C_D</a></li>  <li><a href="browser_en_E_F_1.html">E_F</a></li>  <li><a href="browser_en_G_H_1.html">G_H</a></li>  <li><a href="browser_en_I_J_1.html">I_J</a></li>  <li><a href="browser_en_K_L_1.html">K_L</a></li>  <li><a href="browser_en_M_N_1.html">M_N</a></li>  <li><a href="browser_en_O_P_1.html">O_P</a></li>  <li><a href="browser_en_Q_R_1.html">Q_R</a></li>  <li><a href="browser_en_S_T_1.html">S_T</a></li>  <li><a href="browser_en_U_V_1.html">U_V</a></li>  <li><a href="browser_en_W_X_1.html">W_X</a></li>  <li><a href="browser_en_Y_Z_1.html">Y_Z</a></li> </li> 
+           </ul> 
+           <div class="wl-select hide_all display_phone"> 
+           </div> 
+          </div> 
+          <!-- entries-selector --> 
+         </div> 
+         <div class="side-selector__right"> 
+          <!-- the items of the selected topic --> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner"> 
+             <li class="activepageUpper"> </li>  
+             <li><a href="browser_en_A_B_2.html">Previous</a></li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="entrylist1"> 
+           <ul class="result-list1 wordlist-oxford3000 list-plain">  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bcg+vaccine-EN" title="bcg_vaccine definition">bcg vaccine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/beclometasone-EN" title="beclometasone definition">beclometasone</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bedaquiline-EN" title="bedaquiline definition">bedaquiline</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/befunolol-EN" title="befunolol definition">befunolol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/belimumab-EN" title="belimumab definition">belimumab</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/belladonna+total+alkaloids+and+psycholeptics-EN" title="belladonna_total_alkaloids_and_psycholeptics definition">belladonna total alkaloids and psycholeptics</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/benazepril-EN" title="benazepril definition">benazepril</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bendamustine-EN" title="bendamustine definition">bendamustine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/benfotiamine-EN" title="benfotiamine definition">benfotiamine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/benorilate-EN" title="benorilate definition">benorilate</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/benperidol-EN" title="benperidol definition">benperidol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/benzalkonium-EN" title="benzalkonium definition">benzalkonium</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/benzathine+benzylpenicillin-EN" title="benzathine_benzylpenicillin definition">benzathine benzylpenicillin</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/benzathine+phenoxymethylpenicillin-EN" title="benzathine_phenoxymethylpenicillin definition">benzathine phenoxymethylpenicillin</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/benzbromarone-EN" title="benzbromarone definition">benzbromarone</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/benzocaine-EN" title="benzocaine definition">benzocaine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/benzoyl+peroxide-EN" title="benzoyl_peroxide definition">benzoyl peroxide</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/benzoyl+peroxide%2C+combinations-EN" title="benzoyl_peroxide,_combinations definition">benzoyl peroxide, combinations</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/benzylpenicillin-EN" title="benzylpenicillin definition">benzylpenicillin</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bepridil-EN" title="bepridil definition">bepridil</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bergapten-EN" title="bergapten definition">bergapten</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/betahistine-EN" title="betahistine definition">betahistine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/betaine-EN" title="betaine definition">betaine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/betamethasone-EN" title="betamethasone definition">betamethasone</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/betamethasone+and+antibiotics-EN" title="betamethasone_and_antibiotics definition">betamethasone and antibiotics</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/betamethasone+and+antiinfectives-EN" title="betamethasone_and_antiinfectives definition">betamethasone and antiinfectives</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/betamethasone+and+antiseptics-EN" title="betamethasone_and_antiseptics definition">betamethasone and antiseptics</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/betaxolol-EN" title="betaxolol definition">betaxolol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bethanechol-EN" title="bethanechol definition">bethanechol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bevacizumab-EN" title="bevacizumab definition">bevacizumab</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bexarotene-EN" title="bexarotene definition">bexarotene</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bezafibrate-EN" title="bezafibrate definition">bezafibrate</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bezitramide-EN" title="bezitramide definition">bezitramide</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bibenzonium+bromide-EN" title="bibenzonium_bromide definition">bibenzonium bromide</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bibrocathol-EN" title="bibrocathol definition">bibrocathol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bicalutamide-EN" title="bicalutamide definition">bicalutamide</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bifonazole-EN" title="bifonazole definition">bifonazole</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bilastine-EN" title="bilastine definition">bilastine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bimatoprost-EN" title="bimatoprost definition">bimatoprost</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bioallethrin%2C+combinations-EN" title="bioallethrin,_combinations definition">bioallethrin, combinations</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/biperiden-EN" title="biperiden definition">biperiden</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bisacodyl-EN" title="bisacodyl definition">bisacodyl</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bisacodyl%2C+combinations-EN" title="bisacodyl,_combinations definition">bisacodyl, combinations</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bismuth+preparations%2C+combinations-EN" title="bismuth_preparations,_combinations definition">bismuth preparations, combinations</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bismuth+subcitrate-EN" title="bismuth_subcitrate definition">bismuth subcitrate</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bismuth+subcitrate%2C+tetracycline+and+metronidazole-EN" title="bismuth_subcitrate,_tetracycline_and_metronidazole definition">bismuth subcitrate, tetracycline and metronidazole</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bisoprolol-EN" title="bisoprolol definition">bisoprolol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bisoprolol+and+thiazides-EN" title="bisoprolol_and_thiazides definition">bisoprolol and thiazides</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bisoxatin-EN" title="bisoxatin definition">bisoxatin</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bivalirudin-EN" title="bivalirudin definition">bivalirudin</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bleomycin-EN" title="bleomycin definition">bleomycin</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/blinatumomab-EN" title="blinatumomab definition">blinatumomab</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/blister+pack-EN" title="blister_pack definition">blister pack</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/blood+and+lymphatic+system+disorders-EN" title="blood_and_lymphatic_system_disorders definition">blood and lymphatic system disorders</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/blood+brain+barrier-EN" title="blood_brain_barrier definition">blood brain barrier</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/blood+vessel-EN" title="blood_vessel definition">blood vessel</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/blurred+vision-EN" title="blurred_vision definition">blurred vision</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/boceprevir-EN" title="boceprevir definition">boceprevir</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/booster+dose-EN" title="booster_dose definition">booster dose</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bortezomib-EN" title="bortezomib definition">bortezomib</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bosentan-EN" title="bosentan definition">bosentan</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bosutinib-EN" title="bosutinib definition">bosutinib</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/botulinum+toxin-EN" title="botulinum_toxin definition">botulinum toxin</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/brentuximab+vedotin-EN" title="brentuximab_vedotin definition">brentuximab vedotin</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bretylium+tosilate-EN" title="bretylium_tosilate definition">bretylium tosilate</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/brimonidine-EN" title="brimonidine definition">brimonidine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/brinzolamide-EN" title="brinzolamide definition">brinzolamide</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/brivudine-EN" title="brivudine definition">brivudine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bromazepam-EN" title="bromazepam definition">bromazepam</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bromelains-EN" title="bromelains definition">bromelains</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bromhexine-EN" title="bromhexine definition">bromhexine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bromides-EN" title="bromides definition">bromides</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bromocriptine-EN" title="bromocriptine definition">bromocriptine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bromperidol-EN" title="bromperidol definition">bromperidol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/brotizolam-EN" title="brotizolam definition">brotizolam</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bruise-EN" title="bruise definition">bruise</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/buclizine-EN" title="buclizine definition">buclizine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/budesonide-EN" title="budesonide definition">budesonide</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bufexamac-EN" title="bufexamac definition">bufexamac</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/buflomedil-EN" title="buflomedil definition">buflomedil</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bumetanide-EN" title="bumetanide definition">bumetanide</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bupivacaine-EN" title="bupivacaine definition">bupivacaine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bupivacaine%2C+combinations-EN" title="bupivacaine,_combinations definition">bupivacaine, combinations</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/buprenorphine-EN" title="buprenorphine definition">buprenorphine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/buprenorphine%2C+combinations-EN" title="buprenorphine,_combinations definition">buprenorphine, combinations</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/bupropion-EN" title="bupropion definition">bupropion</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/buserelin-EN" title="buserelin definition">buserelin</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/buspirone-EN" title="buspirone definition">buspirone</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/busulfan-EN" title="busulfan definition">busulfan</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/butamirate-EN" title="butamirate definition">butamirate</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/butoconazole-EN" title="butoconazole definition">butoconazole</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/butriptyline-EN" title="butriptyline definition">butriptyline</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/butylscopolamine-EN" title="butylscopolamine definition">butylscopolamine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/butylscopolamine+and+analgesics-EN" title="butylscopolamine_and_analgesics definition">butylscopolamine and analgesics</a></li> 
+           </ul> 
+          </div> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner_down"> 
+             <li class="activepageLower"> </li>  
+             <li><a href="browser_en_A_B_2.html">Previous</a></li> 
+            </ul> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <div id="ox-footer" class=""> 
+    <div class="responsive_row flush-below top"> 
+     <div class="responsive_container responsive_display_on_smartphone"> 
+      <div class="menu_button"></div> 
+     </div> 
+     <div class="nav responsive_container main_nav"> 
+      <ul class="menu"> 
+       <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+       <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+      </ul> 
+     </div> 
+    </div>     
+   </div>
+  </div>
+ </body>
+</html>

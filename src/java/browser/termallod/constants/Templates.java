@@ -14,9 +14,6 @@ import java.io.File;
 public interface Templates {
 
     public static String TEMPLATE_LOCATION = "src/java/browser/termallod/template/";
-    public static String MAIN_PAGE_TEMPLATE_IATE = "iateTemplate.html";
-    public static String MAIN_PAGE_TEMPLATE_GENTERM_EN = "gentermTemplateEn.html";
-    public static String MAIN_PAGE_TEMPLATE_GENTERM_NL = "gentermTemplateNl.html";
     public static File TERM_PAGE_TEMPLATE = new File(TEMPLATE_LOCATION + "termDefination.html");
     public static String AUTO_COMPLETION_TEMPLATE_LOCATION = TEMPLATE_LOCATION +"js/";
 

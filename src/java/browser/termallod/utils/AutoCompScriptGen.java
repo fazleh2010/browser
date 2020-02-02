@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -28,87 +29,63 @@ import org.apache.commons.io.IOUtils;
 public class AutoCompScriptGen implements Templates, FileAndCategory {
 
     public static void main(String[] argv) throws IOException, Exception {
-
-        Set<String> lang = new HashSet<String>();
-        lang.add("en");
-
         for (String browser : categorySet) {
             List<String> categories = FileAndCategory.categoryBrowser.get(browser);
             String source = FileRelatedUtils.getSourcePath(PATH, browser);
             for (String category : categories) {
-                String ontologyName = categoryOntologyMapper.get(category);
+                 String ontologyName = categoryOntologyMapper.get(category);
                 List<File> files = FileRelatedUtils.getFiles(source + textPath, ontologyName, ".txt");
                 Map<String, List<File>> languageFiles = FileRelatedUtils.getLanguageFiles(files, ".txt");
-                List<String> termList = new ArrayList<String>();
                 for (String langCode : languageFiles.keySet()) {
-                    if (lang.contains(langCode)) {
+                   
                         List<File> temFiles = languageFiles.get(langCode);
-                        if(temFiles.isEmpty()){
+                        if (temFiles.isEmpty()) {
                             throw new Exception("No files are found to process!!");
                         }
+                        Map<String, String> allkeysValues = new HashMap<String, String>();
                         for (File file : files) {
-                            Integer index = 0;
                             Properties props = FileRelatedUtils.getPropertyHash(file);
-                            Set<String> termSet = props.stringPropertyNames();
-                            termList.addAll(termSet);
+                            Map<String, String> tempHash = (Map) props;
+                            allkeysValues.putAll(tempHash);
                         }
-                        Collections.sort(termList);
-                        String str = getTerms(termList);
+                        String str = getTerms(allkeysValues);
                         //System.out.println(str);
-                        File templateFile=new File (AUTO_COMPLETION_TEMPLATE_LOCATION+"autoComp"+".js");
-                        String outputFileName=AUTO_COMPLETION_TEMPLATE_LOCATION+category+"_"+langCode+".js";
+                        File templateFile = new File(AUTO_COMPLETION_TEMPLATE_LOCATION + "autoComp" + ".js");
+                        String outputFileName = AUTO_COMPLETION_TEMPLATE_LOCATION + ontologyName + "_" + langCode + ".js";
+
+                        if (!templateFile.exists()) {
+                            throw new Exception(" no template find found for autocompletion!!");
+                        } 
                         
-                        if(templateFile.exists()){
-                           System.out.println(templateFile.getPath());
-                        }
-                        else
-                            throw new Exception(" no template find found for autocompletion!!");                         
-                             createAutoCompletionTemplate(templateFile,str,outputFileName);
-                    }
+                        System.out.println(outputFileName);
+                        createAutoCompletionTemplate(templateFile, str, outputFileName);
+                    
                 }
             }
 
         }
 
-        /*Properties props = FileRelatedUtils.getPropertyHash(new File(source + textPath + "tbx2rdf_iate_en_A_B.txt"));
-        Set<String> termSet = props.stringPropertyNames();
-        List<String> termList = new ArrayList<String>(termSet);
+    }
+
+    private static String getTerms(Map<String, String> allKeysValues) throws IOException {
+        String str = "window.termUrls = new Map();" + "\n";
+        str += "";
+        List<String> termList = new ArrayList<String>(allKeysValues.keySet());
         Collections.sort(termList);
-        String str = "var countries = [";
+
         for (int i = 0; i < termList.size(); i++) {
             String term = termList.get(i);
             term = term.trim();
+            String value = allKeysValues.get(term);
             term = quote(term);
             if (i == termList.size()) {
                 str += "\"" + term + "\"" + "];" + "\n";
             } else {
-                str += "\"" + term + "\"" + "," + "\n";
+                str += "termUrls.set(" + "\"" + term + "\"" + "," + "\"" + value + "\"" + ");" + "\n";
             }
-            index++;
-            //if(index==5)
-            //    break;
-
         }
-        str += "\"" + "z" + "\"" + "];" + "\n";
-        //System.out.println(str);
-        createAutoCompletionTemplate(str);*/
-    }
+        str += "\n";
 
-    private static String getTerms(List<String> termList) throws IOException {
-        String str = "var countries = [";
-       
-            for (int i = 0; i < termList.size(); i++) {
-                String term = termList.get(i);
-                term = term.trim();
-                term = quote(term);
-                if (i == termList.size()) {
-                    str += "\"" + term + "\"" + "];" + "\n";
-                } else {
-                    str += "\"" + term + "\"" + "," + "\n";
-                }
-            }
-            str += "\"" + "z" + "\"" + "];" + "\n";
-            
         return str;
     }
 
@@ -125,6 +102,10 @@ public class AutoCompScriptGen implements Templates, FileAndCategory {
         if (text.contains("\\]")) {
             return text.replaceAll("]", "");
         }
+        if (text.contains("\\,")) {
+            return text.replaceAll(",", "");
+        }
+
         return text;
     }
 

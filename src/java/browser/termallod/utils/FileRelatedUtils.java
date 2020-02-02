@@ -137,10 +137,10 @@ public class FileRelatedUtils {
 
     public static void stringToFile_DeleteIf_Exists(String str, String fileName)
             throws IOException {
-        File file = new File(fileName);
+        /*File file = new File(fileName);
         if (file.exists()) {
             file.deleteOnExit();
-        }
+        }*/
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
             writer.write(str);
             writer.close();

@@ -1,0 +1,293 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"> 
+  <meta name="_csrf_header" content="X-CSRF-TOKEN"> 
+  <!--this location is for testing in local machine--> 
+  <link href="/css/interface.css" rel="stylesheet" type="text/css"> 
+  <link href="/css/oxford.css" rel="stylesheet" type="text/css"> 
+  <link href="/css/responsive.css" rel="stylesheet" type="text/css"> 
+  <!--this location is for original for production--> 
+  <!--link href="../static/css/interface.css" rel="stylesheet" type="text/css" />
+      <link href="../static/css/oxford.css" rel="stylesheet" type="text/css" />
+      <link href="../static/css/responsive.css" rel="stylesheet" type="text/css" /--> 
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;  
+}
+
+/*the container must be positioned relative:*/
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+      </style> 
+ </head> 
+ <body> 
+  <div id="ox-header" class=""> 
+   <div class="responsive_row flush-below top"> 
+    <div class="responsive_container responsive_display_on_smartphone"> 
+     <div class="menu_button"></div> 
+    </div> 
+    <div class="nav responsive_container main_nav"> 
+     <ul class="menu"> 
+      <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+      <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+     </ul> 
+    </div> 
+   </div> 
+   <div class="responsive_row"> 
+    <div id="ad_leftslot_container" class="ad_leftslot_container responsive_entry_left"> 
+     <div class="ac_leftslot sticky"> 
+      <div id="ad_leftslot_a" class="am-default "> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="responsive_entry_center"> 
+     <div class="responsive_display_on_hd" id="leaderboardHD"> 
+      <div class=""> 
+       <div id="ad_topslot_b" class="am-default "> 
+        <script type="text/javascript">googletag.cmd.push(function () {
+                           googletag.display('ad_topslot_b');
+                           });
+                        </script> 
+       </div> 
+      </div> 
+     </div> 
+     <div id="main_column" class="responsive_row"> 
+      <div class="middle_wrap wordlist-page"> 
+       <div class="responsive_row"> 
+        <h4>Language Selection:</h4> 
+        <div class="langauge selection box"> 
+         <table style="width:60%"> 
+          <tbody> 
+           <tr> 
+            <td><a href="browser_en_A_B_1.html">English</a></td> 
+            <td><a href="browser_nl_1_1.html">Dutch</a></td> 
+           </tr> 
+          </tbody> 
+         </table> 
+        </div> 
+        <h4>Search terms</h4> 
+        <!--Make sure the form has the autocomplete function switched off:--> 
+        <form autocomplete="off" id="form_id"> 
+         <div class="autocomplete" style="width:300px;"> 
+          <input id="myInput" type="text" placeholder="Search.."> 
+         </div> 
+         <input id="submit" type="submit"> 
+        </form> 
+        <script type="text/javascript" src="/css/tbx2rdf_diseases_nl.js"></script> 
+        <!--div class="mainsearch">
+                           <form id="search-form" method="get" action="browser_hu_10_1.html">
+                              <div class="dictionarySelector">
+                                 <div id="select_div">
+                                    <div>English</div>
+                                 </div>
+                              </div>
+                              <div class="searchfield">
+                                 <input type="text" id="q" name="q"
+                                    class="searchfield_input"/>
+                                 <a id="keyboard_icon" class="oup_icons responsive_hide_on_smartphone responsive_hide_on_tablet"></a>
+                                 <div id="keyboard_letters"></div>
+                              </div>
+                              <div class="inputSuggestions"></div>
+                              <label id="search-btn" class="oup_icons">
+                              <input type="submit" value="" />
+                              </label>
+                           </form>
+                        </div>
+                     </div--> 
+        <div class="side-selector clear_fix"> 
+         <div class="side-selector__left"> 
+          <!-- the topics --> 
+          <div id="entries-selector" class=""> 
+           <ul class="hide_phone"> 
+            <li class="currentpage"> <span>S_T</span> <li><a href="browser_nl_1_1.html">A_B</a></li>  <li><a href="browser_nl_2_1.html">C_D</a></li>  <li><a href="browser_nl_3_1.html">E_F</a></li>  <li><a href="browser_nl_4_1.html">G_H</a></li>  <li><a href="browser_nl_5_1.html">I_J</a></li>  <li><a href="browser_nl_6_1.html">K_L</a></li>  <li><a href="browser_nl_7_1.html">M_N</a></li>  <li><a href="browser_nl_8_1.html">O_P</a></li>  <li><a href="browser_nl_9_1.html">Q_R</a></li>  <li><a href="browser_nl_11_1.html">U_V</a></li>  <li><a href="browser_nl_12_1.html">W_X</a></li>  <li><a href="browser_nl_13_1.html">Y_Z</a></li> </li> 
+           </ul> 
+           <div class="wl-select hide_all display_phone"> 
+           </div> 
+          </div> 
+          <!-- entries-selector --> 
+         </div> 
+         <div class="side-selector__right"> 
+          <!-- the items of the selected topic --> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner"> 
+             <li class="activepageUpper"> </li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="entrylist1"> 
+           <ul class="result-list1 wordlist-oxford3000 list-plain">  
+            <li><a href="_john_benjamins_publishing._[online]_http://books.google.be/books?id=qq7csft27cwc&amp;pg=pa19&amp;lpg=pa19&amp;dq=sager+%22the+lexicon+of+a+special+subject%22&amp;source=bl&amp;ots=hlaaxbgyn9&amp;sig=iq8nfamicv0bdy-dt5--cmqwk_w&amp;hl=nl&amp;sa=x&amp;ei=qmdou77fbswp7abdiyaw&amp;ved=0cduq6aewag#v=onepage&amp;q=sager%20%22the%20lexicon%20of%20a%20special%20subject%22&amp;f=false_[06.05.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases sager%2c+j.c.+%281990%29.+a+practical+course+in+terminology+processing.+amsterdam%3a+john+benjamins+publishing.+%5bonline%5d+http%3a%2f%2fbooks.google.be%2fbooks%3fid%3dqq7csft27cwc%26pg%3dpa19%26lpg%3dpa19%26dq%3dsager%2b%2522the%2blexicon%2bof%2ba%2bspecial%2bsubject%2522%26source%3dbl%26ots%3dhlaaxbgyn9%26sig%3diq8nfamicv0bdy-dt5--cmqwk_w%26hl%3dnl%26sa%3dx%26ei%3dqmdou77fbswp7abdiyaw%26ved%3d0cduq6aewag%23v%3donepage%26q%3dsager%2520%2522the%2520lexicon%2520of%2520a%2520special%2520subject%2522%26f%3dfalse+%5b06.05.2014%5d-nl title="sager,_j.c._(1990)._a_practical_course_in_terminology_processing._amsterdam definition">sager, j.c. (1990). a practical course in terminology processing. amsterdam</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Sager%2C+J.C.+1990-NL" title="sager,_j.c._1990 definition">sager, j.c. 1990</a></li>  
+            <li><a href="//www.nejm.org/doi/full/10.1056/nejmoa035630#t=article_[14.05.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases sagrist%c3%a0-sauleda%2c+j.%2c+angel%2c+j.%2c+s%c3%a1nchez%2c+a.%2c+permanyer-miralda%2c+g.+%26+soler-soler%2c+j.+%282004%29.+effusive%e2%80%93constrictive+pericarditis.+the+new+england+journal+of+medicine%2c+350%2c+469-475.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2ffull%2f10.1056%2fnejmoa035630%23t%3darticle+%5b14.05.2014%5d-nl title="sagristà-sauleda,_j.,_angel,_j.,_sánchez,_a.,_permanyer-miralda,_g._&amp;_soler-soler,_j._(2004)._effusive–constrictive_pericarditis._the_new_england_journal_of_medicine,_350,_469-475._[online]_http definition">sagristà-sauleda, j., angel, j., sánchez, a., permanyer-miralda, g. &amp; soler-soler, j. (2004). effusive–constrictive pericarditis. the new england journal of medicine, 350, 469-475. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Sagrist%C3%A0-Sauleda%2C+J.%2C+et+al.+2004-NL" title="sagristà-sauleda,_j.,_et_al._2004 definition">sagristà-sauleda, j., et al. 2004</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Samson%2C+R.A.%2C+et+al.+2006-NL" title="samson,_r.a.,_et_al._2006 definition">samson, r.a., et al. 2006</a></li>  
+            <li><a href="//www.nejm.org/doi/full/10.1056/nejmoa052917#t=article_[25.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases samson%2c+r.a.%2c+nadkarni%2c+v.m.%2c+meaney%2c+p.a.%2c+carey%2c+s.m.%2c+berg%2c+m.d.+%26+berg%2c+r.a.+%282006%29.+outcomes+of+in-hospital+ventricular+fibrillation+in+children.+the+new+england+journal+of+medicine%2c+354%2c+2328-2339.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2ffull%2f10.1056%2fnejmoa052917%23t%3darticle+%5b25.04.2014%5d-nl title="samson,_r.a.,_nadkarni,_v.m.,_meaney,_p.a.,_carey,_s.m.,_berg,_m.d._&amp;_berg,_r.a._(2006)._outcomes_of_in-hospital_ventricular_fibrillation_in_children._the_new_england_journal_of_medicine,_354,_2328-2339._[online]_http definition">samson, r.a., nadkarni, v.m., meaney, p.a., carey, s.m., berg, m.d. &amp; berg, r.a. (2006). outcomes of in-hospital ventricular fibrillation in children. the new england journal of medicine, 354, 2328-2339. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Saraf%2C+A.%2C+et+al.+2012-NL" title="saraf,_a.,_et_al._2012 definition">saraf, a., et al. 2012</a></li>  
+            <li><a href="//www.ncbi.nlm.nih.gov/pmc/articles/pmc3461672/_[16.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases saraf%2c+a.%2c+franklin%2c+w.j.%2c+snyder%2c+c.s.%2c+fraser%2c+c.d.+%26+salazar%2c+j.d.+%282012%29.+intermittent+cyanosis+years+after+a+mustard+repair+for+dextro-transposition+of+the+great+arteries.+texas+heart+institute+journal%2c+39%285%29%2c+665%e2%80%93667.+%5bonline%5d+http%3a%2f%2fwww.ncbi.nlm.nih.gov%2fpmc%2farticles%2fpmc3461672%2f+%5b16.07.2013%5d-nl title="saraf,_a.,_franklin,_w.j.,_snyder,_c.s.,_fraser,_c.d._&amp;_salazar,_j.d._(2012)._intermittent_cyanosis_years_after_a_mustard_repair_for_dextro-transposition_of_the_great_arteries._texas_heart_institute_journal,_39(5),_665–667._[online]_http definition">saraf, a., franklin, w.j., snyder, c.s., fraser, c.d. &amp; salazar, j.d. (2012). intermittent cyanosis years after a mustard repair for dextro-transposition of the great arteries. texas heart institute journal, 39(5), 665–667. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Scheppink%2C+H.M.%2C+et+al.+2012-NL" title="scheppink,_h.m.,_et_al._2012 definition">scheppink, h.m., et al. 2012</a></li>  
+            <li><a href="//link.springer.com/article/10.1007/s12452-012-0008-x#page-2_[09.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases scheppink%2c+h.m.%2c+ter+haar%2c+s.j.%2c+douw%2c+k.h.p.%2c+kamphuis%2c+m.+%26+boere-boonekamp%2c+m.m.+%282012%29.+gebruik+van+de+%e2%80%98jgz-richtlijn+vroegtijdige+opsporing+van+aangeboren+hartafwijkingen+0-19+jaar%e2%80%99.+jgz+tijdschrift+voor+jeugdgezondheidszorg%2c+44%282%29%2c+26.+%5bonline%5d+http%3a%2f%2flink.springer.com%2farticle%2f10.1007%2fs12452-012-0008-x%23page-2+%5b09.07.2013%5d-nl title="scheppink,_h.m.,_ter_haar,_s.j.,_douw,_k.h.p.,_kamphuis,_m._&amp;_boere-boonekamp,_m.m._(2012)._gebruik_van_de_‘jgz-richtlijn_vroegtijdige_opsporing_van_aangeboren_hartafwijkingen_0-19_jaar’._jgz_tijdschrift_voor_jeugdgezondheidszorg,_44(2),_26._[online]_http definition">scheppink, h.m., ter haar, s.j., douw, k.h.p., kamphuis, m. &amp; boere-boonekamp, m.m. (2012). gebruik van de ‘jgz-richtlijn vroegtijdige opsporing van aangeboren hartafwijkingen 0-19 jaar’. jgz tijdschrift voor jeugdgezondheidszorg, 44(2), 26. [online] http</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/aids-bij-kinderen/volledig_[07.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases scherpbier%2c+h.j.+%281988%29.+aids+bij+kinderen.+nederlands+tijdschrift+voor+geneeskunde%2c+132%2c+9-12.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2faids-bij-kinderen%2fvolledig+%5b07.07.2013%5d-nl title="scherpbier,_h.j._(1988)._aids_bij_kinderen._nederlands_tijdschrift_voor_geneeskunde,_132,_9-12._[online]_http definition">scherpbier, h.j. (1988). aids bij kinderen. nederlands tijdschrift voor geneeskunde, 132, 9-12. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Scherpbier%2C+H.J.+1988-NL" title="scherpbier,_h.j._1988 definition">scherpbier, h.j. 1988</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/schildklier-NL" title="schildklier definition">schildklier</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/672886/volledig_[27.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases scholten%2c+j.g.f.+%26+evert+j.+buijs+%282014%29.+acute+pancreatitis+na+het+toedienen+van+propofol.+nederlands+tijdschrift+voor+geneeskunde%2c+158%2c+a7115.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2f672886%2fvolledig+%5b27.04.2014%5d-nl title="scholten,_j.g.f._&amp;_evert_j._buijs_(2014)._acute_pancreatitis_na_het_toedienen_van_propofol._nederlands_tijdschrift_voor_geneeskunde,_158,_a7115._[online]_http definition">scholten, j.g.f. &amp; evert j. buijs (2014). acute pancreatitis na het toedienen van propofol. nederlands tijdschrift voor geneeskunde, 158, a7115. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Scholten%2C+J.G.F.+%26+Evert+J.+Buijs+2014-NL" title="scholten,_j.g.f._&amp;_evert_j._buijs_2014 definition">scholten, j.g.f. &amp; evert j. buijs 2014</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Schuurman%2C+M.J.%2C+et+al.+2014-NL" title="schuurman,_m.j.,_et_al._2014 definition">schuurman, m.j., et al. 2014</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/een-jong-kind-met-pulmonale-tuberculose/volledig_[26.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases schuurman%2c+m.j.%2c+loza%2c+b.%2c+de+vrie%2c+j.+%26+slabber%2c+a.j.+%282014%29.+een+jong+kind+met+pulmonale+tuberculose.+nederlands+tijdschrift+voor+geneeskunde%2c+158%2c+a6618.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2feen-jong-kind-met-pulmonale-tuberculose%2fvolledig+%5b26.04.2014%5d-nl title="schuurman,_m.j.,_loza,_b.,_de_vrie,_j._&amp;_slabber,_a.j._(2014)._een_jong_kind_met_pulmonale_tuberculose._nederlands_tijdschrift_voor_geneeskunde,_158,_a6618._[online]_http definition">schuurman, m.j., loza, b., de vrie, j. &amp; slabber, a.j. (2014). een jong kind met pulmonale tuberculose. nederlands tijdschrift voor geneeskunde, 158, a6618. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/scoliose-NL" title="scoliose definition">scoliose</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Service%2C+G.J.%2C+et+al.+2005-NL" title="service,_g.j.,_et_al._2005 definition">service, g.j., et al. 2005</a></li>  
+            <li><a href="//www.nejm.org/doi/pdf/10.1056/nejmoa043690_[17.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases service%2c+g.j.%2c+thompson%2c+g.b.%2c+service%2c+j.%2c+andrews%2c+j.c.%2c+collazo-clavell%2c+m.l.+%26+lloyd%2c+r.v.+%282005%29.+hyperinsulinemic+hypoglycemia+with+nesidioblastosis+after+gastric-bypass+surgery.the+new+england+journal+of+medicine%2c+353%283%29%2c+249.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2fpdf%2f10.1056%2fnejmoa043690+%5b17.07.2013%5d-nl title="service,_g.j.,_thompson,_g.b.,_service,_j.,_andrews,_j.c.,_collazo-clavell,_m.l._&amp;_lloyd,_r.v._(2005)._hyperinsulinemic_hypoglycemia_with_nesidioblastosis_after_gastric-bypass_surgery.the_new_england_journal_of_medicine,_353(3),_249._[online]_http definition">service, g.j., thompson, g.b., service, j., andrews, j.c., collazo-clavell, m.l. &amp; lloyd, r.v. (2005). hyperinsulinemic hypoglycemia with nesidioblastosis after gastric-bypass surgery.the new england journal of medicine, 353(3), 249. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Shattuck%2C+T.M.%2C+et+al.+2003-NL" title="shattuck,_t.m.,_et_al._2003 definition">shattuck, t.m., et al. 2003</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Shattuck%2C+T.M.%2C+et+al.+2005-NL" title="shattuck,_t.m.,_et_al._2005 definition">shattuck, t.m., et al. 2005</a></li>  
+            <li><a href="//www.nejm.org/doi/pdf/10.1056/nejmoa031237_[28.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases shattuck%2c+t.m.%2c+v%c3%a4lim%c3%a4ki%2c+s.%2c+obara%2c+t.%2c+gaz%2c+r.d.%2c+clark%2c+o.h.%2c+shoback%2c+d.%2c+et+al.+%282003%29.+somatic+and+germ-line+mutations+of+the+hrpt2+gene+in+sporadic+parathyroid+carcinoma.+the+new+england+journal+of+medicine%2c+349%2c+1722-9.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2fpdf%2f10.1056%2fnejmoa031237+%5b28.07.2013%5d-nl title="shattuck,_t.m.,_välimäki,_s.,_obara,_t.,_gaz,_r.d.,_clark,_o.h.,_shoback,_d.,_et_al._(2003)._somatic_and_germ-line_mutations_of_the_hrpt2_gene_in_sporadic_parathyroid_carcinoma._the_new_england_journal_of_medicine,_349,_1722-9._[online]_http definition">shattuck, t.m., välimäki, s., obara, t., gaz, r.d., clark, o.h., shoback, d., et al. (2003). somatic and germ-line mutations of the hrpt2 gene in sporadic parathyroid carcinoma. the new england journal of medicine, 349, 1722-9. [online] http</a></li>  
+            <li><a href="//www.nejm.org/doi/full/10.1056/nejmoa044190#t=articletop_[08.05.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases shattuck%2c+t.m.%2c+westra%2c+w.h.%2c+ladenson%2c+p.w.+%26+arnold%2c+a.+%282005%29.+independent+clonal+origins+of+distinct+tumor+foci+in+multifocal+papillary+thyroid+carcinoma.+the+new+england+journal+of+medicine%2c+352%2c+2406-2412.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2ffull%2f10.1056%2fnejmoa044190%23t%3darticletop+%5b08.05.2014%5d-nl title="shattuck,_t.m.,_westra,_w.h.,_ladenson,_p.w._&amp;_arnold,_a._(2005)._independent_clonal_origins_of_distinct_tumor_foci_in_multifocal_papillary_thyroid_carcinoma._the_new_england_journal_of_medicine,_352,_2406-2412._[online]_http definition">shattuck, t.m., westra, w.h., ladenson, p.w. &amp; arnold, a. (2005). independent clonal origins of distinct tumor foci in multifocal papillary thyroid carcinoma. the new england journal of medicine, 352, 2406-2412. [online] http</a></li>  
+            <li><a href="//www.nejm.org/doi/full/10.1056/nejmoa0903812#t=articlebackground_[16.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases shinde%2c+v.%2c+bridges%2c+c.b.%2c+uyeki%2c+t.m.%2c+shu%2c+b.+%26+balish%2c+a.+%282009%29.+triple-reassortant+swine+influenza+a+%28h1%29+in+humans+in+the+united+states%2c+2005%e2%80%932009.+the+new+england+journal+of+medicine%2c+360%2c+2616-2625.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2ffull%2f10.1056%2fnejmoa0903812%23t%3darticlebackground+%5b16.07.2013%5d-nl title="shinde,_v.,_bridges,_c.b.,_uyeki,_t.m.,_shu,_b._&amp;_balish,_a._(2009)._triple-reassortant_swine_influenza_a_(h1)_in_humans_in_the_united_states,_2005–2009._the_new_england_journal_of_medicine,_360,_2616-2625._[online]_http definition">shinde, v., bridges, c.b., uyeki, t.m., shu, b. &amp; balish, a. (2009). triple-reassortant swine influenza a (h1) in humans in the united states, 2005–2009. the new england journal of medicine, 360, 2616-2625. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Shinde%2C+V.%2C+et+al.+2009-NL" title="shinde,_v.,_et_al._2009 definition">shinde, v., et al. 2009</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Sijbom%2C+M.%2C+et+al.+2013-NL" title="sijbom,_m.,_et_al._2013 definition">sijbom, m., et al. 2013</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/samenvatting-van-de-nhg-standaard-%e2%80%98schildklieraandoeningen%e2%80%99/volledig_[27.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases sijbom%2c+m.%2c+van+lieshout%2c+j.%2c+felix-schollaart%2c+b.%2c+burgers%2c+j.s.+%26+bouma%2c+m.+%282013%29.+samenvatting+van+de+nhg-standaard+%e2%80%98schildklieraandoeningen%e2%80%99.+nederlands+tijdschrift+voor+geneeskunde%2c+157%2c+a6667.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fsamenvatting-van-de-nhg-standaard-%25e2%2580%2598schildklieraandoeningen%25e2%2580%2599%2fvolledig+%5b27.04.2014%5d-nl title="sijbom,_m.,_van_lieshout,_j.,_felix-schollaart,_b.,_burgers,_j.s._&amp;_bouma,_m._(2013)._samenvatting_van_de_nhg-standaard_‘schildklieraandoeningen’._nederlands_tijdschrift_voor_geneeskunde,_157,_a6667._[online]_http definition">sijbom, m., van lieshout, j., felix-schollaart, b., burgers, j.s. &amp; bouma, m. (2013). samenvatting van de nhg-standaard ‘schildklieraandoeningen’. nederlands tijdschrift voor geneeskunde, 157, a6667. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Simonis%2C+R.F.A.%2C+et+al.+1988-NL" title="simonis,_r.f.a.,_et_al._1988 definition">simonis, r.f.a., et al. 1988</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/de-ziekte-van-caroli-beperkt-tot-%c3%a9%c3%a9n-leverkwab/volledig_[24/05/2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases simonis%2c+r.f.a.%2c+janssens%2c+a.r.%2c+kroon%2c+h.m.%2c+terpstra%2c+j.l.%2c+van+krieken%2c+j.h.j.m.%2c+%26+lamers%2c+c.b.h.w.+%281988%29.+de+ziekte+van+caroli+beperkt+tot+%c3%a9%c3%a9n+leverkwab.+nederlands+tijdschrift+voor+geneeskunde%2c+132%2c+80-3.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fde-ziekte-van-caroli-beperkt-tot-%25c3%25a9%25c3%25a9n-leverkwab%2fvolledig+%5b24%2f05%2f2014%5d-nl title="simonis,_r.f.a.,_janssens,_a.r.,_kroon,_h.m.,_terpstra,_j.l.,_van_krieken,_j.h.j.m.,_&amp;_lamers,_c.b.h.w._(1988)._de_ziekte_van_caroli_beperkt_tot_één_leverkwab._nederlands_tijdschrift_voor_geneeskunde,_132,_80-3._[online]_http definition">simonis, r.f.a., janssens, a.r., kroon, h.m., terpstra, j.l., van krieken, j.h.j.m., &amp; lamers, c.b.h.w. (1988). de ziekte van caroli beperkt tot één leverkwab. nederlands tijdschrift voor geneeskunde, 132, 80-3. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Skinner%2C+M.A.%2C+et+al.+2005-NL" title="skinner,_m.a.,_et_al._2005 definition">skinner, m.a., et al. 2005</a></li>  
+            <li><a href="//www.nejm.org/doi/full/10.1056/nejmoa043999#t=article_[08.05.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases skinner%2c+m.a.%2c+moley%2c+j.a.%2c+dilley%2c+w.g.%2c+owzar%2c+k.%2c+debenedetti%2c+m.k.+%26+wells%2c+s.a.+%282005%29.+prophylactic+thyroidectomy+in+multiple+endocrine+neoplasia+type+2a.+the+new+england+journal+of+medicine%2c+353%2c+1105-1113.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2ffull%2f10.1056%2fnejmoa043999%23t%3darticle+%5b08.05.2014%5d-nl title="skinner,_m.a.,_moley,_j.a.,_dilley,_w.g.,_owzar,_k.,_debenedetti,_m.k._&amp;_wells,_s.a._(2005)._prophylactic_thyroidectomy_in_multiple_endocrine_neoplasia_type_2a._the_new_england_journal_of_medicine,_353,_1105-1113._[online]_http definition">skinner, m.a., moley, j.a., dilley, w.g., owzar, k., debenedetti, m.k. &amp; wells, s.a. (2005). prophylactic thyroidectomy in multiple endocrine neoplasia type 2a. the new england journal of medicine, 353, 1105-1113. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Skjerven%2C+H.O.%2C+et+al.+2013-NL" title="skjerven,_h.o.,_et_al._2013 definition">skjerven, h.o., et al. 2013</a></li>  
+            <li><a href="//www.nejm.org/doi/full/10.1056/nejmoa1301839#t=article_[26.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases skjerven%2c+h.o.%2c+hunderi%2c+j.o.g.%2c+br%c3%bcgmann-pieper%2c+s.k.%2c+brun%2c+a.c.%2c+engen%2c+h.%2c+eskedal%2c+l.%2c+et+al.+%282013%29.+racemic+adrenaline+and+inhalation+strategies+in+acute+bronchiolitis.+the+new+england+journal+of+medicine%2c+368%2c+2286-2293.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2ffull%2f10.1056%2fnejmoa1301839%23t%3darticle+%5b26.04.2014%5d-nl title="skjerven,_h.o.,_hunderi,_j.o.g.,_brügmann-pieper,_s.k.,_brun,_a.c.,_engen,_h.,_eskedal,_l.,_et_al._(2013)._racemic_adrenaline_and_inhalation_strategies_in_acute_bronchiolitis._the_new_england_journal_of_medicine,_368,_2286-2293._[online]_http definition">skjerven, h.o., hunderi, j.o.g., brügmann-pieper, s.k., brun, a.c., engen, h., eskedal, l., et al. (2013). racemic adrenaline and inhalation strategies in acute bronchiolitis. the new england journal of medicine, 368, 2286-2293. [online] http</a></li>  
+            <li><a href="_medische_vignetten._houten:_bohn_stafleu_van_loghum._[online]_http://books.google.be/books?hl=nl&amp;lr=lang_nl&amp;id=oqvtluc67sgc&amp;oi=fnd&amp;pg=pa7&amp;dq=clubbing&amp;ots=j-jdecupbd&amp;sig=vvhhgwfj8z6w4yrgxu44fjq6lqs#v=onepage&amp;q=clubbing&amp;f=false_[07.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases slee%2c+p.h.th.j.+%282008%29.+casuistische+inwendige+geneeskunde%3a+medische+vignetten.+houten%3a+bohn+stafleu+van+loghum.+%5bonline%5d+http%3a%2f%2fbooks.google.be%2fbooks%3fhl%3dnl%26lr%3dlang_nl%26id%3doqvtluc67sgc%26oi%3dfnd%26pg%3dpa7%26dq%3dclubbing%26ots%3dj-jdecupbd%26sig%3dvvhhgwfj8z6w4yrgxu44fjq6lqs%23v%3donepage%26q%3dclubbing%26f%3dfalse+%5b07.07.2013%5d-nl title="slee,_p.h.th.j._(2008)._casuistische_inwendige_geneeskunde definition">slee, p.h.th.j. (2008). casuistische inwendige geneeskunde</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Slee%2C+P.H.Th.J.+2008-NL" title="slee,_p.h.th.j._2008 definition">slee, p.h.th.j. 2008</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/verschillen-richtlijnen-chronische-nierschade/volledig_[22.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases sluiter%2c+h.e.+%282013%29.+verschillen+in+richtlijnen+chronische+nierschade.+nederlands+tijdschrift+voor+geneeskunde%2c+157%2c+a5679.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fverschillen-richtlijnen-chronische-nierschade%2fvolledig+%5b22.07.2013%5d-nl title="sluiter,_h.e._(2013)._verschillen_in_richtlijnen_chronische_nierschade._nederlands_tijdschrift_voor_geneeskunde,_157,_a5679._[online]_http definition">sluiter, h.e. (2013). verschillen in richtlijnen chronische nierschade. nederlands tijdschrift voor geneeskunde, 157, a5679. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Sluiter%2C+H.E.+2013-NL" title="sluiter,_h.e._2013 definition">sluiter, h.e. 2013</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/appendicitis-acuta/volledig_[19.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases sluzewski%2c+h.+%281988%29.+appendicitis+acuta.+nederlands+tijdschrift+voor+geneeskunde%2c+132%2c+995-7.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fappendicitis-acuta%2fvolledig+%5b19.07.2013%5d-nl title="sluzewski,_h._(1988)._appendicitis_acuta._nederlands_tijdschrift_voor_geneeskunde,_132,_995-7._[online]_http definition">sluzewski, h. (1988). appendicitis acuta. nederlands tijdschrift voor geneeskunde, 132, 995-7. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Sluzewski%2C+H.+1988-NL" title="sluzewski,_h._1988 definition">sluzewski, h. 1988</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Smit%2C+M.%2C+et+al.+2014-NL" title="smit,_m.,_et_al._2014 definition">smit, m., et al. 2014</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/hypothyreoidie-na-bestraling-van-de-hals/volledig_[27.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases smit%2c+m.%2c+kerstens%2c+m.n.%2c+boomsma-van+holten%2c+m.j.%2c+van+der+meer%2c+k.%2c+zijlstra%2c+j.g.+%26+links%2c+t.p.+%282014%29.+radioiodine+therapy+for+hyperthyroidism.+nederlands+tijdschrift+voor+geneeskunde%2c+158%2c+a6714.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fhypothyreoidie-na-bestraling-van-de-hals%2fvolledig+%5b27.04.2014%5d-nl title="smit,_m.,_kerstens,_m.n.,_boomsma-van_holten,_m.j.,_van_der_meer,_k.,_zijlstra,_j.g._&amp;_links,_t.p._(2014)._radioiodine_therapy_for_hyperthyroidism._nederlands_tijdschrift_voor_geneeskunde,_158,_a6714._[online]_http definition">smit, m., kerstens, m.n., boomsma-van holten, m.j., van der meer, k., zijlstra, j.g. &amp; links, t.p. (2014). radioiodine therapy for hyperthyroidism. nederlands tijdschrift voor geneeskunde, 158, a6714. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Spil%2C+J.A.%2C+et+al.+2013-NL" title="spil,_j.a.,_et_al._2013 definition">spil, j.a., et al. 2013</a></li>  
+            <li><a href="_handboek_voor_verpleegkundigen_en_andere_hulpverleners._houten:_bohn_stafleu_van_loghum._[online]_http://books.google.be/books?id=tblj5f4guaec&amp;pg=pa37&amp;dq=bindweefselgezwel&amp;hl=nl&amp;sa=x&amp;ei=xinvu-rrkeud7ga09iggda&amp;redir_esc=y#v=onepage&amp;q=bindweefselgezwel&amp;f=false_[21.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases spil%2c+j.a.%2c+muilekom%2c+h.a.m.+%26+van+de+walle-van+de+geijn%2c+b.f.h.+%282013%29.+oncologie%3a+handboek+voor+verpleegkundigen+en+andere+hulpverleners.+houten%3a+bohn+stafleu+van+loghum.+%5bonline%5d+http%3a%2f%2fbooks.google.be%2fbooks%3fid%3dtblj5f4guaec%26pg%3dpa37%26dq%3dbindweefselgezwel%26hl%3dnl%26sa%3dx%26ei%3dxinvu-rrkeud7ga09iggda%26redir_esc%3dy%23v%3donepage%26q%3dbindweefselgezwel%26f%3dfalse+%5b21.04.2014%5d-nl title="spil,_j.a.,_muilekom,_h.a.m._&amp;_van_de_walle-van_de_geijn,_b.f.h._(2013)._oncologie definition">spil, j.a., muilekom, h.a.m. &amp; van de walle-van de geijn, b.f.h. (2013). oncologie</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/klinisch-denken-en-beslissen-de-praktijk-een-pati%c3%abnte-met-aanvallen-van-flushing/volledig_[29.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases stehouwer%2c+c.d.a.+%26+gans%2c+r.o.b.+%281999%29.+klinisch+denken+en+beslissen+in+de+praktijk.+een+pati%c3%abnte+met+aanvallen+van+flushing.+nederlands+tijdschrift+voor+geneeskunde%2c+143%2c+792-6.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fklinisch-denken-en-beslissen-de-praktijk-een-pati%25c3%25abnte-met-aanvallen-van-flushing%2fvolledig+%5b29.07.2013%5d-nl title="stehouwer,_c.d.a._&amp;_gans,_r.o.b._(1999)._klinisch_denken_en_beslissen_in_de_praktijk._een_patiënte_met_aanvallen_van_flushing._nederlands_tijdschrift_voor_geneeskunde,_143,_792-6._[online]_http definition">stehouwer, c.d.a. &amp; gans, r.o.b. (1999). klinisch denken en beslissen in de praktijk. een patiënte met aanvallen van flushing. nederlands tijdschrift voor geneeskunde, 143, 792-6. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Stehouwer%2C+C.D.A.+%26+Gans%2C+R.O.B.+1999-NL" title="stehouwer,_c.d.a._&amp;_gans,_r.o.b._1999 definition">stehouwer, c.d.a. &amp; gans, r.o.b. 1999</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Stone%2C+J.H.%2C+et+al.+2012-NL" title="stone,_j.h.,_et_al._2012 definition">stone, j.h., et al. 2012</a></li>  
+            <li><a href="//www.nejm.org/doi/full/10.1056/nejmra1104650_[27.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases stone%2c+j.h.%2c+zen%2c+y.+%26+deshpande%2c+v.+%282012%29.+igg4-related+disease.+the+new+england+journal+of+medicine%2c+366%2c+539-551.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2ffull%2f10.1056%2fnejmra1104650+%5b27.04.2014%5d-nl title="stone,_j.h.,_zen,_y._&amp;_deshpande,_v._(2012)._igg4-related_disease._the_new_england_journal_of_medicine,_366,_539-551._[online]_http definition">stone, j.h., zen, y. &amp; deshpande, v. (2012). igg4-related disease. the new england journal of medicine, 366, 539-551. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Strianese%2C+D.%2C+et+al.+2013-NL" title="strianese,_d.,_et_al._2013 definition">strianese, d., et al. 2013</a></li>  
+            <li><a href="_retrospective_follow-up_study._bmc_ophthalmology,_13,_21._[online]_http://www.ncbi.nlm.nih.gov/pmc/articles/pmc3669615/#!po=3.33333_[02.08.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases strianese%2c+d.%2c+piscopo%2c+r.%2c+elefante%2c+a.%2c+napoli%2c+m.%2c+comune%2c+c.%2c+baronissi%2c+i.%2c+et+al.+%282013%29.+unilateral+proptosis+in+thyroid+eye+disease+with+subsequent+contralateral+involvement%3a+retrospective+follow-up+study.+bmc+ophthalmology%2c+13%2c+21.+%5bonline%5d+http%3a%2f%2fwww.ncbi.nlm.nih.gov%2fpmc%2farticles%2fpmc3669615%2f%23%21po%3d3.33333+%5b02.08.2013%5d-nl title="strianese,_d.,_piscopo,_r.,_elefante,_a.,_napoli,_m.,_comune,_c.,_baronissi,_i.,_et_al._(2013)._unilateral_proptosis_in_thyroid_eye_disease_with_subsequent_contralateral_involvement definition">strianese, d., piscopo, r., elefante, a., napoli, m., comune, c., baronissi, i., et al. (2013). unilateral proptosis in thyroid eye disease with subsequent contralateral involvement</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/studio-esthetique+2013-NL" title="studio-esthetique_2013 definition">studio-esthetique 2013</a></li>  
+            <li><a href="//www.studio-esthetique.nl/index.php?page=ned-micro-coagulatie-van-fibromen-steelwratjes_[28.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases studio+esthetique.+%282013%29.+micro+coagulatie+fibromen+%7c+steelwratjes.+%5bonline%5d+http%3a%2f%2fwww.studio-esthetique.nl%2findex.php%3fpage%3dned-micro-coagulatie-van-fibromen-steelwratjes+%5b28.07.2013%5d-nl title="studio_esthetique._(2013)._micro_coagulatie_fibromen_|_steelwratjes._[online]_http definition">studio esthetique. (2013). micro coagulatie fibromen | steelwratjes. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Swedberg%2C+K.%2C+et+al.+2013-NL" title="swedberg,_k.,_et_al._2013 definition">swedberg, k., et al. 2013</a></li>  
+            <li><a href="//www.nejm.org/doi/full/10.1056/nejmoa1214865#t=article_[25.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases swedberg%2c+k.%2c+young%2c+j.b.%2c+anand%2c+i.s.%2c+cheng%2c+s.%2c+desai%2c+a.s.%2c+diaz%2c+r.%2c+et+al.+%282013%29.+treatment+of+anemia+with+darbepoetin+alfa+in+systolic+heart+failure.+the+new+england+journal+of+medicine%2c+368%2c+1210-1219.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2ffull%2f10.1056%2fnejmoa1214865%23t%3darticle+%5b25.04.2014%5d-nl title="swedberg,_k.,_young,_j.b.,_anand,_i.s.,_cheng,_s.,_desai,_a.s.,_diaz,_r.,_et_al._(2013)._treatment_of_anemia_with_darbepoetin_alfa_in_systolic_heart_failure._the_new_england_journal_of_medicine,_368,_1210-1219._[online]_http definition">swedberg, k., young, j.b., anand, i.s., cheng, s., desai, a.s., diaz, r., et al. (2013). treatment of anemia with darbepoetin alfa in systolic heart failure. the new england journal of medicine, 368, 1210-1219. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Syrimis%2C+A.-NL" title="syrimis,_a. definition">syrimis, a.</a></li>  
+            <li><a href="//clinicalexams.co.uk/finger-clubbing.asp_[10.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases syrimis%2c+a.+%28s.d.%29+finger+clubbing.+%5bonline%5d+http%3a%2f%2fclinicalexams.co.uk%2ffinger-clubbing.asp+%5b10.07.2013%5d-nl title="syrimis,_a._(s.d.)_finger_clubbing._[online]_http definition">syrimis, a. (s.d.) finger clubbing. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/systolisch-NL" title="systolisch definition">systolisch</a></li>  
+            <li><a href="//www.taalvlinder.com/pages/lijsten/medalg.htm_[12.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases taalvinder.+%282013%29.+%5bonline%5d+http%3a%2f%2fwww.taalvlinder.com%2fpages%2flijsten%2fmedalg.htm+%5b12.07.2013%5d-nl title="taalvinder._(2013)._[online]_http definition">taalvinder. (2013). [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Taalvlinder-NL" title="taalvlinder definition">taalvlinder</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/tachycardie-NL" title="tachycardie definition">tachycardie</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/tachypneu-NL" title="tachypneu definition">tachypneu</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/een-amoebenabces-de-lever-vroeg-vermoeden-late-detectie/volledig_[29.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases te+velde%2c+l.f.%2c+blaauwwiekel%2c+e.e.%2c+sprenger%2c+h.g.+%26+weits%2c+j.+%281997%29.+een+amoebenabces+in+de+lever%3b+vroeg+vermoeden%2c+late+detective.+nederlands+tijdschrift+voor+geneeskunde%2c+141%2c+1436-9.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2feen-amoebenabces-de-lever-vroeg-vermoeden-late-detectie%2fvolledig+%5b29.07.2013%5d-nl title="te_velde,_l.f.,_blaauwwiekel,_e.e.,_sprenger,_h.g._&amp;_weits,_j._(1997)._een_amoebenabces_in_de_lever;_vroeg_vermoeden,_late_detective._nederlands_tijdschrift_voor_geneeskunde,_141,_1436-9._[online]_http definition">te velde, l.f., blaauwwiekel, e.e., sprenger, h.g. &amp; weits, j. (1997). een amoebenabces in de lever; vroeg vermoeden, late detective. nederlands tijdschrift voor geneeskunde, 141, 1436-9. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/te+Velde%2C+L.F.%2C+et+al.+1997-NL" title="te_velde,_l.f.,_et_al._1997 definition">te velde, l.f., et al. 1997</a></li>  
+            <li><a href="_john_benjamins_publishing._[online]_http://books.google.be/books?id=q9guj_ykkvac&amp;printsec=frontcover&amp;dq=towards+new+ways+of+terminology+description+the+sociocognitive+approach&amp;hl=nl&amp;sa=x&amp;ei=dddqu_xiguwq7abomigqdq&amp;ved=0cduq6aewaa#v=onepage&amp;q=term&amp;f=false_[06.05.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases temmerman%2c+r.+%282000%29.+towards+new+ways+of+terminology+description.+the+sociocognitive+approach.+amsterdam%3a+john+benjamins+publishing.+%5bonline%5d+http%3a%2f%2fbooks.google.be%2fbooks%3fid%3dq9guj_ykkvac%26printsec%3dfrontcover%26dq%3dtowards%2bnew%2bways%2bof%2bterminology%2bdescription%2bthe%2bsociocognitive%2bapproach%26hl%3dnl%26sa%3dx%26ei%3ddddqu_xiguwq7abomigqdq%26ved%3d0cduq6aewaa%23v%3donepage%26q%3dterm%26f%3dfalse+%5b06.05.2014%5d-nl title="temmerman,_r._(2000)._towards_new_ways_of_terminology_description._the_sociocognitive_approach._amsterdam definition">temmerman, r. (2000). towards new ways of terminology description. the sociocognitive approach. amsterdam</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Temmerman%2C+R.+2000-NL" title="temmerman,_r._2000 definition">temmerman, r. 2000</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/ten+Houten%2C+R.%2C+et+al.+2004-NL" title="ten_houten,_r.,_et_al._2004 definition">ten houten, r., et al. 2004</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/pijn-de-rug-vergeet-de-buik-niet/volledig_[29.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases ten+houten%2c+r.%2c+meijer%2c+r.w.+%26+heitbrink%2c+m.a.+%282004%29.+pijn+in+de+rug%3f+vergeet+de+buik+niet.+nederlands+tijdschrift+voor+geneeskunde%2c+148%2c+1125-9.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fpijn-de-rug-vergeet-de-buik-niet%2fvolledig+%5b29.07.2013%5d-nl title="ten_houten,_r.,_meijer,_r.w._&amp;_heitbrink,_m.a._(2004)._pijn_in_de_rug?_vergeet_de_buik_niet._nederlands_tijdschrift_voor_geneeskunde,_148,_1125-9._[online]_http definition">ten houten, r., meijer, r.w. &amp; heitbrink, m.a. (2004). pijn in de rug? vergeet de buik niet. nederlands tijdschrift voor geneeskunde, 148, 1125-9. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/ter+Avest%2C+P.C.%2C+et+al.+2005-NL" title="ter_avest,_p.c.,_et_al._2005 definition">ter avest, p.c., et al. 2005</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/hemolytische-anemie-en-een-stollingsstoornis-als-eerste-manifestatie-van-cystische-fibros/volledig_[27.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases ter+avest%2c+p.c.%2c+tytgat%2c+g.a.m.%2c+westra%2c+m.%2c+peters%2c+m.+%26+van+den+berg%2c+j.m.+%282005%29.+hemolytische+anemie+en+een+stollingsstoornis+als+eerste+manifestatie+van+cystische+fibrose+bij+twee+zuigelingen.+nederlands+tijdschrift+voor+geneeskunde%2c149%2c+2125-8.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fhemolytische-anemie-en-een-stollingsstoornis-als-eerste-manifestatie-van-cystische-fibros%2fvolledig+%5b27.07.2013%5d-nl title="ter_avest,_p.c.,_tytgat,_g.a.m.,_westra,_m.,_peters,_m._&amp;_van_den_berg,_j.m._(2005)._hemolytische_anemie_en_een_stollingsstoornis_als_eerste_manifestatie_van_cystische_fibrose_bij_twee_zuigelingen._nederlands_tijdschrift_voor_geneeskunde,149,_2125-8._[online]_http definition">ter avest, p.c., tytgat, g.a.m., westra, m., peters, m. &amp; van den berg, j.m. (2005). hemolytische anemie en een stollingsstoornis als eerste manifestatie van cystische fibrose bij twee zuigelingen. nederlands tijdschrift voor geneeskunde,149, 2125-8. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/The+New+England+Journal+of+Medicine-NL" title="the_new_england_journal_of_medicine definition">the new england journal of medicine</a></li>  
+            <li><a href="//www.nejm.org/_[06.05.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases the+new+england+journal+of+medicine.+%282014%29.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2f+%5b06.05.2014%5d-nl title="the_new_england_journal_of_medicine._(2014)._[online]_http definition">the new england journal of medicine. (2014). [online] http</a></li>  
+            <li><a href="//www.nejm.org/doi/full/10.1056/nejmoa1206300#t=article_[16.05.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases thomas%2c+k.s.%2c+crook%2c+a.m.%2c+nunn%2c+a.j.%2c+foster%2c+k.a.%2c+mason%2c+j.m.%2c+chalmers%2c+j.r.%2c+et+al.+%282013%29.+penicillin+to+prevent+recurrent+leg+cellulitis.+the+new+england+journal+of+medicine%2c+368%2c+1695-1703.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2ffull%2f10.1056%2fnejmoa1206300%23t%3darticle+%5b16.05.2014%5d-nl title="thomas,_k.s.,_crook,_a.m.,_nunn,_a.j.,_foster,_k.a.,_mason,_j.m.,_chalmers,_j.r.,_et_al._(2013)._penicillin_to_prevent_recurrent_leg_cellulitis._the_new_england_journal_of_medicine,_368,_1695-1703._[online]_http definition">thomas, k.s., crook, a.m., nunn, a.j., foster, k.a., mason, j.m., chalmers, j.r., et al. (2013). penicillin to prevent recurrent leg cellulitis. the new england journal of medicine, 368, 1695-1703. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Thomas%2C+K.S.%2C+et+al.+2013-NL" title="thomas,_k.s.,_et_al._2013 definition">thomas, k.s., et al. 2013</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Tita%2C+A.T.N.%2C+et+al.+2009-NL" title="tita,_a.t.n.,_et_al._2009 definition">tita, a.t.n., et al. 2009</a></li>  
+            <li><a href="//www.nejm.org/doi/full/10.1056/nejmoa0803267#t=article_[26.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases tita%2c+a.t.n.%2c+landon%2c+m.b.%2c+y.+spong%2c+c.y.%2c+lai%2c+y.%2c+leveno%2c+k.j.%2c+varner%2c+m.w.%2c+et+al.+%282009%29.+timing+of+elective+repeat+cesarean+delivery+at+term+and+neonatal+outcomes.+the+new+england+journal+of+medicine%2c+360%2c+111-120.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2ffull%2f10.1056%2fnejmoa0803267%23t%3darticle+%5b26.04.2014%5d-nl title="tita,_a.t.n.,_landon,_m.b.,_y._spong,_c.y.,_lai,_y.,_leveno,_k.j.,_varner,_m.w.,_et_al._(2009)._timing_of_elective_repeat_cesarean_delivery_at_term_and_neonatal_outcomes._the_new_england_journal_of_medicine,_360,_111-120._[online]_http definition">tita, a.t.n., landon, m.b., y. spong, c.y., lai, y., leveno, k.j., varner, m.w., et al. (2009). timing of elective repeat cesarean delivery at term and neonatal outcomes. the new england journal of medicine, 360, 111-120. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Tomlinson%2C+S.E.%2C+et+al.+2010-NL" title="tomlinson,_s.e.,_et_al._2010 definition">tomlinson, s.e., et al. 2010</a></li>  
+            <li><a href="//www.ncbi.nlm.nih.gov/pmc/articles/pmc2995887/#!po=36.1111_[06.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases tomlinson%2c+s.e.%2c+tan%2c+s.v.%2c+kullmann%2c+d.m.%2c+griggs%2c+r.c.%2c+burke%2c+d.%2c+hanna%2c+m.g.%2c+et+al.+%282010%29.+nerve+excitability+studies+characterize+kv1.1+fast+potassium+channel+dysfunction+in+patients+with+episodic+ataxia+type.+brain%2c+133%2812%29%2c+3530%e2%80%933540.+%5bonline%5d+http%3a%2f%2fwww.ncbi.nlm.nih.gov%2fpmc%2farticles%2fpmc2995887%2f%23%21po%3d36.1111+%5b06.07.2013%5d-nl title="tomlinson,_s.e.,_tan,_s.v.,_kullmann,_d.m.,_griggs,_r.c.,_burke,_d.,_hanna,_m.g.,_et_al._(2010)._nerve_excitability_studies_characterize_kv1.1_fast_potassium_channel_dysfunction_in_patients_with_episodic_ataxia_type._brain,_133(12),_3530–3540._[online]_http definition">tomlinson, s.e., tan, s.v., kullmann, d.m., griggs, r.c., burke, d., hanna, m.g., et al. (2010). nerve excitability studies characterize kv1.1 fast potassium channel dysfunction in patients with episodic ataxia type. brain, 133(12), 3530–3540. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Torimitsu%2C+S.%2C+et+al.+2012-NL" title="torimitsu,_s.,_et_al._2012 definition">torimitsu, s., et al. 2012</a></li>  
+            <li><a href="//www.ncbi.nlm.nih.gov/pmc/articles/pmc3351722/#!po=3.57143_[28.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases torimitsu%2c+s.%2c+nemoto%2c+t.%2c+wakayama%2c+m.%2c+okubo%2c+y.%2c+yokose%2c+t.%2c+kitahara%2c+k.%2c+et+al.+%282012%29.+literature+survey+on+epidemiology+and+pathology+of+cardiac+fibroma.+european+journal+of+medical+research%2c+17%281%29%2c+5.+%5bonline%5d+http%3a%2f%2fwww.ncbi.nlm.nih.gov%2fpmc%2farticles%2fpmc3351722%2f%23%21po%3d3.57143+%5b28.07.2013%5d-nl title="torimitsu,_s.,_nemoto,_t.,_wakayama,_m.,_okubo,_y.,_yokose,_t.,_kitahara,_k.,_et_al._(2012)._literature_survey_on_epidemiology_and_pathology_of_cardiac_fibroma._european_journal_of_medical_research,_17(1),_5._[online]_http definition">torimitsu, s., nemoto, t., wakayama, m., okubo, y., yokose, t., kitahara, k., et al. (2012). literature survey on epidemiology and pathology of cardiac fibroma. european journal of medical research, 17(1), 5. [online] http</a></li>  
+            <li><a href="//www.kellogg.umich.edu/theeyeshaveit/symptoms/proptosis.html_[03.08.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases trobe%2c+j.+%282009%29.+proptosis.+%5bonline%5d+http%3a%2f%2fwww.kellogg.umich.edu%2ftheeyeshaveit%2fsymptoms%2fproptosis.html+%5b03.08.2013%5d-nl title="trobe,_j._(2009)._proptosis._[online]_http definition">trobe, j. (2009). proptosis. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Trobe%2C+J.+2009-NL" title="trobe,_j._2009 definition">trobe, j. 2009</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/trommelstokvingers-NL" title="trommelstokvingers definition">trommelstokvingers</a></li>  
+            <li><a href="_an_emerging_view_of_consumer_health_vocabularies._amia_annual_symposium_proceedings_archive,_2003,_674–678._[online]_http://www.ncbi.nlm.nih.gov/pmc/articles/pmc1479921/_[05.05.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases tsea%2c+t.+%26+soergel%2c+d.+%282003%29.+exploring+medical+expressions+used+by+consumers+and+the+media%3a+an+emerging+view+of+consumer+health+vocabularies.+amia+annual+symposium+proceedings+archive%2c+2003%2c+674%e2%80%93678.+%5bonline%5d+http%3a%2f%2fwww.ncbi.nlm.nih.gov%2fpmc%2farticles%2fpmc1479921%2f+%5b05.05.2014%5d-nl title="tsea,_t._&amp;_soergel,_d._(2003)._exploring_medical_expressions_used_by_consumers_and_the_media definition">tsea, t. &amp; soergel, d. (2003). exploring medical expressions used by consumers and the media</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Tsea%2C+T.+%26+Soergel%2C+D.+2003-NL" title="tsea,_t._&amp;_soergel,_d._2003 definition">tsea, t. &amp; soergel, d. 2003</a></li> 
+           </ul> 
+          </div> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner_down"> 
+             <li class="activepageLower"> </li> 
+            </ul> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <div id="ox-footer" class=""> 
+    <div class="responsive_row flush-below top"> 
+     <div class="responsive_container responsive_display_on_smartphone"> 
+      <div class="menu_button"></div> 
+     </div> 
+     <div class="nav responsive_container main_nav"> 
+      <ul class="menu"> 
+       <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+       <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+      </ul> 
+     </div> 
+    </div>          
+   </div>
+  </div>
+ </body>
+</html>

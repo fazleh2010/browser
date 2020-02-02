@@ -1,0 +1,313 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"> 
+  <meta name="_csrf_header" content="X-CSRF-TOKEN"> 
+  <!--this location is for testing in local machine--> 
+  <link href="/css/interface.css" rel="stylesheet" type="text/css"> 
+  <link href="/css/oxford.css" rel="stylesheet" type="text/css"> 
+  <link href="/css/responsive.css" rel="stylesheet" type="text/css"> 
+  <!--this location is for original for production--> 
+  <!--link href="../static/css/interface.css" rel="stylesheet" type="text/css" />
+      <link href="../static/css/oxford.css" rel="stylesheet" type="text/css" />
+      <link href="../static/css/responsive.css" rel="stylesheet" type="text/css" /--> 
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;  
+}
+
+/*the container must be positioned relative:*/
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+      </style> 
+ </head> 
+ <body> 
+  <div id="ox-header" class=""> 
+   <div class="responsive_row flush-below top"> 
+    <div class="responsive_container responsive_display_on_smartphone"> 
+     <div class="menu_button"></div> 
+    </div> 
+    <div class="nav responsive_container main_nav"> 
+     <ul class="menu"> 
+      <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+      <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+     </ul> 
+    </div> 
+   </div> 
+   <div class="responsive_row"> 
+    <div id="ad_leftslot_container" class="ad_leftslot_container responsive_entry_left"> 
+     <div class="ac_leftslot sticky"> 
+      <div id="ad_leftslot_a" class="am-default "> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="responsive_entry_center"> 
+     <div class="responsive_display_on_hd" id="leaderboardHD"> 
+      <div class=""> 
+       <div id="ad_topslot_b" class="am-default "> 
+        <script type="text/javascript">googletag.cmd.push(function () {
+                           googletag.display('ad_topslot_b');
+                           });
+                        </script> 
+       </div> 
+      </div> 
+     </div> 
+     <div id="main_column" class="responsive_row"> 
+      <div class="middle_wrap wordlist-page"> 
+       <div class="responsive_row"> 
+        <h4>Language Selection:</h4> 
+        <div class="langauge selection box"> 
+         <table style="width:60%"> 
+          <tbody> 
+           <tr> 
+            <td><a href="browser_en_A_B_1.html">English</a></td> 
+            <td><a href="browser_nl_1_1.html">Dutch</a></td> 
+           </tr> 
+          </tbody> 
+         </table> 
+        </div> 
+        <h4>Search terms</h4> 
+        <!--Make sure the form has the autocomplete function switched off:--> 
+        <form autocomplete="off" id="form_id"> 
+         <div class="autocomplete" style="width:300px;"> 
+          <input id="myInput" type="text" placeholder="Search.."> 
+         </div> 
+         <input id="submit" type="submit"> 
+        </form> 
+        <script type="text/javascript" src="/css/tbx2rdf_atc_nl.js"></script> 
+        <!--div class="mainsearch">
+                           <form id="search-form" method="get" action="browser_hu_10_1.html">
+                              <div class="dictionarySelector">
+                                 <div id="select_div">
+                                    <div>English</div>
+                                 </div>
+                              </div>
+                              <div class="searchfield">
+                                 <input type="text" id="q" name="q"
+                                    class="searchfield_input"/>
+                                 <a id="keyboard_icon" class="oup_icons responsive_hide_on_smartphone responsive_hide_on_tablet"></a>
+                                 <div id="keyboard_letters"></div>
+                              </div>
+                              <div class="inputSuggestions"></div>
+                              <label id="search-btn" class="oup_icons">
+                              <input type="submit" value="" />
+                              </label>
+                           </form>
+                        </div>
+                     </div--> 
+        <div class="side-selector clear_fix"> 
+         <div class="side-selector__left"> 
+          <!-- the topics --> 
+          <div id="entries-selector" class=""> 
+           <ul class="hide_phone"> 
+            <li class="currentpage"> <span>M_N</span> <li><a href="browser_nl_1_1.html">A_B</a></li>  <li><a href="browser_nl_2_1.html">C_D</a></li>  <li><a href="browser_nl_3_1.html">E_F</a></li>  <li><a href="browser_nl_4_1.html">G_H</a></li>  <li><a href="browser_nl_5_1.html">I_J</a></li>  <li><a href="browser_nl_6_1.html">K_L</a></li>  <li><a href="browser_nl_8_1.html">O_P</a></li>  <li><a href="browser_nl_9_1.html">Q_R</a></li>  <li><a href="browser_nl_10_1.html">S_T</a></li>  <li><a href="browser_nl_11_1.html">U_V</a></li>  <li><a href="browser_nl_12_1.html">W_X</a></li>  <li><a href="browser_nl_13_1.html">Y_Z</a></li> </li> 
+           </ul> 
+           <div class="wl-select hide_all display_phone"> 
+           </div> 
+          </div> 
+          <!-- entries-selector --> 
+         </div> 
+         <div class="side-selector__right"> 
+          <!-- the items of the selected topic --> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner"> 
+             <li class="activepageUpper"> </li>  
+             <li><a href="browser_nl_7_2.html">2</a></li>  
+             <li><a href="browser_nl_7_3.html">3</a></li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="entrylist1"> 
+           <ul class="result-list1 wordlist-oxford3000 list-plain">  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/maagdarmstelselaandoening-NL" title="maagdarmstelselaandoening definition">maagdarmstelselaandoening</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/maagdarmstelselaandoeningen-NL" title="maagdarmstelselaandoeningen definition">maagdarmstelselaandoeningen</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/maagpijn-NL" title="maagpijn definition">maagpijn</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/macitentan-NL" title="macitentan definition">macitentan</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/macrogol-NL" title="macrogol definition">macrogol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/macrogol%2C+combinatiepreparaten-NL" title="macrogol,_combinatiepreparaten definition">macrogol, combinatiepreparaten</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/magaldraat-NL" title="magaldraat definition">magaldraat</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/magnesium+%28combinaties+van+verschillende+zouten%29-NL" title="magnesium_(combinaties_van_verschillende_zouten) definition">magnesium (combinaties van verschillende zouten)</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/magnesiumchloride-NL" title="magnesiumchloride definition">magnesiumchloride</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/magnesiumgluconaat-NL" title="magnesiumgluconaat definition">magnesiumgluconaat</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/magnesiumlactaat-NL" title="magnesiumlactaat definition">magnesiumlactaat</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/magnesiumsulfaat-NL" title="magnesiumsulfaat definition">magnesiumsulfaat</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/malathion-NL" title="malathion definition">malathion</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mangafodipir-NL" title="mangafodipir definition">mangafodipir</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mannitol-NL" title="mannitol definition">mannitol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/maprotiline-NL" title="maprotiline definition">maprotiline</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/maraviroc-NL" title="maraviroc definition">maraviroc</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/matige+invloed-NL" title="matige_invloed definition">matige invloed</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/maximaal+getolereerde+dosis+-NL" title="maximaal_getolereerde_dosis definition">maximaal getolereerde dosis</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/+maximum+verdraagbare+dosis-NL" title="maximum_verdraagbare_dosis definition">maximum verdraagbare dosis</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mazelen%2C+levend%2C+verzwakt-NL" title="mazelen,_levend,_verzwakt definition">mazelen, levend, verzwakt</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mazelen+met+bof%2C+levend%2C+verzwakt-NL" title="mazelen_met_bof,_levend,_verzwakt definition">mazelen met bof, levend, verzwakt</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mazelen+met+bof%2C+rubella+en+varicella+-+levend+verzwakt-NL" title="mazelen_met_bof,_rubella_en_varicella_-_levend_verzwakt definition">mazelen met bof, rubella en varicella - levend verzwakt</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mazelen+met+bof+en+rubella%2C+levend%2C+verzwakt-NL" title="mazelen_met_bof_en_rubella,_levend,_verzwakt definition">mazelen met bof en rubella, levend, verzwakt</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mebendazol-NL" title="mebendazol definition">mebendazol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mebeverine-NL" title="mebeverine definition">mebeverine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mebutizide-NL" title="mebutizide definition">mebutizide</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mecasermine-NL" title="mecasermine definition">mecasermine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meclofenamine+zuur-NL" title="meclofenamine_zuur definition">meclofenamine zuur</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meclozine-NL" title="meclozine definition">meclozine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meclozine%2C+combinatiepreparaten-NL" title="meclozine,_combinatiepreparaten definition">meclozine, combinatiepreparaten</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/medrogeston-NL" title="medrogeston definition">medrogeston</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/medrogeston+met+oestrogenen-NL" title="medrogeston_met_oestrogenen definition">medrogeston met oestrogenen</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/medroxyprogesteron-NL" title="medroxyprogesteron definition">medroxyprogesteron</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/medroxyprogesteron+met+oestrogenen-NL" title="medroxyprogesteron_met_oestrogenen definition">medroxyprogesteron met oestrogenen</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/medryson-NL" title="medryson definition">medryson</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mefenesine-NL" title="mefenesine definition">mefenesine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mefloquine-NL" title="mefloquine definition">mefloquine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/megestrol-NL" title="megestrol definition">megestrol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/melatonin-NL" title="melatonin definition">melatonin</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/melfalan-NL" title="melfalan definition">melfalan</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/melitraceen-NL" title="melitraceen definition">melitraceen</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/melitraceen+met+psycholeptica-NL" title="melitraceen_met_psycholeptica definition">melitraceen met psycholeptica</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/melkzuur-NL" title="melkzuur definition">melkzuur</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/melkzuurproducerende+organismen-NL" title="melkzuurproducerende_organismen definition">melkzuurproducerende organismen</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/melkzuurproducerende+organismen%2C+combinatiepreparaten-NL" title="melkzuurproducerende_organismen,_combinatiepreparaten definition">melkzuurproducerende organismen, combinatiepreparaten</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meloxicam-NL" title="meloxicam definition">meloxicam</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/melperon-NL" title="melperon definition">melperon</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/memantine-NL" title="memantine definition">memantine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/menadion-NL" title="menadion definition">menadion</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meningococcen%2C+tetravalent+gezuiverd+antigen+geconjugeerd+aan+polysacchariden-NL" title="meningococcen,_tetravalent_gezuiverd_antigen_geconjugeerd_aan_polysacchariden definition">meningococcen, tetravalent gezuiverd antigen geconjugeerd aan polysacchariden</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meningokok%2C+bivalent%2C+gezuiverd+polysaccharidenantigeen-NL" title="meningokok,_bivalent,_gezuiverd_polysaccharidenantigeen definition">meningokok, bivalent, gezuiverd polysaccharidenantigeen</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meningokok%2C+tetravalent%2C+gezuiverd+polysaccharidenantigeen-NL" title="meningokok,_tetravalent,_gezuiverd_polysaccharidenantigeen definition">meningokok, tetravalent, gezuiverd polysaccharidenantigeen</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meningokok+c%2C+gezuiverd+geconjugeerd+polysaccharidenantigeen-NL" title="meningokok_c,_gezuiverd_geconjugeerd_polysaccharidenantigeen definition">meningokok c, gezuiverd geconjugeerd polysaccharidenantigeen</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/menopauzegonadotropine+%28humaan%29-NL" title="menopauzegonadotropine_(humaan) definition">menopauzegonadotropine (humaan)</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mepartricine-NL" title="mepartricine definition">mepartricine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mepenzolaat-NL" title="mepenzolaat definition">mepenzolaat</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mepivacaine-NL" title="mepivacaine definition">mepivacaine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mepivacaine%2C+combinatiepreparaten-NL" title="mepivacaine,_combinatiepreparaten definition">mepivacaine, combinatiepreparaten</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meprobamaat-NL" title="meprobamaat definition">meprobamaat</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meprobamaat%2C+combinatiepreparaten-NL" title="meprobamaat,_combinatiepreparaten definition">meprobamaat, combinatiepreparaten</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mequitazine-NL" title="mequitazine definition">mequitazine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mercaptamine-NL" title="mercaptamine definition">mercaptamine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mercaptopurine-NL" title="mercaptopurine definition">mercaptopurine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mercurochroom-NL" title="mercurochroom definition">mercurochroom</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meropenem-NL" title="meropenem definition">meropenem</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mesalazine-NL" title="mesalazine definition">mesalazine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mesna-NL" title="mesna definition">mesna</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mesterolon-NL" title="mesterolon definition">mesterolon</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mesuximide-NL" title="mesuximide definition">mesuximide</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metacycline-NL" title="metacycline definition">metacycline</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metamizol+natrium-NL" title="metamizol_natrium definition">metamizol natrium</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metamizol+natrium%2C+combinatiepreparaten+excl.+psycholeptica-NL" title="metamizol_natrium,_combinatiepreparaten_excl._psycholeptica definition">metamizol natrium, combinatiepreparaten excl. psycholeptica</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metaraminol-NL" title="metaraminol definition">metaraminol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metenolon-NL" title="metenolon definition">metenolon</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+sitagliptin-NL" title="metformin_and_sitagliptin definition">metformin and sitagliptin</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformine-NL" title="metformine definition">metformine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformine+en+alogliptine-NL" title="metformine_en_alogliptine definition">metformine en alogliptine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformine+en+canagliflozine-NL" title="metformine_en_canagliflozine definition">metformine en canagliflozine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformine+en+dapagliflozine-NL" title="metformine_en_dapagliflozine definition">metformine en dapagliflozine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformine+en+empagliflozine-NL" title="metformine_en_empagliflozine definition">metformine en empagliflozine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformine+en+linagliptine-NL" title="metformine_en_linagliptine definition">metformine en linagliptine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformine+en+saxagliptine-NL" title="metformine_en_saxagliptine definition">metformine en saxagliptine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformine+en+vildagliptin-NL" title="metformine_en_vildagliptin definition">metformine en vildagliptin</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformine+met+rosiglitazon-NL" title="metformine_met_rosiglitazon definition">metformine met rosiglitazon</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformine+met+sulfonylureumderivaten-NL" title="metformine_met_sulfonylureumderivaten definition">metformine met sulfonylureumderivaten</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methadon-NL" title="methadon definition">methadon</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methadon%2C+combinatiepreparaten+excl.+psycholeptica-NL" title="methadon,_combinatiepreparaten_excl._psycholeptica definition">methadon, combinatiepreparaten excl. psycholeptica</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methaqualon-NL" title="methaqualon definition">methaqualon</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methaqualon%2C+combinatiepreparaten-NL" title="methaqualon,_combinatiepreparaten definition">methaqualon, combinatiepreparaten</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methenamine-NL" title="methenamine definition">methenamine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methocarbamol%2C+combinatiepreparaten+met+psycholeptica-NL" title="methocarbamol,_combinatiepreparaten_met_psycholeptica definition">methocarbamol, combinatiepreparaten met psycholeptica</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methohexital-NL" title="methohexital definition">methohexital</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methotrexaat-NL" title="methotrexaat definition">methotrexaat</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methotrexaat+%28oraal%29-NL" title="methotrexaat_(oraal) definition">methotrexaat (oraal)</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methoxsaleen%2C+systemisch-NL" title="methoxsaleen,_systemisch definition">methoxsaleen, systemisch</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methoxy-polyethylenglycol-epoetin+beta-NL" title="methoxy-polyethylenglycol-epoetin_beta definition">methoxy-polyethylenglycol-epoetin beta</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methoxyflurane-NL" title="methoxyflurane definition">methoxyflurane</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methylaminolevulinaat-NL" title="methylaminolevulinaat definition">methylaminolevulinaat</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methyldopa+%28l-vorm%29-NL" title="methyldopa_(l-vorm) definition">methyldopa (l-vorm)</a></li> 
+           </ul> 
+          </div> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner_down"> 
+             <li class="activepageLower"> </li>  
+             <li><a href="browser_nl_7_2.html">2</a></li>  
+             <li><a href="browser_nl_7_3.html">3</a></li> 
+            </ul> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <div id="ox-footer" class=""> 
+    <div class="responsive_row flush-below top"> 
+     <div class="responsive_container responsive_display_on_smartphone"> 
+      <div class="menu_button"></div> 
+     </div> 
+     <div class="nav responsive_container main_nav"> 
+      <ul class="menu"> 
+       <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+       <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+      </ul> 
+     </div> 
+    </div>     
+   </div>
+  </div>
+ </body>
+</html>

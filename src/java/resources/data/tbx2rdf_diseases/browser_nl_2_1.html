@@ -1,0 +1,297 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"> 
+  <meta name="_csrf_header" content="X-CSRF-TOKEN"> 
+  <!--this location is for testing in local machine--> 
+  <link href="/css/interface.css" rel="stylesheet" type="text/css"> 
+  <link href="/css/oxford.css" rel="stylesheet" type="text/css"> 
+  <link href="/css/responsive.css" rel="stylesheet" type="text/css"> 
+  <!--this location is for original for production--> 
+  <!--link href="../static/css/interface.css" rel="stylesheet" type="text/css" />
+      <link href="../static/css/oxford.css" rel="stylesheet" type="text/css" />
+      <link href="../static/css/responsive.css" rel="stylesheet" type="text/css" /--> 
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;  
+}
+
+/*the container must be positioned relative:*/
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+      </style> 
+ </head> 
+ <body> 
+  <div id="ox-header" class=""> 
+   <div class="responsive_row flush-below top"> 
+    <div class="responsive_container responsive_display_on_smartphone"> 
+     <div class="menu_button"></div> 
+    </div> 
+    <div class="nav responsive_container main_nav"> 
+     <ul class="menu"> 
+      <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+      <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+     </ul> 
+    </div> 
+   </div> 
+   <div class="responsive_row"> 
+    <div id="ad_leftslot_container" class="ad_leftslot_container responsive_entry_left"> 
+     <div class="ac_leftslot sticky"> 
+      <div id="ad_leftslot_a" class="am-default "> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="responsive_entry_center"> 
+     <div class="responsive_display_on_hd" id="leaderboardHD"> 
+      <div class=""> 
+       <div id="ad_topslot_b" class="am-default "> 
+        <script type="text/javascript">googletag.cmd.push(function () {
+                           googletag.display('ad_topslot_b');
+                           });
+                        </script> 
+       </div> 
+      </div> 
+     </div> 
+     <div id="main_column" class="responsive_row"> 
+      <div class="middle_wrap wordlist-page"> 
+       <div class="responsive_row"> 
+        <h4>Language Selection:</h4> 
+        <div class="langauge selection box"> 
+         <table style="width:60%"> 
+          <tbody> 
+           <tr> 
+            <td><a href="browser_en_A_B_1.html">English</a></td> 
+            <td><a href="browser_nl_1_1.html">Dutch</a></td> 
+           </tr> 
+          </tbody> 
+         </table> 
+        </div> 
+        <h4>Search terms</h4> 
+        <!--Make sure the form has the autocomplete function switched off:--> 
+        <form autocomplete="off" id="form_id"> 
+         <div class="autocomplete" style="width:300px;"> 
+          <input id="myInput" type="text" placeholder="Search.."> 
+         </div> 
+         <input id="submit" type="submit"> 
+        </form> 
+        <script type="text/javascript" src="/css/tbx2rdf_diseases_nl.js"></script> 
+        <!--div class="mainsearch">
+                           <form id="search-form" method="get" action="browser_hu_10_1.html">
+                              <div class="dictionarySelector">
+                                 <div id="select_div">
+                                    <div>English</div>
+                                 </div>
+                              </div>
+                              <div class="searchfield">
+                                 <input type="text" id="q" name="q"
+                                    class="searchfield_input"/>
+                                 <a id="keyboard_icon" class="oup_icons responsive_hide_on_smartphone responsive_hide_on_tablet"></a>
+                                 <div id="keyboard_letters"></div>
+                              </div>
+                              <div class="inputSuggestions"></div>
+                              <label id="search-btn" class="oup_icons">
+                              <input type="submit" value="" />
+                              </label>
+                           </form>
+                        </div>
+                     </div--> 
+        <div class="side-selector clear_fix"> 
+         <div class="side-selector__left"> 
+          <!-- the topics --> 
+          <div id="entries-selector" class=""> 
+           <ul class="hide_phone"> 
+            <li class="currentpage"> <span>C_D</span> <li><a href="browser_nl_1_1.html">A_B</a></li>  <li><a href="browser_nl_3_1.html">E_F</a></li>  <li><a href="browser_nl_4_1.html">G_H</a></li>  <li><a href="browser_nl_5_1.html">I_J</a></li>  <li><a href="browser_nl_6_1.html">K_L</a></li>  <li><a href="browser_nl_7_1.html">M_N</a></li>  <li><a href="browser_nl_8_1.html">O_P</a></li>  <li><a href="browser_nl_9_1.html">Q_R</a></li>  <li><a href="browser_nl_10_1.html">S_T</a></li>  <li><a href="browser_nl_11_1.html">U_V</a></li>  <li><a href="browser_nl_12_1.html">W_X</a></li>  <li><a href="browser_nl_13_1.html">Y_Z</a></li> </li> 
+           </ul> 
+           <div class="wl-select hide_all display_phone"> 
+           </div> 
+          </div> 
+          <!-- entries-selector --> 
+         </div> 
+         <div class="side-selector__right"> 
+          <!-- the items of the selected topic --> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner"> 
+             <li class="activepageUpper"> </li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="entrylist1"> 
+           <ul class="result-list1 wordlist-oxford3000 list-plain">  
+            <li><a href="&nbsp;theory,_methods_and_applications._amsterdam/_philadelphia:_john_benjamins." = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases cabr%c3%a9%2c+m.t.+%281999%29.+terminology%3a%c2%a0theory%2c+methods+and+applications.+amsterdam%2f+philadelphia%3a+john+benjamins.-nl title="cabré,_m.t._(1999)._terminology definition">cabré, m.t. (1999). terminology</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Cabr%C3%A9%2C+M.T.+1999-NL" title="cabré,_m.t._1999 definition">cabré, m.t. 1999</a></li>  
+            <li><a href="_beyond_ischemia-reperfusion_injury._world_journal_of_gastroenterol,_20(13),_3572–3581._[online]_http://www.ncbi.nlm.nih.gov/pmc/articles/pmc3974524/#__ffn_sectitle_[18.05.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases camara-lemarroy%2c+c.r.+%282014%29.+remote+ischemic+preconditioning+as+treatment+for+non-ischemic+gastrointestinal+disorders%3a+beyond+ischemia-reperfusion+injury.+world+journal+of+gastroenterol%2c+20%2813%29%2c+3572%e2%80%933581.+%5bonline%5d+http%3a%2f%2fwww.ncbi.nlm.nih.gov%2fpmc%2farticles%2fpmc3974524%2f%23__ffn_sectitle+%5b18.05.2014%5d-nl title="camara-lemarroy,_c.r._(2014)._remote_ischemic_preconditioning_as_treatment_for_non-ischemic_gastrointestinal_disorders definition">camara-lemarroy, c.r. (2014). remote ischemic preconditioning as treatment for non-ischemic gastrointestinal disorders</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Camara-Lemarroy%2C+C.R.+2014-NL" title="camara-lemarroy,_c.r._2014 definition">camara-lemarroy, c.r. 2014</a></li>  
+            <li><a href="//www.nejm.org/doi/pdf/10.1056/nejmra1207068_[04.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases camilleri%2c+m.+%282012%29.+peripheral+mechanisms+in+irritable+bowel+syndrome.+the+new+england+journal+of+medicine%2c+367%2c1626-1635.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2fpdf%2f10.1056%2fnejmra1207068+%5b04.07.2013%5d-nl title="camilleri,_m._(2012)._peripheral_mechanisms_in_irritable_bowel_syndrome._the_new_england_journal_of_medicine,_367,1626-1635._[online]_http definition">camilleri, m. (2012). peripheral mechanisms in irritable bowel syndrome. the new england journal of medicine, 367,1626-1635. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Camilleri%2C+M.+2012-NL" title="camilleri,_m._2012 definition">camilleri, m. 2012</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/het-nut-van-braces-bij-adolescente-idiopathische-scoliose/volledig_[24.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases castelein%2c+r.m.+%282014%29.+het+nut+van+braces+bij+adolescente+idiopathische+scoliose.+nederlands+tijdschrift+voor+geneeskunde%2c+158%2c+a7246.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fhet-nut-van-braces-bij-adolescente-idiopathische-scoliose%2fvolledig+%5b24.04.2014%5d-nl title="castelein,_r.m._(2014)._het_nut_van_braces_bij_adolescente_idiopathische_scoliose._nederlands_tijdschrift_voor_geneeskunde,_158,_a7246._[online]_http definition">castelein, r.m. (2014). het nut van braces bij adolescente idiopathische scoliose. nederlands tijdschrift voor geneeskunde, 158, a7246. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Castelein%2C+R.M.+2014-NL" title="castelein,_r.m._2014 definition">castelein, r.m. 2014</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/cbg-meb-NL" title="cbg-meb definition">cbg-meb</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Chabas%2C+D.%2C+et+al.+2010-NL" title="chabas,_d.,_et_al._2010 definition">chabas, d., et al. 2010</a></li>  
+            <li><a href="//www.ncbi.nlm.nih.gov/pmc/articles/pmc2816008/#!po=11.5385_[02.08.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases chabas%2c+d.%2c+ness%2c+j.%2c+belman%2c+a.%2c+yeh%2c+e.a.%2c+kuntz%2c+n.%2c+gorman%2c+m.p.%2c+et+al.+%282010%29.+younger+children+with+ms+have+a+distinct+csf+inflammatory+profile+at+disease+onset.+neurology%2c+74%285%29%2c+399-405.+%5bonline%5d+http%3a%2f%2fwww.ncbi.nlm.nih.gov%2fpmc%2farticles%2fpmc2816008%2f%23%21po%3d11.5385+%5b02.08.2013%5d-nl title="chabas,_d.,_ness,_j.,_belman,_a.,_yeh,_e.a.,_kuntz,_n.,_gorman,_m.p.,_et_al._(2010)._younger_children_with_ms_have_a_distinct_csf_inflammatory_profile_at_disease_onset._neurology,_74(5),_399-405._[online]_http definition">chabas, d., ness, j., belman, a., yeh, e.a., kuntz, n., gorman, m.p., et al. (2010). younger children with ms have a distinct csf inflammatory profile at disease onset. neurology, 74(5), 399-405. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Chamuleau%2C+S.A.J.%2C+et+al.+2005-NL" title="chamuleau,_s.a.j.,_et_al._2005 definition">chamuleau, s.a.j., et al. 2005</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/complicaties-van-een-niet-herkend-hartinfarct/volledig_[08.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases chamuleau%2c+s.a.j.%2c+van+den+brink%2c+r.b.a.%2c+kloek%2c+j.j.%2c+broekhuis%2c+e.%2c+beaumont%2c+e.m.f.h.+%26+koster%2c+r.w.+%282005%29.+complicaties+van+een+niet+herkend+hartinfarct.+nederlands+tijdschrift+voor+geneeskunde%2c+149%2c+2593-9.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fcomplicaties-van-een-niet-herkend-hartinfarct%2fvolledig+%5b08.07.2013%5d-nl title="chamuleau,_s.a.j.,_van_den_brink,_r.b.a.,_kloek,_j.j.,_broekhuis,_e.,_beaumont,_e.m.f.h._&amp;_koster,_r.w._(2005)._complicaties_van_een_niet_herkend_hartinfarct._nederlands_tijdschrift_voor_geneeskunde,_149,_2593-9._[online]_http definition">chamuleau, s.a.j., van den brink, r.b.a., kloek, j.j., broekhuis, e., beaumont, e.m.f.h. &amp; koster, r.w. (2005). complicaties van een niet herkend hartinfarct. nederlands tijdschrift voor geneeskunde, 149, 2593-9. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Chen%2C+P.%2C+et+al+2011-NL" title="chen,_p.,_et_al_2011 definition">chen, p., et al 2011</a></li>  
+            <li><a href="//www.nejm.org/doi/pdf/10.1056/nejmoa1009717_[29.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases chen%2c+p.%2c+lin%2c+j.%2c+lu%2c+c.%2c+ong%2c+c.%2c+hsieh%2c+p.f.%2c+yang%2c+c.%2c+et+al.+%282011%29.+carbamazepine-induced+toxic+effects+and+hla-b*1502+screening+in+taiwan.+the+new+england+journal+of+medicine%2c+364%2c+1126-33.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2fpdf%2f10.1056%2fnejmoa1009717+%5b29.07.2013%5d-nl title="chen,_p.,_lin,_j.,_lu,_c.,_ong,_c.,_hsieh,_p.f.,_yang,_c.,_et_al._(2011)._carbamazepine-induced_toxic_effects_and_hla-b*1502_screening_in_taiwan._the_new_england_journal_of_medicine,_364,_1126-33._[online]_http definition">chen, p., lin, j., lu, c., ong, c., hsieh, p.f., yang, c., et al. (2011). carbamazepine-induced toxic effects and hla-b*1502 screening in taiwan. the new england journal of medicine, 364, 1126-33. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Choi%2C+Y.S.%2C+et+al.+2011-NL" title="choi,_y.s.,_et_al._2011 definition">choi, y.s., et al. 2011</a></li>  
+            <li><a href="//www.ncbi.nlm.nih.gov/pmc/articles/pmc3194784/_[28.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases choi%2c+y.s.%2c+kim%2c+b.%2c+joo%2c+j.%2c+park%2c+y.%2c+lee%2c+s.h.+%26+song%2c+b.y.+%282011%29.+a+rare+case+of+epiphyseal+chondromyxoid+fibroma+of+the+proximal+tibia.+korean+journal+of+radiology%2c+12%286%29%2c+761-764.+%5bonline%5d+http%3a%2f%2fwww.ncbi.nlm.nih.gov%2fpmc%2farticles%2fpmc3194784%2f+%5b28.07.2013%5d-nl title="choi,_y.s.,_kim,_b.,_joo,_j.,_park,_y.,_lee,_s.h._&amp;_song,_b.y._(2011)._a_rare_case_of_epiphyseal_chondromyxoid_fibroma_of_the_proximal_tibia._korean_journal_of_radiology,_12(6),_761-764._[online]_http definition">choi, y.s., kim, b., joo, j., park, y., lee, s.h. &amp; song, b.y. (2011). a rare case of epiphyseal chondromyxoid fibroma of the proximal tibia. korean journal of radiology, 12(6), 761-764. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Clinical+key-NL" title="clinical_key definition">clinical key</a></li>  
+            <li><a href="//www.clinicalkey.com/topics/pediatrics/failure-to-thrive.html_[25.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases clinical+key.+%282012%29.+%5bonline%5d+https%3a%2f%2fwww.clinicalkey.com%2ftopics%2fpediatrics%2ffailure-to-thrive.html+%5b25.07.2013%5d-nl title="clinical_key._(2012)._[online]_https definition">clinical key. (2012). [online] https</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/clubbing-NL" title="clubbing definition">clubbing</a></li>  
+            <li><a href="//_http://www.cbg-meb.nl/cbg/nl_[12.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases college+ter+beoordeling+van+geneesmiddelen+-+medicines+evaluation+board.+%282008%29.+%5bonline%5d+http%3a%2f%2f+http%3a%2f%2fwww.cbg-meb.nl%2fcbg%2fnl+%5b12.07.2013%5d-nl title="college_ter_beoordeling_van_geneesmiddelen_-_medicines_evaluation_board._(2008)._[online]_http definition">college ter beoordeling van geneesmiddelen - medicines evaluation board. (2008). [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Collins-NL" title="collins definition">collins</a></li>  
+            <li><a href="//www.collinsdictionary.com/_[23.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases collins.+%282014%29.+%5bonline%5d+http%3a%2f%2fwww.collinsdictionary.com%2f+%5b23.07.2013%5d-nl title="collins._(2014)._[online]_http definition">collins. (2014). [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/congenitaal-NL" title="congenitaal definition">congenitaal</a></li>  
+            <li><a href="//www.ncbi.nlm.nih.gov/pmc/articles/pmc1860486/_[29.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases cooke%2c+l.j.%2c+bowles%2c+k.m.%2c+craig%2c+j.i.o.+%26+sule%2c+o.+%282006%29.+occupational+injury+in+a+fishmonger+with+a+macular+rash%2c+hepatosplenomegaly+and+pancytopenia.+journal+of+clinical+pathology%2c+59%289%29%2c+993-994.+%5bonline%5d+http%3a%2f%2fwww.ncbi.nlm.nih.gov%2fpmc%2farticles%2fpmc1860486%2f+%5b29.07.2013%5d-nl title="cooke,_l.j.,_bowles,_k.m.,_craig,_j.i.o._&amp;_sule,_o._(2006)._occupational_injury_in_a_fishmonger_with_a_macular_rash,_hepatosplenomegaly_and_pancytopenia._journal_of_clinical_pathology,_59(9),_993-994._[online]_http definition">cooke, l.j., bowles, k.m., craig, j.i.o. &amp; sule, o. (2006). occupational injury in a fishmonger with a macular rash, hepatosplenomegaly and pancytopenia. journal of clinical pathology, 59(9), 993-994. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Cooke%2C+L.J.%2C+et+al.+2006-NL" title="cooke,_l.j.,_et_al._2006 definition">cooke, l.j., et al. 2006</a></li>  
+            <li><a href="//www.nejm.org/doi/full/10.1056/nejmra042972_[27.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases cooper%2c+d.s.+%282005%29.+antithyroid+drugs.+the+new+england+journal+of+medicine%2c+352%2c+905-917.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2ffull%2f10.1056%2fnejmra042972+%5b27.04.2014%5d-nl title="cooper,_d.s._(2005)._antithyroid_drugs._the_new_england_journal_of_medicine,_352,_905-917._[online]_http definition">cooper, d.s. (2005). antithyroid drugs. the new england journal of medicine, 352, 905-917. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Cooper%2C+D.S.+2005-NL" title="cooper,_d.s._2005 definition">cooper, d.s. 2005</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/prevalenties-bij-de-geboorte-van-meer-dan-30-aangeboren-afwijkingen-noord-nederland/volledig/print_[09.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases cornel%2c+m.c.%2c+de+walle%2c+h.e.k.%2c+haveman%2c+t.m%2c+spreen%2c+j.a.%2c+breed%2c+a.c.+%26+ten+kate%2c+l.p.+%281991%29.+prevalenties+bij+de+geboorte+van+meer+dan+30+aangeboren+afwijkingen+in+noord-nederland.+nederlands+tijdschrift+voor+geneeskunde%2c+135%2c+2032-6.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fprevalenties-bij-de-geboorte-van-meer-dan-30-aangeboren-afwijkingen-noord-nederland%2fvolledig%2fprint+%5b09.07.2013%5d-nl title="cornel,_m.c.,_de_walle,_h.e.k.,_haveman,_t.m,_spreen,_j.a.,_breed,_a.c._&amp;_ten_kate,_l.p._(1991)._prevalenties_bij_de_geboorte_van_meer_dan_30_aangeboren_afwijkingen_in_noord-nederland._nederlands_tijdschrift_voor_geneeskunde,_135,_2032-6._[online]_http definition">cornel, m.c., de walle, h.e.k., haveman, t.m, spreen, j.a., breed, a.c. &amp; ten kate, l.p. (1991). prevalenties bij de geboorte van meer dan 30 aangeboren afwijkingen in noord-nederland. nederlands tijdschrift voor geneeskunde, 135, 2032-6. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Cornel%2C+M.C.%2C+et+al.+1991-NL" title="cornel,_m.c.,_et_al._1991 definition">cornel, m.c., et al. 1991</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Couwenberg%2C+S.M%2C+et+al.+1998-NL" title="couwenberg,_s.m,_et_al._1998 definition">couwenberg, s.m, et al. 1998</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/nederlandse-vereniging-voor-dermatologie-en-venereologie-25/volledig_[29.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases couwenberg%2c+s.m%2c+vuzevski%2c+v.d.%2c+heule%2c+f.+%26+siersema%2c+p.d.+%281998%29.+nederlandse+vereniging+voor+dermatologie+en+venereologie.+nederlands+tijdschrift+voor+geneeskunde%2c+142%2c+1579-84.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fnederlandse-vereniging-voor-dermatologie-en-venereologie-25%2fvolledig+%5b29.07.2013%5d-nl title="couwenberg,_s.m,_vuzevski,_v.d.,_heule,_f._&amp;_siersema,_p.d._(1998)._nederlandse_vereniging_voor_dermatologie_en_venereologie._nederlands_tijdschrift_voor_geneeskunde,_142,_1579-84._[online]_http definition">couwenberg, s.m, vuzevski, v.d., heule, f. &amp; siersema, p.d. (1998). nederlandse vereniging voor dermatologie en venereologie. nederlands tijdschrift voor geneeskunde, 142, 1579-84. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Curtis%2C+A.B.%2C+et+al.+2013-NL" title="curtis,_a.b.,_et_al._2013 definition">curtis, a.b., et al. 2013</a></li>  
+            <li><a href="//www.nejm.org/doi/full/10.1056/nejmoa1210356#t=article_[25.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases curtis%2c+a.b.%2c+worley%2c+s.j.%2c+adamson%2c+p.b.%2c+chung%2c+e.s.%2c+niazi%2c+i.%2c+sherfesee%2c+l.%2c+et+al.+%282013%29.+biventricular+pacing+for+atrioventricular+block+and+systolic+dysfunction.+the+new+england+journal+of+medicine%2c+368%2c+1585-1593.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2ffull%2f10.1056%2fnejmoa1210356%23t%3darticle+%5b25.04.2014%5d-nl title="curtis,_a.b.,_worley,_s.j.,_adamson,_p.b.,_chung,_e.s.,_niazi,_i.,_sherfesee,_l.,_et_al._(2013)._biventricular_pacing_for_atrioventricular_block_and_systolic_dysfunction._the_new_england_journal_of_medicine,_368,_1585-1593._[online]_http definition">curtis, a.b., worley, s.j., adamson, p.b., chung, e.s., niazi, i., sherfesee, l., et al. (2013). biventricular pacing for atrioventricular block and systolic dysfunction. the new england journal of medicine, 368, 1585-1593. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/cyanose-NL" title="cyanose definition">cyanose</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Cypel%2C+M.%2C+et+al.+2011-NL" title="cypel,_m.,_et_al._2011 definition">cypel, m., et al. 2011</a></li>  
+            <li><a href="//www.nejm.org/doi/pdf/10.1056/nejmoa1014597_[30.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases cypel%2c+m.%2c+yeung%2c+j.c.%2c+liu%2c+m.%2c+anraku%2c+m.%2c+chen%2c+f.%2c+karolak%2c+w.%2c+et+al.+%282011%29.+normothermic+ex+vivo+lung+perfusion+in+clinical+lung+transplantation.+the+new+england+journal+of+medicine%2c+364%2c+1431-40.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2fpdf%2f10.1056%2fnejmoa1014597+%5b30.07.2013%5d-nl title="cypel,_m.,_yeung,_j.c.,_liu,_m.,_anraku,_m.,_chen,_f.,_karolak,_w.,_et_al._(2011)._normothermic_ex_vivo_lung_perfusion_in_clinical_lung_transplantation._the_new_england_journal_of_medicine,_364,_1431-40._[online]_http definition">cypel, m., yeung, j.c., liu, m., anraku, m., chen, f., karolak, w., et al. (2011). normothermic ex vivo lung perfusion in clinical lung transplantation. the new england journal of medicine, 364, 1431-40. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/da+Silva-Voorham%2C+J.M.%2C+et+al.+2009-NL" title="da_silva-voorham,_j.m.,_et_al._2009 definition">da silva-voorham, j.m., et al. 2009</a></li>  
+            <li><a href="_een_toenemend_risico_voor_reizigers_naar_tropische_en_subtropische_landen._nederlands_tijdschrift_voor_geneeskunde,_153,_a778._[online]_http://www.ntvg.nl/publicatie/dengue-een-toenemend-risico-voor-reizigers-naar-tropische-en-subtropische-landen/volledig_[29.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases da+silva-voorham%2c+j.m.%2c+tami%2c+a.%2c+juliana%2c+a.e.%2c+rodenhuis-zybert%2c+i.a.%2c+wilschut%2c+j.c.+%26+smit%2c+j.m.+%282009%29.+dengue%3a+een+toenemend+risico+voor+reizigers+naar+tropische+en+subtropische+landen.+nederlands+tijdschrift+voor+geneeskunde%2c+153%2c+a778.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fdengue-een-toenemend-risico-voor-reizigers-naar-tropische-en-subtropische-landen%2fvolledig+%5b29.07.2013%5d-nl title="da_silva-voorham,_j.m.,_tami,_a.,_juliana,_a.e.,_rodenhuis-zybert,_i.a.,_wilschut,_j.c._&amp;_smit,_j.m._(2009)._dengue definition">da silva-voorham, j.m., tami, a., juliana, a.e., rodenhuis-zybert, i.a., wilschut, j.c. &amp; smit, j.m. (2009). dengue</a></li>  
+            <li><a href="_a_case_study._[online]_http://erikdalton.com/media/published-articles/scoliosis-a-case-study/_[24.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases dalton%2c+e.+%282011%29.+scoliosis%3a+a+case+study.+%5bonline%5d+http%3a%2f%2ferikdalton.com%2fmedia%2fpublished-articles%2fscoliosis-a-case-study%2f+%5b24.04.2014%5d-nl title="dalton,_e._(2011)._scoliosis definition">dalton, e. (2011). scoliosis</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Dalton%2C+E.+2011-NL" title="dalton,_e._2011 definition">dalton, e. 2011</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Dankert-Roelse%2C+J.E.%2C+et+al.+2006-NL" title="dankert-roelse,_j.e.,_et_al._2006 definition">dankert-roelse, j.e., et al. 2006</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/jonge-kinderen-met-ernstige-afwijkingen-door-laat-herkende-cystische-fibrose/volledig_[30.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases dankert-roelse%2c+j.e.%2c+m%c3%a9relle%2c+m.e.%2c+laarman%2c+a.r.c.+%26+griffioen%2c+r.w.+%282006%29.+jonge+kinderen+met+ernstige+afwijkingen+door+laat+herkende+cystische+fibrose.+nederlands+tijdschrift+voor+geneeskunde%2c+150%2c+525-9.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fjonge-kinderen-met-ernstige-afwijkingen-door-laat-herkende-cystische-fibrose%2fvolledig+%5b30.07.2013%5d-nl title="dankert-roelse,_j.e.,_mérelle,_m.e.,_laarman,_a.r.c._&amp;_griffioen,_r.w._(2006)._jonge_kinderen_met_ernstige_afwijkingen_door_laat_herkende_cystische_fibrose._nederlands_tijdschrift_voor_geneeskunde,_150,_525-9._[online]_http definition">dankert-roelse, j.e., mérelle, m.e., laarman, a.r.c. &amp; griffioen, r.w. (2006). jonge kinderen met ernstige afwijkingen door laat herkende cystische fibrose. nederlands tijdschrift voor geneeskunde, 150, 525-9. [online] http</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/sarcoiumldose-van-het-hart/volledig/print_[24/05/2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases de+blok%2c+k.%2c+alberts%2c+chr.%2c+d%c3%bcren%2c+d.r.+%26+david%2c+g.k.+%281991%29.+sarco%c3%afdose+van+het+hart.+nederlands+tijdschrift+voor+geneeskunde%2c+135%2c+475-8.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fsarcoiumldose-van-het-hart%2fvolledig%2fprint+%5b24%2f05%2f2014%5d-nl title="de_blok,_k.,_alberts,_chr.,_düren,_d.r._&amp;_david,_g.k._(1991)._sarcoïdose_van_het_hart._nederlands_tijdschrift_voor_geneeskunde,_135,_475-8._[online]_http definition">de blok, k., alberts, chr., düren, d.r. &amp; david, g.k. (1991). sarcoïdose van het hart. nederlands tijdschrift voor geneeskunde, 135, 475-8. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/de+Blok%2C+K.%2C+et+al.+1991-NL" title="de_blok,_k.,_et_al._1991 definition">de blok, k., et al. 1991</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/focale-vulvitis/volledig_[30.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases de+blok%2c+s.+%281987%29.+focale+vulvitis.+nederlands+tijdschrift+voor+geneeskunde%2c+131%2c+412.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2ffocale-vulvitis%2fvolledig+%5b30.07.2013%5d-nl title="de_blok,_s._(1987)._focale_vulvitis._nederlands_tijdschrift_voor_geneeskunde,_131,_412._[online]_http definition">de blok, s. (1987). focale vulvitis. nederlands tijdschrift voor geneeskunde, 131, 412. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/de+Blok%2C+S.+1987-NL" title="de_blok,_s._1987 definition">de blok, s. 1987</a></li>  
+            <li><a href="_diagnostiek,_behandeling_en_preventive._nederlands_tijdschrift_voor_geneeskunde,_134,_1349-52._[online]_http://www.ntvg.nl/publicatie/diep-veneuze-trombose-de-zwangerschap-diagnostiek-behandeling-en-preventie/volledig_[30.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases de+boer%2c+k.%2c+b%c3%bcller%2c+h.r.%2c+ten+cate%2c+j.w.%2c+weenink%2c+g.h.+%26+treffers%2c+p.e.+%281990%29.+diep+veneuze+trombose+in+de+zwangerschap%3a+diagnostiek%2c+behandeling+en+preventive.+nederlands+tijdschrift+voor+geneeskunde%2c+134%2c+1349-52.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fdiep-veneuze-trombose-de-zwangerschap-diagnostiek-behandeling-en-preventie%2fvolledig+%5b30.07.2013%5d-nl title="de_boer,_k.,_büller,_h.r.,_ten_cate,_j.w.,_weenink,_g.h._&amp;_treffers,_p.e._(1990)._diep_veneuze_trombose_in_de_zwangerschap definition">de boer, k., büller, h.r., ten cate, j.w., weenink, g.h. &amp; treffers, p.e. (1990). diep veneuze trombose in de zwangerschap</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/de+Boer%2C+K.%2C+et+al.+1990-NL" title="de_boer,_k.,_et_al._1990 definition">de boer, k., et al. 1990</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/673143/volledig_[25.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases de+bont%2c+e.g.p.m.+%26+cals%2c+j.w.l.+%282014%29.+voor+elk+kind+met+koorts+een+eigen+%e2%80%98stoplicht%e2%80%99%3f+nederlands+tijdschrift+voor+geneeskunde%2c+158%2c+a7649.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2f673143%2fvolledig+%5b25.04.2014%5d-nl title="de_bont,_e.g.p.m._&amp;_cals,_j.w.l._(2014)._voor_elk_kind_met_koorts_een_eigen_‘stoplicht’?_nederlands_tijdschrift_voor_geneeskunde,_158,_a7649._[online]_http definition">de bont, e.g.p.m. &amp; cals, j.w.l. (2014). voor elk kind met koorts een eigen ‘stoplicht’? nederlands tijdschrift voor geneeskunde, 158, a7649. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/de+Bont%2C+E.G.P.M.+%26+Cals%2C+J.W.L.+2014-NL" title="de_bont,_e.g.p.m._&amp;_cals,_j.w.l._2014 definition">de bont, e.g.p.m. &amp; cals, j.w.l. 2014</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/de+eerste+symptomen+van-NL" title="de_eerste_symptomen_van definition">de eerste symptomen van</a></li>  
+            <li><a href="//www.wnt.inl.nl/openlaszlo/my-apps/gtb/productie/huidigeversie/src/inlgtb.html?owner=gtb_[20.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases de+ge%c3%afntegreerde+taal-bank.+%282010%29.+%5bonline%5d+http%3a%2f%2fwww.wnt.inl.nl%2fopenlaszlo%2fmy-apps%2fgtb%2fproductie%2fhuidigeversie%2fsrc%2finlgtb.html%3fowner%3dgtb+%5b20.04.2014%5d-nl title="de_geïntegreerde_taal-bank._(2010)._[online]_http definition">de geïntegreerde taal-bank. (2010). [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/de+Graaff%2C+J.C.%2C+et+al.+2013-NL" title="de_graaff,_j.c.,_et_al._2013 definition">de graaff, j.c., et al. 2013</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/beschadigt-anesthesie-de-hersenontwikkeling-bij-kinderen/volledig_[09.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases de+graaff%2c+j.c.%2c+van+der+werff%2c+d.b.m.+%26+kalkman%2c+c.j.+%282013%29.+beschadigt+anesthesie+de+hersenontwikkeling+bij+kinderen%3f+nederlands+tijdschrift+voor+geneeskunde%2c+157%2c+a5198.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fbeschadigt-anesthesie-de-hersenontwikkeling-bij-kinderen%2fvolledig+%5b09.07.2013%5d-nl title="de_graaff,_j.c.,_van_der_werff,_d.b.m._&amp;_kalkman,_c.j._(2013)._beschadigt_anesthesie_de_hersenontwikkeling_bij_kinderen?_nederlands_tijdschrift_voor_geneeskunde,_157,_a5198._[online]_http definition">de graaff, j.c., van der werff, d.b.m. &amp; kalkman, c.j. (2013). beschadigt anesthesie de hersenontwikkeling bij kinderen? nederlands tijdschrift voor geneeskunde, 157, a5198. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/de+Haan%2C+S.N.%2C+et+al.+2005-NL" title="de_haan,_s.n.,_et_al._2005 definition">de haan, s.n., et al. 2005</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/diagnostiek-naar-helicobacter-pylori-infectie-bij-kinderen/volledig_[27.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases de+haan%2c+s.n.%2c+kinderman%2c+a.%2c+dahhan%2c+n.+%26+bosman%2c+d.k.+%282005%29.+diagnostiek+naar+helicobacter+pylori-infectie+bij+kinderen.+nederlands+tijdschrift+voor+geneeskunde%2c+149%2c+1326-9.+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fdiagnostiek-naar-helicobacter-pylori-infectie-bij-kinderen%2fvolledig+%5b27.07.2013%5d-nl title="de_haan,_s.n.,_kinderman,_a.,_dahhan,_n._&amp;_bosman,_d.k._(2005)._diagnostiek_naar_helicobacter_pylori-infectie_bij_kinderen._nederlands_tijdschrift_voor_geneeskunde,_149,_1326-9._http definition">de haan, s.n., kinderman, a., dahhan, n. &amp; bosman, d.k. (2005). diagnostiek naar helicobacter pylori-infectie bij kinderen. nederlands tijdschrift voor geneeskunde, 149, 1326-9. http</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/onderzoek-van-de-longen-bij-verdenking-op-een-pneumonie/volledig_[27.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases de+jongh%2c+t.o.h.+%26+thiadens%2c+h.a.+%282011%29.+onderzoek+van+de+longen+bij+verdenking+op+een+pneumonie.+nederlands+tijdschrift+voor+geneeskunde%2c+155%2c+a2656.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fonderzoek-van-de-longen-bij-verdenking-op-een-pneumonie%2fvolledig+%5b27.04.2014%5d-nl title="de_jongh,_t.o.h._&amp;_thiadens,_h.a._(2011)._onderzoek_van_de_longen_bij_verdenking_op_een_pneumonie._nederlands_tijdschrift_voor_geneeskunde,_155,_a2656._[online]_http definition">de jongh, t.o.h. &amp; thiadens, h.a. (2011). onderzoek van de longen bij verdenking op een pneumonie. nederlands tijdschrift voor geneeskunde, 155, a2656. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/de+Jongh%2C+T.O.H.+%26+Thiadens%2C+H.A.+2011-NL" title="de_jongh,_t.o.h._&amp;_thiadens,_h.a._2011 definition">de jongh, t.o.h. &amp; thiadens, h.a. 2011</a></li>  
+            <li><a href="_academia_press." = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases de+keyser%2c+r.+%282006%29.+horen%2c+zien+en+tolken%2c+werken+als+tolk+in+de+sociale+sector.+gent%3a+academia+press.-nl title="de_keyser,_r._(2006)._horen,_zien_en_tolken,_werken_als_tolk_in_de_sociale_sector._gent definition">de keyser, r. (2006). horen, zien en tolken, werken als tolk in de sociale sector. gent</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/De+Keyser%2C+R.+2006-NL" title="de_keyser,_r._2006 definition">de keyser, r. 2006</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/de+Kroon%2C+C.D.%2C+et+al.+2003-NL" title="de_kroon,_c.d.,_et_al._2003 definition">de kroon, c.d., et al. 2003</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/doelmatigheid-van-watercontrastechografie-ter-beoordeling-van-het-cavum-uteri/volledig_[19.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases de+kroon%2c+c.d.%2c+jansen%2c+f.w.+%26+trimbos%2c+j.b.m.z.+%282003%29.+doelmatigheid+van+watercontrastechografie+ter+beoordeling+van+het+cavum+uteri.+nederlands+tijdschrift+voor+geneeskunde%2c147%2c+1539-44.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fdoelmatigheid-van-watercontrastechografie-ter-beoordeling-van-het-cavum-uteri%2fvolledig+%5b19.07.2013%5d-nl title="de_kroon,_c.d.,_jansen,_f.w._&amp;_trimbos,_j.b.m.z._(2003)._doelmatigheid_van_watercontrastechografie_ter_beoordeling_van_het_cavum_uteri._nederlands_tijdschrift_voor_geneeskunde,147,_1539-44._[online]_http definition">de kroon, c.d., jansen, f.w. &amp; trimbos, j.b.m.z. (2003). doelmatigheid van watercontrastechografie ter beoordeling van het cavum uteri. nederlands tijdschrift voor geneeskunde,147, 1539-44. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/de+Mol%2C+A.C.%2C+et+al.2006-NL" title="de_mol,_a.c.,_et_al.2006 definition">de mol, a.c., et al.2006</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/de-eerste-pasgeborene-met-congenitaal-rubellasyndroom-tijdens-de-rubella-epidemie-nederla/volledig_[09.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases de+mol%2c+a.c.%2c+vrancken%2c+s.%2c+eggink%2c+a.j.%2c+verduyn%2c+f.m.+%26+warris%2c+a.+%282006%29.+de+eerste+pasgeborene+met+congenitaal+rubellasyndroom+tijdens+de+rubella-epidemie+in+nederland+in+2004%2f%2705.+nederlands+tijdschrift+voor+geneeskunde%2c150%2c+741-6.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fde-eerste-pasgeborene-met-congenitaal-rubellasyndroom-tijdens-de-rubella-epidemie-nederla%2fvolledig+%5b09.07.2013%5d-nl title="de_mol,_a.c.,_vrancken,_s.,_eggink,_a.j.,_verduyn,_f.m._&amp;_warris,_a._(2006)._de_eerste_pasgeborene_met_congenitaal_rubellasyndroom_tijdens_de_rubella-epidemie_in_nederland_in_2004/'05._nederlands_tijdschrift_voor_geneeskunde,150,_741-6._[online]_http definition">de mol, a.c., vrancken, s., eggink, a.j., verduyn, f.m. &amp; warris, a. (2006). de eerste pasgeborene met congenitaal rubellasyndroom tijdens de rubella-epidemie in nederland in 2004/'05. nederlands tijdschrift voor geneeskunde,150, 741-6. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/de+Vries%2C+M.%2C+et+al.+1999-NL" title="de_vries,_m.,_et_al._1999 definition">de vries, m., et al. 1999</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/lichamelijke-en-psychische-klachten-bij-militairen-na-oorlogshandelingen-en-vredesmissies/volledig_[19.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases de+vries%2c+m.%2c+soetekouw%2c+p.m.m.b.%2c+van+bergen%2c+l.f.j.m.%2c+van+der+meer%2c+j.w.m.+%26+bleijenberg%2c+g.+%281999%29.+lichamelijke+en+psychische+klachten+bij+militairen+na+oorlogshandelingen+en+vredesmissies.+nederlands+tijdschrift+voor+geneeskunde%2c+143%2c+2557-62.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2flichamelijke-en-psychische-klachten-bij-militairen-na-oorlogshandelingen-en-vredesmissies%2fvolledig+%5b19.07.2013%5d-nl title="de_vries,_m.,_soetekouw,_p.m.m.b.,_van_bergen,_l.f.j.m.,_van_der_meer,_j.w.m._&amp;_bleijenberg,_g._(1999)._lichamelijke_en_psychische_klachten_bij_militairen_na_oorlogshandelingen_en_vredesmissies._nederlands_tijdschrift_voor_geneeskunde,_143,_2557-62._[online]_http definition">de vries, m., soetekouw, p.m.m.b., van bergen, l.f.j.m., van der meer, j.w.m. &amp; bleijenberg, g. (1999). lichamelijke en psychische klachten bij militairen na oorlogshandelingen en vredesmissies. nederlands tijdschrift voor geneeskunde, 143, 2557-62. [online] http</a></li>  
+            <li><a href="_eerst_op_zoek_naar_een_verklaring_alvorens_meer_medicatie_voor_te_schrijven._nederlands_tijdschrift_voor_geneeskunde,_149,161-4._[online]_http://www.ntvg.nl/publicatie/wanneer-de-behandeling-van-kinderen-met-astma-faalt-eerst-op-zoek-naar-een-verklaring-alv/volledig_[07.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases de+vries%2c+t.w.%2c+duiverman%2c+e.j.+%26+rottier%2c+b.l.+%282005%29.+wanneer+de+behandeling+van+kinderen+met+astma+faalt%3a+eerst+op+zoek+naar+een+verklaring+alvorens+meer+medicatie+voor+te+schrijven.+nederlands+tijdschrift+voor+geneeskunde%2c+149%2c161-4.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fwanneer-de-behandeling-van-kinderen-met-astma-faalt-eerst-op-zoek-naar-een-verklaring-alv%2fvolledig+%5b07.07.2013%5d-nl title="de_vries,_t.w.,_duiverman,_e.j._&amp;_rottier,_b.l._(2005)._wanneer_de_behandeling_van_kinderen_met_astma_faalt definition">de vries, t.w., duiverman, e.j. &amp; rottier, b.l. (2005). wanneer de behandeling van kinderen met astma faalt</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/de+Vries%2C+T.W.%2C+et+al.+2005-NL" title="de_vries,_t.w.,_et_al._2005 definition">de vries, t.w., et al. 2005</a></li>  
+            <li><a href="_drukkerij_van_denderen_b.v._[online]_http://books.google.be/books?id=1he9aaaaiaaj&amp;q=bindweefselgezwel&amp;dq=bindweefselgezwel&amp;hl=nl&amp;sa=x&amp;ei=rs1vu53bo6ox7qar74ggaw&amp;redir_esc=y_[21.04.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases de+vries%2c+w.r.+%281984%29.+ervaringen+in+de+chirurgische+behandeling+van+tumoren+en+tumorachtige+afwijkingen+van+de+borstrand.+groningen%3a+drukkerij+van+denderen+b.v.+%5bonline%5d+http%3a%2f%2fbooks.google.be%2fbooks%3fid%3d1he9aaaaiaaj%26q%3dbindweefselgezwel%26dq%3dbindweefselgezwel%26hl%3dnl%26sa%3dx%26ei%3drs1vu53bo6ox7qar74ggaw%26redir_esc%3dy+%5b21.04.2014%5d-nl title="de_vries,_w.r._(1984)._ervaringen_in_de_chirurgische_behandeling_van_tumoren_en_tumorachtige_afwijkingen_van_de_borstrand._groningen definition">de vries, w.r. (1984). ervaringen in de chirurgische behandeling van tumoren en tumorachtige afwijkingen van de borstrand. groningen</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/De+Vries%2C+W.R.+1984-NL" title="de_vries,_w.r._1984 definition">de vries, w.r. 1984</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/DeFronzo%2C+R.A.%2C+et+al.+2011-NL" title="defronzo,_r.a.,_et_al._2011 definition">defronzo, r.a., et al. 2011</a></li>  
+            <li><a href="//www.nejm.org/doi/pdf/10.1056/nejmoa1010949_[22.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases defronzo%2c+r.a.%2c+tripathy%2c+d.%2c+schwenke%2c+d.c.%2c+banerji%2c+m.%2c+bray%2c+g.a.%2c+buchanan.%2c+t.a.%2c+et+al.+%282011%29.+pioglitazone+for+diabetes+prevention+in+impaired+glucose+tolerance.+the+new+england+journal+of+medicine%2c+364%2812%29%2c+1113.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2fpdf%2f10.1056%2fnejmoa1010949+%5b22.07.2013%5d-nl title="defronzo,_r.a.,_tripathy,_d.,_schwenke,_d.c.,_banerji,_m.,_bray,_g.a.,_buchanan.,_t.a.,_et_al._(2011)._pioglitazone_for_diabetes_prevention_in_impaired_glucose_tolerance._the_new_england_journal_of_medicine,_364(12),_1113._[online]_http definition">defronzo, r.a., tripathy, d., schwenke, d.c., banerji, m., bray, g.a., buchanan., t.a., et al. (2011). pioglitazone for diabetes prevention in impaired glucose tolerance. the new england journal of medicine, 364(12), 1113. [online] http</a></li>  
+            <li><a href="_japanse_encephalitis._nederlands_tijdschrift_voor_geneeskunde,_149,_2423-7._[online]_http://www.ntvg.nl/publicatie/een-ongewone-oorzaak-van-meningo-encefalitis-japanse-encefalitis/volledig_[02.08.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases delsing%2c+c.e.%2c+ardesch%2c+j.%2c+nihom%2c+j.%2c+mulder%2c+l.%2c+kootstra%2c+g.j.+%26+hylkema%2c+b.s.+%282005%29.+een+ongewone+oorzaak+van+meningo-encefalitis%3a+japanse+encephalitis.+nederlands+tijdschrift+voor+geneeskunde%2c+149%2c+2423-7.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2feen-ongewone-oorzaak-van-meningo-encefalitis-japanse-encefalitis%2fvolledig+%5b02.08.2013%5d-nl title="delsing,_c.e.,_ardesch,_j.,_nihom,_j.,_mulder,_l.,_kootstra,_g.j._&amp;_hylkema,_b.s._(2005)._een_ongewone_oorzaak_van_meningo-encefalitis definition">delsing, c.e., ardesch, j., nihom, j., mulder, l., kootstra, g.j. &amp; hylkema, b.s. (2005). een ongewone oorzaak van meningo-encefalitis</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Delsing%2C+C.E.%2C+et+al.+2005-NL" title="delsing,_c.e.,_et_al._2005 definition">delsing, c.e., et al. 2005</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Derks%2C+T.G.J.%2C+et+al.+2004-NL" title="derks,_t.g.j.,_et_al._2004 definition">derks, t.g.j., et al. 2004</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/defici%c3%abntie-van-het-vetzuuroxidatie-enzym-middenketen-acyl-co%c3%abnzym-dehydrogenase-mcad-bij_[29.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases derks%2c+t.g.j.%2c+jakobs%2c+h.%2c+gerding%2c+a.%2c+niezen-koning%2c+k.e.%2c+reijngoud%2c+d-j.+%26+smit%2c+g.p.a.+%282004%29.+defici%c3%abntie+van+het+vetzuuroxidatie-enzym+middenketen-acyl-co%c3%abnzym-a-dehydrogenase+%28mcad%29+bij+een+volwassene%2c+opgespoord+tijdens+een+proefproject+voor+neonatale+screening.+nederlands+tijdschrift+voor+geneeskunde%2c+148%2c+2185-90.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fdefici%25c3%25abntie-van-het-vetzuuroxidatie-enzym-middenketen-acyl-co%25c3%25abnzym-dehydrogenase-mcad-bij+%5b29.07.2013%5d-nl title="derks,_t.g.j.,_jakobs,_h.,_gerding,_a.,_niezen-koning,_k.e.,_reijngoud,_d-j._&amp;_smit,_g.p.a._(2004)._deficiëntie_van_het_vetzuuroxidatie-enzym_middenketen-acyl-coënzym-a-dehydrogenase_(mcad)_bij_een_volwassene,_opgespoord_tijdens_een_proefproject_voor_neonatale_screening._nederlands_tijdschrift_voor_geneeskunde,_148,_2185-90._[online]_http definition">derks, t.g.j., jakobs, h., gerding, a., niezen-koning, k.e., reijngoud, d-j. &amp; smit, g.p.a. (2004). deficiëntie van het vetzuuroxidatie-enzym middenketen-acyl-coënzym-a-dehydrogenase (mcad) bij een volwassene, opgespoord tijdens een proefproject voor neonatale screening. nederlands tijdschrift voor geneeskunde, 148, 2185-90. [online] http</a></li>  
+            <li><a href="_first_series_in_white_patient._heart,_89(9),1027–1031._[online]_http://www.ncbi.nlm.nih.gov/pmc/articles/pmc1767823/_[01.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases desmet%2c+w.j.r.%2c+adriaenssens%2c+b.f.m.+%26+dens%2c+j.a.y.+%282003%29.+apical+ballooning+of+the+left+ventricle%3a+first+series+in+white+patient.+heart%2c+89%289%29%2c1027%e2%80%931031.+%5bonline%5d+http%3a%2f%2fwww.ncbi.nlm.nih.gov%2fpmc%2farticles%2fpmc1767823%2f+%5b01.07.2013%5d-nl title="desmet,_w.j.r.,_adriaenssens,_b.f.m._&amp;_dens,_j.a.y._(2003)._apical_ballooning_of_the_left_ventricle definition">desmet, w.j.r., adriaenssens, b.f.m. &amp; dens, j.a.y. (2003). apical ballooning of the left ventricle</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Desmet%2C+W.J.R.%2C+et+al.+2003-NL" title="desmet,_w.j.r.,_et_al._2003 definition">desmet, w.j.r., et al. 2003</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/diaforese-NL" title="diaforese definition">diaforese</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/honderd-jaar-orthopedie-nederland-viii-kinderorthopedie/volledig_[28.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases diepstraten%2c+a.f.m.%2c+bos%2c+c.f.a.+%26+pruijs%2c+j.e.h.+%281998%29.+honderd+jaar+orthopedie+in+nederland.+viii.+kinderorthopedie.+nederlands+tijdschrift+voor+geneeskunde%2c+142%2c+1119-24.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fhonderd-jaar-orthopedie-nederland-viii-kinderorthopedie%2fvolledig+%5b28.07.2013%5d-nl title="diepstraten,_a.f.m.,_bos,_c.f.a._&amp;_pruijs,_j.e.h._(1998)._honderd_jaar_orthopedie_in_nederland._viii._kinderorthopedie._nederlands_tijdschrift_voor_geneeskunde,_142,_1119-24._[online]_http definition">diepstraten, a.f.m., bos, c.f.a. &amp; pruijs, j.e.h. (1998). honderd jaar orthopedie in nederland. viii. kinderorthopedie. nederlands tijdschrift voor geneeskunde, 142, 1119-24. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Diepstraten%2C+A.F.M.%2C+et+al+1998-NL" title="diepstraten,_a.f.m.,_et_al_1998 definition">diepstraten, a.f.m., et al 1998</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/distensie-NL" title="distensie definition">distensie</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/dokterdokter.nl-NL" title="dokterdokter.nl definition">dokterdokter.nl</a></li>  
+            <li><a href="//www.dokterdokter.nl/_[12.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases dokterdokter.nl.+%28s.d.%29.+%5bonline%5d+http%3a%2f%2fwww.dokterdokter.nl%2f+%5b12.07.2013%5d-nl title="dokterdokter.nl._(s.d.)._[online]_http definition">dokterdokter.nl. (s.d.). [online] http</a></li>  
+            <li><a href="_stand_van_zaken.&nbsp;medicine,&nbsp;2(1),_46._[online]_http://ildcare.eu/downloads/artseninfo/longfibrosemodmedicine2003.pdf_[10.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases drent%2c+d.+%26+bast%2c+d.+%282003%29.+longfibrose%3a+stand+van+zaken.%c2%a0medicine%2c%c2%a02%281%29%2c+46.+%5bonline%5d+http%3a%2f%2fildcare.eu%2fdownloads%2fartseninfo%2flongfibrosemodmedicine2003.pdf+%5b10.07.2013%5d-nl title="drent,_d._&amp;_bast,_d._(2003)._longfibrose definition">drent, d. &amp; bast, d. (2003). longfibrose</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Drent%2C+D.+%26+Bast%2C+D.+2003-NL" title="drent,_d._&amp;_bast,_d._2003 definition">drent, d. &amp; bast, d. 2003</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/dyspneu-NL" title="dyspneu definition">dyspneu</a></li> 
+           </ul> 
+          </div> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner_down"> 
+             <li class="activepageLower"> </li> 
+            </ul> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <div id="ox-footer" class=""> 
+    <div class="responsive_row flush-below top"> 
+     <div class="responsive_container responsive_display_on_smartphone"> 
+      <div class="menu_button"></div> 
+     </div> 
+     <div class="nav responsive_container main_nav"> 
+      <ul class="menu"> 
+       <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+       <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+      </ul> 
+     </div> 
+    </div>          
+   </div>
+  </div>
+ </body>
+</html>

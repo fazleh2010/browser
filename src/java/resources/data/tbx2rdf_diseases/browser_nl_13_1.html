@@ -1,0 +1,221 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"> 
+  <meta name="_csrf_header" content="X-CSRF-TOKEN"> 
+  <!--this location is for testing in local machine--> 
+  <link href="/css/interface.css" rel="stylesheet" type="text/css"> 
+  <link href="/css/oxford.css" rel="stylesheet" type="text/css"> 
+  <link href="/css/responsive.css" rel="stylesheet" type="text/css"> 
+  <!--this location is for original for production--> 
+  <!--link href="../static/css/interface.css" rel="stylesheet" type="text/css" />
+      <link href="../static/css/oxford.css" rel="stylesheet" type="text/css" />
+      <link href="../static/css/responsive.css" rel="stylesheet" type="text/css" /--> 
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;  
+}
+
+/*the container must be positioned relative:*/
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+      </style> 
+ </head> 
+ <body> 
+  <div id="ox-header" class=""> 
+   <div class="responsive_row flush-below top"> 
+    <div class="responsive_container responsive_display_on_smartphone"> 
+     <div class="menu_button"></div> 
+    </div> 
+    <div class="nav responsive_container main_nav"> 
+     <ul class="menu"> 
+      <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+      <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+     </ul> 
+    </div> 
+   </div> 
+   <div class="responsive_row"> 
+    <div id="ad_leftslot_container" class="ad_leftslot_container responsive_entry_left"> 
+     <div class="ac_leftslot sticky"> 
+      <div id="ad_leftslot_a" class="am-default "> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="responsive_entry_center"> 
+     <div class="responsive_display_on_hd" id="leaderboardHD"> 
+      <div class=""> 
+       <div id="ad_topslot_b" class="am-default "> 
+        <script type="text/javascript">googletag.cmd.push(function () {
+                           googletag.display('ad_topslot_b');
+                           });
+                        </script> 
+       </div> 
+      </div> 
+     </div> 
+     <div id="main_column" class="responsive_row"> 
+      <div class="middle_wrap wordlist-page"> 
+       <div class="responsive_row"> 
+        <h4>Language Selection:</h4> 
+        <div class="langauge selection box"> 
+         <table style="width:60%"> 
+          <tbody> 
+           <tr> 
+            <td><a href="browser_en_A_B_1.html">English</a></td> 
+            <td><a href="browser_nl_1_1.html">Dutch</a></td> 
+           </tr> 
+          </tbody> 
+         </table> 
+        </div> 
+        <h4>Search terms</h4> 
+        <!--Make sure the form has the autocomplete function switched off:--> 
+        <form autocomplete="off" id="form_id"> 
+         <div class="autocomplete" style="width:300px;"> 
+          <input id="myInput" type="text" placeholder="Search.."> 
+         </div> 
+         <input id="submit" type="submit"> 
+        </form> 
+        <script type="text/javascript" src="/css/tbx2rdf_diseases_nl.js"></script> 
+        <!--div class="mainsearch">
+                           <form id="search-form" method="get" action="browser_hu_10_1.html">
+                              <div class="dictionarySelector">
+                                 <div id="select_div">
+                                    <div>English</div>
+                                 </div>
+                              </div>
+                              <div class="searchfield">
+                                 <input type="text" id="q" name="q"
+                                    class="searchfield_input"/>
+                                 <a id="keyboard_icon" class="oup_icons responsive_hide_on_smartphone responsive_hide_on_tablet"></a>
+                                 <div id="keyboard_letters"></div>
+                              </div>
+                              <div class="inputSuggestions"></div>
+                              <label id="search-btn" class="oup_icons">
+                              <input type="submit" value="" />
+                              </label>
+                           </form>
+                        </div>
+                     </div--> 
+        <div class="side-selector clear_fix"> 
+         <div class="side-selector__left"> 
+          <!-- the topics --> 
+          <div id="entries-selector" class=""> 
+           <ul class="hide_phone"> 
+            <li class="currentpage"> <span>Y_Z</span> <li><a href="browser_nl_1_1.html">A_B</a></li>  <li><a href="browser_nl_2_1.html">C_D</a></li>  <li><a href="browser_nl_3_1.html">E_F</a></li>  <li><a href="browser_nl_4_1.html">G_H</a></li>  <li><a href="browser_nl_5_1.html">I_J</a></li>  <li><a href="browser_nl_6_1.html">K_L</a></li>  <li><a href="browser_nl_7_1.html">M_N</a></li>  <li><a href="browser_nl_8_1.html">O_P</a></li>  <li><a href="browser_nl_9_1.html">Q_R</a></li>  <li><a href="browser_nl_10_1.html">S_T</a></li>  <li><a href="browser_nl_11_1.html">U_V</a></li>  <li><a href="browser_nl_12_1.html">W_X</a></li> </li> 
+           </ul> 
+           <div class="wl-select hide_all display_phone"> 
+           </div> 
+          </div> 
+          <!-- entries-selector --> 
+         </div> 
+         <div class="side-selector__right"> 
+          <!-- the items of the selected topic --> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner"> 
+             <li class="activepageUpper"> </li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="entrylist1"> 
+           <ul class="result-list1 wordlist-oxford3000 list-plain">  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Zaaijer%2C+H.L.%2C+et+al.+1999-NL" title="zaaijer,_h.l.,_et_al._1999 definition">zaaijer, h.l., et al. 1999</a></li>  
+            <li><a href="//www.ntvg.nl/publicatie/de-ziekte-van-whipple-0/volledig_[07.07/2012]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases zaaijer%2c+h.l.%2c+savelkoul%2c+p.h.m.+%26+vandenbroucke-grauls%2c+c.m.j.e.+%281999%29.%c2%a0de+ziekte+van+whipple.+nederlands+tijdschrift+voor+geneeskunde%2c+143%2c+388-92.+%5bonline%5d+http%3a%2f%2fwww.ntvg.nl%2fpublicatie%2fde-ziekte-van-whipple-0%2fvolledig+%5b07.07%2f2012%5d-nl title="zaaijer,_h.l.,_savelkoul,_p.h.m._&amp;_vandenbroucke-grauls,_c.m.j.e._(1999).&nbsp;de_ziekte_van_whipple._nederlands_tijdschrift_voor_geneeskunde,_143,_388-92._[online]_http definition">zaaijer, h.l., savelkoul, p.h.m. &amp; vandenbroucke-grauls, c.m.j.e. (1999).&nbsp;de ziekte van whipple. nederlands tijdschrift voor geneeskunde, 143, 388-92. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Zhuang%2C+Z.%2C+et+al.+2012-NL" title="zhuang,_z.,_et_al._2012 definition">zhuang, z., et al. 2012</a></li>  
+            <li><a href="//www.nejm.org/doi/full/10.1056/nejmoa1205119#t=article_[16.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases zhuang%2c+z.%2c+yang%2c+c.%2c+lorenzo%2c+f.%2c+merino%2c+m.%2c+fojo%2c+t.%2c+kebebew%2c+e.%2c+et+al.+%282012%29.+somatic+hif2a+gain-of-function+mutations+in+paraganglioma+with+polycythemia.+the+new+england+journal+of+medicine%2c+367%2c+922-930.+%5bonline%5d+http%3a%2f%2fwww.nejm.org%2fdoi%2ffull%2f10.1056%2fnejmoa1205119%23t%3darticle+%5b16.07.2013%5d-nl title="zhuang,_z.,_yang,_c.,_lorenzo,_f.,_merino,_m.,_fojo,_t.,_kebebew,_e.,_et_al._(2012)._somatic_hif2a_gain-of-function_mutations_in_paraganglioma_with_polycythemia._the_new_england_journal_of_medicine,_367,_922-930._[online]_http definition">zhuang, z., yang, c., lorenzo, f., merino, m., fojo, t., kebebew, e., et al. (2012). somatic hif2a gain-of-function mutations in paraganglioma with polycythemia. the new england journal of medicine, 367, 922-930. [online] http</a></li>  
+            <li><a href="//www.sciencedirect.com/science/article/pii/s1532046403000960_[05.05.2014]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases zielstorff%2c+r.d.+%282003%29.+controlled+vocabularies+for+consumer+health.+journal+of+biomedical+informatics%2c+36%284-5%29%2c+326%e2%80%93333.+%5bonline%5d+http%3a%2f%2fwww.sciencedirect.com%2fscience%2farticle%2fpii%2fs1532046403000960+%5b05.05.2014%5d-nl title="zielstorff,_r.d._(2003)._controlled_vocabularies_for_consumer_health._journal_of_biomedical_informatics,_36(4-5),_326–333._[online]_http definition">zielstorff, r.d. (2003). controlled vocabularies for consumer health. journal of biomedical informatics, 36(4-5), 326–333. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Zielstorff%2C+R.D.+2003-NL" title="zielstorff,_r.d._2003 definition">zielstorff, r.d. 2003</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Zubillaga%2C+A.+F.%2C+et+al.+1994-NL" title="zubillaga,_a._f.,_et_al._1994 definition">zubillaga, a. f., et al. 1994</a></li>  
+            <li><a href="_correlation_of_aneurysm_neck_size_and_treatment_results._american_journal_of_neuroradiology,_15(5),_815-820._[onlline]_http://www.ajnr.org/content/15/5/815.short_[10.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases zubillaga%2c+a.+f.%2c+guglielmi%2c+g.%2c+vi%2c+f.+%26+duckwiler%2c+g.+r.+%281994%29.+endovascular+occlusion+of+intracranial+aneurysms+with+electrically+detachable+coils%3a+correlation+of+aneurysm+neck+size+and+treatment+results.+american+journal+of+neuroradiology%2c+15%285%29%2c+815-820.+%5bonlline%5d+http%3a%2f%2fwww.ajnr.org%2fcontent%2f15%2f5%2f815.short+%5b10.07.2013%5d-nl title="zubillaga,_a._f.,_guglielmi,_g.,_vi,_f._&amp;_duckwiler,_g._r._(1994)._endovascular_occlusion_of_intracranial_aneurysms_with_electrically_detachable_coils definition">zubillaga, a. f., guglielmi, g., vi, f. &amp; duckwiler, g. r. (1994). endovascular occlusion of intracranial aneurysms with electrically detachable coils</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/Zur%2C+B.%2C+et+al.+2012-NL" title="zur,_b.,_et_al._2012 definition">zur, b., et al. 2012</a></li>  
+            <li><a href="//www.clinchem.org/content/58/2/332.short#_[16.07.2013]" = http: webtentacle1.techfak.uni-bielefeld.de tbx2rdf_diseases data diseases zur%2c+b.%2c+mayer-hubner%2c+b.%2c+ludwig%2c+m.+%26+stoffel-wagner%2c+b.+%282012%29.+a+14-year-old+boy+with+chronic+cyanosis%2c+mild+anemia%2c+and+limited+physical+resistance+to+stress.+clinical+chemistry%2c+58%282%29%2c+332.+%5bonline%5d+http%3a%2f%2fwww.clinchem.org%2fcontent%2f58%2f2%2f332.short%23+%5b16.07.2013%5d-nl title="zur,_b.,_mayer-hubner,_b.,_ludwig,_m._&amp;_stoffel-wagner,_b._(2012)._a_14-year-old_boy_with_chronic_cyanosis,_mild_anemia,_and_limited_physical_resistance_to_stress._clinical_chemistry,_58(2),_332._[online]_http definition">zur, b., mayer-hubner, b., ludwig, m. &amp; stoffel-wagner, b. (2012). a 14-year-old boy with chronic cyanosis, mild anemia, and limited physical resistance to stress. clinical chemistry, 58(2), 332. [online] http</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/zweetafscheiding-NL" title="zweetafscheiding definition">zweetafscheiding</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/zwelling-NL" title="zwelling definition">zwelling</a></li> 
+           </ul> 
+          </div> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner_down"> 
+             <li class="activepageLower"> </li> 
+            </ul> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <div id="ox-footer" class=""> 
+    <div class="responsive_row flush-below top"> 
+     <div class="responsive_container responsive_display_on_smartphone"> 
+      <div class="menu_button"></div> 
+     </div> 
+     <div class="nav responsive_container main_nav"> 
+      <ul class="menu"> 
+       <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+       <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+      </ul> 
+     </div> 
+    </div>          
+   </div>
+  </div>
+ </body>
+</html>

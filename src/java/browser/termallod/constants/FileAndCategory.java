@@ -54,13 +54,6 @@ public interface FileAndCategory {
         }
     };
 
-    public Map<String, String> gentermTemplates = new HashMap<String, String>() {
-        {
-            put("en", "gentermTemplateEn.html");
-            put("nl", "gentermTemplateNl.html");
-        }
-    };
-
     public Map<String, List<String>> categoryBrowser = new HashMap<String, List<String>>() {
         {
             put(genterm, new ArrayList<String>(Arrays.asList(atc, solar, intaglio, wastemanagement, diseases)));

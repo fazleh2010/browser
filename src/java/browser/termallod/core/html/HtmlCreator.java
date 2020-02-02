@@ -70,7 +70,7 @@ public class HtmlCreator implements FileAndCategory,Templates {
         for (String language : pageContentGenerator.getLanguages()) {
             List<AlphabetTermPage> alphabetTermPageList = pageContentGenerator.getLangPages(language);
             for (AlphabetTermPage alphabetTermPage : alphabetTermPageList) {
-                File MAIN_PAGE_TEMPLATE = getTemplate(browser, categoryName, language);
+                File MAIN_PAGE_TEMPLATE = getTemplate(categoryName, language,".html");
                 createHtmlForEachAlphabetPair(categoryName, MAIN_PAGE_TEMPLATE, language, alphabetTermPage, pageContentGenerator);
             }
         }
@@ -89,16 +89,8 @@ public class HtmlCreator implements FileAndCategory,Templates {
 
     }
 
-    private File getTemplate(String browser, String categoryName, String language) throws Exception {
-        if (browser.contains(genterm) && language.contains("en")) {
-            return new File(TEMPLATE_LOCATION + MAIN_PAGE_TEMPLATE_GENTERM_EN);
-        } else if (browser.contains(genterm) && language.contains("nl")) {
-            return new File(TEMPLATE_LOCATION + MAIN_PAGE_TEMPLATE_GENTERM_NL);
-        } else if (browser.contains(iate)) {
-            return new File(TEMPLATE_LOCATION + MAIN_PAGE_TEMPLATE_IATE);
-        } else {
-            throw new Exception("no HTML template file found");
-        }
+    private File getTemplate(String categoryName, String langCode,String extension) throws Exception {
+            return new File(TEMPLATE_LOCATION + categoryName+"_"+langCode+extension);
     }
 
 

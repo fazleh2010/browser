@@ -1,0 +1,315 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"> 
+  <meta name="_csrf_header" content="X-CSRF-TOKEN"> 
+  <!--this location is for testing in local machine--> 
+  <link href="/css/interface.css" rel="stylesheet" type="text/css"> 
+  <link href="/css/oxford.css" rel="stylesheet" type="text/css"> 
+  <link href="/css/responsive.css" rel="stylesheet" type="text/css"> 
+  <!--this location is for original for production--> 
+  <!--link href="../static/css/interface.css" rel="stylesheet" type="text/css" />
+      <link href="../static/css/oxford.css" rel="stylesheet" type="text/css" />
+      <link href="../static/css/responsive.css" rel="stylesheet" type="text/css" /--> 
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;  
+}
+
+/*the container must be positioned relative:*/
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+      </style> 
+ </head> 
+ <body> 
+  <div id="ox-header" class=""> 
+   <div class="responsive_row flush-below top"> 
+    <div class="responsive_container responsive_display_on_smartphone"> 
+     <div class="menu_button"></div> 
+    </div> 
+    <div class="nav responsive_container main_nav"> 
+     <ul class="menu"> 
+      <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+      <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+     </ul> 
+    </div> 
+   </div> 
+   <div class="responsive_row"> 
+    <div id="ad_leftslot_container" class="ad_leftslot_container responsive_entry_left"> 
+     <div class="ac_leftslot sticky"> 
+      <div id="ad_leftslot_a" class="am-default "> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="responsive_entry_center"> 
+     <div class="responsive_display_on_hd" id="leaderboardHD"> 
+      <div class=""> 
+       <div id="ad_topslot_b" class="am-default "> 
+        <script type="text/javascript">googletag.cmd.push(function () {
+                           googletag.display('ad_topslot_b');
+                           });
+                        </script> 
+       </div> 
+      </div> 
+     </div> 
+     <div id="main_column" class="responsive_row"> 
+      <div class="middle_wrap wordlist-page"> 
+       <div class="responsive_row"> 
+        <h4>Language Selection:</h4> 
+        <div class="langauge selection box"> 
+         <table style="width:60%"> 
+          <tbody> 
+           <tr> 
+            <td><a href="browser_en_A_B_1.html">English</a></td> 
+            <td><a href="browser_nl_1_1.html">Dutch</a></td> 
+           </tr> 
+          </tbody> 
+         </table> 
+        </div> 
+        <h4>Search terms</h4> 
+        <!--Make sure the form has the autocomplete function switched off:--> 
+        <form autocomplete="off" id="form_id"> 
+         <div class="autocomplete" style="width:300px;"> 
+          <input id="myInput" type="text" placeholder="Search.."> 
+         </div> 
+         <input id="submit" type="submit"> 
+        </form> 
+        <script type="text/javascript" src="/css/tbx2rdf_atc_nl.js"></script> 
+        <!--div class="mainsearch">
+                           <form id="search-form" method="get" action="browser_hu_10_1.html">
+                              <div class="dictionarySelector">
+                                 <div id="select_div">
+                                    <div>English</div>
+                                 </div>
+                              </div>
+                              <div class="searchfield">
+                                 <input type="text" id="q" name="q"
+                                    class="searchfield_input"/>
+                                 <a id="keyboard_icon" class="oup_icons responsive_hide_on_smartphone responsive_hide_on_tablet"></a>
+                                 <div id="keyboard_letters"></div>
+                              </div>
+                              <div class="inputSuggestions"></div>
+                              <label id="search-btn" class="oup_icons">
+                              <input type="submit" value="" />
+                              </label>
+                           </form>
+                        </div>
+                     </div--> 
+        <div class="side-selector clear_fix"> 
+         <div class="side-selector__left"> 
+          <!-- the topics --> 
+          <div id="entries-selector" class=""> 
+           <ul class="hide_phone"> 
+            <li class="currentpage"> <span>A_B</span> <li><a href="browser_nl_2_1.html">C_D</a></li>  <li><a href="browser_nl_3_1.html">E_F</a></li>  <li><a href="browser_nl_4_1.html">G_H</a></li>  <li><a href="browser_nl_5_1.html">I_J</a></li>  <li><a href="browser_nl_6_1.html">K_L</a></li>  <li><a href="browser_nl_7_1.html">M_N</a></li>  <li><a href="browser_nl_8_1.html">O_P</a></li>  <li><a href="browser_nl_9_1.html">Q_R</a></li>  <li><a href="browser_nl_10_1.html">S_T</a></li>  <li><a href="browser_nl_11_1.html">U_V</a></li>  <li><a href="browser_nl_12_1.html">W_X</a></li>  <li><a href="browser_nl_13_1.html">Y_Z</a></li> </li> 
+           </ul> 
+           <div class="wl-select hide_all display_phone"> 
+           </div> 
+          </div> 
+          <!-- entries-selector --> 
+         </div> 
+         <div class="side-selector__right"> 
+          <!-- the items of the selected topic --> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner"> 
+             <li class="activepageUpper"> </li>  
+             <li><a href="browser_nl_1_2.html">2</a></li>  
+             <li><a href="browser_nl_1_3.html">3</a></li>  
+             <li><a href="browser_nl_1_4.html">4</a></li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="entrylist1"> 
+           <ul class="result-list1 wordlist-oxford3000 list-plain">  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/aanbevolen+dosis-NL" title="aanbevolen_dosis definition">aanbevolen dosis</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/aanbevolen+therapeutische+dosis-NL" title="aanbevolen_therapeutische_dosis definition">aanbevolen therapeutische dosis</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/aanbevolen+voor+gebruik+bij+kinderen-NL" title="aanbevolen_voor_gebruik_bij_kinderen definition">aanbevolen voor gebruik bij kinderen</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/aanhoudende+virologische+respons-NL" title="aanhoudende_virologische_respons definition">aanhoudende virologische respons</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/aanval-NL" title="aanval definition">aanval</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/aanvangsdosis-NL" title="aanvangsdosis definition">aanvangsdosis</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/abacavir-NL" title="abacavir definition">abacavir</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/abatacept-NL" title="abatacept definition">abatacept</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/abciximab-NL" title="abciximab definition">abciximab</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/abiraterone-NL" title="abiraterone definition">abiraterone</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/acamprosaat-NL" title="acamprosaat definition">acamprosaat</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/acarbose-NL" title="acarbose definition">acarbose</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/acebutolol-NL" title="acebutolol definition">acebutolol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/acebutolol+met+thiaziden-NL" title="acebutolol_met_thiaziden definition">acebutolol met thiaziden</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/aceclidine-NL" title="aceclidine definition">aceclidine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/aceclidine%2C+combinatiepreparaten-NL" title="aceclidine,_combinatiepreparaten definition">aceclidine, combinatiepreparaten</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/aceclofenac-NL" title="aceclofenac definition">aceclofenac</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/acemetacine-NL" title="acemetacine definition">acemetacine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/acenocoumarol-NL" title="acenocoumarol definition">acenocoumarol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/acetazolamide-NL" title="acetazolamide definition">acetazolamide</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/acetohydroxaamzuur-NL" title="acetohydroxaamzuur definition">acetohydroxaamzuur</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/acetorfan-NL" title="acetorfan definition">acetorfan</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/acetrizoinezuur-NL" title="acetrizoinezuur definition">acetrizoinezuur</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/acetylcholine-NL" title="acetylcholine definition">acetylcholine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/acetylcysteine-NL" title="acetylcysteine definition">acetylcysteine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/acetyldigoxine-NL" title="acetyldigoxine definition">acetyldigoxine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/acetyldihydrocodeine-NL" title="acetyldihydrocodeine definition">acetyldihydrocodeine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/acetylsalicylzuur-NL" title="acetylsalicylzuur definition">acetylsalicylzuur</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/acetylsalicylzuur%2C+combinatiepreparaten+excl.+psycholeptica-NL" title="acetylsalicylzuur,_combinatiepreparaten_excl._psycholeptica definition">acetylsalicylzuur, combinatiepreparaten excl. psycholeptica</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/aciclovir-NL" title="aciclovir definition">aciclovir</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/aciclovir%2C+combinaties-NL" title="aciclovir,_combinaties definition">aciclovir, combinaties</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/acipimox-NL" title="acipimox definition">acipimox</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/acitretine-NL" title="acitretine definition">acitretine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/aclidinium+bromide-NL" title="aclidinium_bromide definition">aclidinium bromide</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/adalimumab-NL" title="adalimumab definition">adalimumab</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/adapaleen-NL" title="adapaleen definition">adapaleen</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/adapalene%2C+combinaties-NL" title="adapalene,_combinaties definition">adapalene, combinaties</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/adefovir+dipivoxil-NL" title="adefovir_dipivoxil definition">adefovir dipivoxil</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ademhalingsmoeilijkheden-NL" title="ademhalingsmoeilijkheden definition">ademhalingsmoeilijkheden</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ademhalingsproblemen-NL" title="ademhalingsproblemen definition">ademhalingsproblemen</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ademhalingsstelsel-%2C+borstkas-+en+mediastinumaandoeningen-NL" title="ademhalingsstelsel-,_borstkas-_en_mediastinumaandoeningen definition">ademhalingsstelsel-, borstkas- en mediastinumaandoeningen</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/adenosine-NL" title="adenosine definition">adenosine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ader-NL" title="ader definition">ader</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/adipiodone-NL" title="adipiodone definition">adipiodone</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/adjuvans-NL" title="adjuvans definition">adjuvans</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/adolescent-NL" title="adolescent definition">adolescent</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/aescine-NL" title="aescine definition">aescine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/afatinib+-NL" title="afatinib definition">afatinib</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/aflibercept-NL" title="aflibercept definition">aflibercept</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/agalsidase+alfa-NL" title="agalsidase_alfa definition">agalsidase alfa</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/agalsidase+beta-NL" title="agalsidase_beta definition">agalsidase beta</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/agomelatine-NL" title="agomelatine definition">agomelatine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ajmaline-NL" title="ajmaline definition">ajmaline</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/albiglutide-NL" title="albiglutide definition">albiglutide</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/albumine-NL" title="albumine definition">albumine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/albuminetannaat%2C+combinatiepreparaten-NL" title="albuminetannaat,_combinatiepreparaten definition">albuminetannaat, combinatiepreparaten</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alclofenac-NL" title="alclofenac definition">alclofenac</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alclometason-NL" title="alclometason definition">alclometason</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/aldesleukine-NL" title="aldesleukine definition">aldesleukine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alemtuzumab-NL" title="alemtuzumab definition">alemtuzumab</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alendroninezuur-NL" title="alendroninezuur definition">alendroninezuur</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alendroninezuur%2C+calcium+en+colecalciferol%2C+sequentieel-NL" title="alendroninezuur,_calcium_en_colecalciferol,_sequentieel definition">alendroninezuur, calcium en colecalciferol, sequentieel</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alendroninezuur+en+colecalciferol-NL" title="alendroninezuur_en_colecalciferol definition">alendroninezuur en colecalciferol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alfa-1+antitrypsine-NL" title="alfa-1_antitrypsine definition">alfa-1 antitrypsine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alfacalcidol-NL" title="alfacalcidol definition">alfacalcidol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alfentanil-NL" title="alfentanil definition">alfentanil</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alfuzosine-NL" title="alfuzosine definition">alfuzosine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/algeldraat+%28aluminiumhydroxide%29-NL" title="algeldraat_(aluminiumhydroxide) definition">algeldraat (aluminiumhydroxide)</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/algemene+aandoeningen+en+toedieningsplaatsstoornissen-NL" title="algemene_aandoeningen_en_toedieningsplaatsstoornissen definition">algemene aandoeningen en toedieningsplaatsstoornissen</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alginezuur-NL" title="alginezuur definition">alginezuur</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alglucerase-NL" title="alglucerase definition">alglucerase</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alglucosidase+alfa-NL" title="alglucosidase_alfa definition">alglucosidase alfa</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alimemazine-NL" title="alimemazine definition">alimemazine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/aliskiren-NL" title="aliskiren definition">aliskiren</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/aliskiren+en+hydrochlorothiazide-NL" title="aliskiren_en_hydrochlorothiazide definition">aliskiren en hydrochlorothiazide</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alizapride-NL" title="alizapride definition">alizapride</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/allopurinol-NL" title="allopurinol definition">allopurinol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/allopurinol%2C+combinatiepreparaten-NL" title="allopurinol,_combinatiepreparaten definition">allopurinol, combinatiepreparaten</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/allylestrenol-NL" title="allylestrenol definition">allylestrenol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/almitrine-NL" title="almitrine definition">almitrine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/almotriptan-NL" title="almotriptan definition">almotriptan</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alogliptine-NL" title="alogliptine definition">alogliptine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/aloxiprine-NL" title="aloxiprine definition">aloxiprine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alprazolam-NL" title="alprazolam definition">alprazolam</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alprenolol-NL" title="alprenolol definition">alprenolol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alprostadil-NL" title="alprostadil definition">alprostadil</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alteplase-NL" title="alteplase definition">alteplase</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/altizide+met+kaliumsparende+middelen-NL" title="altizide_met_kaliumsparende_middelen definition">altizide met kaliumsparende middelen</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/aluminiumfosfaat-NL" title="aluminiumfosfaat definition">aluminiumfosfaat</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alverine-NL" title="alverine definition">alverine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/alverine%2C+combinatiepreparaten-NL" title="alverine,_combinatiepreparaten definition">alverine, combinatiepreparaten</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/amandelzuur-NL" title="amandelzuur definition">amandelzuur</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/amantadine-NL" title="amantadine definition">amantadine</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ambenonium-NL" title="ambenonium definition">ambenonium</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ambrisentan-NL" title="ambrisentan definition">ambrisentan</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ambroxol-NL" title="ambroxol definition">ambroxol</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/amcinonide-NL" title="amcinonide definition">amcinonide</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/amezinium+metylsulfaat-NL" title="amezinium_metylsulfaat definition">amezinium metylsulfaat</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/amfebutamone-NL" title="amfebutamone definition">amfebutamone</a></li>  
+            <li><a href="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/amfepramon-NL" title="amfepramon definition">amfepramon</a></li> 
+           </ul> 
+          </div> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner_down"> 
+             <li class="activepageLower"> </li>  
+             <li><a href="browser_nl_1_2.html">2</a></li>  
+             <li><a href="browser_nl_1_3.html">3</a></li>  
+             <li><a href="browser_nl_1_4.html">4</a></li> 
+            </ul> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <div id="ox-footer" class=""> 
+    <div class="responsive_row flush-below top"> 
+     <div class="responsive_container responsive_display_on_smartphone"> 
+      <div class="menu_button"></div> 
+     </div> 
+     <div class="nav responsive_container main_nav"> 
+      <ul class="menu"> 
+       <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+       <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+      </ul> 
+     </div> 
+    </div>     
+   </div>
+  </div>
+ </body>
+</html>

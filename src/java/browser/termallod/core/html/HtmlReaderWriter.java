@@ -37,7 +37,7 @@ public class HtmlReaderWriter {
         String htmlString = null;
         try {
             htmlString = this.getHtmlHeader(file);
-            //System.out.println(htmlString);
+            System.out.println(file.getPath());
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
