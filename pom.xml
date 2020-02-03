@@ -51,28 +51,17 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
-        <dependency>
-            <groupId>virt_jena</groupId>
-            <artifactId>virt_jena</artifactId>
-            <version>1.0</version>
-        </dependency>	
-        <dependency>
-            <groupId>virt_jena2</groupId>
-            <artifactId>virt_jena2</artifactId>
-            <version>1.0</version>
-        </dependency>	
-        <dependency>
-            <groupId>virtjdbc3</groupId>
-            <artifactId>virtjdbc3</artifactId>
-            <version>1.0</version>
-        </dependency>	
+        	
+        
+        	
         <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>23.0</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core -->
+       
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -107,6 +96,9 @@
             <artifactId>commons-io</artifactId>
             <version>2.6</version>
         </dependency>
+        
+       
+      
         
     
     </dependencies>
