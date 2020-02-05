@@ -9,27 +9,16 @@ package browser.termallod.core.lucene;
  *
  * @author elahi
  */
-import apple.laf.JRSUIUtils.Tree;
-import browser.termallod.constants.FileAndCategory;
-import static browser.termallod.constants.FileAndCategory.AUTO_COMPLETION_TEMPLATE_LOCATION;
-import static browser.termallod.constants.FileAndCategory.BASE_PATH;
-import static browser.termallod.constants.FileAndCategory.BROWSER_GROUPS;
-import static browser.termallod.constants.FileAndCategory.CATEGORY_ONTOLOGIES;
-import static browser.termallod.constants.FileAndCategory.TEXT_PATH;
-import browser.termallod.utils.FileRelatedUtils;
-import java.io.File;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
 import java.util.TreeMap;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;

@@ -14,7 +14,6 @@ import browser.termallod.utils.FileRelatedUtils;
 import java.io.IOException;
 import java.util.List;
 import browser.termallod.core.html.HtmlCreator;
-import browser.termallod.core.lucene.GeneralBrowser;
 import browser.termallod.core.lucene.Browsers;
 import browser.termallod.core.lucene.LuceneIndexing;
 import java.util.Arrays;
