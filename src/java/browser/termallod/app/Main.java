@@ -14,12 +14,16 @@ import browser.termallod.utils.FileRelatedUtils;
 import java.io.IOException;
 import java.util.List;
 import browser.termallod.core.html.HtmlCreator;
+import browser.termallod.core.lucene.GeneralBrowser;
+import browser.termallod.core.lucene.Browsers;
+import browser.termallod.core.lucene.LuceneIndexing;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import browser.termallod.core.lucene.LuceneTermSearch;
 
 /**
  *
@@ -38,8 +42,15 @@ public class Main  implements FileAndCategory{
 
     public static void main(String[] args) throws Exception {
         lang = new TreeSet<String>(languageMapper.keySet());
-        inputLoader();
+        //inputLoader();
         //process(BROWSER_GROUPS, TEXT_EXTENSION);
+        String querystr = "prednison";
+        Browsers browsers=new Browsers();
+        LuceneTermSearch searchTerm=new LuceneIndexing(browsers);
+        searchTerm.search(ATC, "en", querystr);
+        
+       
+  
     }
 
     private static void inputLoader() throws Exception, IOException {
