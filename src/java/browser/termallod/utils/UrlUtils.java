@@ -8,7 +8,7 @@ package browser.termallod.utils;
 import browser.termallod.constants.FileAndCategory;
 import browser.termallod.constants.Languages;
 import browser.termallod.core.LanguageAlphabetPro;
-import browser.termallod.core.api.LanguageManager;
+import browser.termallod.api.LanguageManager;
 import java.io.IOException;
 import java.util.List;
 import java.util.TreeMap;

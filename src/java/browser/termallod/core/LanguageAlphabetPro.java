@@ -5,7 +5,7 @@
  */
 package browser.termallod.core;
 
-import browser.termallod.core.api.LanguageManager;
+import browser.termallod.api.LanguageManager;
 import browser.termallod.utils.Mathmatices;
 import java.io.File;
 import java.io.FileInputStream;

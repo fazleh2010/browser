@@ -6,7 +6,6 @@
 package browser.termallod.utils;
 
 import browser.termallod.constants.FileAndCategory;
-import browser.termallod.core.api.JavaScriptCode;
 import browser.termallod.core.input.TermallodBrowser;
 import browser.termallod.core.input.Browser;
 import browser.termallod.core.input.LangSpecificBrowser;
@@ -20,12 +19,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.io.IOUtils;
+import browser.termallod.api.JsAutoCompletion;
 
 /**
  *
  * @author elahi
  */
-public class GeneralCompScriptGen implements FileAndCategory, JavaScriptCode {
+public class GeneralCompScriptGen implements FileAndCategory, JsAutoCompletion {
 
     private final TermallodBrowser browsers;
 

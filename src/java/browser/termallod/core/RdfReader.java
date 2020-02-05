@@ -9,7 +9,7 @@ package browser.termallod.core;
  *
  * @author elahi
  */
-import browser.termallod.core.api.LanguageManager;
+import browser.termallod.api.LanguageManager;
 import browser.termallod.utils.NameExtraction;
 import browser.termallod.utils.FileRelatedUtils;
 import com.hp.hpl.jena.graph.Triple;

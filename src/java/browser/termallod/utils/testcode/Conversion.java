@@ -9,7 +9,7 @@ package browser.termallod.utils.testcode;
  *
  * @author elahi
  */
-import browser.termallod.core.api.LanguageManager;
+import browser.termallod.api.LanguageManager;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.RDFNode;

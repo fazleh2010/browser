@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.core.api;
+package browser.termallod.api;
 
 import java.util.HashMap;
 import java.util.List;

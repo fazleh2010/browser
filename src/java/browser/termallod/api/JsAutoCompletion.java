@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.core.api;
+package browser.termallod.api;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import java.io.IOException;
  *
  * @author elahi
  */
-public interface JavaScriptCode {
+public interface JsAutoCompletion {
 
     public void generateScript() throws IOException, Exception;
 

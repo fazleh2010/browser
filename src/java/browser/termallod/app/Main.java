@@ -8,8 +8,7 @@ package browser.termallod.app;
 import browser.termallod.constants.FileAndCategory;
 import browser.termallod.core.LanguageAlphabetPro;
 import browser.termallod.core.RdfReader;
-import browser.termallod.core.api.JavaScriptCode;
-import browser.termallod.core.api.LanguageManager;
+import browser.termallod.api.LanguageManager;
 import java.io.File;
 import browser.termallod.utils.FileRelatedUtils;
 import java.io.IOException;
@@ -23,8 +22,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-import browser.termallod.core.api.LuceneTermSearch;
+import browser.termallod.api.LuceneTermSearch;
 import browser.termallod.utils.GeneralCompScriptGen;
+import browser.termallod.api.JsAutoCompletion;
 
 /**
  *
@@ -49,7 +49,7 @@ public class Main  implements FileAndCategory{
         TermallodBrowser browsers=new TermallodBrowser();
         LuceneTermSearch searchTerm=new LuceneIndexing(browsers);
         searchTerm.search(ATC, "en", querystr);
-        JavaScriptCode javaScriptCode=new GeneralCompScriptGen(browsers);
+        JsAutoCompletion javaScriptCode=new GeneralCompScriptGen(browsers);
         javaScriptCode.generateScript();
        
   

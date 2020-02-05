@@ -13,7 +13,7 @@ package browser.termallod.core.lucene;
 import browser.termallod.core.input.LangSpecificBrowser;
 import browser.termallod.core.input.Browser;
 import browser.termallod.core.input.TermallodBrowser;
-import browser.termallod.core.api.LuceneTermSearch;
+import browser.termallod.api.LuceneTermSearch;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
