@@ -5,16 +5,10 @@
  */
 package browser.termallod.core.input;
 
-import browser.termallod.api.JsAutoCompletion;
 import browser.termallod.api.LanguageManager;
-import static browser.termallod.app.Main.browserSet;
 import browser.termallod.constants.FileAndCategory;
-import static browser.termallod.constants.FileAndCategory.BASE_PATH;
 import static browser.termallod.constants.FileAndCategory.BROWSER_GROUPS;
-import static browser.termallod.constants.FileAndCategory.CATEGORY_ONTOLOGIES;
-import static browser.termallod.constants.FileAndCategory.DATA_PATH;
 import static browser.termallod.constants.FileAndCategory.GENTERM;
-import static browser.termallod.constants.FileAndCategory.LANGUAGE_CONFIG_FILE;
 import static browser.termallod.constants.FileAndCategory.RDF_PATH;
 import static browser.termallod.constants.FileAndCategory.TEXT_PATH;
 import static browser.termallod.constants.FileAndCategory.TURTLE;

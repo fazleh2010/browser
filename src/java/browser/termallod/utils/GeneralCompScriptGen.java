@@ -19,8 +19,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.io.IOUtils;
-import browser.termallod.api.JsAutoCompletion;
-
 /**
  *
  * @author elahi
