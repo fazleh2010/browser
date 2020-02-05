@@ -35,7 +35,7 @@ public interface FileAndCategory {
     public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "";
      public static String TEMPLATE_LOCATION = "src/java/resources/atemplate/";
     public static File TERM_PAGE_TEMPLATE = new File(TEMPLATE_LOCATION + "termDefination.html");
-    public static String AUTO_COMPLETION_TEMPLATE_LOCATION = TEMPLATE_LOCATION +"js/";
+    public static String AUTO_COMPLETION_TEMPLATE_LOCATION = TEMPLATE_LOCATION +"css/";
 
 
     public String SOLAR = "solar";

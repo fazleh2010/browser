@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.core.lucene;
+package browser.termallod.core.input;
 
 import browser.termallod.constants.FileAndCategory;
 import static browser.termallod.constants.FileAndCategory.BASE_PATH;
@@ -23,16 +23,16 @@ import java.util.Properties;
  *
  * @author elahi
  */
-public class Browsers {
+public class TermallodBrowser {
 
-    private final Map<String, GeneralBrowser> browsersInfor;
+    private final Map<String, Browser> browsersInfor;
 
-    public Browsers() throws Exception {
+    public TermallodBrowser() throws Exception {
         browsersInfor = prepareData();
     }
 
-    private Map<String, GeneralBrowser> prepareData() throws IOException, Exception {
-        Map<String, GeneralBrowser> browserInfos = new HashMap<String, GeneralBrowser>();
+    private Map<String, Browser> prepareData() throws IOException, Exception {
+        Map<String, Browser> browserInfos = new HashMap<String, Browser>();
         for (String browser : BROWSER_GROUPS) {
             if (browser.contains(GENTERM)) {
                 List<String> categories = FileAndCategory.BROWSER_CATEGORIES.get(browser);
@@ -42,7 +42,7 @@ public class Browsers {
                     List<File> files = FileRelatedUtils.getFiles(source + TEXT_PATH, ontologyName, ".txt");
                     Map<String, List<File>> languageFiles = FileRelatedUtils.getLanguageFiles(files, ".txt");
 
-                    GeneralBrowser generalBrowser = new GeneralBrowser(browser, category);
+                    Browser generalBrowser = new Browser(browser, category);
                     for (String langCode : languageFiles.keySet()) {
 
                         List<File> temFiles = languageFiles.get(langCode);
@@ -65,12 +65,16 @@ public class Browsers {
         return browserInfos;
     }
 
-    public Map<String, GeneralBrowser> getBrowserInfos() {
+    public Map<String, Browser> getBrowserInfos() {
         return browsersInfor;
     }
 
-    public GeneralBrowser getBrowserInfos(String category) {
+    public Browser getBrowserInfos(String category) {
         return browsersInfor.get(category);
+    }
+
+    public static String getOntologyName(String category) {
+        return CATEGORY_ONTOLOGIES.get(category);
     }
 
 }

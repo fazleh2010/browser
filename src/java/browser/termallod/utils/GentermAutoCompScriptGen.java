@@ -14,18 +14,16 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 import org.apache.commons.io.IOUtils;
 
 /**
  *
  * @author elahi
  */
-public class AutoCompScriptGen implements FileAndCategory {
+public class GentermAutoCompScriptGen implements FileAndCategory {
 
     public static void main(String[] argv) throws IOException, Exception {
         for (String browser : BROWSER_GROUPS) {

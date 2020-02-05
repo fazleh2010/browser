@@ -10,6 +10,10 @@ package browser.termallod.core.lucene;
  * @author elahi
  */
 
+import browser.termallod.core.input.LangSpecificBrowser;
+import browser.termallod.core.input.Browser;
+import browser.termallod.core.input.TermallodBrowser;
+import browser.termallod.core.api.LuceneTermSearch;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -42,10 +46,10 @@ import org.apache.lucene.util.Version;
 public class LuceneIndexing implements LuceneTermSearch {
 
     private StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_40);
-    private Map<String, GeneralBrowser> indexedBrowsers = new HashMap<String, GeneralBrowser>();
+    private Map<String, Browser> indexedBrowsers = new HashMap<String, Browser>();
 
-    public LuceneIndexing(Browsers browsers) throws IOException, ParseException, Exception {
-        Map<String, GeneralBrowser> inputBrowsers = browsers.getBrowserInfos();
+    public LuceneIndexing(TermallodBrowser browsers) throws IOException, ParseException, Exception {
+        Map<String, Browser> inputBrowsers = browsers.getBrowserInfos();
 
         if (!inputBrowsers.isEmpty()) {
             this.indexedBrowsers = createIndexForEachCategory(inputBrowsers);
@@ -55,11 +59,11 @@ public class LuceneIndexing implements LuceneTermSearch {
 
     }
 
-    private Map<String, GeneralBrowser> createIndexForEachCategory(Map<String, GeneralBrowser> input) throws IOException, ParseException, Exception {
+    private Map<String, Browser> createIndexForEachCategory(Map<String, Browser> input) throws IOException, ParseException, Exception {
         Integer countIndex = 0;
-        Map<String, GeneralBrowser> output = new TreeMap<String, GeneralBrowser>();
+        Map<String, Browser> output = new TreeMap<String, Browser>();
         for (String category : input.keySet()) {
-            GeneralBrowser browsers = input.get(category);
+            Browser browsers = input.get(category);
             Map<String, LangSpecificBrowser> langTermUrls = new TreeMap<String, LangSpecificBrowser>();
             for (String langCode :browsers.getLangTermUrls().keySet()) {
                 LangSpecificBrowser land = browsers.getLangTermUrls().get(langCode);
@@ -72,7 +76,7 @@ public class LuceneIndexing implements LuceneTermSearch {
                 langTermUrls.put(langCode, land);
                 
             }
-             GeneralBrowser indexedBrowsers = new GeneralBrowser(browsers,langTermUrls);
+             Browser indexedBrowsers = new Browser(browsers,langTermUrls);
              output.put(category, indexedBrowsers);
         }
         return output;
@@ -80,7 +84,7 @@ public class LuceneIndexing implements LuceneTermSearch {
 
     @Override
     public List<String> search(String category, String langCode, String searchQuery) throws IOException, ParseException, Exception {
-        GeneralBrowser browserInfo = indexedBrowsers.get(category);
+        Browser browserInfo = indexedBrowsers.get(category);
         LangSpecificBrowser langSpecificBrowser = browserInfo.getLangTermUrls(langCode);
         System.out.println(langSpecificBrowser.getTermUrls());
         Directory index = langSpecificBrowser.getIndex();

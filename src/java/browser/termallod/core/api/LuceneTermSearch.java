@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.core.lucene;
+package browser.termallod.core.api;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
-import java.util.Map;
-
 /**
  *
  * @author elahi

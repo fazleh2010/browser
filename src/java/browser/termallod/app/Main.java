@@ -8,13 +8,14 @@ package browser.termallod.app;
 import browser.termallod.constants.FileAndCategory;
 import browser.termallod.core.LanguageAlphabetPro;
 import browser.termallod.core.RdfReader;
+import browser.termallod.core.api.JavaScriptCode;
 import browser.termallod.core.api.LanguageManager;
 import java.io.File;
 import browser.termallod.utils.FileRelatedUtils;
 import java.io.IOException;
 import java.util.List;
 import browser.termallod.core.html.HtmlCreator;
-import browser.termallod.core.lucene.Browsers;
+import browser.termallod.core.input.TermallodBrowser;
 import browser.termallod.core.lucene.LuceneIndexing;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -22,7 +23,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-import browser.termallod.core.lucene.LuceneTermSearch;
+import browser.termallod.core.api.LuceneTermSearch;
+import browser.termallod.utils.GeneralCompScriptGen;
 
 /**
  *
@@ -44,10 +46,11 @@ public class Main  implements FileAndCategory{
         //inputLoader();
         //process(BROWSER_GROUPS, TEXT_EXTENSION);
         String querystr = "prednison";
-        Browsers browsers=new Browsers();
+        TermallodBrowser browsers=new TermallodBrowser();
         LuceneTermSearch searchTerm=new LuceneIndexing(browsers);
         searchTerm.search(ATC, "en", querystr);
-        
+        JavaScriptCode javaScriptCode=new GeneralCompScriptGen(browsers);
+        javaScriptCode.generateScript();
        
   
     }

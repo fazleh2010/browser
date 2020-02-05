@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.core.lucene;
+package browser.termallod.core.input;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -13,18 +13,18 @@ import org.apache.lucene.store.Directory;
  *
  * @author elahi
  */
-public class GeneralBrowser {
+public class Browser {
 
     private final String browser;
     private final String category;
     private Map<String, LangSpecificBrowser> langTermUrls = new TreeMap<String, LangSpecificBrowser>();
 
-    public GeneralBrowser(String browser, String category) {
+    public Browser(String browser, String category) {
         this.browser = browser;
         this.category = category;
     }
 
-    public GeneralBrowser(GeneralBrowser browserInfo, Map<String, LangSpecificBrowser> langTermUrls) {
+    public Browser(Browser browserInfo, Map<String, LangSpecificBrowser> langTermUrls) {
         this.browser = browserInfo.getBrowser();
         this.category = browserInfo.getCategory();
         this.langTermUrls = browserInfo.getLangTermUrls();

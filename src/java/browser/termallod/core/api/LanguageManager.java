@@ -19,5 +19,4 @@ public interface LanguageManager {
     public HashMap<String, List<String>> getLangAlphabetPairSorted();
     public boolean isLanguageExist(String language)throws Exception;
 
-
 }
