@@ -13,7 +13,6 @@ package browser.termallod.core.lucene;
 import browser.termallod.core.input.LangSpecificBrowser;
 import browser.termallod.core.input.Browser;
 import browser.termallod.core.input.TermallodBrowser;
-import browser.termallod.api.LuceneTermSearch;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -43,13 +42,12 @@ import org.apache.lucene.util.Version;
 
 //https://github.com/macluq/helloLucene
 //https://mygeekjourney.com/programming-notes/apache-lucene-how-to-sort-results-by-alphabetical-order/
-public class LuceneIndexing implements LuceneTermSearch {
+public class LuceneIndexing  {
 
     private StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_40);
     private Map<String, Browser> indexedBrowsers = new HashMap<String, Browser>();
 
-    public LuceneIndexing(TermallodBrowser browsers) throws IOException, ParseException, Exception {
-        Map<String, Browser> inputBrowsers = browsers.getBrowserInfos();
+    public LuceneIndexing(Map<String, Browser> inputBrowsers) throws IOException, ParseException, Exception {
 
         if (!inputBrowsers.isEmpty()) {
             this.indexedBrowsers = createIndexForEachCategory(inputBrowsers);
@@ -82,7 +80,6 @@ public class LuceneIndexing implements LuceneTermSearch {
         return output;
     }
 
-    @Override
     public List<String> search(String category, String langCode, String searchQuery) throws IOException, ParseException, Exception {
         Browser browserInfo = indexedBrowsers.get(category);
         LangSpecificBrowser langSpecificBrowser = browserInfo.getLangTermUrls(langCode);

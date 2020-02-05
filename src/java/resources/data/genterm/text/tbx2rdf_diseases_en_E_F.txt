@@ -1,4 +1,0 @@
-erythema = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/erythema-EN
-failure_to_thrive = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/failure+to+thrive-EN
-fibroma = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/fibroma-EN
-edema = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/edema-EN

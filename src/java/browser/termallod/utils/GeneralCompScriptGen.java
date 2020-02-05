@@ -25,36 +25,37 @@ import browser.termallod.api.JsAutoCompletion;
  *
  * @author elahi
  */
-public class GeneralCompScriptGen implements FileAndCategory, JsAutoCompletion {
+public class GeneralCompScriptGen implements FileAndCategory {
 
-    private final TermallodBrowser browsers;
+    private final Map<String, Browser> inputBrowsers;
+    private final File templateFile;
 
-    public GeneralCompScriptGen(TermallodBrowser browsers) throws Exception {
-        this.browsers = browsers;
+    public GeneralCompScriptGen(Map<String, Browser> inputBrowsers, File templateFile) throws Exception {
+        this.inputBrowsers = inputBrowsers;
+        this.templateFile = templateFile;
+        if (!templateFile.exists()) {
+            throw new Exception(" no template find found for autocompletion!!");
+        }
     }
 
-    @Override
+   
     public void generateScript() throws IOException, Exception {
-        for (String category : browsers.getBrowserInfos().keySet()) {
+        for (String category : inputBrowsers.keySet()) {
             generateScript(category);
         }
     }
 
-    @Override
+
     public void generateScript(String category) throws IOException, Exception {
-        Browser generalBrowser = browsers.getBrowserInfos().get(category);
+        Browser generalBrowser = inputBrowsers.get(category);
         String ontologyName = TermallodBrowser.getOntologyName(category);
         for (String langCode : generalBrowser.getLangTermUrls().keySet()) {
             LangSpecificBrowser langSpecificBrowser = generalBrowser.getLangTermUrls().get(langCode);
             Map<String, String> allkeysValues = langSpecificBrowser.getTermUrls();
             String str = getTerms(allkeysValues);
             System.out.println(str);
-            File templateFile = new File(AUTO_COMPLETION_TEMPLATE_LOCATION + "autoComp" + ".js");
+            //File templateFile = new File(AUTO_COMPLETION_TEMPLATE_LOCATION + "autoComp" + ".js");
             String outputFileName = AUTO_COMPLETION_TEMPLATE_LOCATION + ontologyName + "_" + langCode + ".js";
-
-            if (!templateFile.exists()) {
-                throw new Exception(" no template find found for autocompletion!!");
-            }
 
             System.out.println(outputFileName);
             createAutoCompletionTemplate(templateFile, str, outputFileName);

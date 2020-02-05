@@ -5,26 +5,22 @@
  */
 package browser.termallod.app;
 
+import browser.termallod.api.JsAutoCompletion;
 import browser.termallod.constants.FileAndCategory;
-import browser.termallod.core.LanguageAlphabetPro;
-import browser.termallod.core.RdfReader;
-import browser.termallod.api.LanguageManager;
-import java.io.File;
-import browser.termallod.utils.FileRelatedUtils;
-import java.io.IOException;
-import java.util.List;
-import browser.termallod.core.html.HtmlCreator;
 import browser.termallod.core.input.TermallodBrowser;
-import browser.termallod.core.lucene.LuceneIndexing;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-import browser.termallod.api.LuceneTermSearch;
+import browser.termallod.api.Tasks;
+import static browser.termallod.constants.FileAndCategory.BASE_PATH;
+import static browser.termallod.constants.FileAndCategory.CATEGORY_ONTOLOGIES;
+import static browser.termallod.constants.FileAndCategory.DATA_PATH;
+import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.utils.GeneralCompScriptGen;
-import browser.termallod.api.JsAutoCompletion;
+import java.io.IOException;
 
 /**
  *
@@ -43,19 +39,32 @@ public class Main  implements FileAndCategory{
 
     public static void main(String[] args) throws Exception {
         lang = new TreeSet<String>(languageMapper.keySet());
-        //inputLoader();
-        //process(BROWSER_GROUPS, TEXT_EXTENSION);
+        cleanDirectory();
+        
+        Tasks tasks=new TermallodBrowser(LANGUAGE_CONFIG_FILE);
+        tasks.saveDataIntoFiles(browserSet);
+        tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,browserSet,lang);
+        
+        //this is necessary for other applications!!
+        tasks.readDataFromSavedFiles();
+        //search Text
         String querystr = "prednison";
-        TermallodBrowser browsers=new TermallodBrowser();
-        LuceneTermSearch searchTerm=new LuceneIndexing(browsers);
-        searchTerm.search(ATC, "en", querystr);
-        JsAutoCompletion javaScriptCode=new GeneralCompScriptGen(browsers);
-        javaScriptCode.generateScript();
+        tasks.createIndexing();
+        tasks.search(ATC, "en", querystr);
        
+        //create java script files
+        tasks.prepareGroundForJs();
+        tasks.generateScript();
   
     }
+    
+    private static void cleanDirectory() throws IOException{
+        FileRelatedUtils.cleanDirectory(CATEGORY_ONTOLOGIES, BASE_PATH, DATA_PATH);
+        FileRelatedUtils.cleanDirectory(BROWSER_GROUPS, BASE_PATH, TEXT_PATH);
+        FileRelatedUtils.cleanDirectory(CATEGORY_ONTOLOGIES, BASE_PATH, DATA_PATH);
+    }
 
-    private static void inputLoader() throws Exception, IOException {
+    /*private static void inputLoader() throws Exception, IOException {
         LanguageManager languageManager = new LanguageAlphabetPro(LANGUAGE_CONFIG_FILE);
         FileRelatedUtils.cleanDirectory(BROWSER_GROUPS, BASE_PATH, TEXT_PATH);
         FileRelatedUtils.cleanDirectory(CATEGORY_ONTOLOGIES, BASE_PATH, DATA_PATH);
@@ -68,9 +77,9 @@ public class Main  implements FileAndCategory{
                 new RdfReader(inputDir, languageManager, TURTLE, TURTLE_EXTENSION, outputDir);
             }
         }
-    }
+    }*/
 
-    private static void process(List<String> categorySet, String MODEL_EXTENSION) throws Exception, IOException {
+    /*private static void createHtmlFromSavedFiles(List<String> categorySet, String MODEL_EXTENSION) throws Exception, IOException {
         FileRelatedUtils.cleanDirectory(CATEGORY_ONTOLOGIES, BASE_PATH, DATA_PATH);
         for (String browser : categorySet) {
             if (browserSet.contains(browser)) {
@@ -80,6 +89,6 @@ public class Main  implements FileAndCategory{
                 htmlCreator.createHtmlForEachCategory(categoties, source, MODEL_EXTENSION, browser);
             }
         }
-    }
+    }*/
 
 }
