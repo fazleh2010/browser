@@ -22,13 +22,13 @@ public interface Tasks {
     
     public void readDataFromSavedFiles() throws IOException, Exception;
 
+    public void readDataFromSavedFiles(String givenBrowser) throws IOException, Exception;
+
     public void createHtmlFromSavedFiles(List<String> categorySet, String MODEL_EXTENSION, Set<String> browserSet, Set<String> lang) throws Exception, IOException;
 
-    public Map<String, Browser> getBrowserData();
-
-    public Browser getBrowserData(String category);
-
     public void createIndexing() throws IOException, ParseException, Exception;
+
+    public void createIndexing(String browser) throws IOException, ParseException, Exception;
 
     public List<String> search(String category, String langCode, String searchQuery) throws IOException, ParseException, Exception;
 

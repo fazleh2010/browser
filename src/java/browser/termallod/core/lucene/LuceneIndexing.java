@@ -9,7 +9,8 @@ package browser.termallod.core.lucene;
  *
  * @author elahi
  */
-
+import static browser.termallod.constants.Symbols.SPACE;
+import static browser.termallod.constants.Symbols.UNDERSCORE;
 import browser.termallod.core.input.LangSpecificBrowser;
 import browser.termallod.core.input.Browser;
 import browser.termallod.core.input.TermallodBrowser;
@@ -42,7 +43,7 @@ import org.apache.lucene.util.Version;
 
 //https://github.com/macluq/helloLucene
 //https://mygeekjourney.com/programming-notes/apache-lucene-how-to-sort-results-by-alphabetical-order/
-public class LuceneIndexing  {
+public class LuceneIndexing {
 
     private StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_40);
     private Map<String, Browser> indexedBrowsers = new HashMap<String, Browser>();
@@ -57,27 +58,60 @@ public class LuceneIndexing  {
 
     }
 
+    public LuceneIndexing(Map<String, Browser> inputBrowsers, String browser) throws IOException, ParseException, Exception {
+
+        if (!inputBrowsers.isEmpty()) {
+            this.indexedBrowsers = createIndexForEachCategory(inputBrowsers, browser);
+        } else {
+            throw new Exception("No browser data found for creating index!!");
+        }
+
+    }
+
+    private Map<String, Browser> createIndexForEachCategory(Map<String, Browser> input, String browser) throws IOException, ParseException, Exception {
+        Map<String, Browser> output = new TreeMap<String, Browser>();
+        for (String category : input.keySet()) {
+            if (category.contains(browser)) {
+                Browser browsers = input.get(category);
+                Browser indexedBrowsers = this.createIndexForEachCategory(browsers);
+                output.put(category, indexedBrowsers);
+            }
+        }
+        return output;
+    }
+
     private Map<String, Browser> createIndexForEachCategory(Map<String, Browser> input) throws IOException, ParseException, Exception {
-        Integer countIndex = 0;
         Map<String, Browser> output = new TreeMap<String, Browser>();
         for (String category : input.keySet()) {
             Browser browsers = input.get(category);
-            Map<String, LangSpecificBrowser> langTermUrls = new TreeMap<String, LangSpecificBrowser>();
-            for (String langCode :browsers.getLangTermUrls().keySet()) {
-                LangSpecificBrowser land = browsers.getLangTermUrls().get(langCode);
-                Map<String, String> datas = new HashMap<String, String>();
-                for (String term : land.getTermUrls().keySet()) {
-                    datas.put((countIndex++).toString(), term);
-                }
-                Directory index = loadData(datas);
-                land.setIndex(index);
-                langTermUrls.put(langCode, land);
-                
-            }
-             Browser indexedBrowsers = new Browser(browsers,langTermUrls);
-             output.put(category, indexedBrowsers);
+            Browser indexedBrowsers = this.createIndexForEachCategory(browsers);
+            output.put(category, indexedBrowsers);
         }
         return output;
+    }
+
+    private Browser createIndexForEachCategory(Browser browsers) throws IOException, ParseException {
+        Integer countIndex = 0;
+        Map<String, LangSpecificBrowser> langTermUrls = new TreeMap<String, LangSpecificBrowser>();
+        for (String langCode : browsers.getLangTermUrls().keySet()) {
+            LangSpecificBrowser land = browsers.getLangTermUrls().get(langCode);
+            Map<String, String> datas = new HashMap<String, String>();
+            for (String term : land.getTermUrls().keySet()) {
+                if (term.contains(UNDERSCORE)) {
+                    term = term.replace(UNDERSCORE, SPACE);
+                    term = term.toString();
+                }
+                datas.put((countIndex++).toString(), term);
+            }
+            System.out.println(langCode.toString());
+            System.out.println(datas.toString());
+            Directory index = loadData(datas);
+            land.setIndex(index);
+            langTermUrls.put(langCode, land);
+
+        }
+        Browser indexedBrowsers = new Browser(browsers, langTermUrls);
+        return indexedBrowsers;
     }
 
     public List<String> search(String category, String langCode, String searchQuery) throws IOException, ParseException, Exception {
@@ -90,7 +124,7 @@ public class LuceneIndexing  {
         IndexSearcher searcher = new IndexSearcher(reader);
         Pair<IndexSearcher, ScoreDoc[]> pair = getScore(searcher, query);
         List<String> terms = scoreGenerator(pair.getKey(), pair.getValue());
-        System.out.println("result:" + terms.toString());
+        System.out.println(langCode + "    result:" + terms.toString());
         reader.close();
         return terms;
     }
@@ -162,6 +196,4 @@ public class LuceneIndexing  {
         List<String> terms = luceneJavaImpl.search(pair.getKey(), pair.getValue());
         System.out.println(terms.toString());
         reader.close();*/
-
-    
 }

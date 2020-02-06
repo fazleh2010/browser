@@ -11,5 +11,6 @@ package browser.termallod.constants;
  */
 public interface Symbols {
      public String UNDERSCORE = "_";
+     public String SPACE =" ";
     
 }

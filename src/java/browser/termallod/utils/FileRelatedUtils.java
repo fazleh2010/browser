@@ -6,6 +6,7 @@
 package browser.termallod.utils;
 
 import browser.termallod.core.TermInfo;
+import browser.termallod.utils.NameExtraction;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;

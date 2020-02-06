@@ -29,7 +29,8 @@ public interface Languages {
             put("hr", "Croatian");
             put("hu", "Hungarian");
             put("it", "Italian");
-            put("It", "Lithuanian");
+            //it's originla id is It. but then it becomes same like it (case sensitive). so it is changed.
+            put("lt", "Lithuanian");
             put("lv", "Latvian");
             put("mt", "Maltese");
             put("nl", "Dutch");

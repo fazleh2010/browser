@@ -26,33 +26,57 @@ import java.io.IOException;
  */
 public class Main  implements FileAndCategory{
 
-    public static Set<String> browserSet = new HashSet<String>(Arrays.asList(GENTERM));
+    public static Set<String> browserSet = new HashSet<String>(Arrays.asList(IATE));
     private static Set<String> lang = new TreeSet<String>();
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
             put("en", "English");
+            /*put("bg", "Bulgarian");
+            put("cs", "Czech");
+            put("da", "Danish");
+            put("de", "German");
+            put("el", "Greek");
+            put("en", "English");
+            put("es", "German");
+            put("et", "Estonian");
+            put("fi", "Finnish");
+            put("fr", "French");
+            put("ga", "Irish");
+            put("hr", "Croatian");
+            put("hu", "Hungarian");
+            put("it", "Italian");
+            put("lt", "Lithuanian");
+            put("lv", "Latvian");
+            put("mt", "Maltese");
             put("nl", "Dutch");
+            put("ro", "Romanian");
+            put("sk", "Slovak");
+            put("sl", "Slovenian");
+            //put("sv", "Swedish");*/
         }
     };
 
     public static void main(String[] args) throws Exception {
         lang = new TreeSet<String>(languageMapper.keySet());
+        // run before comit..................
         cleanDirectory();
         
-        Tasks tasks=new TermallodBrowser(LANGUAGE_CONFIG_FILE);
-        tasks.saveDataIntoFiles(browserSet);
-        tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,browserSet,lang);
+        /*Tasks tasks=new TermallodBrowser(LANGUAGE_CONFIG_FILE);
+        //tasks.saveDataIntoFiles(browserSet);
+        //tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,browserSet,lang);
         
         //this is necessary for other applications!!
-        tasks.readDataFromSavedFiles();
+    
+        tasks.readDataFromSavedFiles(IATE);   
+        
         //search Text
-        String querystr = "prednison";
-        tasks.createIndexing();
-        tasks.search(ATC, "en", querystr);
+        String querystr = "association";
+        tasks.createIndexing(IATE);
+        tasks.search(IATE, "en", querystr);
        
         //create java script files
-        tasks.prepareGroundForJs();
-        tasks.generateScript();
+       /* tasks.prepareGroundForJs();
+        tasks.generateScript();*/
   
     }
     

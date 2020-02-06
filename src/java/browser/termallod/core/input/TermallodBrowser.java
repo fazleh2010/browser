@@ -67,41 +67,85 @@ public class TermallodBrowser implements Tasks {
 
     }
 
+    /*@Override
+    public void readDataFromSavedFiles() throws IOException, Exception {
+        for (String browser : BROWSER_GROUPS) {
+            List<String> categories = FileAndCategory.BROWSER_CATEGORIES.get(browser);
+            String source = FileRelatedUtils.getSourcePath(BASE_PATH, browser);
+            for (String category : categories) {
+                String ontologyName = CATEGORY_ONTOLOGIES.get(category);
+                List<File> files = FileRelatedUtils.getFiles(source + TEXT_PATH, ontologyName, ".txt");
+                if (files.isEmpty()) {
+                    throw new Exception("Text folder can not be empty!!!");
+                }
+                Map<String, List<File>> languageFiles = FileRelatedUtils.getLanguageFiles(files, ".txt");
+
+                Browser generalBrowser = new Browser(browser, category);
+                for (String langCode : languageFiles.keySet()) {
+
+                    List<File> temFiles = languageFiles.get(langCode);
+                    if (temFiles.isEmpty()) {
+                        throw new Exception("No language files are found to process!!");
+                    }
+                    Map<String, String> allkeysValues = new HashMap<String, String>();
+                    for (File file : files) {
+                        Properties props = FileRelatedUtils.getPropertyHash(file);
+                        Map<String, String> tempHash = (Map) props;
+                        allkeysValues.putAll(tempHash);
+                    }
+                    generalBrowser.setLangTermUrls(langCode, allkeysValues);
+                }
+                this.browsersInfor.put(category, generalBrowser);
+            }
+
+        }
+
+    }*/
+
     @Override
     public void readDataFromSavedFiles() throws IOException, Exception {
-        Map<String, Browser> browsersInfor = new HashMap<String, Browser>();
-
         for (String browser : BROWSER_GROUPS) {
-            if (browser.contains(GENTERM)) {
+            List<String> categories = FileAndCategory.BROWSER_CATEGORIES.get(browser);
+            this.readDataFromSavedFiles(browser,categories);
+        }
+
+    }
+    
+    @Override
+    public void readDataFromSavedFiles(String givenBrowser) throws IOException, Exception {
+           for (String browser : BROWSER_GROUPS) {
+            if (browser.contains(givenBrowser)) {
                 List<String> categories = FileAndCategory.BROWSER_CATEGORIES.get(browser);
-                String source = FileRelatedUtils.getSourcePath(BASE_PATH, browser);
-                for (String category : categories) {
-                    String ontologyName = CATEGORY_ONTOLOGIES.get(category);
-                    List<File> files = FileRelatedUtils.getFiles(source + TEXT_PATH, ontologyName, ".txt");
-                    if (files.isEmpty()) {
-                        throw new Exception("Text folder can not be empty!!!");
-                    }
-                    Map<String, List<File>> languageFiles = FileRelatedUtils.getLanguageFiles(files, ".txt");
-
-                    Browser generalBrowser = new Browser(browser, category);
-                    for (String langCode : languageFiles.keySet()) {
-
-                        List<File> temFiles = languageFiles.get(langCode);
-                        if (temFiles.isEmpty()) {
-                            throw new Exception("No language files are found to process!!");
-                        }
-                        Map<String, String> allkeysValues = new HashMap<String, String>();
-                        for (File file : files) {
-                            Properties props = FileRelatedUtils.getPropertyHash(file);
-                            Map<String, String> tempHash = (Map) props;
-                            allkeysValues.putAll(tempHash);
-                        }
-                        generalBrowser.setLangTermUrls(langCode, allkeysValues);
-                    }
-                    this.browsersInfor.put(category, generalBrowser);
-
-                }
+                this.readDataFromSavedFiles(browser,categories);
             }
+        }
+
+    }
+
+    private void readDataFromSavedFiles(String browser,List<String> categories) throws IOException, Exception {
+        String source = FileRelatedUtils.getSourcePath(BASE_PATH, browser);
+        for (String category : categories) {
+            String ontologyName = CATEGORY_ONTOLOGIES.get(category);
+            List<File> files = FileRelatedUtils.getFiles(source + TEXT_PATH, ontologyName, ".txt");
+            if (files.isEmpty()) {
+                throw new Exception("Text folder can not be empty!!!");
+            }
+            Map<String, List<File>> languageFiles = FileRelatedUtils.getLanguageFiles(files, ".txt");
+            Browser generalBrowser = new Browser(browser, category);
+            for (String langCode : languageFiles.keySet()) {
+                List<File> temFiles = languageFiles.get(langCode);
+                if (temFiles.isEmpty()) {
+                    throw new Exception("No language files are found to process!!");
+                }
+                Map<String, String> allkeysValues = new HashMap<String, String>();
+                for (File file : files) {
+                    Properties props = FileRelatedUtils.getPropertyHash(file);
+                    Map<String, String> tempHash = (Map) props;
+                    allkeysValues.putAll(tempHash);
+                }
+                generalBrowser.setLangTermUrls(langCode, allkeysValues);
+            }
+            this.browsersInfor.put(category, generalBrowser);
         }
 
     }
@@ -126,6 +170,12 @@ public class TermallodBrowser implements Tasks {
     }
 
     @Override
+    public void createIndexing(String browser) throws IOException, ParseException, Exception {
+        this.luceneIndexing = new LuceneIndexing(this.browsersInfor, browser);
+
+    }
+
+    @Override
     public List<String> search(String category, String langCode, String searchQuery) throws IOException, ParseException, Exception {
         return luceneIndexing.search(category, langCode, searchQuery);
     }
@@ -140,16 +190,6 @@ public class TermallodBrowser implements Tasks {
     }*/
     public static String getOntologyName(String category) {
         return CATEGORY_ONTOLOGIES.get(category);
-    }
-
-    @Override
-    public Map<String, Browser> getBrowserData() {
-        return browsersInfor;
-    }
-
-    @Override
-    public Browser getBrowserData(String category) {
-        return browsersInfor.get(category);
     }
 
     @Override
