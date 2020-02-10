@@ -42,7 +42,5 @@ public interface Tasks {
 
     public void generateScript(String category) throws IOException, Exception;
     
-    public Set<TermDetail> matchBrowsers(Set<String> browsers) throws IOException, Exception;
-    
-    public Map<String, Browser> getBrowsersInfor();
+    public Set<TermDetail> matchBrowsers() throws IOException, Exception;
 }

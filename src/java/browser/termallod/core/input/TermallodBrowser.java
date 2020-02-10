@@ -20,6 +20,7 @@ import browser.termallod.core.html.HtmlCreator;
 import java.util.Set;
 import browser.termallod.api.Tasks;
 import browser.termallod.core.lucene.LuceneIndexing;
+import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.matching.TermDetail;
 import browser.termallod.utils.GeneralCompScriptGen;
 import java.text.ParseException;
@@ -168,12 +169,10 @@ public class TermallodBrowser implements Tasks, FileAndCategory {
     }
 
     @Override
-    public Set<TermDetail> matchBrowsers(Set<String> browsers) throws IOException, Exception {
+    public Set<TermDetail> matchBrowsers() throws IOException, Exception {
+        //currently does not work properly..
+        MatchingTerminologies matchTerminologies=new MatchingTerminologies(this.browsersInfor);
         return new HashSet<TermDetail>();
-    }
-
-    public Map<String, Browser> getBrowsersInfor() {
-        return browsersInfor;
     }
 
 }

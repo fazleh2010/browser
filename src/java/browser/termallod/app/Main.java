@@ -68,6 +68,8 @@ public class Main implements FileAndCategory {
         //this is necessary for other applications!!
         tasks.readDataFromSavedFiles();
         //tasks.readDataFromSavedFiles(IATE);
+        
+        tasks.matchBrowsers();
 
         //search Text
         String querystr = "association";

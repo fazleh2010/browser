@@ -15,16 +15,15 @@ import java.util.Set;
 public class TermDetail {
 
     private String term = null;
+    private String langCode = null;
     private String langcode = null;
     private Set<String> links = new HashSet<String>();
 
-    public TermDetail(String term, String langcode) {
+    public TermDetail(String langCode, String term, String givenUrl, String url) {
+        this.langCode = langCode;
         this.term = term;
-        this.langcode = langcode;
-    }
-
-    TermDetail(String term, Set<String> urls) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.links.add(givenUrl);
+        this.links.add(url);
     }
 
     public String getLangcode() {
@@ -33,6 +32,19 @@ public class TermDetail {
 
     public String getTerm() {
         return term;
+    }
+
+    public String getLangCode() {
+        return langCode;
+    }
+
+    public Set<String> getLinks() {
+        return links;
+    }
+
+    @Override
+    public String toString() {
+        return "TermDetail{" + "term=" + term + ", langcode=" + langcode + ", links=" + links + '}';
     }
 
 }

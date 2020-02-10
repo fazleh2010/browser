@@ -12,16 +12,13 @@ import java.util.Map;
  *
  * @author elahi
  */
-public class MatchedItem extends TermDetail{
+public class MatchedItem {
     
 
     private Map<String, String> categoryTerm = new HashMap<String, String>();
     private Map<String, String> categorySparql = new HashMap<String, String>();
     
-    public MatchedItem(String langCode, String term){
-        super(langCode,term);
-        
-    }
+    
 
     public void setCategoryTerm(String category, String url) {
         this.categoryTerm.put(category, url);
