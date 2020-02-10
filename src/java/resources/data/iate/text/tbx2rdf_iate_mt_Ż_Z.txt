@@ -1,0 +1,8 @@
+żona_ewro-artika_ta'_trasport_tal-baħar_barents = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BBona+Ewro-Artika+ta%27+Trasport+tal-Ba%C4%A7ar+Barents-mt
+żomm/aħżen_‘il_bogħod_mill-ħwejjeġ/…/materjali_li_jaqbdu. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BBomm%2FA%C4%A7%C5%BCen+%E2%80%98il+bog%C4%A7od+mill-%C4%A7wejje%C4%A1%2F%E2%80%A6%2Fmaterjali+li+jaqbdu.-mt
+zokkor_fl-istat_solidu = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/zokkor+fl-istat+solidu-mt
+żiffa_mill-baħar = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BCiffa+mill-ba%C4%A7ar-mt
+żona_metropolitana_ta'_tkabbir_fl-ewropa = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BBona+Metropolitana+ta%27+Tkabbir+fl-Ewropa-mt
+żona_speċjali_ta’_konservazzjoni = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BCona+spe%C4%8Bjali+ta%E2%80%99+konservazzjoni-mt
+żwieġ_postumu = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BCwie%C4%A1+postumu-mt
+żerriegħa_tal-peprin = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BCerrieg%C4%A7a+tal-peprin-mt

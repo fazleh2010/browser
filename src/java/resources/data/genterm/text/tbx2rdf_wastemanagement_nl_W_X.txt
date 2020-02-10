@@ -1,0 +1,11 @@
+waarschijnlijkheid = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/waarschijnlijkheid-NL
+wegingsfactor = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/wegingsfactor-NL
+wieg_tot_graf = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/wieg+tot+graf-NL
+waarschijnlijkheidsverdeling = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/waarschijnlijkheidsverdeling-NL
+winningstechnologie = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/winningstechnologie-NL
+wieg_tot_wieg = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/wieg+tot+wieg-NL
+weging = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/weging-NL
+wieg_tot_poort = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/wieg+tot+poort-NL
+winning = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/winning-NL
+winning_van_grondstoffen = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/winning+van+grondstoffen-NL
+watergehalte = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/watergehalte-NL

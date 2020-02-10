@@ -1,0 +1,11 @@
+wsis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/WSIS-fi
+ways&means_-alakomitea = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Ways%26Means+-alakomitea-fi
+wilksin_sisäinen_hajonta = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Wilksin+sis%C3%A4inen+hajonta-fi
+wishartin_jakauma = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Wishartin+jakauma-fi
+wienin_huumausainesopimus = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Wienin+huumausainesopimus-fi
+x-kromosomin_trisomia = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/X-kromosomin+trisomia-fi
+w-moottori = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/W-moottori-fi
+welchin-satterthwaiten_t-testi = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Welchin-Satterthwaiten+t-testi-fi
+walterin-liethin_ilmastodiagrammi = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Walterin-Liethin+ilmastodiagrammi-fi
+wfo = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/WFO-fi
+wienin_ja_pariisin_yleissopimusten_soveltamista_koskeva_yhteispöytäkirja = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Wienin+ja+Pariisin+yleissopimusten+soveltamista+koskeva+yhteisp%C3%B6yt%C3%A4kirja-fi

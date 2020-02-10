@@ -6,8 +6,10 @@
 package browser.termallod.api;
 
 import browser.termallod.core.input.Browser;
+import browser.termallod.core.matching.TermDetail;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -17,8 +19,10 @@ import java.util.Set;
  * @author elahi
  */
 public interface Tasks {
-
+    
     public void saveDataIntoFiles(Set<String> browserSet) throws Exception, IOException;
+    
+    public void saveDataIntoFiles(Set<String> browserSet,String browser) throws Exception, IOException;
     
     public void readDataFromSavedFiles() throws IOException, Exception;
 
@@ -37,4 +41,8 @@ public interface Tasks {
     public void generateScript() throws IOException, Exception;
 
     public void generateScript(String category) throws IOException, Exception;
+    
+    public Set<TermDetail> matchBrowsers(Set<String> browsers) throws IOException, Exception;
+    
+    public Map<String, Browser> getBrowsersInfor();
 }

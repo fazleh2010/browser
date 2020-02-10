@@ -1,0 +1,14 @@
+zajednički_savjetodavni_odbor_za_socijalna_pitanja_u_prometu_unutarnjim_vodama = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Zajedni%C4%8Dki+savjetodavni+odbor+za+socijalna+pitanja+u+prometu+unutarnjim+vodama-hr
+zajednički_sustav_za_praćenje_i_evaluaciju = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/zajedni%C4%8Dki+sustav+za+pra%C4%87enje+i+evaluaciju-hr
+zahtjev_za_tumačenje = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/zahtjev+za+tuma%C4%8Denje-hr
+zajedničko_znanstveno_savjetovanje = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/zajedni%C4%8Dko+znanstveno+savjetovanje-hr
+zatvaranje_pozicije = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/zatvaranje+pozicije-hr
+zajednički_savjetodavni_odbor_eu-a_i_crne_gore = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Zajedni%C4%8Dki+savjetodavni+odbor+EU-a+i+Crne+Gore-hr
+zajednički_standard_izvješćivanja_i_dubinske_analize_za_informacije_o_financijskim_računima = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/zajedni%C4%8Dki+standard+izvje%C5%A1%C4%87ivanja+i+dubinske+analize+za+informacije+o+financijskim+ra%C4%8Dunima-hr
+zrakoplovna_operativna_kontrola = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/zrakoplovna+operativna+kontrola-hr
+zakon_o_nadzoru_stranih_obavještajnih_službi = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Zakon+o+nadzoru+stranih+obavje%C5%A1tajnih+slu%C5%BEbi-hr
+zdravstveno_neispravna_voda_za_ljudsku_potrošnju = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/zdravstveno+neispravna+voda+za+ljudsku+potro%C5%A1nju-hr
+zahtjev_za_prethodnu_odluku = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/zahtjev+za+prethodnu+odluku-hr
+združeni_diplomski_studij = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/zdru%C5%BEeni+diplomski+studij-hr
+znanstveni_zaključak = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/znanstveni+zaklju%C4%8Dak-hr
+zamišljeni_iznos = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/zami%C5%A1ljeni+iznos-hr

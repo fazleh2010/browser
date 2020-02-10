@@ -1,0 +1,14 @@
+tržište_električne_energije_uravnoteženja = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/tr%C5%BEi%C5%A1te+elektri%C4%8Dne+energije+uravnote%C5%BEenja-hr
+triciklički_aceton-peroksid = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/tricikli%C4%8Dki+aceton-peroksid-hr
+temperatura = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/temperatura-hr
+tac = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/TAC-hr
+televizija_zatvorenog_kruga = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/televizija+zatvorenog+kruga-hr
+termobarična_bomba = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/termobari%C4%8Dna+bomba-hr
+teretni_zrakoplov = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/teretni+zrakoplov-hr
+trs = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/TRS-hr
+terestrijalni_međumjesni_radio = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Terestrijalni+me%C4%91umjesni+radio-hr
+taksena_marka = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/taksena+marka-hr
+transferni_teret = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/transferni+teret-hr
+švedski_odjel_za_usmeno_prevođenje = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%A0vedski+odjel+za+usmeno+prevo%C4%91enje-hr
+treće_zemlje_i_međunarodne_organizacije = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/tre%C4%87e+zemlje+i+me%C4%91unarodne+organizacije-hr
+transeuropski_željeznički_sustav_velikih_brzina = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/transeuropski+%C5%BEeljezni%C4%8Dki+sustav+velikih+brzina-hr

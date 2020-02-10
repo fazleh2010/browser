@@ -1,0 +1,11 @@
+jmenovitě = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/jmenovit%C4%9B-cs
+jednotka_visbreakingu = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/jednotka+visbreakingu-cs
+juniorní_věřitel = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/juniorn%C3%AD+v%C4%9B%C5%99itel-cs
+jednací_řád_a_finanční_nařízení_mezinárodní_komise_pro_ochranu_rýna = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/jednac%C3%AD+%C5%99%C3%A1d+a+finan%C4%8Dn%C3%AD+na%C5%99%C3%ADzen%C3%AD+Mezin%C3%A1rodn%C3%AD+komise+pro+ochranu+R%C3%BDna-cs
+jatečná_půlka = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/jate%C4%8Dn%C3%A1+p%C5%AFlka-cs
+jednací_řád_rady_ministrů_akt–eu = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/jednac%C3%AD+%C5%99%C3%A1d+Rady+ministr%C5%AF+AKT%E2%80%93EU-cs
+jednací_sál = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/jednac%C3%AD+s%C3%A1l-cs
+jmenovitá_výška_trolejového_vodiče = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/jmenovit%C3%A1+v%C3%BD%C5%A1ka+trolejov%C3%A9ho+vodi%C4%8De-cs
+jednací_řízení_s_uveřejněním = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/jednac%C3%AD+%C5%99%C3%ADzen%C3%AD+s+uve%C5%99ejn%C4%9Bn%C3%ADm-cs
+jmenovitý_výkon = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/jmenovit%C3%BD+v%C3%BDkon-cs
+jízdní_pruh_pro_cyklisty = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/j%C3%ADzdn%C3%AD+pruh+pro+cyklisty-cs

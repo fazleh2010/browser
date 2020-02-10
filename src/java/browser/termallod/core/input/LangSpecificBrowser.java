@@ -31,6 +31,10 @@ public class LangSpecificBrowser {
     public Map<String, String> getTermUrls() {
         return termUrls;
     }
+    
+    public String getTermUrls(String term) {
+        return termUrls.get(term);
+    }
 
     public String getLangCode() {
         return langCode;

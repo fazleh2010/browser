@@ -1,0 +1,2 @@
+washington_dc = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Washington+DC-cs
+wco = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/WCO-cs

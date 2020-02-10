@@ -1,0 +1,10 @@
+uz_uzvedību_balstīta_reklāma = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/uz+uzved%C4%ABbu+balst%C4%ABta+rekl%C4%81ma-lv
+uztvertā_trokšņa_līmenis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/uztvert%C4%81+trok%C5%A1%C5%86a+l%C4%ABmenis-lv
+unami = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/UNAMI-lv
+uzturēšanās,_kas_nepārsniedz_trīs_mēnešus = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/uztur%C4%93%C5%A1an%C4%81s%2C+kas+nep%C4%81rsniedz+tr%C4%ABs+m%C4%93ne%C5%A1us-lv
+uz_iekšējiem_reitingiem_balstītā_pamatpieeja = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/uz+iek%C5%A1%C4%93jiem+reitingiem+balst%C4%ABt%C4%81+pamatpieeja-lv
+uzņēmējdarbības_un_pakalpojumu_jautājumu_darba_grupa = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Uz%C5%86%C4%93m%C4%93jdarb%C4%ABbas+un+pakalpojumu+jaut%C4%81jumu+darba+grupa-lv
+uzmats = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/uzmats-lv
+uzturēšanās_izdevumu_maksājums = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/uztur%C4%93%C5%A1an%C4%81s+izdevumu+maks%C4%81jums-lv
+uzstādīšanas_leņķis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/uzst%C4%81d%C4%AB%C5%A1anas+le%C5%86%C4%B7is-lv
+universālā_pakalpojuma_direktīva = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/univers%C4%81l%C4%81+pakalpojuma+direkt%C4%ABva-lv

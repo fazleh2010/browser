@@ -1,0 +1,3 @@
+zonă_dezvelită = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/zon%C4%83+dezvelit%C4%83-ro
+zgomot_ambiental = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/zgomot+ambiental-ro
+zonă_de_estuar = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/zon%C4%83+de+estuar-ro

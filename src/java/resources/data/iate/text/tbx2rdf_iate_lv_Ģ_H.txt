@@ -1,0 +1,16 @@
+helāts = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/hel%C4%81ts-lv
+harpagofītu_sugas = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/harpagof%C4%ABtu+sugas-lv
+holinomimētisks_līdzeklis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/holinomim%C4%93tisks+l%C4%ABdzeklis-lv
+ģenētiskā_tipizācija = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C4%A3en%C4%93tisk%C4%81+tipiz%C4%81cija-lv
+horizontālā_gēnu_pārnese = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/horizont%C4%81l%C4%81+g%C4%93nu+p%C4%81rnese-lv
+heparīns = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/hepar%C4%ABns-lv
+hkd = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/HKD-lv
+herbicīdizturīga_kultūra = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/herbic%C4%ABdiztur%C4%ABga+kult%C5%ABra-lv
+helsinku_konvencija = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Helsinku+konvencija-lv
+hromatiskā_aberācija = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/hromatisk%C4%81+aber%C4%81cija-lv
+ģenētisko_resursu_saglabāšana = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C4%A3en%C4%93tisko+resursu+saglab%C4%81%C5%A1ana-lv
+ģenētiskā_rezistence = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C4%A3en%C4%93tisk%C4%81+rezistence-lv
+herbicīdu_rezistence = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/herbic%C4%ABdu+rezistence-lv
+hidrauliskā_enerģija = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/hidraulisk%C4%81+ener%C4%A3ija-lv
+hermētiskais_transformators = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/herm%C4%93tiskais+transformators-lv
+hjogo_rīcības_pamatplāns_2005.–2015._gadam = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Hjogo+r%C4%ABc%C4%ABbas+pamatpl%C4%81ns+2005.%E2%80%932015.+gadam-lv

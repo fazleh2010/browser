@@ -1,0 +1,16 @@
+äänen_muokkauslaite = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%A4%C3%A4nen+muokkauslaite-fi
+ääneneristys = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%A4%C3%A4neneristys-fi
+äkillinen_myelooinen_leukemia = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%A4killinen+myelooinen+leukemia-fi
+ääreisverenkierron_häiriö = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%A4%C3%A4reisverenkierron+h%C3%A4iri%C3%B6-fi
+äänenlaatu = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%A4%C3%A4nenlaatu-fi
+äänen_kuvatallennus = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%A4%C3%A4nen+kuvatallennus-fi
+äänenvoimakkuus_kuunneltaessa = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%A4%C3%A4nenvoimakkuus+kuunneltaessa-fi
+äänen_intensiteetti = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%A4%C3%A4nen+intensiteetti-fi
+äänitaajuuslähtö = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%A4%C3%A4nitaajuusl%C3%A4ht%C3%B6-fi
+äänitaajuus/kiertovalintapulssin_tunnistuslaitteisto = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%A4%C3%A4nitaajuus%2Fkiertovalintapulssin+tunnistuslaitteisto-fi
+ärsyttävän_jätteen_kuvamerkki = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%A4rsytt%C3%A4v%C3%A4n+j%C3%A4tteen+kuvamerkki-fi
+älyllinen_toiminta = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%A4lyllinen+toiminta-fi
+äitiyden_kiistäminen = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%A4itiyden+kiist%C3%A4minen-fi
+äitiysloma = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%A4itiysloma-fi
+äänienergian_heijastuskerroin = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%A4%C3%A4nienergian+heijastuskerroin-fi
+äänitysjärjestelmä = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%A4%C3%A4nitysj%C3%A4rjestelm%C3%A4-fi

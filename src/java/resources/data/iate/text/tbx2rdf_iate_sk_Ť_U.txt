@@ -1,0 +1,14 @@
+uhlíkovo_neutrálny_rast_od_roku_2020 = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/uhl%C3%ADkovo+neutr%C3%A1lny+rast+od+roku+2020-sk
+usmernenie = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/usmernenie-sk
+uhlíková_stopa = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/uhl%C3%ADkov%C3%A1+stopa-sk
+učenie_sa_v_praxi = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/u%C4%8Denie+sa+v+praxi-sk
+učiteľ = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/u%C4%8Dite%C4%BE-sk
+ukazovacie_zariadenie = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/ukazovacie+zariadenie-sk
+ukončenie_vykazovania = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/ukon%C4%8Denie+vykazovania-sk
+užívanie_hormónov_opačného_pohlavia = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/u%C5%BE%C3%ADvanie+horm%C3%B3nov+opa%C4%8Dn%C3%A9ho+pohlavia-sk
+unccd = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/UNCCD-sk
+určená_lehota = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/ur%C4%8Den%C3%A1+lehota-sk
+uzatváranie_účtov = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/uzatv%C3%A1ranie+%C3%BA%C4%8Dtov-sk
+ukazovateľ_dti = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/ukazovate%C4%BE+DTI-sk
+ukazovateľ_charakterizovania_rizika = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/ukazovate%C4%BE+charakterizovania+rizika-sk
+udeliť_grant = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/udeli%C5%A5+grant-sk

@@ -1,0 +1,4 @@
+macular = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/macular-EN
+murmur = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/murmur-EN
+nodule = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/nodule-EN
+mucopurulent = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/mucopurulent-EN

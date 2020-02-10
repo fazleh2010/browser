@@ -1,0 +1,16 @@
+xarba_mhux_alkoħolika = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/xarba+mhux+alko%C4%A7olika-mt
+xropp_ta'_l-aġġru = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/xropp+ta%27+l-a%C4%A1%C4%A1ru-mt
+xintigrafija = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/xintigrafija-mt
+xama_safra = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/xama+safra-mt
+xmajra = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/xmajra-mt
+wisa'_bejn_il-linji = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/wisa%27+bejn+il-linji-mt
+xibka_tat-tkarkir_għall-gambli = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/xibka+tat-tkarkir+g%C4%A7all-gambli-mt
+xama’ = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/xama%E2%80%99-mt
+wppt = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/WPPT-mt
+xengil = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/xengil-mt
+wiġit = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/wi%C4%A1it-mt
+winċ_tal-irmunkar = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/win%C4%8B+tal-irmunkar-mt
+white_paper_-_flimkien_għas-saħħa:_approċċ_strateġiku_għall-ue_2008-2013 = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/White+Paper+-+Flimkien+g%C4%A7as-Sa%C4%A7%C4%A7a%3A+Appro%C4%8B%C4%8B+Strate%C4%A1iku+g%C4%A7all-UE+2008-2013-mt
+workout_unit = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/workout+unit-mt
+xiri_minn_gruppi = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Xiri+minn+gruppi-mt
+wild_maġġorenni = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/wild+ma%C4%A1%C4%A1orenni-mt

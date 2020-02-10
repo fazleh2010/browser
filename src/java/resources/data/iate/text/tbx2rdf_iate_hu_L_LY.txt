@@ -1,0 +1,12 @@
+lineáris_gradiens = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/line%C3%A1ris+gradiens-hu
+lelkiismeret-szabadság = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/lelkiismeret-szabads%C3%A1g-hu
+lakossági_viszonteladás = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/lakoss%C3%A1gi+viszontelad%C3%A1s-hu
+légzési_nehézségek_esetén_az_érintett_személyt_friss_levegőre_kell_vinni_és_olyan_nyugalmi_testhelyzetbe_kell_helyezni,_hogy_könnyen_tudjon_lélegezni. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/L%C3%A9gz%C3%A9si+neh%C3%A9zs%C3%A9gek+eset%C3%A9n+az+%C3%A9rintett+szem%C3%A9lyt+friss+leveg%C5%91re+kell+vinni+%C3%A9s+olyan+nyugalmi+testhelyzetbe+kell+helyezni%2C+hogy+k%C3%B6nnyen+tudjon+l%C3%A9legezni.-hu
+lézergravírozás = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/l%C3%A9zergrav%C3%ADroz%C3%A1s-hu
+led-csomag = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/LED-csomag-hu
+légi_jármű_által_végzett_megfigyelés = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/l%C3%A9gi+j%C3%A1rm%C5%B1+%C3%A1ltal+v%C3%A9gzett+megfigyel%C3%A9s-hu
+lánchosszabítás = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/l%C3%A1nchosszab%C3%ADt%C3%A1s-hu
+lérosz = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/L%C3%A9rosz-hu
+lecsupaszított_zóna = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/lecsupasz%C3%ADtott+z%C3%B3na-hu
+legnagyobb_előremeneti sebesség = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/legnagyobb+el%C5%91remeneti%C2%A0sebess%C3%A9g-hu
+ldc-országok = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/LDC-orsz%C3%A1gok-hu

@@ -1,0 +1,3 @@
+webový_server = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/webov%C3%BD+server-sk
+winterizácia = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/winteriz%C3%A1cia-sk
+wto = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/WTO-sk

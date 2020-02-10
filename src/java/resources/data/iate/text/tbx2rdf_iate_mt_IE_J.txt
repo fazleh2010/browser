@@ -1,0 +1,7 @@
+jinkroċjaw = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/jinkro%C4%8Bjaw-mt
+jiffavorixxi_l-cloud_computing = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/jiffavorixxi+l-cloud+computing-mt
+jekk_jistax_jinġabar = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/jekk+jistax+jin%C4%A1abar-mt
+joriġina_mill-annimali = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/jori%C4%A1ina+mill-annimali-mt
+jon_prekursur = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/jon+prekursur-mt
+jista’_jikkawża_effetti_ta'_ħsara_dejjiema_lill-organiżmi_akwatiċi. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Jista%E2%80%99+jikkaw%C5%BCa+effetti+ta%27+%C4%A7sara+dejjiema+lill-organi%C5%BCmi+akwati%C4%8Bi.-mt
+jisħon_waħdu_f’kwantitajiet_kbar;_jista’_jieħu_n-nar. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Jis%C4%A7on+wa%C4%A7du+f%E2%80%99kwantitajiet+kbar%3B+jista%E2%80%99+jie%C4%A7u+n-nar.-mt
