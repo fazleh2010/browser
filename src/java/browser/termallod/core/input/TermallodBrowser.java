@@ -19,11 +19,22 @@ import java.util.Properties;
 import browser.termallod.core.html.HtmlCreator;
 import java.util.Set;
 import browser.termallod.api.Tasks;
+import static browser.termallod.constants.FileAndCategory.AUTO_COMPLETION_TEMPLATE_LOCATION;
+import static browser.termallod.constants.FileAndCategory.BASE_PATH;
+import static browser.termallod.constants.FileAndCategory.BROWSER_CATEGORIES;
+import static browser.termallod.constants.FileAndCategory.BROWSER_GROUPS;
+import static browser.termallod.constants.FileAndCategory.CATEGORY_ONTOLOGIES;
+import static browser.termallod.constants.FileAndCategory.DATA_PATH;
+import static browser.termallod.constants.FileAndCategory.RDF_PATH;
+import static browser.termallod.constants.FileAndCategory.TEXT_PATH;
+import static browser.termallod.constants.FileAndCategory.TURTLE;
+import static browser.termallod.constants.FileAndCategory.TURTLE_EXTENSION;
 import browser.termallod.core.lucene.LuceneIndexing;
 import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.matching.TermDetail;
 import browser.termallod.utils.GeneralCompScriptGen;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
@@ -99,23 +110,25 @@ public class TermallodBrowser implements Tasks, FileAndCategory {
                 throw new Exception("Text folder can not be empty!!!");
             }
             Map<String, List<File>> languageFiles = FileRelatedUtils.getLanguageFiles(files, ".txt");
-            Browser generalBrowser = new Browser(browser, category);
+            Map<String, LangSpecificBrowser> langSpecBrowsers = new HashMap<String, LangSpecificBrowser>();
             for (String langCode : languageFiles.keySet()) {
-                List<File> temFiles = languageFiles.get(langCode);
-                if (temFiles.isEmpty()) {
+                List<File> termFiles = languageFiles.get(langCode);
+                if (termFiles.isEmpty()) {
                     throw new Exception("No language files are found to process!!");
                 }
                 Map<String, String> allkeysValues = new HashMap<String, String>();
-                for (File file : files) {
+                for (File file : termFiles) {
+                    System.out.println(file.getName());
                     Properties props = FileRelatedUtils.getPropertyHash(file);
                     Map<String, String> tempHash = (Map) props;
                     allkeysValues.putAll(tempHash);
                 }
-                generalBrowser.setLangTermUrls(langCode, allkeysValues);
+                langSpecBrowsers.put(langCode, new LangSpecificBrowser(langCode, allkeysValues));
             }
+            Browser generalBrowser = new Browser(browser, category, langSpecBrowsers);
             browsersInfor.put(category, generalBrowser);
         }
-        
+
     }
 
     @Override
@@ -171,7 +184,7 @@ public class TermallodBrowser implements Tasks, FileAndCategory {
     @Override
     public Set<TermDetail> matchBrowsers() throws IOException, Exception {
         //currently does not work properly..
-        MatchingTerminologies matchTerminologies=new MatchingTerminologies(this.browsersInfor);
+        MatchingTerminologies matchTerminologies = new MatchingTerminologies(this.browsersInfor);
         return new HashSet<TermDetail>();
     }
 

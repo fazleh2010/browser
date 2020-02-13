@@ -19,20 +19,16 @@ public class Browser {
     private final String category;
     private Map<String, LangSpecificBrowser> langTermUrls = new TreeMap<String, LangSpecificBrowser>();
 
-    public Browser(String browser, String category) {
-        this.browser = browser;
-        this.category = category;
-    }
-
     public Browser(Browser browserInfo, Map<String, LangSpecificBrowser> langTermUrls) {
         this.browser = browserInfo.getBrowser();
         this.category = browserInfo.getCategory();
-        this.langTermUrls = browserInfo.getLangTermUrls();
+        this.langTermUrls = langTermUrls;
     }
-   
-    public void setLangTermUrls(String langCode, Map<String, String> termUrls) {
-        langTermUrls.put(langCode, new LangSpecificBrowser(langCode, termUrls));
-
+    
+    public Browser(String browser, String category, Map<String, LangSpecificBrowser> langTermUrls) {
+        this.browser = browser;
+        this.category = category;
+        this.langTermUrls=langTermUrls;
     }
 
     public void setIndex(String langCode, Directory index) {
