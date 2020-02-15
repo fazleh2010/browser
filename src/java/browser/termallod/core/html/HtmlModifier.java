@@ -47,7 +47,7 @@ public class HtmlModifier implements HtmlPage,Languages {
     public HtmlModifier(String PATH, Document templateHtml, TermDetail termDetail,String categoryName) throws Exception {
         this.language = termDetail.getLangCode();
         this.ontologyFileName = CATEGORY_ONTOLOGIES.get(categoryName);
-        this.generatedHtmlPage = this.generateHtmlFromTemplate(templateHtml,termDetail);
+        this.generatedHtmlPage = this.generateHtmlFromTemplate(templateHtml,termDetail.getTerm());
         System.out.println(generatedHtmlPage.toString());
         this.htmlFileName = new File(PATH + this.ontologyFileName + "/" + termDetail.getTerm()+".html");
     }
@@ -79,7 +79,9 @@ public class HtmlModifier implements HtmlPage,Languages {
         return templateHtml;
     }
     
-     private Document generateHtmlFromTemplate(Document templateHtml, TermDetail termDetail) throws Exception {
+     private Document generateHtmlFromTemplate(Document templateHtml, String term) throws Exception {
+        
+        String langDetail=languageMapper.get(language);
         Element body = templateHtml.body();        
         Element divTerm = body.getElementsByClass("webtop-g").get(0);
         //<a class="academic" href="https://www.oxfordlearnersdictionaries.com/wordlist/english/academic/">
@@ -87,12 +89,23 @@ public class HtmlModifier implements HtmlPage,Languages {
         //</a><span class="z"> </span>
         String spanStr="</a><span class="+ "\""+"z"+ "\""+"> </span>";
         //<h2 class="h">abandon</h2>
-        String wordStr="<h2 class="+ "\"" +  "h"+ "\"" +">"+termDetail.getTerm()+"</h2>";
+        String wordStr="<h2 class="+ "\"" +  "h"+ "\"" +">"+term+"</h2>";
         //<span class="z"> </span>
         String extraStr="<span class="+ "\"" +"z"+ "\"" +">"+"</span>";
         
-        String str=classStr+spanStr+wordStr+extraStr;
+        //String titleStr="<span class="+ "\"" +"collapse"+ "\"" +" title="+ "\"" +"English"+ "\"" +">"+"</span>";
+        //String langStr="<span class="+ "\"" +"heading"+ "\"" +">"+"English"+"</span> </span>";
+        // <span class="collapse" title="English"> <span class="heading">English</span> </span>  
+                                                           
+        
+        String str=classStr+spanStr+wordStr+extraStr+language;//+titleStr+langStr;
         divTerm.append(str);
+        
+        Element divLang = body.getElementsByClass("top-g").get(0);
+        String langDiv="<span class="+ "\"" +"collapse"+ "\"" +" title="+ "\"" +langDetail+ "\"" +">";
+        langDiv+="<span class="+ "\"" +"heading"+ "\"" +">"+langDetail+"</span></span>";
+        divLang.append(langDiv);
+        
         return templateHtml;
     }
 
