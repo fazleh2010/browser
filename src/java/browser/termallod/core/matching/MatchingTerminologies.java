@@ -9,7 +9,10 @@ import static browser.termallod.constants.FileAndCategory.IATE;
 import browser.termallod.core.input.Browser;
 import browser.termallod.core.input.LangSpecificBrowser;
 import com.google.common.collect.Sets;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,6 +22,9 @@ import java.util.Set;
  */
 public class MatchingTerminologies {
 
+    private Map<String, Browser> inputBrowsers = new HashMap<String, Browser>();
+    private Map<String, List<TermDetail>> categroyTerms=new HashMap<String, List<TermDetail>>();
+
     public MatchingTerminologies(Map<String, Browser> inputBrowsers) throws Exception {
         if (!inputBrowsers.isEmpty()) {
             matchBrowsers(inputBrowsers, IATE, "en");
@@ -26,6 +32,38 @@ public class MatchingTerminologies {
             throw new Exception("No browser data found for creating index!!");
         }
 
+    }
+
+    public MatchingTerminologies(Map<String, Browser> inputBrowsers, String givenCategory) throws Exception {
+        this.inputBrowsers = inputBrowsers;
+        if (!this.inputBrowsers.isEmpty()) {
+            this.getTerms(givenCategory);
+        } else {
+            throw new Exception("No browser data found for creating index!!");
+        }
+    }
+
+    private void getTerms(String givenCategory) throws Exception {
+        for (String category : inputBrowsers.keySet()) {
+            Browser browsers = inputBrowsers.get(category);
+            if (category.equals(givenCategory)) {
+                Map<String, LangSpecificBrowser> langTerms = browsers.getLangTermUrls();
+                for (String langCode : langTerms.keySet()) {
+                    LangSpecificBrowser langSpecificBrowser = langTerms.get(langCode);
+                    List<TermDetail> termDetails = new ArrayList<TermDetail>();
+                    for (String term : langSpecificBrowser.getTermUrls().keySet()) {
+                        String url = langSpecificBrowser.getTermUrls().get(term);
+                        TermDetail termDetail = new TermDetail(givenCategory,langCode, term, url);
+                        termDetails.add(termDetail);
+                        System.out.println(termDetails.toString());
+                    }
+                    categroyTerms.put(langCode, termDetails);
+                }
+
+            }
+
+        }
+        
     }
 
     public void matchBrowsers(Map<String, Browser> input, String givenCategory, String langCode) throws Exception {
@@ -37,11 +75,11 @@ public class MatchingTerminologies {
             if (!category.equals(givenCategory)) {
                 LangSpecificBrowser langSpecificBrowser = browsers.getLangTermUrls(langCode);
                 Set<String> answer = match(givenLangSpecificBrowser.getTermUrls().keySet(), langSpecificBrowser.getTermUrls().keySet());
-                System.out.println(category + "..." + givenCategory );
-                for(String term:answer){
-                    String givenUrl=givenLangSpecificBrowser.getTermUrls(term);
-                    String url=langSpecificBrowser.getTermUrls(term);
-                    TermDetail termDetail = new TermDetail(langCode,term, givenUrl,url);
+                System.out.println(category + "..." + givenCategory);
+                for (String term : answer) {
+                    String givenUrl = givenLangSpecificBrowser.getTermUrls(term);
+                    String url = langSpecificBrowser.getTermUrls(term);
+                    TermDetail termDetail = new TermDetail(langCode, term, givenUrl, url);
                     System.out.println(termDetail);
                 }
                 break;
@@ -68,6 +106,10 @@ public class MatchingTerminologies {
 
     private static Set<String> match(Set<String> set1, Set<String> set2) {
         return Sets.intersection(set1, set2);
+    }
+
+    public Map<String, List<TermDetail>> getCategroyTerms() {
+        return categroyTerms;
     }
 
 }

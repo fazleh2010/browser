@@ -188,4 +188,23 @@ public class TermallodBrowser implements Tasks, FileAndCategory {
         return new HashSet<TermDetail>();
     }
 
+    @Override
+    public void createTermDetailHtmlPage(String browser,Set<String>givenLangs) throws IOException, Exception {
+       
+       
+             List<String> categories=BROWSER_CATEGORIES.get(browser);
+             for(String category:categories) {
+                 MatchingTerminologies matchTerminologies = new MatchingTerminologies(this.browsersInfor,category);
+                 new HtmlCreator(BASE_PATH,givenLangs,matchTerminologies.getCategroyTerms(),category);
+             break; 
+             }
+            
+       
+    
+    }
+    @Override
+    public Map<String, Browser> getBrowsersInfor() {
+        return browsersInfor;
+    }
+
 }

@@ -26,11 +26,12 @@ import java.io.IOException;
  */
 public class Main implements FileAndCategory {
 
-    public static Set<String> browserSet = new HashSet<String>(Arrays.asList(IATE,GENTERM));
+    public static Set<String> browserSet = new HashSet<String>(Arrays.asList(GENTERM));
     private static Set<String> lang = new TreeSet<String>();
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
             put("en", "English");
+            put("nl", "Dutch");
             /*put("bg", "Bulgarian");
             put("cs", "Czech");
             put("da", "Danish");
@@ -62,23 +63,27 @@ public class Main implements FileAndCategory {
         //cleanDirectory();
 
         Tasks tasks = new TermallodBrowser(LANGUAGE_CONFIG_FILE);
-        //tasks.saveDataIntoFiles(browserSet);
-        //tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,browserSet,lang);
+         //tasks.saveDataIntoFiles(browserSet);
+         //tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,browserSet,lang);
 
         //this is necessary for other applications!!
-        tasks.readDataFromSavedFiles();
-        //tasks.readDataFromSavedFiles(IATE);
+        //tasks.readDataFromSavedFiles();
+        tasks.readDataFromSavedFiles(GENTERM);
+        //tasks.createTermDetailHtmlPage(ATC);
         
-        tasks.matchBrowsers();
+        //tasks.createTermDetailHtmlPage(terms);
+        
+        //tasks.matchBrowsers();
 
         //search Text
         String querystr = "association";
         /*tasks.createIndexing(IATE);
         tasks.search(IATE, "en", querystr);*/
+        tasks.createTermDetailHtmlPage(GENTERM,lang);
 
         //create java script files
-        /* tasks.prepareGroundForJs();
-        tasks.generateScript();*/
+        //tasks.prepareGroundForJs();
+        //tasks.generateScript();
     }
     // run before comit..................to clean all folder
 

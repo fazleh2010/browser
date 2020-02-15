@@ -1,5 +1,0 @@
-živalska_olja_in_maščobe = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BEivalska+olja+in+ma%C5%A1%C4%8Dobe-sl
-živčni_končič = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BEiv%C4%8Dni+kon%C4%8Di%C4%8D-sl
-žametna_ločitev = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BEametna+lo%C4%8Ditev-sl
-žerjavna_napa = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BEerjavna+napa-sl
-žuželka = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C5%BEu%C5%BEelka-sl

@@ -1,6 +1,0 @@
-c/no = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/C%2FNo-hr
-cds = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/CDS-hr
-četverooka_kornjača = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C4%8Detverooka+kornja%C4%8Da-hr
-centar_za_studije_europskih_politika = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Centar+za+studije+europskih+politika-hr
-časnik_za_vezu = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C4%8Dasnik+za+vezu-hr
-coface = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/COFACE-hr

@@ -34,6 +34,9 @@ public class GeneralCompScriptGen implements FileAndCategory {
         if (!templateFile.exists()) {
             throw new Exception(" no template find found for autocompletion!!");
         }
+        if (inputBrowsers.isEmpty()) {
+            throw new Exception(" No data found for creating java script!!");
+        }
     }
 
    
@@ -51,7 +54,7 @@ public class GeneralCompScriptGen implements FileAndCategory {
             LangSpecificBrowser langSpecificBrowser = generalBrowser.getLangTermUrls().get(langCode);
             Map<String, String> allkeysValues = langSpecificBrowser.getTermUrls();
             String str = getTerms(allkeysValues);
-            System.out.println(str);
+            //System.out.println(str);
             //File templateFile = new File(AUTO_COMPLETION_TEMPLATE_LOCATION + "autoComp" + ".js");
             String outputFileName = AUTO_COMPLETION_TEMPLATE_LOCATION + ontologyName + "_" + langCode + ".js";
 
@@ -123,6 +126,9 @@ public class GeneralCompScriptGen implements FileAndCategory {
         }
         if (text.contains("\\,")) {
             return text.replaceAll(",", "");
+        }
+        if (text.contains("_")) {
+            return text.replaceAll("_", " ");
         }
 
         return text;

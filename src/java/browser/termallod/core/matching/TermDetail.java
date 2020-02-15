@@ -15,19 +15,22 @@ import java.util.Set;
 public class TermDetail {
 
     private String term = null;
+    private String category = null;
     private String langCode = null;
-    private String langcode = null;
     private Set<String> links = new HashSet<String>();
 
-    public TermDetail(String langCode, String term, String givenUrl, String url) {
+    public TermDetail(String category,String langCode, String term, String givenUrl, String url) {
+        this.category=category;
         this.langCode = langCode;
         this.term = term;
         this.links.add(givenUrl);
         this.links.add(url);
     }
 
-    public String getLangcode() {
-        return langcode;
+    TermDetail(String category,String langCode, String term, String url) {
+        this.langCode = langCode;
+        this.term = term.replace("_", " ");
+        this.links.add(url);
     }
 
     public String getTerm() {
@@ -42,9 +45,13 @@ public class TermDetail {
         return links;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
     @Override
     public String toString() {
-        return "TermDetail{" + "term=" + term + ", langcode=" + langcode + ", links=" + links + '}';
+        return "TermDetail{" + "term=" + term + ", langCode=" + langCode + ", links=" + links + '}';
     }
 
 }

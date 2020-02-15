@@ -19,11 +19,11 @@ import java.util.Set;
  * @author elahi
  */
 public interface Tasks {
-    
+
     public void saveDataIntoFiles(Set<String> browserSet) throws Exception, IOException;
-    
-    public void saveDataIntoFiles(Set<String> browserSet,String browser) throws Exception, IOException;
-    
+
+    public void saveDataIntoFiles(Set<String> browserSet, String browser) throws Exception, IOException;
+
     public void readDataFromSavedFiles() throws IOException, Exception;
 
     public void readDataFromSavedFiles(String givenBrowser) throws IOException, Exception;
@@ -41,6 +41,10 @@ public interface Tasks {
     public void generateScript() throws IOException, Exception;
 
     public void generateScript(String category) throws IOException, Exception;
-    
+
     public Set<TermDetail> matchBrowsers() throws IOException, Exception;
+
+    public void createTermDetailHtmlPage(String browser,Set<String>givenLangs) throws IOException, Exception;
+    
+    public Map<String, Browser> getBrowsersInfor();
 }

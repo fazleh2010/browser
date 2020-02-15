@@ -5,6 +5,7 @@
  */
 package browser.termallod.core.html;
 
+import static browser.termallod.constants.FileAndCategory.CATEGORY_ONTOLOGIES;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import browser.termallod.constants.HtmlPage;
 import browser.termallod.constants.Languages;
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.PageContentGenerator;
+import browser.termallod.core.matching.TermDetail;
 import browser.termallod.utils.StringMatcherUtil;
 
 /**
@@ -22,11 +24,11 @@ import browser.termallod.utils.StringMatcherUtil;
  */
 public class HtmlModifier implements HtmlPage,Languages {
 
-    private final Document generatedHtmlPage;
-    private final Integer currentPageNumber;
-    private final Integer maximumNumberOfPages = 4;
-    private final String language;
-    private final String ontologyFileName;
+    private  Document generatedHtmlPage;
+    private  Integer currentPageNumber;
+    private  Integer maximumNumberOfPages = 4;
+    private  String language;
+    private  String ontologyFileName;
     private String categoryType = "";
     private File htmlFileName = null;
     private AlphabetTermPage alphabetTermPage;
@@ -40,6 +42,14 @@ public class HtmlModifier implements HtmlPage,Languages {
         this.categoryType = ontology[1];
         this.generatedHtmlPage = this.generateHtmlFromTemplate(templateHtml, terms, pageContentGenerator, alphabetTermPage);
         this.htmlFileName = new File(PATH + this.ontologyFileName + "/" + createFileNameUnicode(language, currentPageNumber));
+    }
+
+    public HtmlModifier(String PATH, Document templateHtml, TermDetail termDetail,String categoryName) throws Exception {
+        this.language = termDetail.getLangCode();
+        this.ontologyFileName = CATEGORY_ONTOLOGIES.get(categoryName);
+        this.generatedHtmlPage = this.generateHtmlFromTemplate(templateHtml,termDetail);
+        System.out.println(generatedHtmlPage.toString());
+        this.htmlFileName = new File(PATH + this.ontologyFileName + "/" + termDetail.getTerm()+".html");
     }
 
     private Document generateHtmlFromTemplate(Document templateHtml, List<String> terms, PageContentGenerator pageContentGenerator, AlphabetTermPage alphabetTermPage) throws Exception {
@@ -66,6 +76,23 @@ public class HtmlModifier implements HtmlPage,Languages {
         createPageNumber(body, "paging_links inner", alphebetPair, numberofPages);
         //lower page number
         createPageNumber(body, "paging_links inner_down", alphebetPair, numberofPages);
+        return templateHtml;
+    }
+    
+     private Document generateHtmlFromTemplate(Document templateHtml, TermDetail termDetail) throws Exception {
+        Element body = templateHtml.body();        
+        Element divTerm = body.getElementsByClass("webtop-g").get(0);
+        //<a class="academic" href="https://www.oxfordlearnersdictionaries.com/wordlist/english/academic/">
+        String classStr= "<a class="+ "\"" +"academic"+ "\"" +" href="+ "\"" +"https://www.oxfordlearnersdictionaries.com/wordlist/english/academic/"+ "\"" +">";
+        //</a><span class="z"> </span>
+        String spanStr="</a><span class="+ "\""+"z"+ "\""+"> </span>";
+        //<h2 class="h">abandon</h2>
+        String wordStr="<h2 class="+ "\"" +  "h"+ "\"" +">"+termDetail.getTerm()+"</h2>";
+        //<span class="z"> </span>
+        String extraStr="<span class="+ "\"" +"z"+ "\"" +">"+"</span>";
+        
+        String str=classStr+spanStr+wordStr+extraStr;
+        divTerm.append(str);
         return templateHtml;
     }
 
@@ -222,6 +249,10 @@ public class HtmlModifier implements HtmlPage,Languages {
 
         return liS;
     }
+    
+    private void createTermPage(Element body, TermDetail termDetail) {
+       
+    }
 
     private String createUrlLink(String languageCode, Integer pageNumber) {
         return LOCALHOST_URL_LIST_OF_TERMS_PAGE + this.createFileNameUnicode(languageCode, pageNumber);
@@ -295,4 +326,6 @@ public class HtmlModifier implements HtmlPage,Languages {
     public File getHtmlFileName() {
         return htmlFileName;
     }
+
+    
 }

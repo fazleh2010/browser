@@ -1,6 +1,0 @@
-gietgrein = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/gietgrein-NL
-graveerijzer = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/graveerijzer-NL
-gravurelijn = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/gravurelijn-NL
-hydrofiel_gaas = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/hydrofiel+gaas-NL
-groenspaan = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/groenspaan-NL
-heliogravure = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/heliogravure-NL
