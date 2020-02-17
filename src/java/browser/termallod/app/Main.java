@@ -64,7 +64,7 @@ public class Main implements FileAndCategory {
         //cleanDirectory();
 
         Tasks tasks = new Taskimpl(LANGUAGE_CONFIG_FILE);
-         //tasks.saveDataIntoFiles(browserSet);
+         tasks.saveDataIntoFiles(browserSet);
          //tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,browserSet,lang);
 
         //this is necessary for other applications!!

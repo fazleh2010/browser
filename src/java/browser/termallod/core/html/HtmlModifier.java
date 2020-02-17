@@ -57,7 +57,6 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         this.language = givenTermDetail.getLangCode();
         this.ontologyFileName = CATEGORY_ONTOLOGIES.get(category);
         this.generatedHtmlPage = this.generateHtmlFromTemplate(templateHtml, termDetails);
-        System.out.println(generatedHtmlPage.toString());
         this.htmlFileName = new File(PATH + this.ontologyFileName + "/" + givenTermDetail.getTerm() + "_add" + ".html");
     }
 
@@ -130,18 +129,46 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
 
         String langDetail = languageMapper.get(language);
         String term = "term";
-        String panelHeading = divClassStr + this.getWithinQuote("panel-heading") + ">" + "<a href=" + this.getWithinQuote("/data/iate/test+tubes-en") + " class=" + this.getWithinQuote("rdf_link") + ">" + term + "</a>" + divClassEnd;
+        
+        
+        String panelHeadingStart = divClassStr + this.getWithinQuote("panel-heading") + ">" + "<a href=" + this.getWithinQuote("/data/iate/test+tubes-en") + " class=" + this.getWithinQuote("rdf_link") + ">" + term + "</a>" + divClassEnd;
+        String panelHeadingEnd="</div>";
         String firstTr = getTr(getProperty(langPropUrl, langPropStr), getValue(langValueUrl1, langValueUrl2, langValueStr));
         String termValue = this.getValue(this.getSpanProp(spanPropUrl1, spanPropUrl2, spanPropStr) + this.getSpanValue(spanValueUrl, spanValueStr));
         String secondTr = getTr(getProperty(langTermUrl, langTermStr), termValue);
         String thirdTr = getTr(getProperty(matchPropUrl, matchPropStr), getValue(matchValueUrl1, matchValueUrl2, matchValueStr));
         String table = this.getTable(this.getTbody(firstTr + secondTr + thirdTr));
-        panelHeading=panelHeading+table;
+        
+         String yesNoButtonDiv= getAcceptDenyButton();
+        
+        
+        String divStr=panelHeadingStart+table+ yesNoButtonDiv+panelHeadingEnd;
         
         Element body = templateHtml.body();
         List<Element> divTerms = body.getElementsByClass("panel panel-default");
-        Element divterm=divTerms.get(0);
-        divterm.append(panelHeading);
+        for(Element divTerm:divTerms){
+            divTerm.append(divStr);
+            System.out.println(divTerm);
+        }
+        /*Element divterm=divTerms.get(0);
+        divterm.append(div);
+        System.out.println(div);*/
+        
+       
+             
+        
+       /*<div class="panel panel-default">
+                
+                <div class="w3-container">
+                    <div class="w3-container w3-center">
+                        <div class="w3-section">
+                            <button class="w3-button w3-green">Accept</button>
+                            <button class="w3-button w3-red">Decline</button>
+                        </div>
+                    </div>
+                </div>                    
+            </div>*/
+        
         /*for (Element divterm : divTerms) {
              divterm.append(panelHeading);
         }*/
@@ -178,6 +205,19 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
                     </tbody>
                 </table> */
         return templateHtml;
+    }
+
+    private String getAcceptDenyButton() {
+        String yesNoButtonDiv=
+                "<div class="+this.getWithinQuote("w3-container")+">"
+                +"<div class="+this.getWithinQuote("w3-container w3-center")+">"
+                +"<div class="+this.getWithinQuote("w3-section")+">"
+                +"<button class="+this.getWithinQuote("w3-button w3-green")+">Accept</button>"
+                +"<button class="+this.getWithinQuote("w3-button w3-red")+">Decline</button>"
+                +"</div>"
+                +" </div>"
+                +" </div>";
+        return yesNoButtonDiv;
     }
 
     private String getValue(String url1, String url2, String str) {
