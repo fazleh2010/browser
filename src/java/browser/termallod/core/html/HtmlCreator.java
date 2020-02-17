@@ -45,18 +45,21 @@ public class HtmlCreator implements FileAndCategory {
 
     }
 
-    public HtmlCreator(String PATH, Set<String> givenlang,  String category,String lang, List<TermDetail> termDetails) throws Exception {
+    public HtmlCreator(String PATH, Set<String> givenlang,  String category,String lang,TermDetail givenTermDetail, List<TermDetail> termDetails) throws Exception {
         this(PATH, givenlang);
-        createAddDeclineForEachTerm(category, lang);
+        createHtmlForAddDecPageForEachTerm(category, lang,givenTermDetail,termDetails);
     }
 
-    private void createAddDeclineForEachTerm(String category, String lang) throws Exception {
+    private void createHtmlForAddDecPageForEachTerm(String category, String lang,TermDetail givenTermDetail,List<TermDetail> termDetails) throws Exception {
         String ontologyName = CATEGORY_ONTOLOGIES.get(category);
-        System.out.println(ontologyName);
         File templateFile = getTemplateTermAddDecline(ontologyName, lang, ".html");
         HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
         Document templateHtml = htmlReaderWriter.getInputDocument();
-        System.out.println(templateHtml.toString());
+        
+        HtmlModifier htmlPage = new HtmlModifier(PATH, templateHtml, givenTermDetail,termDetails, category);
+        htmlReaderWriter.writeHtml(htmlPage.getGeneratedHtmlPage(), htmlPage.getHtmlFileName());
+        
+        System.out.println(htmlPage.toString());
     }
 
     public void createHtmlForTermDetailEachCategory(Map<String, List<TermDetail>> langTerms, String category) throws Exception {

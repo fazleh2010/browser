@@ -6,7 +6,7 @@
 package browser.termallod.app;
 
 import browser.termallod.constants.FileAndCategory;
-import browser.termallod.core.input.TermallodBrowser;
+import browser.termallod.core.Taskimpl;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -63,7 +63,7 @@ public class Main implements FileAndCategory {
         // run before comit..................
         //cleanDirectory();
 
-        Tasks tasks = new TermallodBrowser(LANGUAGE_CONFIG_FILE);
+        Tasks tasks = new Taskimpl(LANGUAGE_CONFIG_FILE);
          //tasks.saveDataIntoFiles(browserSet);
          //tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,browserSet,lang);
 

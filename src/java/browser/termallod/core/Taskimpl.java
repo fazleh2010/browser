@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.core.input;
+package browser.termallod.core;
 
 import browser.termallod.api.LanguageManager;
 import browser.termallod.constants.FileAndCategory;
@@ -43,7 +43,7 @@ import java.util.logging.Logger;
  *
  * @author elahi
  */
-public class TermallodBrowser implements Tasks, FileAndCategory {
+public class Taskimpl implements Tasks, FileAndCategory {
 
     private Map<String, Browser> browsersInfor = new HashMap<String, Browser>();
     private final LanguageManager languageManager;
@@ -51,7 +51,7 @@ public class TermallodBrowser implements Tasks, FileAndCategory {
     private GeneralCompScriptGen javaScriptCode = null;
     private MatchingTerminologies matchTerminologies=new MatchingTerminologies();
 
-    public TermallodBrowser(File LANGUAGE_CONFIG_FILE) throws Exception {
+    public Taskimpl(File LANGUAGE_CONFIG_FILE) throws Exception {
         this.languageManager = new LanguageAlphabetPro(LANGUAGE_CONFIG_FILE);
     }
 
@@ -211,12 +211,12 @@ public class TermallodBrowser implements Tasks, FileAndCategory {
     }
 
     @Override
-    public void createAddDeclineHtmlPage(String category,String lang,TermDetail termdetail,Set<String>givenLangs) {
+    public void createAddDeclineHtmlPage(String category,String lang,TermDetail givenTermDetail,Set<String>givenLangs) {
         try {
-            List<TermDetail> termDetails=matchTerminologies.getCategroyTerms(termdetail);
-            new HtmlCreator(BASE_PATH,givenLangs,category,lang,termDetails);
+            List<TermDetail> termDetails=matchTerminologies.getCategroyTerms(givenTermDetail);
+            new HtmlCreator(BASE_PATH,givenLangs,category,lang,givenTermDetail,termDetails);
         } catch (Exception ex) {
-            Logger.getLogger(TermallodBrowser.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Taskimpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

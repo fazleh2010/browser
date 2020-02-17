@@ -5,6 +5,7 @@
  */
 package browser.termallod.core.html;
 
+import browser.termallod.api.HtmlStringConts;
 import static browser.termallod.constants.FileAndCategory.CATEGORY_ONTOLOGIES;
 import java.io.File;
 import java.util.ArrayList;
@@ -22,18 +23,18 @@ import browser.termallod.utils.StringMatcherUtil;
  *
  * @author elahi
  */
-public class HtmlModifier implements HtmlPage,Languages {
+public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
 
-    private  Document generatedHtmlPage;
-    private  Integer currentPageNumber;
-    private  Integer maximumNumberOfPages = 4;
-    private  String language;
-    private  String ontologyFileName;
+    private Document generatedHtmlPage;
+    private Integer currentPageNumber;
+    private Integer maximumNumberOfPages = 4;
+    private String language;
+    private String ontologyFileName;
     private String categoryType = "";
     private File htmlFileName = null;
     private AlphabetTermPage alphabetTermPage;
 
-    public HtmlModifier(String PATH,Document templateHtml, String language, AlphabetTermPage alphabetTermPage, List<String> terms, String categoryName, PageContentGenerator pageContentGenerator, Integer currentPageNumber) throws Exception {
+    public HtmlModifier(String PATH, Document templateHtml, String language, AlphabetTermPage alphabetTermPage, List<String> terms, String categoryName, PageContentGenerator pageContentGenerator, Integer currentPageNumber) throws Exception {
         this.currentPageNumber = currentPageNumber;
         this.language = language;
         this.ontologyFileName = categoryName;
@@ -44,12 +45,20 @@ public class HtmlModifier implements HtmlPage,Languages {
         this.htmlFileName = new File(PATH + this.ontologyFileName + "/" + createFileNameUnicode(language, currentPageNumber));
     }
 
-    public HtmlModifier(String PATH, Document templateHtml, TermDetail termDetail,String categoryName) throws Exception {
+    public HtmlModifier(String PATH, Document templateHtml, TermDetail termDetail, String categoryName) throws Exception {
         this.language = termDetail.getLangCode();
         this.ontologyFileName = CATEGORY_ONTOLOGIES.get(categoryName);
-        this.generatedHtmlPage = this.generateHtmlFromTemplate(templateHtml,termDetail.getTerm());
+        this.generatedHtmlPage = this.generateHtmlFromTemplate(templateHtml, termDetail.getTerm());
         System.out.println(generatedHtmlPage.toString());
-        this.htmlFileName = new File(PATH + this.ontologyFileName + "/" + termDetail.getTerm()+".html");
+        this.htmlFileName = new File(PATH + this.ontologyFileName + "/" + termDetail.getTerm() + ".html");
+    }
+
+    public HtmlModifier(String PATH, Document templateHtml, TermDetail givenTermDetail, List<TermDetail> termDetails, String category) throws Exception {
+        this.language = givenTermDetail.getLangCode();
+        this.ontologyFileName = CATEGORY_ONTOLOGIES.get(category);
+        this.generatedHtmlPage = this.generateHtmlFromTemplate(templateHtml, termDetails);
+        System.out.println(generatedHtmlPage.toString());
+        this.htmlFileName = new File(PATH + this.ontologyFileName + "/" + givenTermDetail.getTerm() + "_add" + ".html");
     }
 
     private Document generateHtmlFromTemplate(Document templateHtml, List<String> terms, PageContentGenerator pageContentGenerator, AlphabetTermPage alphabetTermPage) throws Exception {
@@ -78,32 +87,29 @@ public class HtmlModifier implements HtmlPage,Languages {
         createPageNumber(body, "paging_links inner_down", alphebetPair, numberofPages);
         return templateHtml;
     }
-    
-     private Document generateHtmlFromTemplate(Document templateHtml, String term) throws Exception {
-        
-        String langDetail=languageMapper.get(language);
-        Element body = templateHtml.body();        
+
+    private Document generateHtmlFromTemplate(Document templateHtml, String term) throws Exception {
+
+        String langDetail = languageMapper.get(language);
+        Element body = templateHtml.body();
         Element divTerm = body.getElementsByClass("webtop-g").get(0);
         //<a class="academic" href="https://www.oxfordlearnersdictionaries.com/wordlist/english/academic/">
-        String classStr= "<a class="+ "\"" +"academic"+ "\"" +" href="+ "\"" +"https://www.oxfordlearnersdictionaries.com/wordlist/english/academic/"+ "\"" +">";
+        String classStr = "<a class=" + "\"" + "academic" + "\"" + " href=" + "\"" + "https://www.oxfordlearnersdictionaries.com/wordlist/english/academic/" + "\"" + ">";
         //</a><span class="z"> </span>
-        String spanStr="</a><span class="+ "\""+"z"+ "\""+"> </span>";
+        String spanStr = "</a><span class=" + "\"" + "z" + "\"" + "> </span>";
         //<h2 class="h">abandon</h2>
-        String wordStr="<h2 class="+ "\"" +  "h"+ "\"" +">"+term+"</h2>";
+        String wordStr = "<h2 class=" + "\"" + "h" + "\"" + ">" + term + "</h2>";
         //<span class="z"> </span>
-        String extraStr="<span class="+ "\"" +"z"+ "\"" +">"+"</span>";
-         
-        String str=classStr+spanStr+wordStr+extraStr+language;//+titleStr+langStr;
+        String extraStr = "<span class=" + "\"" + "z" + "\"" + ">" + "</span>";
+
+        String str = classStr + spanStr + wordStr + extraStr + language;//+titleStr+langStr;
         divTerm.append(str);
-        
+
         Element divLang = body.getElementsByClass("top-g").get(0);
-        String langDiv="<span class="+ "\"" +"collapse"+ "\"" +" title="+ "\"" +langDetail+ "\"" +">";
-        langDiv+="<span class="+ "\"" +"heading"+ "\"" +">"+langDetail+"</span></span>";
+        String langDiv = "<span class=" + "\"" + "collapse" + "\"" + " title=" + "\"" + langDetail + "\"" + ">";
+        langDiv += "<span class=" + "\"" + "heading" + "\"" + ">" + langDetail + "</span></span>";
         divLang.append(langDiv);
-        
-        
-        
-        
+
         Element multiLingualDiv = body.getElementsByClass("entry").get(0);
         //<li><a href="https://www.oxfordlearnersdictionaries.com/definition/english/abandon_1" title="abandon definition">abandon</a> </li>
         String title = "title=" + '"' + "term" + " definition" + '"';
@@ -115,12 +121,77 @@ public class HtmlModifier implements HtmlPage,Languages {
         String a = "<a href=" + url + " " + title + ">" + term + "</a>";
         String li = "\n<li>" + a + "</li>\n";
         multiLingualDiv.append(li);
-        
-         
-        
+
         //System.out.println(multiLingualDiv.toString());
-        
         return templateHtml;
+    }
+
+    private Document generateHtmlFromTemplate(Document templateHtml, List<TermDetail> termDetail) throws Exception {
+
+        String langDetail = languageMapper.get(language);
+        String term = "term";
+        String panelHeading = divClassStr + this.getWithinQuote("panel-heading") + ">" + "<a href=" + this.getWithinQuote("/data/iate/test+tubes-en") + " class=" + this.getWithinQuote("rdf_link") + ">" + term + "</a>" + divClassEnd;
+        String firstTr = getTr(getProperty(langPropUrl, langPropStr), getValue(langValueUrl1, langValueUrl2, langValueStr));
+        String termValue = this.getValue(this.getSpanProp(spanPropUrl1, spanPropUrl2, spanPropStr) + this.getSpanValue(spanValueUrl, spanValueStr));
+        String secondTr = getTr(getProperty(langTermUrl, langTermStr), termValue);
+        String thirdTr = getTr(getProperty(matchPropUrl, matchPropStr), getValue(matchValueUrl1, matchValueUrl2, matchValueStr));
+        String table = this.getTable(this.getTbody(firstTr + secondTr + thirdTr));
+        panelHeading=panelHeading+table;
+        
+        Element body = templateHtml.body();
+        List<Element> divTerms = body.getElementsByClass("panel panel-default");
+        Element divterm=divTerms.get(0);
+        divterm.append(panelHeading);
+        /*for (Element divterm : divTerms) {
+             divterm.append(panelHeading);
+        }*/
+
+     
+        /*<div class="panel-heading"><a href="/data/iate/test+tubes-en" class="rdf_link">test+tubes-en</a></div>
+                <table class="panel-body rdf_embedded_table">
+                    <tbody>
+                        <tr>
+                            <td class="rdf_prop">
+                                <a href="http://www.w3.org/ns/lemon/ontolex#language" class="rdf_link">Language</a>
+                            </td>
+                            <td class="rdf_value rdf_first_value">
+                                <a href="http://www.lexvo.org/page/iso639-3/eng" property="http://www.w3.org/ns/lemon/ontolex#language" class="rdf_link rdf_prop">Eng</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="rdf_prop">
+                                <a href="http://tbx2rdf.lider-project.eu/tbx#reliabilityCode" class="rdf_link">Terminology</a>
+                            </td>
+                            <td class="rdf_value rdf_first_value">
+                                <span property="http://tbx2rdf.lider-project.eu/tbx#reliabilityCode" datatype="http://www.w3.org/2001/XMLSchema#integer">3</span>
+                                <span class="pull-right rdf_datatype"><a href="http://www.w3.org/2001/XMLSchema#integer" class="rdf_link">iate</a></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="rdf_prop">
+                                <a href="http://www.lexinfo.net/ontology/2.0/lexinfo#termType" class="rdf_link">Match type</a>
+                            </td>
+                            <td class="rdf_value rdf_first_value">
+                                <a href="http://www.lexinfo.net/ontology/2.0/lexinfo#fullForm" property="http://www.lexinfo.net/ontology/2.0/lexinfo#termType" class="rdf_link rdf_prop">extact match</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> */
+        return templateHtml;
+    }
+
+    private String getValue(String url1, String url2, String str) {
+        String tdEnd = "</td>";
+        String tdRdfValueStart = "<td class=" + this.getWithinQuote("rdf_value rdf_first_value") + ">";
+        String langValue = tdRdfValueStart + "<a href=" + this.getWithinQuote(url1) + " property=" + this.getWithinQuote(url2) + " class=" + this.getWithinQuote("rdf_link rdf_prop") + ">" + str + "</a>" + tdEnd;
+        return langValue;
+    }
+
+    private String getProperty(String url, String str) {
+        String tdPropStart = "<td class=" + this.getWithinQuote("rdf_prop") + ">";
+        String tdEnd = "</td>";
+        String langProp = tdPropStart + " <a href=" + this.getWithinQuote(url) + " class=" + this.getWithinQuote("rdf_link") + ">" + str + "</a>" + tdEnd;
+        return langProp;
     }
 
     @Override
@@ -207,7 +278,7 @@ public class HtmlModifier implements HtmlPage,Languages {
         //there is an error in Hungarian langauge link in HTML template, 
         //since all static htmls are already generated so the problem is now solved by hardcoded.
         //extreme bad solution but quick solution. 
-        
+
         //Elements divAlphabet = body.getElementsByClass("side-selector__left");
         //Element content = body.getElementById("entries-selector");
         /*String ontologyLocation="";
@@ -216,11 +287,11 @@ public class HtmlModifier implements HtmlPage,Languages {
         }*/
         String url = this.createUrlLink(language, pageNumber, alphabetTermPage);
         //String url = LOCALHOST_URL_LIST_OF_TERMS_PAGE + alphabetFileName;
-        
-        if (language.contains("hu") && alphabetTermPage.getNumericalValueOfPair()==1) {
-                url = "browser_hu_A_1_1.html";
-            }
-        
+
+        if (language.contains("hu") && alphabetTermPage.getNumericalValueOfPair() == 1) {
+            url = "browser_hu_A_1_1.html";
+        }
+
         String a = "<a href=" + url + ">" + alphabetTermPage.getAlpahbetPair() + "</a>";
         String li = "\n" + "<li>" + a + "</li>" + "\n";
         return li;
@@ -234,17 +305,16 @@ public class HtmlModifier implements HtmlPage,Languages {
         String li = "";
         /*"<span>" + this.currentPageNumber + "</span>";
         liS.add(li);*/
-        
-            //there is an error in Hungarian langauge link in HTML template, 
-            //since all static htmls are already generated so the problem is now solved by hardcoded.
-            //extreme bad solution but quick solution. 
-        
+
+        //there is an error in Hungarian langauge link in HTML template, 
+        //since all static htmls are already generated so the problem is now solved by hardcoded.
+        //extreme bad solution but quick solution. 
         if (pages == 1) {
             return new ArrayList<String>();
         }
         if (this.currentPageNumber > INITIAL_PAGE) {
             pageUrl = createUrlLink(language, currentPageNumber - 1);
-            if (language.contains("hu")&&this.currentPageNumber==2) {
+            if (language.contains("hu") && this.currentPageNumber == 2) {
                 pageUrl = "browser_hu_A_1_1.html";
             }
             String a = "<a href=" + pageUrl + ">" + "Previous" + "</a>";
@@ -275,10 +345,6 @@ public class HtmlModifier implements HtmlPage,Languages {
         }
 
         return liS;
-    }
-    
-    private void createTermPage(Element body, TermDetail termDetail) {
-       
     }
 
     private String createUrlLink(String languageCode, Integer pageNumber) {
@@ -345,7 +411,6 @@ public class HtmlModifier implements HtmlPage,Languages {
     /*private String termFileLocation(String term) {
         return PATH + this.generateTermFileName() + this.termFileExtension(term);
     }*/
-
     public Document getGeneratedHtmlPage() {
         return generatedHtmlPage;
     }
@@ -354,5 +419,42 @@ public class HtmlModifier implements HtmlPage,Languages {
         return htmlFileName;
     }
 
-    
+    private String getWithinQuote(String term) {
+        return "\"" + term + "\"";
+    }
+
+    private String getTr(String langProp, String langValue) {
+        String trStart = " <tr>";
+        String trEnd = "</tr>";
+        return trStart + langProp + langValue + trEnd;
+    }
+
+    private String getSpanProp(String url1, String url2, String str) {
+        return "<span property=" + this.getWithinQuote(url1) + " datatype=" + this.getWithinQuote(url2) + ">" + str + "</span>";
+    }
+
+    private String getSpanValue(String url, String str) {
+        return "<span class=" + this.getWithinQuote("pull-right rdf_datatype") + "><a href=" + this.getWithinQuote(url) + " class=" + this.getWithinQuote("rdf_link") + ">" + str + "</a></span>";
+    }
+
+    private String getValue(String string) {
+        String tdEnd = "</td>";
+        String tdRdfValueStart = "<td class=" + this.getWithinQuote("rdf_value rdf_first_value") + ">";
+        return tdRdfValueStart + string + tdEnd;
+
+    }
+
+    private String getTbody(String trs) {
+        String tbodyStart = "<tbody>";
+        String tbodyEnd = "</tbody>";
+        return tbodyStart + trs + tbodyEnd;
+
+    }
+
+    private String getTable(String tbody) {
+        String tableStart = "<table class=" + this.getWithinQuote("panel-body rdf_embedded_table") + ">";
+        String tableEnd = "</table>";
+        return tableStart + tbody + tableEnd;
+    }
+
 }

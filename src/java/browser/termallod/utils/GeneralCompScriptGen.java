@@ -6,9 +6,9 @@
 package browser.termallod.utils;
 
 import browser.termallod.constants.FileAndCategory;
-import browser.termallod.core.input.TermallodBrowser;
-import browser.termallod.core.input.Browser;
-import browser.termallod.core.input.LangSpecificBrowser;
+import browser.termallod.core.Taskimpl;
+import browser.termallod.core.Browser;
+import browser.termallod.core.LangSpecificBrowser;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -49,7 +49,7 @@ public class GeneralCompScriptGen implements FileAndCategory {
 
     public void generateScript(String category) throws IOException, Exception {
         Browser generalBrowser = inputBrowsers.get(category);
-        String ontologyName = TermallodBrowser.getOntologyName(category);
+        String ontologyName = Taskimpl.getOntologyName(category);
         for (String langCode : generalBrowser.getLangTermUrls().keySet()) {
             LangSpecificBrowser langSpecificBrowser = generalBrowser.getLangTermUrls().get(langCode);
             Map<String, String> allkeysValues = langSpecificBrowser.getTermUrls();

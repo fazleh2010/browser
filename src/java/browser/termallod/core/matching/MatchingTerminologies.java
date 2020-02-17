@@ -7,8 +7,8 @@ package browser.termallod.core.matching;
 
 import static browser.termallod.constants.FileAndCategory.ATC;
 import static browser.termallod.constants.FileAndCategory.IATE;
-import browser.termallod.core.input.Browser;
-import browser.termallod.core.input.LangSpecificBrowser;
+import browser.termallod.core.Browser;
+import browser.termallod.core.LangSpecificBrowser;
 import com.google.common.collect.Sets;
 import java.util.ArrayList;
 import java.util.HashMap;
