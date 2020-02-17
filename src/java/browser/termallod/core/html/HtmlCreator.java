@@ -30,8 +30,8 @@ import org.jsoup.nodes.Document;
  */
 public class HtmlCreator implements FileAndCategory {
 
-    private  Set<String> lang ;
-    private  String PATH;
+    private final Set<String> lang;
+    private final String PATH;
 
     public HtmlCreator(String PATH, Set<String> lang) {
         this.PATH = PATH;
@@ -39,29 +39,43 @@ public class HtmlCreator implements FileAndCategory {
 
     }
 
-    public HtmlCreator(String PATH, Set<String> lang,Map<String, List<TermDetail>> langTerms, String categoryName) throws Exception {
-        this(PATH,lang);
+    public HtmlCreator(String PATH, Set<String> lang, Map<String, List<TermDetail>> langTerms, String categoryName) throws Exception {
+        this(PATH, lang);
         this.createHtmlForTermDetailEachCategory(langTerms, categoryName);
 
+    }
+
+    public HtmlCreator(String PATH, Set<String> givenlang,  String category,String lang, List<TermDetail> termDetails) throws Exception {
+        this(PATH, givenlang);
+        createAddDeclineForEachTerm(category, lang);
+    }
+
+    private void createAddDeclineForEachTerm(String category, String lang) throws Exception {
+        String ontologyName = CATEGORY_ONTOLOGIES.get(category);
+        System.out.println(ontologyName);
+        File templateFile = getTemplateTermAddDecline(ontologyName, lang, ".html");
+        HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
+        Document templateHtml = htmlReaderWriter.getInputDocument();
+        System.out.println(templateHtml.toString());
     }
 
     public void createHtmlForTermDetailEachCategory(Map<String, List<TermDetail>> langTerms, String category) throws Exception {
         for (String lang : langTerms.keySet()) {
             List<TermDetail> termDetails = langTerms.get(lang);
             for (TermDetail termDetail : termDetails) {
-                 if (lang.contains(termDetail.getLangCode())) {
-                     String ontologyName = CATEGORY_ONTOLOGIES.get(category);
-                     System.out.println(ontologyName);
-                     File templateFile = getTemplateTermDetail(ontologyName, termDetail.getLangCode(), ".html");
-                     HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
-                     Document templateHtml = htmlReaderWriter.getInputDocument();
-                     System.out.println(templateHtml.toString());
-                     HtmlModifier htmlPage = new HtmlModifier(PATH, templateHtml,termDetail,category);
-                     htmlReaderWriter.writeHtml(htmlPage.getGeneratedHtmlPage(), htmlPage.getHtmlFileName());
-                //System.out.println(htmlPage.toString());
-                break;
-                 }
-                
+                if (lang.contains(termDetail.getLangCode())) {
+                    String ontologyName = CATEGORY_ONTOLOGIES.get(category);
+                    System.out.println(ontologyName);
+                    File templateFile = getTemplateTermDetail(ontologyName, termDetail.getLangCode(), ".html");
+                    HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
+                    Document templateHtml = htmlReaderWriter.getInputDocument();
+                    System.out.println(templateHtml.toString());
+                    HtmlModifier htmlPage = new HtmlModifier(PATH, templateHtml, termDetail, category);
+                    htmlReaderWriter.writeHtml(htmlPage.getGeneratedHtmlPage(), htmlPage.getHtmlFileName());
+                    //System.out.println(htmlPage.toString());
+                    break;
+                }
+
             }
             break;
         }
@@ -125,6 +139,10 @@ public class HtmlCreator implements FileAndCategory {
 
     private File getTemplateTermDetail(String categoryName, String langCode, String extension) throws Exception {
         return new File(TEMPLATE_LOCATION + categoryName + "_" + langCode + "_" + "term" + extension);
+    }
+
+    private File getTemplateTermAddDecline(String categoryName, String langCode, String extension) throws Exception {
+        return new File(TEMPLATE_LOCATION + categoryName + "_" + langCode + "_" + "add" + extension);
     }
 
 }

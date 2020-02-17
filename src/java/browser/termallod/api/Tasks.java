@@ -6,6 +6,7 @@
 package browser.termallod.api;
 
 import browser.termallod.core.input.Browser;
+import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.matching.TermDetail;
 import java.io.IOException;
 import java.text.ParseException;
@@ -47,4 +48,6 @@ public interface Tasks {
     public void createTermDetailHtmlPage(String browser,Set<String>givenLangs) throws IOException, Exception;
     
     public Map<String, Browser> getBrowsersInfor();
+    
+    public void createAddDeclineHtmlPage(String category,String lang,TermDetail termdetail,Set<String>givenLangs);
 }

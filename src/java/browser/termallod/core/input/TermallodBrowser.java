@@ -36,6 +36,8 @@ import browser.termallod.utils.GeneralCompScriptGen;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -47,6 +49,7 @@ public class TermallodBrowser implements Tasks, FileAndCategory {
     private final LanguageManager languageManager;
     private LuceneIndexing luceneIndexing = null;
     private GeneralCompScriptGen javaScriptCode = null;
+    private MatchingTerminologies matchTerminologies=new MatchingTerminologies();
 
     public TermallodBrowser(File LANGUAGE_CONFIG_FILE) throws Exception {
         this.languageManager = new LanguageAlphabetPro(LANGUAGE_CONFIG_FILE);
@@ -205,6 +208,16 @@ public class TermallodBrowser implements Tasks, FileAndCategory {
     @Override
     public Map<String, Browser> getBrowsersInfor() {
         return browsersInfor;
+    }
+
+    @Override
+    public void createAddDeclineHtmlPage(String category,String lang,TermDetail termdetail,Set<String>givenLangs) {
+        try {
+            List<TermDetail> termDetails=matchTerminologies.getCategroyTerms(termdetail);
+            new HtmlCreator(BASE_PATH,givenLangs,category,lang,termDetails);
+        } catch (Exception ex) {
+            Logger.getLogger(TermallodBrowser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

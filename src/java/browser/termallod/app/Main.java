@@ -17,6 +17,7 @@ import browser.termallod.api.Tasks;
 import static browser.termallod.constants.FileAndCategory.BASE_PATH;
 import static browser.termallod.constants.FileAndCategory.CATEGORY_ONTOLOGIES;
 import static browser.termallod.constants.FileAndCategory.DATA_PATH;
+import browser.termallod.core.matching.TermDetail;
 import browser.termallod.utils.FileRelatedUtils;
 import java.io.IOException;
 
@@ -79,7 +80,11 @@ public class Main implements FileAndCategory {
         String querystr = "association";
         /*tasks.createIndexing(IATE);
         tasks.search(IATE, "en", querystr);*/
-        tasks.createTermDetailHtmlPage(GENTERM,lang);
+        //tasks.createTermDetailHtmlPage(GENTERM,lang);
+        
+       TermDetail termDetail=new TermDetail(ATC,"eng","test", "http");
+        
+        tasks.createAddDeclineHtmlPage(ATC,"en", termDetail, lang);
 
         //create java script files
         //tasks.prepareGroundForJs();

@@ -27,7 +27,7 @@ public class TermDetail {
         this.links.add(url);
     }
 
-    TermDetail(String category,String langCode, String term, String url) {
+    public TermDetail(String category,String langCode, String term, String url) {
         this.langCode = langCode;
         this.term = term.replace("_", " ");
         this.links.add(url);

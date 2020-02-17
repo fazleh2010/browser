@@ -92,12 +92,7 @@ public class HtmlModifier implements HtmlPage,Languages {
         String wordStr="<h2 class="+ "\"" +  "h"+ "\"" +">"+term+"</h2>";
         //<span class="z"> </span>
         String extraStr="<span class="+ "\"" +"z"+ "\"" +">"+"</span>";
-        
-        //String titleStr="<span class="+ "\"" +"collapse"+ "\"" +" title="+ "\"" +"English"+ "\"" +">"+"</span>";
-        //String langStr="<span class="+ "\"" +"heading"+ "\"" +">"+"English"+"</span> </span>";
-        // <span class="collapse" title="English"> <span class="heading">English</span> </span>  
-                                                           
-        
+         
         String str=classStr+spanStr+wordStr+extraStr+language;//+titleStr+langStr;
         divTerm.append(str);
         
@@ -105,6 +100,25 @@ public class HtmlModifier implements HtmlPage,Languages {
         String langDiv="<span class="+ "\"" +"collapse"+ "\"" +" title="+ "\"" +langDetail+ "\"" +">";
         langDiv+="<span class="+ "\"" +"heading"+ "\"" +">"+langDetail+"</span></span>";
         divLang.append(langDiv);
+        
+        
+        
+        
+        Element multiLingualDiv = body.getElementsByClass("entry").get(0);
+        //<li><a href="https://www.oxfordlearnersdictionaries.com/definition/english/abandon_1" title="abandon definition">abandon</a> </li>
+        String title = "title=" + '"' + "term" + " definition" + '"';
+        //real version
+        //String url = this.path+"/"+DEFINITION+"/" +language+"/" +alphebetPair +"/" +term + "_1";
+        String url = "http: term url";
+        //String url = LOCALHOST_URL + "termDefination.php";
+        //System.out.println(url);
+        String a = "<a href=" + url + " " + title + ">" + term + "</a>";
+        String li = "\n<li>" + a + "</li>\n";
+        multiLingualDiv.append(li);
+        
+         
+        
+        //System.out.println(multiLingualDiv.toString());
         
         return templateHtml;
     }

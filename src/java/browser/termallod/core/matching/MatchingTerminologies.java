@@ -5,6 +5,7 @@
  */
 package browser.termallod.core.matching;
 
+import static browser.termallod.constants.FileAndCategory.ATC;
 import static browser.termallod.constants.FileAndCategory.IATE;
 import browser.termallod.core.input.Browser;
 import browser.termallod.core.input.LangSpecificBrowser;
@@ -41,6 +42,13 @@ public class MatchingTerminologies {
         } else {
             throw new Exception("No browser data found for creating index!!");
         }
+    }
+
+    public MatchingTerminologies() {
+         TermDetail termDetail=new TermDetail(ATC,"eng","test", "http");
+         List<TermDetail> termDetails=new  ArrayList<TermDetail>();
+         termDetails.add(termDetail);
+         categroyTerms.put(termDetail.getLangCode(), termDetails);
     }
 
     private void getTerms(String givenCategory) throws Exception {
@@ -110,6 +118,11 @@ public class MatchingTerminologies {
 
     public Map<String, List<TermDetail>> getCategroyTerms() {
         return categroyTerms;
+    }
+    public  List<TermDetail> getCategroyTerms(TermDetail termdetail) throws Exception {
+        if(categroyTerms.isEmpty())
+            throw new Exception("List is emplty!!");
+        return categroyTerms.get(termdetail.getLangCode());
     }
 
 }
