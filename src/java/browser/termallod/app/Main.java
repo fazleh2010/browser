@@ -80,9 +80,9 @@ public class Main implements FileAndCategory {
         String querystr = "association";
         /*tasks.createIndexing(IATE);
         tasks.search(IATE, "en", querystr);*/
-        //tasks.createTermDetailHtmlPage(GENTERM,lang);
+        tasks.createTermDetailHtmlPage(GENTERM,lang);
         
-       TermDetail termDetail=new TermDetail(ATC,"eng","test", "http");
+        TermDetail termDetail=new TermDetail(ATC,"eng","test", "http");
         
         tasks.createAddDeclineHtmlPage(ATC,"en", termDetail, lang);
 
