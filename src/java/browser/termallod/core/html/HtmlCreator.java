@@ -144,6 +144,7 @@ public class HtmlCreator implements FileAndCategory {
                 Document generatedHtml = htmlPage.getTermLinkHtmlPages().get(termFile);
                 htmlReaderWriter.writeHtml(generatedHtml, termFile);
             }
+            break;
         }
 
     }

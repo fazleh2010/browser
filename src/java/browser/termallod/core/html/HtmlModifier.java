@@ -160,12 +160,12 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
                 termDetail.setAlternativeUrl(termFileName);
                 this.termHtmlPages.put(TermhtmlFileName, generatedHtmlPage);
 
-                /*String termLinkFileName = termFileName.replace(".html", "");
+                String termLinkFileName = termFileName.replace(".html", "");
                 termLinkFileName = termLinkFileName + "_" + "add" + ".html";
                 File TermLinkhtmlFileName = new File(PATH + this.ontologyFileName + "/" + termLinkFileName);
                 Document termLinkTemplate = this.getTermLinkPageTemplate(".html");
                 Document generatedLinkHtmlPage = createTermLink(termLinkTemplate, termDetail);
-                this.termLinkHtmlPages.put(TermLinkhtmlFileName, generatedLinkHtmlPage);*/
+                this.termLinkHtmlPages.put(TermLinkhtmlFileName, generatedLinkHtmlPage);
 
             }
         
@@ -195,14 +195,14 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         langDiv += "<span class=" + "\"" + "heading" + "\"" + ">" + langDetail + "</span></span>";
         divLang.append(langDiv);
 
-        /*
+      
         //temporary closed ..it will be added later..
         Element multiLingualDiv = body.getElementsByClass("entry").get(0);
         String title = "title=" + '"' + "term" + " definition" + '"';
         String url = "http: term url";
         String a = "<a href=" + url + " " + title + ">" + term + "</a>";
         String li = "\n<li>" + a + "</li>\n";
-        multiLingualDiv.append(li);*/
+        multiLingualDiv.append(li);
 
         //System.out.println(multiLingualDiv.toString());
         return templateHtml;

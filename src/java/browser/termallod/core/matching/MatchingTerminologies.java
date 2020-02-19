@@ -25,6 +25,7 @@ public class MatchingTerminologies {
 
     private Map<String, Browser> inputBrowsers = new HashMap<String, Browser>();
     private Map<String, List<TermDetail>> categroyTerms=new HashMap<String, List<TermDetail>>();
+    
 
     public MatchingTerminologies(Map<String, Browser> inputBrowsers) throws Exception {
         if (!inputBrowsers.isEmpty()) {
