@@ -64,12 +64,12 @@ public class Main implements FileAndCategory {
         cleanDirectory();
 
          Tasks tasks = new Taskimpl(LANGUAGE_CONFIG_FILE);
-         tasks.saveDataIntoFiles(browserSet);
-         tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,browserSet,lang);
+         //tasks.saveDataIntoFiles(browserSet);
+         //tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,browserSet,lang);
 
         //this is necessary for other applications!!
         //tasks.readDataFromSavedFiles();
-        tasks.readDataFromSavedFiles(GENTERM);
+       // tasks.readDataFromSavedFiles(GENTERM);
         //tasks.createTermDetailHtmlPage(ATC);
         
         //tasks.createTermDetailHtmlPage(terms);
@@ -82,9 +82,9 @@ public class Main implements FileAndCategory {
         tasks.search(IATE, "en", querystr);*/
         //tasks.createTermDetailHtmlPage(GENTERM,lang);
         
-        TermDetail termDetail=new TermDetail(ATC,"eng","test", "http");
+        //TermDetail termDetail=new TermDetail(ATC,"eng","test", "http");
         
-        tasks.createAddDeclineHtmlPage(ATC,"en", termDetail, lang);
+        //tasks.createAddDeclineHtmlPage(ATC,"en", termDetail, lang);
 
         //create java script files
         //tasks.prepareGroundForJs();

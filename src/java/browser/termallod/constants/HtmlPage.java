@@ -33,8 +33,8 @@ public interface HtmlPage {
 
     public void createLangSelectBox(Element body, PageContentGenerator pageContentGenerator) throws Exception;
 
-    public void createPageNumber(Element body, String elementName,String alphebetPair, Integer numberofPages);
+    public void createPageNumber(Element body, String elementName,String alphebetPair, Integer numberofPages)throws Exception;
 
-    public void createTerms(Element body, List<TermDetail> terms, String alphebetPair, Integer emptyTerm,AlphabetTermPage alphabetTermPage);
+    public void createTerms(Element body, List<TermDetail> terms, String alphebetPair, Integer emptyTerm,AlphabetTermPage alphabetTermPage)throws Exception;
 
 }
