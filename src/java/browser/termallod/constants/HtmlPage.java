@@ -7,12 +7,14 @@ package browser.termallod.constants;
 
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.PageContentGenerator;
+import browser.termallod.core.matching.TermDetail;
 import java.io.File;
 import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 /**
@@ -33,6 +35,6 @@ public interface HtmlPage {
 
     public void createPageNumber(Element body, String elementName,String alphebetPair, Integer numberofPages);
 
-    public void createTerms(Element body, List<String> terms, String alphebetPair, Integer emptyTerm,AlphabetTermPage alphabetTermPage);
+    public void createTerms(Element body, List<TermDetail> terms, String alphebetPair, Integer emptyTerm,AlphabetTermPage alphabetTermPage);
 
 }

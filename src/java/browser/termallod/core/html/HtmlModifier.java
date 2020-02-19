@@ -7,6 +7,7 @@ package browser.termallod.core.html;
 
 import browser.termallod.api.HtmlStringConts;
 import static browser.termallod.constants.FileAndCategory.CATEGORY_ONTOLOGIES;
+import static browser.termallod.constants.FileAndCategory.TEMPLATE_LOCATION;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,10 @@ import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.PageContentGenerator;
 import browser.termallod.core.matching.TermDetail;
 import browser.termallod.utils.StringMatcherUtil;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,6 +31,7 @@ import browser.termallod.utils.StringMatcherUtil;
 public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
 
     private Document generatedHtmlPage;
+    private Map<File, Document> generatedTermHtmlPages = new HashMap<File, Document>();
     private Integer currentPageNumber;
     private Integer maximumNumberOfPages = 4;
     private String language;
@@ -33,205 +39,36 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
     private String categoryType = "";
     private File htmlFileName = null;
     private AlphabetTermPage alphabetTermPage;
+    private boolean alternativeFlag = false;
+    private String PATH=null;
 
-    public HtmlModifier(String PATH, Document templateHtml, String language, AlphabetTermPage alphabetTermPage, List<String> terms, String categoryName, PageContentGenerator pageContentGenerator, Integer currentPageNumber) throws Exception {
+  
+    public HtmlModifier(String PATH, Document templateHtml, String language, AlphabetTermPage alphabetTermPage, List<TermDetail> terms, String categoryName, PageContentGenerator pageContentGenerator, Integer currentPageNumber, Boolean alternativeFlag) throws Exception {
+        this.PATH=PATH;
         this.currentPageNumber = currentPageNumber;
         this.language = language;
         this.ontologyFileName = categoryName;
         this.alphabetTermPage = alphabetTermPage;
+        this.alternativeFlag = alternativeFlag;
         String[] ontology = ontologyFileName.split("_");
         this.categoryType = ontology[1];
-        this.generatedHtmlPage = this.generateHtmlFromTemplate(templateHtml, terms, pageContentGenerator, alphabetTermPage);
         this.htmlFileName = new File(PATH + this.ontologyFileName + "/" + createFileNameUnicode(language, currentPageNumber));
+        this.generatedHtmlPage = this.generateHtmlFromTemplate(templateHtml, terms, pageContentGenerator, alphabetTermPage);
+
     }
 
-    public HtmlModifier(String PATH, Document templateHtml, TermDetail termDetail, String categoryName) throws Exception {
+    /*public HtmlModifier(String PATH, Document templateHtml, TermDetail termDetail, String categoryName) throws Exception {
         this.language = termDetail.getLangCode();
         this.ontologyFileName = CATEGORY_ONTOLOGIES.get(categoryName);
-        this.generatedHtmlPage = this.generateHtmlFromTemplate(templateHtml, termDetail.getTerm());
+        this.generatedHtmlPage = this.generateHtmlFromTemplate(templateHtml, termDetail);
         System.out.println(generatedHtmlPage.toString());
         this.htmlFileName = new File(PATH + this.ontologyFileName + "/" + termDetail.getTerm() + ".html");
-    }
-
+    }*/
     public HtmlModifier(String PATH, Document templateHtml, TermDetail givenTermDetail, List<TermDetail> termDetails, String category) throws Exception {
         this.language = givenTermDetail.getLangCode();
         this.ontologyFileName = CATEGORY_ONTOLOGIES.get(category);
         this.generatedHtmlPage = this.generateHtmlFromTemplate(templateHtml, termDetails);
         this.htmlFileName = new File(PATH + this.ontologyFileName + "/" + givenTermDetail.getTerm() + "_add" + ".html");
-    }
-
-    private Document generateHtmlFromTemplate(Document templateHtml, List<String> terms, PageContentGenerator pageContentGenerator, AlphabetTermPage alphabetTermPage) throws Exception {
-        Element body = templateHtml.body();
-        String alphebetPair = alphabetTermPage.getAlpahbetPair();
-        Integer numberofPages = alphabetTermPage.getNumberOfPages();
-        //currently not
-        Integer emptyTerm = alphabetTermPage.getEmptyTerm();
-        //this part of code is used to automatically generated language selection box
-        //currently it is hard coded in HTML template
-        /*if (!this.categoryType.contains(iate)) {
-            this.createLangSelectBox(body, pageContentGenerator);
-        }*/
-
-        createAlphabet(body, alphebetPair, pageContentGenerator);
-        createTerms(body, terms, alphebetPair, emptyTerm, alphabetTermPage);
-
-        /*Element divCurrentPageUpper = body.getElementsByClass("activepageUpper").get(0);
-        this.assignCurrentPageNumber(divCurrentPageUpper);
-         Element divCurrentPageLower = body.getElementsByClass("activepageLower");
-        this.assignCurrentPageNumber(divCurrentPageLower);*/
-        //createUperPageNumber(body, alphebetPair, numberofPages);
-        //upper page number
-        createPageNumber(body, "paging_links inner", alphebetPair, numberofPages);
-        //lower page number
-        createPageNumber(body, "paging_links inner_down", alphebetPair, numberofPages);
-        return templateHtml;
-    }
-
-    private Document generateHtmlFromTemplate(Document templateHtml, String term) throws Exception {
-
-        String langDetail = languageMapper.get(language);
-        Element body = templateHtml.body();
-        Element divTerm = body.getElementsByClass("webtop-g").get(0);
-        //<a class="academic" href="https://www.oxfordlearnersdictionaries.com/wordlist/english/academic/">
-        String classStr = "<a class=" + "\"" + "academic" + "\"" + " href=" + "\"" + "https://www.oxfordlearnersdictionaries.com/wordlist/english/academic/" + "\"" + ">";
-        //</a><span class="z"> </span>
-        String spanStr = "</a><span class=" + "\"" + "z" + "\"" + "> </span>";
-        //<h2 class="h">abandon</h2>
-        String wordStr = "<h2 class=" + "\"" + "h" + "\"" + ">" + term + "</h2>";
-        //<span class="z"> </span>
-        String extraStr = "<span class=" + "\"" + "z" + "\"" + ">" + "</span>";
-
-        String str = classStr + spanStr + wordStr + extraStr + language;//+titleStr+langStr;
-        divTerm.append(str);
-
-        Element divLang = body.getElementsByClass("top-g").get(0);
-        String langDiv = "<span class=" + "\"" + "collapse" + "\"" + " title=" + "\"" + langDetail + "\"" + ">";
-        langDiv += "<span class=" + "\"" + "heading" + "\"" + ">" + langDetail + "</span></span>";
-        divLang.append(langDiv);
-
-        Element multiLingualDiv = body.getElementsByClass("entry").get(0);
-        //<li><a href="https://www.oxfordlearnersdictionaries.com/definition/english/abandon_1" title="abandon definition">abandon</a> </li>
-        String title = "title=" + '"' + "term" + " definition" + '"';
-        //real version
-        //String url = this.path+"/"+DEFINITION+"/" +language+"/" +alphebetPair +"/" +term + "_1";
-        String url = "http: term url";
-        //String url = LOCALHOST_URL + "termDefination.php";
-        //System.out.println(url);
-        String a = "<a href=" + url + " " + title + ">" + term + "</a>";
-        String li = "\n<li>" + a + "</li>\n";
-        multiLingualDiv.append(li);
-
-        //System.out.println(multiLingualDiv.toString());
-        return templateHtml;
-    }
-
-    private Document generateHtmlFromTemplate(Document templateHtml, List<TermDetail> termDetail) throws Exception {
-
-        String langDetail = languageMapper.get(language);
-        String term = "term";
-        
-        
-        String panelHeadingStart = divClassStr + this.getWithinQuote("panel-heading") + ">" + "<a href=" + this.getWithinQuote("/data/iate/test+tubes-en") + " class=" + this.getWithinQuote("rdf_link") + ">" + term + "</a>" + divClassEnd;
-        String panelHeadingEnd="</div>";
-        String firstTr = getTr(getProperty(langPropUrl, langPropStr), getValue(langValueUrl1, langValueUrl2, langValueStr));
-        String termValue = this.getValue(this.getSpanProp(spanPropUrl1, spanPropUrl2, spanPropStr) + this.getSpanValue(spanValueUrl, spanValueStr));
-        String secondTr = getTr(getProperty(langTermUrl, langTermStr), termValue);
-        String thirdTr = getTr(getProperty(matchPropUrl, matchPropStr), getValue(matchValueUrl1, matchValueUrl2, matchValueStr));
-        String table = this.getTable(this.getTbody(firstTr + secondTr + thirdTr));
-        
-         String yesNoButtonDiv= getAcceptDenyButton();
-        
-        
-        String divStr=panelHeadingStart+table+ yesNoButtonDiv+panelHeadingEnd;
-        
-        Element body = templateHtml.body();
-        List<Element> divTerms = body.getElementsByClass("panel panel-default");
-        for(Element divTerm:divTerms){
-            divTerm.append(divStr);
-            System.out.println(divTerm);
-        }
-        /*Element divterm=divTerms.get(0);
-        divterm.append(div);
-        System.out.println(div);*/
-        
-       
-             
-        
-       /*<div class="panel panel-default">
-                
-                <div class="w3-container">
-                    <div class="w3-container w3-center">
-                        <div class="w3-section">
-                            <button class="w3-button w3-green">Accept</button>
-                            <button class="w3-button w3-red">Decline</button>
-                        </div>
-                    </div>
-                </div>                    
-            </div>*/
-        
-        /*for (Element divterm : divTerms) {
-             divterm.append(panelHeading);
-        }*/
-
-     
-        /*<div class="panel-heading"><a href="/data/iate/test+tubes-en" class="rdf_link">test+tubes-en</a></div>
-                <table class="panel-body rdf_embedded_table">
-                    <tbody>
-                        <tr>
-                            <td class="rdf_prop">
-                                <a href="http://www.w3.org/ns/lemon/ontolex#language" class="rdf_link">Language</a>
-                            </td>
-                            <td class="rdf_value rdf_first_value">
-                                <a href="http://www.lexvo.org/page/iso639-3/eng" property="http://www.w3.org/ns/lemon/ontolex#language" class="rdf_link rdf_prop">Eng</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="rdf_prop">
-                                <a href="http://tbx2rdf.lider-project.eu/tbx#reliabilityCode" class="rdf_link">Terminology</a>
-                            </td>
-                            <td class="rdf_value rdf_first_value">
-                                <span property="http://tbx2rdf.lider-project.eu/tbx#reliabilityCode" datatype="http://www.w3.org/2001/XMLSchema#integer">3</span>
-                                <span class="pull-right rdf_datatype"><a href="http://www.w3.org/2001/XMLSchema#integer" class="rdf_link">iate</a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="rdf_prop">
-                                <a href="http://www.lexinfo.net/ontology/2.0/lexinfo#termType" class="rdf_link">Match type</a>
-                            </td>
-                            <td class="rdf_value rdf_first_value">
-                                <a href="http://www.lexinfo.net/ontology/2.0/lexinfo#fullForm" property="http://www.lexinfo.net/ontology/2.0/lexinfo#termType" class="rdf_link rdf_prop">extact match</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table> */
-        return templateHtml;
-    }
-
-    private String getAcceptDenyButton() {
-        String yesNoButtonDiv=
-                "<div class="+this.getWithinQuote("w3-container")+">"
-                +"<div class="+this.getWithinQuote("w3-container w3-center")+">"
-                +"<div class="+this.getWithinQuote("w3-section")+">"
-                +"<button class="+this.getWithinQuote("w3-button w3-green")+">Accept</button>"
-                +"<button class="+this.getWithinQuote("w3-button w3-red")+">Decline</button>"
-                +"</div>"
-                +" </div>"
-                +" </div>";
-        return yesNoButtonDiv;
-    }
-
-    private String getValue(String url1, String url2, String str) {
-        String tdEnd = "</td>";
-        String tdRdfValueStart = "<td class=" + this.getWithinQuote("rdf_value rdf_first_value") + ">";
-        String langValue = tdRdfValueStart + "<a href=" + this.getWithinQuote(url1) + " property=" + this.getWithinQuote(url2) + " class=" + this.getWithinQuote("rdf_link rdf_prop") + ">" + str + "</a>" + tdEnd;
-        return langValue;
-    }
-
-    private String getProperty(String url, String str) {
-        String tdPropStart = "<td class=" + this.getWithinQuote("rdf_prop") + ">";
-        String tdEnd = "</td>";
-        String langProp = tdPropStart + " <a href=" + this.getWithinQuote(url) + " class=" + this.getWithinQuote("rdf_link") + ">" + str + "</a>" + tdEnd;
-        return langProp;
     }
 
     @Override
@@ -282,11 +119,15 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
     }
 
     @Override
-    public void createTerms(Element body, List<String> terms, String alphebetPair, Integer emptyTerm, AlphabetTermPage alphabetTermPage) {
+    public void createTerms(Element body, List<TermDetail> terms, String alphebetPair, Integer emptyTerm, AlphabetTermPage alphabetTermPage) {
         Element divTerm = body.getElementsByClass("result-list1 wordlist-oxford3000 list-plain").get(0);
-        for (String term : terms) {
-            String liString = getTermLi(alphebetPair, term, alphabetTermPage);
+        this.generatedTermHtmlPages = new HashMap<File, Document>();
+        Integer index = 0;
+        for (TermDetail termDetail : terms) {
+            TermDetail newTermDetail = this.createTerms(termDetail, index++);
+            String liString = getTermLi(alphebetPair, newTermDetail, alphabetTermPage);
             divTerm.append(liString);
+
             /*File termFile =new File(termFileLocation(term));
             HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(TERM_PAGE_TEMPLATE);
             Document templateHtml = htmlReaderWriter.getInputDocument();
@@ -299,12 +140,62 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         }*/
     }
 
-    private String getTermLi(String alphebetPair, String term, AlphabetTermPage alphabetTermPage) {
+    private TermDetail createTerms(TermDetail termDetail, Integer index) {
+        Document generatedHtmlPage = null;
+        try {
+            Document termTemplate = this.getTermPageTemplate(".html");
+            generatedHtmlPage = generateHtmlFromTemplate(termTemplate, termDetail);
+            if (this.alternativeFlag) {
+                String termFileName = this.htmlFileName.getName().replace(".html", "");
+                termFileName = termFileName + "_" + "term" + "_" + index + ".html";
+                File TermhtmlFileName = new File(PATH + this.ontologyFileName + "/" +termFileName);
+                //File htmlFileName = new File(PATH + this.ontologyFileName + "/" + alphabetTermPage.getAlpahbetPair()+ ".html");
+                termDetail.setAlternativeUrl(termFileName);
+                this.generatedTermHtmlPages.put(TermhtmlFileName, generatedHtmlPage);
+                
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(HtmlModifier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return termDetail;
+    }
+
+    private String createUrlLink(String languageCode, Integer pageNumber) {
+        return LOCALHOST_URL_LIST_OF_TERMS_PAGE + this.createFileNameUnicode(languageCode, pageNumber);
+    }
+
+    private String createUrlLink(String languageCode, Integer pageNumber, AlphabetTermPage alphabetTermPage) {
+        return LOCALHOST_URL_LIST_OF_TERMS_PAGE + this.createFileNameWithPairNumber(languageCode, pageNumber, alphabetTermPage);
+    }
+
+    /*private String createFileNameUnicode(String languageCode, Integer pageNumber) {
+        String pair=alphabetTermPage.getAlpahbetPair();
+        pair = UrlUtils.getEncodedUrl(pair);
+        return browser + UNDERSCORE + languageCode + UNDERSCORE + pair + UNDERSCORE + pageNumber + HTML_EXTENSION;
+    }*/
+    private String createFileNameUnicode(String languageCode, Integer pageNumber) {
+        String pair = getPairValue(alphabetTermPage);
+        return browser + UNDERSCORE + languageCode + UNDERSCORE + pair.toString() + UNDERSCORE + pageNumber + HTML_EXTENSION;
+    }
+
+    private String createFileNameWithPairNumber(String languageCode, Integer pageNumber, AlphabetTermPage alphabetTermPage) {
+        String pair = getPairValue(alphabetTermPage);
+        return browser + UNDERSCORE + languageCode + UNDERSCORE + pair.toString() + UNDERSCORE + pageNumber + HTML_EXTENSION;
+    }
+
+    private String getTermLi(String alphebetPair, TermDetail termDetail, AlphabetTermPage alphabetTermPage) {
+        String term = termDetail.getTerm();
         //<li><a href="https://www.oxfordlearnersdictionaries.com/definition/english/abandon_1" title="abandon definition">abandon</a> </li>
-        String title = "title=" + '"' + term + " definition" + '"';
+        String title = "title=" + '"' + termDetail.getTerm() + " definition" + '"';
         //real version
         //String url = this.path+"/"+DEFINITION+"/" +language+"/" +alphebetPair +"/" +term + "_1";
-        String url = generateTermUrl(term, alphabetTermPage);
+        String url = null;
+
+        if (!this.alternativeFlag) {
+            url = generateTermUrl(term, alphabetTermPage);
+        } else {
+            url = termDetail.getAlternativeUrl();
+        }
         term = StringMatcherUtil.decripted(term);
         System.out.println(term + "..." + url);
         //String url = LOCALHOST_URL + "termDefination.php";
@@ -385,29 +276,6 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         }
 
         return liS;
-    }
-
-    private String createUrlLink(String languageCode, Integer pageNumber) {
-        return LOCALHOST_URL_LIST_OF_TERMS_PAGE + this.createFileNameUnicode(languageCode, pageNumber);
-    }
-
-    private String createUrlLink(String languageCode, Integer pageNumber, AlphabetTermPage alphabetTermPage) {
-        return LOCALHOST_URL_LIST_OF_TERMS_PAGE + this.createFileNameWithPairNumber(languageCode, pageNumber, alphabetTermPage);
-    }
-
-    /*private String createFileNameUnicode(String languageCode, Integer pageNumber) {
-        String pair=alphabetTermPage.getAlpahbetPair();
-        pair = UrlUtils.getEncodedUrl(pair);
-        return browser + UNDERSCORE + languageCode + UNDERSCORE + pair + UNDERSCORE + pageNumber + HTML_EXTENSION;
-    }*/
-    private String createFileNameUnicode(String languageCode, Integer pageNumber) {
-        String pair = getPairValue(alphabetTermPage);
-        return browser + UNDERSCORE + languageCode + UNDERSCORE + pair.toString() + UNDERSCORE + pageNumber + HTML_EXTENSION;
-    }
-
-    private String createFileNameWithPairNumber(String languageCode, Integer pageNumber, AlphabetTermPage alphabetTermPage) {
-        String pair = getPairValue(alphabetTermPage);
-        return browser + UNDERSCORE + languageCode + UNDERSCORE + pair.toString() + UNDERSCORE + pageNumber + HTML_EXTENSION;
     }
 
     private String getPairValue(AlphabetTermPage alphabetTermPage) {
@@ -497,4 +365,184 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         return tableStart + tbody + tableEnd;
     }
 
+    private Document getTermPageTemplate(String extension) {
+        File templateFile = new File(TEMPLATE_LOCATION + this.ontologyFileName + "_" + language + "_" + "term" + extension);
+        HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
+        return htmlReaderWriter.getInputDocument();
+
+    }
+
+    private Document generateHtmlFromTemplate(Document templateHtml, List<TermDetail> terms, PageContentGenerator pageContentGenerator, AlphabetTermPage alphabetTermPage) throws Exception {
+        Element body = templateHtml.body();
+        String alphebetPair = alphabetTermPage.getAlpahbetPair();
+        Integer numberofPages = alphabetTermPage.getNumberOfPages();
+        //currently not
+        Integer emptyTerm = alphabetTermPage.getEmptyTerm();
+        //this part of code is used to automatically generated language selection box
+        //currently it is hard coded in HTML template
+        /*if (!this.categoryType.contains(iate)) {
+            this.createLangSelectBox(body, pageContentGenerator);
+        }*/
+
+        createAlphabet(body, alphebetPair, pageContentGenerator);
+        createTerms(body, terms, alphebetPair, emptyTerm, alphabetTermPage);
+
+        /*Element divCurrentPageUpper = body.getElementsByClass("activepageUpper").get(0);
+        this.assignCurrentPageNumber(divCurrentPageUpper);
+         Element divCurrentPageLower = body.getElementsByClass("activepageLower");
+        this.assignCurrentPageNumber(divCurrentPageLower);*/
+        //createUperPageNumber(body, alphebetPair, numberofPages);
+        //upper page number
+        createPageNumber(body, "paging_links inner", alphebetPair, numberofPages);
+        //lower page number
+        createPageNumber(body, "paging_links inner_down", alphebetPair, numberofPages);
+        return templateHtml;
+    }
+
+    private Document generateHtmlFromTemplate(Document templateHtml, TermDetail term) throws Exception {
+
+        String langDetail = languageMapper.get(language);
+        Element body = templateHtml.body();
+        Element divTerm = body.getElementsByClass("webtop-g").get(0);
+        //<a class="academic" href="https://www.oxfordlearnersdictionaries.com/wordlist/english/academic/">
+        String classStr = "<a class=" + "\"" + "academic" + "\"" + " href=" + "\"" + "https://www.oxfordlearnersdictionaries.com/wordlist/english/academic/" + "\"" + ">";
+        //</a><span class="z"> </span>
+        String spanStr = "</a><span class=" + "\"" + "z" + "\"" + "> </span>";
+        //<h2 class="h">abandon</h2>
+        String wordStr = "<h2 class=" + "\"" + "h" + "\"" + ">" + term + "</h2>";
+        //<span class="z"> </span>
+        String extraStr = "<span class=" + "\"" + "z" + "\"" + ">" + "</span>";
+
+        String str = classStr + spanStr + wordStr + extraStr + language;//+titleStr+langStr;
+        divTerm.append(str);
+
+        Element divLang = body.getElementsByClass("top-g").get(0);
+        String langDiv = "<span class=" + "\"" + "collapse" + "\"" + " title=" + "\"" + langDetail + "\"" + ">";
+        langDiv += "<span class=" + "\"" + "heading" + "\"" + ">" + langDetail + "</span></span>";
+        divLang.append(langDiv);
+
+        Element multiLingualDiv = body.getElementsByClass("entry").get(0);
+        //<li><a href="https://www.oxfordlearnersdictionaries.com/definition/english/abandon_1" title="abandon definition">abandon</a> </li>
+        String title = "title=" + '"' + "term" + " definition" + '"';
+        //real version
+        //String url = this.path+"/"+DEFINITION+"/" +language+"/" +alphebetPair +"/" +term + "_1";
+        String url = "http: term url";
+        //String url = LOCALHOST_URL + "termDefination.php";
+        //System.out.println(url);
+        String a = "<a href=" + url + " " + title + ">" + term + "</a>";
+        String li = "\n<li>" + a + "</li>\n";
+        multiLingualDiv.append(li);
+
+        //System.out.println(multiLingualDiv.toString());
+        return templateHtml;
+    }
+
+    private Document generateHtmlFromTemplate(Document templateHtml, List<TermDetail> termDetail) throws Exception {
+
+        String langDetail = languageMapper.get(language);
+        String term = "term";
+
+        String panelHeadingStart = divClassStr + this.getWithinQuote("panel-heading") + ">" + "<a href=" + this.getWithinQuote("/data/iate/test+tubes-en") + " class=" + this.getWithinQuote("rdf_link") + ">" + term + "</a>" + divClassEnd;
+        String panelHeadingEnd = "</div>";
+        String firstTr = getTr(getProperty(langPropUrl, langPropStr), getValue(langValueUrl1, langValueUrl2, langValueStr));
+        String termValue = this.getValue(this.getSpanProp(spanPropUrl1, spanPropUrl2, spanPropStr) + this.getSpanValue(spanValueUrl, spanValueStr));
+        String secondTr = getTr(getProperty(langTermUrl, langTermStr), termValue);
+        String thirdTr = getTr(getProperty(matchPropUrl, matchPropStr), getValue(matchValueUrl1, matchValueUrl2, matchValueStr));
+        String table = this.getTable(this.getTbody(firstTr + secondTr + thirdTr));
+
+        String yesNoButtonDiv = getAcceptDenyButton();
+
+        String divStr = panelHeadingStart + table + yesNoButtonDiv + panelHeadingEnd;
+
+        Element body = templateHtml.body();
+        List<Element> divTerms = body.getElementsByClass("panel panel-default");
+        for (Element divTerm : divTerms) {
+            divTerm.append(divStr);
+
+        }
+
+        return templateHtml;
+    }
+
+    private String getAcceptDenyButton() {
+        String yesNoButtonDiv
+                = "<div class=" + this.getWithinQuote("w3-container") + ">"
+                + "<div class=" + this.getWithinQuote("w3-container w3-center") + ">"
+                + "<div class=" + this.getWithinQuote("w3-section") + ">"
+                + "<button class=" + this.getWithinQuote("w3-button w3-green") + ">Accept</button>"
+                + "<button class=" + this.getWithinQuote("w3-button w3-red") + ">Decline</button>"
+                + "</div>"
+                + " </div>"
+                + " </div>";
+        return yesNoButtonDiv;
+    }
+
+    private String getValue(String url1, String url2, String str) {
+        String tdEnd = "</td>";
+        String tdRdfValueStart = "<td class=" + this.getWithinQuote("rdf_value rdf_first_value") + ">";
+        String langValue = tdRdfValueStart + "<a href=" + this.getWithinQuote(url1) + " property=" + this.getWithinQuote(url2) + " class=" + this.getWithinQuote("rdf_link rdf_prop") + ">" + str + "</a>" + tdEnd;
+        return langValue;
+    }
+
+    private String getProperty(String url, String str) {
+        String tdPropStart = "<td class=" + this.getWithinQuote("rdf_prop") + ">";
+        String tdEnd = "</td>";
+        String langProp = tdPropStart + " <a href=" + this.getWithinQuote(url) + " class=" + this.getWithinQuote("rdf_link") + ">" + str + "</a>" + tdEnd;
+        return langProp;
+    }
+    
+      public Map<File, Document> getGeneratedTermHtmlPages() {
+        return generatedTermHtmlPages;
+    }
+
+
 }
+
+/*Element divterm=divTerms.get(0);
+        divterm.append(div);
+        System.out.println(div);*/
+
+ /*<div class="panel panel-default">
+                
+                <div class="w3-container">
+                    <div class="w3-container w3-center">
+                        <div class="w3-section">
+                            <button class="w3-button w3-green">Accept</button>
+                            <button class="w3-button w3-red">Decline</button>
+                        </div>
+                    </div>
+                </div>                    
+            </div>*/
+ /*for (Element divterm : divTerms) {
+             divterm.append(panelHeading);
+        }*/
+ /*<div class="panel-heading"><a href="/data/iate/test+tubes-en" class="rdf_link">test+tubes-en</a></div>
+                <table class="panel-body rdf_embedded_table">
+                    <tbody>
+                        <tr>
+                            <td class="rdf_prop">
+                                <a href="http://www.w3.org/ns/lemon/ontolex#language" class="rdf_link">Language</a>
+                            </td>
+                            <td class="rdf_value rdf_first_value">
+                                <a href="http://www.lexvo.org/page/iso639-3/eng" property="http://www.w3.org/ns/lemon/ontolex#language" class="rdf_link rdf_prop">Eng</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="rdf_prop">
+                                <a href="http://tbx2rdf.lider-project.eu/tbx#reliabilityCode" class="rdf_link">Terminology</a>
+                            </td>
+                            <td class="rdf_value rdf_first_value">
+                                <span property="http://tbx2rdf.lider-project.eu/tbx#reliabilityCode" datatype="http://www.w3.org/2001/XMLSchema#integer">3</span>
+                                <span class="pull-right rdf_datatype"><a href="http://www.w3.org/2001/XMLSchema#integer" class="rdf_link">iate</a></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="rdf_prop">
+                                <a href="http://www.lexinfo.net/ontology/2.0/lexinfo#termType" class="rdf_link">Match type</a>
+                            </td>
+                            <td class="rdf_value rdf_first_value">
+                                <a href="http://www.lexinfo.net/ontology/2.0/lexinfo#fullForm" property="http://www.lexinfo.net/ontology/2.0/lexinfo#termType" class="rdf_link rdf_prop">extact match</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> */

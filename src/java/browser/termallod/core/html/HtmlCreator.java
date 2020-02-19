@@ -39,30 +39,31 @@ public class HtmlCreator implements FileAndCategory {
 
     }
 
+    /*term page creation code..currently it is running for 'list of term page'
     public HtmlCreator(String PATH, Set<String> lang, Map<String, List<TermDetail>> langTerms, String categoryName) throws Exception {
         this(PATH, lang);
         this.createHtmlForTermDetailEachCategory(langTerms, categoryName);
 
-    }
-
-    public HtmlCreator(String PATH, Set<String> givenlang,  String category,String lang,TermDetail givenTermDetail, List<TermDetail> termDetails) throws Exception {
+    }*/
+    public HtmlCreator(String PATH, Set<String> givenlang, String category, String lang, TermDetail givenTermDetail, List<TermDetail> termDetails) throws Exception {
         this(PATH, givenlang);
-        createHtmlForAddDecPageForEachTerm(category, lang,givenTermDetail,termDetails);
+        createHtmlForAddDecPageForEachTerm(category, lang, givenTermDetail, termDetails);
     }
 
-    private void createHtmlForAddDecPageForEachTerm(String category, String lang,TermDetail givenTermDetail,List<TermDetail> termDetails) throws Exception {
+    private void createHtmlForAddDecPageForEachTerm(String category, String lang, TermDetail givenTermDetail, List<TermDetail> termDetails) throws Exception {
         String ontologyName = CATEGORY_ONTOLOGIES.get(category);
         File templateFile = getTemplateTermAddDecline(ontologyName, lang, ".html");
         HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
         Document templateHtml = htmlReaderWriter.getInputDocument();
-        
-        HtmlModifier htmlPage = new HtmlModifier(PATH, templateHtml, givenTermDetail,termDetails, category);
+
+        HtmlModifier htmlPage = new HtmlModifier(PATH, templateHtml, givenTermDetail, termDetails, category);
         htmlReaderWriter.writeHtml(htmlPage.getGeneratedHtmlPage(), htmlPage.getHtmlFileName());
-        
+
         System.out.println(htmlPage.toString());
     }
 
-    public void createHtmlForTermDetailEachCategory(Map<String, List<TermDetail>> langTerms, String category) throws Exception {
+    //Term page creation code. Currently it is created from 'List of Term' page
+    /*public void createHtmlForTermDetailEachCategory(Map<String, List<TermDetail>> langTerms, String category) throws Exception {
         for (String lang : langTerms.keySet()) {
             List<TermDetail> termDetails = langTerms.get(lang);
             for (TermDetail termDetail : termDetails) {
@@ -83,8 +84,7 @@ public class HtmlCreator implements FileAndCategory {
             break;
         }
 
-    }
-
+    }*/
     public void createHtmlForEachCategory(List<String> browsers, String source, String MODEL_EXTENSION, String browser) throws Exception {
         for (String categoryBrowser : browsers) {
             String ontologyName = CATEGORY_ONTOLOGIES.get(categoryBrowser);
@@ -128,10 +128,15 @@ public class HtmlCreator implements FileAndCategory {
         for (Integer page = 0; page < partition.size(); page++) {
             Integer currentPageNumber = page + 1;
             List<String> terms = partition.get(page);
+            List<TermDetail> termDetails = this.getTermDetails(language, terms);
             HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
             Document templateHtml = htmlReaderWriter.getInputDocument();
-            HtmlModifier htmlPage = new HtmlModifier(PATH, templateHtml, language, alphabetTermPage, terms, categoryName, pageContentGenerator, currentPageNumber);
+            HtmlModifier htmlPage = new HtmlModifier(PATH, templateHtml, language, alphabetTermPage, termDetails, categoryName, pageContentGenerator, currentPageNumber,true);
             htmlReaderWriter.writeHtml(htmlPage.getGeneratedHtmlPage(), htmlPage.getHtmlFileName());
+            for (File termFile : htmlPage.getGeneratedTermHtmlPages().keySet()) {
+                Document generatedHtml = htmlPage.getGeneratedTermHtmlPages().get(termFile);
+                htmlReaderWriter.writeHtml(generatedHtml, termFile);
+            }
         }
 
     }
@@ -146,6 +151,15 @@ public class HtmlCreator implements FileAndCategory {
 
     private File getTemplateTermAddDecline(String categoryName, String langCode, String extension) throws Exception {
         return new File(TEMPLATE_LOCATION + categoryName + "_" + langCode + "_" + "add" + extension);
+    }
+
+    private List<TermDetail> getTermDetails(String language, List<String> terms) {
+        List<TermDetail> termDetails = new ArrayList<TermDetail>();
+        for (String term : terms) {
+            TermDetail termDetail = new TermDetail(language, term);
+            termDetails.add(termDetail);
+        }
+        return termDetails;
     }
 
 }

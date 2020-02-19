@@ -7,8 +7,6 @@ package browser.termallod.core;
 
 import browser.termallod.api.LanguageManager;
 import browser.termallod.constants.FileAndCategory;
-import browser.termallod.core.LanguageAlphabetPro;
-import browser.termallod.core.RdfReader;
 import browser.termallod.utils.FileRelatedUtils;
 import java.io.File;
 import java.io.IOException;
@@ -34,7 +32,6 @@ import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.matching.TermDetail;
 import browser.termallod.utils.GeneralCompScriptGen;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,40 +46,51 @@ public class Taskimpl implements Tasks, FileAndCategory {
     private final LanguageManager languageManager;
     private LuceneIndexing luceneIndexing = null;
     private GeneralCompScriptGen javaScriptCode = null;
-    private MatchingTerminologies matchTerminologies=new MatchingTerminologies();
+    private MatchingTerminologies matchTerminologies = new MatchingTerminologies();
 
     public Taskimpl(File LANGUAGE_CONFIG_FILE) throws Exception {
         this.languageManager = new LanguageAlphabetPro(LANGUAGE_CONFIG_FILE);
     }
 
     @Override
-    public void saveDataIntoFiles(Set<String> browserSet) throws Exception, IOException {
-        FileRelatedUtils.cleanDirectory(BROWSER_GROUPS, BASE_PATH, TEXT_PATH);
+    public void createAddDeclineHtmlPage(String category, String lang, TermDetail givenTermDetail, Set<String> givenLangs) {
+        try {
+            List<TermDetail> termDetails = matchTerminologies.getCategroyTerms(givenTermDetail);
+            new HtmlCreator(BASE_PATH, givenLangs, category, lang, givenTermDetail, termDetails);
+        } catch (Exception ex) {
+            Logger.getLogger(Taskimpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void createHtmlFromSavedFiles(List<String> categorySet, String MODEL_EXTENSION, Set<String> browserSet, Set<String> lang) throws Exception, IOException {
         FileRelatedUtils.cleanDirectory(CATEGORY_ONTOLOGIES, BASE_PATH, DATA_PATH);
-        for (String browser : BROWSER_GROUPS) {
+        for (String browser : categorySet) {
             if (browserSet.contains(browser)) {
-                saveDataIntoFiles(browser);
+                String source = FileRelatedUtils.getSourcePath(BASE_PATH, browser);
+                List<String> categoties = BROWSER_CATEGORIES.get(browser);
+                HtmlCreator htmlCreator = new HtmlCreator(BASE_PATH, lang);
+                htmlCreator.createHtmlForEachCategory(categoties, source, MODEL_EXTENSION, browser);
             }
         }
+    }
+
+    @Override
+    public void createIndexing() throws IOException, ParseException, Exception {
+        this.luceneIndexing = new LuceneIndexing(this.browsersInfor);
 
     }
 
     @Override
-    public void saveDataIntoFiles(Set<String> browserSet, String browser) throws Exception, IOException {
-        FileRelatedUtils.cleanDirectory(BROWSER_GROUPS, BASE_PATH, TEXT_PATH);
-        FileRelatedUtils.cleanDirectory(CATEGORY_ONTOLOGIES, BASE_PATH, DATA_PATH);
-        if (browserSet.contains(browser)) {
-            saveDataIntoFiles(browser);
-        }
+    public void createIndexing(String browser) throws IOException, ParseException, Exception {
+        this.luceneIndexing = new LuceneIndexing(this.browsersInfor, browser);
 
     }
 
-    private void saveDataIntoFiles(String browser) throws Exception {
-        String source = FileRelatedUtils.getSourcePath(BASE_PATH, browser);
-        File[] files = FileRelatedUtils.getFiles(source, TURTLE_EXTENSION);
-        String inputDir = source + RDF_PATH;
-        String outputDir = source + TEXT_PATH;
-        new RdfReader(inputDir, languageManager, TURTLE, TURTLE_EXTENSION, outputDir);
+    @Override
+    public void prepareGroundForJs() throws IOException, Exception {
+        File templateFile = new File(AUTO_COMPLETION_TEMPLATE_LOCATION + "autoComp" + ".js");
+        this.javaScriptCode = new GeneralCompScriptGen(this.browsersInfor, templateFile);
     }
 
     @Override
@@ -135,28 +143,33 @@ public class Taskimpl implements Tasks, FileAndCategory {
     }
 
     @Override
-    public void createHtmlFromSavedFiles(List<String> categorySet, String MODEL_EXTENSION, Set<String> browserSet, Set<String> lang) throws Exception, IOException {
+    public void saveDataIntoFiles(Set<String> browserSet) throws Exception, IOException {
+        FileRelatedUtils.cleanDirectory(BROWSER_GROUPS, BASE_PATH, TEXT_PATH);
         FileRelatedUtils.cleanDirectory(CATEGORY_ONTOLOGIES, BASE_PATH, DATA_PATH);
-        for (String browser : categorySet) {
+        for (String browser : BROWSER_GROUPS) {
             if (browserSet.contains(browser)) {
-                String source = FileRelatedUtils.getSourcePath(BASE_PATH, browser);
-                List<String> categoties = BROWSER_CATEGORIES.get(browser);
-                HtmlCreator htmlCreator = new HtmlCreator(BASE_PATH, lang);
-                htmlCreator.createHtmlForEachCategory(categoties, source, MODEL_EXTENSION, browser);
+                saveDataIntoFiles(browser);
             }
         }
-    }
-
-    @Override
-    public void createIndexing() throws IOException, ParseException, Exception {
-        this.luceneIndexing = new LuceneIndexing(this.browsersInfor);
 
     }
 
     @Override
-    public void createIndexing(String browser) throws IOException, ParseException, Exception {
-        this.luceneIndexing = new LuceneIndexing(this.browsersInfor, browser);
+    public void saveDataIntoFiles(Set<String> browserSet, String browser) throws Exception, IOException {
+        FileRelatedUtils.cleanDirectory(BROWSER_GROUPS, BASE_PATH, TEXT_PATH);
+        FileRelatedUtils.cleanDirectory(CATEGORY_ONTOLOGIES, BASE_PATH, DATA_PATH);
+        if (browserSet.contains(browser)) {
+            saveDataIntoFiles(browser);
+        }
 
+    }
+
+    private void saveDataIntoFiles(String browser) throws Exception {
+        String source = FileRelatedUtils.getSourcePath(BASE_PATH, browser);
+        File[] files = FileRelatedUtils.getFiles(source, TURTLE_EXTENSION);
+        String inputDir = source + RDF_PATH;
+        String outputDir = source + TEXT_PATH;
+        new RdfReader(inputDir, languageManager, TURTLE, TURTLE_EXTENSION, outputDir);
     }
 
     @Override
@@ -164,14 +177,29 @@ public class Taskimpl implements Tasks, FileAndCategory {
         return luceneIndexing.search(category, langCode, searchQuery);
     }
 
-    public static String getOntologyName(String category) {
-        return CATEGORY_ONTOLOGIES.get(category);
+    @Override
+    public Set<TermDetail> matchBrowsers() throws IOException, Exception {
+        //currently does not work properly..
+        MatchingTerminologies matchTerminologies = new MatchingTerminologies(this.browsersInfor);
+        return new HashSet<TermDetail>();
     }
 
+    //temporarily cloded
+    /*
     @Override
-    public void prepareGroundForJs() throws IOException, Exception {
-        File templateFile = new File(AUTO_COMPLETION_TEMPLATE_LOCATION + "autoComp" + ".js");
-        this.javaScriptCode = new GeneralCompScriptGen(this.browsersInfor, templateFile);
+    public void createTermDetailHtmlPage(String browser, Set<String> givenLangs) throws IOException, Exception {
+
+        List<String> categories = BROWSER_CATEGORIES.get(browser);
+        for (String category : categories) {
+            MatchingTerminologies matchTerminologies = new MatchingTerminologies(this.browsersInfor, category);
+            new HtmlCreator(BASE_PATH, givenLangs, matchTerminologies.getCategroyTerms(), category);
+            break;
+        }
+
+    }*/
+
+    public static String getOntologyName(String category) {
+        return CATEGORY_ONTOLOGIES.get(category);
     }
 
     @Override
@@ -185,39 +213,8 @@ public class Taskimpl implements Tasks, FileAndCategory {
     }
 
     @Override
-    public Set<TermDetail> matchBrowsers() throws IOException, Exception {
-        //currently does not work properly..
-        MatchingTerminologies matchTerminologies = new MatchingTerminologies(this.browsersInfor);
-        return new HashSet<TermDetail>();
-    }
-
-    @Override
-    public void createTermDetailHtmlPage(String browser,Set<String>givenLangs) throws IOException, Exception {
-       
-       
-             List<String> categories=BROWSER_CATEGORIES.get(browser);
-             for(String category:categories) {
-                 MatchingTerminologies matchTerminologies = new MatchingTerminologies(this.browsersInfor,category);
-                 new HtmlCreator(BASE_PATH,givenLangs,matchTerminologies.getCategroyTerms(),category);
-             break; 
-             }
-            
-       
-    
-    }
-    @Override
     public Map<String, Browser> getBrowsersInfor() {
         return browsersInfor;
-    }
-
-    @Override
-    public void createAddDeclineHtmlPage(String category,String lang,TermDetail givenTermDetail,Set<String>givenLangs) {
-        try {
-            List<TermDetail> termDetails=matchTerminologies.getCategroyTerms(givenTermDetail);
-            new HtmlCreator(BASE_PATH,givenLangs,category,lang,givenTermDetail,termDetails);
-        } catch (Exception ex) {
-            Logger.getLogger(Taskimpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
 }

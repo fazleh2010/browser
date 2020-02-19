@@ -45,7 +45,7 @@ public interface Tasks {
 
     public Set<TermDetail> matchBrowsers() throws IOException, Exception;
 
-    public void createTermDetailHtmlPage(String browser,Set<String>givenLangs) throws IOException, Exception;
+    //public void createTermDetailHtmlPage(String browser,Set<String>givenLangs) throws IOException, Exception;
     
     public Map<String, Browser> getBrowsersInfor();
     

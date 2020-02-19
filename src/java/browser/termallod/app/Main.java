@@ -61,11 +61,11 @@ public class Main implements FileAndCategory {
     public static void main(String[] args) throws Exception {
         lang = new TreeSet<String>(languageMapper.keySet());
         // run before comit..................
-        //cleanDirectory();
+        cleanDirectory();
 
-        Tasks tasks = new Taskimpl(LANGUAGE_CONFIG_FILE);
+         Tasks tasks = new Taskimpl(LANGUAGE_CONFIG_FILE);
          tasks.saveDataIntoFiles(browserSet);
-         //tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,browserSet,lang);
+         tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,browserSet,lang);
 
         //this is necessary for other applications!!
         //tasks.readDataFromSavedFiles();
@@ -80,7 +80,7 @@ public class Main implements FileAndCategory {
         String querystr = "association";
         /*tasks.createIndexing(IATE);
         tasks.search(IATE, "en", querystr);*/
-        tasks.createTermDetailHtmlPage(GENTERM,lang);
+        //tasks.createTermDetailHtmlPage(GENTERM,lang);
         
         TermDetail termDetail=new TermDetail(ATC,"eng","test", "http");
         

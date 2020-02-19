@@ -15,6 +15,8 @@ import java.util.Set;
 public class TermDetail {
 
     private String term = null;
+    private String url = null;
+    private String alternativeUrl = null;
     private String category = null;
     private String langCode = null;
     private Set<String> links = new HashSet<String>();
@@ -27,10 +29,19 @@ public class TermDetail {
         this.links.add(url);
     }
 
+    public void setAlternativeUrl(String alternativeUrl) {
+        this.alternativeUrl = alternativeUrl;
+    }
+
     public TermDetail(String category,String langCode, String term, String url) {
         this.langCode = langCode;
         this.term = term.replace("_", " ");
         this.links.add(url);
+    }
+
+    public TermDetail(String language, String term) {
+        this.langCode = langCode;
+        this.term = term.replace("_", " ");
     }
 
     public String getTerm() {
@@ -47,6 +58,14 @@ public class TermDetail {
 
     public String getCategory() {
         return category;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getAlternativeUrl() {
+        return alternativeUrl;
     }
 
     @Override
