@@ -36,7 +36,8 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
  */
 public class FileRelatedUtils {
 
-    public static File[] getFiles(String fileDir, String ntriple) {
+    public static File[] getFiles(String fileDir, String ntriple) throws Exception{
+        
         File dir = new File(fileDir);
         FileFilter fileFilter = new WildcardFileFilter("*" + ntriple);
         File[] files = dir.listFiles(fileFilter);

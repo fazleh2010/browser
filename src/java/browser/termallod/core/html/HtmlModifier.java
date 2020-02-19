@@ -162,12 +162,13 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
                 termDetail.setAlternativeUrl(termFileName);
                 this.termHtmlPages.put(TermhtmlFileName, generatedHtmlPage);
 
-                String termLinkFileName = termFileName.replace(".html", "");
+                //code for creating term link
+                /*String termLinkFileName = termFileName.replace(".html", "");
                 termLinkFileName = termLinkFileName + "_" + "add" + ".html";
                 File TermLinkhtmlFileName = new File(PATH + this.ontologyFileName + "/" + termLinkFileName);
                 Document termLinkTemplate = this.getTermLinkPageTemplate(".html");
                 Document generatedLinkHtmlPage = createTermLink(termLinkTemplate, termDetail);
-                this.termLinkHtmlPages.put(TermLinkhtmlFileName, generatedLinkHtmlPage);
+                this.termLinkHtmlPages.put(TermLinkhtmlFileName, generatedLinkHtmlPage);*/
 
             }
         

@@ -27,12 +27,12 @@ import java.io.IOException;
  */
 public class Main implements FileAndCategory {
 
-    public static Set<String> browserSet = new HashSet<String>(Arrays.asList(GENTERM));
+    public static Set<String> browserSet = new HashSet<String>(Arrays.asList(IATE));
     private static Set<String> lang = new TreeSet<String>();
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
             put("en", "English");
-            //put("nl", "Dutch");
+            put("nl", "Dutch");
             /*put("bg", "Bulgarian");
             put("cs", "Czech");
             put("da", "Danish");
