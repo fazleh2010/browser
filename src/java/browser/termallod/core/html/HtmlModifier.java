@@ -44,9 +44,13 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
     private AlphabetTermPage alphabetTermPage;
     private boolean alternativeFlag = false;
     private String PATH = null;
+    private Boolean termPageFlag;
+    private Boolean termLinkPageFlag;
 
-    public HtmlModifier(String PATH, Document templateHtml, String language, AlphabetTermPage alphabetTermPage, List<TermDetail> terms, String categoryName, PageContentGenerator pageContentGenerator, Integer currentPageNumber, Boolean alternativeFlag) throws Exception {
+    public HtmlModifier(String PATH, Document templateHtml, String language, AlphabetTermPage alphabetTermPage, List<TermDetail> terms, String categoryName, PageContentGenerator pageContentGenerator, Integer currentPageNumber, Boolean alternativeFlag,Boolean termPageFlag,Boolean termLinkPageFlag) throws Exception {
         this.PATH = PATH;
+        this.termPageFlag= termPageFlag;
+        this.termLinkPageFlag= termLinkPageFlag;
         this.currentPageNumber = currentPageNumber;
         this.language = language;
         this.ontologyFileName = categoryName;
@@ -143,11 +147,11 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         }*/
     }
 
-    private TermDetail createTerms(TermDetail termDetail, Integer index) {
+    private TermDetail createTerms(TermDetail termDetail, Integer index) throws Exception {
         Document generatedHtmlPage = null;
-        try {
+       
             Document termTemplate = this.getTermPageTemplate(".html");
-            generatedHtmlPage = generateHtmlFromTemplate(termTemplate, termDetail);
+            generatedHtmlPage = createTermPage(termTemplate, termDetail);
             if (this.alternativeFlag) {
                 String termFileName = this.htmlFileName.getName().replace(".html", "");
                 termFileName = termFileName + "_" + "term" + "_" + index + ".html";
@@ -156,19 +160,54 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
                 termDetail.setAlternativeUrl(termFileName);
                 this.termHtmlPages.put(TermhtmlFileName, generatedHtmlPage);
 
-                String termLinkFileName = termFileName.replace(".html", "");
+                /*String termLinkFileName = termFileName.replace(".html", "");
                 termLinkFileName = termLinkFileName + "_" + "add" + ".html";
                 File TermLinkhtmlFileName = new File(PATH + this.ontologyFileName + "/" + termLinkFileName);
                 Document termLinkTemplate = this.getTermLinkPageTemplate(".html");
                 Document generatedLinkHtmlPage = createTermLink(termLinkTemplate, termDetail);
-                this.termLinkHtmlPages.put(TermLinkhtmlFileName, generatedLinkHtmlPage);
+                this.termLinkHtmlPages.put(TermLinkhtmlFileName, generatedLinkHtmlPage);*/
 
             }
-        } catch (Exception ex) {
-            Logger.getLogger(HtmlModifier.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         return termDetail;
     }
+    
+     private Document createTermPage(Document templateHtml, TermDetail termDetail) throws Exception {
+
+        String langDetail = languageMapper.get(language);
+        Element body = templateHtml.body();
+        Element divTerm = body.getElementsByClass("webtop-g").get(0);
+        String term=termDetail.getTerm();
+        //<a class="academic" href="https://www.oxfordlearnersdictionaries.com/wordlist/english/academic/">
+        String classStr = "<a class=" + "\"" + "academic" + "\"" + " href=" + "\"" + "https://www.oxfordlearnersdictionaries.com/wordlist/english/academic/" + "\"" + ">";
+        //</a><span class="z"> </span>
+        String spanStr = "</a><span class=" + "\"" + "z" + "\"" + "> </span>";
+        //<h2 class="h">abandon</h2>
+        String wordStr = "<h2 class=" + "\"" + "h" + "\"" + ">" + term + "</h2>";
+        //<span class="z"> </span>
+        String extraStr = "<span class=" + "\"" + "z" + "\"" + ">" + "</span>";
+
+        String str = classStr + spanStr + wordStr + extraStr ; //language;//+titleStr+langStr;
+        divTerm.append(str);
+
+        Element divLang = body.getElementsByClass("top-g").get(0);
+        String langDiv = "<span class=" + "\"" + "collapse" + "\"" + " title=" + "\"" + langDetail + "\"" + ">";
+        langDiv += "<span class=" + "\"" + "heading" + "\"" + ">" + langDetail + "</span></span>";
+        divLang.append(langDiv);
+
+        /*
+        //temporary closed ..it will be added later..
+        Element multiLingualDiv = body.getElementsByClass("entry").get(0);
+        String title = "title=" + '"' + "term" + " definition" + '"';
+        String url = "http: term url";
+        String a = "<a href=" + url + " " + title + ">" + term + "</a>";
+        String li = "\n<li>" + a + "</li>\n";
+        multiLingualDiv.append(li);*/
+
+        //System.out.println(multiLingualDiv.toString());
+        return templateHtml;
+    }
+
 
     private Document createTermLink(Document templateHtml, TermDetail givenTermDetail) throws Exception {
 
@@ -452,44 +491,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         return templateHtml;
     }
 
-    private Document generateHtmlFromTemplate(Document templateHtml, TermDetail term) throws Exception {
-
-        String langDetail = languageMapper.get(language);
-        Element body = templateHtml.body();
-        Element divTerm = body.getElementsByClass("webtop-g").get(0);
-        //<a class="academic" href="https://www.oxfordlearnersdictionaries.com/wordlist/english/academic/">
-        String classStr = "<a class=" + "\"" + "academic" + "\"" + " href=" + "\"" + "https://www.oxfordlearnersdictionaries.com/wordlist/english/academic/" + "\"" + ">";
-        //</a><span class="z"> </span>
-        String spanStr = "</a><span class=" + "\"" + "z" + "\"" + "> </span>";
-        //<h2 class="h">abandon</h2>
-        String wordStr = "<h2 class=" + "\"" + "h" + "\"" + ">" + term + "</h2>";
-        //<span class="z"> </span>
-        String extraStr = "<span class=" + "\"" + "z" + "\"" + ">" + "</span>";
-
-        String str = classStr + spanStr + wordStr + extraStr + language;//+titleStr+langStr;
-        divTerm.append(str);
-
-        Element divLang = body.getElementsByClass("top-g").get(0);
-        String langDiv = "<span class=" + "\"" + "collapse" + "\"" + " title=" + "\"" + langDetail + "\"" + ">";
-        langDiv += "<span class=" + "\"" + "heading" + "\"" + ">" + langDetail + "</span></span>";
-        divLang.append(langDiv);
-
-        Element multiLingualDiv = body.getElementsByClass("entry").get(0);
-        //<li><a href="https://www.oxfordlearnersdictionaries.com/definition/english/abandon_1" title="abandon definition">abandon</a> </li>
-        String title = "title=" + '"' + "term" + " definition" + '"';
-        //real version
-        //String url = this.path+"/"+DEFINITION+"/" +language+"/" +alphebetPair +"/" +term + "_1";
-        String url = "http: term url";
-        //String url = LOCALHOST_URL + "termDefination.php";
-        //System.out.println(url);
-        String a = "<a href=" + url + " " + title + ">" + term + "</a>";
-        String li = "\n<li>" + a + "</li>\n";
-        multiLingualDiv.append(li);
-
-        //System.out.println(multiLingualDiv.toString());
-        return templateHtml;
-    }
-
+   
     /*private Document generateHtmlFromTemplate(Document templateHtml, List<TermDetail> termDetail) throws Exception {
 
         String langDetail = languageMapper.get(language);

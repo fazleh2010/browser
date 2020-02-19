@@ -32,7 +32,7 @@ public class Main implements FileAndCategory {
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
             put("en", "English");
-            put("nl", "Dutch");
+            //put("nl", "Dutch");
             /*put("bg", "Bulgarian");
             put("cs", "Czech");
             put("da", "Danish");
@@ -62,10 +62,12 @@ public class Main implements FileAndCategory {
         lang = new TreeSet<String>(languageMapper.keySet());
         // run before comit..................
         cleanDirectory();
+        Boolean termPageFlag=true;
+        Boolean termLinkPageFlag=true;
 
          Tasks tasks = new Taskimpl(LANGUAGE_CONFIG_FILE);
          //tasks.saveDataIntoFiles(browserSet);
-         //tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,browserSet,lang);
+        // tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,browserSet,lang,termPageFlag,termLinkPageFlag);
 
         //this is necessary for other applications!!
         //tasks.readDataFromSavedFiles();

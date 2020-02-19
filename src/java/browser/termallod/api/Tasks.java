@@ -29,7 +29,7 @@ public interface Tasks {
 
     public void readDataFromSavedFiles(String givenBrowser) throws IOException, Exception;
 
-    public void createHtmlFromSavedFiles(List<String> categorySet, String MODEL_EXTENSION, Set<String> browserSet, Set<String> lang) throws Exception, IOException;
+    public void createHtmlFromSavedFiles(List<String> categorySet, String MODEL_EXTENSION, Set<String> browserSet, Set<String> lang,Boolean termPageFlag,Boolean termLinkPageFlag) throws Exception, IOException;
 
     public void createIndexing() throws IOException, ParseException, Exception;
 

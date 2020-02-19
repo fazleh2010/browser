@@ -64,14 +64,14 @@ public class Taskimpl implements Tasks, FileAndCategory {
     }*/
 
     @Override
-    public void createHtmlFromSavedFiles(List<String> categorySet, String MODEL_EXTENSION, Set<String> browserSet, Set<String> lang) throws Exception, IOException {
+    public void createHtmlFromSavedFiles(List<String> categorySet, String MODEL_EXTENSION, Set<String> browserSet, Set<String> lang,Boolean termPageFlag,Boolean termLinkPageFlag) throws Exception, IOException {
         FileRelatedUtils.cleanDirectory(CATEGORY_ONTOLOGIES, BASE_PATH, DATA_PATH);
         for (String browser : categorySet) {
             if (browserSet.contains(browser)) {
                 String source = FileRelatedUtils.getSourcePath(BASE_PATH, browser);
                 List<String> categoties = BROWSER_CATEGORIES.get(browser);
                 HtmlCreator htmlCreator = new HtmlCreator(BASE_PATH, lang);
-                htmlCreator.createHtmlForEachCategory(categoties, source, MODEL_EXTENSION, browser);
+                htmlCreator.createHtmlForEachCategory(categoties, source, MODEL_EXTENSION, browser,termPageFlag,termLinkPageFlag);
             }
         }
     }
