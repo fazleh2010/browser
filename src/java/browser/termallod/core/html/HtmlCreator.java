@@ -45,11 +45,14 @@ public class HtmlCreator implements FileAndCategory {
         this.createHtmlForTermDetailEachCategory(langTerms, categoryName);
 
     }*/
-    public HtmlCreator(String PATH, Set<String> givenlang, String category, String lang, TermDetail givenTermDetail, List<TermDetail> termDetails) throws Exception {
+    /*
+    //Add decline page seperate creation..public HtmlCreator(String PATH, Set<String> givenlang, String category, String lang, TermDetail givenTermDetail, List<TermDetail> termDetails) throws Exception {
         this(PATH, givenlang);
         createHtmlForAddDecPageForEachTerm(category, lang, givenTermDetail, termDetails);
-    }
+    }*/
 
+    /*
+    //Add decline page seperate creation..
     private void createHtmlForAddDecPageForEachTerm(String category, String lang, TermDetail givenTermDetail, List<TermDetail> termDetails) throws Exception {
         String ontologyName = CATEGORY_ONTOLOGIES.get(category);
         File templateFile = getTemplateTermAddDecline(ontologyName, lang, ".html");
@@ -60,7 +63,7 @@ public class HtmlCreator implements FileAndCategory {
         htmlReaderWriter.writeHtml(htmlPage.getGeneratedHtmlPage(), htmlPage.getHtmlFileName());
 
         System.out.println(htmlPage.toString());
-    }
+    }*/
 
     //Term page creation code. Currently it is created from 'List of Term' page
     /*public void createHtmlForTermDetailEachCategory(Map<String, List<TermDetail>> langTerms, String category) throws Exception {

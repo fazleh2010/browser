@@ -64,5 +64,14 @@ public interface FileAndCategory {
             put(IATE, new ArrayList<String>(Arrays.asList(IATE)));
         }
     };
+    
+    public Map<String, String> BROWSER_URL = new HashMap<String,String>() {
+        {
+            put(GENTERM,"http://www.cvt.ugent.be/genterm.htm");
+            put(IATE,"https://iate.europa.eu/");
+        }
+    };
+    
+   
 
 }

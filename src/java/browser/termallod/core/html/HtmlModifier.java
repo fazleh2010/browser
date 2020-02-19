@@ -6,6 +6,7 @@
 package browser.termallod.core.html;
 
 import browser.termallod.api.HtmlStringConts;
+import static browser.termallod.constants.FileAndCategory.BROWSER_URL;
 import static browser.termallod.constants.FileAndCategory.CATEGORY_ONTOLOGIES;
 import static browser.termallod.constants.FileAndCategory.TEMPLATE_LOCATION;
 import java.io.File;
@@ -42,11 +43,10 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
     private File htmlFileName = null;
     private AlphabetTermPage alphabetTermPage;
     private boolean alternativeFlag = false;
-    private String PATH=null;
+    private String PATH = null;
 
-  
     public HtmlModifier(String PATH, Document templateHtml, String language, AlphabetTermPage alphabetTermPage, List<TermDetail> terms, String categoryName, PageContentGenerator pageContentGenerator, Integer currentPageNumber, Boolean alternativeFlag) throws Exception {
-        this.PATH=PATH;
+        this.PATH = PATH;
         this.currentPageNumber = currentPageNumber;
         this.language = language;
         this.ontologyFileName = categoryName;
@@ -58,7 +58,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         this.listOfTermHtmlPage = this.generateHtmlFromTemplate(templateHtml, terms, pageContentGenerator, alphabetTermPage);
 
     }
-
+    //Term page creation...
     /*public HtmlModifier(String PATH, Document templateHtml, TermDetail termDetail, String categoryName) throws Exception {
         this.language = termDetail.getLangCode();
         this.ontologyFileName = CATEGORY_ONTOLOGIES.get(categoryName);
@@ -66,12 +66,13 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         System.out.println(generatedHtmlPage.toString());
         this.htmlFileName = new File(PATH + this.ontologyFileName + "/" + termDetail.getTerm() + ".html");
     }*/
-    public HtmlModifier(String PATH, Document templateHtml, TermDetail givenTermDetail, List<TermDetail> termDetails, String category) throws Exception {
+    //Add decline page creation seperately....
+    /*public HtmlModifier(String PATH, Document templateHtml, TermDetail givenTermDetail, List<TermDetail> termDetails, String category) throws Exception {
         this.language = givenTermDetail.getLangCode();
         this.ontologyFileName = CATEGORY_ONTOLOGIES.get(category);
         this.listOfTermHtmlPage = this.generateHtmlFromTemplate(templateHtml, termDetails);
         this.htmlFileName = new File(PATH + this.ontologyFileName + "/" + givenTermDetail.getTerm() + "_add" + ".html");
-    }
+    }*/
 
     @Override
     public void createLangSelectBox(Element body, PageContentGenerator pageContentGenerator) throws Exception {
@@ -121,7 +122,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
     }
 
     @Override
-    public void createTerms(Element body, List<TermDetail> terms, String alphebetPair, Integer emptyTerm, AlphabetTermPage alphabetTermPage) throws Exception{
+    public void createTerms(Element body, List<TermDetail> terms, String alphebetPair, Integer emptyTerm, AlphabetTermPage alphabetTermPage) throws Exception {
         Element divTerm = body.getElementsByClass("result-list1 wordlist-oxford3000 list-plain").get(0);
         this.termHtmlPages = new HashMap<File, Document>();
         Integer index = 0;
@@ -129,13 +130,11 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
             TermDetail newTermDetail = this.createTerms(termDetail, index++);
             String liString = getTermLi(alphebetPair, newTermDetail, alphabetTermPage);
             divTerm.append(liString);
-           
-                
-                /*File termFile =new File(termFileLocation(term));
+
+            /*File termFile =new File(termFileLocation(term));
                 HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(TERM_PAGE_TEMPLATE);
                 Document templateHtml = htmlReaderWriter.getInputDocument();
                 htmlReaderWriter.writeHtml(templateHtml, termFile);*/
-           
         }
 
         /*for (Integer index=0;index<emptyTerm;index++) {
@@ -152,48 +151,56 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
             if (this.alternativeFlag) {
                 String termFileName = this.htmlFileName.getName().replace(".html", "");
                 termFileName = termFileName + "_" + "term" + "_" + index + ".html";
-                File TermhtmlFileName = new File(PATH + this.ontologyFileName + "/" +termFileName);
+                File TermhtmlFileName = new File(PATH + this.ontologyFileName + "/" + termFileName);
                 //File htmlFileName = new File(PATH + this.ontologyFileName + "/" + alphabetTermPage.getAlpahbetPair()+ ".html");
                 termDetail.setAlternativeUrl(termFileName);
-                this.termHtmlPages.put(TermhtmlFileName, generatedHtmlPage);  
-                  
-                 String termLinkFileName=termFileName.replace(".html", "");
-                 termLinkFileName=termLinkFileName+"_"+"add"+ ".html";
-                 File TermLinkhtmlFileName = new File(PATH + this.ontologyFileName + "/" +termLinkFileName);
-                 Document termLinkTemplate = this.getTermLinkPageTemplate(".html");
-                 Document generatedLinkHtmlPage = createTermLink(termLinkTemplate, termDetail);
-                 this.termLinkHtmlPages.put(TermLinkhtmlFileName, generatedLinkHtmlPage);  
-                
+                this.termHtmlPages.put(TermhtmlFileName, generatedHtmlPage);
+
+                String termLinkFileName = termFileName.replace(".html", "");
+                termLinkFileName = termLinkFileName + "_" + "add" + ".html";
+                File TermLinkhtmlFileName = new File(PATH + this.ontologyFileName + "/" + termLinkFileName);
+                Document termLinkTemplate = this.getTermLinkPageTemplate(".html");
+                Document generatedLinkHtmlPage = createTermLink(termLinkTemplate, termDetail);
+                this.termLinkHtmlPages.put(TermLinkhtmlFileName, generatedLinkHtmlPage);
+
             }
         } catch (Exception ex) {
             Logger.getLogger(HtmlModifier.class.getName()).log(Level.SEVERE, null, ex);
         }
         return termDetail;
     }
-    private Document createTermLink(Document templateHtml,TermDetail givenTermDetail) throws Exception {
 
-        String term = "term";
+    private Document createTermLink(Document templateHtml, TermDetail givenTermDetail) throws Exception {
+
         MatchingTerminologies matchTerminologies = new MatchingTerminologies();
         List<TermDetail> termDetails = matchTerminologies.getCategroyTerms(givenTermDetail);
+        for (TermDetail termDetail : termDetails) {
+            String term = termDetail.getTerm();
+            String langValueStr=languageMapper.get(language);
+            String spanTerminologyName = termDetail.getCategory();
+            String spanTerminologyUrl = BROWSER_URL.get(termDetail.getCategory());
 
+            String panelHeadingStart = divClassStr + this.getWithinQuote("panel-heading") + ">" + "<a href=" + this.getWithinQuote("/data/iate/test+tubes-en") + " class=" + this.getWithinQuote("rdf_link") + ">" + term + "</a>" + divClassEnd;
+            String panelHeadingEnd = "</div>";
+            String firstTr = getTr(getProperty(langPropUrl, langPropStr), getValue(langValueUrl1, langValueUrl2, langValueStr));
+            
+            String termValue = this.getValue(this.getSpanProp(spanPropUrl1, spanPropUrl2, spanPropStr) + this.getSpanValue(spanTerminologyUrl, spanTerminologyName));
+            String secondTr = getTr(getProperty(langTermUrl, langTermStr), termValue);
+            
+            
+            String thirdTr = getTr(getProperty(matchPropUrl, matchPropStr), getValue(matchValueUrl1, matchValueUrl2, matchValueStr));
+            String table = this.getTable(this.getTbody(firstTr + secondTr + thirdTr));
 
-        String panelHeadingStart = divClassStr + this.getWithinQuote("panel-heading") + ">" + "<a href=" + this.getWithinQuote("/data/iate/test+tubes-en") + " class=" + this.getWithinQuote("rdf_link") + ">" + term + "</a>" + divClassEnd;
-        String panelHeadingEnd = "</div>";
-        String firstTr = getTr(getProperty(langPropUrl, langPropStr), getValue(langValueUrl1, langValueUrl2, langValueStr));
-        String termValue = this.getValue(this.getSpanProp(spanPropUrl1, spanPropUrl2, spanPropStr) + this.getSpanValue(spanValueUrl, spanValueStr));
-        String secondTr = getTr(getProperty(langTermUrl, langTermStr), termValue);
-        String thirdTr = getTr(getProperty(matchPropUrl, matchPropStr), getValue(matchValueUrl1, matchValueUrl2, matchValueStr));
-        String table = this.getTable(this.getTbody(firstTr + secondTr + thirdTr));
+            String yesNoButtonDiv = getAcceptDenyButton();
 
-        String yesNoButtonDiv = getAcceptDenyButton();
+            String divStr = panelHeadingStart + table + yesNoButtonDiv + panelHeadingEnd;
 
-        String divStr = panelHeadingStart + table + yesNoButtonDiv + panelHeadingEnd;
+            Element body = templateHtml.body();
+            List<Element> divTerms = body.getElementsByClass("panel panel-default");
+            for (Element divTerm : divTerms) {
+                divTerm.append(divStr);
 
-        Element body = templateHtml.body();
-        List<Element> divTerms = body.getElementsByClass("panel panel-default");
-        for (Element divTerm : divTerms) {
-            divTerm.append(divStr);
-
+            }
         }
 
         return templateHtml;
@@ -410,8 +417,9 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         return htmlReaderWriter.getInputDocument();
 
     }
+
     private Document getTermLinkPageTemplate(String extension) {
-        File templateFile = new File(TEMPLATE_LOCATION + this.ontologyFileName + "_" + language + "_" + "term" + "_" +"add"+ extension);
+        File templateFile = new File(TEMPLATE_LOCATION + this.ontologyFileName + "_" + language + "_" + "term" + "_" + "add" + extension);
         HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
         return htmlReaderWriter.getInputDocument();
 
@@ -482,7 +490,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         return templateHtml;
     }
 
-    private Document generateHtmlFromTemplate(Document templateHtml, List<TermDetail> termDetail) throws Exception {
+    /*private Document generateHtmlFromTemplate(Document templateHtml, List<TermDetail> termDetail) throws Exception {
 
         String langDetail = languageMapper.get(language);
         String term = "term";
@@ -507,7 +515,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         }
 
         return templateHtml;
-    }
+    }*/
 
     private String getAcceptDenyButton() {
         String yesNoButtonDiv
@@ -535,8 +543,8 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         String langProp = tdPropStart + " <a href=" + this.getWithinQuote(url) + " class=" + this.getWithinQuote("rdf_link") + ">" + str + "</a>" + tdEnd;
         return langProp;
     }
-    
-      public Map<File, Document> getGeneratedTermHtmlPages() {
+
+    public Map<File, Document> getGeneratedTermHtmlPages() {
         return termHtmlPages;
     }
 
@@ -547,7 +555,6 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
     public Map<File, Document> getTermLinkHtmlPages() {
         return termLinkHtmlPages;
     }
-
 
 }
 

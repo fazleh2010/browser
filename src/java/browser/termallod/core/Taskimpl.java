@@ -52,7 +52,8 @@ public class Taskimpl implements Tasks, FileAndCategory {
         this.languageManager = new LanguageAlphabetPro(LANGUAGE_CONFIG_FILE);
     }
 
-    @Override
+    //add decline page seperate creation
+    /*@Override
     public void createAddDeclineHtmlPage(String category, String lang, TermDetail givenTermDetail, Set<String> givenLangs) {
         try {
             List<TermDetail> termDetails = matchTerminologies.getCategroyTerms(givenTermDetail);
@@ -60,7 +61,7 @@ public class Taskimpl implements Tasks, FileAndCategory {
         } catch (Exception ex) {
             Logger.getLogger(Taskimpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }*/
 
     @Override
     public void createHtmlFromSavedFiles(List<String> categorySet, String MODEL_EXTENSION, Set<String> browserSet, Set<String> lang) throws Exception, IOException {

@@ -45,9 +45,11 @@ public interface Tasks {
 
     public Set<TermDetail> matchBrowsers() throws IOException, Exception;
 
+    //term page seperate creation...
     //public void createTermDetailHtmlPage(String browser,Set<String>givenLangs) throws IOException, Exception;
     
     public Map<String, Browser> getBrowsersInfor();
     
-    public void createAddDeclineHtmlPage(String category,String lang,TermDetail termdetail,Set<String>givenLangs);
+    //add decline page seperate creation..
+    //public void createAddDeclineHtmlPage(String category,String lang,TermDetail termdetail,Set<String>givenLangs);
 }
