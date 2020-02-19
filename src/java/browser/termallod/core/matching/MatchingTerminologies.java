@@ -27,6 +27,18 @@ public class MatchingTerminologies {
     private Map<String, List<TermDetail>> categroyTerms=new HashMap<String, List<TermDetail>>();
     
 
+    public MatchingTerminologies() throws Exception {
+       categroyTerms=new HashMap<String, List<TermDetail>>();
+       List<TermDetail> termDetails=new ArrayList<TermDetail>();
+       String url="https://terms.tdwg.org/wiki/skos:exactMatch";
+       String alterurl="https://terms.tdwg.org/wiki/skos:exactMatch";
+       termDetails.add(new TermDetail("en","term_1",IATE,url,alterurl,true));
+       termDetails.add(new TermDetail("en","term_2",IATE,url,alterurl,true));
+       termDetails.add(new TermDetail("en","term_3",IATE,url,alterurl,true));
+       termDetails.add(new TermDetail("en","term_4",IATE,url,alterurl,true));
+       termDetails.add(new TermDetail("en","term_5",IATE,url,alterurl,true));
+       categroyTerms.put(IATE, termDetails);
+    }
     public MatchingTerminologies(Map<String, Browser> inputBrowsers) throws Exception {
         if (!inputBrowsers.isEmpty()) {
             matchBrowsers(inputBrowsers, IATE, "en");
@@ -45,12 +57,12 @@ public class MatchingTerminologies {
         }
     }
 
-    public MatchingTerminologies() {
+    /*public MatchingTerminologies() {
          TermDetail termDetail=new TermDetail(ATC,"eng","test", "http");
          List<TermDetail> termDetails=new  ArrayList<TermDetail>();
          termDetails.add(termDetail);
          categroyTerms.put(termDetail.getLangCode(), termDetails);
-    }
+    }*/
 
     private void getTerms(String givenCategory) throws Exception {
         for (String category : inputBrowsers.keySet()) {
@@ -120,10 +132,10 @@ public class MatchingTerminologies {
     public Map<String, List<TermDetail>> getCategroyTerms() {
         return categroyTerms;
     }
-    public  List<TermDetail> getCategroyTerms(TermDetail termdetail) throws Exception {
+    public  List<TermDetail> getCategroyTerms(String category) throws Exception {
         if(categroyTerms.isEmpty())
             throw new Exception("List is emplty!!");
-        return categroyTerms.get(termdetail.getLangCode());
+        return categroyTerms.get(category);
     }
 
 }

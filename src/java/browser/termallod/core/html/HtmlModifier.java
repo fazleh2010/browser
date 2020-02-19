@@ -139,6 +139,8 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
                 HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(TERM_PAGE_TEMPLATE);
                 Document templateHtml = htmlReaderWriter.getInputDocument();
                 htmlReaderWriter.writeHtml(templateHtml, termFile);*/
+            //termoprary added break for testing....
+            break;
         }
 
         /*for (Integer index=0;index<emptyTerm;index++) {
@@ -197,12 +199,12 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
 
       
         //temporary closed ..it will be added later..
-        Element multiLingualDiv = body.getElementsByClass("entry").get(0);
+        /*Element multiLingualDiv = body.getElementsByClass("entry").get(0);
         String title = "title=" + '"' + "term" + " definition" + '"';
         String url = "http: term url";
         String a = "<a href=" + url + " " + title + ">" + term + "</a>";
         String li = "\n<li>" + a + "</li>\n";
-        multiLingualDiv.append(li);
+        multiLingualDiv.append(li);*/
 
         //System.out.println(multiLingualDiv.toString());
         return templateHtml;
@@ -212,14 +214,20 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
     private Document createTermLink(Document templateHtml, TermDetail givenTermDetail) throws Exception {
 
         MatchingTerminologies matchTerminologies = new MatchingTerminologies();
-        List<TermDetail> termDetails = matchTerminologies.getCategroyTerms(givenTermDetail);
+        List<TermDetail> termDetails = matchTerminologies.getCategroyTerms(givenTermDetail.getCategory());
+         List<String> divStrS =new ArrayList<String>();
         for (TermDetail termDetail : termDetails) {
             String term = termDetail.getTerm();
+            String url =null;
+            if(!this.alternativeFlag)
+                url = termDetail.getUrl();
+            else
+                url = termDetail.getAlternativeUrl();
             String langValueStr=languageMapper.get(language);
             String spanTerminologyName = termDetail.getCategory();
             String spanTerminologyUrl = BROWSER_URL.get(termDetail.getCategory());
 
-            String panelHeadingStart = divClassStr + this.getWithinQuote("panel-heading") + ">" + "<a href=" + this.getWithinQuote("/data/iate/test+tubes-en") + " class=" + this.getWithinQuote("rdf_link") + ">" + term + "</a>" + divClassEnd;
+            String panelHeadingStart = divClassStr + this.getWithinQuote("panel-heading") + ">" + "<a href=" + this.getWithinQuote(url) + " class=" + this.getWithinQuote("rdf_link") + ">" + term + "</a>" + divClassEnd;
             String panelHeadingEnd = "</div>";
             String firstTr = getTr(getProperty(langPropUrl, langPropStr), getValue(langValueUrl1, langValueUrl2, langValueStr));
             
@@ -233,14 +241,22 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
             String yesNoButtonDiv = getAcceptDenyButton();
 
             String divStr = panelHeadingStart + table + yesNoButtonDiv + panelHeadingEnd;
-
-            Element body = templateHtml.body();
-            List<Element> divTerms = body.getElementsByClass("panel panel-default");
+            divStrS.add(divStr);
+            
+           
+        }
+        
+        Element body = templateHtml.body();
+        Integer index=0;
+        List<Element> divTerms = body.getElementsByClass("panel panel-default");
             for (Element divTerm : divTerms) {
-                divTerm.append(divStr);
+                 String divStr=divStrS.get(index);
+                  divTerm.append(divStr);
+                  index++;
+                  if(index==divStrS.size())
+                      break;
 
             }
-        }
 
         return templateHtml;
     }

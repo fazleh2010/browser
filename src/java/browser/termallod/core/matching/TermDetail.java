@@ -5,6 +5,7 @@
  */
 package browser.termallod.core.matching;
 
+import static browser.termallod.constants.FileAndCategory.IATE;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +21,7 @@ public class TermDetail {
     private String category = null;
     private String langCode = null;
     private Set<String> links = new HashSet<String>();
+    private Boolean alternativeFlag;
 
     public TermDetail(String category,String langCode, String term, String givenUrl, String url) {
         this.category=category;
@@ -39,9 +41,13 @@ public class TermDetail {
         this.links.add(url);
     }
 
-    public TermDetail(String langCode, String term) {
+    public TermDetail(String langCode, String term,String category, String url,String alterUrl,Boolean alternativeFlag ) {
         this.langCode = langCode;
         this.term = term.replace("_", " ");
+        this.category=category;
+        this.url= url ;
+        this.alternativeUrl= alterUrl ;
+        this.alternativeFlag= alternativeFlag ;
     }
 
     public String getTerm() {

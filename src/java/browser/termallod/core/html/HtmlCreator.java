@@ -122,6 +122,8 @@ public class HtmlCreator implements FileAndCategory {
             for (AlphabetTermPage alphabetTermPage : alphabetTermPageList) {
                 File MAIN_PAGE_TEMPLATE = getTemplate(categoryName, language, ".html");
                 createHtmlForEachAlphabetPair(categoryName, MAIN_PAGE_TEMPLATE, language, alphabetTermPage, pageContentGenerator,termPageFlag,termLinkPageFlag);
+                //temporay added....
+                break;
             }
         }
     }
@@ -144,7 +146,8 @@ public class HtmlCreator implements FileAndCategory {
                 Document generatedHtml = htmlPage.getTermLinkHtmlPages().get(termFile);
                 htmlReaderWriter.writeHtml(generatedHtml, termFile);
             }
-            break;
+           //temporay added....
+                break;
         }
 
     }
@@ -164,7 +167,7 @@ public class HtmlCreator implements FileAndCategory {
     private List<TermDetail> getTermDetails(String language, List<String> terms) {
         List<TermDetail> termDetails = new ArrayList<TermDetail>();
         for (String term : terms) {
-            TermDetail termDetail = new TermDetail(language, term);
+            TermDetail termDetail = new TermDetail(language, term,IATE,"https://terms.tdwg.org/wiki/skos:exactMatch","https://terms.tdwg.org/wiki/skos:exactMatch", false);
             termDetails.add(termDetail);
         }
         return termDetails;

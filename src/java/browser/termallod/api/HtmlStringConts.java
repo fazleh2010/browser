@@ -22,10 +22,12 @@ public interface HtmlStringConts {
     
     
     
-    public String langTermUrl = "http://www.w3.org/ns/lemon/ontolex#language";
+    public String langTermUrl = "https://www.w3.org/2003/glossary/";
     public String langTermStr = "Terminology";
-    public String spanPropUrl1 = "http://tbx2rdf.lider-project.eu/tbx#reliabilityCode";
-    public String spanPropUrl2 = "http://www.w3.org/2001/XMLSchema#integer";
+    public String spanPropUrl1 = "";
+    public String spanPropUrl2 = "";
+    //public String spanPropUrl1 = "http://tbx2rdf.lider-project.eu/tbx#reliabilityCode";
+    //public String spanPropUrl2 = "http://www.w3.org/2001/XMLSchema#integer";
     
     //public String spanPropStr = "3";
     //public String spanValueUrl = "http://www.w3.org/2001/XMLSchema#integer";
@@ -37,8 +39,9 @@ public interface HtmlStringConts {
     
     public String matchPropUrl = "https://www.w3.org/TR/swbp-skos-core-spec/";
     public String matchPropStr = "skos concept";
-    public String matchValueUrl1 = "http://www.lexinfo.net/ontology/2.0/lexinfo#fullForm";
-    public String matchValueUrl2 = "http://www.lexinfo.net/ontology/2.0/lexinfo#termType";
+    
+    public String matchValueUrl1 = "https://terms.tdwg.org/wiki/skos:exactMatch";
+    public String matchValueUrl2 = "https://terms.tdwg.org/wiki/skos:exactMatch";
     public String matchValueStr = "extact match";
 
 }
