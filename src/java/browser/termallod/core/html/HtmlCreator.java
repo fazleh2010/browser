@@ -111,7 +111,7 @@ public class HtmlCreator implements FileAndCategory {
                     createHtmlForEachLanguage(langSortedTerms, categoryName, browser,termPageFlag,termLinkPageFlag);
                 }
             }
-
+         System.out.println(categoryBrowser);
         }
     }
 
@@ -123,12 +123,13 @@ public class HtmlCreator implements FileAndCategory {
                 File MAIN_PAGE_TEMPLATE = getTemplate(categoryName, language, ".html");
                 createHtmlForEachAlphabetPair(categoryName, MAIN_PAGE_TEMPLATE, language, alphabetTermPage, pageContentGenerator,termPageFlag,termLinkPageFlag);
                 //temporay added....
-                break;
+               
             }
         }
     }
 
     private void createHtmlForEachAlphabetPair(String categoryName, File templateFile, String language, AlphabetTermPage alphabetTermPage, PageContentGenerator pageContentGenerator,Boolean termPageFlag,Boolean termLinkPageFlag) throws Exception {
+         Map<String, String> termAlterUrlsAll = new TreeMap<String, String>();
         Partition partition = alphabetTermPage.getPartition();
         for (Integer page = 0; page < partition.size(); page++) {
             Integer currentPageNumber = page + 1;
@@ -146,9 +147,17 @@ public class HtmlCreator implements FileAndCategory {
                 Document generatedHtml = htmlPage.getTermLinkHtmlPages().get(termFile);
                 htmlReaderWriter.writeHtml(generatedHtml, termFile);
             }
+             /*Map<String, String> termAlterUrls  = htmlPage.getTermAlterUrls();
+             for(String term:termAlterUrls.keySet()){
+                 String alterUrl=termAlterUrls.get(term);
+                 termAlterUrlsAll.put(term, alterUrl);
+             }*/
+           
+            
            //temporay added....
-                break;
+              
         }
+        //System.out.println(termAlterUrlsAll.toString());
 
     }
 

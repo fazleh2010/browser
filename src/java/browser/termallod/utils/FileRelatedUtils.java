@@ -104,6 +104,8 @@ public class FileRelatedUtils {
         }
         return files;
     }*/
+    
+    
     public static List<File> writeFile(TreeMap<String, TreeMap<String, List<TermInfo>>> langSortedTerms, String path) throws IOException {
         List<File> files = new ArrayList<File>();
         for (String language : langSortedTerms.keySet()) {

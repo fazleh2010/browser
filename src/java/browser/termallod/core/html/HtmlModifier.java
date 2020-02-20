@@ -7,7 +7,6 @@ package browser.termallod.core.html;
 
 import browser.termallod.api.HtmlStringConts;
 import static browser.termallod.constants.FileAndCategory.BROWSER_URL;
-import static browser.termallod.constants.FileAndCategory.CATEGORY_ONTOLOGIES;
 import static browser.termallod.constants.FileAndCategory.TEMPLATE_LOCATION;
 import java.io.File;
 import java.util.ArrayList;
@@ -35,6 +34,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
     private Document listOfTermHtmlPage;
     private Map<File, Document> termHtmlPages = new HashMap<File, Document>();
     private Map<File, Document> termLinkHtmlPages = new HashMap<File, Document>();
+    private Map<String, String> termAlterUrls = new HashMap<String, String>();
     private Integer currentPageNumber;
     private Integer maximumNumberOfPages = 4;
     private String language;
@@ -132,6 +132,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         Integer index = 0;
         for (TermDetail termDetail : terms) {
             TermDetail newTermDetail = this.createTerms(termDetail, index++);
+            termAlterUrls.put(newTermDetail.getTerm(), newTermDetail.getAlternativeUrl());
             String liString = getTermLi(alphebetPair, newTermDetail, alphabetTermPage);
             divTerm.append(liString);
 
@@ -140,7 +141,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
                 Document templateHtml = htmlReaderWriter.getInputDocument();
                 htmlReaderWriter.writeHtml(templateHtml, termFile);*/
             //termoprary added break for testing....
-            break;
+            
         }
 
         /*for (Integer index=0;index<emptyTerm;index++) {
@@ -163,12 +164,12 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
                 this.termHtmlPages.put(TermhtmlFileName, generatedHtmlPage);
 
                 //code for creating term link
-                /*String termLinkFileName = termFileName.replace(".html", "");
+                String termLinkFileName = termFileName.replace(".html", "");
                 termLinkFileName = termLinkFileName + "_" + "add" + ".html";
                 File TermLinkhtmlFileName = new File(PATH + this.ontologyFileName + "/" + termLinkFileName);
                 Document termLinkTemplate = this.getTermLinkPageTemplate(".html");
                 Document generatedLinkHtmlPage = createTermLink(termLinkTemplate, termDetail);
-                this.termLinkHtmlPages.put(TermLinkhtmlFileName, generatedLinkHtmlPage);*/
+                this.termLinkHtmlPages.put(TermLinkhtmlFileName, generatedLinkHtmlPage);
 
             }
         
@@ -299,7 +300,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
             url = termDetail.getAlternativeUrl();
         }
         term = StringMatcherUtil.decripted(term);
-        System.out.println(term + "..." + url);
+        //System.out.println(term + "..." + url);
         //String url = LOCALHOST_URL + "termDefination.php";
         //System.out.println(url);
         String a = "<a href=" + url + " " + title + ">" + term + "</a>";
@@ -561,6 +562,10 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         String tdEnd = "</td>";
         String langProp = tdPropStart + " <a href=" + this.getWithinQuote(url) + " class=" + this.getWithinQuote("rdf_link") + ">" + str + "</a>" + tdEnd;
         return langProp;
+    }
+
+    public Map<String, String> getTermAlterUrls() {
+        return termAlterUrls;
     }
 
     public Map<File, Document> getGeneratedTermHtmlPages() {
