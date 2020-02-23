@@ -17,6 +17,7 @@ import browser.termallod.constants.HtmlPage;
 import browser.termallod.constants.Languages;
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.PageContentGenerator;
+import browser.termallod.core.TermInfo;
 import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.matching.TermDetail;
 import browser.termallod.utils.StringMatcherUtil;
@@ -34,7 +35,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
     private Document listOfTermHtmlPage;
     private Map<File, Document> termHtmlPages = new HashMap<File, Document>();
     private Map<File, Document> termLinkHtmlPages = new HashMap<File, Document>();
-    private Map<String, String> termAlterUrls = new HashMap<String, String>();
+    private List<TermInfo> termList = new ArrayList<TermInfo>();
     private Integer currentPageNumber;
     private Integer maximumNumberOfPages = 4;
     private String language;
@@ -132,7 +133,8 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         Integer index = 0;
         for (TermDetail termDetail : terms) {
             TermDetail newTermDetail = this.createTerms(termDetail, index++);
-            termAlterUrls.put(newTermDetail.getTerm(), newTermDetail.getAlternativeUrl());
+            TermInfo termInfo=new TermInfo(newTermDetail.getTerm(),newTermDetail.getUrl(),newTermDetail.getAlternativeUrl());
+            termList.add(termInfo);
             String liString = getTermLi(alphebetPair, newTermDetail, alphabetTermPage);
             divTerm.append(liString);
 
@@ -564,9 +566,10 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         return langProp;
     }
 
-    public Map<String, String> getTermAlterUrls() {
-        return termAlterUrls;
+    public List<TermInfo> getTermList() {
+        return termList;
     }
+
 
     public Map<File, Document> getGeneratedTermHtmlPages() {
         return termHtmlPages;

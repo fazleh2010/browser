@@ -57,6 +57,7 @@ public interface FileAndCategory {
             put(IATE, "tbx2rdf_iate");
         }
     };
+    
 
     public Map<String, List<String>> BROWSER_CATEGORIES = new HashMap<String, List<String>>() {
         {

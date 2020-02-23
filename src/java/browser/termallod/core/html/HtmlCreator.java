@@ -9,6 +9,7 @@ import browser.termallod.constants.FileAndCategory;
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.CategoryInfo;
 import browser.termallod.core.PageContentGenerator;
+import browser.termallod.core.TermInfo;
 import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.matching.TermDetail;
 import browser.termallod.utils.FileRelatedUtils;
@@ -29,14 +30,14 @@ import org.jsoup.nodes.Document;
  * @author elahi
  */
 public class HtmlCreator implements FileAndCategory {
-
+    
     private final Set<String> lang;
     private final String PATH;
-
+    
     public HtmlCreator(String PATH, Set<String> lang) {
         this.PATH = PATH;
         this.lang = lang;
-
+        
     }
 
     /*term page creation code..currently it is running for 'list of term page'
@@ -45,13 +46,13 @@ public class HtmlCreator implements FileAndCategory {
         this.createHtmlForTermDetailEachCategory(langTerms, categoryName);
 
     }*/
-    /*
+ /*
     //Add decline page seperate creation..public HtmlCreator(String PATH, Set<String> givenlang, String category, String lang, TermDetail givenTermDetail, List<TermDetail> termDetails) throws Exception {
         this(PATH, givenlang);
         createHtmlForAddDecPageForEachTerm(category, lang, givenTermDetail, termDetails);
     }*/
 
-    /*
+ /*
     //Add decline page seperate creation..
     private void createHtmlForAddDecPageForEachTerm(String category, String lang, TermDetail givenTermDetail, List<TermDetail> termDetails) throws Exception {
         String ontologyName = CATEGORY_ONTOLOGIES.get(category);
@@ -64,7 +65,6 @@ public class HtmlCreator implements FileAndCategory {
 
         System.out.println(htmlPage.toString());
     }*/
-
     //Term page creation code. Currently it is created from 'List of Term' page
     /*public void createHtmlForTermDetailEachCategory(Map<String, List<TermDetail>> langTerms, String category) throws Exception {
         for (String lang : langTerms.keySet()) {
@@ -88,7 +88,7 @@ public class HtmlCreator implements FileAndCategory {
         }
 
     }*/
-    public void createHtmlForEachCategory(List<String> browsers, String source, String MODEL_EXTENSION, String browser,Boolean termPageFlag,Boolean termLinkPageFlag) throws Exception {
+    public void createHtmlForEachCategory(List<String> browsers, String source, String MODEL_EXTENSION, String browser, Boolean termPageFlag, Boolean termLinkPageFlag) throws Exception {
         for (String categoryBrowser : browsers) {
             String ontologyName = CATEGORY_ONTOLOGIES.get(categoryBrowser);
             List<File> files = FileRelatedUtils.getFiles(source + TEXT_PATH, ontologyName, MODEL_EXTENSION);
@@ -106,38 +106,40 @@ public class HtmlCreator implements FileAndCategory {
             }
             if (!langSortedTerms.isEmpty()) {
                 if (categoryBrowser.contains(IATE)) {
-                    createHtmlForEachLanguage(langSortedTerms, categoryName, browser,termPageFlag,termLinkPageFlag);
+                    createHtmlForEachLanguage(langSortedTerms, categoryName, browser, termPageFlag, termLinkPageFlag);
                 } else {
-                    createHtmlForEachLanguage(langSortedTerms, categoryName, browser,termPageFlag,termLinkPageFlag);
+                    createHtmlForEachLanguage(langSortedTerms, categoryName, browser, termPageFlag, termLinkPageFlag);
                 }
             }
-         System.out.println(categoryBrowser);
+            System.out.println(categoryBrowser);
         }
     }
-
-    private void createHtmlForEachLanguage(TreeMap<String, CategoryInfo> langSortedTerms, String categoryName, String browser,Boolean termPageFlag,Boolean termLinkPageFlag) throws Exception {
+    
+    private void createHtmlForEachLanguage(TreeMap<String, CategoryInfo> langSortedTerms, String categoryName, String browser, Boolean termPageFlag, Boolean termLinkPageFlag) throws Exception {
         PageContentGenerator pageContentGenerator = new PageContentGenerator(langSortedTerms);
         for (String language : pageContentGenerator.getLanguages()) {
             List<AlphabetTermPage> alphabetTermPageList = pageContentGenerator.getLangPages(language);
             for (AlphabetTermPage alphabetTermPage : alphabetTermPageList) {
                 File MAIN_PAGE_TEMPLATE = getTemplate(categoryName, language, ".html");
-                createHtmlForEachAlphabetPair(categoryName, MAIN_PAGE_TEMPLATE, language, alphabetTermPage, pageContentGenerator,termPageFlag,termLinkPageFlag);
+                createHtmlForEachAlphabetPair(categoryName, MAIN_PAGE_TEMPLATE, language, alphabetTermPage, pageContentGenerator, termPageFlag, termLinkPageFlag);
                 //temporay added....
-               
+
             }
         }
     }
-
-    private void createHtmlForEachAlphabetPair(String categoryName, File templateFile, String language, AlphabetTermPage alphabetTermPage, PageContentGenerator pageContentGenerator,Boolean termPageFlag,Boolean termLinkPageFlag) throws Exception {
-         Map<String, String> termAlterUrlsAll = new TreeMap<String, String>();
+    
+    private void createHtmlForEachAlphabetPair(String categoryName, File templateFile, String language, AlphabetTermPage alphabetTermPage, PageContentGenerator pageContentGenerator, Boolean termPageFlag, Boolean termLinkPageFlag) throws Exception {
         Partition partition = alphabetTermPage.getPartition();
+        String textInputFile = FileRelatedUtils.getSpecificFile(PATH, categoryName, language, alphabetTermPage.getAlpahbetPair(), ".txt");
+        FileRelatedUtils.deleteFile(textInputFile);
+        
         for (Integer page = 0; page < partition.size(); page++) {
             Integer currentPageNumber = page + 1;
             List<String> terms = partition.get(page);
             List<TermDetail> termDetails = this.getTermDetails(language, terms);
             HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
             Document templateHtml = htmlReaderWriter.getInputDocument();
-            HtmlModifier htmlPage = new HtmlModifier(PATH, templateHtml, language, alphabetTermPage, termDetails, categoryName, pageContentGenerator, currentPageNumber,true,termPageFlag,termLinkPageFlag);
+            HtmlModifier htmlPage = new HtmlModifier(PATH, templateHtml, language, alphabetTermPage, termDetails, categoryName, pageContentGenerator, currentPageNumber, true, termPageFlag, termLinkPageFlag);
             htmlReaderWriter.writeHtml(htmlPage.getGeneratedHtmlPage(), htmlPage.getHtmlFileName());
             for (File termFile : htmlPage.getGeneratedTermHtmlPages().keySet()) {
                 Document generatedHtml = htmlPage.getGeneratedTermHtmlPages().get(termFile);
@@ -147,39 +149,35 @@ public class HtmlCreator implements FileAndCategory {
                 Document generatedHtml = htmlPage.getTermLinkHtmlPages().get(termFile);
                 htmlReaderWriter.writeHtml(generatedHtml, termFile);
             }
-             /*Map<String, String> termAlterUrls  = htmlPage.getTermAlterUrls();
-             for(String term:termAlterUrls.keySet()){
-                 String alterUrl=termAlterUrls.get(term);
-                 termAlterUrlsAll.put(term, alterUrl);
-             }*/
-           
-            
-           //temporay added....
-              
+            List<TermInfo> termInfos = htmlPage.getTermList();
+            FileRelatedUtils.writeFile(termInfos, textInputFile);
         }
-        //System.out.println(termAlterUrlsAll.toString());
+        //String textInputFile = FileRelatedUtils.getSpecificFile(PATH, categoryName, language, alphabetTermPage.getAlpahbetPair(), ".txt");
+        //FileRelatedUtils.writeFile(allTermInfos, textInputFile);
 
+// File textInputFile = FileRelatedUtils.getSepecificInputTextFile(BASE_PATH, GENTERM,categoryName,language,alphabetTermPage);
+        //System.out.println(textInputFile.toString());
     }
-
+    
     private File getTemplate(String categoryName, String langCode, String extension) throws Exception {
         return new File(TEMPLATE_LOCATION + categoryName + "_" + langCode + extension);
     }
-
+    
     private File getTemplateTermDetail(String categoryName, String langCode, String extension) throws Exception {
         return new File(TEMPLATE_LOCATION + categoryName + "_" + langCode + "_" + "term" + extension);
     }
-
+    
     private File getTemplateTermAddDecline(String categoryName, String langCode, String extension) throws Exception {
         return new File(TEMPLATE_LOCATION + categoryName + "_" + langCode + "_" + "add" + extension);
     }
-
+    
     private List<TermDetail> getTermDetails(String language, List<String> terms) {
         List<TermDetail> termDetails = new ArrayList<TermDetail>();
         for (String term : terms) {
-            TermDetail termDetail = new TermDetail(language, term,IATE,"https://terms.tdwg.org/wiki/skos:exactMatch","https://terms.tdwg.org/wiki/skos:exactMatch", false);
+            TermDetail termDetail = new TermDetail(language, term, IATE, "https://terms.tdwg.org/wiki/skos:exactMatch", "https://terms.tdwg.org/wiki/skos:exactMatch", false);
             termDetails.add(termDetail);
         }
         return termDetails;
     }
-
+    
 }

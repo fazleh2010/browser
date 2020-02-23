@@ -5,6 +5,11 @@
  */
 package browser.termallod.utils;
 
+import static browser.termallod.constants.FileAndCategory.BROWSER_CATEGORIES;
+import static browser.termallod.constants.FileAndCategory.CATEGORY_ONTOLOGIES;
+import static browser.termallod.constants.FileAndCategory.TEXT_PATH;
+import browser.termallod.constants.Browser;
+import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.TermInfo;
 import browser.termallod.utils.NameExtraction;
 import java.io.BufferedReader;
@@ -36,8 +41,8 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
  */
 public class FileRelatedUtils {
 
-    public static File[] getFiles(String fileDir, String ntriple) throws Exception{
-        
+    public static File[] getFiles(String fileDir, String ntriple) throws Exception {
+
         File dir = new File(fileDir);
         FileFilter fileFilter = new WildcardFileFilter("*" + ntriple);
         File[] files = dir.listFiles(fileFilter);
@@ -58,13 +63,13 @@ public class FileRelatedUtils {
         return selectedFiles;
 
     }
-    
-    public static List<File> getFiles(String fileDir, String category, String language,String extension) {
+
+    public static List<File> getFiles(String fileDir, String category, String language, String extension) {
 
         String[] files = new File(fileDir).list();
         List<File> selectedFiles = new ArrayList<File>();
         for (String fileName : files) {
-            if (fileName.contains(category) && fileName.contains(language)&& fileName.contains(extension)) {
+            if (fileName.contains(category) && fileName.contains(language) && fileName.contains(extension)) {
                 selectedFiles.add(new File(fileDir + fileName));
             }
         }
@@ -72,20 +77,17 @@ public class FileRelatedUtils {
         return selectedFiles;
 
     }
-    
-    public static File getFile(String fileDir, String category, String language,String extension) {
+
+    public static File getFile(String fileDir, String category, String language, String extension) {
         String[] files = new File(fileDir).list();
         File selectedFile = null;
         for (String fileName : files) {
-            if (fileName.contains(category) && fileName.contains(language)&& fileName.contains(extension)) {
-                 selectedFile =new File(fileDir + fileName);
+            if (fileName.contains(category) && fileName.contains(language) && fileName.contains(extension)) {
+                selectedFile = new File(fileDir + fileName);
             }
         }
         return selectedFile;
     }
-    
-    
-    
 
     /*public static List<File> writeFile(TreeMap<String, TreeMap<String, List<String>>> langSortedTerms, String path) throws IOException {
         List<File> files = new ArrayList<File>();
@@ -104,8 +106,6 @@ public class FileRelatedUtils {
         }
         return files;
     }*/
-    
-    
     public static List<File> writeFile(TreeMap<String, TreeMap<String, List<TermInfo>>> langSortedTerms, String path) throws IOException {
         List<File> files = new ArrayList<File>();
         for (String language : langSortedTerms.keySet()) {
@@ -124,6 +124,15 @@ public class FileRelatedUtils {
 
         }
         return files;
+    }
+
+    public static void writeFile(List<TermInfo> terms, String fileName) throws IOException {
+        String str = "";
+        for (TermInfo term : terms) {
+            String line = term.getTermString() + " = " + term.getTermUrl()+ " = " +term.getAlternativeTermUrl();
+            str += line + "\n";
+        }
+        stringToFile_ApendIf_Exists(str, fileName);
     }
 
     public static void stringToFile_ApendIf_Exists(String str, String fileName)
@@ -146,8 +155,8 @@ public class FileRelatedUtils {
             file.deleteOnExit();
         }*/
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-            writer.write(str);
-            writer.close();
+        writer.write(str);
+        writer.close();
 
     }
 
@@ -189,7 +198,7 @@ public class FileRelatedUtils {
         }
 
     }
-    
+
     public static Map<String, List<File>> getLanguageFiles(List<File> inputfiles, String model_extension) {
         Map<String, List<File>> languageFiles = new HashMap<String, List<File>>();
         for (File file : inputfiles) {
@@ -219,6 +228,45 @@ public class FileRelatedUtils {
     public static String getSourcePath(String PATH, String browser) {
         String source = PATH + browser + File.separator;
         return source;
+    }
+
+    public static File getSepecificInputTextFile(String PATH, String browser, String categoryName, String langCode, AlphabetTermPage alphabetTermPage) throws Exception {
+        String source = getSourcePath(PATH, browser);
+        List<File> files = getFiles(source + TEXT_PATH, categoryName, ".txt");
+        if (files.isEmpty()) {
+            throw new Exception("Text folder can not be empty!!!");
+        }
+        Map<String, List<File>> languageFiles = getLanguageFiles(files, ".txt");
+        List<File> langFiles = languageFiles.get(langCode);
+        for (File file : langFiles) {
+
+            String fileName = file.getName().replace(categoryName, "").replace(langCode, "").toLowerCase().trim();
+            String pair = alphabetTermPage.getAlpahbetPair().toLowerCase();
+            if (fileName.contains(pair)) {
+                return file;
+            }
+        }
+
+        return null;
+    }
+
+    public static String getSpecificFile(String PATH, String ontologyName, String langCode, String pair, String extension) {
+        Browser browser = new Browser();
+        //String browserName = browser.getBrowserFromOntologyName(ontologyName);
+        String inputDir=getInputLocation(PATH,ontologyName);
+        String fineName = inputDir + ontologyName + "_" + langCode + "_" + pair + extension;
+        //src/java/resources/data/genterm/text/tbx2rdf_atc_en_A_B.txt
+        return fineName;
+
+    }
+    
+    public static void deleteFile(String fileName) {
+       new File(fileName).delete();
+    }
+     
+      public static String getInputLocation(String PATH, String ontologyName) {
+        Browser browser = new Browser();
+        return PATH + browser.getBrowserFromOntologyName(ontologyName) + File.separator + TEXT_PATH;
     }
 
 }
