@@ -16,7 +16,6 @@ public class TermInfo {
 
     private String termString = null;
     private String termUrl = null;
-    private String alternativeUrl = null;
 
     public TermInfo(Triple triple) {
         termString = triple.getObject().getLiteralLexicalForm().toLowerCase().trim();
@@ -37,7 +36,6 @@ public class TermInfo {
     public TermInfo(String term, String url,String alternativeUrl) {
         this.termString = term;
         this.termUrl = url;
-        this.alternativeUrl=alternativeUrl;
     }
 
     public String getTermString() {
@@ -54,8 +52,6 @@ public class TermInfo {
         return termUrl;
     }
 
-    public String getAlternativeTermUrl() {
-        return alternativeUrl;
-    }
+   
 
 }

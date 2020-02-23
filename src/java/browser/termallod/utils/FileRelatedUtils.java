@@ -264,7 +264,7 @@ public class FileRelatedUtils {
         Browser browser = new Browser();
         //String browserName = browser.getBrowserFromOntologyName(ontologyName);
         String inputDir=getInputLocation(PATH,ontologyName);
-        String fineName = inputDir + ontologyName + "_" + langCode + "_" + pair + extension;
+        String fineName = inputDir + ontologyName + "_" + langCode + "_" + pair +  "alter"+extension;
         //src/java/resources/data/genterm/text/tbx2rdf_atc_en_A_B.txt
         return fineName;
 
