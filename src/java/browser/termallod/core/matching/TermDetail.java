@@ -6,6 +6,7 @@
 package browser.termallod.core.matching;
 
 import static browser.termallod.constants.FileAndCategory.IATE;
+import browser.termallod.utils.StringMatcherUtil;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +17,7 @@ import java.util.Set;
 public class TermDetail {
 
     private String term = null;
+    private String termModified = null;
     private String url = null;
     private String alternativeUrl = null;
     private String category = null;
@@ -23,31 +25,42 @@ public class TermDetail {
     private Set<String> links = new HashSet<String>();
     private Boolean alternativeFlag;
 
-    public TermDetail(String category,String langCode, String term, String givenUrl, String url) {
+   /* public TermDetail(String category,String langCode, String term, String givenUrl, String url) {
         this.category=category;
         this.langCode = langCode;
         this.term = term;
         this.links.add(givenUrl);
         this.links.add(url);
-    }
-
+    }*/
     public void setAlternativeUrl(String alternativeUrl) {
         this.alternativeUrl = alternativeUrl;
     }
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-    public TermDetail(String category,String langCode, String term, String url) {
+    public TermDetail(String category, String langCode, String term, String url) {
         this.langCode = langCode;
-        this.term = term.replace("_", " ");
+        this.term = term;
+        this.termModified = StringMatcherUtil.decripted(term);
+        //term.replace("_", " ");;
         this.links.add(url);
     }
 
-    public TermDetail(String langCode, String term,String category, String url,String alterUrl,Boolean alternativeFlag ) {
+    public TermDetail(String category,String langCode, String term) {
         this.langCode = langCode;
-        this.term = term.replace("_", " ");
-        this.category=category;
-        this.url= url ;
-        this.alternativeUrl= alterUrl ;
-        this.alternativeFlag= alternativeFlag ;
+        this.term = term;
+        this.termModified = StringMatcherUtil.decripted(term);
+        this.category = category;
+    }
+    
+    public TermDetail(TermDetail termDetail,String url,String alternativeUrl) {
+        this.category=termDetail.getCategory();
+        this.langCode = termDetail.getLangCode();
+        this.term = termDetail.getTerm();
+        this.termModified = StringMatcherUtil.decripted(term);
+        this.url = url;
+        this.alternativeUrl = alternativeUrl;
     }
 
     public String getTerm() {
@@ -77,6 +90,10 @@ public class TermDetail {
     @Override
     public String toString() {
         return "TermDetail{" + "term=" + term + ", langCode=" + langCode + ", links=" + links + '}';
+    }
+
+    public String getTermModified() {
+        return termModified;
     }
 
 }

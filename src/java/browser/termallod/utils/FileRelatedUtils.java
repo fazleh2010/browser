@@ -11,6 +11,7 @@ import static browser.termallod.constants.FileAndCategory.TEXT_PATH;
 import browser.termallod.constants.Browser;
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.TermInfo;
+import browser.termallod.core.matching.TermDetail;
 import browser.termallod.utils.NameExtraction;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -126,13 +127,22 @@ public class FileRelatedUtils {
         return files;
     }
 
-    public static void writeFile(List<TermInfo> terms, String fileName) throws IOException {
+    public static void writeFile(List<TermDetail> terms, String fileName) throws IOException {
         String str = "";
-        for (TermInfo term : terms) {
-            String line = term.getTermString() + " = " + term.getTermUrl()+ " = " +term.getAlternativeTermUrl();
+        for (TermDetail term : terms) {
+            String line = term.getTerm() + " = " + term.getUrl()+ " = " +term.getAlternativeUrl();
             str += line + "\n";
         }
-        stringToFile_ApendIf_Exists(str, fileName);
+        stringToFile_If_Exists(str, fileName);
+    }
+    
+    public static void stringToFile_If_Exists(String str, String fileName)
+            throws IOException {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+            writer.write(str);
+            writer.close();
+       
+
     }
 
     public static void stringToFile_ApendIf_Exists(String str, String fileName)
@@ -267,6 +277,10 @@ public class FileRelatedUtils {
       public static String getInputLocation(String PATH, String ontologyName) {
         Browser browser = new Browser();
         return PATH + browser.getBrowserFromOntologyName(ontologyName) + File.separator + TEXT_PATH;
+    }
+       public static String getBrowser(String ontologyName) {
+        Browser browser = new Browser();
+        return  browser.getBrowserFromOntologyName(ontologyName);
     }
 
 }

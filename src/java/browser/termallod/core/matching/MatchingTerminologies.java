@@ -32,11 +32,11 @@ public class MatchingTerminologies {
        List<TermDetail> termDetails=new ArrayList<TermDetail>();
        String url="https://terms.tdwg.org/wiki/skos:exactMatch";
        String alterurl="https://terms.tdwg.org/wiki/skos:exactMatch";
-       termDetails.add(new TermDetail("en","term_1",IATE,url,alterurl,true));
-       termDetails.add(new TermDetail("en","term_2",IATE,url,alterurl,true));
-       termDetails.add(new TermDetail("en","term_3",IATE,url,alterurl,true));
+       /*termDetails.add(new TermDetail("en","term_1",IATE,url,alterurl));
+       termDetails.add(new TermDetail("en","term_2",IATE,url,alterurl));
+       termDetails.add(new TermDetail("en","term_3",IATE,url,alterurl));
        termDetails.add(new TermDetail("en","term_4",IATE,url,alterurl,true));
-       termDetails.add(new TermDetail("en","term_5",IATE,url,alterurl,true));
+       termDetails.add(new TermDetail("en","term_5",IATE,url,alterurl,true));*/
        categroyTerms.put(IATE, termDetails);
     }
     public MatchingTerminologies(Map<String, Browser> inputBrowsers) throws Exception {

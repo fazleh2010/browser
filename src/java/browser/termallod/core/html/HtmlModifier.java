@@ -35,7 +35,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
     private Document listOfTermHtmlPage;
     private Map<File, Document> termHtmlPages = new HashMap<File, Document>();
     private Map<File, Document> termLinkHtmlPages = new HashMap<File, Document>();
-    private List<TermInfo> termList = new ArrayList<TermInfo>();
+    private List<TermDetail> termList = new ArrayList<TermDetail>();
     private Integer currentPageNumber;
     private Integer maximumNumberOfPages = 4;
     private String language;
@@ -133,9 +133,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         Integer index = 0;
         for (TermDetail termDetail : terms) {
             TermDetail newTermDetail = this.createTerms(termDetail, index++);
-            TermInfo termInfo=new TermInfo(newTermDetail.getTerm(),newTermDetail.getUrl(),newTermDetail.getAlternativeUrl());
-            termList.add(termInfo);
-            String liString = getTermLi(alphebetPair, newTermDetail, alphabetTermPage);
+            String liString = getTermLi(newTermDetail, alphabetTermPage);
             divTerm.append(liString);
 
             /*File termFile =new File(termFileLocation(term));
@@ -166,12 +164,13 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
                 this.termHtmlPages.put(TermhtmlFileName, generatedHtmlPage);
 
                 //code for creating term link
-                String termLinkFileName = termFileName.replace(".html", "");
+                //Temporary clodes...
+                /*String termLinkFileName = termFileName.replace(".html", "");
                 termLinkFileName = termLinkFileName + "_" + "add" + ".html";
                 File TermLinkhtmlFileName = new File(PATH + this.ontologyFileName + "/" + termLinkFileName);
                 Document termLinkTemplate = this.getTermLinkPageTemplate(".html");
                 Document generatedLinkHtmlPage = createTermLink(termLinkTemplate, termDetail);
-                this.termLinkHtmlPages.put(TermLinkhtmlFileName, generatedLinkHtmlPage);
+                this.termLinkHtmlPages.put(TermLinkhtmlFileName, generatedLinkHtmlPage);*/
 
             }
         
@@ -215,7 +214,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
     }
 
 
-    private Document createTermLink(Document templateHtml, TermDetail givenTermDetail) throws Exception {
+   /* private Document createTermLink(Document templateHtml, TermDetail givenTermDetail) throws Exception {
 
         MatchingTerminologies matchTerminologies = new MatchingTerminologies();
         List<TermDetail> termDetails = matchTerminologies.getCategroyTerms(givenTermDetail.getCategory());
@@ -263,7 +262,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
             }
 
         return templateHtml;
-    }
+    }*/
 
     private String createUrlLink(String languageCode, Integer pageNumber) {
         return LOCALHOST_URL_LIST_OF_TERMS_PAGE + this.createFileNameUnicode(languageCode, pageNumber);
@@ -288,25 +287,37 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         return browser + UNDERSCORE + languageCode + UNDERSCORE + pair.toString() + UNDERSCORE + pageNumber + HTML_EXTENSION;
     }
 
-    private String getTermLi(String alphebetPair, TermDetail termDetail, AlphabetTermPage alphabetTermPage) {
+    private String getTermLi(TermDetail termDetail, AlphabetTermPage alphabetTermPage) {
         String term = termDetail.getTerm();
         //<li><a href="https://www.oxfordlearnersdictionaries.com/definition/english/abandon_1" title="abandon definition">abandon</a> </li>
-        String title = "title=" + '"' + termDetail.getTerm() + " definition" + '"';
+        String title = "title=" + '"' + term + " definition" + '"';
         //real version
         //String url = this.path+"/"+DEFINITION+"/" +language+"/" +alphebetPair +"/" +term + "_1";
-        String url = null;
+        String url =  generateTermUrl(term, alphabetTermPage);
+        String alterUrl= termDetail.getAlternativeUrl();
+        String assignUrl= null;
 
-        if (!this.alternativeFlag) {
+        /*if (!this.alternativeFlag) {
             url = generateTermUrl(term, alphabetTermPage);
         } else {
             url = termDetail.getAlternativeUrl();
+        }*/
+        
+        if (!this.alternativeFlag) {
+            assignUrl =  url;
+        } else {
+            assignUrl = alterUrl;
         }
-        term = StringMatcherUtil.decripted(term);
+        
+        term = termDetail.getTermModified();
+        //StringMatcherUtil.decripted(term);
         //System.out.println(term + "..." + url);
         //String url = LOCALHOST_URL + "termDefination.php";
         //System.out.println(url);
-        String a = "<a href=" + url + " " + title + ">" + term + "</a>";
-        String li = "\n<li>" + a + "</li>\n";
+        String a = "<a href=" + assignUrl + " " + title + ">" + term + "</a>";
+        String li = "\n<li>" + a + "</li>\n";        
+        termList.add(new TermDetail(termDetail,url, alterUrl));
+        
         return li;
     }
 
@@ -566,7 +577,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         return langProp;
     }
 
-    public List<TermInfo> getTermList() {
+    public List<TermDetail> getTermList() {
         return termList;
     }
 

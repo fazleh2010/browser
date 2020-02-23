@@ -131,12 +131,12 @@ public class HtmlCreator implements FileAndCategory {
     private void createHtmlForEachAlphabetPair(String categoryName, File templateFile, String language, AlphabetTermPage alphabetTermPage, PageContentGenerator pageContentGenerator, Boolean termPageFlag, Boolean termLinkPageFlag) throws Exception {
         Partition partition = alphabetTermPage.getPartition();
         String textInputFile = FileRelatedUtils.getSpecificFile(PATH, categoryName, language, alphabetTermPage.getAlpahbetPair(), ".txt");
-        FileRelatedUtils.deleteFile(textInputFile);
+        
         
         for (Integer page = 0; page < partition.size(); page++) {
             Integer currentPageNumber = page + 1;
             List<String> terms = partition.get(page);
-            List<TermDetail> termDetails = this.getTermDetails(language, terms);
+            List<TermDetail> termDetails = this.getTermDetails(categoryName,language, terms);
             HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
             Document templateHtml = htmlReaderWriter.getInputDocument();
             HtmlModifier htmlPage = new HtmlModifier(PATH, templateHtml, language, alphabetTermPage, termDetails, categoryName, pageContentGenerator, currentPageNumber, true, termPageFlag, termLinkPageFlag);
@@ -149,7 +149,7 @@ public class HtmlCreator implements FileAndCategory {
                 Document generatedHtml = htmlPage.getTermLinkHtmlPages().get(termFile);
                 htmlReaderWriter.writeHtml(generatedHtml, termFile);
             }
-            List<TermInfo> termInfos = htmlPage.getTermList();
+            List<TermDetail> termInfos = htmlPage.getTermList();
             FileRelatedUtils.writeFile(termInfos, textInputFile);
         }
         //String textInputFile = FileRelatedUtils.getSpecificFile(PATH, categoryName, language, alphabetTermPage.getAlpahbetPair(), ".txt");
@@ -171,10 +171,11 @@ public class HtmlCreator implements FileAndCategory {
         return new File(TEMPLATE_LOCATION + categoryName + "_" + langCode + "_" + "add" + extension);
     }
     
-    private List<TermDetail> getTermDetails(String language, List<String> terms) {
+    private List<TermDetail> getTermDetails(String category,String language, List<String> terms) {
         List<TermDetail> termDetails = new ArrayList<TermDetail>();
+        String browserName=FileRelatedUtils.getBrowser(category);
         for (String term : terms) {
-            TermDetail termDetail = new TermDetail(language, term, IATE, "https://terms.tdwg.org/wiki/skos:exactMatch", "https://terms.tdwg.org/wiki/skos:exactMatch", false);
+            TermDetail termDetail = new TermDetail(browserName,language, term);
             termDetails.add(termDetail);
         }
         return termDetails;
