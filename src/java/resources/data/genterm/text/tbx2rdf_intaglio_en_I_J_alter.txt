@@ -1,3 +1,0 @@
-impression = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/impression-EN = browser_en_I_J_1_term_0.html
-ink = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/ink-EN = browser_en_I_J_1_term_1.html
-intaglio_printmaking = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/intaglio+printmaking-EN = browser_en_I_J_1_term_2.html

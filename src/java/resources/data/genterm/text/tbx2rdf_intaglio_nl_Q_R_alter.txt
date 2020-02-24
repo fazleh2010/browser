@@ -1,8 +1,0 @@
-remarque = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/remarque-NL = browser_nl_9_1_term_0.html
-repoussage = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/repoussage-NL = browser_nl_9_1_term_1.html
-reservage = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/reservage-NL = browser_nl_9_1_term_2.html
-reservagetechniek = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/reservagetechniek-NL = browser_nl_9_1_term_3.html
-retroussage = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/retroussage-NL = browser_nl_9_1_term_4.html
-roeten = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/roeten-NL = browser_nl_9_1_term_5.html
-roulette-ets = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/roulette-ets-NL = browser_nl_9_1_term_6.html
-roulette_mordue = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/roulette+mordue-NL = browser_nl_9_1_term_7.html

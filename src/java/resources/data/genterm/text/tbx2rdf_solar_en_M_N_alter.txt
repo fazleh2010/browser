@@ -1,3 +1,0 @@
-n-doping = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/n-doping-EN = browser_en_M_N_1_term_0.html
-n-type_doping = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/n-type+doping-EN = browser_en_M_N_1_term_1.html
-n-type_semiconductor = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/n-type+semiconductor-EN = browser_en_M_N_1_term_2.html

@@ -1,8 +1,0 @@
-graver = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/graver-EN = browser_en_G_H_1_term_0.html
-haden’s_method = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/Haden%E2%80%99s+method-EN = browser_en_G_H_1_term_1.html
-hand_wipe = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/hand+wipe-EN = browser_en_G_H_1_term_2.html
-hard_etching_ground = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/hard+etching+ground-EN = browser_en_G_H_1_term_3.html
-heliogravure = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/heliogravure-EN = browser_en_G_H_1_term_4.html
-hole = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/hole-EN = browser_en_G_H_1_term_5.html
-hotplate = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/hotplate-EN = browser_en_G_H_1_term_6.html
-hydrophilic_gauze = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/hydrophilic+gauze-EN = browser_en_G_H_1_term_7.html

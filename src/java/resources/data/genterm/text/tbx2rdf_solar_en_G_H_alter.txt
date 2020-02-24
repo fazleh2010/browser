@@ -1,1 +1,0 @@
-hole = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/hole-EN = browser_en_G_H_1_term_0.html

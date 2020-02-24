@@ -1,8 +1,0 @@
-clubbing = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/clubbing-EN = browser_en_C_D_1_term_0.html
-congenital = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/congenital-EN = browser_en_C_D_1_term_1.html
-cyanosis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/cyanosis-EN = browser_en_C_D_1_term_2.html
-diaphoresis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/diaphoresis-EN = browser_en_C_D_1_term_3.html
-distension = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/distension-EN = browser_en_C_D_1_term_4.html
-distention = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/distention-EN = browser_en_C_D_1_term_5.html
-dyspnea = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/dyspnea-EN = browser_en_C_D_1_term_6.html
-dyspnoea = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/dyspnoea-EN = browser_en_C_D_1_term_7.html

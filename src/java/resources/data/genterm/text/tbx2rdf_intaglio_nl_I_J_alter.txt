@@ -1,1 +1,0 @@
-ininkten = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/ininkten-NL = browser_nl_5_1_term_0.html

@@ -1,4 +1,0 @@
-gate-to-gate = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/gate-to-gate-EN = browser_en_G_H_1_term_0.html
-gate-togate = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/gate-togate-EN = browser_en_G_H_1_term_1.html
-goods = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/goods-EN = browser_en_G_H_1_term_2.html
-heterogeneous_waste = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/heterogeneous+waste-EN = browser_en_G_H_1_term_3.html

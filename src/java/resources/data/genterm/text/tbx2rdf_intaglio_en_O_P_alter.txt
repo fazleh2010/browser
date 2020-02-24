@@ -1,9 +1,0 @@
-open_etching = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/open+etching-EN = browser_en_O_P_1_term_0.html
-overflow = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/overflow-EN = browser_en_O_P_1_term_1.html
-pastel_manner = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/pastel+manner-EN = browser_en_O_P_1_term_2.html
-polishing_powder = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/polishing+powder-EN = browser_en_O_P_1_term_3.html
-potassium_chlorate = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/potassium+chlorate-EN = browser_en_O_P_1_term_4.html
-proof = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/proof-EN = browser_en_O_P_1_term_5.html
-pumping = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/pumping-EN = browser_en_O_P_1_term_6.html
-punch_engraving = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/punch+engraving-EN = browser_en_O_P_1_term_7.html
-punched_print = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/punched+print-EN = browser_en_O_P_1_term_8.html

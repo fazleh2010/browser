@@ -1,8 +1,0 @@
-mace-head = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/mace-head-EN = browser_en_M_N_1_term_0.html
-manual_intaglio_printmaking = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/manual+intaglio+printmaking-EN = browser_en_M_N_1_term_1.html
-manual_mechanical_intaglio_printmaking = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/manual+mechanical+intaglio+printmaking-EN = browser_en_M_N_1_term_2.html
-mattoir = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/mattoir-EN = browser_en_M_N_1_term_3.html
-mezzotint = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/mezzotint-EN = browser_en_M_N_1_term_4.html
-mixed_method = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/mixed+method-EN = browser_en_M_N_1_term_5.html
-monotype = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/monotype-EN = browser_en_M_N_1_term_6.html
-mordant = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/mordant-EN = browser_en_M_N_1_term_7.html

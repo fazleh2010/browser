@@ -1,6 +1,0 @@
-edition = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/edition-EN = browser_en_E_F_1_term_0.html
-engraved_line = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/engraved+line-EN = browser_en_E_F_1_term_1.html
-etching = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/etching-EN = browser_en_E_F_1_term_2.html
-etching_bath = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/etching+bath-EN = browser_en_E_F_1_term_3.html
-etching_tray = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/etching+tray-EN = browser_en_E_F_1_term_4.html
-free-line_etching = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/free-line+etching-EN = browser_en_E_F_1_term_5.html

@@ -1,1 +1,0 @@
-dope = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/dope-EN = browser_en_C_D_1_term_0.html
