@@ -1,0 +1,8 @@
+afdekmethode = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/afdekmethode-NL = browser_nl_1_1_term_0.html
+afdekvernis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/afdekvernis-NL = browser_nl_1_1_term_1.html
+afslaan = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/afslaan-NL = browser_nl_1_1_term_2.html
+aquatint = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/aquatint-NL = browser_nl_1_1_term_3.html
+asfaltvernis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/asfaltvernis-NL = browser_nl_1_1_term_4.html
+bourgondische_pek = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/Bourgondische+pek-NL = browser_nl_1_1_term_5.html
+bruineerstaal = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/bruineerstaal-NL = browser_nl_1_1_term_6.html
+burijn = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/burijn-NL = browser_nl_1_1_term_7.html

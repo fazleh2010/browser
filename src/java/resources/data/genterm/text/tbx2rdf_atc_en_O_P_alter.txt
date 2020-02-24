@@ -1,0 +1,8 @@
+pyrethrum = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/pyrethrum-EN = browser_en_O_P_4_term_0.html
+pyridostigmine = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/pyridostigmine-EN = browser_en_O_P_4_term_1.html
+pyridoxine = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/pyridoxine-EN = browser_en_O_P_4_term_2.html
+pyrimethamine = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/pyrimethamine-EN = browser_en_O_P_4_term_3.html
+pyrimethamine,_combinations = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/pyrimethamine%2C+combinations-EN = browser_en_O_P_4_term_4.html
+pyrithyldione = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/pyrithyldione-EN = browser_en_O_P_4_term_5.html
+pyritinol = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/pyritinol-EN = browser_en_O_P_4_term_6.html
+pyrvinium = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/pyrvinium-EN = browser_en_O_P_4_term_7.html

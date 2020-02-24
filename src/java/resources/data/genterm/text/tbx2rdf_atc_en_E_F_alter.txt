@@ -1,0 +1,4 @@
+furosemide = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/furosemide-EN = browser_en_E_F_3_term_0.html
+furosemide_and_potassium-sparing_agents = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/furosemide+and+potassium-sparing+agents-EN = browser_en_E_F_3_term_1.html
+fusafungine = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/fusafungine-EN = browser_en_E_F_3_term_2.html
+fusidic_acid = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/fusidic+acid-EN = browser_en_E_F_3_term_3.html

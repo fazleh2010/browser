@@ -1,0 +1,5 @@
+aneurism = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/aneurism-EN = browser_en_A_B_1_term_0.html
+aneurysm = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/aneurysm-EN = browser_en_A_B_1_term_1.html
+apical = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/apical-EN = browser_en_A_B_1_term_2.html
+ataxia = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/ataxia-EN = browser_en_A_B_1_term_3.html
+ataxy = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/ataxy-EN = browser_en_A_B_1_term_4.html

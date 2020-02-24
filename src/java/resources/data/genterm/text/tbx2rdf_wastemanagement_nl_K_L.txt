@@ -1,0 +1,15 @@
+kartonafval = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/kartonafval-NL
+levenscyclus = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/levenscyclus-NL
+lca = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/LCA-NL
+levenscycluskostenberekening = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/levenscycluskostenberekening-NL
+kritische_analyse = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/kritische+analyse-NL
+levenscycluseffectbeoordeling = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/levenscycluseffectbeoordeling-NL
+levenscyclusanalyse = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/levenscyclusanalyse-NL
+levenscyclusinventarisatie = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/levenscyclusinventarisatie-NL
+kwantificering = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/kwantificering-NL
+lci = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/LCI-NL
+lcia = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/LCIA-NL
+kapitaalgoed = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/kapitaalgoed-NL
+levenscyclusbenadering = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/levenscyclusbenadering-NL
+koolstofvoetafdruk = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/koolstofvoetafdruk-NL
+levenscyclus_van_een_product = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/levenscyclus+van+een+product-NL

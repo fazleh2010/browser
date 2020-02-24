@@ -1,0 +1,10 @@
+lavis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/lavis-EN = browser_en_K_L_1_term_0.html
+lift-ground = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/lift-ground-EN = browser_en_K_L_1_term_1.html
+lift-ground_etching = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/lift-ground+etching-EN = browser_en_K_L_1_term_2.html
+lift-ground_process = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/lift-ground+process-EN = browser_en_K_L_1_term_3.html
+lift_ground = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/lift+ground-EN = browser_en_K_L_1_term_4.html
+line = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/line-EN = browser_en_K_L_1_term_5.html
+line_etching = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/line+etching-EN = browser_en_K_L_1_term_6.html
+liquid_ground = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/liquid+ground-EN = browser_en_K_L_1_term_7.html
+lithographic_chalk = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/lithographic+chalk-EN = browser_en_K_L_1_term_8.html
+lutemaker = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/lutemaker-EN = browser_en_K_L_1_term_9.html

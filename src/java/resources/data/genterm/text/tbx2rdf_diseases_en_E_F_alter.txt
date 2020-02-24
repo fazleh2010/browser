@@ -1,0 +1,4 @@
+edema = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/edema-EN = browser_en_E_F_1_term_0.html
+erythema = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/erythema-EN = browser_en_E_F_1_term_1.html
+failure_to_thrive = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/failure+to+thrive-EN = browser_en_E_F_1_term_2.html
+fibroma = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/fibroma-EN = browser_en_E_F_1_term_3.html

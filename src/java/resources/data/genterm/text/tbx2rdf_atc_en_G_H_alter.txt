@@ -1,0 +1,9 @@
+hydroxycarbamide = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/hydroxycarbamide-EN = browser_en_G_H_2_term_0.html
+hydroxychloroquine = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/hydroxychloroquine-EN = browser_en_G_H_2_term_1.html
+hydroxyethylstarch = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/hydroxyethylstarch-EN = browser_en_G_H_2_term_2.html
+hydroxyprogesterone = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/hydroxyprogesterone-EN = browser_en_G_H_2_term_3.html
+hydroxyzine = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/hydroxyzine-EN = browser_en_G_H_2_term_4.html
+hymecromone = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/hymecromone-EN = browser_en_G_H_2_term_5.html
+hyperici_herba = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/hyperici+herba-EN = browser_en_G_H_2_term_6.html
+hypersensitive = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/hypersensitive-EN = browser_en_G_H_2_term_7.html
+hypromellose = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/hypromellose-EN = browser_en_G_H_2_term_8.html

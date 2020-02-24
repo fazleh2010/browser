@@ -7,6 +7,7 @@ package browser.termallod.core.html;
 
 import browser.termallod.api.HtmlStringConts;
 import static browser.termallod.constants.FileAndCategory.BROWSER_URL;
+import static browser.termallod.constants.FileAndCategory.IATE;
 import static browser.termallod.constants.FileAndCategory.TEMPLATE_LOCATION;
 import java.io.File;
 import java.util.ArrayList;
@@ -165,12 +166,12 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
 
                 //code for creating term link
                 //Temporary clodes...
-                /*String termLinkFileName = termFileName.replace(".html", "");
+                String termLinkFileName = termFileName.replace(".html", "");
                 termLinkFileName = termLinkFileName + "_" + "add" + ".html";
                 File TermLinkhtmlFileName = new File(PATH + this.ontologyFileName + "/" + termLinkFileName);
                 Document termLinkTemplate = this.getTermLinkPageTemplate(".html");
                 Document generatedLinkHtmlPage = createTermLink(termLinkTemplate, termDetail);
-                this.termLinkHtmlPages.put(TermLinkhtmlFileName, generatedLinkHtmlPage);*/
+                this.termLinkHtmlPages.put(TermLinkhtmlFileName, generatedLinkHtmlPage);
 
             }
         
@@ -214,10 +215,11 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
     }
 
 
-   /* private Document createTermLink(Document templateHtml, TermDetail givenTermDetail) throws Exception {
+    private Document createTermLink(Document templateHtml, TermDetail givenTermDetail) throws Exception {
 
         MatchingTerminologies matchTerminologies = new MatchingTerminologies();
-        List<TermDetail> termDetails = matchTerminologies.getCategroyTerms(givenTermDetail.getCategory());
+        matchTerminologies.setDummyData();
+        List<TermDetail> termDetails = matchTerminologies.getCategroyTerms(IATE);
          List<String> divStrS =new ArrayList<String>();
         for (TermDetail termDetail : termDetails) {
             String term = termDetail.getTerm();
@@ -262,7 +264,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
             }
 
         return templateHtml;
-    }*/
+    }
 
     private String createUrlLink(String languageCode, Integer pageNumber) {
         return LOCALHOST_URL_LIST_OF_TERMS_PAGE + this.createFileNameUnicode(languageCode, pageNumber);

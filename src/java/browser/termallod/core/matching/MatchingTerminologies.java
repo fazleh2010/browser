@@ -24,21 +24,26 @@ import java.util.Set;
 public class MatchingTerminologies {
 
     private Map<String, Browser> inputBrowsers = new HashMap<String, Browser>();
-    private Map<String, List<TermDetail>> categroyTerms=new HashMap<String, List<TermDetail>>();
-    
+    private Map<String, List<TermDetail>> categroyTerms = new HashMap<String, List<TermDetail>>();
 
     public MatchingTerminologies() throws Exception {
-       categroyTerms=new HashMap<String, List<TermDetail>>();
-       List<TermDetail> termDetails=new ArrayList<TermDetail>();
-       String url="https://terms.tdwg.org/wiki/skos:exactMatch";
-       String alterurl="https://terms.tdwg.org/wiki/skos:exactMatch";
-       /*termDetails.add(new TermDetail("en","term_1",IATE,url,alterurl));
-       termDetails.add(new TermDetail("en","term_2",IATE,url,alterurl));
-       termDetails.add(new TermDetail("en","term_3",IATE,url,alterurl));
-       termDetails.add(new TermDetail("en","term_4",IATE,url,alterurl,true));
-       termDetails.add(new TermDetail("en","term_5",IATE,url,alterurl,true));*/
-       categroyTerms.put(IATE, termDetails);
+
     }
+
+    public void setDummyData() {
+        categroyTerms = new HashMap<String, List<TermDetail>>();
+        List<TermDetail> termDetails = new ArrayList<TermDetail>();
+        String url = "https://terms.tdwg.org/wiki/Original";
+        String alterurl = "https://terms.tdwg.org/wiki/skos:Alternative";
+
+        termDetails.add(new TermDetail(IATE, "en", "term_1", url, alterurl));
+        termDetails.add(new TermDetail(IATE, "en", "term_2", url, alterurl));
+        termDetails.add(new TermDetail(IATE, "en", "term_3", url, alterurl));
+        termDetails.add(new TermDetail(IATE, "en", "term_4", url, alterurl));
+        termDetails.add(new TermDetail(IATE, "en", "term_5", url, alterurl));
+        categroyTerms.put(IATE, termDetails);
+    }
+
     public MatchingTerminologies(Map<String, Browser> inputBrowsers) throws Exception {
         if (!inputBrowsers.isEmpty()) {
             matchBrowsers(inputBrowsers, IATE, "en");
@@ -63,7 +68,6 @@ public class MatchingTerminologies {
          termDetails.add(termDetail);
          categroyTerms.put(termDetail.getLangCode(), termDetails);
     }*/
-
     private void getTerms(String givenCategory) throws Exception {
         for (String category : inputBrowsers.keySet()) {
             Browser browsers = inputBrowsers.get(category);
@@ -74,7 +78,7 @@ public class MatchingTerminologies {
                     List<TermDetail> termDetails = new ArrayList<TermDetail>();
                     for (String term : langSpecificBrowser.getTermUrls().keySet()) {
                         String url = langSpecificBrowser.getTermUrls().get(term);
-                        TermDetail termDetail = new TermDetail(givenCategory,langCode, term, url);
+                        TermDetail termDetail = new TermDetail(givenCategory, langCode, term, url);
                         termDetails.add(termDetail);
                         System.out.println(termDetails.toString());
                     }
@@ -84,7 +88,7 @@ public class MatchingTerminologies {
             }
 
         }
-        
+
     }
 
     public void matchBrowsers(Map<String, Browser> input, String givenCategory, String langCode) throws Exception {
@@ -132,9 +136,11 @@ public class MatchingTerminologies {
     public Map<String, List<TermDetail>> getCategroyTerms() {
         return categroyTerms;
     }
-    public  List<TermDetail> getCategroyTerms(String category) throws Exception {
-        if(categroyTerms.isEmpty())
+
+    public List<TermDetail> getCategroyTerms(String category) throws Exception {
+        if (categroyTerms.isEmpty()) {
             throw new Exception("List is emplty!!");
+        }
         return categroyTerms.get(category);
     }
 

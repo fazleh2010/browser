@@ -1,0 +1,5 @@
+vallins,_g.h. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Vallins%2C+G.H.-NL = browser_nl_11_1_term_0.html
+van_dale = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Van+Dale-NL = browser_nl_11_1_term_1.html
+van_dale_e-n = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Van+Dale+E-N-NL = browser_nl_11_1_term_2.html
+verbong,_g. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Verbong%2C+G.-NL = browser_nl_11_1_term_3.html
+verhoeve,_c.w.g. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Verhoeve%2C+C.W.G.-NL = browser_nl_11_1_term_4.html

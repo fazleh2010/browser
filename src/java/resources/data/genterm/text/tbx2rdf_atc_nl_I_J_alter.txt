@@ -1,0 +1,14 @@
+joglycaminezuur = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/joglycaminezuur-NL = browser_nl_5_2_term_0.html
+johexol = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/johexol-NL = browser_nl_5_2_term_1.html
+jomeprol = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/jomeprol-NL = browser_nl_5_2_term_2.html
+jongere = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/jongere-NL = browser_nl_5_2_term_3.html
+jood = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/jood-NL = browser_nl_5_2_term_4.html
+jopamidol = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/jopamidol-NL = browser_nl_5_2_term_5.html
+jopanoinezuur = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/jopanoinezuur-NL = browser_nl_5_2_term_6.html
+jopromide = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/jopromide-NL = browser_nl_5_2_term_7.html
+jopydol = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/jopydol-NL = browser_nl_5_2_term_8.html
+jotalaminezuur = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/jotalaminezuur-NL = browser_nl_5_2_term_9.html
+jotrolan = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/jotrolan-NL = browser_nl_5_2_term_10.html
+joversol = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/joversol-NL = browser_nl_5_2_term_11.html
+joxaglinezuur = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/joxaglinezuur-NL = browser_nl_5_2_term_12.html
+joxitalaminezuur = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/joxitalaminezuur-NL = browser_nl_5_2_term_13.html

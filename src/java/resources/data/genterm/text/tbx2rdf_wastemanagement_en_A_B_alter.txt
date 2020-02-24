@@ -1,0 +1,9 @@
+allocation = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/allocation-EN = browser_en_A_B_1_term_0.html
+anaerobic_digestion = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/anaerobic+digestion-EN = browser_en_A_B_1_term_1.html
+analysis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/analysis-EN = browser_en_A_B_1_term_2.html
+approach = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/approach-EN = browser_en_A_B_1_term_3.html
+attributional_lca = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/attributional+LCA-EN = browser_en_A_B_1_term_4.html
+avoided_burden_approach = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/avoided+burden+approach-EN = browser_en_A_B_1_term_5.html
+background_system = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/background+system-EN = browser_en_A_B_1_term_6.html
+biodegradable_waste = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/biodegradable+waste-EN = browser_en_A_B_1_term_7.html
+biogas = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/biogas-EN = browser_en_A_B_1_term_8.html

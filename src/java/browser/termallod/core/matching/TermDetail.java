@@ -54,11 +54,21 @@ public class TermDetail {
         this.category = category;
     }
     
+    public TermDetail(String category,String langCode, String term,String url,String alternativeUrl) {
+        this(category,langCode,term);
+        //this.category=termDetail.getCategory();
+        //this.langCode = termDetail.getLangCode();
+        //this.term = termDetail.getTerm();
+        //this.termModified = StringMatcherUtil.decripted(term);
+        this.url = url;
+        this.alternativeUrl = alternativeUrl;
+    }
     public TermDetail(TermDetail termDetail,String url,String alternativeUrl) {
-        this.category=termDetail.getCategory();
-        this.langCode = termDetail.getLangCode();
-        this.term = termDetail.getTerm();
-        this.termModified = StringMatcherUtil.decripted(term);
+        this(termDetail.getCategory(),termDetail.getLangCode(),termDetail.getTerm());
+        //this.category=termDetail.getCategory();
+        //this.langCode = termDetail.getLangCode();
+        //this.term = termDetail.getTerm();
+        //this.termModified = StringMatcherUtil.decripted(term);
         this.url = url;
         this.alternativeUrl = alternativeUrl;
     }

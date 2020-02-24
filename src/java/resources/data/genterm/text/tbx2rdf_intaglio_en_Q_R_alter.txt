@@ -1,0 +1,6 @@
+rebiting_ground = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/rebiting+ground-EN = browser_en_Q_R_1_term_0.html
+recarve = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/recarve-EN = browser_en_Q_R_1_term_1.html
+remarque = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/remarque-EN = browser_en_Q_R_1_term_2.html
+repoussage = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/repoussage-EN = browser_en_Q_R_1_term_3.html
+resin_dust = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/resin+dust-EN = browser_en_Q_R_1_term_4.html
+retroussage = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/retroussage-EN = browser_en_Q_R_1_term_5.html

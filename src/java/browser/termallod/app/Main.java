@@ -33,7 +33,7 @@ public class Main implements FileAndCategory {
         {
             put("en", "English");
             //currently dutch does not work...
-            //put("nl", "Dutch");
+            put("nl", "Dutch");
             /*put("bg", "Bulgarian");
             put("cs", "Czech");
             put("da", "Danish");
@@ -67,8 +67,8 @@ public class Main implements FileAndCategory {
         Boolean termLinkPageFlag=true;
 
          Tasks tasks = new Taskimpl(LANGUAGE_CONFIG_FILE);
-         //tasks.saveDataIntoFiles(browserSet);
-         //tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,browserSet,lang,termPageFlag,termLinkPageFlag);
+         tasks.saveDataIntoFiles(browserSet);
+         tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,browserSet,lang,termPageFlag,termLinkPageFlag);
 
         //this is necessary for other applications!!
         //tasks.readDataFromSavedFiles();
