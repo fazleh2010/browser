@@ -139,16 +139,16 @@ public class HtmlCreator implements FileAndCategory {
             List<TermDetail> termDetails = this.getTermDetails(categoryName,language, terms);
             HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
             Document templateHtml = htmlReaderWriter.getInputDocument();
-            HtmlModifier htmlPage = new HtmlModifier(PATH, templateHtml, language, alphabetTermPage, termDetails, categoryName, pageContentGenerator, currentPageNumber, true, termPageFlag, termLinkPageFlag);
-            htmlReaderWriter.writeHtml(htmlPage.getGeneratedHtmlPage(), htmlPage.getHtmlFileName());
-            for (File termFile : htmlPage.getGeneratedTermHtmlPages().keySet()) {
+            HtmlModifier htmlPage = new HtmlModifier(PATH, templateHtml, language, alphabetTermPage, termDetails, categoryName, pageContentGenerator, currentPageNumber, true, termPageFlag, termLinkPageFlag,htmlReaderWriter);
+            //htmlReaderWriter.writeHtml(htmlPage.getGeneratedHtmlPage(), htmlPage.getHtmlFileName());
+            /*for (File termFile : htmlPage.getGeneratedTermHtmlPages().keySet()) {
                 Document generatedHtml = htmlPage.getGeneratedTermHtmlPages().get(termFile);
                 htmlReaderWriter.writeHtml(generatedHtml, termFile);
-            }
-            for (File termFile : htmlPage.getTermLinkHtmlPages().keySet()) {
+            }*/
+            /*for (File termFile : htmlPage.getTermLinkHtmlPages().keySet()) {
                 Document generatedHtml = htmlPage.getTermLinkHtmlPages().get(termFile);
                 htmlReaderWriter.writeHtml(generatedHtml, termFile);
-            }
+            }*/
             List<TermDetail> termInfos = htmlPage.getTermList();
             FileRelatedUtils.writeFile(termInfos, textInputFile);
         }
