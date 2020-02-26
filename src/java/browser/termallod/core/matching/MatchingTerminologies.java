@@ -48,7 +48,7 @@ public class MatchingTerminologies {
         if (!inputBrowsers.isEmpty()) {
             matchBrowsers(inputBrowsers, IATE, "en");
         } else {
-            throw new Exception("No browser data found for creating index!!");
+            throw new Exception("No browser data found for matching terms!!");
         }
 
     }

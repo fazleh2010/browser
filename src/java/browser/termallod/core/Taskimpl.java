@@ -95,25 +95,25 @@ public class Taskimpl implements Tasks, FileAndCategory {
     }
 
     @Override
-    public void readDataFromSavedFiles() throws IOException, Exception {
+    public void readDataFromSavedFiles(Boolean alternativeFlag) throws IOException, Exception {
         for (String browser : BROWSER_GROUPS) {
             List<String> categories = FileAndCategory.BROWSER_CATEGORIES.get(browser);
-            this.readDataFromSavedFiles(browser, categories);
+            this.readDataFromSavedFiles(browser, categories,alternativeFlag);
         }
     }
 
     @Override
-    public void readDataFromSavedFiles(String givenBrowser) throws IOException, Exception {
+    public void readDataFromSavedFiles(String givenBrowser,Boolean alternativeFlag) throws IOException, Exception {
         for (String browser : BROWSER_GROUPS) {
             if (browser.contains(givenBrowser)) {
                 List<String> categories = FileAndCategory.BROWSER_CATEGORIES.get(browser);
-                this.readDataFromSavedFiles(browser, categories);
+                this.readDataFromSavedFiles(browser, categories,alternativeFlag);
             }
         }
 
     }
-
-    private void readDataFromSavedFiles(String browser, List<String> categories) throws IOException, Exception {
+    
+      private void readDataFromSavedFiles(String browser, List<String> categories, Boolean alternativeFlag) throws IOException, Exception {
         String source = FileRelatedUtils.getSourcePath(BASE_PATH, browser);
         for (String category : categories) {
             String ontologyName = CATEGORY_ONTOLOGIES.get(category);
@@ -130,7 +130,40 @@ public class Taskimpl implements Tasks, FileAndCategory {
                 }
                 Map<String, String> allkeysValues = new HashMap<String, String>();
                 for (File file : termFiles) {
-                    System.out.println(file.getName());
+                    Properties props =new Properties();
+                    if (file.getName().contains("alter")) 
+                        props = FileRelatedUtils.getPropertyHash(file);
+                    else
+                        props = FileRelatedUtils.getPropertyHash(file);
+                        
+                        Map<String, String> tempHash = (Map) props;
+                        allkeysValues.putAll(tempHash);
+                }
+                langSpecBrowsers.put(langCode, new LangSpecificBrowser(langCode, allkeysValues));
+            }
+            Browser generalBrowser = new Browser(browser, category, langSpecBrowsers);
+            browsersInfor.put(category, generalBrowser);
+        }
+
+    }
+
+    /*private void readDataFromSavedFiles(String browser, List<String> categories,Boolean alternativeFlag) throws IOException, Exception {
+        String source = FileRelatedUtils.getSourcePath(BASE_PATH, browser);
+        for (String category : categories) {
+            String ontologyName = CATEGORY_ONTOLOGIES.get(category);
+            List<File> files = FileRelatedUtils.getFiles(source + TEXT_PATH, ontologyName, ".txt");
+            if (files.isEmpty()) {
+                throw new Exception("Text folder can not be empty!!!");
+            }
+            Map<String, List<File>> languageFiles = FileRelatedUtils.getLanguageFiles(files, ".txt");
+            Map<String, LangSpecificBrowser> langSpecBrowsers = new HashMap<String, LangSpecificBrowser>();
+            for (String langCode : languageFiles.keySet()) {
+                List<File> termFiles = languageFiles.get(langCode);
+                if (termFiles.isEmpty()) {
+                    throw new Exception("No language files are found to process!!");
+                }
+                Map<String, String> allkeysValues = new HashMap<String, String>();
+                for (File file : termFiles) {
                     Properties props = FileRelatedUtils.getPropertyHash(file);
                     Map<String, String> tempHash = (Map) props;
                     allkeysValues.putAll(tempHash);
@@ -141,7 +174,7 @@ public class Taskimpl implements Tasks, FileAndCategory {
             browsersInfor.put(category, generalBrowser);
         }
 
-    }
+    }*/
 
     @Override
     public void saveDataIntoFiles(Set<String> browserSet) throws Exception, IOException {

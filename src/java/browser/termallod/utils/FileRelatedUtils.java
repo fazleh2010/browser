@@ -126,15 +126,25 @@ public class FileRelatedUtils {
         }
         return files;
     }
-
+    
+    
     public static void writeFile(List<TermDetail> terms, String fileName) throws IOException {
+        String str = "";
+        for (TermDetail term : terms) {
+            String line = term.getTerm() + " = " +term.getAlternativeUrl();
+            str += line + "\n";
+        }
+        stringToFile_If_Exists(str, fileName);
+    }
+
+    /*public static void writeFile(List<TermDetail> terms, String fileName) throws IOException {
         String str = "";
         for (TermDetail term : terms) {
             String line = term.getTerm() + " = " + term.getUrl()+ " = " +term.getAlternativeUrl();
             str += line + "\n";
         }
         stringToFile_If_Exists(str, fileName);
-    }
+    }*/
     
     public static void stringToFile_If_Exists(String str, String fileName)
             throws IOException {
@@ -226,6 +236,24 @@ public class FileRelatedUtils {
         }
         return languageFiles;
     }
+    
+    public static Map<String, List<File>> getLanguageFiles(List<File> inputfiles, String model_extension,Boolean alternativeFlag) {
+        Map<String, List<File>> languageFiles = new HashMap<String, List<File>>();
+        for (File file : inputfiles) {
+            String langCode = NameExtraction.getLanCode(file, model_extension);
+            if (languageFiles.containsKey(langCode)) {
+                List<File> files = languageFiles.get(langCode);
+                files.add(file);
+                languageFiles.put(langCode, files);
+            } else {
+                List<File> files = new ArrayList<File>();
+                files.add(file);
+                languageFiles.put(langCode, files);
+            }
+
+        }
+        return languageFiles;
+    }
 
     public static void deleteDirectory(String dir) throws IOException {
         FileUtils.deleteDirectory(new File(dir));
@@ -249,7 +277,6 @@ public class FileRelatedUtils {
         Map<String, List<File>> languageFiles = getLanguageFiles(files, ".txt");
         List<File> langFiles = languageFiles.get(langCode);
         for (File file : langFiles) {
-
             String fileName = file.getName().replace(categoryName, "").replace(langCode, "").toLowerCase().trim();
             String pair = alphabetTermPage.getAlpahbetPair().toLowerCase();
             if (fileName.contains(pair)) {

@@ -25,9 +25,9 @@ public interface Tasks {
 
     public void saveDataIntoFiles(Set<String> browserSet, String browser) throws Exception, IOException;
 
-    public void readDataFromSavedFiles() throws IOException, Exception;
+    public void readDataFromSavedFiles(Boolean alternativeFlag) throws IOException, Exception;
 
-    public void readDataFromSavedFiles(String givenBrowser) throws IOException, Exception;
+    public void readDataFromSavedFiles(String givenBrowser,Boolean alternativeFlag) throws IOException, Exception;
 
     public void createHtmlFromSavedFiles(List<String> categorySet, String MODEL_EXTENSION, Set<String> browserSet, Set<String> lang,Boolean termPageFlag,Boolean termLinkPageFlag) throws Exception, IOException;
 

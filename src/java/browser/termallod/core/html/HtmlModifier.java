@@ -18,15 +18,8 @@ import browser.termallod.constants.HtmlPage;
 import browser.termallod.constants.Languages;
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.PageContentGenerator;
-import browser.termallod.core.TermInfo;
 import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.matching.TermDetail;
-import browser.termallod.utils.StringMatcherUtil;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author elahi
@@ -171,8 +164,6 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
                 Document termLinkTemplate = this.getTermLinkPageTemplate(".html");
                 Document generatedLinkHtmlPage = createTermLink(termLinkTemplate, termDetail);
                 htmlReaderWriter.writeHtml(generatedLinkHtmlPage, TermLinkhtmlFileName);
-                //this.termLinkHtmlPages.put(TermLinkhtmlFileName, generatedLinkHtmlPage);
-
             }
         
         return termDetail;

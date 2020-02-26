@@ -27,14 +27,14 @@ import java.io.IOException;
  */
 public class Main implements FileAndCategory {
 
-    public static Set<String> browserSet = new HashSet<String>(Arrays.asList(GENTERM));
+    public static Set<String> browserSet = new HashSet<String>(Arrays.asList(IATE,GENTERM));
     private static Set<String> lang = new TreeSet<String>();
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
             put("en", "English");
             //currently dutch does not work...
             put("nl", "Dutch");
-            /*put("bg", "Bulgarian");
+            put("bg", "Bulgarian");
             put("cs", "Czech");
             put("da", "Danish");
             put("de", "German");
@@ -65,13 +65,14 @@ public class Main implements FileAndCategory {
         cleanDirectory();
         Boolean termPageFlag=true;
         Boolean termLinkPageFlag=true;
+        Boolean alternativeFlag=true;
 
          Tasks tasks = new Taskimpl(LANGUAGE_CONFIG_FILE);
-         //tasks.saveDataIntoFiles(browserSet);
+        // tasks.saveDataIntoFiles(browserSet);
          //tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,browserSet,lang,termPageFlag,termLinkPageFlag);
 
         //this is necessary for other applications!!
-        //tasks.readDataFromSavedFiles();
+        //tasks.readDataFromSavedFiles(GENTERM,alternativeFlag);
        // tasks.readDataFromSavedFiles(GENTERM);
         //tasks.createTermDetailHtmlPage(ATC);
         
@@ -90,8 +91,13 @@ public class Main implements FileAndCategory {
         //tasks.createAddDeclineHtmlPage(ATC,"en", termDetail, lang);
 
         //create java script files
-        //tasks.prepareGroundForJs();
-        //tasks.generateScript();
+         //tasks.prepareGroundForJs();
+         //tasks.generateScript();
+         
+         
+         //match terms..
+         //tasks.readDataFromSavedFiles(GENTERM, alternativeFlag);
+         //tasks.matchBrowsers();
     }
     // run before comit..................to clean all folder
 
