@@ -131,9 +131,9 @@ public class Taskimpl implements Tasks, FileAndCategory {
                 Map<String, String> allkeysValues = new HashMap<String, String>();
                 for (File file : termFiles) {
                     Properties props =new Properties();
-                    if (file.getName().contains("alter")) 
+                    /*if (file.getName().contains("alter")) 
                         props = FileRelatedUtils.getPropertyHash(file);
-                    else
+                    else*/
                         props = FileRelatedUtils.getPropertyHash(file);
                         
                         Map<String, String> tempHash = (Map) props;
