@@ -17,9 +17,12 @@ import browser.termallod.api.Tasks;
 import static browser.termallod.constants.FileAndCategory.BASE_PATH;
 import static browser.termallod.constants.FileAndCategory.CATEGORY_ONTOLOGIES;
 import static browser.termallod.constants.FileAndCategory.DATA_PATH;
+import browser.termallod.core.Browser;
+import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.matching.TermDetail;
 import browser.termallod.utils.FileRelatedUtils;
 import java.io.IOException;
+import java.util.List;
 
 /**
  *
@@ -27,13 +30,13 @@ import java.io.IOException;
  */
 public class Main implements FileAndCategory {
 
-    public static Set<String> browserSet = new HashSet<String>(Arrays.asList(GENTERM));
+    public static Set<String> browserSet = new HashSet<String>(Arrays.asList(GENTERM,IATE));
     private static Set<String> lang = new TreeSet<String>();
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
             put("en", "English");
             //currently dutch does not work...
-            /*put("nl", "Dutch");
+            put("nl", "Dutch");
             put("bg", "Bulgarian");
             put("cs", "Czech");
             put("da", "Danish");
@@ -55,21 +58,23 @@ public class Main implements FileAndCategory {
             put("ro", "Romanian");
             put("sk", "Slovak");
             put("sl", "Slovenian");
-            //put("sv", "Swedish");*/
+            //put("sv", "Swedish");
         }
     };
 
     public static void main(String[] args) throws Exception {
         lang = new TreeSet<String>(languageMapper.keySet());
         // run before comit..................
-        cleanDirectory();
         Boolean termPageFlag=true;
         Boolean termLinkPageFlag=true;
-        Boolean alternativeFlag=true;
+        Boolean alternativeFlag=false;
+        cleanDirectory();
 
-         Tasks tasks = new Taskimpl(LANGUAGE_CONFIG_FILE);
+         Tasks tasks = new Taskimpl(LANGUAGE_CONFIG_FILE,browserSet);
+         //tasks.matchTerminologies(GENTERM,IATE,alternativeFlag);
          //tasks.saveDataIntoFiles(browserSet);
-         //tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,browserSet,lang,termPageFlag,termLinkPageFlag);
+         //tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,new HashSet<String>(Arrays.asList(GENTERM)),lang,termPageFlag,termLinkPageFlag);
+         
 
         //this is necessary for other applications!!
         //tasks.readDataFromSavedFiles(GENTERM,alternativeFlag);
@@ -97,7 +102,15 @@ public class Main implements FileAndCategory {
          
          //match terms..
          //tasks.readDataFromSavedFiles(GENTERM, alternativeFlag);
-         //tasks.matchBrowsers();
+         //tasks.readDataFromSavedFiles(IATE,false);
+         //tasks.createIndexing(IATE);
+         
+        
+        //Map<String, Browser> browsersInfoSecond = tasks.readDataFromSavedFiles(IATE,false);
+      
+        // List<TermDetail> termDetails=MatchingTerminologies.getTermDetails("alcaftadine");
+        // System.out.println(termDetails.toString());
+       
     }
     // run before comit..................to clean all folder
 

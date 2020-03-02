@@ -23,6 +23,8 @@ import static browser.termallod.constants.FileAndCategory.BROWSER_CATEGORIES;
 import static browser.termallod.constants.FileAndCategory.BROWSER_GROUPS;
 import static browser.termallod.constants.FileAndCategory.CATEGORY_ONTOLOGIES;
 import static browser.termallod.constants.FileAndCategory.DATA_PATH;
+import static browser.termallod.constants.FileAndCategory.GENTERM;
+import static browser.termallod.constants.FileAndCategory.IATE;
 import static browser.termallod.constants.FileAndCategory.RDF_PATH;
 import static browser.termallod.constants.FileAndCategory.TEXT_PATH;
 import static browser.termallod.constants.FileAndCategory.TURTLE;
@@ -32,7 +34,9 @@ import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.matching.TermDetail;
 import browser.termallod.utils.GeneralCompScriptGen;
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -47,9 +51,12 @@ public class Taskimpl implements Tasks, FileAndCategory {
     private LuceneIndexing luceneIndexing = null;
     private GeneralCompScriptGen javaScriptCode = null;
     private MatchingTerminologies matchTerminologies = new MatchingTerminologies();
+    private Boolean indexCreated = false;
+    public Set<String> givenBrowserSet = new HashSet<String>();
 
-    public Taskimpl(File LANGUAGE_CONFIG_FILE) throws Exception {
+    public Taskimpl(File LANGUAGE_CONFIG_FILE, Set<String> givenBrowserSet) throws Exception {
         this.languageManager = new LanguageAlphabetPro(LANGUAGE_CONFIG_FILE);
+        this.givenBrowserSet = givenBrowserSet;
     }
 
     //add decline page seperate creation
@@ -62,29 +69,36 @@ public class Taskimpl implements Tasks, FileAndCategory {
             Logger.getLogger(Taskimpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }*/
-
     @Override
-    public void createHtmlFromSavedFiles(List<String> categorySet, String MODEL_EXTENSION, Set<String> browserSet, Set<String> lang,Boolean termPageFlag,Boolean termLinkPageFlag) throws Exception, IOException {
+    public void createHtmlFromSavedFiles(Set<String> categorySet, String MODEL_EXTENSION, Set<String> browserSet, Set<String> lang, Boolean termPageFlag, Boolean termLinkPageFlag) throws Exception, IOException {
         FileRelatedUtils.cleanDirectory(CATEGORY_ONTOLOGIES, BASE_PATH, DATA_PATH);
         for (String browser : categorySet) {
             if (browserSet.contains(browser)) {
                 String source = FileRelatedUtils.getSourcePath(BASE_PATH, browser);
                 List<String> categoties = BROWSER_CATEGORIES.get(browser);
                 HtmlCreator htmlCreator = new HtmlCreator(BASE_PATH, lang);
-                htmlCreator.createHtmlForEachCategory(categoties, source, MODEL_EXTENSION, browser,termPageFlag,termLinkPageFlag);
+                htmlCreator.createHtmlForEachCategory(categoties, source, MODEL_EXTENSION, browser, termPageFlag, termLinkPageFlag);
             }
         }
     }
 
     @Override
-    public void createIndexing() throws IOException, ParseException, Exception {
-        this.luceneIndexing = new LuceneIndexing(this.browsersInfor);
+    public void createIndexing(Boolean alternativeFlag) throws IOException, ParseException, Exception {
+        if (browsersInfor.isEmpty()) {
+            this.readDataFromSavedFiles(alternativeFlag);
+        }
+        this.luceneIndexing = new LuceneIndexing(browsersInfor);
+        this.indexCreated = true;
 
     }
 
     @Override
-    public void createIndexing(String browser) throws IOException, ParseException, Exception {
+    public void createIndexing(String browser, Boolean alternativeFlag) throws IOException, ParseException, Exception {
+        if (this.browsersInfor.isEmpty()) {
+            this.readDataFromSavedFiles(alternativeFlag);
+        }
         this.luceneIndexing = new LuceneIndexing(this.browsersInfor, browser);
+        this.indexCreated = true;
 
     }
 
@@ -96,24 +110,34 @@ public class Taskimpl implements Tasks, FileAndCategory {
 
     @Override
     public void readDataFromSavedFiles(Boolean alternativeFlag) throws IOException, Exception {
+        Map<String, Browser> browsersInfor = new HashMap<String, Browser>();
+        this.checkGeneratedTextFiles(BROWSER_GROUPS);
+        /*Map<String,Boolean> textFilesGenerated=this.isTextFileGenerated(BROWSER_GROUPS);
+        for(String browser:textFilesGenerated.keySet()){
+            if(!textFilesGenerated.get(browser))
+                this.saveDataIntoFiles(browser);
+        }*/
+
         for (String browser : BROWSER_GROUPS) {
             List<String> categories = FileAndCategory.BROWSER_CATEGORIES.get(browser);
-            this.readDataFromSavedFiles(browser, categories,alternativeFlag);
+            readDataFromSavedFiles(browser, categories, alternativeFlag);
         }
+
     }
 
     @Override
-    public void readDataFromSavedFiles(String givenBrowser,Boolean alternativeFlag) throws IOException, Exception {
+    public void readDataFromSavedFiles(String givenBrowser, Boolean alternativeFlag) throws IOException, Exception {
+        Map<String, Browser> browsersInfor = new HashMap<String, Browser>();
         for (String browser : BROWSER_GROUPS) {
             if (browser.contains(givenBrowser)) {
                 List<String> categories = FileAndCategory.BROWSER_CATEGORIES.get(browser);
-                this.readDataFromSavedFiles(browser, categories,alternativeFlag);
+                readDataFromSavedFiles(browser, categories, alternativeFlag);
             }
         }
 
     }
-    
-      private void readDataFromSavedFiles(String browser, List<String> categories, Boolean alternativeFlag) throws IOException, Exception {
+
+    private void readDataFromSavedFiles(String browser, List<String> categories, Boolean alternativeFlag) throws IOException, Exception {
         String source = FileRelatedUtils.getSourcePath(BASE_PATH, browser);
         for (String category : categories) {
             String ontologyName = CATEGORY_ONTOLOGIES.get(category);
@@ -130,14 +154,18 @@ public class Taskimpl implements Tasks, FileAndCategory {
                 }
                 Map<String, String> allkeysValues = new HashMap<String, String>();
                 for (File file : termFiles) {
-                    Properties props =new Properties();
-                    /*if (file.getName().contains("alter")) 
-                        props = FileRelatedUtils.getPropertyHash(file);
-                    else*/
-                        props = FileRelatedUtils.getPropertyHash(file);
-                        
-                        Map<String, String> tempHash = (Map) props;
-                        allkeysValues.putAll(tempHash);
+                    Properties props = new Properties();
+                    File selectedFile = null;
+                    if (alternativeFlag) {
+                        if (file.getName().contains("alter")) {
+                            selectedFile = file;
+                        }
+                    } else {
+                        selectedFile = file;
+                    }
+                    props = FileRelatedUtils.getPropertyHash(selectedFile);
+                    Map<String, String> tempHash = (Map) props;
+                    allkeysValues.putAll(tempHash);
                 }
                 langSpecBrowsers.put(langCode, new LangSpecificBrowser(langCode, allkeysValues));
             }
@@ -175,7 +203,6 @@ public class Taskimpl implements Tasks, FileAndCategory {
         }
 
     }*/
-
     @Override
     public void saveDataIntoFiles(Set<String> browserSet) throws Exception, IOException {
         FileRelatedUtils.cleanDirectory(BROWSER_GROUPS, BASE_PATH, TEXT_PATH);
@@ -212,9 +239,13 @@ public class Taskimpl implements Tasks, FileAndCategory {
     }
 
     @Override
-    public Set<TermDetail> matchBrowsers() throws IOException, Exception {
+    public Set<TermDetail> matchTerminologies(String firstTerminology, String secondTerminology, Boolean alternativeFlag) throws IOException, Exception {
         //currently does not work properly..
-        MatchingTerminologies matchTerminologies = new MatchingTerminologies(this.browsersInfor);
+        //MatchingTerminologies matchTerminologies = new MatchingTerminologies(browsersInforFirst,browsersInfoSecond);
+        if (!this.indexCreated) {
+            this.createIndexing(alternativeFlag);
+        }
+        MatchingTerminologies matchTerminologies = new MatchingTerminologies(this.browsersInfor, secondTerminology);
         return new HashSet<TermDetail>();
     }
 
@@ -231,7 +262,6 @@ public class Taskimpl implements Tasks, FileAndCategory {
         }
 
     }*/
-
     public static String getOntologyName(String category) {
         return CATEGORY_ONTOLOGIES.get(category);
     }
@@ -249,6 +279,30 @@ public class Taskimpl implements Tasks, FileAndCategory {
     @Override
     public Map<String, Browser> getBrowsersInfor() {
         return browsersInfor;
+    }
+
+    /*private boolean isTextFileGenerated(List<String> BROWSER_GROUPS) {
+        for (String browser : BROWSER_GROUPS) {
+           String source = FileRelatedUtils.getSourcePath(BASE_PATH, browser);
+             File sourceTextDir=new File(source);
+             if (sourceTextDir.isDirectory()) {
+                if (!(sourceTextDir.list().length > 0)) 
+                      System.out.println("Directory is not empty!"); 
+             }      
+        }
+        
+         }*/
+    private void checkGeneratedTextFiles(Set<String> BROWSER_GROUPS) throws Exception {
+        for (String browser : BROWSER_GROUPS) {
+            String source = FileRelatedUtils.getSourcePath(BASE_PATH, browser) + TEXT_PATH;
+            File sourceTextDir = new File(source);
+            if (sourceTextDir.isDirectory()) {
+                if (!(sourceTextDir.list().length > 0)) {
+                    this.saveDataIntoFiles(browser);
+                }
+            }
+        }
+
     }
 
 }

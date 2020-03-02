@@ -194,7 +194,7 @@ public class FileRelatedUtils {
         writer.close();
     }
 
-    public static void cleanDirectory(List<String> categorySet, String PATH, String TEXT_DIR) throws IOException {
+    public static void cleanDirectory(Set<String> categorySet, String PATH, String TEXT_DIR) throws IOException {
         //deleting all generated term filkes
         for (String browser : categorySet) {
             String sourceTextDir = getSourcePath(PATH, browser) + TEXT_DIR;

@@ -5,7 +5,6 @@
  */
 package browser.termallod.core.html;
 
-import browser.termallod.app.Main;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -39,7 +38,7 @@ public class HtmlReaderWriter {
         try {
             htmlString = this.getHtmlHeader(file);
         } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HtmlReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
         Document document = Jsoup.parse(htmlString);
         String title = document.title();
@@ -74,7 +73,7 @@ public class HtmlReaderWriter {
         try {
             FileUtils.writeStringToFile(outputFile, outputDocument.outerHtml(), "UTF-8");
         } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HtmlReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

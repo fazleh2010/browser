@@ -7,6 +7,7 @@ package browser.termallod.core;
 
 import java.util.Map;
 import java.util.TreeMap;
+
 import org.apache.lucene.store.Directory;
 
 /**
@@ -24,11 +25,11 @@ public class Browser {
         this.category = browserInfo.getCategory();
         this.langTermUrls = langTermUrls;
     }
-    
+
     public Browser(String browser, String category, Map<String, LangSpecificBrowser> langTermUrls) {
         this.browser = browser;
         this.category = category;
-        this.langTermUrls=langTermUrls;
+        this.langTermUrls = langTermUrls;
     }
 
     public void setIndex(String langCode, Directory index) {
@@ -51,6 +52,9 @@ public class Browser {
     }
 
     public LangSpecificBrowser getLangTermUrls(String langCode) {
-        return langTermUrls.get(langCode);
+        return  langTermUrls.get(langCode); 
+    }
+     public Boolean istLanCodeExisit(String langCode) {
+        return  langTermUrls.containsKey(langCode);
     }
 }

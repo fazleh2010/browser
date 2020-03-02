@@ -9,8 +9,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -45,7 +47,7 @@ public interface FileAndCategory {
     public String WASTEMANAGEMENT = "wastemanagement";
     public String IATE = "iate";
     public String GENTERM = "genterm";
-    public List<String> BROWSER_GROUPS = new ArrayList<String>(Arrays.asList(GENTERM, IATE));
+    public Set<String> BROWSER_GROUPS = new HashSet<String>(Arrays.asList(GENTERM, IATE));
 
     public Map<String, String> CATEGORY_ONTOLOGIES = new HashMap<String, String>() {
         {
