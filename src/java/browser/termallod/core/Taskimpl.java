@@ -230,7 +230,11 @@ public class Taskimpl implements Tasks, FileAndCategory {
         File[] files = FileRelatedUtils.getFiles(source, TURTLE_EXTENSION);
         String inputDir = source + RDF_PATH;
         String outputDir = source + TEXT_PATH;
-        new RdfReader(inputDir, languageManager, TURTLE, TURTLE_EXTENSION, outputDir);
+        File[] turtleFiles=FileRelatedUtils.getFiles(inputDir, TURTLE_EXTENSION);
+        if(turtleFiles.length>0)
+          new RdfReader(inputDir, languageManager, TURTLE, TURTLE_EXTENSION, outputDir);
+        else
+            throw new Exception("No rdf file to process!!!");
     }
 
     @Override
@@ -304,5 +308,6 @@ public class Taskimpl implements Tasks, FileAndCategory {
         }
 
     }
+    
 
 }

@@ -22,7 +22,7 @@ public interface FileAndCategory {
 
     public static String BASE_PATH = "src/java/resources/data/";
     public static String DATA_PATH = "data/";
-    public static String TEXT_PATH = "text/";
+    public static String TEXT_PATH = "txt/";
     public static String RDF_PATH = "rdf/";
     public static String GENTERM_PATH=BASE_PATH+File.separator;
     public static File LANGUAGE_CONFIG_FILE = new File(BASE_PATH+"conf/" +"language.conf");
