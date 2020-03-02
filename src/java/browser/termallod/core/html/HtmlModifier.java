@@ -206,12 +206,12 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         multiLingualDiv.append(li);*/
         //System.out.println(multiLingualDiv.toString());
         
-          List<String> divStrS = new ArrayList<String>();
+         List<String> divStrS = new ArrayList<String>();
          List<TermDetail> matchedTerms = MatchingTerminologies.getTermDetails(this.language, termDetail.getTerm());
-            if (!matchedTerms.isEmpty()) {
-                  divStrS  = createTermLink(matchedTerms);
-            }
-        
+         if (!matchedTerms.isEmpty()) {
+             divStrS = createTermLink(matchedTerms);
+         }
+
          if (!divStrS.isEmpty()) {
              Integer index = 0;
              List<Element> divTerms = body.getElementsByClass("panel panel-default");
@@ -253,16 +253,23 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
                 url = termDetail.getAlternativeUrl(otherTerminology);
             }
 
+            //temporary closed
             String panelHeadingStart = divClassStr + this.getWithinQuote("panel-heading") + ">" + 
                                                     "<a href=" + this.getWithinQuote(url) + " class=" + 
                                                     this.getWithinQuote("rdf_link") + ">" + term + "</a>" + divClassEnd;
+            
+            panelHeadingStart = "";
             String panelHeadingEnd = "</div>";
-            String firstTr = getTr(getProperty(langPropUrl, langPropStr), getValue(langValueUrl1, langValueUrl2, langValueStr));
-
+            String firstTr = getTr(getProperty(spanTerminologyUrl, otherTerminology), getValue(url,url,term));
+            //firstTr = "";
+            
             String termValue = this.getValue(this.getSpanProp(spanPropUrl1, spanPropUrl2, spanPropStr) + this.getSpanValue(spanTerminologyUrl, spanTerminologyName));
             String secondTr = getTr(getProperty(langTermUrl, langTermStr), termValue);
+            secondTr= "";
 
             String thirdTr = getTr(getProperty(matchPropUrl, matchPropStr), getValue(matchValueUrl1, matchValueUrl2, matchValueStr));
+            thirdTr= "";
+            
             String table = this.getTable(this.getTbody(firstTr + secondTr + thirdTr));
 
             String yesNoButtonDiv = getAcceptDenyButton();
