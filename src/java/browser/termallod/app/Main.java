@@ -68,8 +68,7 @@ public class Main implements FileAndCategory {
         Boolean termPageFlag=true;
         Boolean termLinkPageFlag=true;
         Boolean alternativeFlag=false;
-        cleanDirectory();
-
+         cleanDirectory();
          Tasks tasks = new Taskimpl(LANGUAGE_CONFIG_FILE,browserSet);
          //tasks.matchTerminologies(GENTERM,IATE,alternativeFlag);
          //tasks.saveDataIntoFiles(browserSet);

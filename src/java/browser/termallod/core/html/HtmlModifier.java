@@ -148,37 +148,35 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         Document generatedHtmlPage = null;
 
         Document termTemplate = this.getTermPageTemplate(".html");
-        generatedHtmlPage = createTermPage(termTemplate, termDetail);
+        //generatedHtmlPage = createTermPage(termTemplate, termDetail);
         if (this.alternativeFlag) {
             String termFileName = this.htmlFileName.getName().replace(".html", "");
             termFileName = termFileName + "_" + "term" + "_" + index + ".html";
             File TermhtmlFileName = new File(PATH + this.ontologyFileName + "/" + termFileName);
             //File htmlFileName = new File(PATH + this.ontologyFileName + "/" + alphabetTermPage.getAlpahbetPair()+ ".html");
             termDetail.setAlternativeUrl(termFileName);
-            htmlReaderWriter.writeHtml(generatedHtmlPage, TermhtmlFileName);
+            generatedHtmlPage = createTermPage(termTemplate, termDetail);
+            System.out.println(TermhtmlFileName);
+             htmlReaderWriter.writeHtml(generatedHtmlPage, TermhtmlFileName);
 
             //code for creating term link
             //Temporary clodes...
-            String termLinkFileName = termFileName.replace(".html", "");
+            /*String termLinkFileName = termFileName.replace(".html", "");
             termLinkFileName = termLinkFileName + "_" + "add" + ".html";
             File TermLinkhtmlFileName = new File(PATH + this.ontologyFileName + "/" + termLinkFileName);
-            Document termLinkTemplate = this.getTermLinkPageTemplate(".html");
+            Document termLinkTemplate = this.getTermLinkPageTemplate(".html");*/
             
             
-            List<TermDetail> matchedTerms = MatchingTerminologies.getTermDetails(this.language, termDetail.getTerm());
-            if (!matchedTerms.isEmpty()) {
-                Document generatedLinkHtmlPage = createTermLink(termLinkTemplate, matchedTerms);
-                htmlReaderWriter.writeHtml(generatedLinkHtmlPage, TermLinkhtmlFileName);
-            }
+           
            
         }
 
         return termDetail;
     }
 
-    private Document createTermPage(Document templateHtml, TermDetail termDetail) throws Exception {
-
-        String langDetail = languageMapper.get(language);
+     
+     private Document createTermPage(Document templateHtml, TermDetail termDetail) throws Exception {
+         String langDetail = languageMapper.get(language);
         Element body = templateHtml.body();
         Element divTerm = body.getElementsByClass("webtop-g").get(0);
         String term = termDetail.getTerm();
@@ -207,10 +205,33 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         String li = "\n<li>" + a + "</li>\n";
         multiLingualDiv.append(li);*/
         //System.out.println(multiLingualDiv.toString());
+        
+          List<String> divStrS = new ArrayList<String>();
+         List<TermDetail> matchedTerms = MatchingTerminologies.getTermDetails(this.language, termDetail.getTerm());
+            if (!matchedTerms.isEmpty()) {
+                  divStrS  = createTermLink(matchedTerms);
+            }
+        
+         if (!divStrS.isEmpty()) {
+             Integer index = 0;
+             List<Element> divTerms = body.getElementsByClass("panel panel-default");
+             for (Element divLinkTerm : divTerms) {
+                 String divStr = divStrS.get(index);
+                 divLinkTerm.append(divStr);
+                 index++;
+                 if (index == divStrS.size()) {
+                     break;
+                 }
+
+             }
+         }
+
+
+        
         return templateHtml;
     }
-    
-     private Document createTermLink(Document templateHtml,List<TermDetail> matchedTerms) throws Exception {
+     
+     private List<String> createTermLink(List<TermDetail> matchedTerms) throws Exception {
 
         //MatchingTerminologies matchTerminologies = new MatchingTerminologies();
 
@@ -253,20 +274,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
 
         }
 
-        Element body = templateHtml.body();
-        Integer index = 0;
-        List<Element> divTerms = body.getElementsByClass("panel panel-default");
-        for (Element divTerm : divTerms) {
-            String divStr = divStrS.get(index);
-            divTerm.append(divStr);
-            index++;
-            if (index == divStrS.size()) {
-                break;
-            }
-
-        }
-
-        return templateHtml;
+        return divStrS;
     }
 
     /*private Document createTermLink(Document templateHtml, TermDetail givenTermDetail) throws Exception {
