@@ -20,6 +20,10 @@ import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.PageContentGenerator;
 import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.matching.TermDetail;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+import java.util.TreeMap;
 
 /**
  *
@@ -28,7 +32,7 @@ import browser.termallod.core.matching.TermDetail;
 public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
 
     private Document listOfTermHtmlPage;
-    private List<TermDetail> termList = new ArrayList<TermDetail>();
+    public static Map<String,String> termAlterUrl = new TreeMap<String,String>();
     private Integer currentPageNumber;
     private Integer maximumNumberOfPages = 4;
     private String language;
@@ -36,6 +40,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
     private String categoryType = "";
     private File htmlFileName = null;
     private AlphabetTermPage alphabetTermPage;
+    private Properties props = null;
     private boolean alternativeFlag = false;
     private String PATH = null;
     private Boolean termPageFlag;
@@ -43,6 +48,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
     private HtmlReaderWriter htmlReaderWriter;
 
     public HtmlModifier(String PATH, Document templateHtml, String language, AlphabetTermPage alphabetTermPage, List<TermDetail> terms, String categoryName, PageContentGenerator pageContentGenerator, Integer currentPageNumber, Boolean alternativeFlag, Boolean termPageFlag, Boolean termLinkPageFlag, HtmlReaderWriter htmlReaderWriter) throws Exception {
+        this.props=alphabetTermPage.getProps();
         this.htmlReaderWriter = htmlReaderWriter;
         this.PATH = PATH;
         this.termPageFlag = termPageFlag;
@@ -368,7 +374,8 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         String title = "title=" + '"' + term + " definition" + '"';
         //real version
         //String url = this.path+"/"+DEFINITION+"/" +language+"/" +alphebetPair +"/" +term + "_1";
-        String url = generateTermUrl(term, alphabetTermPage);
+        //String url = generateTermUrl(term, alphabetTermPage);
+        String url =props.getProperty(term);
         String alterUrl = termDetail.getAlternativeUrl();
         String assignUrl = null;
 
@@ -390,7 +397,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         //System.out.println(url);
         String a = "<a href=" + assignUrl + " " + title + ">" + term + "</a>";
         String li = "\n<li>" + a + "</li>\n";
-        termList.add(new TermDetail(termDetail, url, alterUrl));
+        termAlterUrl.put(termDetail.getTerm(),  url+"="+ alterUrl);
 
         return li;
     }
@@ -501,10 +508,14 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
     private String termFileExtension(String term) {
         return term.trim().replace(" ", "+") + "-" + language.toUpperCase() + HTML_EXTENSION;
     }
-
+    
     private String generateTermUrl(String term, AlphabetTermPage alphabetTermPage) {
-        return alphabetTermPage.getUrl(term);
+         return props.getProperty(term);
     }
+
+    /*private String generateTermUrl(String term, AlphabetTermPage alphabetTermPage) {
+        return alphabetTermPage.getUrl(term);
+    }*/
 
     /*private String termFileLocation(String term) {
         return PATH + this.generateTermFileName() + this.termFileExtension(term);
@@ -649,8 +660,8 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         return langProp;
     }
 
-    public List<TermDetail> getTermList() {
-        return termList;
+    public Map<String,String> getTermList() {
+        return termAlterUrl;
     }
 
 }

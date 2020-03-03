@@ -38,7 +38,7 @@ public class PageContentGenerator {
         this.display();
     }
 
-    private HashMap<String, List<AlphabetTermPage>> preparePageTerms(TreeMap<String, CategoryInfo> langSortedTerms) {
+    private HashMap<String, List<AlphabetTermPage>> preparePageTerms(TreeMap<String, CategoryInfo> langSortedTerms) throws Exception {
         HashMap<String, List<AlphabetTermPage>> langTerms = new HashMap<String, List<AlphabetTermPage>>();
         for (String language : langSortedTerms.keySet()) {
             CategoryInfo categoryInfo= langSortedTerms.get(language);

@@ -24,18 +24,20 @@ public class AlphabetTermPage {
     private Integer emptyTerm = null;
     private String alpahbetPair = null;
     private File file = null;
+    private Properties props = null;
     private Integer numericalValueOfPair = 0;
 
-    public AlphabetTermPage(String alpahbetPair, File file, Partition<String> partition, Integer numericalValueOfPair) {
+    public AlphabetTermPage(String alpahbetPair, File file, Partition<String> partition, Integer numericalValueOfPair) throws Exception{
         this.alpahbetPair = alpahbetPair;
         this.partition = partition;
         this.numberOfPages = partition.size();
         this.numericalValueOfPair = numericalValueOfPair;
         this.file = file;
+        this.props=FileRelatedUtils.getPropertyHash(this.file);;
     }
 
-    public String getUrl(String term) {
-        Properties props;
+    /*public String getUrl(String term) {
+        //Properties props;
         String url = null;
         try {
             props = FileRelatedUtils.getPropertyHash(this.file);
@@ -45,6 +47,10 @@ public class AlphabetTermPage {
         }
 
         return url;
+    }*/
+
+    public String getUrl(String term) {
+           return props.getProperty(term);
     }
 
     public Partition<String> getPartition() {
@@ -65,6 +71,10 @@ public class AlphabetTermPage {
 
     public Integer getNumericalValueOfPair() {
         return numericalValueOfPair;
+    }
+
+    public Properties getProps() {
+        return props;
     }
 
     @Override

@@ -22,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -128,11 +129,10 @@ public class FileRelatedUtils {
         return files;
     }
     
-    
-    public static void writeFile(List<TermDetail> terms, String fileName) throws IOException {
+    public static void writeFile(Map<String, String> terms, String fileName) throws IOException {
         String str = "";
-        for (TermDetail term : terms) {
-            String line = term.getTerm() + " = " +term.getAlternativeUrl();
+        for (String term : terms.keySet()) {
+            String line = term +"="+terms.get(term) ;
             str += line + "\n";
         }
         stringToFile_If_Exists(str, fileName);
@@ -149,10 +149,13 @@ public class FileRelatedUtils {
     
     public static void stringToFile_If_Exists(String str, String fileName)
             throws IOException {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-            writer.write(str);
-            writer.close();
-       
+        File file = new File(fileName);
+        if (file.exists()) {
+            file.delete();
+        }
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+        writer.write(str);
+        writer.close();
 
     }
 
@@ -292,7 +295,7 @@ public class FileRelatedUtils {
         Browser browser = new Browser();
         //String browserName = browser.getBrowserFromOntologyName(ontologyName);
         String inputDir=getInputLocation(PATH,ontologyName);
-        String fineName = inputDir + ontologyName + "_" + langCode + "_" + pair + "_"+ "alter"+extension;
+        String fineName = inputDir + ontologyName + "_" + langCode + "_" + pair+extension;
         //src/java/resources/data/genterm/text/tbx2rdf_atc_en_A_B.txt
         return fineName;
 

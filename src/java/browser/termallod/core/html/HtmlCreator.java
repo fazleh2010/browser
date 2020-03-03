@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
 import org.jsoup.nodes.Document;
@@ -130,8 +131,7 @@ public class HtmlCreator implements FileAndCategory {
     
     private void createHtmlForEachAlphabetPair(String categoryName, File templateFile, String language, AlphabetTermPage alphabetTermPage, PageContentGenerator pageContentGenerator, Boolean termPageFlag, Boolean termLinkPageFlag) throws Exception {
         Partition partition = alphabetTermPage.getPartition();
-        String textInputFile = FileRelatedUtils.getSpecificFile(PATH, categoryName, language, alphabetTermPage.getAlpahbetPair(), ".txt");
-        
+        HtmlModifier.termAlterUrl= new TreeMap<String,String>();
         
         for (Integer page = 0; page < partition.size(); page++) {
             Integer currentPageNumber = page + 1;
@@ -149,14 +149,12 @@ public class HtmlCreator implements FileAndCategory {
                 Document generatedHtml = htmlPage.getTermLinkHtmlPages().get(termFile);
                 htmlReaderWriter.writeHtml(generatedHtml, termFile);
             }*/
-            List<TermDetail> termInfos = htmlPage.getTermList();
-            FileRelatedUtils.writeFile(termInfos, textInputFile);
+           
         }
-        //String textInputFile = FileRelatedUtils.getSpecificFile(PATH, categoryName, language, alphabetTermPage.getAlpahbetPair(), ".txt");
-        //FileRelatedUtils.writeFile(allTermInfos, textInputFile);
-
-// File textInputFile = FileRelatedUtils.getSepecificInputTextFile(BASE_PATH, GENTERM,categoryName,language,alphabetTermPage);
-        //System.out.println(textInputFile.toString());
+          
+            String textInputFile = FileRelatedUtils.getSpecificFile(PATH, categoryName, language, alphabetTermPage.getAlpahbetPair(), ".txt");
+            FileRelatedUtils.writeFile(HtmlModifier.termAlterUrl, textInputFile);
+            
     }
     
     private File getTemplate(String categoryName, String langCode, String extension) throws Exception {
