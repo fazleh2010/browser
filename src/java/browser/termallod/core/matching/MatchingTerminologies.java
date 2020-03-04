@@ -179,6 +179,10 @@ public class MatchingTerminologies implements Languages {
         return Sets.intersection(set1, set2);
     }
 
+    public static Map<String, Map<String, List<TermDetail>>> getLangTermDetails() {
+        return langTermDetails;
+    }
+
     public static Map<String, List<TermDetail>> getCategroyTerms(String langCode) {
         return langTermDetails.get(langCode);
     }

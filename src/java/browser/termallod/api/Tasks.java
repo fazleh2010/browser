@@ -25,25 +25,25 @@ public interface Tasks {
 
     public void saveDataIntoFiles(Set<String> browserSet, String browser) throws Exception, IOException;
 
-    public  void readDataFromSavedFiles(Boolean alternativeFlag) throws IOException, Exception;
+    public  void readDataFromSavedFiles() throws IOException, Exception;
 
-    public  void  readDataFromSavedFiles(String givenBrowser,Boolean alternativeFlag) throws IOException, Exception;
+    public  void  readDataFromSavedFiles(String givenBrowser) throws IOException, Exception;
 
     public void createHtmlFromSavedFiles(Set<String> categorySet, String MODEL_EXTENSION, Set<String> browserSet, Set<String> lang,Boolean termPageFlag,Boolean termLinkPageFlag) throws Exception, IOException;
 
-    public void createIndexing(Boolean alternativeFlag) throws IOException, ParseException, Exception;
+    public void createIndexing() throws IOException, ParseException, Exception;
 
-    public void createIndexing(String browser,Boolean alternativeFlag) throws IOException, ParseException, Exception;
+    public void createIndexing(String browser) throws IOException, ParseException, Exception;
 
     public List<String> search(String category, String langCode, String searchQuery) throws IOException, ParseException, Exception;
 
-    public void prepareGroundForJs() throws IOException, Exception;
+    public void createJavaScriptForAutoComp(String category) throws IOException, Exception;
 
     public void generateScript() throws IOException, Exception;
 
     public void generateScript(String category) throws IOException, Exception;
 
-    public Set<TermDetail> matchTerminologies(String firstTerminology, String secondTerminology,Boolean alternativeFlag) throws IOException, Exception;
+    public Set<TermDetail> matchTerminologies(String firstTerminology, String secondTerminology) throws IOException, Exception;
 
     //term page seperate creation...
     //public void createTermDetailHtmlPage(String browser,Set<String>givenLangs) throws IOException, Exception;

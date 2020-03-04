@@ -1,10 +1,10 @@
 window.termUrls = new Map();
-termUrls.set("amorphous semiconductor","http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/amorphous+semiconductor-EN");
-termUrls.set("amorphous silicon","http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/amorphous+silicon-EN");
-termUrls.set("dope","http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/dope-EN");
-termUrls.set("electron vacancy","http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/electron+vacancy-EN");
+termUrls.set("amorphous semiconductor","browser_en_A_B_1_term_0.html");
+termUrls.set("amorphous silicon","browser_en_A_B_1_term_1.html");
+termUrls.set("dope","browser_en_C_D_1_term_0.html");
+termUrls.set("electron vacancy","browser_en_E_F_1_term_0.html");
 termUrls.set("hole","browser_en_G_H_1_term_0.html");
-termUrls.set("light-induced defect","http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/light-induced+defect-EN");
+termUrls.set("light-induced defect","browser_en_K_L_1_term_0.html");
 termUrls.set("n-doping","browser_en_M_N_1_term_0.html");
 termUrls.set("n-type doping","browser_en_M_N_1_term_1.html");
 termUrls.set("n-type semiconductor","browser_en_M_N_1_term_2.html");
@@ -17,7 +17,7 @@ termUrls.set("schottky junction","browser_en_S_T_1_term_1.html");
 termUrls.set("slice","browser_en_S_T_1_term_2.html");
 termUrls.set("thick crystalline material","browser_en_S_T_1_term_3.html");
 termUrls.set("thin film","browser_en_S_T_1_term_4.html");
-termUrls.set("wafer","http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/wafer-EN");
+termUrls.set("wafer","browser_en_W_X_1_term_0.html");
 
 let arr = Array.from(termUrls.keys());
 window.valueOfTextField = "";

@@ -67,12 +67,15 @@ public class Main implements FileAndCategory {
         // run before comit..................
         Boolean termPageFlag=true;
         Boolean termLinkPageFlag=true;
-        Boolean alternativeFlag=false;
+        Boolean alternativeFlag=true;
          cleanDirectory();
-         Tasks tasks = new Taskimpl(LANGUAGE_CONFIG_FILE,browserSet);
-         //tasks.matchTerminologies(GENTERM,IATE,alternativeFlag);
+         Tasks tasks = new Taskimpl(LANGUAGE_CONFIG_FILE,browserSet,alternativeFlag);
+         //tasks.matchTerminologies(GENTERM,IATE);
          //tasks.saveDataIntoFiles(browserSet);
          //tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,new HashSet<String>(Arrays.asList(GENTERM)),lang,termPageFlag,termLinkPageFlag);
+          //create java script files
+         //tasks.createJavaScriptForAutoComp(GENTERM);
+        
          
 
         //this is necessary for other applications!!
@@ -95,7 +98,7 @@ public class Main implements FileAndCategory {
         //tasks.createAddDeclineHtmlPage(ATC,"en", termDetail, lang);
 
         //create java script files
-         //tasks.prepareGroundForJs();
+         //tasks.createJavaScriptForAutoComp();
          //tasks.generateScript();
          
          

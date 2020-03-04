@@ -41,7 +41,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
     private File htmlFileName = null;
     private AlphabetTermPage alphabetTermPage;
     private Properties props = null;
-    private boolean alternativeFlag = false;
+    private boolean alternativeFlag = true;
     private String PATH = null;
     private Boolean termPageFlag;
     private Boolean termLinkPageFlag;
@@ -185,7 +185,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
          String langDetail = languageMapper.get(language);
         Element body = templateHtml.body();
         Element divTerm = body.getElementsByClass("webtop-g").get(0);
-        String term = termDetail.getTerm();
+        String term = termDetail.getTermModified();
         //<a class="academic" href="https://www.oxfordlearnersdictionaries.com/wordlist/english/academic/">
         String classStr = "<a class=" + "\"" + "academic" + "\"" + " href=" + "\"" + "https://www.oxfordlearnersdictionaries.com/wordlist/english/academic/" + "\"" + ">";
         //</a><span class="z"> </span>
@@ -218,7 +218,9 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
              divStrS = createTermLink(matchedTerms);
          }
 
+         Element heading=body.getElementsByClass("heading").get(0);
          if (!divStrS.isEmpty()) {
+             heading.append(" <h3>Links to other terminologies</h3> ");
              Integer index = 0;
              List<Element> divTerms = body.getElementsByClass("panel panel-default");
              for (Element divLinkTerm : divTerms) {

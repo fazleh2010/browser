@@ -27,9 +27,13 @@ public class GeneralCompScriptGen implements FileAndCategory {
 
     private final Map<String, Browser> inputBrowsers;
     private final File templateFile;
+    private static Boolean alternativeUrlFlag;
+    private  static Integer orginalIndex=0;
+    private  static Integer alternativeIndex=1;
 
-    public GeneralCompScriptGen(Map<String, Browser> inputBrowsers, File templateFile) throws Exception {
+    public GeneralCompScriptGen(Map<String, Browser> inputBrowsers, File templateFile,Boolean alternativeFlag) throws Exception {
         this.inputBrowsers = inputBrowsers;
+        alternativeUrlFlag=alternativeFlag;
         this.templateFile = templateFile;
         if (!templateFile.exists()) {
             throw new Exception(" no template find found for autocompletion!!");
@@ -54,11 +58,7 @@ public class GeneralCompScriptGen implements FileAndCategory {
             LangSpecificBrowser langSpecificBrowser = generalBrowser.getLangTermUrls().get(langCode);
             Map<String, String> allkeysValues = langSpecificBrowser.getTermUrls();
             String str = getTerms(allkeysValues);
-            //System.out.println(str);
-            //File templateFile = new File(AUTO_COMPLETION_TEMPLATE_LOCATION + "autoComp" + ".js");
             String outputFileName = AUTO_COMPLETION_TEMPLATE_LOCATION + ontologyName + "_" + langCode + ".js";
-
-            System.out.println(outputFileName);
             createAutoCompletionTemplate(templateFile, str, outputFileName);
         }
     }
@@ -99,6 +99,8 @@ public class GeneralCompScriptGen implements FileAndCategory {
             String term = termList.get(i);
             term = term.trim();
             String value = allKeysValues.get(term);
+            value=getUrl(value);
+            //value=value.replace("=", " = ");
             term = quote(term);
             if (i == termList.size()) {
                 str += "\"" + term + "\"" + "];" + "\n";
@@ -140,6 +142,20 @@ public class GeneralCompScriptGen implements FileAndCategory {
         str += line + "\n";
         FileRelatedUtils.stringToFile_DeleteIf_Exists(str, outputFile);
 
+    }
+
+    private static String getUrl(String value) {
+        if (value.contains("=")) {
+                String[] urls = value.split("=");
+                String orgUrl = urls[orginalIndex];
+                String alterUrl = urls[alternativeIndex];
+                if (alternativeUrlFlag) {
+                    value = orgUrl;
+                } else {
+                    value = alterUrl;
+                }
+            }
+        return value;
     }
 
 }

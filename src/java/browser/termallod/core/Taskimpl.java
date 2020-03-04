@@ -46,17 +46,20 @@ import java.util.logging.Logger;
  */
 public class Taskimpl implements Tasks, FileAndCategory {
 
-    private Map<String, Browser> browsersInfor = new HashMap<String, Browser>();
     private final LanguageManager languageManager;
+    private final Set<String> givenBrowserSet;
+    private final Boolean alternativeFlag;
+    private Map<String, Browser> browsersInfor = new HashMap<String, Browser>();
     private LuceneIndexing luceneIndexing = null;
     private GeneralCompScriptGen javaScriptCode = null;
     private MatchingTerminologies matchTerminologies = new MatchingTerminologies();
     private Boolean indexCreated = false;
-    public Set<String> givenBrowserSet = new HashSet<String>();
+   
 
-    public Taskimpl(File LANGUAGE_CONFIG_FILE, Set<String> givenBrowserSet) throws Exception {
+    public Taskimpl(File LANGUAGE_CONFIG_FILE, Set<String> givenBrowserSet,Boolean alternativeFlag) throws Exception {
         this.languageManager = new LanguageAlphabetPro(LANGUAGE_CONFIG_FILE);
         this.givenBrowserSet = givenBrowserSet;
+        this.alternativeFlag= alternativeFlag;
     }
 
     //add decline page seperate creation
@@ -71,6 +74,11 @@ public class Taskimpl implements Tasks, FileAndCategory {
     }*/
     @Override
     public void createHtmlFromSavedFiles(Set<String> categorySet, String MODEL_EXTENSION, Set<String> browserSet, Set<String> lang, Boolean termPageFlag, Boolean termLinkPageFlag) throws Exception, IOException {
+        //hard coded codes ..need to be change in future..
+        /*if(MatchingTerminologies.getLangTermDetails().isEmpty()){
+              this.matchTerminologies(GENTERM,IATE,alternativeFlag);
+        }*/
+        
         FileRelatedUtils.cleanDirectory(CATEGORY_ONTOLOGIES, BASE_PATH, DATA_PATH);
         for (String browser : categorySet) {
             if (browserSet.contains(browser)) {
@@ -83,9 +91,9 @@ public class Taskimpl implements Tasks, FileAndCategory {
     }
 
     @Override
-    public void createIndexing(Boolean alternativeFlag) throws IOException, ParseException, Exception {
+    public void createIndexing() throws IOException, ParseException, Exception {
         if (browsersInfor.isEmpty()) {
-            this.readDataFromSavedFiles(alternativeFlag);
+            this.readDataFromSavedFiles();
         }
         this.luceneIndexing = new LuceneIndexing(browsersInfor);
         this.indexCreated = true;
@@ -93,9 +101,9 @@ public class Taskimpl implements Tasks, FileAndCategory {
     }
 
     @Override
-    public void createIndexing(String browser, Boolean alternativeFlag) throws IOException, ParseException, Exception {
+    public void createIndexing(String browser) throws IOException, ParseException, Exception {
         if (this.browsersInfor.isEmpty()) {
-            this.readDataFromSavedFiles(alternativeFlag);
+            this.readDataFromSavedFiles();
         }
         this.luceneIndexing = new LuceneIndexing(this.browsersInfor, browser);
         this.indexCreated = true;
@@ -103,13 +111,16 @@ public class Taskimpl implements Tasks, FileAndCategory {
     }
 
     @Override
-    public void prepareGroundForJs() throws IOException, Exception {
+    public void createJavaScriptForAutoComp(String category) throws IOException, Exception {
+         if(this.browsersInfor.isEmpty())
+           this.readDataFromSavedFiles(category);
         File templateFile = new File(AUTO_COMPLETION_TEMPLATE_LOCATION + "autoComp" + ".js");
-        this.javaScriptCode = new GeneralCompScriptGen(this.browsersInfor, templateFile);
+        this.javaScriptCode = new GeneralCompScriptGen(this.browsersInfor, templateFile,this.alternativeFlag);
+        this.generateScript();
     }
 
     @Override
-    public void readDataFromSavedFiles(Boolean alternativeFlag) throws IOException, Exception {
+    public void readDataFromSavedFiles() throws IOException, Exception {
         Map<String, Browser> browsersInfor = new HashMap<String, Browser>();
         this.checkGeneratedTextFiles(BROWSER_GROUPS);
         /*Map<String,Boolean> textFilesGenerated=this.isTextFileGenerated(BROWSER_GROUPS);
@@ -126,7 +137,7 @@ public class Taskimpl implements Tasks, FileAndCategory {
     }
 
     @Override
-    public void readDataFromSavedFiles(String givenBrowser, Boolean alternativeFlag) throws IOException, Exception {
+    public void readDataFromSavedFiles(String givenBrowser) throws IOException, Exception {
         Map<String, Browser> browsersInfor = new HashMap<String, Browser>();
         for (String browser : BROWSER_GROUPS) {
             if (browser.contains(givenBrowser)) {
@@ -155,15 +166,15 @@ public class Taskimpl implements Tasks, FileAndCategory {
                 Map<String, String> allkeysValues = new HashMap<String, String>();
                 for (File file : termFiles) {
                     Properties props = new Properties();
-                    File selectedFile = null;
+                    /*File selectedFile = null;
                     if (alternativeFlag) {
                         if (file.getName().contains("alter")) {
                             selectedFile = file;
                         }
                     } else {
                         selectedFile = file;
-                    }
-                    props = FileRelatedUtils.getPropertyHash(selectedFile);
+                    }*/
+                    props = FileRelatedUtils.getPropertyHash(file);
                     Map<String, String> tempHash = (Map) props;
                     allkeysValues.putAll(tempHash);
                 }
@@ -243,11 +254,11 @@ public class Taskimpl implements Tasks, FileAndCategory {
     }
 
     @Override
-    public Set<TermDetail> matchTerminologies(String firstTerminology, String secondTerminology, Boolean alternativeFlag) throws IOException, Exception {
+    public Set<TermDetail> matchTerminologies(String firstTerminology, String secondTerminology) throws IOException, Exception {
         //currently does not work properly..
         //MatchingTerminologies matchTerminologies = new MatchingTerminologies(browsersInforFirst,browsersInfoSecond);
         if (!this.indexCreated) {
-            this.createIndexing(alternativeFlag);
+            this.createIndexing();
         }
         MatchingTerminologies matchTerminologies = new MatchingTerminologies(this.browsersInfor, secondTerminology);
         return new HashSet<TermDetail>();
