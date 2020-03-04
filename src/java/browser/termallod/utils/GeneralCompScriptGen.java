@@ -150,9 +150,9 @@ public class GeneralCompScriptGen implements FileAndCategory {
                 String orgUrl = urls[orginalIndex];
                 String alterUrl = urls[alternativeIndex];
                 if (alternativeUrlFlag) {
-                    value = orgUrl;
-                } else {
                     value = alterUrl;
+                } else {
+                    value = orgUrl;
                 }
             }
         return value;

@@ -156,10 +156,18 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
         Document termTemplate = this.getTermPageTemplate(".html");
         //generatedHtmlPage = createTermPage(termTemplate, termDetail);
         if (this.alternativeFlag) {
+            //termporary closed the code for link for term file..
             String termFileName = this.htmlFileName.getName().replace(".html", "");
             termFileName = termFileName + "_" + "term" + "_" + index + ".html";
             File TermhtmlFileName = new File(PATH + this.ontologyFileName + "/" + termFileName);
-            //File htmlFileName = new File(PATH + this.ontologyFileName + "/" + alphabetTermPage.getAlpahbetPair()+ ".html");
+            
+            
+            //new code for making tokenizer as html code..
+            /*String termOrg=termDetail.termFilter(termDetail.getTerm());
+            String termFileName=termOrg+".html";
+            File TermhtmlFileName = new File(PATH + this.ontologyFileName + "/" + termFileName);*/
+            
+            
             termDetail.setAlternativeUrl(termFileName);
             generatedHtmlPage = createTermPage(termTemplate, termDetail);
             System.out.println(TermhtmlFileName);
@@ -218,9 +226,9 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
              divStrS = createTermLink(matchedTerms);
          }
 
-         Element heading=body.getElementsByClass("heading").get(0);
+         //Element heading=body.getElementsByClass("row").get(0);
          if (!divStrS.isEmpty()) {
-             heading.append(" <h3>Links to other terminologies</h3> ");
+             //heading.append(" <h3>Links to other terminologies</h3> ");
              Integer index = 0;
              List<Element> divTerms = body.getElementsByClass("panel panel-default");
              for (Element divLinkTerm : divTerms) {
@@ -266,7 +274,7 @@ public class HtmlModifier implements HtmlPage, Languages, HtmlStringConts {
                                                     "<a href=" + this.getWithinQuote(url) + " class=" + 
                                                     this.getWithinQuote("rdf_link") + ">" + term + "</a>" + divClassEnd;
             
-            panelHeadingStart = "";
+            panelHeadingStart = "<h3>Links to other terminologies</h3>";
             String panelHeadingEnd = "</div>";
             String firstTr = getTr(getProperty(spanTerminologyUrl, otherTerminology), getValue(url,url,term));
             //firstTr = "";

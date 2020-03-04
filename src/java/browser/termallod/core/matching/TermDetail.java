@@ -124,5 +124,31 @@ public class TermDetail {
     public String getAlternativeUrl(String otherTerminology) {
          return this.termLinks.get(otherTerminology);
     }
+    
+      public String termFilter(String text) {
+        if (text.contains("\"")) {
+            return text.replaceAll("\"", "");
+        }
+        if (text.contains("\'")) {
+            return text.replaceAll("\'", "");
+        }
+        if (text.contains("\\[")) {
+            return text.replaceAll("[", "");
+        }
+        if (text.contains("\\]")) {
+            return text.replaceAll("]", "");
+        }
+        if (text.contains("\\,")) {
+            return text.replaceAll(",", "");
+        }
+        if (text.contains("_")) {
+            return text.replaceAll("_", " ");
+        }
+        if (text.contains(".")) {
+            return text.replaceAll(".", " ");
+        }
+
+        return text;
+    }
 
 }
