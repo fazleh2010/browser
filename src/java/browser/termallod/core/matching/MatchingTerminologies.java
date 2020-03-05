@@ -5,6 +5,7 @@
  */
 package browser.termallod.core.matching;
 
+import browser.termallod.core.term.TermDetail;
 import static browser.termallod.constants.FileAndCategory.IATE;
 import static browser.termallod.constants.FileAndCategory.SOLAR;
 import browser.termallod.constants.Languages;

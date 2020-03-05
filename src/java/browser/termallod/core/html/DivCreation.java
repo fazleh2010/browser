@@ -6,7 +6,7 @@
 package browser.termallod.core.html;
 
 import static browser.termallod.constants.Languages.languageMapper;
-import browser.termallod.core.matching.TermDetail;
+import browser.termallod.core.term.TermDetail;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 

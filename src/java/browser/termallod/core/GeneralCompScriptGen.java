@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.utils;
+package browser.termallod.core;
 
 import browser.termallod.constants.FileAndCategory;
 import browser.termallod.core.Taskimpl;
 import browser.termallod.core.Browser;
 import browser.termallod.core.LangSpecificBrowser;
+import browser.termallod.utils.FileRelatedUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -27,13 +28,13 @@ public class GeneralCompScriptGen implements FileAndCategory {
 
     private final Map<String, Browser> inputBrowsers;
     private final File templateFile;
-    private static Boolean alternativeUrlFlag;
+    private final Boolean alternativeUrlFlag;
     private  static Integer orginalIndex=0;
     private  static Integer alternativeIndex=1;
 
     public GeneralCompScriptGen(Map<String, Browser> inputBrowsers, File templateFile,Boolean alternativeFlag) throws Exception {
         this.inputBrowsers = inputBrowsers;
-        alternativeUrlFlag=alternativeFlag;
+        this.alternativeUrlFlag=alternativeFlag;
         this.templateFile = templateFile;
         if (!templateFile.exists()) {
             throw new Exception(" no template find found for autocompletion!!");
@@ -89,7 +90,7 @@ public class GeneralCompScriptGen implements FileAndCategory {
         }
 
     }*/
-    private static String getTerms(Map<String, String> allKeysValues) throws IOException {
+    private  String getTerms(Map<String, String> allKeysValues) throws IOException {
         String str = "window.termUrls = new Map();" + "\n";
         str += "";
         List<String> termList = new ArrayList<String>(allKeysValues.keySet());
@@ -136,7 +137,7 @@ public class GeneralCompScriptGen implements FileAndCategory {
         return text;
     }
 
-    private static void createAutoCompletionTemplate(File templatefileName, String str, String outputFile) throws FileNotFoundException, IOException {
+    private  void createAutoCompletionTemplate(File templatefileName, String str, String outputFile) throws FileNotFoundException, IOException {
         InputStream input = new FileInputStream(templatefileName);
         String line = IOUtils.toString(input, "UTF-8");
         str += line + "\n";
@@ -144,7 +145,7 @@ public class GeneralCompScriptGen implements FileAndCategory {
 
     }
 
-    private static String getUrl(String value) {
+    private  String getUrl(String value) {
         if (value.contains("=")) {
                 String[] urls = value.split("=");
                 String orgUrl = urls[orginalIndex];

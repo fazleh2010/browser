@@ -7,7 +7,7 @@ package browser.termallod.api;
 
 import browser.termallod.core.Browser;
 import browser.termallod.core.matching.MatchingTerminologies;
-import browser.termallod.core.matching.TermDetail;
+import browser.termallod.core.term.TermDetail;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.HashMap;

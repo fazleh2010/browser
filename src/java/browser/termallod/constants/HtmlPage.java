@@ -7,7 +7,7 @@ package browser.termallod.constants;
 
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.PageContentGenerator;
-import browser.termallod.core.matching.TermDetail;
+import browser.termallod.core.term.TermDetail;
 import java.io.File;
 import java.util.AbstractMap;
 import java.util.HashMap;

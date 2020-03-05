@@ -19,7 +19,7 @@ import static browser.termallod.constants.FileAndCategory.CATEGORY_ONTOLOGIES;
 import static browser.termallod.constants.FileAndCategory.DATA_PATH;
 import browser.termallod.core.Browser;
 import browser.termallod.core.matching.MatchingTerminologies;
-import browser.termallod.core.matching.TermDetail;
+import browser.termallod.core.term.TermDetail;
 import browser.termallod.utils.FileRelatedUtils;
 import java.io.IOException;
 import java.util.List;
@@ -68,13 +68,16 @@ public class Main implements FileAndCategory {
         Boolean termPageFlag=true;
         Boolean termLinkPageFlag=true;
         Boolean alternativeFlag=true;
-        cleanDirectory();
-         Tasks tasks = new Taskimpl(LANGUAGE_CONFIG_FILE,browserSet,alternativeFlag);
+         cleanDirectory();
+         //Tasks tasks = new Taskimpl(LANGUAGE_CONFIG_FILE,browserSet,alternativeFlag);
          //tasks.matchTerminologies(GENTERM,IATE);
          //tasks.saveDataIntoFiles(browserSet);
          //tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,new HashSet<String>(Arrays.asList(GENTERM)),lang,termPageFlag,termLinkPageFlag);
-          //create java script files
-         //tasks.createJavaScriptForAutoComp(GENTERM);
+          
+
+         //create java script files
+         //it works seperately
+          //tasks.createJavaScriptForAutoComp(GENTERM);
         
          
 

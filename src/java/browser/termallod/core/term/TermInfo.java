@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.core;
+package browser.termallod.core.term;
 
 import browser.termallod.utils.StringMatcherUtil;
 import com.hp.hpl.jena.graph.Triple;

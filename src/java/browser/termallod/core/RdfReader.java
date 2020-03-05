@@ -9,6 +9,7 @@ package browser.termallod.core;
  *
  * @author elahi
  */
+import browser.termallod.core.term.TermInfo;
 import browser.termallod.api.LanguageManager;
 import browser.termallod.utils.NameExtraction;
 import browser.termallod.utils.FileRelatedUtils;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.core.matching;
+package browser.termallod.core.term;
 
 import static browser.termallod.constants.FileAndCategory.IATE;
 import browser.termallod.utils.StringMatcherUtil;

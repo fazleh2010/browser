@@ -19,7 +19,7 @@ import browser.termallod.constants.Languages;
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.PageContentGenerator;
 import browser.termallod.core.matching.MatchingTerminologies;
-import browser.termallod.core.matching.TermDetail;
+import browser.termallod.core.term.TermDetail;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
