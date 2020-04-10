@@ -1,0 +1,7 @@
+inzameldienst = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/inzameldienst-NL#CanonicalForm
+inzamelingssysteem_voor_vast_afval = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/inzamelingssysteem+voor+vast+afval-NL#CanonicalForm
+interpretatie = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/interpretatie-NL#CanonicalForm
+invoer = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/invoer-NL#CanonicalForm
+inlevercontainer = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/inlevercontainer-NL#CanonicalForm
+inventarisatie = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/inventarisatie-NL#CanonicalForm
+inleversysteem = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/inleversysteem-NL#CanonicalForm

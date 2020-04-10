@@ -1,0 +1,13 @@
+vuilniszak = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/vuilniszak-NL#CanonicalForm
+vuilniswagen = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/vuilniswagen-NL#CanonicalForm
+vermeden_impactbenadering = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/vermeden+impactbenadering-NL#CanonicalForm
+verpakkingsafval = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/verpakkingsafval-NL#CanonicalForm
+verbranding = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/verbranding-NL#CanonicalForm
+verpakking = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/verpakking-NL#CanonicalForm
+vast_afval = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/vast+afval-NL#CanonicalForm
+uitvoer = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/uitvoer-NL#CanonicalForm
+vervanging = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/vervanging-NL#CanonicalForm
+voorgrondsysteem = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/voorgrondsysteem-NL#CanonicalForm
+verbruik_van_hulpbronnen = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/verbruik+van+hulpbronnen-NL#CanonicalForm
+vergelijkend_onderzoek = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/vergelijkend+onderzoek-NL#CanonicalForm
+validatie = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/validatie-NL#CanonicalForm

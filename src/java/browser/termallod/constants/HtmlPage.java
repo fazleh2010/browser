@@ -28,13 +28,6 @@ public interface HtmlPage {
     public String UNDERSCORE = "_";
     public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "";
     public static Integer INITIAL_PAGE = 1;
-
-    public String createAlphabet(Element body, String alphebetPair, PageContentGenerator pageContentGenerator) throws Exception;
-
-    public void createLangSelectBox(Element body, PageContentGenerator pageContentGenerator) throws Exception;
-
-    public void createPageNumber(Element body, String elementName,String alphebetPair, Integer numberofPages)throws Exception;
-
-    public void createTerms(Element body, List<TermDetail> terms, String alphebetPair, Integer emptyTerm,AlphabetTermPage alphabetTermPage)throws Exception;
+    public void createTerms(Element body, List<TermDetail> terms, String alphebetPair, Integer emptyTerm,File htmlFileName)throws Exception;
 
 }

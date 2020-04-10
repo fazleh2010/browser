@@ -1,0 +1,6 @@
+rebiting_ground = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/rebiting+ground-EN#CanonicalForm
+resin_dust = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/resin+dust-EN#CanonicalForm
+recarve = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/recarve-EN#CanonicalForm
+retroussage = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/retroussage-EN#CanonicalForm
+repoussage = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/repoussage-EN#CanonicalForm
+remarque = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/remarque-EN#CanonicalForm

@@ -1,0 +1,9 @@
+cut-offmethode = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/cut-offmethode-NL#CanonicalForm
+cut-offbenadering = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/cut-offbenadering-NL#CanonicalForm
+definitieve_verwijdering = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/definitieve+verwijdering-NL#CanonicalForm
+container = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/container-NL#CanonicalForm
+complexiteitsreductie = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/complexiteitsreductie-NL#CanonicalForm
+consequentiële_lca = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/consequenti%C3%ABle+LCA-NL#CanonicalForm
+duurzaam_perspectief = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/duurzaam+perspectief-NL#CanonicalForm
+dichtheid = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/dichtheid-NL#CanonicalForm
+conversiefactor = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/conversiefactor-NL#CanonicalForm

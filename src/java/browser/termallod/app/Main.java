@@ -5,7 +5,6 @@
  */
 package browser.termallod.app;
 
-import browser.termallod.constants.FileAndCategory;
 import browser.termallod.core.Taskimpl;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,10 +13,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import browser.termallod.api.Tasks;
-import static browser.termallod.constants.FileAndCategory.BASE_PATH;
-import static browser.termallod.constants.FileAndCategory.CATEGORY_ONTOLOGIES;
-import static browser.termallod.constants.FileAndCategory.DATA_PATH;
-import browser.termallod.core.Browser;
+import browser.termallod.constants.FileAndLocationConst;
+import browser.termallod.core.SubjectFieldMerging;
+import browser.termallod.core.html.HtmlParameters;
 import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.term.TermDetail;
 import browser.termallod.utils.FileRelatedUtils;
@@ -28,16 +26,19 @@ import java.util.List;
  *
  * @author elahi
  */
-public class Main implements FileAndCategory {
+public class Main {
 
-    public static Set<String> browserSet = new HashSet<String>(Arrays.asList(GENTERM,IATE));
+    public static FileAndLocationConst constants;
+    public static Set<String> browserSet;
     private static Set<String> lang = new TreeSet<String>();
+    private static String BASE_PATH = "src/java/resources/data/";
+    private static Set<String> browsersToRun=new HashSet<String>();
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
             put("en", "English");
+            //put("nl", "Dutch");
             //currently dutch does not work...
-            put("nl", "Dutch");
-            put("bg", "Bulgarian");
+            /* put("bg", "Bulgarian");
             put("cs", "Czech");
             put("da", "Danish");
             put("de", "German");
@@ -58,71 +59,130 @@ public class Main implements FileAndCategory {
             put("ro", "Romanian");
             put("sk", "Slovak");
             put("sl", "Slovenian");
-            //put("sv", "Swedish");
+            put("sv", "Swedish");*/
         }
     };
 
     public static void main(String[] args) throws Exception {
+        String location="/home/elahi/NetBeansProjects/newBrowser/linux/browser/src/java/resources/data/iate/txt/";
+        String alphabetFileName=location+ "tbx2rdf_iate_en_A_B.txt";
+        String conceptFileName= location+"en.txt";
+        String subjectFileName= location+"subject.txt";
+        String cannonical=location+ "canonicalForm.txt";
+        String sense= location+"sense.txt";
+        String subjectDetail= location+"subjectFields.txt";
+        HtmlParameters htmlCreateParameters=null;
+        SubjectFieldMerging subjectFieldMerging=null;
+       
+       
         lang = new TreeSet<String>(languageMapper.keySet());
+        constants = new FileAndLocationConst(BASE_PATH);
+        browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM, constants.IATE));
         // run before comit..................
-        Boolean termPageFlag=true;
-        Boolean termLinkPageFlag=true;
-        Boolean alternativeFlag=true;
-         cleanDirectory();
-         //Tasks tasks = new Taskimpl(LANGUAGE_CONFIG_FILE,browserSet,alternativeFlag);
-         //tasks.matchTerminologies(GENTERM,IATE);
+        //steps
+        //1. run without creating html and prepare .txt file
+        //2. create html Genterm first
+        //3. create html for Iate
+        Boolean listOfTemPageFlag = true;
+        Boolean termPageFlag = true;
+        Boolean alternativeFlag = true;
+        Boolean textFileModifyFlag = true;
+        Tasks tasks = null;
+        //cleanDirectory();
+
+        //1. create .txt file first
+        textFileModifyFlag = true;
+        listOfTemPageFlag = false;
+        termPageFlag = false;
+
+         //tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet,constants, alternativeFlag);
+         //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
          //tasks.saveDataIntoFiles(browserSet);
-         //tasks.createHtmlFromSavedFiles(BROWSER_GROUPS, TEXT_EXTENSION,new HashSet<String>(Arrays.asList(GENTERM)),lang,termPageFlag,termLinkPageFlag);
-          
-
-         //create java script files
-         //it works seperately
-          //tasks.createJavaScriptForAutoComp(GENTERM);
-        
          
+         
+         /*htmlCreateParameters=new HtmlParameters( true, false,  false);
+         subjectFieldMerging=new SubjectFieldMerging(alphabetFileName,conceptFileName,subjectFileName,cannonical,sense,subjectDetail);
+         browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE));
+         tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,merging);
+         */
+         
+         
+        //2. generate alternative url
+        //3. generate HTML
+        
+        //textFileModifyFlag = false;
+        //listOfTemPageFlag = true;
+        //termPageFlag = true;
+        htmlCreateParameters=new HtmlParameters( false, true,  true, true);
+        subjectFieldMerging=new SubjectFieldMerging(alphabetFileName,conceptFileName,subjectFileName,cannonical,sense,subjectDetail);
+        //tasks = new Taskimpl(constants.LANGUAGE_CONFIG_FILE, browserSet, alternativeFlag);
+        tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet,constants, alternativeFlag);
+        tasks.matchTerminologies(constants.GENTERM, constants.IATE);
+        //testMatching();
+        browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE));
+        tasks.createHtmlFromSavedFiles(constants, browsersToRun, lang, htmlCreateParameters,subjectFieldMerging);
+       
+        System.out.println("Processing finished!!!");
+        
+        
+        
+        
+        
+        
 
+        //create java script files
+        //it works seperately
+        //tasks.createJavaScriptForAutoComp(GENTERM);
         //this is necessary for other applications!!
         //tasks.readDataFromSavedFiles(GENTERM,alternativeFlag);
-       // tasks.readDataFromSavedFiles(GENTERM);
+        // tasks.readDataFromSavedFiles(GENTERM);
         //tasks.createTermDetailHtmlPage(ATC);
-        
         //tasks.createTermDetailHtmlPage(terms);
-        
         //tasks.matchBrowsers();
-
         //search Text
         String querystr = "association";
         /*tasks.createIndexing(IATE);
         tasks.search(IATE, "en", querystr);*/
         //tasks.createTermDetailHtmlPage(GENTERM,lang);
-        
-        //TermDetail termDetail=new TermDetail(ATC,"eng","test", "http");
-        
-        //tasks.createAddDeclineHtmlPage(ATC,"en", termDetail, lang);
 
+        //TermDetail termDetail=new TermDetail(ATC,"eng","test", "http");
+        //tasks.createAddDeclineHtmlPage(ATC,"en", termDetail, lang);
         //create java script files
-         //tasks.createJavaScriptForAutoComp();
-         //tasks.generateScript();
-         
-         
-         //match terms..
-         //tasks.readDataFromSavedFiles(GENTERM, alternativeFlag);
-         //tasks.readDataFromSavedFiles(IATE,false);
-         //tasks.createIndexing(IATE);
-         
-        
+        //tasks.createJavaScriptForAutoComp();
+        //tasks.generateScript();
+        //match terms..
+        //tasks.readDataFromSavedFiles(GENTERM, alternativeFlag);
+        //tasks.readDataFromSavedFiles(IATE,false);
+        //tasks.createIndexing(IATE);
         //Map<String, Browser> browsersInfoSecond = tasks.readDataFromSavedFiles(IATE,false);
-      
         // List<TermDetail> termDetails=MatchingTerminologies.getTermDetails("alcaftadine");
         // System.out.println(termDetails.toString());
-       
     }
     // run before comit..................to clean all folder
 
     private static void cleanDirectory() throws IOException {
-        FileRelatedUtils.cleanDirectory(CATEGORY_ONTOLOGIES, BASE_PATH, DATA_PATH);
-        FileRelatedUtils.cleanDirectory(BROWSER_GROUPS, BASE_PATH, TEXT_PATH);
-        FileRelatedUtils.cleanDirectory(CATEGORY_ONTOLOGIES, BASE_PATH, DATA_PATH);
+        FileRelatedUtils.cleanDirectory(constants.CATEGORY_ONTOLOGIES, constants.getBASE_PATH(), constants.DATA_PATH);
+        FileRelatedUtils.cleanDirectory(constants.BROWSER_GROUPS, constants.getBASE_PATH(), constants.TEXT_PATH);
+        FileRelatedUtils.cleanDirectory(constants.CATEGORY_ONTOLOGIES, constants.getBASE_PATH(), constants.DATA_PATH);
+    }
+
+    private static void testMatching() {
+        for (String lang : MatchingTerminologies.getLangTermDetails().keySet()) {
+            Map<String, List<TermDetail>> matchedTerms = MatchingTerminologies.getLangTermDetails().get(lang);
+            for (String term : matchedTerms.keySet()) {
+                List<TermDetail> termDetails = matchedTerms.get(term);
+                for (TermDetail termDetail : termDetails) {
+                    if (term.contains("acipimox")) {
+                        for (String termOrg : termDetail.getTermLinks().keySet()) {
+                            String url = termDetail.getTermLinks().get(termOrg);
+                            System.out.println(termOrg);
+                            System.out.println(url);
+                        }
+                    }
+
+                }
+            }
+        }
     }
 
 }

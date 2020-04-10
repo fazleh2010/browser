@@ -5,14 +5,10 @@
  */
 package browser.termallod.utils;
 
-import static browser.termallod.constants.FileAndCategory.BROWSER_CATEGORIES;
-import static browser.termallod.constants.FileAndCategory.CATEGORY_ONTOLOGIES;
-import static browser.termallod.constants.FileAndCategory.TEXT_PATH;
 import browser.termallod.constants.Browser;
+import browser.termallod.constants.FileAndLocationConst;
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.term.TermInfo;
-import browser.termallod.core.term.TermDetail;
-import browser.termallod.utils.NameExtraction;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,7 +18,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -33,7 +28,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
 
@@ -43,6 +37,13 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
  */
 public class FileRelatedUtils {
 
+    private static FileAndLocationConst constants;
+
+    public FileRelatedUtils(FileAndLocationConst constants) {
+        this.constants = constants;
+
+    }
+
     public static File[] getFiles(String fileDir, String ntriple) throws Exception {
 
         File dir = new File(fileDir);
@@ -51,7 +52,6 @@ public class FileRelatedUtils {
         return files;
 
     }
-    
 
     public static List<File> getFiles(String fileDir, String category, String extension) {
 
@@ -98,14 +98,52 @@ public class FileRelatedUtils {
             String str = "";
             String fileName = path + "_" + language +".txt";
             files.add(new File(fileName));
-            TreeMap<String, List<String>> alphabetPairTerms = langSortedTerms.get(language);
-            for (String pair : alphabetPairTerms.keySet()) {
-                List<String> terms = alphabetPairTerms.get(pair);
+            TreeMap<String, List<String>> idSense = langSortedTerms.get(language);
+            for (String pair : idSense.keySet()) {
+                List<String> terms = idSense.get(pair);
                 String line = pair + " = " + terms.toString().replace("[", "");
                 line = line.replace("]", "");
                 str += line + "\n";
             }
             stringToFile(str, fileName);
+        }
+        return files;
+    }*/
+ /*public static List<File> writeFile(TreeMap<String, TreeMap<String, List<TermInfo>>> langSortedTerms, String path) throws IOException {
+        List<File> files = new ArrayList<File>();
+        for (String language : langSortedTerms.keySet()) {
+            String str = "";
+            TreeMap<String, List<TermInfo>> idSense = langSortedTerms.get(language);
+            for (String pair : idSense.keySet()) {
+                String fileName = path + "_" + language + "_" + pair + ".txt";
+                List<TermInfo> terms = idSense.get(pair);
+                str = "";
+                for (TermInfo term : terms) {
+                    String line = term.getTermString() + " = " + term.getTermUrl();
+                    str += line + "\n";
+                }
+                stringToFile_ApendIf_Exists(str, fileName);
+            }
+
+        }
+        return files;
+    }*/
+ /*public static List<File> writeFile(TreeMap<String, TreeMap<String, List<TermInfo>>> langSortedTerms, String path) throws IOException {
+        List<File> files = new ArrayList<File>();
+        for (String language : langSortedTerms.keySet()) {
+            String str = "";
+            TreeMap<String, List<TermInfo>> idSense = langSortedTerms.get(language);
+            for (String pair : idSense.keySet()) {
+                String fileName = path + "_" + language + "_" + pair + ".txt";
+                List<TermInfo> terms = idSense.get(pair);
+                str = "";
+                for (TermInfo term : terms) {
+                    String line = term.getTermString() + " = " + term.getTermUrl();
+                    str += line + "\n";
+                }
+                stringToFile_ApendIf_Exists(str, fileName);
+            }
+
         }
         return files;
     }*/
@@ -128,14 +166,63 @@ public class FileRelatedUtils {
         }
         return files;
     }
-    
+
+    public static void writeLangFile(Map<String, TreeMap<String, String>> langHash, String path) throws IOException {
+        for (String language : langHash.keySet()) {
+            String str = "";
+            System.out.println(language);
+            TreeMap<String, String> idSense = langHash.get(language);
+            String fileName = path + language + ".txt";
+            for (String id : idSense.keySet()) {
+
+                String sense = idSense.get(id);
+                String line = id + " = " + sense;
+                str += line + "\n";
+            }
+            stringToFile_ApendIf_Exists(str, fileName);
+        }
+
+    }
+
+    public static void writeLangFile2(Map<String, String> langHash, String path) throws IOException {
+        for (String language : langHash.keySet()) {
+            String str = "";
+            System.out.println(language);
+            str = langHash.get(language);
+            String fileName = path + language + ".txt";
+            stringToFile_ApendIf_Exists(str, fileName);
+        }
+
+    }
+
     public static void writeFile(Map<String, String> terms, String fileName) throws IOException {
         String str = "";
         for (String term : terms.keySet()) {
-            String line = term +"="+terms.get(term) ;
+            String line = term + "=" + terms.get(term);
             str += line + "\n";
         }
         stringToFile_If_Exists(str, fileName);
+    }
+
+    public static void writeFile(String content, String fileName) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+        writer.write(content);
+        writer.close();
+    }
+
+    public static void writeFileNew(Map<String, String> terms, String fileName) throws IOException {
+        if (terms.isEmpty()) {
+            return;
+        }
+        String str = "";
+        for (String term : terms.keySet()) {
+            String line = term + "=" + terms.get(term);
+            str += line + "\n";
+            System.out.println(line);
+        }
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+        writer.write(str);
+        writer.close();
     }
 
     /*public static void writeFile(List<TermDetail> terms, String fileName) throws IOException {
@@ -146,7 +233,6 @@ public class FileRelatedUtils {
         }
         stringToFile_If_Exists(str, fileName);
     }*/
-    
     public static void stringToFile_If_Exists(String str, String fileName)
             throws IOException {
         File file = new File(fileName);
@@ -190,6 +276,29 @@ public class FileRelatedUtils {
         Properties props = new Properties();
         props.load(new InputStreamReader(new FileInputStream(propFile), "UTF-8"));
         return props;
+    }
+
+    public static Map<String, String> getHash(String fileName) throws FileNotFoundException, IOException {
+        Map<String, String> hash = new HashMap<String, String>();
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader(fileName));
+            String line = reader.readLine();
+            while (line != null) {
+
+                // read next line
+                line = reader.readLine();
+                if(line!=null){
+                String[] info = line.split("=");
+                hash.put(info[0], info[1]);
+                }
+                 
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return hash;
     }
 
     public static void appendStringInFile(String textToAppend, String fileName) throws IOException {
@@ -240,8 +349,8 @@ public class FileRelatedUtils {
         }
         return languageFiles;
     }
-    
-    public static Map<String, List<File>> getLanguageFiles(List<File> inputfiles, String model_extension,Boolean alternativeFlag) {
+
+    public static Map<String, List<File>> getLanguageFiles(List<File> inputfiles, String model_extension, Boolean alternativeFlag) {
         Map<String, List<File>> languageFiles = new HashMap<String, List<File>>();
         for (File file : inputfiles) {
             String langCode = NameExtraction.getLanCode(file, model_extension);
@@ -274,7 +383,7 @@ public class FileRelatedUtils {
 
     public static File getSepecificInputTextFile(String PATH, String browser, String categoryName, String langCode, AlphabetTermPage alphabetTermPage) throws Exception {
         String source = getSourcePath(PATH, browser);
-        List<File> files = getFiles(source + TEXT_PATH, categoryName, ".txt");
+        List<File> files = getFiles(source + constants.TEXT_PATH, categoryName, ".txt");
         if (files.isEmpty()) {
             throw new Exception("Text folder can not be empty!!!");
         }
@@ -294,24 +403,25 @@ public class FileRelatedUtils {
     public static String getSpecificFile(String PATH, String ontologyName, String langCode, String pair, String extension) {
         Browser browser = new Browser();
         //String browserName = browser.getBrowserFromOntologyName(ontologyName);
-        String inputDir=getInputLocation(PATH,ontologyName);
-        String fineName = inputDir + ontologyName + "_" + langCode + "_" + pair+extension;
+        String inputDir = getInputLocation(PATH, ontologyName);
+        String fineName = inputDir + ontologyName + "_" + langCode + "_" + pair + extension;
         //src/java/resources/data/genterm/text/tbx2rdf_atc_en_A_B.txt
         return fineName;
 
     }
-    
+
     public static void deleteFile(String fileName) {
-       new File(fileName).delete();
+        new File(fileName).delete();
     }
-     
-      public static String getInputLocation(String PATH, String ontologyName) {
+
+    public static String getInputLocation(String PATH, String ontologyName) {
         Browser browser = new Browser();
-        return PATH + browser.getBrowserFromOntologyName(ontologyName) + File.separator + TEXT_PATH;
+        return PATH + browser.getBrowserFromOntologyName(ontologyName) + File.separator + constants.TEXT_PATH;
     }
-       public static String getBrowser(String ontologyName) {
+
+    public static String getBrowser(String ontologyName) {
         Browser browser = new Browser();
-        return  browser.getBrowserFromOntologyName(ontologyName);
+        return browser.getBrowserFromOntologyName(ontologyName);
     }
 
 }

@@ -5,10 +5,7 @@
  */
 package browser.termallod.core;
 
-import browser.termallod.constants.FileAndCategory;
-import browser.termallod.core.Taskimpl;
-import browser.termallod.core.Browser;
-import browser.termallod.core.LangSpecificBrowser;
+import browser.termallod.constants.FileAndLocationConst;
 import browser.termallod.utils.FileRelatedUtils;
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,18 +21,20 @@ import org.apache.commons.io.IOUtils;
  *
  * @author elahi
  */
-public class GeneralCompScriptGen implements FileAndCategory {
+public class GeneralCompScriptGen {
 
     private final Map<String, Browser> inputBrowsers;
     private final File templateFile;
     private final Boolean alternativeUrlFlag;
     private  static Integer orginalIndex=0;
     private  static Integer alternativeIndex=1;
+    private   FileAndLocationConst constants;
 
-    public GeneralCompScriptGen(Map<String, Browser> inputBrowsers, File templateFile,Boolean alternativeFlag) throws Exception {
+    public GeneralCompScriptGen(Map<String, Browser> inputBrowsers, File templateFile,FileAndLocationConst constants,Boolean alternativeFlag) throws Exception {
         this.inputBrowsers = inputBrowsers;
         this.alternativeUrlFlag=alternativeFlag;
         this.templateFile = templateFile;
+        this.constants=constants;
         if (!templateFile.exists()) {
             throw new Exception(" no template find found for autocompletion!!");
         }
@@ -59,7 +58,7 @@ public class GeneralCompScriptGen implements FileAndCategory {
             LangSpecificBrowser langSpecificBrowser = generalBrowser.getLangTermUrls().get(langCode);
             Map<String, String> allkeysValues = langSpecificBrowser.getTermUrls();
             String str = getTerms(allkeysValues);
-            String outputFileName = AUTO_COMPLETION_TEMPLATE_LOCATION + ontologyName + "_" + langCode + ".js";
+            String outputFileName =  constants.AUTO_COMPLETION_TEMPLATE_LOCATION + ontologyName + "_" + langCode + ".js";
             createAutoCompletionTemplate(templateFile, str, outputFileName);
         }
     }

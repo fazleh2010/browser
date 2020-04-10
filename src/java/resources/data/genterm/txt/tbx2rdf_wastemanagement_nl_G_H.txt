@@ -1,0 +1,16 @@
+histogram = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/histogram-NL#CanonicalForm
+geïntegreerd_afvalbeheersysteem = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/ge%C3%AFntegreerd+afvalbeheersysteem-NL#CanonicalForm
+gemengd_afval = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/gemengd+afval-NL#CanonicalForm
+goederen = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/goederen-NL#CanonicalForm
+gemengde_inzameling = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/gemengde+inzameling-NL#CanonicalForm
+hergebruik = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/hergebruik-NL#CanonicalForm
+heterogeen_afval = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/heterogeen+afval-NL#CanonicalForm
+gebruiksduur = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/gebruiksduur-NL#CanonicalForm
+gevoeligheidsanalyse = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/gevoeligheidsanalyse-NL#CanonicalForm
+grondstofwinning = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/grondstofwinning-NL#CanonicalForm
+gegevens = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/gegevens-NL#CanonicalForm
+geïntegreerd_afvalbeheer = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/ge%C3%AFntegreerd+afvalbeheer-NL#CanonicalForm
+grondstof = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/grondstof-NL#CanonicalForm
+gemeentelijk_vast_afval = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/gemeentelijk+vast+afval-NL#CanonicalForm
+grondstoffenwinning = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/grondstoffenwinning-NL#CanonicalForm
+gebruiksfase = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/gebruiksfase-NL#CanonicalForm

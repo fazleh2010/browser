@@ -1,0 +1,8 @@
+cyanosis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/cyanosis-EN#CanonicalForm
+distention = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/distention-EN#CanonicalForm
+congenital = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/congenital-EN#CanonicalForm
+dyspnea = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/dyspnea-EN#CanonicalForm
+distension = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/distension-EN#CanonicalForm
+clubbing = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/clubbing-EN#CanonicalForm
+diaphoresis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/diaphoresis-EN#CanonicalForm
+dyspnoea = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/dyspnoea-EN#CanonicalForm

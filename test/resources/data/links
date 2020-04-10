@@ -1,0 +1,5 @@
+http://tbx2rdf.lider-project.eu/data/iate/subjectField/3611
+
+statement.getObject() we get ides IATE
+
+[http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/IATE-1355190, http://tbx2rdf.lider-project.eu/tbx#subjectField, http://tbx2rdf.lider-project.eu/data/iate/subjectField/2431]

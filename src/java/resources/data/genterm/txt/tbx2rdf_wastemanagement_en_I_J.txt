@@ -1,0 +1,10 @@
+impact_assessment = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/impact+assessment-EN#CanonicalForm
+incineration = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/incineration-EN#CanonicalForm
+integrated_waste_management = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/integrated+waste+management-EN#CanonicalForm
+inventory_analysis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/inventory+analysis-EN#CanonicalForm
+impact = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/impact-EN#CanonicalForm
+input = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/input-EN#CanonicalForm
+integrated_waste_management_system = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/integrated+waste+management+system-EN#CanonicalForm
+interpretation = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/interpretation-EN#CanonicalForm
+impact_category = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/impact+category-EN#CanonicalForm
+impact_categories = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/impact+categories-EN#CanonicalForm

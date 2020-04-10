@@ -1,0 +1,13 @@
+crevé = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/crev%C3%A9-NL#CanonicalForm
+dutch_bath = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/Dutch+bath-NL#CanonicalForm
+craquelé = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/craquel%C3%A9-NL#CanonicalForm
+damasceren = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/damasceren-NL#CanonicalForm
+chemisch_manuele_diepdrukvorm = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/chemisch+manuele+diepdrukvorm-NL#CanonicalForm
+crayonets = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/crayonets-NL#CanonicalForm
+diepets = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/diepets-NL#CanonicalForm
+droge_naald = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/droge+naald-NL#CanonicalForm
+diepdrukgrafiek = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/diepdrukgrafiek-NL#CanonicalForm
+crayonmanier = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/crayonmanier-NL#CanonicalForm
+creeping_bite = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/creeping+bite-NL#CanonicalForm
+damarhars = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/damarhars-NL#CanonicalForm
+dutch_mordant = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/Dutch+mordant-NL#CanonicalForm

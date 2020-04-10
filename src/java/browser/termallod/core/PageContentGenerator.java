@@ -69,13 +69,6 @@ public class PageContentGenerator {
         return new ArrayList<AlphabetTermPage>();
     }
 
-    /*public List<String> getAlpahbetTermsExists(String language) {
-        if (alpahbetTermsExists.containsKey(language)) {
-            return alpahbetTermsExists.get(language);
-        }
-        return new ArrayList<String>();
-    }*/
-
     public TreeSet<String> getLanguages() {
         return this.languages;
     }

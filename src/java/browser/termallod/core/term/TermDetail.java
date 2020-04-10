@@ -5,7 +5,6 @@
  */
 package browser.termallod.core.term;
 
-import static browser.termallod.constants.FileAndCategory.IATE;
 import browser.termallod.utils.StringMatcherUtil;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -18,65 +17,60 @@ import java.util.Set;
  */
 public class TermDetail {
 
-    private final String term ;
+    private final String term;
     private final String termModified;
     private final String category;
     private final String langCode;
-    private Map<String,String> termLinks = new HashMap<String,String>();
+    private Map<String, String> termLinks = new HashMap<String, String>();
     private Boolean alternativeFlag;
     private String alternativeUrl = null;
-    private  String url;
+    private String url;
+    private  static Integer orginalIndex=0;
+    private  static Integer alternativeIndex=1;
 
-     public TermDetail(String category,String langCode, String term) {
+    public TermDetail(String category, String langCode, String term) {
         this.category = category;
         this.langCode = langCode;
         this.term = term;
         this.termModified = StringMatcherUtil.decripted(term);
     }
-    
-     public TermDetail(String category,String langCode, String term,String url) {
-         this(category,langCode,term);
-         this.url=url;
-    }
-     
-    public TermDetail(String category,String langCode, String term, String url, String alternativeUrl) {
-        this(category,langCode, term, url);
-        this.alternativeUrl=alternativeUrl;
+
+    public TermDetail(String category, String langCode, String term, String url) {
+        this(category, langCode, term);
+        this.url = url;
     }
 
+    public TermDetail(String category, String langCode, String term, String url, String alternativeUrl) {
+        this(category, langCode, term, url);
+        this.alternativeUrl = alternativeUrl;
+    }
 
-    public TermDetail(String category,String langCode, String term, String url, String givenCategory,String givenUrl) {
-        this(category,langCode,term,url,url);
+    public TermDetail(String category, String langCode, String term, String url, String givenCategory, String givenUrl) {
+        this(category, langCode, term, url, url);
         this.termLinks.put(category, url);
         this.termLinks.put(givenCategory, givenUrl);
     }
-   
 
-   
-
-   
-    
     /*public TermDetail(String categoryName,String langCode, String term,String url, String alternativeUrl) {
         this(categoryName,langCode,term);
         this.url = url;
         this.alternativeUrl = alternativeUrl;
     }*/
-    public TermDetail(TermDetail termDetail,String url,String alternativeUrl) {
-        this(termDetail.getCategory(),termDetail.getLangCode(),termDetail.getTerm(),url,alternativeUrl);
+    public TermDetail(TermDetail termDetail, String url, String alternativeUrl) {
+        this(termDetail.getCategory(), termDetail.getLangCode(), termDetail.getTerm(), url, alternativeUrl);
     }
 
     public String getTerm() {
         return term;
     }
-    
-     public void setAlternativeUrl(String alternativeUrl) {
+
+    public void setAlternativeUrl(String alternativeUrl) {
         this.alternativeUrl = alternativeUrl;
     }
-    
+
     public String getLangCode() {
         return langCode;
     }
-
 
     public String getCategory() {
         return category;
@@ -95,8 +89,8 @@ public class TermDetail {
     }
 
     public String getTermLinks(String givenCategory) {
-        for(String categoryName:termLinks.keySet()){
-            if(!categoryName.equals(givenCategory)){
+        for (String categoryName : termLinks.keySet()) {
+            if (!categoryName.equals(givenCategory)) {
                 return termLinks.get(categoryName);
             }
         }
@@ -109,23 +103,38 @@ public class TermDetail {
     }
 
     public String getOtherCategory(String categoryType) {
-       for(String categoryName:termLinks.keySet()){
-            if(!categoryName.equals(this.category)){
+        for (String categoryName : termLinks.keySet()) {
+            if (!categoryName.equals(categoryType)) {
                 return categoryName;
             }
         }
         return this.category;
     }
+    
 
     public String getUrl(String otherTerminology) {
-       return this.termLinks.get(otherTerminology);
+        return this.termLinks.get(otherTerminology);
     }
 
     public String getAlternativeUrl(String otherTerminology) {
-         return this.termLinks.get(otherTerminology);
+        return getAlternativeUrl(this.termLinks.get(otherTerminology),true);
     }
     
-      public String termFilter(String text) {
+     public static  String getAlternativeUrl(String value,Boolean alternativeUrlFlag) {
+        if (value.contains("=")) {
+                String[] urls = value.split("=");
+                String orgUrl = urls[orginalIndex];
+                String alterUrl = urls[alternativeIndex];
+                if (alternativeUrlFlag) {
+                    value = alterUrl;
+                } else {
+                    value = orgUrl;
+                }
+            }
+        return value;
+    }
+
+    public String termFilter(String text) {
         if (text.contains("\"")) {
             return text.replaceAll("\"", "");
         }
@@ -149,6 +158,10 @@ public class TermDetail {
         }
 
         return text;
+    }
+
+    public Map<String, String> getTermLinks() {
+        return termLinks;
     }
 
 }

@@ -1,0 +1,8 @@
+mezzotint = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/mezzotint-EN#CanonicalForm
+monotype = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/monotype-EN#CanonicalForm
+mordant = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/mordant-EN#CanonicalForm
+mattoir = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/mattoir-EN#CanonicalForm
+manual_intaglio_printmaking = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/manual+intaglio+printmaking-EN#CanonicalForm
+mixed_method = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/mixed+method-EN#CanonicalForm
+mace-head = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/mace-head-EN#CanonicalForm
+manual_mechanical_intaglio_printmaking = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/manual+mechanical+intaglio+printmaking-EN#CanonicalForm

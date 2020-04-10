@@ -5,10 +5,10 @@
  */
 package browser.termallod.utils;
 
-import browser.termallod.constants.FileAndCategory;
 import browser.termallod.constants.Languages;
 import browser.termallod.core.LanguageAlphabetPro;
 import browser.termallod.api.LanguageManager;
+import browser.termallod.constants.FileAndLocationConst;
 import java.io.IOException;
 import java.util.List;
 import java.util.TreeMap;
@@ -18,8 +18,14 @@ import java.util.TreeMap;
  *
  * @author elahi
  */
-public class UrlUtils implements FileAndCategory,Languages {
+public class UrlUtils implements Languages {
+        private static String BASE_PATH = "src/java/resources/data/";
 
+    private static FileAndLocationConst constants;
+
+    public UrlUtils(FileAndLocationConst constants){
+        this.constants=constants;
+    }
     public static String encode(String input_text) {
         return URLUTF8Encoder.encode(input_text);
     }
@@ -36,7 +42,7 @@ public class UrlUtils implements FileAndCategory,Languages {
         System.out.println(encodeText);
         System.out.println(decodeTest);
 
-        LanguageManager languageManager = new LanguageAlphabetPro(LANGUAGE_CONFIG_FILE);
+        LanguageManager languageManager = new LanguageAlphabetPro(constants.getLANGUAGE_CONFIG_FILE());
         TreeMap<String, String> langBox = new TreeMap<String, String>();
 
         for (String langCode : languageManager.getLangAlphabetPairSorted().keySet()) {

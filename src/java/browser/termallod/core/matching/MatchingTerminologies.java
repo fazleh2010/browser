@@ -6,8 +6,6 @@
 package browser.termallod.core.matching;
 
 import browser.termallod.core.term.TermDetail;
-import static browser.termallod.constants.FileAndCategory.IATE;
-import static browser.termallod.constants.FileAndCategory.SOLAR;
 import browser.termallod.constants.Languages;
 import browser.termallod.core.Browser;
 import browser.termallod.core.LangSpecificBrowser;
@@ -188,8 +186,18 @@ public class MatchingTerminologies implements Languages {
         return langTermDetails.get(langCode);
     }
 
-    public static List<TermDetail> getTermDetails(String langCode,String term) {
+    /*public static List<TermDetail> getTermDetails(String langCode,String term) {
         Map<String, List<TermDetail>> termDetails=getCategroyTerms(langCode);
+        if (termDetails.containsKey(term)) {
+            return termDetails.get(term);
+        }
+        return new ArrayList<TermDetail>();
+    }*/
+    
+    public static List<TermDetail> getTermDetails(String langCode,String term) {
+       
+        Map<String, List<TermDetail>> termDetails=getCategroyTerms(langCode);
+        
         if (termDetails.containsKey(term)) {
             return termDetails.get(term);
         }

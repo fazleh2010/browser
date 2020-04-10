@@ -1,0 +1,4 @@
+erythema = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/erythema-EN#CanonicalForm
+failure_to_thrive = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/failure+to+thrive-EN#CanonicalForm
+fibroma = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/fibroma-EN#CanonicalForm
+edema = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/edema-EN#CanonicalForm

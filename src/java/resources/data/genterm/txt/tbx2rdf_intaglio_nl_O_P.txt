@@ -1,0 +1,14 @@
+punteermanier = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/punteermanier-NL#CanonicalForm
+pastelmanier = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/pastelmanier-NL#CanonicalForm
+ponsgravure = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/ponsgravure-NL#CanonicalForm
+proefdruk = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/proefdruk-NL#CanonicalForm
+polijstpoeder = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/polijstpoeder-NL#CanonicalForm
+opsnijden = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/opsnijden-NL#CanonicalForm
+opstrijken = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/opstrijken-NL#CanonicalForm
+plaattoon = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/plaattoon-NL#CanonicalForm
+open_tekening = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/open+tekening-NL#CanonicalForm
+overlaat = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/overlaat-NL#CanonicalForm
+polijststaal = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/polijststaal-NL#CanonicalForm
+penseelets = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/penseelets-NL#CanonicalForm
+plate = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/plate-NL#CanonicalForm
+oplage = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/oplage-NL#CanonicalForm

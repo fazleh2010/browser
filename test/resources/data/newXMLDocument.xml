@@ -1,0 +1,26 @@
+< http :// tbx2rdf . lider - project . eu / data / iate / en > a ontolex : Lexicon ;
+ontolex : entry : competence + of + the + Member + States - en ;
+ontolex : language " en " .
+: competence + of + the + Member + States - en
+ontolex : LexicalEntry ;
+tbx : reliabilityCode "3"^^ xsd : string ;
+
+tbx : termType
+tbx : fullForm ;
+
+ontolex : canonicalForm : competence + of + the + Member + States - en # CanonicalForm ;
+
+ontolex : language " en " ;
+
+ontolex : sense
+: competence + of + the + Member + States - en # Sense .
+12
+13
+: competence + of + the + Member + States - en # CanonicalForm
+14
+ontolex : writtenRep " competence of the member states " @en .
+15
+16
+: competence + of + the + Member + States - en # Sense
+17
+ontolex : reference : IATE_84 .
