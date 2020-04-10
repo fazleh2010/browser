@@ -30,6 +30,7 @@ public class AlphabetTermPage {
     public AlphabetTermPage(String alpahbetPair, File file, Partition<String> partition, Integer numericalValueOfPair) throws Exception{
         this.alpahbetPair = alpahbetPair;
         this.partition = partition;
+        System.out.println(partition.toString());
         this.numberOfPages = partition.size();
         this.numericalValueOfPair = numericalValueOfPair;
         this.file = file;

@@ -37,7 +37,6 @@ public class HtmlCreator  {
         this.constants=constants;
         this.merging=merging;
         this.htmlCreateParameters=htmlCreateParameters;
-        
     }
 
    

@@ -51,6 +51,7 @@ public class PageContentGenerator {
             for (String alphabetPair : alpahbetTerms.keySet()) {
                 List<String> termSet = alpahbetTerms.get(alphabetPair);
                 List<String>termList=new ArrayList<String>(termSet);
+                System.out.println(termList);
                 Collections.sort(termList);
                 Partition<String> partition = Partition.ofSize(termList, this.numberofElementEachPage);
                 AlphabetTermPage alphabetTermPage = new AlphabetTermPage(alphabetPair,categoryInfo.getPairFile(alphabetPair), partition,numericalValueOfPair);
