@@ -81,7 +81,7 @@ public class TermPageTest {
         subjectFieldMerging = new SubjectFieldMerging(alphabetFileName, conceptFileName, subjectFileName, cannonical, sense, subjectDetail);
         info = new OntologyInfo(language, categoryName, alphabetTermPage);
         TermPage termPage = new TermPage(htmlCreateParameters, info, htmlReaderWriter, subjectFieldMerging, constants);
-
+        
     }
 
     private File getTemplate(String categoryName, String langCode, String extension) throws Exception {

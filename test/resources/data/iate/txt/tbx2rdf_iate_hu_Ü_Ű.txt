@@ -1,0 +1,3 @@
+üzemanyagfelár = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%BCzemanyagfel%C3%A1r-hu#CanonicalForm
+ügyrendi_javaslat = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%BCgyrendi+javaslat-hu#CanonicalForm
+ügyfélkapcsolat-kezelési_szolgálat = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%9Cgyf%C3%A9lkapcsolat-kezel%C3%A9si+Szolg%C3%A1lat-hu#CanonicalForm

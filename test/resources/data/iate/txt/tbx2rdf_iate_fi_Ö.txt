@@ -1,0 +1,4 @@
+öljyusva = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%B6ljyusva-fi#CanonicalForm
+öljykasvirouhe = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%B6ljykasvirouhe-fi#CanonicalForm
+öljyteollisuus = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%B6ljyteollisuus-fi#CanonicalForm
+öljymäärän_mittatikku = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/%C3%B6ljym%C3%A4%C3%A4r%C3%A4n+mittatikku-fi#CanonicalForm

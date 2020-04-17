@@ -1,0 +1,14 @@
+hodnotiaca_správa_medzivládneho_panelu_o_zmene_klímy = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/hodnotiaca+spr%C3%A1va+Medzivl%C3%A1dneho+panelu+o+zmene+kl%C3%ADmy-sk#CanonicalForm
+holdingový_účet_prevádzkovateľa_lietadla = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/holdingov%C3%BD+%C3%BA%C4%8Det+prev%C3%A1dzkovate%C4%BEa+lietadla-sk#CanonicalForm
+heterosexuálny_vzťah = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/heterosexu%C3%A1lny+vz%C5%A5ah-sk#CanonicalForm
+hraničný_bod = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/hrani%C4%8Dn%C3%BD+bod-sk#CanonicalForm
+homosexuálne_rodičovstvo = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/homosexu%C3%A1lne+rodi%C4%8Dovstvo-sk#CanonicalForm
+hodnotenie_hrozieb_internetovej_organizovanej_trestnej_činnosti = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/hodnotenie+hrozieb+internetovej+organizovanej+trestnej+%C4%8Dinnosti-sk#CanonicalForm
+hlásny_bod = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/hl%C3%A1sny+bod-sk#CanonicalForm
+hovädzie = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/hov%C3%A4dzie-sk#CanonicalForm
+hlavonožec = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/hlavono%C5%BEec-sk#CanonicalForm
+hydrogenortofosforečnan_didraselný = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/hydrogenortofosfore%C4%8Dnan+didraseln%C3%BD-sk#CanonicalForm
+horúca_téma = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/hor%C3%BAca+t%C3%A9ma-sk#CanonicalForm
+horská_oblasť = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/horsk%C3%A1+oblas%C5%A5-sk#CanonicalForm
+heterosexistická_diskriminácia = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/heterosexistick%C3%A1+diskrimin%C3%A1cia-sk#CanonicalForm
+halucinogénna_látka = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/halucinog%C3%A9nna+l%C3%A1tka-sk#CanonicalForm

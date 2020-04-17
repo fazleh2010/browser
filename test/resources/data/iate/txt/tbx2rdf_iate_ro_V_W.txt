@@ -1,0 +1,10 @@
+valoare_mobiliară = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/valoare+mobiliar%C4%83-ro#CanonicalForm
+verificări_și_inspecții_la_fața_locului = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/verific%C4%83ri+%C8%99i+inspec%C8%9Bii+la+fa%C8%9Ba+locului-ro#CanonicalForm
+valoare_limită_orientativă_de_expunere_profesională = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/valoare+limit%C4%83+orientativ%C4%83+de+expunere+profesional%C4%83-ro#CanonicalForm
+valoare_nutritivă = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/valoare+nutritiv%C4%83-ro#CanonicalForm
+vehicul_completat = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/vehicul+completat-ro#CanonicalForm
+vatos = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/vatos-ro#CanonicalForm
+v/v = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/v%2Fv-ro#CanonicalForm
+violență_domestică = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/violen%C8%9B%C4%83+domestic%C4%83-ro#CanonicalForm
+valoarea_adăugată_europeană_în_acțiune = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/valoarea+ad%C4%83ugat%C4%83+european%C4%83+%C3%AEn+ac%C8%9Biune-ro#CanonicalForm
+venituri_publice_la_care_se_renunță = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/venituri+publice+la+care+se+renun%C8%9B%C4%83-ro#CanonicalForm

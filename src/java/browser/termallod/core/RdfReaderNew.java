@@ -44,6 +44,10 @@ public class RdfReaderNew {
     private String subjectID = "http://tbx2rdf.lider-project.eu/data/iate/subjectField/";
     private String MODEL_TYPE;
     private String LANGUAGE_SEPERATE_SYMBOLE = "@";
+    private String administrativeStatus = "administrativeStatus";
+    private String reliabilityCode = "reliabilityCode";
+    private String HTTP = "http";
+    private String HTTP_IATE = "http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/";
     private LanguageManager languageInfo;
 
     public RdfReaderNew(String rdfDir, LanguageManager languageInfo, String MODEL_TYPE, String MODEL_EXTENSION, String dataSaveDir) throws Exception {
@@ -67,10 +71,11 @@ public class RdfReaderNew {
         //Map<String, String> idSubjectFieldID = new TreeMap<String, String>();
         Map<String, String> urlCanonicalForm = new TreeMap<String, String>();
         Map<String, String> urlSense = new TreeMap<String, String>();
+        Map<String, String> urlReliabilityCode = new TreeMap<String, String>();
+        Map<String, String> urlAdministrative = new TreeMap<String, String>();
         Model model = ModelFactory.createDefaultModel();
         InputStream is = FileManager.get().open(fileNameOrUri);
-        String idSubjectID="";
-        
+        String idSubjectID = "";
 
         if (is != null) {
             model.read(is, null, MODEL_TYPE);
@@ -86,15 +91,29 @@ public class RdfReaderNew {
                         System.out.println(triple.toString());
                     }*/
 
+                //"http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/ablakl%C3%A9h%C3%A9s-hu"
+                if (triple.toString().contains(HTTP_IATE)) {
+                    if (triple.toString().contains(reliabilityCode)) {
+                        urlReliabilityCode = getreliabilityCode(triple, urlReliabilityCode);
+                    }
+
+                }
+                if (triple.toString().contains(HTTP_IATE)) {
+                    if (triple.toString().contains(administrativeStatus)) {
+                        urlAdministrative = getAdministrativeStatus(triple, urlAdministrative);
+                    }
+
+                }
+
                 if (triple.toString().contains(termID)) {
 
                     if (triple.toString().contains(subjectID)) {
-                        idSubjectID= this.getSubjectField(triple, idSubjectID);
+                        idSubjectID = this.getSubjectField(triple, idSubjectID);
                     }
                     if (triple.toString().contains(senseID)) {
                         langSensList = this.getSense(triple, langSensList);
                     }
-
+                   
                 } else {
                     /*if (triple.toString().contains("CanonicalForm") && !triple.getObject().toString().contains(LANGUAGE_SEPERATE_SYMBOLE)) {
                         urlCanonicalForm = this.getCanonicalForm(triple, urlCanonicalForm, "CanonicalForm");
@@ -134,6 +153,7 @@ public class RdfReaderNew {
         //FileRelatedUtils.writeFileNew(urlCanonicalForm, dataSaveDir + File.separator + "canonicalForm.txt");
         System.out.println(urlSense.size());
         //FileRelatedUtils.writeFileNew(urlSense, dataSaveDir + File.separator + "sense.txt");
+        FileRelatedUtils.writeFileNew(urlReliabilityCode, dataSaveDir + File.separator + "reliabilityCode.txt");
 
     }
 
@@ -193,7 +213,7 @@ public class RdfReaderNew {
         return null;
     }
 
-    private Map<String, String> getSense(Triple statement, Map<String,String> langSensList) throws Exception {
+    private Map<String, String> getSense(Triple statement, Map<String, String> langSensList) throws Exception {
         String string = statement.toString();
         String[] infos = string.split(" ");
         List<String> wordList = Arrays.asList(infos);
@@ -210,7 +230,7 @@ public class RdfReaderNew {
                 checkField = checkField.substring(0, checkField.lastIndexOf('#'));
                 //String firstLetter = checkField.substring(0, 1);
                 //if (firstLetter.equals("a") || firstLetter.equals("b")) {
-                    senseField = checkField;
+                senseField = checkField;
                 //}
 
             }
@@ -219,9 +239,9 @@ public class RdfReaderNew {
         if (termID != null && senseField != null) {
 
             //checkField = checkField.substring(0, checkField.lastIndexOf('#'));
-            //checkField=checkField.replace("http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/", "");
+            //checkField=checkField.replace("HTTP://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/", "");
             id = this.modifyId(id);
-            //id=url.replace("http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/", "");
+            //id=url.replace("HTTP://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/", "");
             language = this.getLanguage(senseField);
             if (!languageInfo.isLanguageExist(language)) {
                 return langSensList;
@@ -230,13 +250,13 @@ public class RdfReaderNew {
             if (langSensList.containsKey(language)) {
                 String idSense = langSensList.get(language);
                 OrgSenseField = this.modifyUrl(OrgSenseField);
-                String line = id+"="+OrgSenseField;
+                String line = id + "=" + OrgSenseField;
                 idSense += line + "\n";
                 langSensList.put(language, idSense);
             } else {
-                String idSense ="";
+                String idSense = "";
                 OrgSenseField = modifyUrl(OrgSenseField);
-                String line = id+"="+OrgSenseField;
+                String line = id + "=" + OrgSenseField;
                 idSense += line + "\n";
                 langSensList.put(language, idSense);
             }
@@ -264,9 +284,9 @@ public class RdfReaderNew {
             if (checkField.contains(this.subjectID)) {
                 //System.out.println(url+".."+checkField);
                 id = this.modifyId(id);
-                 checkField = this.modifySubject(checkField);
-                 String line = id+"="+checkField;
-                 idSubjectID += line + "\n";
+                checkField = this.modifySubject(checkField);
+                String line = id + "=" + checkField;
+                idSubjectID += line + "\n";
             }
 
         }
@@ -304,6 +324,62 @@ public class RdfReaderNew {
 
         }
         return idSubjectFieldID;
+    }
+
+    private Map<String, String> getreliabilityCode(Triple statement, Map<String, String> urlMap) throws Exception {
+        String string = statement.toString();
+        String[] infos = string.split(" ");
+        List<String> wordList = Arrays.asList(infos);
+        String url = null, checkField = null, language = null, orgUrl = null;
+        for (String http : wordList) {
+            if (http.contains(HTTP)) {
+                if (http.contains(HTTP_IATE)) {
+                    orgUrl = http.trim();
+                    url = orgUrl;
+                    url = modifyUrl(url);
+                    language = this.getLanguage(url);
+                    if (!language.contains("en")) {
+                        return urlMap;
+                    }
+                } else if (http.contains("integer")) {
+                    checkField = http.trim();
+                }
+            }
+        }
+        if (orgUrl != null && checkField != null) {
+            urlMap.put(orgUrl, checkField);
+            System.out.println(statement.toString());
+        }
+        return urlMap;
+    }
+
+    private Map<String, String> getAdministrativeStatus(Triple statement, Map<String, String> urlMap) throws Exception {
+        String string = statement.toString();
+        String[] infos = string.split(" ");
+        List<String> wordList = Arrays.asList(infos);
+        String url = null, checkField = null, language = null, orgUrl = null;
+        for (String http : wordList) {
+            if (http.contains(HTTP)) {
+                if (http.contains(HTTP_IATE)) {
+                    orgUrl = http.trim();
+                    url = orgUrl;
+                    url = modifyUrl(url);
+                    language = this.getLanguage(url);
+                    if (!language.contains("en")) {
+                        return urlMap;
+                    }
+                } else if (http.contains("@" + HTTP)) {
+                    // checkField = http.trim();
+                } else if (http.contains(HTTP)) {
+                    checkField = http.trim();
+                }
+            }
+        }
+        if (orgUrl != null && checkField != null) {
+            urlMap.put(orgUrl, checkField);
+            System.out.println(statement.toString());
+        }
+        return urlMap;
     }
 
     private String getLanguage(String checkField) throws Exception {

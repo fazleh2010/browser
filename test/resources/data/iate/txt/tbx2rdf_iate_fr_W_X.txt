@@ -1,0 +1,17 @@
+wais = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/WAIS-fr#CanonicalForm
+woodsia_obtuse = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/woodsia+obtuse-fr#CanonicalForm
+wihogne = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Wihogne-fr#CanonicalForm
+xamotérol = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/xamot%C3%A9rol-fr#CanonicalForm
+xeropicta_derbentina = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Xeropicta+derbentina-fr#CanonicalForm
+wallabi-lièvre_rayé = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/wallabi-li%C3%A8vre+ray%C3%A9-fr#CanonicalForm
+xbrl = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/XBRL-fr#CanonicalForm
+x_est_présumé_être_de_bonne_foi_jusqu'à_preuve_du_contraire = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/X+est+pr%C3%A9sum%C3%A9+%C3%AAtre+de+bonne+foi+jusqu%27%C3%A0+preuve+du+contraire-fr#CanonicalForm
+wagon_plat_à_bords_rabattables = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/wagon+plat+%C3%A0+bords+rabattables-fr#CanonicalForm
+wcc = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/WCC-fr#CanonicalForm
+warrant_sur_l'obligation = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/warrant+sur+l%27obligation-fr#CanonicalForm
+wagon-trémie_à_déchargement_latéral = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/wagon-tr%C3%A9mie+%C3%A0+d%C3%A9chargement+lat%C3%A9ral-fr#CanonicalForm
+walele = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/walele-fr#CanonicalForm
+wagon_surbaissé = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/wagon+surbaiss%C3%A9-fr#CanonicalForm
+xérophytes = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/x%C3%A9rophytes-fr#CanonicalForm
+xalatan = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Xalatan-fr#CanonicalForm
+wagon_à_benne_basculante = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/wagon+%C3%A0+benne+basculante-fr#CanonicalForm

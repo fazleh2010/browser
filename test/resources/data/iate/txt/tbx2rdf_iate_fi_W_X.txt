@@ -1,0 +1,11 @@
+wsis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/WSIS-fi#CanonicalForm
+ways&means_-alakomitea = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Ways%26Means+-alakomitea-fi#CanonicalForm
+wilksin_sisäinen_hajonta = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Wilksin+sis%C3%A4inen+hajonta-fi#CanonicalForm
+wishartin_jakauma = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Wishartin+jakauma-fi#CanonicalForm
+wienin_huumausainesopimus = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Wienin+huumausainesopimus-fi#CanonicalForm
+x-kromosomin_trisomia = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/X-kromosomin+trisomia-fi#CanonicalForm
+w-moottori = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/W-moottori-fi#CanonicalForm
+welchin-satterthwaiten_t-testi = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Welchin-Satterthwaiten+t-testi-fi#CanonicalForm
+walterin-liethin_ilmastodiagrammi = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Walterin-Liethin+ilmastodiagrammi-fi#CanonicalForm
+wfo = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/WFO-fi#CanonicalForm
+wienin_ja_pariisin_yleissopimusten_soveltamista_koskeva_yhteispöytäkirja = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Wienin+ja+Pariisin+yleissopimusten+soveltamista+koskeva+yhteisp%C3%B6yt%C3%A4kirja-fi#CanonicalForm

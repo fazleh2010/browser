@@ -1,0 +1,4 @@
+judecător_supleant = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/judec%C4%83tor+supleant-ro#CanonicalForm
+judecătorie = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/judec%C4%83torie-ro#CanonicalForm
+jus_in_bello = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/jus+in+bello-ro#CanonicalForm
+jurisdicție_obligatorie = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/jurisdic%C8%9Bie+obligatorie-ro#CanonicalForm

@@ -1,0 +1,1 @@
+zagreb = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Zagreb-et#CanonicalForm
