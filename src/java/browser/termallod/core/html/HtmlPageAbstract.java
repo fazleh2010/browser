@@ -6,7 +6,7 @@
 package browser.termallod.core.html;
 
 import browser.termallod.constants.FileAndLocationConst;
-import browser.termallod.core.SubjectFieldMerging;
+import browser.termallod.core.MergingTermInfo;
 import browser.termallod.core.term.TermDetail;
 import org.jsoup.nodes.Document;
 
@@ -16,13 +16,13 @@ import org.jsoup.nodes.Document;
  */
 public class HtmlPageAbstract {
 
-    public final SubjectFieldMerging merging;
+    public final MergingTermInfo merging;
     public final FileAndLocationConst constants;
     public final HtmlReaderWriter htmlReaderWriter;
     public final HtmlParameters htmlCreateParameters;
     public final OntologyInfo info;
 
-    public HtmlPageAbstract(HtmlParameters htmlCreateParameters, OntologyInfo info, HtmlReaderWriter htmlReaderWriter, SubjectFieldMerging merging, FileAndLocationConst constants) {
+    public HtmlPageAbstract(HtmlParameters htmlCreateParameters, OntologyInfo info, HtmlReaderWriter htmlReaderWriter, MergingTermInfo merging, FileAndLocationConst constants) {
         this.constants = constants;
         this.htmlReaderWriter = htmlReaderWriter;
         this.htmlCreateParameters = htmlCreateParameters;

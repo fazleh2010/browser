@@ -1,9 +1,0 @@
-upstream = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/upstream-EN#CanonicalForm
-uncertainty_analysis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/uncertainty+analysis-EN#CanonicalForm
-unit_process = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/unit+process-EN#CanonicalForm
-use_phase = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/use+phase-EN#CanonicalForm
-uncertainty = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/uncertainty-EN#CanonicalForm
-upstream_environmental_impact = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/upstream+environmental+impact-EN#CanonicalForm
-useful_life = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/useful+life-EN#CanonicalForm
-validation = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/validation-EN#CanonicalForm
-uncertainty_propagation = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/uncertainty+propagation-EN#CanonicalForm

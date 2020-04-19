@@ -10,7 +10,7 @@ import static browser.termallod.api.HtmlStringConts.divClassStr;
 import browser.termallod.constants.FileAndLocationConst;
 import static browser.termallod.constants.Languages.languageMapper;
 import browser.termallod.core.AlphabetTermPage;
-import browser.termallod.core.SubjectFieldMerging;
+import browser.termallod.core.MergingTermInfo;
 import static browser.termallod.core.html.ListOfTerms.termAlterUrl;
 import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.term.TermDetail;
@@ -36,7 +36,7 @@ public class TermPage extends HtmlPageAbstract{
     private  String url;
     private  String termFileName;
     
-    public TermPage (HtmlParameters htmlCreateParameters, OntologyInfo info, HtmlReaderWriter htmlReaderWriter, SubjectFieldMerging merging, FileAndLocationConst constants){
+    public TermPage (HtmlParameters htmlCreateParameters, OntologyInfo info, HtmlReaderWriter htmlReaderWriter, MergingTermInfo merging, FileAndLocationConst constants){
         super(htmlCreateParameters, info, htmlReaderWriter, merging, constants);
     }
 
@@ -125,12 +125,9 @@ public class TermPage extends HtmlPageAbstract{
         List<String> divStrS = new ArrayList<String>();
 
         List<TermDetail> matchedTerms = MatchingTerminologies.getTermDetails(info.getLanguage(), termDetail.getTerm());
-        TermInfo termInfo = this.getTermInformation(url);
-        if (termInfo != null) {
-            System.out.println(term + " " + termFileName + " " + termInfo.getSubjectId() + termInfo.getTermID());
-        }
+        
 
-        divStrS = createTermLink(matchedTerms, termInfo);
+        divStrS = createTermLink(matchedTerms, term,url);
 
         if (!divStrS.isEmpty()) {
             Integer index = 0;
@@ -148,14 +145,19 @@ public class TermPage extends HtmlPageAbstract{
 
     }
 
-    private List<String> createTermLink(List<TermDetail> matchedTerms, TermInfo termInfo) throws Exception {
+    private List<String> createTermLink(List<TermDetail> matchedTerms, String term,String url) throws Exception {
+        TermInfo termInfo = this.getTermInformation(url);
+        if (termInfo != null) {
+            System.out.println(term + " " + termFileName + " " + termInfo.getSubjectId() + termInfo.getTermID());
+        }
         List<String> divStrS = new ArrayList<String>();
         String langValueStr = languageMapper.get(info.getLanguage());
 
         if (termInfo != null) {
             String subjectID = termInfo.getSubjectId();
             String termID = termInfo.getTermID();
-            String subjectDetail = merging.getSubjectDetailsProps(termInfo.getSubjectId()).toString();
+            String subjectDetail = termInfo.getSubjectDescription();
+            //String subjectDetail = merging.getSubjectDetailsProps(termInfo.getSubjectId()).toString();
             //subjectDetail=subjectDetail+"("+" subject ID: "+subjectID+")";
             String subjectFieldPro = " SubjectField:" + "(" + subjectID + ")";
             String firstTr = getTr(getProperty("Language"), getValueNew(langValueStr));
@@ -165,57 +167,16 @@ public class TermPage extends HtmlPageAbstract{
             String divStr = table;
             divStrS.add(divStr);
         }
+        
+        divStrS=this.generateTermLink(matchedTerms,divStrS);
 
-        for (TermDetail termDetail : matchedTerms) {
-            String otherTerminology = termDetail.getOtherCategory(info.getCategoryType());
-
-            //String langValueStr = languageMapper.get(language);
-            String spanTerminologyName = otherTerminology;
-            String spanTerminologyUrl = constants.BROWSER_URL.get(spanTerminologyName);
-
-            String term = termDetail.getTerm();
-            String url = null;
-            if (!super.htmlCreateParameters.getAlternativeFlag()) {
-                url = termDetail.getUrl(otherTerminology);
-            } else {
-                url = termDetail.getAlternativeUrl(otherTerminology);
-                if (constants.CATEGORY_TERM_URL.containsKey(otherTerminology)) {
-                    url = constants.CATEGORY_TERM_URL.get(otherTerminology) + url;
-                }
-            }
-
-            //temporary closed
-            String panelHeadingStart = divClassStr + this.getWithinQuote("panel-heading") + ">"
-                    + "<a href=" + this.getWithinQuote(url) + " class="
-                    + this.getWithinQuote("rdf_link") + ">" + term + "</a>" + divClassEnd;
-
-            panelHeadingStart = "<h3>Links to other terminologies</h3>";
-            String panelHeadingEnd = "</div>";
-            String thirdTr = getTr(getProperty(spanTerminologyUrl, otherTerminology), getValue(url, url, term));
-            //firstTr = "";
-
-            /*String termValue = this.getValueNew(this.getSpanProp(spanPropUrl1, spanPropUrl2, spanPropStr) + this.getSpanValue(spanTerminologyUrl, spanTerminologyName));
-            String secondTr = getTr(getProperty(langTermUrl, langTermStr), termValue);
-            secondTr = "";
-
-            String firstTr = getTr(getProperty(matchPropUrl, matchPropStr), getValueNew(matchValueUrl1, matchValueUrl2, matchValueStr));
-            firstTr = "";*/
-            String table = this.getTable(this.getTbody(thirdTr));
-
-            /*String yesNoButtonDiv = getAcceptDenyButton();
-            //yes no button is closed for time being.
-            yesNoButtonDiv = "";*/
-            String divStr = panelHeadingStart + table + panelHeadingEnd;
-            divStrS.add(divStr);
-
-        }
-
+        
         return divStrS;
     }
 
     private TermInfo getTermInformation(String termUrl) {
-        UrlMatching UrlMatchTesting = new UrlMatching(merging, termUrl);
-        return UrlMatchTesting.getTermInfo();
+        UrlMatching urlMatching = new UrlMatching(merging, termUrl);
+        return urlMatching.getTermInfo();
     }
 
     private String getAcceptDenyButton() {
@@ -306,6 +267,55 @@ public class TermPage extends HtmlPageAbstract{
 
     public Document getTemplateHtml() {
         return templateHtml;
+    }
+
+    private List<String> generateTermLink(List<TermDetail> matchedTerms,List<String> divStrS) {
+
+        for (TermDetail termDetail : matchedTerms) {
+            String otherTerminology = termDetail.getOtherCategory(info.getCategoryType());
+
+            //String langValueStr = languageMapper.get(language);
+            String spanTerminologyName = otherTerminology;
+            String spanTerminologyUrl = constants.BROWSER_URL.get(spanTerminologyName);
+
+            String term = termDetail.getTerm();
+            String url = null;
+            if (!super.htmlCreateParameters.getAlternativeFlag()) {
+                url = termDetail.getUrl(otherTerminology);
+            } else {
+                url = termDetail.getAlternativeUrl(otherTerminology);
+                if (constants.CATEGORY_TERM_URL.containsKey(otherTerminology)) {
+                    url = constants.CATEGORY_TERM_URL.get(otherTerminology) + url;
+                }
+            }
+
+            //temporary closed
+            String panelHeadingStart = divClassStr + this.getWithinQuote("panel-heading") + ">"
+                    + "<a href=" + this.getWithinQuote(url) + " class="
+                    + this.getWithinQuote("rdf_link") + ">" + term + "</a>" + divClassEnd;
+
+            panelHeadingStart = "<h3>Links to other terminologies</h3>";
+            String panelHeadingEnd = "</div>";
+            String thirdTr = getTr(getProperty(spanTerminologyUrl, otherTerminology), getValue(url, url, term));
+            //firstTr = "";
+
+            /*String termValue = this.getValueNew(this.getSpanProp(spanPropUrl1, spanPropUrl2, spanPropStr) + this.getSpanValue(spanTerminologyUrl, spanTerminologyName));
+            String secondTr = getTr(getProperty(langTermUrl, langTermStr), termValue);
+            secondTr = "";
+
+            String firstTr = getTr(getProperty(matchPropUrl, matchPropStr), getValueNew(matchValueUrl1, matchValueUrl2, matchValueStr));
+            firstTr = "";*/
+            String table = this.getTable(this.getTbody(thirdTr));
+
+            /*String yesNoButtonDiv = getAcceptDenyButton();
+            //yes no button is closed for time being.
+            yesNoButtonDiv = "";*/
+            String divStr = panelHeadingStart + table + panelHeadingEnd;
+            divStrS.add(divStr);
+           
+
+        }
+        return divStrS;
     }
 
 }

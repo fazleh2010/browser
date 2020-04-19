@@ -1,1 +1,0 @@
-zero_burden_assumption = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/zero+burden+assumption-EN#CanonicalForm

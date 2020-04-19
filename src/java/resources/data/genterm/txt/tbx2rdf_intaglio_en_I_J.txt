@@ -1,3 +1,0 @@
-impression = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/impression-EN#CanonicalForm
-intaglio_printmaking = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/intaglio+printmaking-EN#CanonicalForm
-ink = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/ink-EN#CanonicalForm

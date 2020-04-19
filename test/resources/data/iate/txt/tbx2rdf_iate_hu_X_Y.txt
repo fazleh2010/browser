@@ -1,1 +1,0 @@
-x-bar_grafikon = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/X-bar+grafikon-hu#CanonicalForm

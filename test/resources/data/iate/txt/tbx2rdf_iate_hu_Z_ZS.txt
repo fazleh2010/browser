@@ -1,4 +1,0 @@
-zavartalan_szélsebesség = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/zavartalan+sz%C3%A9lsebess%C3%A9g-hu#CanonicalForm
-zárószavazás = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/z%C3%A1r%C3%B3szavaz%C3%A1s-hu#CanonicalForm
-zöld_hét = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Z%C3%B6ld+H%C3%A9t-hu#CanonicalForm
-zöld_gazdaság = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/z%C3%B6ld+gazdas%C3%A1g-hu#CanonicalForm

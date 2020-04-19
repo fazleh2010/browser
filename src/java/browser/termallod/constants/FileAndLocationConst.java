@@ -106,6 +106,18 @@ public class FileAndLocationConst {
         }
     };
     
-   
+    
+        public String location="/home/elahi/NetBeansProjects/newBrowser/linux/browser/test/resources/data/iate/txt/";
+        public String alphabetFileName=location+ "tbx2rdf_iate_en_A_B.txt";
+        public String conceptFileName= location+"en.txt";
+        public String subjectFileName= location+"subject.txt";
+        public String cannonical=location+ "canonicalForm.txt";
+        public String sense= location+"sense.txt";
+        public String subjectDetail= location+"subjectFields.txt";
+        public String reliabilityCode= location+"reliabilityCode.txt";
+        public String administrativeStatus= location+"administrativeStatus.txt";
+    
+        public String conts = "http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/";
+
 
 }

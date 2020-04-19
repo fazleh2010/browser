@@ -183,13 +183,27 @@ public class FileRelatedUtils {
         }
 
     }
-
-    public static void writeLangFile2(Map<String, String> langHash, String path) throws IOException {
+    public static void writeLangFile(Map<String, TreeMap<String, String>> langHash, String path,String type) throws IOException {
         for (String language : langHash.keySet()) {
             String str = "";
-            System.out.println(language);
+            TreeMap<String, String> idSense = langHash.get(language);
+            String fileName = path + language + "_"+type+ ".txt";
+            for (String id : idSense.keySet()) {
+
+                String sense = idSense.get(id);
+                String line = id + " = " + sense;
+                str += line + "\n";
+            }
+            stringToFile_ApendIf_Exists(str, fileName);
+        }
+
+    }
+
+    public static void writeLangFile2(Map<String, String> langHash, String path,String type) throws IOException {
+        for (String language : langHash.keySet()) {
+            String str = "";
             str = langHash.get(language);
-            String fileName = path + language + ".txt";
+            String fileName = path + language + "_"+type+".txt";
             stringToFile_ApendIf_Exists(str, fileName);
         }
 

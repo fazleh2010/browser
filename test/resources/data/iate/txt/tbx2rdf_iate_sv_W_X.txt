@@ -1,7 +1,0 @@
-westfalia-metoden = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Westfalia-metoden-sv#CanonicalForm
-western_hemlock = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/western+hemlock-sv#CanonicalForm
-wilcoxon-test = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Wilcoxon-test-sv#CanonicalForm
-worst-case-testning = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/worst-case-testning-sv#CanonicalForm
-webbsida = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/webbsida-sv#CanonicalForm
-xerografi = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/xerografi-sv#CanonicalForm
-wilks_tomma_celltest = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Wilks+tomma+celltest-sv#CanonicalForm

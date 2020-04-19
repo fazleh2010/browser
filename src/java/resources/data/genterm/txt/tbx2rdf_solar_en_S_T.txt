@@ -1,5 +1,0 @@
-thick_crystalline_material = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/thick+crystalline+material-EN#CanonicalForm
-schottky_junction = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Schottky+junction-EN#CanonicalForm
-schottky_barrier = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Schottky+barrier-EN#CanonicalForm
-slice = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/slice-EN#CanonicalForm
-thin_film = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/thin+film-EN#CanonicalForm

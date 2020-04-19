@@ -5,12 +5,13 @@
  */
 package browser.termallod.app;
 
+import browser.termallod.api.DataBaseTemp;
 import static browser.termallod.app.MainTest.browserSet;
 import static browser.termallod.app.MainTest.constants;
 import static browser.termallod.app.MainTest.languageMapper;
 import browser.termallod.constants.FileAndLocationConst;
 import browser.termallod.core.AlphabetTermPage;
-import browser.termallod.core.SubjectFieldMerging;
+import browser.termallod.core.MergingTermInfo;
 import browser.termallod.core.html.HtmlParameters;
 import browser.termallod.core.html.HtmlReaderWriter;
 import browser.termallod.core.html.OntologyInfo;
@@ -49,8 +50,10 @@ public class TermPageTest {
     private String sense = location + "sense.txt";
     private String subjectDetail = location + "subjectFields.txt";
     private HtmlParameters htmlCreateParameters = null;
-    private SubjectFieldMerging subjectFieldMerging = null;
+    private MergingTermInfo subjectFieldMerging = null;
     private OntologyInfo info;
+    
+    public DataBaseTemp dataBaseTemp=new DataBaseTemp();
 
     public TermPageTest() {
         lang = new TreeSet<String>(languageMapper.keySet());
@@ -73,12 +76,14 @@ public class TermPageTest {
         String language="en";
         String html=".html";
         String pair="A_B";
+        String location = "test/resources/data/";
+         String iate_folder = "iate/txt/";
         
         File templateFile = getTemplate(categoryName, language, html);
         HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
         AlphabetTermPage alphabetTermPage = new AlphabetTermPage(pair, new File(alphabetFileName), partition, 1);
         htmlCreateParameters = new HtmlParameters(false, true, true, true);
-        subjectFieldMerging = new SubjectFieldMerging(alphabetFileName, conceptFileName, subjectFileName, cannonical, sense, subjectDetail);
+        subjectFieldMerging = new MergingTermInfo(location,iate_folder,language,alphabetFileName, dataBaseTemp);
         info = new OntologyInfo(language, categoryName, alphabetTermPage);
         TermPage termPage = new TermPage(htmlCreateParameters, info, htmlReaderWriter, subjectFieldMerging, constants);
         

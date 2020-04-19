@@ -1,3 +1,0 @@
-onset = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/onset-EN#CanonicalForm
-oedema = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/oedema-EN#CanonicalForm
-proptosis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/proptosis-EN#CanonicalForm

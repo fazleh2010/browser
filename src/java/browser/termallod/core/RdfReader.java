@@ -5,10 +5,17 @@
  */
 package browser.termallod.core;
 
+/**
+ *
+ * @author elahi
+ */
+import browser.termallod.api.DataBaseTemp;
+import browser.termallod.api.IATE;
 import browser.termallod.core.term.TermInfo;
 import browser.termallod.api.LanguageManager;
 import browser.termallod.utils.NameExtraction;
 import browser.termallod.utils.FileRelatedUtils;
+import browser.termallod.utils.StringMatcherUtil;
 import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
@@ -19,52 +26,97 @@ import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.FileManager;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import java.util.TreeMap;
 
-public class RdfReader {
+public class RdfReader implements IATE{
 
     private String MODEL_TYPE;
-    private String LANGUAGE_SEPERATE_SYMBOLE = "@";
     private LanguageManager languageInfo;
+    private DataBaseTemp dataBaseTemp;
 
-    public RdfReader(String rdfDir, LanguageManager languageInfo, String MODEL_TYPE, String MODEL_EXTENSION, String dataSaveDir) throws Exception {
+    public RdfReader(String rdfDir, LanguageManager languageInfo, String MODEL_TYPE, String MODEL_EXTENSION, String dataSaveDir,DataBaseTemp dataBaseTemp) throws Exception {
         this.MODEL_TYPE = MODEL_TYPE;
         this.languageInfo = languageInfo;
+        this.dataBaseTemp=dataBaseTemp;
         File[] files = FileRelatedUtils.getFiles(rdfDir, MODEL_EXTENSION);
         for (File categoryFile : files) {
             String categoryName = NameExtraction.getCategoryName(rdfDir, categoryFile, MODEL_EXTENSION);
             String fileNameOrUri = rdfDir + categoryFile.getName();
-            //temporarily stoped for testing
-            this.readTermsAndLanguages(fileNameOrUri, dataSaveDir + categoryName);
+            this.extractInformation(fileNameOrUri, dataSaveDir, categoryName);
+
         }
 
     }
 
-    private List<File> readTermsAndLanguages(String fileNameOrUri, String dataSaveDir) throws Exception {
-        TreeMap<String, TreeMap<String, List<TermInfo>>> langTerms = getLanguageAndTerms(fileNameOrUri);
-        return FileRelatedUtils.writeFile(langTerms, dataSaveDir);
-    }
-
     // dont change List to set. then the sorting breaks;
-    private TreeMap<String, TreeMap<String, List<TermInfo>>> getLanguageAndTerms(String fileNameOrUri) throws Exception {
+    // temporarliy closed.
+    private void extractInformation(String fileNameOrUri, String dataSaveDir, String categoryName) throws Exception {
+       
         TreeMap<String, TreeMap<String, List<TermInfo>>> langTerms = new TreeMap<String, TreeMap<String, List<TermInfo>>>();
+        Map<String, String> langSensList = new TreeMap<String, String>();
+        Map<String, String> urlCanonicalForm = new TreeMap<String, String>();
+        Map<String, String> urlSense = new TreeMap<String, String>();
+        Map<String, TreeMap<String, String> > reliabilityCode = new TreeMap<String, TreeMap<String, String> >();
+        Map<String, TreeMap<String, String> > administrativeStatus = new TreeMap<String, TreeMap<String, String> >();
         Model model = ModelFactory.createDefaultModel();
         InputStream is = FileManager.get().open(fileNameOrUri);
+        String idSubjectID = "";
+
         if (is != null) {
             model.read(is, null, MODEL_TYPE);
             StmtIterator stmtIterator = model.listStatements();
             while (stmtIterator.hasNext()) {
-                Triple triple = stmtIterator.nextStatement().asTriple();
-                if (triple.getObject().toString().contains("@")) {
+                Statement statement = stmtIterator.nextStatement();
+                Triple triple = statement.asTriple();
+               
+                if (triple.toString().contains(HTTP_IATE)) {
+                    if (triple.toString().contains(RELIABILITY_CODE)) {
+                        reliabilityCode = getreliabilityCode(triple, reliabilityCode);
+                    }
+
+                }
+                if (triple.toString().contains(HTTP_IATE)) {
+                    if (triple.toString().contains(ADMINISTRATIVE_STATUS)) {
+                        administrativeStatus = getAdministrativeStatus(triple, administrativeStatus);
+                    }
+
+                }
+
+                if (triple.toString().contains(IATE_ID)) {
+
+                    if (triple.toString().contains(HTTP_SUBJECT_FIELD)) {
+                        idSubjectID = this.getSubjectField(triple, idSubjectID);
+                    }
+                    if (triple.toString().contains(SENSE)) {
+                        langSensList = this.getSense(triple, langSensList);
+                    }
+                   
+                } else {
+                    /*if (triple.toString().contains("CanonicalForm") && !triple.getObject().toString().contains(LANGUAGE_SEPERATE_SYMBOLE)) {
+                        urlCanonicalForm = this.getCanonicalForm(triple, urlCanonicalForm, "CanonicalForm");
+                    }
+                    if (triple.toString().contains("Sense")) {
+                        urlSense = this.getCanonicalForm(triple, urlSense, "Sense");
+                    }*/
+                }
+
+                if (triple.getObject().toString().contains(LANGUAGE_SEPERATE_SYMBOLE)) {
                     String language = triple.getObject().getLiteralLanguage().toLowerCase().trim();
+
                     TermInfo term = new TermInfo(triple);
+
                     if (!languageInfo.isLanguageExist(language)) {
                         continue;
                     }
@@ -75,90 +127,23 @@ public class RdfReader {
                         langTerms = ifElementNotExist(language, term, langTerms);
                     }
                 }
-
             }
 
         } else {
             //System.err.println("cannot read " + fileNameOrUri);;
         }
-        return langTerms;
+
+        FileRelatedUtils.writeFile(idSubjectID, dataSaveDir + File.separator +dataBaseTemp.getSubjectFileName());
+        FileRelatedUtils.writeFile(langTerms, dataSaveDir + categoryName);
+        FileRelatedUtils.writeLangFile2(langSensList, dataSaveDir,dataBaseTemp.getSENSE());
+        //FileRelatedUtils.writeFileNew(urlCanonicalForm, dataSaveDir + File.separator + "canonicalForm.txt");
+        //FileRelatedUtils.writeFileNew(urlSense, dataSaveDir + File.separator + "sense.txt");
+        FileRelatedUtils.writeLangFile(reliabilityCode, dataSaveDir,dataBaseTemp.getRELIABILITY_CODE());
+         //System.out.println("administrativeStatus:"+administrativeStatus.keySet());
+        FileRelatedUtils.writeLangFile(administrativeStatus, dataSaveDir,dataBaseTemp.getADMINISTRATIVE_STATUS());
+
     }
 
-    // dont change List to set. then the sorting breaks;
-    private TreeMap<String, TreeMap<String, List<TermInfo>>> getLanguageAndTermsTest(String fileNameOrUri) throws Exception {
-        TreeMap<String, TreeMap<String, List<TermInfo>>> langTerms = new TreeMap<String, TreeMap<String, List<TermInfo>>>();
-        Model model = ModelFactory.createDefaultModel();
-        InputStream is = FileManager.get().open(fileNameOrUri);
-        if (is != null) {
-            model.read(is, null, MODEL_TYPE);
-            List<RDFNode> rdfNodes = model.listObjects().toList();
-            for (RDFNode rdfNode : rdfNodes) {
-                //testrdfNode(rdfNode);
-                System.out.println("----------------------RDF node START--------------------------");
-                System.out.println(rdfNode.toString());
-                System.out.println("----------------------RDF node END--------------------------");
-
-            }
-
-        } else {
-            //System.err.println("cannot read " + fileNameOrUri);;
-        }
-        return langTerms;
-    }
-
-    // dont change List to set. then the sorting breaks;
-    private TreeMap<String, TreeMap<String, List<TermInfo>>> getLanguageAndTermsTest2(String fileNameOrUri) throws Exception {
-        TreeMap<String, TreeMap<String, List<TermInfo>>> langTerms = new TreeMap<String, TreeMap<String, List<TermInfo>>>();
-        Model model = ModelFactory.createDefaultModel();
-        InputStream is = FileManager.get().open(fileNameOrUri);
-
-        if (is != null) {
-            model.read(is, null, MODEL_TYPE);
-
-            String queryString = "select distinct ?Concept where {[] a ?Concept} LIMIT 100";
-
-            /*String queryString
-                    = "PREFIX foaf: <http://blog.planetrdf.com/> "
-                    + "SELECT ?url "
-                    + "WHERE {"
-                    + "      ?contributor foaf:name \"Jon Foobar\" . "
-                    + "      ?contributor foaf:weblog ?url . "
-                    + "      }";
-             */
-            Query query = QueryFactory.create(queryString);
-
-            // Execute the query and obtain results
-            QueryExecution qe = QueryExecutionFactory.create(query, model);
-            ResultSet results = qe.execSelect();
-
-            // Output query results    
-            ResultSetFormatter.out(System.out, results, query);
-
-            // Important ‑ free up resources used running the query
-            qe.close();
-
-        } else {
-            //System.err.println("cannot read " + fileNameOrUri);;
-        }
-
-        return langTerms;
-    }
-
-    /*private TreeMap<String, TreeMap<String, List<TermInfo>>> ifElementNotExist(String language, TermInfo term, TreeMap<String, TreeMap<String, List<TermInfo>>> langTerms) {
-        String pair;
-        try {
-        pair = this.getAlphabetPair(language, term.getTermString());
-        TreeMap<String, List<TermInfo>> alpahbetTerms = new TreeMap<String, List<TermInfo>>();
-        List<TermInfo> terms = new ArrayList<TermInfo>();
-        terms.add(term);
-        alpahbetTerms.put(pair, terms);
-        langTerms.put(language, alpahbetTerms);
-        } catch (NullPointerException e) {
-            System.out.println("Null pointer:" + language + " " + term);
-
-        }
-        return langTerms;
-    }*/
     private TreeMap<String, TreeMap<String, List<TermInfo>>> ifElementNotExist(String language, TermInfo term, TreeMap<String, TreeMap<String, List<TermInfo>>> langTerms) {
         String pair;
         try {
@@ -214,4 +199,184 @@ public class RdfReader {
 
         return null;
     }
+
+    private Map<String, String> getSense(Triple statement, Map<String, String> langSensList) throws Exception {
+        String string = statement.toString();
+        String[] infos = string.split(" ");
+        List<String> wordList = Arrays.asList(infos);
+        String id = null, checkField = null, senseField = null, OrgSenseField = null, language = null;
+        for (String http : wordList) {
+            if (http.contains(IATE_ID)) {
+                id = http.trim();
+            }
+            if (http.contains(this.SENSE)) {
+                checkField = http.trim();
+                OrgSenseField = checkField;
+                checkField = StringMatcherUtil.modifyUrl(checkField);
+                checkField = checkField.substring(0, checkField.lastIndexOf('#'));
+                senseField = checkField;
+            }
+
+        }
+        if (IATE_ID != null && senseField != null) {
+             id = StringMatcherUtil.modifyId(id);
+            language = StringMatcherUtil.getLanguage(senseField);
+            if (!languageInfo.isLanguageExist(language)) {
+                return langSensList;
+            }
+
+            if (langSensList.containsKey(language)) {
+                String idSense = langSensList.get(language);
+                OrgSenseField = StringMatcherUtil.modifyUrl(OrgSenseField);
+                String line = id + "=" + OrgSenseField;
+                idSense += line + "\n";
+                langSensList.put(language, idSense);
+            } else {
+                String idSense = "";
+                OrgSenseField = StringMatcherUtil.modifyUrl(OrgSenseField);
+                String line = id + "=" + OrgSenseField;
+                idSense += line + "\n";
+                langSensList.put(language, idSense);
+            }
+
+        }
+        return langSensList;
+    }
+
+    private String getSubjectField(Triple statement, String idSubjectID) throws Exception {
+        String string = statement.toString();
+        String[] infos = string.split(" ");
+        List<String> wordList = Arrays.asList(infos);
+        String id = null, checkField = null, language = null;
+        for (String http : wordList) {
+            if (http.contains(IATE_ID)) {
+                id = http.trim();
+            }
+            if (http.contains(HTTP_SUBJECT_FIELD)) {
+                checkField = http.trim();
+            }
+            //System.out.println(url+" "+senseField);
+        }
+        if (IATE_ID != null && checkField != null) {
+            if (checkField.contains(this.HTTP_SUBJECT_FIELD)) {
+                //System.out.println(url+".."+checkField);
+                id = StringMatcherUtil.modifyId(id);
+                checkField = StringMatcherUtil.modifySubject(checkField);
+                String line = id + "=" + checkField;
+                idSubjectID += line + "\n";
+            }
+
+        }
+        return idSubjectID;
+    }
+
+    private Map<String, String> getCanonicalForm(Triple statement, Map<String, String> idSubjectFieldID, String match) throws Exception {
+        String string = statement.toString();
+        String[] infos = string.split(" ");
+        List<String> wordList = Arrays.asList(infos);
+        String url = null, checkField = null, language = null;
+        for (String http : wordList) {
+            if (!http.contains("ontolex")) {
+                if (http.contains(match)) {
+                    checkField = http.trim();
+                } else {
+                    url = http.trim();
+                    /*language = getLanguage(url);
+                    if (!language.contains("en")) {
+                        return idSubjectFieldID;
+                    }*/
+                }
+
+            }
+
+        }
+        if (url != null && checkField != null) {
+
+            //System.out.println(url+".."+checkField);
+            //id=this.modifyId(url);
+            //checkField=this.modifySubject(checkField);
+            // System.out.println(url+".."+checkField);
+            checkField = StringMatcherUtil.modifyId(checkField);
+            idSubjectFieldID.put(checkField, url);
+
+        }
+        return idSubjectFieldID;
+    }
+
+    private Map<String, TreeMap<String, String>>  getreliabilityCode(Triple statement, Map<String, TreeMap<String, String>> langReliabiltyList) throws Exception {
+        String string = statement.toString();
+        String[] infos = string.split(" ");
+        List<String> wordList = Arrays.asList(infos);
+        String url = null, checkField = null, language = null, orgUrl = null;
+        for (String http : wordList) {
+            if (http.contains(HTTP)) {
+                if (http.contains(HTTP_IATE)) {
+                    orgUrl = http.trim();
+                    url = orgUrl;
+                    url = StringMatcherUtil.modifyUrl(url);
+                    language = StringMatcherUtil.getLanguage(url);
+                } else if (http.contains("integer")) {
+                    checkField = http.trim();
+                    checkField=StringMatcherUtil.modifyReliabiltyCode(checkField);
+                }
+            }
+        }
+        if (orgUrl != null && checkField != null) {
+            url=StringMatcherUtil.modifyUrl(orgUrl);
+           
+             if (langReliabiltyList.containsKey(language)) {
+                  TreeMap<String, String> urlReliabilityCode = langReliabiltyList.get(language);
+                  urlReliabilityCode.put(url, checkField);
+                langReliabiltyList.put(language, urlReliabilityCode);
+            } else {
+                  TreeMap<String, String> urlReliabilityCode=new TreeMap<String, String>();
+                  urlReliabilityCode.put(url, checkField);
+                  langReliabiltyList.put(language, urlReliabilityCode);
+            }
+        
+        }
+        
+        return langReliabiltyList;
+    }
+
+    private Map<String, TreeMap<String, String>> getAdministrativeStatus(Triple statement, Map<String, TreeMap<String, String>> lang) throws Exception {
+        String string = statement.toString();
+        String[] infos = string.split(" ");
+        TreeMap<String, String> urlAdministrative=new TreeMap<String, String>();
+        List<String> wordList = Arrays.asList(infos);
+        String url = null, checkField = null, language = null, orgUrl = null;
+        for (String http : wordList) {
+            if (http.contains(HTTP)) {
+                if (http.contains(HTTP_IATE)) {
+                    orgUrl = http.trim();
+                    url = orgUrl;
+                    
+                    language = StringMatcherUtil.getLanguage(url);
+                   
+                } else if (http.contains("@" + HTTP)) {
+                    // checkField = http.trim();
+                } else if (http.contains(HTTP)) {
+                    checkField = http.trim();
+                    checkField = StringMatcherUtil.modifyAdministrativeStatus(checkField);
+                }
+            }
+        }
+        if (orgUrl != null && checkField != null) {
+            url = StringMatcherUtil.modifyUrl(orgUrl);
+            
+             if (lang.containsKey(language)) {
+                  urlAdministrative = lang.get(language);
+                  urlAdministrative.put(url, checkField);
+                  lang.put(language, urlAdministrative);
+            } else {
+                urlAdministrative.put(url, checkField);
+                lang.put(language, urlAdministrative);
+            }
+            
+        }
+        return lang;
+    }
+
+   
+
 }

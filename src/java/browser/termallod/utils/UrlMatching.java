@@ -5,7 +5,7 @@
  */
 package browser.termallod.utils;
 
-import browser.termallod.core.SubjectFieldMerging;
+import browser.termallod.core.MergingTermInfo;
 import browser.termallod.core.term.TermDetail;
 import browser.termallod.core.term.TermInfo;
 
@@ -17,11 +17,11 @@ public class UrlMatching {
 
     private String IATE_URL = "http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/";
     private String hashString = "#";
-    private SubjectFieldMerging merging;
+    private MergingTermInfo merging;
     private Boolean mergingResult = false;
     private TermInfo termInfo = null;
 
-    public UrlMatching(SubjectFieldMerging merging, String termUrl) {
+    public UrlMatching(MergingTermInfo merging, String termUrl) {
         this.merging = merging;
         this.termInfo = this.getTermInformation(termUrl);
     }
@@ -32,7 +32,6 @@ public class UrlMatching {
         if (termUrl.contains((hashString))) {
             termUrl = termUrl.substring(0, termUrl.lastIndexOf('#'));
         }
-        System.out.println(termUrl);
 
         for (String givenUrlOrg : this.merging.getUrlInfo().keySet()) {
             String givenUrl = givenUrlOrg.substring(0, givenUrlOrg.lastIndexOf('#'));

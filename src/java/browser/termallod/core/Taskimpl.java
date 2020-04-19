@@ -5,6 +5,7 @@
  */
 package browser.termallod.core;
 
+import browser.termallod.api.DataBaseTemp;
 import browser.termallod.api.LanguageManager;
 import browser.termallod.utils.FileRelatedUtils;
 import java.io.File;
@@ -44,12 +45,14 @@ public class Taskimpl implements Tasks {
     private MatchingTerminologies matchTerminologies = new MatchingTerminologies();
     private Boolean indexCreated = false;
     private static FileAndLocationConst constants = null;
+    private DataBaseTemp dataBaseTemp=null;
 
-    public Taskimpl(File LANGUAGE_CONFIG_FILE, Set<String> givenBrowserSet, FileAndLocationConst fileAndCategory, Boolean alternativeFlag) throws Exception {
+    public Taskimpl(File LANGUAGE_CONFIG_FILE, Set<String> givenBrowserSet, FileAndLocationConst fileAndCategory, Boolean alternativeFlag,DataBaseTemp dataBaseTemp) throws Exception {
         this.languageManager = new LanguageAlphabetPro(LANGUAGE_CONFIG_FILE);
         this.givenBrowserSet = givenBrowserSet;
         this.alternativeFlag = alternativeFlag;
         this.constants = fileAndCategory;
+        this.dataBaseTemp=dataBaseTemp;
     }
 
     //add decline page seperate creation
@@ -83,7 +86,7 @@ public class Taskimpl implements Tasks {
     }
 
     @Override
-    public void createHtmlFromSavedFiles(FileAndLocationConst constants, Set<String> browserSet, Set<String> lang, HtmlParameters htmlCreateParameters, SubjectFieldMerging merging) throws Exception, IOException {
+    public void createHtmlFromSavedFiles(FileAndLocationConst constants, Set<String> browserSet, Set<String> lang, HtmlParameters htmlCreateParameters, MergingTermInfo merging) throws Exception, IOException {
         Set<String> categorySet = constants.BROWSER_GROUPS;
         String MODEL_EXTENSION = constants.TEXT_EXTENSION;
         FileRelatedUtils.cleanDirectory(constants.CATEGORY_ONTOLOGIES, constants.getBASE_PATH(), constants.DATA_PATH);
@@ -251,7 +254,7 @@ public class Taskimpl implements Tasks {
         String outputDir = source + constants.TEXT_PATH;
         File[] turtleFiles = FileRelatedUtils.getFiles(inputDir, constants.TURTLE_EXTENSION);
         if (turtleFiles.length > 0) {
-            new RdfReaderNew(inputDir, languageManager, constants.TURTLE, constants.TURTLE_EXTENSION, outputDir);
+            new RdfReader(inputDir, languageManager, constants.TURTLE, constants.TURTLE_EXTENSION, outputDir,this.dataBaseTemp);
         } else {
             throw new Exception("No rdf file to process!!!");
         }

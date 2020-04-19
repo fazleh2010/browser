@@ -1,9 +1,0 @@
-background_system = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/background+system-EN#CanonicalForm
-allocation = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/allocation-EN#CanonicalForm
-biogas = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/biogas-EN#CanonicalForm
-biodegradable_waste = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/biodegradable+waste-EN#CanonicalForm
-avoided_burden_approach = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/avoided+burden+approach-EN#CanonicalForm
-approach = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/approach-EN#CanonicalForm
-anaerobic_digestion = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/anaerobic+digestion-EN#CanonicalForm
-analysis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/analysis-EN#CanonicalForm
-attributional_lca = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/attributional+LCA-EN#CanonicalForm

@@ -1,5 +1,0 @@
-vernis_mou = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/vernis+mou-NL#CanonicalForm
-vernis_mol = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/vernis+mol-NL#CanonicalForm
-vernis_à_remordre = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/vernis+%C3%A0+remordre-NL#CanonicalForm
-vernis_dur = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/vernis+dur-NL#CanonicalForm
-uitbijten = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/uitbijten-NL#CanonicalForm

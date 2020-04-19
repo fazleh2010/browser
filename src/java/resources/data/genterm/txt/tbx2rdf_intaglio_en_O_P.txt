@@ -1,9 +1,0 @@
-proof = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/proof-EN#CanonicalForm
-pastel_manner = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/pastel+manner-EN#CanonicalForm
-punched_print = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/punched+print-EN#CanonicalForm
-polishing_powder = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/polishing+powder-EN#CanonicalForm
-punch_engraving = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/punch+engraving-EN#CanonicalForm
-open_etching = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/open+etching-EN#CanonicalForm
-pumping = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/pumping-EN#CanonicalForm
-potassium_chlorate = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/potassium+chlorate-EN#CanonicalForm
-overflow = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/overflow-EN#CanonicalForm

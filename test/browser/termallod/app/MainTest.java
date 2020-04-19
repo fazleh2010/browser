@@ -5,6 +5,7 @@
  */
 package browser.termallod.app;
 
+import browser.termallod.api.DataBaseTemp;
 import browser.termallod.app.*;
 import browser.termallod.core.Taskimpl;
 import java.util.Arrays;
@@ -17,10 +18,11 @@ import browser.termallod.api.Tasks;
 import static browser.termallod.app.Main.browserSet;
 import static browser.termallod.app.Main.constants;
 import browser.termallod.constants.FileAndLocationConst;
-import browser.termallod.core.SubjectFieldMerging;
+import browser.termallod.core.MergingTermInfo;
 import browser.termallod.core.html.HtmlParameters;
 import browser.termallod.utils.FileRelatedUtils;
 import java.io.IOException;
+import java.net.URI;
 import org.junit.Test;
 
 /**
@@ -39,6 +41,8 @@ public class MainTest {
     private Boolean termPageFlag = true;
     private Tasks tasks = null;
     private static Set<String> browsersToRun=new HashSet<String>();
+    public String location = "test/resources/data/iate/txt/";
+    public DataBaseTemp dataBaseTemp = new DataBaseTemp();
     
     
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
@@ -80,32 +84,24 @@ public class MainTest {
     @Test
     public void testCreatingTxtFiles() throws Exception {
         
-        String location="/home/elahi/NetBeansProjects/newBrowser/linux/browser/test/resources/data/iate/txt/";
-        String alphabetFileName=location+ "tbx2rdf_iate_en_A_B.txt";
-        String conceptFileName= location+"en.txt";
-        String subjectFileName= location+"subject.txt";
-        String cannonical=location+ "canonicalForm.txt";
-        String sense= location+"sense.txt";
-        String subjectDetail= location+"subjectFields.txt";
         HtmlParameters htmlCreateParameters=null;
-        SubjectFieldMerging subjectFieldMerging=null;
+        MergingTermInfo subjectFieldMerging=null;
          cleanDirectory();
-         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag);
-         tasks.matchTerminologies(constants.GENTERM, constants.IATE);
-         tasks.saveDataIntoFiles(browserSet);
+         
+         
+        // tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag,dataBaseTemp);
+         //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
+        // tasks.saveDataIntoFiles(browserSet);
         
         //tasks.readDataFromSavedFiles();
         
        
 
         
-        
-       
-         /*//textFileModifyFlag = false;
-        //listOfTemPageFlag = true;
-        //termPageFlag = true;
-         htmlCreateParameters=new HtmlParameters( false, true,  true, true);
-         subjectFieldMerging=new SubjectFieldMerging(alphabetFileName,conceptFileName,subjectFileName,cannonical,sense,subjectDetail);
+         /*htmlCreateParameters=new HtmlParameters( false, true,  true, true);
+         subjectFieldMerging=new MergingTermInfo(constants.alphabetFileName,constants.conceptFileName,
+                                                     constants.subjectFileName,constants.cannonical,
+                                                     constants.sense,constants.subjectDetail);
         //tasks = new Taskimpl(constants.LANGUAGE_CONFIG_FILE, browserSet, alternativeFlag);
         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet,constants, alternativeFlag);
         tasks.matchTerminologies(constants.GENTERM, constants.IATE);

@@ -1,8 +1,0 @@
-mattoir = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/mattoir-NL#CanonicalForm
-mengmethode = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/mengmethode-NL#CanonicalForm
-manuele_diepdruk = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/manuele+diepdruk-NL#CanonicalForm
-maagdenwas = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/maagdenwas-NL#CanonicalForm
-moulette = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/moulette-NL#CanonicalForm
-monotypie = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/monotypie-NL#CanonicalForm
-mechanisch_manuele_diepdruk = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/mechanisch+manuele+diepdruk-NL#CanonicalForm
-methode_van_haden = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/methode+van+Haden-NL#CanonicalForm

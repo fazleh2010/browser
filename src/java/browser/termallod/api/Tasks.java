@@ -7,7 +7,7 @@ package browser.termallod.api;
 
 import browser.termallod.constants.FileAndLocationConst;
 import browser.termallod.core.Browser;
-import browser.termallod.core.SubjectFieldMerging;
+import browser.termallod.core.MergingTermInfo;
 import browser.termallod.core.html.HtmlParameters;
 import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.term.TermDetail;
@@ -34,7 +34,7 @@ public interface Tasks {
 
     public void createHtmlFromSavedFiles(FileAndLocationConst constants, Set<String> browserSet, Set<String> lang,HtmlParameters htmlCreateParameters) throws Exception, IOException;
 
-    public void createHtmlFromSavedFiles(FileAndLocationConst constants, Set<String> browserSet, Set<String> lang, HtmlParameters htmlCreateParameters, SubjectFieldMerging merging) throws Exception, IOException;
+    public void createHtmlFromSavedFiles(FileAndLocationConst constants, Set<String> browserSet, Set<String> lang, HtmlParameters htmlCreateParameters, MergingTermInfo merging) throws Exception, IOException;
 
     public void createIndexing() throws IOException, ParseException, Exception;
 

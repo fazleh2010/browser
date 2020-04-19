@@ -1,5 +1,0 @@
-hipc = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/HIPC-mt#CanonicalForm
-hepa = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/HEPA-mt#CanonicalForm
-hackathon = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/hackathon-mt#CanonicalForm
-hamster_ċiniż = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/hamster+%C4%8Aini%C5%BC-mt#CanonicalForm
-hong_kong_sar = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/Hong+Kong+SAR-mt#CanonicalForm

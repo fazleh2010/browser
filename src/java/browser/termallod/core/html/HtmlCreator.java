@@ -8,7 +8,7 @@ package browser.termallod.core.html;
 import browser.termallod.constants.FileAndLocationConst;
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.CategoryInfo;
-import browser.termallod.core.SubjectFieldMerging;
+import browser.termallod.core.MergingTermInfo;
 import browser.termallod.core.PageContentGenerator;
 import browser.termallod.core.term.TermDetail;
 import browser.termallod.utils.FileRelatedUtils;
@@ -29,10 +29,10 @@ public class HtmlCreator  {
     
     private final Set<String> lang;
     private FileAndLocationConst constants;
-    private SubjectFieldMerging merging;
+    private MergingTermInfo merging;
     private HtmlParameters htmlCreateParameters;
     
-    public HtmlCreator(FileAndLocationConst constants, Set<String> lang,HtmlParameters htmlCreateParameters,SubjectFieldMerging merging) {
+    public HtmlCreator(FileAndLocationConst constants, Set<String> lang,HtmlParameters htmlCreateParameters,MergingTermInfo merging) {
         this.lang = lang;
         this.constants=constants;
         this.merging=merging;

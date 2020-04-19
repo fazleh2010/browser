@@ -1,4 +1,0 @@
-p-doping = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/p-doping-EN#CanonicalForm
-p-type_semiconductor = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/p-type+semiconductor-EN#CanonicalForm
-p-n_junction = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/p-n+junction-EN#CanonicalForm
-p-type_doping = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/p-type+doping-EN#CanonicalForm

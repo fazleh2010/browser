@@ -5,6 +5,7 @@
  */
 package browser.termallod.app;
 
+import browser.termallod.api.DataBaseTemp;
 import browser.termallod.core.Taskimpl;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import browser.termallod.api.Tasks;
 import browser.termallod.constants.FileAndLocationConst;
-import browser.termallod.core.SubjectFieldMerging;
+import browser.termallod.core.MergingTermInfo;
 import browser.termallod.core.html.HtmlParameters;
 import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.term.TermDetail;
@@ -32,7 +33,17 @@ public class Main {
     public static Set<String> browserSet;
     private static Set<String> lang = new TreeSet<String>();
     private static String BASE_PATH = "src/java/resources/data/";
-    private static Set<String> browsersToRun=new HashSet<String>();
+    private static Set<String> browsersToRun = new HashSet<String>();
+
+    private static Tasks tasks = null;
+    private static String location = "src/resources/data/iate/txt/";
+    private static DataBaseTemp dataBaseTemp = new DataBaseTemp();
+
+    private static Boolean listOfTemPageFlag = true;
+    private static Boolean termPageFlag = true;
+    private static Boolean alternativeFlag = true;
+    private static Boolean textFileModifyFlag = true;
+
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
             put("en", "English");
@@ -64,30 +75,31 @@ public class Main {
     };
 
     public static void main(String[] args) throws Exception {
-        String location="/home/elahi/NetBeansProjects/newBrowser/linux/browser/src/java/resources/data/iate/txt/";
-        String alphabetFileName=location+ "tbx2rdf_iate_en_A_B.txt";
-        String conceptFileName= location+"en.txt";
-        String subjectFileName= location+"subject.txt";
-        String cannonical=location+ "canonicalForm.txt";
-        String sense= location+"sense.txt";
-        String subjectDetail= location+"subjectFields.txt";
-        HtmlParameters htmlCreateParameters=null;
-        SubjectFieldMerging subjectFieldMerging=null;
-       
-       
+        HtmlParameters htmlCreateParameters = null;
+        MergingTermInfo subjectFieldMerging = null;
+        alternativeFlag = true;
         lang = new TreeSet<String>(languageMapper.keySet());
         constants = new FileAndLocationConst(BASE_PATH);
-        browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM, constants.IATE));
+        browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
+        cleanDirectory();
+
+        //tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp);
+        //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
+        //tasks.saveDataIntoFiles(browserSet);
+        
+        
         // run before comit..................
         //steps
         //1. run without creating html and prepare .txt file
         //2. create html Genterm first
         //3. create html for Iate
-        Boolean listOfTemPageFlag = true;
-        Boolean termPageFlag = true;
-        Boolean alternativeFlag = true;
-        Boolean textFileModifyFlag = true;
-        Tasks tasks = null;
+         listOfTemPageFlag = true;
+         termPageFlag = true;
+         alternativeFlag = true;
+         textFileModifyFlag = true;
+      
+         
+         ////////////////////////////////////////////////////
         //cleanDirectory();
 
         //1. create .txt file first
@@ -95,40 +107,28 @@ public class Main {
         listOfTemPageFlag = false;
         termPageFlag = false;
 
-         //tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet,constants, alternativeFlag);
-         //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
-         //tasks.saveDataIntoFiles(browserSet);
-         
-         
-         /*htmlCreateParameters=new HtmlParameters( true, false,  false);
-         subjectFieldMerging=new SubjectFieldMerging(alphabetFileName,conceptFileName,subjectFileName,cannonical,sense,subjectDetail);
+        //tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet,constants, alternativeFlag);
+        //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
+        //tasks.saveDataIntoFiles(browserSet);
+        /*htmlCreateParameters=new HtmlParameters( true, false,  false);
+         subjectFieldMerging=new MergingTermInfo(alphabetFileName,conceptFileName,subjectFileName,cannonical,sense,subjectDetail);
          browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE));
          tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,merging);
          */
-         
-         
         //2. generate alternative url
         //3. generate HTML
-        
         //textFileModifyFlag = false;
         //listOfTemPageFlag = true;
         //termPageFlag = true;
-        htmlCreateParameters=new HtmlParameters( false, true,  true, true);
-        subjectFieldMerging=new SubjectFieldMerging(alphabetFileName,conceptFileName,subjectFileName,cannonical,sense,subjectDetail);
+        /*htmlCreateParameters=new HtmlParameters( false, true,  true, true);
+        subjectFieldMerging=new MergingTermInfo(alphabetFileName,conceptFileName,subjectFileName,cannonical,sense,subjectDetail);
         //tasks = new Taskimpl(constants.LANGUAGE_CONFIG_FILE, browserSet, alternativeFlag);
         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet,constants, alternativeFlag);
         tasks.matchTerminologies(constants.GENTERM, constants.IATE);
         //testMatching();
         browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE));
-        tasks.createHtmlFromSavedFiles(constants, browsersToRun, lang, htmlCreateParameters,subjectFieldMerging);
-       
+        tasks.createHtmlFromSavedFiles(constants, browsersToRun, lang, htmlCreateParameters,subjectFieldMerging);*/
         System.out.println("Processing finished!!!");
-        
-        
-        
-        
-        
-        
 
         //create java script files
         //it works seperately

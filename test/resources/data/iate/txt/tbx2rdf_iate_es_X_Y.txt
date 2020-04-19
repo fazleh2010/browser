@@ -1,9 +1,0 @@
-yacimiento_de_lignito = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/yacimiento+de+lignito-es#CanonicalForm
-xucladit = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/xucladit-es#CanonicalForm
-yacimiento_de_petróleo = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/yacimiento+de+petr%C3%B3leo-es#CanonicalForm
-yersiniosis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/yersiniosis-es#CanonicalForm
-yodhidrato_de_morfina = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/yodhidrato+de+morfina-es#CanonicalForm
-yema_floral = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/yema+floral-es#CanonicalForm
-yer = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/YER-es#CanonicalForm
-xiriquete = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/xiriquete-es#CanonicalForm
-yeso_aglomerante = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/yeso+aglomerante-es#CanonicalForm

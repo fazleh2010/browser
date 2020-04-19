@@ -15,7 +15,7 @@ import org.jsoup.nodes.Element;
 import browser.termallod.constants.HtmlPage;
 import browser.termallod.constants.Languages;
 import browser.termallod.core.AlphabetTermPage;
-import browser.termallod.core.SubjectFieldMerging;
+import browser.termallod.core.MergingTermInfo;
 import browser.termallod.core.PageContentGenerator;
 import browser.termallod.core.term.TermDetail;
 import java.util.Map;
@@ -32,7 +32,7 @@ public class ListOfTerms extends HtmlPageAbstract implements HtmlPage, Languages
     private final TermPage termPage;
 
 
-    public ListOfTerms(FileAndLocationConst constants, HtmlParameters htmlCreateParameters, OntologyInfo info, HtmlReaderWriter htmlReaderWriter, SubjectFieldMerging merging) throws Exception {
+    public ListOfTerms(FileAndLocationConst constants, HtmlParameters htmlCreateParameters, OntologyInfo info, HtmlReaderWriter htmlReaderWriter, MergingTermInfo merging) throws Exception {
         super(htmlCreateParameters, info, htmlReaderWriter, merging, constants);
         this.termPage=new TermPage(htmlCreateParameters, info, htmlReaderWriter, merging, constants);
     }

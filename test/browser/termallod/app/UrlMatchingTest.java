@@ -5,7 +5,9 @@
  */
 package browser.termallod.app;
 
-import browser.termallod.core.SubjectFieldMerging;
+import browser.termallod.api.DataBaseTemp;
+import browser.termallod.core.MergingTermInfo;
+import browser.termallod.core.SubjectInfo;
 import browser.termallod.core.term.TermDetail;
 import browser.termallod.core.term.TermInfo;
 import browser.termallod.utils.FileRelatedUtils;
@@ -26,51 +28,50 @@ import org.junit.Test;
  */
 public class UrlMatchingTest {
 
-    private String alphabetFileName = "test/resources/data/iate/txt/tbx2rdf_iate_en_A_B.txt";
-    private String conceptFileName = "test/resources/data/iate/txt/en.txt";
-    private String subjectFileName = "test/resources/data/iate/txt/subject.txt";
-    private String cannonical = "test/resources/data/iate/txt/canonicalForm.txt";
-    private String sense = "test/resources/data/iate/txt/sense.txt";
-    private String subjectDescriptions = "test/resources/data/iate/txt/subjectFields.txt";
+    private String alphabetFileName = "tbx2rdf_iate_en_A_B.txt";
+    public String location = "test/resources/data/";
+    public String iate_folder = "iate/txt/";
+    public DataBaseTemp dataBaseTemp = new DataBaseTemp();
 
     @Ignore
-    public void testMatchingUrls_WhenMatched() throws Exception {
+    public void testMatchingUrls_MatchingSubject() throws Exception {
         String termUrl = "http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/odd+pulse-en#CanonicalForm";
-        SubjectFieldMerging merging = new SubjectFieldMerging(alphabetFileName, conceptFileName, subjectFileName, cannonical, sense,subjectDescriptions);
-        String senseUrl = "odd+pulse-en#Sense";
-        String id = "IATE-1608440";
-        String subjectField = "6826";
+        MergingTermInfo merging = new MergingTermInfo(location,iate_folder,"en",alphabetFileName, dataBaseTemp);
+        Object senseUrl = "odd+pulse-en#Sense";
+        Object id = "IATE-1608440";
+        Object subjectField = "6826";
+        Object subjectDetail = "Electrical and electrical engineering";
 
-        TermInfo termInfoTemp = new TermInfo(id, subjectField, senseUrl);
+         SubjectInfo subjectInfo = new SubjectInfo(id, subjectField, subjectDetail);
         UrlMatching urlMatchTesting = new UrlMatching(merging, termUrl);
         TermInfo termInfo = urlMatchTesting.getTermInfo();
-        assertEquals(termInfo.getSubjectId(), termInfoTemp.getSubjectId());
-        assertEquals(termInfo.getTermID(), termInfoTemp.getTermID());
+        assertEquals(termInfo.getSubjectId(), subjectInfo.getSubjectId());
+        assertEquals(termInfo.getTermID(), subjectInfo.getReferenceID());
 
     }
 
-    @Test
-    public void testMatchingUrls_WhenMatchedAllUrls() throws Exception {
-        
-        SubjectFieldMerging merging = new SubjectFieldMerging(alphabetFileName, conceptFileName, subjectFileName, cannonical, sense,subjectDescriptions);
+    /* @Ignore
+   public void testMatchingUrls_WhenMatchedAllUrls() throws Exception {
+
+        MergingTermInfo merging = new MergingTermInfo(alphabetFileName, dataBaseTemp);
         Properties alphabetProps = getProperties(alphabetFileName);
-        Integer index=0;
+        Integer index = 0;
         List<File> files = FileRelatedUtils.getFiles("test/resources/data/iate/txt/", "tbx2rdf_iate", ".txt");
         for (File file : files) {
             if (file.getName().contains("en")) {
                 System.out.println(file.getName());
                 Properties alphabetPropsFiles = getProperties("test/resources/data/iate/txt/" + file.getName());
                 for (Object key : alphabetPropsFiles.keySet()) {
-                     Object value = alphabetPropsFiles.get(key);
-                     String termUrl = value.toString();
-                     termUrl = TermDetail.getAlternativeUrl(termUrl, false);
+                    Object value = alphabetPropsFiles.get(key);
+                    String termUrl = value.toString();
+                    termUrl = TermDetail.getAlternativeUrl(termUrl, false);
                     UrlMatching urlMatchTesting = new UrlMatching(merging, termUrl);
                     TermInfo termInfo = urlMatchTesting.getTermInfo();
                     if (termInfo != null) {
-                        System.out.println(key+" "+termUrl+" "+termInfo.getSubjectId()+termInfo.getTermID());
-                        String detail=merging.getSubjectDetailsProps(termInfo.getSubjectId()).toString();
+                        System.out.println(key + " " + termUrl + " " + termInfo.getSubjectId() + termInfo.getTermID());
+                        String detail = merging.getSubjectDetailsProps(termInfo.getSubjectId()).toString();
                         System.out.println(detail);
-                        index=index+1;
+                        index = index + 1;
                         //break;
                     }
                 }
@@ -78,26 +79,36 @@ public class UrlMatchingTest {
             }
 
         }
-          System.out.println("number of matched"+index);
+        System.out.println("number of matched" + index);
+
+
+    }*/
+
+    @Test
+    public void testMatchingUrls_WhenMatchedEveything() throws Exception {
+
+        MergingTermInfo merging = new MergingTermInfo(location,iate_folder,"en",alphabetFileName, dataBaseTemp);
+        System.out.println("finished");
 
 //        System.out.println("finished");*/
 
-        /*TermInfo termInfoTemp = new TermInfo(id, subjectField, senseUrl);
+        /*TermInfo subjectInfo = new TermInfo(id, subjectField, senseUrl);
         UrlMatching urlMatchTesting = new UrlMatching(merging, termUrl);
         TermInfo termInfo = urlMatchTesting.getTermInfo();
-        assertEquals(termInfo.getSubjectId(), termInfoTemp.getSubjectId());
-        assertEquals(termInfo.getTermID(), termInfoTemp.getTermID());*/
+        assertEquals(termInfo.getSubjectId(), subjectInfo.getSubjectId());
+        assertEquals(termInfo.getTermID(), subjectInfo.getTermID());*/
     }
 
     @Ignore
     public void testMatchingUrls_WhenNotMatched() throws Exception {
         String termUrl = "http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/A-field-en#CanonicalForm";
-        SubjectFieldMerging merging = new SubjectFieldMerging(alphabetFileName, conceptFileName, subjectFileName, cannonical, sense,null);
+        MergingTermInfo merging = new MergingTermInfo(location,iate_folder,"en",alphabetFileName, dataBaseTemp);
         String senseUrl = "odd+pulse-en#Sense";
-        String id = "IATE-1608440";
-        String subjectField = "6826";
+        Object id = "IATE-1608440";
+        Object subjectField = "6826";
+        Object subjectDetail = "Electrical and electrical engineering";
 
-        TermInfo termInfoTemp = new TermInfo(id, subjectField, senseUrl);
+        SubjectInfo termInfoTemp = new SubjectInfo(id, subjectField, subjectDetail);
         UrlMatching urlMatchTesting = new UrlMatching(merging, termUrl);
         assertEquals(urlMatchTesting.getTermInfo().getSubjectId(), null);
 
