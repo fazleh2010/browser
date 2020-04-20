@@ -5,16 +5,9 @@
  */
 package browser.termallod.constants;
 
-import browser.termallod.core.AlphabetTermPage;
-import browser.termallod.core.PageContentGenerator;
 import browser.termallod.core.term.TermDetail;
 import java.io.File;
-import java.util.AbstractMap;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeSet;
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 /**

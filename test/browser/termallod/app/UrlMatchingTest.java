@@ -7,7 +7,7 @@ package browser.termallod.app;
 
 import browser.termallod.api.DataBaseTemp;
 import browser.termallod.core.MergingTermInfo;
-import browser.termallod.core.SubjectInfo;
+import browser.termallod.core.term.SubjectInfo;
 import browser.termallod.core.term.TermDetail;
 import browser.termallod.core.term.TermInfo;
 import browser.termallod.utils.FileRelatedUtils;

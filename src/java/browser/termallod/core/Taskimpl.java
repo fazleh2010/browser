@@ -5,6 +5,8 @@
  */
 package browser.termallod.core;
 
+import browser.termallod.core.input.LangSpecificBrowser;
+import browser.termallod.core.input.Browser;
 import browser.termallod.api.DataBaseTemp;
 import browser.termallod.api.LanguageManager;
 import browser.termallod.utils.FileRelatedUtils;

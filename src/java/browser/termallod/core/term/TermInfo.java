@@ -5,7 +5,6 @@
  */
 package browser.termallod.core.term;
 
-import browser.termallod.core.SubjectInfo;
 import browser.termallod.utils.StringMatcherUtil;
 import com.hp.hpl.jena.graph.Triple;
 

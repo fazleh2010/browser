@@ -6,14 +6,11 @@
 package browser.termallod.api;
 
 import browser.termallod.constants.FileAndLocationConst;
-import browser.termallod.core.Browser;
-import browser.termallod.core.MergingTermInfo;
+import browser.termallod.core.input.Browser;
 import browser.termallod.core.html.HtmlParameters;
-import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.term.TermDetail;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;

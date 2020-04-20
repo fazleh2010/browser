@@ -20,9 +20,9 @@ import java.util.Set;
  */
 public class FileAndLocationConst {
 
-    private  String BASE_PATH;
-    private  String GENTERM_PATH;
-    private  File LANGUAGE_CONFIG_FILE;
+    private String BASE_PATH;
+    private String GENTERM_PATH;
+    private File LANGUAGE_CONFIG_FILE;
 
     public String getGENTERM_PATH() {
         return GENTERM_PATH;
@@ -38,8 +38,8 @@ public class FileAndLocationConst {
 
     public FileAndLocationConst(String BASE_PATH) {
         this.BASE_PATH = BASE_PATH;
-        this.GENTERM_PATH=BASE_PATH+File.separator;
-        this.LANGUAGE_CONFIG_FILE = new File(BASE_PATH+"conf/" +"language.conf");
+        this.GENTERM_PATH = BASE_PATH + File.separator;
+        this.LANGUAGE_CONFIG_FILE = new File(BASE_PATH + "conf/" + "language.conf");
     }
     public static String DATA_PATH = "data/";
     public static String TEXT_PATH = "txt/";
@@ -53,10 +53,9 @@ public class FileAndLocationConst {
     public static String TEXT = "TEXT";
     //public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "http://localhost/";
     public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "";
-     public static String TEMPLATE_LOCATION = "src/java/resources/atemplate/";
+    public static String TEMPLATE_LOCATION = "src/java/resources/atemplate/";
     public static File TERM_PAGE_TEMPLATE = new File(TEMPLATE_LOCATION + "termDefination.html");
-    public static String AUTO_COMPLETION_TEMPLATE_LOCATION = TEMPLATE_LOCATION +"css/";
-
+    public static String AUTO_COMPLETION_TEMPLATE_LOCATION = TEMPLATE_LOCATION + "css/";
 
     public String SOLAR = "solar";
     public String ATC = "atc";
@@ -66,7 +65,7 @@ public class FileAndLocationConst {
     public String IATE = "iate";
     public String GENTERM = "genterm";
     public Set<String> BROWSER_GROUPS = new HashSet<String>(Arrays.asList(GENTERM, IATE));
-    public  String IATE_URL = "http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/";
+    public String SERVER_URL = "http://webtentacle1.techfak.uni-bielefeld.de/";
 
     public Map<String, String> CATEGORY_ONTOLOGIES = new HashMap<String, String>() {
         {
@@ -78,19 +77,18 @@ public class FileAndLocationConst {
             put(IATE, "tbx2rdf_iate");
         }
     };
+
     
-    public String URL="http://webtentacle1.techfak.uni-bielefeld.de/";
     public Map<String, String> CATEGORY_TERM_URL = new HashMap<String, String>() {
         {
-            put(ATC, URL+"tbx2rdf_atc/data/");
-            put(SOLAR, URL+"tbx2rdf_solar/data/");
-            put(INTAGLIO, URL+"tbx2rdf_intaglio/data/");
-            put(WASTEMANAGEMENT, URL+"tbx2rdf_wastemanagement/data/");
-            put(DISEASES, URL+"tbx2rdf_diseases/data/");
-            put(IATE, URL+"tbx2rdf_iate/data/");
+            put(ATC, SERVER_URL + "tbx2rdf_atc/data/");
+            put(SOLAR, SERVER_URL + "tbx2rdf_solar/data/");
+            put(INTAGLIO, SERVER_URL + "tbx2rdf_intaglio/data/");
+            put(WASTEMANAGEMENT, SERVER_URL + "tbx2rdf_wastemanagement/data/");
+            put(DISEASES, SERVER_URL + "tbx2rdf_diseases/data/");
+            put(IATE, SERVER_URL + "tbx2rdf_iate/data/");
         }
     };
-    
 
     public Map<String, List<String>> BROWSER_CATEGORIES = new HashMap<String, List<String>>() {
         {
@@ -98,26 +96,12 @@ public class FileAndLocationConst {
             put(IATE, new ArrayList<String>(Arrays.asList(IATE)));
         }
     };
-    
-    public Map<String, String> BROWSER_URL = new HashMap<String,String>() {
+
+    public Map<String, String> BROWSER_URL = new HashMap<String, String>() {
         {
-            put(GENTERM,"http://www.cvt.ugent.be/genterm.htm");
-            put(IATE,"https://iate.europa.eu/");
+            put(GENTERM, "http://www.cvt.ugent.be/genterm.htm");
+            put(IATE, "https://iate.europa.eu/");
         }
     };
-    
-    
-        public String location="/home/elahi/NetBeansProjects/newBrowser/linux/browser/test/resources/data/iate/txt/";
-        public String alphabetFileName=location+ "tbx2rdf_iate_en_A_B.txt";
-        public String conceptFileName= location+"en.txt";
-        public String subjectFileName= location+"subject.txt";
-        public String cannonical=location+ "canonicalForm.txt";
-        public String sense= location+"sense.txt";
-        public String subjectDetail= location+"subjectFields.txt";
-        public String reliabilityCode= location+"reliabilityCode.txt";
-        public String administrativeStatus= location+"administrativeStatus.txt";
-    
-        public String conts = "http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_iate/data/iate/";
-
 
 }

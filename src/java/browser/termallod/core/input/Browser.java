@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.core;
+package browser.termallod.core.input;
 
 import java.util.Map;
 import java.util.TreeMap;

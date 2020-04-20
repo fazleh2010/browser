@@ -5,7 +5,7 @@
  */
 package browser.termallod.utils;
 
-import browser.termallod.constants.Browser;
+import browser.termallod.constants.TermBase;
 import browser.termallod.constants.FileAndLocationConst;
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.term.TermInfo;
@@ -415,7 +415,7 @@ public class FileRelatedUtils {
     }
 
     public static String getSpecificFile(String PATH, String ontologyName, String langCode, String pair, String extension) {
-        Browser browser = new Browser();
+        TermBase browser = new TermBase();
         //String browserName = browser.getBrowserFromOntologyName(ontologyName);
         String inputDir = getInputLocation(PATH, ontologyName);
         String fineName = inputDir + ontologyName + "_" + langCode + "_" + pair + extension;
@@ -429,12 +429,12 @@ public class FileRelatedUtils {
     }
 
     public static String getInputLocation(String PATH, String ontologyName) {
-        Browser browser = new Browser();
+        TermBase browser = new TermBase();
         return PATH + browser.getBrowserFromOntologyName(ontologyName) + File.separator + constants.TEXT_PATH;
     }
 
     public static String getBrowser(String ontologyName) {
-        Browser browser = new Browser();
+        TermBase browser = new TermBase();
         return browser.getBrowserFromOntologyName(ontologyName);
     }
     

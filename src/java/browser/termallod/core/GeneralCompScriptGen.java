@@ -5,6 +5,8 @@
  */
 package browser.termallod.core;
 
+import browser.termallod.core.input.LangSpecificBrowser;
+import browser.termallod.core.input.Browser;
 import browser.termallod.constants.FileAndLocationConst;
 import browser.termallod.utils.FileRelatedUtils;
 import java.io.File;

@@ -15,7 +15,7 @@ import browser.termallod.core.MergingTermInfo;
 import browser.termallod.core.html.HtmlParameters;
 import browser.termallod.core.html.HtmlReaderWriter;
 import browser.termallod.core.html.OntologyInfo;
-import browser.termallod.core.html.TermPage;
+import browser.termallod.core.html.HtmlTermPage;
 import browser.termallod.core.term.TermInfo;
 import browser.termallod.utils.Partition;
 import browser.termallod.utils.UrlMatching;
@@ -87,7 +87,7 @@ public class TermPageTest {
         htmlCreateParameters = new HtmlParameters(false, true, true, true);
         subjectFieldMerging = new MergingTermInfo(location,iate_folder,language,alphabetFileName, dataBaseTemp);
         info = new OntologyInfo(language, categoryName, alphabetTermPage);
-        TermPage termPage = new TermPage(htmlCreateParameters, info, htmlReaderWriter, subjectFieldMerging, constants);*/
+        HtmlTermPage termPage = new HtmlTermPage(htmlCreateParameters, info, htmlReaderWriter, subjectFieldMerging, constants);*/
         
     }
 

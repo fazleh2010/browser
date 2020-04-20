@@ -5,6 +5,7 @@
  */
 package browser.termallod.core;
 
+import browser.termallod.core.term.SubjectInfo;
 import browser.termallod.api.DataBaseTemp;
 import browser.termallod.core.term.TermInfo;
 import browser.termallod.utils.FileRelatedUtils;

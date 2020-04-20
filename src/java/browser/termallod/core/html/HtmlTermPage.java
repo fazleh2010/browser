@@ -27,14 +27,14 @@ import org.jsoup.nodes.Element;
  *
  * @author elahi
  */
-public class TermPage extends HtmlPageAbstract {
+public class HtmlTermPage extends HtmlPageAbstract {
 
     private Document templateHtml;
     private TermDetail termDetail;
     private String url;
     private String termFileName;
 
-    public TermPage(HtmlParameters htmlCreateParameters, OntologyInfo info, HtmlReaderWriter htmlReaderWriter, FileAndLocationConst constants) {
+    public HtmlTermPage(HtmlParameters htmlCreateParameters, OntologyInfo info, HtmlReaderWriter htmlReaderWriter, FileAndLocationConst constants) {
         super(htmlCreateParameters, info, htmlReaderWriter, constants);
     }
 
@@ -46,7 +46,7 @@ public class TermPage extends HtmlPageAbstract {
         try {
             this.createTermPage();
         } catch (Exception ex) {
-            Logger.getLogger(TermPage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HtmlTermPage.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

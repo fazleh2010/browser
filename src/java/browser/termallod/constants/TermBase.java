@@ -15,7 +15,7 @@ import java.util.Map;
  *
  * @author elahi
  */
-public class Browser {
+public class TermBase {
 
     public static final String ONTOLOGY_NOTATION = "tbx2rdf";
 

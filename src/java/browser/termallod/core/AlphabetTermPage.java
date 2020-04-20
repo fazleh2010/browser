@@ -25,17 +25,16 @@ public class AlphabetTermPage {
     private File alphabetFile = null;
     private Properties props = null;
     private Integer numericalValueOfPair = 0;
-    private  MergingTermInfo mergingTermInfo;
+    private MergingTermInfo mergingTermInfo;
 
-    public AlphabetTermPage(String language,String alpahbetPair, File file, Partition<String> partition, Integer numericalValueOfPair,DataBaseTemp dataBaseTemp,Boolean alternativeFlag) throws Exception{
+    public AlphabetTermPage(String language, String alpahbetPair, File file, Partition<String> partition, Integer numericalValueOfPair, DataBaseTemp dataBaseTemp, Boolean alternativeFlag) throws Exception {
         this.alpahbetPair = alpahbetPair;
         this.partition = partition;
         this.numberOfPages = partition.size();
         this.numericalValueOfPair = numericalValueOfPair;
         this.alphabetFile = file;
-        this.props=FileRelatedUtils.getPropertyHash(this.alphabetFile);
-        this.mergingTermInfo = new MergingTermInfo(alphabetFile,language, dataBaseTemp,alternativeFlag);
-        //System.out.println(mergingTermInfo.getUrlInfo().keySet().toString()+"finished!!!!!!!!!");
+        this.props = FileRelatedUtils.getPropertyHash(this.alphabetFile);
+        this.mergingTermInfo = new MergingTermInfo(alphabetFile, language, dataBaseTemp, alternativeFlag);
     }
 
     /*public String getUrl(String term) {
@@ -50,9 +49,8 @@ public class AlphabetTermPage {
 
         return url;
     }*/
-
     public String getUrl(String term) {
-           return props.getProperty(term);
+        return props.getProperty(term);
     }
 
     public Partition<String> getPartition() {
@@ -82,7 +80,6 @@ public class AlphabetTermPage {
     public TermInfo getTermInfo(String url) {
         return mergingTermInfo.getUrlInfo().get(url);
     }
-    
 
     @Override
     public String toString() {
