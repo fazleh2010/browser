@@ -79,10 +79,10 @@ public class HtmlCreator  {
                 File MAIN_PAGE_TEMPLATE = getTemplate(categoryName, language, ".html");
                 createHtmlForEachAlphabetPair(categoryName, MAIN_PAGE_TEMPLATE, language, alphabetTermPage, pageContentGenerator);
                 //temporay added....
-                  break;
+                  //break;
             }
             //temporary added..
-            break;
+            //break;
         }
     }
     
@@ -99,7 +99,7 @@ public class HtmlCreator  {
             OntologyInfo info = new OntologyInfo(language, categoryName, alphabetTermPage);
             //MergingTermInfo merging=null;
             HtmlListOfTerms htmlPage = new HtmlListOfTerms(constants, htmlCreateParameters, info, htmlReaderWriter);
-            File htmlFileName = info.makeHtmlFileName(constants.getBASE_PATH(), currentPageNumber);
+            File htmlFileName = info.makeHtmlFileName(constants.getBASE_PATH(), currentPageNumber,alphabetTermPage);
             Document listOfTermHtmlPage = htmlPage.createAllElements(templateHtml, termDetails, pageContentGenerator,htmlFileName,currentPageNumber);
             if (this.htmlCreateParameters.getListOfTemPageFlag()) {
                 htmlReaderWriter.writeHtml(listOfTermHtmlPage, htmlFileName);

@@ -7,23 +7,17 @@ package browser.termallod.core.html;
 
 import static browser.termallod.api.HtmlStringConts.divClassEnd;
 import static browser.termallod.api.HtmlStringConts.divClassStr;
-import static browser.termallod.api.IATE.ADMINISTRATIVE_STATUS;
-import static browser.termallod.api.IATE.RELIABILITY_CODE;
 import static browser.termallod.api.IATE.SUBJECT_FIELD;
 import browser.termallod.constants.FileAndLocationConst;
 import static browser.termallod.constants.Languages.languageMapper;
-import browser.termallod.core.AlphabetTermPage;
-import browser.termallod.core.MergingTermInfo;
 import static browser.termallod.core.html.HtmlListOfTerms.termAlterUrl;
 import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.term.TermDetail;
 import browser.termallod.core.term.TermInfo;
 import browser.termallod.utils.StringMatcherUtil;
-import browser.termallod.utils.UrlMatching;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jsoup.nodes.Document;
@@ -146,21 +140,10 @@ public class TermPage extends HtmlPageAbstract {
     }
 
     private List<String> createTermInfo(List<TermDetail> matchedTerms, String term, String url) throws Exception {
-       /* @Fazleh wrt the field names to be shown in the interface, as we said yesterday, these are the ones I would add:
-- POS
-- Number
-- Gender
-- Definition
-- Hypernym
-- Hyponym
-- Variant
-- Synonym*/
-        
-        
         List<String> divStrS = new ArrayList<String>();
         String subjectFieldTr = "", ReferenceTr = "", languageTr = "", reliabilityCodeTr = "", administrativeTr = "", subjectID = "";;
-        String posTr = "", numberTr = "", genderTr = "", definitionTr = "", hypernymTr = "", hyponymTr = "",variantTr="",synonymTr="";
-        
+        String posTr = "", numberTr = "", genderTr = "", definitionTr = "", hypernymTr = "", hyponymTr = "", variantTr = "", synonymTr = "";
+
         TermInfo termInfo = this.getTermInformation(url);
         if (termInfo != null) {
             System.out.println(term + " " + termFileName + " " + termInfo.getSubjectId() + termInfo.getTermID());
@@ -215,18 +198,63 @@ public class TermPage extends HtmlPageAbstract {
             }
         }
 
-        
-        
-        
-        
-        
-        String table = this.getTable(this.getTbody(languageTr +definitionTr+reliabilityCodeTr + administrativeTr+ subjectFieldTr + ReferenceTr
-                                                   +posTr+numberTr+genderTr+hypernymTr+hyponymTr+variantTr+synonymTr));
+        String table = this.getTable(this.getTbody(languageTr + definitionTr + reliabilityCodeTr + administrativeTr + subjectFieldTr + ReferenceTr
+                + posTr + numberTr + genderTr + hypernymTr + hyponymTr + variantTr + synonymTr));
         String divStr = table;
         divStrS.add(divStr);
 
         divStrS = this.generateTermLink(matchedTerms, divStrS);
 
+        return divStrS;
+    }
+    
+     private List<String> generateTermLink(List<TermDetail> matchedTerms, List<String> divStrS) {
+
+        for (TermDetail termDetail : matchedTerms) {
+            String otherTerminology = termDetail.getOtherCategory(info.getCategoryType());
+           
+            //String langValueStr = languageMapper.get(language);
+            String spanTerminologyName = otherTerminology;
+            String spanTerminologyUrl = constants.BROWSER_URL.get(spanTerminologyName);
+
+            String term = termDetail.getTerm();
+            String url = null;
+            if (!super.htmlCreateParameters.getAlternativeFlag()) {
+                url = termDetail.getUrl(otherTerminology);
+            } else {
+                url = termDetail.getAlternativeUrl(otherTerminology);
+                if (constants.CATEGORY_TERM_URL.containsKey(otherTerminology)) {
+                    url = constants.CATEGORY_TERM_URL.get(otherTerminology) + url;
+                }
+            }
+            
+            //System.out.println(term+" "+url+" "+otherTerminology+" "+spanTerminologyUrl+" Iate:"+termFileName);
+
+            //temporary closed
+            String panelHeadingStart = divClassStr + this.getWithinQuote("panel-heading") + ">"
+                    + "<a href=" + this.getWithinQuote(url) + " class="
+                    + this.getWithinQuote("rdf_link") + ">" + term + "</a>" + divClassEnd;
+
+            panelHeadingStart = "<h3>Links to other terminologies</h3>";
+            String panelHeadingEnd = "</div>";
+            String thirdTr = getTr(getProperty(spanTerminologyUrl, otherTerminology), getValue(url, url, term));
+            //firstTr = "";
+
+            /*String termValue = this.getValueNew(this.getSpanProp(spanPropUrl1, spanPropUrl2, spanPropStr) + this.getSpanValue(spanTerminologyUrl, spanTerminologyName));
+            String subjectFieldTr = getTr(getProperty(langTermUrl, langTermStr), termValue);
+            subjectFieldTr = "";
+
+            String languageTr = getTr(getProperty(matchPropUrl, matchPropStr), getValueNew(matchValueUrl1, matchValueUrl2, matchValueStr));
+            languageTr = "";*/
+            String table = this.getTable(this.getTbody(thirdTr));
+
+            /*String yesNoButtonDiv = getAcceptDenyButton();
+            //yes no button is closed for time being.
+            yesNoButtonDiv = "";*/
+            String divStr = panelHeadingStart + table + panelHeadingEnd;
+            divStrS.add(divStr);
+
+        }
         return divStrS;
     }
 
@@ -329,52 +357,6 @@ public class TermPage extends HtmlPageAbstract {
         return templateHtml;
     }
 
-    private List<String> generateTermLink(List<TermDetail> matchedTerms, List<String> divStrS) {
-
-        for (TermDetail termDetail : matchedTerms) {
-            String otherTerminology = termDetail.getOtherCategory(info.getCategoryType());
-
-            //String langValueStr = languageMapper.get(language);
-            String spanTerminologyName = otherTerminology;
-            String spanTerminologyUrl = constants.BROWSER_URL.get(spanTerminologyName);
-
-            String term = termDetail.getTerm();
-            String url = null;
-            if (!super.htmlCreateParameters.getAlternativeFlag()) {
-                url = termDetail.getUrl(otherTerminology);
-            } else {
-                url = termDetail.getAlternativeUrl(otherTerminology);
-                if (constants.CATEGORY_TERM_URL.containsKey(otherTerminology)) {
-                    url = constants.CATEGORY_TERM_URL.get(otherTerminology) + url;
-                }
-            }
-
-            //temporary closed
-            String panelHeadingStart = divClassStr + this.getWithinQuote("panel-heading") + ">"
-                    + "<a href=" + this.getWithinQuote(url) + " class="
-                    + this.getWithinQuote("rdf_link") + ">" + term + "</a>" + divClassEnd;
-
-            panelHeadingStart = "<h3>Links to other terminologies</h3>";
-            String panelHeadingEnd = "</div>";
-            String thirdTr = getTr(getProperty(spanTerminologyUrl, otherTerminology), getValue(url, url, term));
-            //firstTr = "";
-
-            /*String termValue = this.getValueNew(this.getSpanProp(spanPropUrl1, spanPropUrl2, spanPropStr) + this.getSpanValue(spanTerminologyUrl, spanTerminologyName));
-            String subjectFieldTr = getTr(getProperty(langTermUrl, langTermStr), termValue);
-            subjectFieldTr = "";
-
-            String languageTr = getTr(getProperty(matchPropUrl, matchPropStr), getValueNew(matchValueUrl1, matchValueUrl2, matchValueStr));
-            languageTr = "";*/
-            String table = this.getTable(this.getTbody(thirdTr));
-
-            /*String yesNoButtonDiv = getAcceptDenyButton();
-            //yes no button is closed for time being.
-            yesNoButtonDiv = "";*/
-            String divStr = panelHeadingStart + table + panelHeadingEnd;
-            divStrS.add(divStr);
-
-        }
-        return divStrS;
-    }
+   
 
 }

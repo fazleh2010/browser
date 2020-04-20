@@ -82,36 +82,28 @@ public class Main {
         lang = new TreeSet<String>(languageMapper.keySet());
         constants = new FileAndLocationConst(BASE_PATH);
         browserSet = new HashSet<String>(Arrays.asList(constants.IATE,constants.GENTERM));
-        //cleanDirectory();
-
-         /*tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
-        //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
-         tasks.saveDataIntoFiles(browserSet);*/
         
-        
-        // run before comit..................
-        //steps
-        //1. run without creating html and prepare .txt file
-        //2. create html Genterm first
-        //3. create html for Iate
-         listOfTemPageFlag = true;
-         termPageFlag = true;
-         alternativeFlag = true;
-         textFileModifyFlag = true;
-      
-         
-         ////////////////////////////////////////////////////
         cleanDirectory();
-
-        //1. create .txt file first
-       textFileModifyFlag = true;
+        
+        /*cleanDirectory();
+         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
+        //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
+         tasks.saveDataIntoFiles(browserSet);
+        
+        textFileModifyFlag = true;
         listOfTemPageFlag = false;
         termPageFlag = false;
         alternativeFlag = true;
-        browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE));
+        browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE,constants.GENTERM));
+         
+         htmlCreateParameters = new HtmlParameters(textFileModifyFlag, listOfTemPageFlag,  termPageFlag,alternativeFlag);
+         tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);*/
+        
+         ////////////////////////////////////////////////////
 
+    
 
-         /*tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
+        /* tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
          //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
          //tasks.saveDataIntoFiles(browserSet);
           //Boolean textFileModifyFlag, Boolean listOfTemPageFlag, Boolean termPageFlag, Boolean alternativeFlag)
@@ -120,14 +112,15 @@ public class Main {
          
         //2. generate alternative url
         //3. generate HTML
-        //textFileModifyFlag = false;
-        //listOfTemPageFlag = true;
-        //termPageFlag = true;
-        /*htmlCreateParameters=new HtmlParameters( false, true,  true, true);
+        /*textFileModifyFlag = true;
+        listOfTemPageFlag = false;
+        termPageFlag = false;
+        alternativeFlag = true;
+        htmlCreateParameters=new HtmlParameters( false, true,  true, true);
         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
-        //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
+        tasks.matchTerminologies(constants.GENTERM, constants.IATE);
         //testMatching();
-        browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE));
+        browsersToRun=new HashSet<String>(Arrays.asList(constants.GENTERM));
         tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);*/
         System.out.println("Processing finished!!!");
 

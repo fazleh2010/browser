@@ -65,14 +65,14 @@ public class HtmlListOfTerms extends HtmlPageAbstract implements HtmlPage, Langu
         return templateHtml;
     }
 
-    private void createLangSelectBox(Element body, PageContentGenerator pageContentGenerator) throws Exception {
+    private void createLangSelectBox(Element body, PageContentGenerator pageContentGenerator,AlphabetTermPage alphabetTermPage) throws Exception {
         Element divLanguage = body.getElementsByClass("langauge selection box").get(0);
         String options = "<ul class=" + "\"" + "language-list" + "\"" + ">";
         for (String languageCode : pageContentGenerator.getLanguages()) {
             if (languageMapper.containsKey(languageCode)) {
                 String languageDetail = languageMapper.get(languageCode);
                 String pair = pageContentGenerator.getLanguageInitpage(languageCode);
-                String url = this.createUrlLink(INITIAL_PAGE);
+                String url = this.createUrlLink(INITIAL_PAGE,alphabetTermPage);
                 String option = "<li>&#8227; <a href=" + "\"" + url + "\"" + ">" + languageDetail + "</a></li>";
                 options += option;
             }
@@ -130,7 +130,7 @@ public class HtmlListOfTerms extends HtmlPageAbstract implements HtmlPage, Langu
         if(categoryOntologyMapper.containsKey(this.categoryName)){
             ontologyLocation=categoryOntologyMapper.get(categoryName);
         }*/
-        String url = this.createUrlLink(pageNumber);
+        String url = this.createUrlLink(pageNumber,alphabetTermPage);
         //String url = LOCALHOST_URL_LIST_OF_TERMS_PAGE + alphabetFileName;
 
         if (super.info.getLanguage().contains("hu") && alphabetTermPage.getNumericalValueOfPair() == 1) {
@@ -158,7 +158,7 @@ public class HtmlListOfTerms extends HtmlPageAbstract implements HtmlPage, Langu
             return new ArrayList<String>();
         }
         if (currentPageNumber > INITIAL_PAGE) {
-            pageUrl = createUrlLink(currentPageNumber - 1);
+            pageUrl = createUrlLink(currentPageNumber - 1,alphabetTermPage);
             if (info.getLanguage().contains("hu") && currentPageNumber == 2) {
                 pageUrl = "browser_hu_A_1_1.html";
             }
@@ -169,7 +169,7 @@ public class HtmlListOfTerms extends HtmlPageAbstract implements HtmlPage, Langu
         Integer index = 0;
         for (Integer page = currentPageNumber; page < pages; page++) {
             Integer pageNumber = (page + 1);
-            pageUrl = createUrlLink(pageNumber);
+            pageUrl = createUrlLink(pageNumber,alphabetTermPage);
             if (info.getLanguage().contains("hu") && pageNumber == 1) {
                 pageUrl = "browser_hu_A_1_1.html";
             }
@@ -178,7 +178,7 @@ public class HtmlListOfTerms extends HtmlPageAbstract implements HtmlPage, Langu
             li = "\n<li>" + a + "</li>\n";
             liS.add(li);
             if (index > this.maximumNumberOfPages && (pageNumber + 1) < pages) {
-                pageUrl = createUrlLink(pageNumber + 1);
+                pageUrl = createUrlLink(pageNumber + 1,alphabetTermPage);
                 a = "<a href=" + pageUrl + ">" + "Next" + "</a>";
                 li = "\n<li>" + a + "</li>\n";
                 liS.add(li);
@@ -192,8 +192,8 @@ public class HtmlListOfTerms extends HtmlPageAbstract implements HtmlPage, Langu
         return liS;
     }
 
-    private String createUrlLink(Integer pageNumber) {
-        return LOCALHOST_URL_LIST_OF_TERMS_PAGE + info.createFileNameUnicode(pageNumber);
+    private String createUrlLink(Integer pageNumber,AlphabetTermPage alphabetTermPage) {
+        return LOCALHOST_URL_LIST_OF_TERMS_PAGE + info.createFileNameUnicode(pageNumber,alphabetTermPage);
     }
 
     private String generateTermUrl(String term, AlphabetTermPage alphabetTermPage) {

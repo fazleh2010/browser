@@ -35,7 +35,6 @@ public class AlphabetTermPage {
         this.alphabetFile = file;
         this.props=FileRelatedUtils.getPropertyHash(this.alphabetFile);
         this.mergingTermInfo = new MergingTermInfo(alphabetFile,language, dataBaseTemp,alternativeFlag);
-        System.out.println(mergingTermInfo.getUrlInfo().keySet());
         //System.out.println(mergingTermInfo.getUrlInfo().keySet().toString()+"finished!!!!!!!!!");
     }
 

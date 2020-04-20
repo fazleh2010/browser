@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -48,7 +50,7 @@ public class MergingTermInfo {
         //this.prepareTermInfo(this.iate_txt_dir + alphabetFileName,reliabilityCodeFile,administrativeStatusFile,urlSubjectInfo);
     }
 
-    public MergingTermInfo(File alphabetFile, String language, DataBaseTemp dataBaseTemp,Boolean alternativeFlag) throws FileNotFoundException, IOException {
+    public MergingTermInfo(File alphabetFile, String language, DataBaseTemp dataBaseTemp, Boolean alternativeFlag) throws FileNotFoundException, IOException {
         this.location = alphabetFile.getAbsoluteFile().getParent();
         this.language = language;
         this.dataBaseTemp = dataBaseTemp;
@@ -59,22 +61,32 @@ public class MergingTermInfo {
         String subectDescription = dataBaseTemp.getSubjectDescriptions();
 
         TreeMap<String, SubjectInfo> urlSubjectInfo = this.prepareSubjectFields(conceptFileName, subjectFileName, subectDescription);
-        this.prepareTermInfo(alphabetFile.getAbsolutePath(), reliabilityCodeFile, administrativeStatusFile, urlSubjectInfo,alternativeFlag);
+        this.prepareTermInfo(alphabetFile.getAbsolutePath(), reliabilityCodeFile, administrativeStatusFile, urlSubjectInfo, alternativeFlag);
     }
 
-    private void prepareTermInfo(String alphabetFileName, String reliabilityCodeFile, 
-                                String administrativeStatusFile, TreeMap<String, SubjectInfo> urlSubjectInfo,
-                                Boolean alternativeFlag) throws IOException {
-        Properties alphabetProps = FileRelatedUtils.getProperties(alphabetFileName);
-        Properties reliabilityCodeProps = FileRelatedUtils.getProperties(reliabilityCodeFile);
-        Properties administrativeSTatusProps = FileRelatedUtils.getProperties(administrativeStatusFile);
-        Object administrativeSTatus = "";
-        Object reliabilityCode = "";
-        SubjectInfo subjectTermInfo = new SubjectInfo("", "", "");
+    private void prepareTermInfo(String alphabetFileName, String reliabilityCodeFile,
+            String administrativeStatusFile, TreeMap<String, SubjectInfo> urlSubjectInfo,
+            Boolean alternativeFlag) throws IOException {
+        Properties alphabetProps = new Properties();
+        Properties reliabilityCodeProps = new Properties();
+        Properties administrativeSTatusProps = new Properties();
+        alphabetProps = FileRelatedUtils.getProperties(alphabetFileName);
+
+        try {
+            reliabilityCodeProps = FileRelatedUtils.getProperties(reliabilityCodeFile);
+            administrativeSTatusProps = FileRelatedUtils.getProperties(administrativeStatusFile);
+        } catch (IOException ex) {
+            reliabilityCodeProps = new Properties();
+            administrativeSTatusProps = new Properties();;
+        }
+
         for (Object term : alphabetProps.stringPropertyNames()) {
             Object urls = alphabetProps.get(term);
-            Object orgUrl= StringMatcherUtil.getAlternativeUrl(urls.toString(), false);
-            Object alterUrl= StringMatcherUtil.getAlternativeUrl(urls.toString(), true);
+            Object orgUrl = StringMatcherUtil.getAlternativeUrl(urls.toString(), false);
+            Object alterUrl = StringMatcherUtil.getAlternativeUrl(urls.toString(), true);
+            Object administrativeSTatus = "";
+            Object reliabilityCode = "";
+            SubjectInfo subjectTermInfo = new SubjectInfo("", "", "");
 
             if (reliabilityCodeProps.containsKey(orgUrl)) {
                 reliabilityCode = reliabilityCodeProps.get(orgUrl);
@@ -86,23 +98,29 @@ public class MergingTermInfo {
                 subjectTermInfo = urlSubjectInfo.get(orgUrl);
 
             }
-            TermInfo termInfo = new TermInfo(term, orgUrl, alterUrl,reliabilityCode, administrativeSTatus, subjectTermInfo);
-            if(alternativeFlag){
-                 urlInfo.put(alterUrl.toString(), termInfo);
-                 System.out.println(termInfo);
+            TermInfo termInfo = new TermInfo(term, orgUrl, alterUrl, reliabilityCode, administrativeSTatus, subjectTermInfo);
+            if (alternativeFlag) {
+                urlInfo.put(alterUrl.toString(), termInfo);
             }
-           
+
         }
 
     }
 
-    private TreeMap<String, SubjectInfo> prepareSubjectFields(String conceptFileName, String subjectFileName, String subectDescription) throws IOException {
+    private TreeMap<String, SubjectInfo> prepareSubjectFields(String conceptFileName, String subjectFileName, String subectDescription) {
         TreeMap<String, SubjectInfo> urlSubjectInfo = new TreeMap<String, SubjectInfo>();
-        Properties conceptProps = FileRelatedUtils.getProperties(conceptFileName);
-        Properties subjectProps = FileRelatedUtils.getProperties(subjectFileName);
-        Properties subjectDetailsProps = FileRelatedUtils.getProperties(subectDescription);
-        //List<String> subjectFields = new ArrayList<String>();
+        Properties conceptProps = new Properties();
+        Properties subjectProps = new Properties();
+        Properties subjectDetailsProps = new Properties();;
+        try {
+            conceptProps = FileRelatedUtils.getProperties(conceptFileName);
+            subjectProps = FileRelatedUtils.getProperties(subjectFileName);
+            subjectDetailsProps = FileRelatedUtils.getProperties(subectDescription);
+        } catch (IOException ex) {
+            return urlSubjectInfo;
+        }
 
+        //List<String> subjectFields = new ArrayList<String>();
         for (Object id : conceptProps.keySet()) {
             Object senseUrl = conceptProps.get(id);
             Object subjectDetail = null;

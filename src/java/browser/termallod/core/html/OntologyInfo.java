@@ -44,7 +44,7 @@ public class OntologyInfo {
         return categoryType;
     }
 
-    public String createFileNameUnicode(Integer pageNumber) {
+    public String createFileNameUnicode(Integer pageNumber,AlphabetTermPage alphabetTermPage) {
         String pair = getPairValue(alphabetTermPage);
         return browser + UNDERSCORE + this.language + UNDERSCORE + pair.toString() + UNDERSCORE + pageNumber + HTML_EXTENSION;
     }
@@ -84,8 +84,8 @@ public class OntologyInfo {
         return browser + UNDERSCORE + this.language + UNDERSCORE + pair.toString() + UNDERSCORE + pageNumber + HTML_EXTENSION;
     }
 
-    public File makeHtmlFileName(String base_path, Integer currentPageNumber) {
-        return new File(base_path + this.ontologyFileName + "/" + this.createFileNameUnicode(currentPageNumber));
+    public File makeHtmlFileName(String base_path, Integer currentPageNumber,AlphabetTermPage alphabetTermPage) {
+        return new File(base_path + this.ontologyFileName + "/" + this.createFileNameUnicode(currentPageNumber,alphabetTermPage));
     }
 
 }
