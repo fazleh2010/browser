@@ -25,8 +25,7 @@ public class TermDetail {
     private Boolean alternativeFlag;
     private String alternativeUrl = null;
     private String url;
-    private  static Integer orginalIndex=0;
-    private  static Integer alternativeIndex=1;
+  
 
     public TermDetail(String category, String langCode, String term) {
         this.category = category;
@@ -117,21 +116,7 @@ public class TermDetail {
     }
 
     public String getAlternativeUrl(String otherTerminology) {
-        return getAlternativeUrl(this.termLinks.get(otherTerminology),true);
-    }
-    
-     public static  String getAlternativeUrl(String value,Boolean alternativeUrlFlag) {
-        if (value.contains("=")) {
-                String[] urls = value.split("=");
-                String orgUrl = urls[orginalIndex];
-                String alterUrl = urls[alternativeIndex];
-                if (alternativeUrlFlag) {
-                    value = alterUrl;
-                } else {
-                    value = orgUrl;
-                }
-            }
-        return value;
+        return StringMatcherUtil.getAlternativeUrl(this.termLinks.get(otherTerminology),true);
     }
 
     public String termFilter(String text) {

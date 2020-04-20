@@ -22,7 +22,7 @@ import java.util.TreeMap;
  *
  * @author elahi
  */
-public class CategoryInfo {
+public class TxtFileProcessing {
 
     private String browser = null;
     private String langCode = null;
@@ -30,16 +30,17 @@ public class CategoryInfo {
     private Map<String, File> pairFile = new TreeMap<String, File>();
     private TreeMap<String, List<String>> langSortedTerms = new TreeMap<String, List<String>>();
 
-    public CategoryInfo(String browser, String langCode, List<File> files, String model_extension) throws IOException, IOException, IOException, IOException, IOException {
+    public TxtFileProcessing(String browser, String langCode, List<File> files, String model_extension) throws IOException, IOException, IOException, IOException, IOException {
         this.browser = browser;
         this.langCode = langCode;
         for (File file : files) {
+            //System.out.println(file.getAbsolutePath());
             this.categoryName = NameExtraction.getCategoryName(browser, file, model_extension);
             String pair = NameExtraction.getPairName(file, categoryName, langCode, model_extension);
             this.pairFile.put(pair, file);
             this.getValuesFromTextFile(file, pair);
         }
-        this.print(langSortedTerms);
+        //this.print(langSortedTerms);
 
     }
 
@@ -73,12 +74,12 @@ public class CategoryInfo {
         return pairFile.get(pair);
     }
 
-    public void print(TreeMap<String, List<String>> langSortedTerms) {
+    /*public void print(TreeMap<String, List<String>> langSortedTerms) {
         for (String pair : langSortedTerms.keySet()) {
             String line = pair + "\n";
             List<String> terms = langSortedTerms.get(pair);
             System.out.println(line + terms.toString());
         }
-    }
+    }*/
 
 }

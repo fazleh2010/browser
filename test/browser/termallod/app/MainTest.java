@@ -42,7 +42,8 @@ public class MainTest {
     private Tasks tasks = null;
     private static Set<String> browsersToRun=new HashSet<String>();
     public String location = "test/resources/data/iate/txt/";
-    public DataBaseTemp dataBaseTemp = new DataBaseTemp();
+    private static String CONFIG_PATH = "src/java/resources/data/conf/";
+    public DataBaseTemp dataBaseTemp = new DataBaseTemp("test/resources/data/conf/");
     
     
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
@@ -89,9 +90,9 @@ public class MainTest {
          cleanDirectory();
          
          
-        // tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag,dataBaseTemp);
-         //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
-        // tasks.saveDataIntoFiles(browserSet);
+        //tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
+        //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
+         //tasks.saveDataIntoFiles(browserSet);
         
         //tasks.readDataFromSavedFiles();
         

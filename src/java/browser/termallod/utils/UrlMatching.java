@@ -27,7 +27,7 @@ public class UrlMatching {
     }
 
     private TermInfo getTermInformation(String termUrl) {
-        termUrl = TermDetail.getAlternativeUrl(termUrl, false);
+        termUrl = StringMatcherUtil.getAlternativeUrl(termUrl, false);
         termUrl = termUrl.replace(IATE_URL, "");
         if (termUrl.contains((hashString))) {
             termUrl = termUrl.substring(0, termUrl.lastIndexOf('#'));

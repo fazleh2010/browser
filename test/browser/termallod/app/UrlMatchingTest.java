@@ -31,7 +31,8 @@ public class UrlMatchingTest {
     private String alphabetFileName = "tbx2rdf_iate_en_A_B.txt";
     public String location = "test/resources/data/";
     public String iate_folder = "iate/txt/";
-    public DataBaseTemp dataBaseTemp = new DataBaseTemp();
+    private static String CONFIG_PATH = "src/java/resources/data/conf/";
+    public DataBaseTemp dataBaseTemp = new DataBaseTemp(CONFIG_PATH);
 
     @Ignore
     public void testMatchingUrls_MatchingSubject() throws Exception {

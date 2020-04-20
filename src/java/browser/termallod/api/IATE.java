@@ -12,6 +12,8 @@ package browser.termallod.api;
 public interface IATE {
     public static final String ADMINISTRATIVE_STATUS="administrativeStatus";
     public static final String RELIABILITY_CODE = "reliabilityCode";
+    public static final String SUBJECT_FIELD = "SubjectField";
+    
     public static final String IATE_ID = "IATE-";
     public static final String SENSE = "Sense";
     public static final String LANGUAGE_SEPERATE_SYMBOLE = "@";

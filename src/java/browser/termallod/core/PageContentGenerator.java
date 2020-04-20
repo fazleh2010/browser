@@ -5,6 +5,7 @@
  */
 package browser.termallod.core;
 
+import browser.termallod.api.DataBaseTemp;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -25,10 +26,14 @@ public class PageContentGenerator {
     public Integer numberofElementEachPage = 100;
     private TreeSet<String> languages=new TreeSet();
     private Map<String, String> languageInitpage = new HashMap<String, String>();
+    private DataBaseTemp dataBaseTemp;
+    private Boolean alternativeFlag=false;
     
 
 
-    public PageContentGenerator( TreeMap<String, CategoryInfo> langSortedTerms) throws Exception {
+    public PageContentGenerator( TreeMap<String, TxtFileProcessing> langSortedTerms,DataBaseTemp dataBaseTemp,Boolean alternativeFlag) throws Exception {
+        this.dataBaseTemp=dataBaseTemp;
+        this.alternativeFlag=alternativeFlag;
         if (!langSortedTerms.isEmpty()) {
             this.langPages = this.preparePageTerms(langSortedTerms);
             this.languages=new TreeSet(langPages.keySet());
@@ -38,10 +43,10 @@ public class PageContentGenerator {
         this.display();
     }
 
-    private HashMap<String, List<AlphabetTermPage>> preparePageTerms(TreeMap<String, CategoryInfo> langSortedTerms) throws Exception {
+    private HashMap<String, List<AlphabetTermPage>> preparePageTerms(TreeMap<String, TxtFileProcessing> langSortedTerms) throws Exception {
         HashMap<String, List<AlphabetTermPage>> langTerms = new HashMap<String, List<AlphabetTermPage>>();
         for (String language : langSortedTerms.keySet()) {
-            CategoryInfo categoryInfo= langSortedTerms.get(language);
+            TxtFileProcessing categoryInfo= langSortedTerms.get(language);
             TreeMap<String, List<String>> alpahbetTerms =categoryInfo.getLangSortedTerms();
             List<AlphabetTermPage> alphabetTermPageList = new ArrayList<AlphabetTermPage>();
             if(!alpahbetTerms.isEmpty()) {
@@ -51,10 +56,9 @@ public class PageContentGenerator {
             for (String alphabetPair : alpahbetTerms.keySet()) {
                 List<String> termSet = alpahbetTerms.get(alphabetPair);
                 List<String>termList=new ArrayList<String>(termSet);
-                System.out.println(termList);
                 Collections.sort(termList);
                 Partition<String> partition = Partition.ofSize(termList, this.numberofElementEachPage);
-                AlphabetTermPage alphabetTermPage = new AlphabetTermPage(alphabetPair,categoryInfo.getPairFile(alphabetPair), partition,numericalValueOfPair);
+                AlphabetTermPage alphabetTermPage = new AlphabetTermPage(language,alphabetPair,categoryInfo.getPairFile(alphabetPair), partition,numericalValueOfPair,this.dataBaseTemp,this.alternativeFlag);
                 alphabetTermPageList.add(alphabetTermPage);
                 numericalValueOfPair++;
             }

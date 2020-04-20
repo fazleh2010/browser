@@ -7,6 +7,7 @@ package browser.termallod.core;
 
 import browser.termallod.api.DataBaseTemp;
 import browser.termallod.core.term.TermInfo;
+import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.utils.StringMatcherUtil;
 import java.io.File;
 import java.io.FileInputStream;
@@ -39,51 +40,67 @@ public class MergingTermInfo {
         this.iate_txt_dir = location + iate_txt_dir;
         this.language = language;
         this.dataBaseTemp = dataBaseTemp;
-        Properties alphabetProps = getProperties(this.iate_txt_dir + alphabetFileName);
-        //this.prepareSubjectFields();
-
-        TreeMap<String, SubjectInfo> urlSubjectInfo = this.prepareSubjectFields();
-        this.prepareTermInfo(alphabetProps,urlSubjectInfo);
-    }
-
-    private void prepareTermInfo(Properties alphabetProps,TreeMap<String, SubjectInfo> urlSubjectInfo) throws IOException {
         String reliabilityCodeFile = iate_txt_dir + language + "_" + dataBaseTemp.getReliabilityCode();
         String administrativeStatusFile = iate_txt_dir + language + "_" + dataBaseTemp.getAdministrativeStatus();
-        reliabilityCodeProps = getProperties(reliabilityCodeFile);
-        administrativeSTatusProps = getProperties(administrativeStatusFile);
+        //this.prepareSubjectFields();
+
+        //TreeMap<String, SubjectInfo> urlSubjectInfo = this.prepareSubjectFields();
+        //this.prepareTermInfo(this.iate_txt_dir + alphabetFileName,reliabilityCodeFile,administrativeStatusFile,urlSubjectInfo);
+    }
+
+    public MergingTermInfo(File alphabetFile, String language, DataBaseTemp dataBaseTemp,Boolean alternativeFlag) throws FileNotFoundException, IOException {
+        this.location = alphabetFile.getAbsoluteFile().getParent();
+        this.language = language;
+        this.dataBaseTemp = dataBaseTemp;
+        String reliabilityCodeFile = location + File.separator + language + "_" + dataBaseTemp.getReliabilityCode();
+        String administrativeStatusFile = location + File.separator + language + "_" + dataBaseTemp.getAdministrativeStatus();
+        String conceptFileName = location + File.separator + language + "_" + dataBaseTemp.getSENSE() + ".txt";
+        String subjectFileName = location + File.separator + dataBaseTemp.getSubjectFileName();
+        String subectDescription = dataBaseTemp.getSubjectDescriptions();
+
+        TreeMap<String, SubjectInfo> urlSubjectInfo = this.prepareSubjectFields(conceptFileName, subjectFileName, subectDescription);
+        this.prepareTermInfo(alphabetFile.getAbsolutePath(), reliabilityCodeFile, administrativeStatusFile, urlSubjectInfo,alternativeFlag);
+    }
+
+    private void prepareTermInfo(String alphabetFileName, String reliabilityCodeFile, 
+                                String administrativeStatusFile, TreeMap<String, SubjectInfo> urlSubjectInfo,
+                                Boolean alternativeFlag) throws IOException {
+        Properties alphabetProps = FileRelatedUtils.getProperties(alphabetFileName);
+        Properties reliabilityCodeProps = FileRelatedUtils.getProperties(reliabilityCodeFile);
+        Properties administrativeSTatusProps = FileRelatedUtils.getProperties(administrativeStatusFile);
         Object administrativeSTatus = "";
         Object reliabilityCode = "";
-        SubjectInfo subjectTermInfo =new SubjectInfo();
-        for (Object term : alphabetProps.keySet()) {
-            Object url = alphabetProps.get(term);
+        SubjectInfo subjectTermInfo = new SubjectInfo("", "", "");
+        for (Object term : alphabetProps.stringPropertyNames()) {
+            Object urls = alphabetProps.get(term);
+            Object orgUrl= StringMatcherUtil.getAlternativeUrl(urls.toString(), false);
+            Object alterUrl= StringMatcherUtil.getAlternativeUrl(urls.toString(), true);
 
-            if (reliabilityCodeProps.containsKey(url)) {
-                reliabilityCode = reliabilityCodeProps.get(url);
+            if (reliabilityCodeProps.containsKey(orgUrl)) {
+                reliabilityCode = reliabilityCodeProps.get(orgUrl);
             }
-            if (administrativeSTatusProps.containsKey(url)) {
-                administrativeSTatus = administrativeSTatusProps.get(url);
+            if (administrativeSTatusProps.containsKey(orgUrl)) {
+                administrativeSTatus = administrativeSTatusProps.get(orgUrl);
             }
-            if (urlSubjectInfo.containsKey(url)) {
-                 subjectTermInfo = urlSubjectInfo.get(url);
-              
+            if (urlSubjectInfo.containsKey(orgUrl)) {
+                subjectTermInfo = urlSubjectInfo.get(orgUrl);
+
             }
-            TermInfo termInfo = new TermInfo(term,  url,reliabilityCode, administrativeSTatus, subjectTermInfo);
-            //System.out.println(termInfo.toString());
-            urlInfo.put(url.toString(), termInfo);
+            TermInfo termInfo = new TermInfo(term, orgUrl, alterUrl,reliabilityCode, administrativeSTatus, subjectTermInfo);
+            if(alternativeFlag){
+                 urlInfo.put(alterUrl.toString(), termInfo);
+                 System.out.println(termInfo);
+            }
+           
         }
 
     }
 
-    private TreeMap<String, SubjectInfo> prepareSubjectFields() throws IOException {
+    private TreeMap<String, SubjectInfo> prepareSubjectFields(String conceptFileName, String subjectFileName, String subectDescription) throws IOException {
         TreeMap<String, SubjectInfo> urlSubjectInfo = new TreeMap<String, SubjectInfo>();
-
-        String conceptFileName = iate_txt_dir + language + "_" + dataBaseTemp.getSENSE() + ".txt";
-        String subjectFileName = iate_txt_dir + dataBaseTemp.getSubjectFileName();
-        String subectDescription = location + dataBaseTemp.getSubjectDescriptions();
-
-        Properties conceptProps = getProperties(conceptFileName);
-        Properties subjectProps = getProperties(subjectFileName);
-        Properties subjectDetailsProps = getProperties(subectDescription);
+        Properties conceptProps = FileRelatedUtils.getProperties(conceptFileName);
+        Properties subjectProps = FileRelatedUtils.getProperties(subjectFileName);
+        Properties subjectDetailsProps = FileRelatedUtils.getProperties(subectDescription);
         //List<String> subjectFields = new ArrayList<String>();
 
         for (Object id : conceptProps.keySet()) {
@@ -95,22 +112,11 @@ public class MergingTermInfo {
                     subjectDetail = subjectDetailsProps.get(subjectField);
                 }
                 String url = StringMatcherUtil.getUrl(senseUrl.toString());
-                //subjectFields.add(subjectField.toString());
-
                 SubjectInfo subjectInfo = new SubjectInfo(id, subjectField, subjectDetail);
                 urlSubjectInfo.put(url, subjectInfo);
-                //System.out.println(subjectInfo.toString());
-
             }
         }
         return urlSubjectInfo;
-    }
-
-    private Properties getProperties(String subjectFileName) throws IOException {
-        File propFile = new File(subjectFileName);
-        Properties props = new Properties();
-        props.load(new InputStreamReader(new FileInputStream(propFile), "UTF-8"));
-        return props;
     }
 
     public TreeMap<String, TermInfo> getUrlInfo() {

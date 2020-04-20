@@ -1,17 +1,16 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template alphabetFile, choose Tools | Templates
  * and open the template in the editor.
  */
 package browser.termallod.core;
 
+import browser.termallod.api.DataBaseTemp;
+import browser.termallod.core.term.TermInfo;
 import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.utils.Partition;
 import java.io.File;
-import java.io.IOException;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -23,25 +22,28 @@ public class AlphabetTermPage {
     private Integer numberOfPages = null;
     private Integer emptyTerm = null;
     private String alpahbetPair = null;
-    private File file = null;
+    private File alphabetFile = null;
     private Properties props = null;
     private Integer numericalValueOfPair = 0;
+    private  MergingTermInfo mergingTermInfo;
 
-    public AlphabetTermPage(String alpahbetPair, File file, Partition<String> partition, Integer numericalValueOfPair) throws Exception{
+    public AlphabetTermPage(String language,String alpahbetPair, File file, Partition<String> partition, Integer numericalValueOfPair,DataBaseTemp dataBaseTemp,Boolean alternativeFlag) throws Exception{
         this.alpahbetPair = alpahbetPair;
         this.partition = partition;
-        System.out.println(partition.toString());
         this.numberOfPages = partition.size();
         this.numericalValueOfPair = numericalValueOfPair;
-        this.file = file;
-        this.props=FileRelatedUtils.getPropertyHash(this.file);;
+        this.alphabetFile = file;
+        this.props=FileRelatedUtils.getPropertyHash(this.alphabetFile);
+        this.mergingTermInfo = new MergingTermInfo(alphabetFile,language, dataBaseTemp,alternativeFlag);
+        System.out.println(mergingTermInfo.getUrlInfo().keySet());
+        //System.out.println(mergingTermInfo.getUrlInfo().keySet().toString()+"finished!!!!!!!!!");
     }
 
     /*public String getUrl(String term) {
         //Properties props;
         String url = null;
         try {
-            props = FileRelatedUtils.getPropertyHash(this.file);
+            props = FileRelatedUtils.getPropertyHash(this.alphabetFile);
             url = props.getProperty(term);
         } catch (IOException ex) {
             Logger.getLogger(AlphabetTermPage.class.getName()).log(Level.SEVERE, null, ex);
@@ -77,6 +79,11 @@ public class AlphabetTermPage {
     public Properties getProps() {
         return props;
     }
+
+    public TermInfo getTermInfo(String url) {
+        return mergingTermInfo.getUrlInfo().get(url);
+    }
+    
 
     @Override
     public String toString() {

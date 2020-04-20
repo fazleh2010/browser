@@ -52,8 +52,9 @@ public class TermPageTest {
     private HtmlParameters htmlCreateParameters = null;
     private MergingTermInfo subjectFieldMerging = null;
     private OntologyInfo info;
+     private static String CONFIG_PATH = "src/java/resources/data/conf/";
     
-    public DataBaseTemp dataBaseTemp=new DataBaseTemp();
+    public DataBaseTemp dataBaseTemp=new DataBaseTemp(CONFIG_PATH);
 
     public TermPageTest() {
         lang = new TreeSet<String>(languageMapper.keySet());
@@ -72,7 +73,7 @@ public class TermPageTest {
 
     @Test
     public void testTermPage_WhenWIthoutLinks() throws Exception {
-        String categoryName="tbx2rdf_iate";
+        /*String categoryName="tbx2rdf_iate";
         String language="en";
         String html=".html";
         String pair="A_B";
@@ -82,10 +83,11 @@ public class TermPageTest {
         File templateFile = getTemplate(categoryName, language, html);
         HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
         AlphabetTermPage alphabetTermPage = new AlphabetTermPage(pair, new File(alphabetFileName), partition, 1);
+        
         htmlCreateParameters = new HtmlParameters(false, true, true, true);
         subjectFieldMerging = new MergingTermInfo(location,iate_folder,language,alphabetFileName, dataBaseTemp);
         info = new OntologyInfo(language, categoryName, alphabetTermPage);
-        TermPage termPage = new TermPage(htmlCreateParameters, info, htmlReaderWriter, subjectFieldMerging, constants);
+        TermPage termPage = new TermPage(htmlCreateParameters, info, htmlReaderWriter, subjectFieldMerging, constants);*/
         
     }
 

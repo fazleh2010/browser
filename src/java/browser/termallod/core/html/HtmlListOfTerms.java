@@ -25,16 +25,16 @@ import java.util.TreeMap;
  *
  * @author elahi //this is super dirty and horrible codes ever!!
  */
-public class ListOfTerms extends HtmlPageAbstract implements HtmlPage, Languages, HtmlStringConts {
+public class HtmlListOfTerms extends HtmlPageAbstract implements HtmlPage, Languages, HtmlStringConts {
 
     public static Map<String, String> termAlterUrl = new TreeMap<String, String>();
     private final Integer maximumNumberOfPages = 4;
     private final TermPage termPage;
 
 
-    public ListOfTerms(FileAndLocationConst constants, HtmlParameters htmlCreateParameters, OntologyInfo info, HtmlReaderWriter htmlReaderWriter, MergingTermInfo merging) throws Exception {
-        super(htmlCreateParameters, info, htmlReaderWriter, merging, constants);
-        this.termPage=new TermPage(htmlCreateParameters, info, htmlReaderWriter, merging, constants);
+    public HtmlListOfTerms(FileAndLocationConst constants, HtmlParameters htmlCreateParameters, OntologyInfo info, HtmlReaderWriter htmlReaderWriter) throws Exception {
+        super(htmlCreateParameters, info, htmlReaderWriter,constants);
+        this.termPage=new TermPage(htmlCreateParameters, info, htmlReaderWriter,constants);
     }
 
     public Document createAllElements(Document templateHtml, List<TermDetail> terms, PageContentGenerator pageContentGenerator, File htmlFileName, Integer currentPageNumber) throws Exception {

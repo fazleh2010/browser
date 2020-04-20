@@ -17,9 +17,18 @@ public class TermInfo {
 
     private String termString = "";
     private String termUrl = "";
+    private String alternativeUrl = "";
     private SubjectInfo subject = new SubjectInfo();
     private String reliabilityCode = "";
     private String administrativeStatus = "";
+    private String POST = "";
+    private String Number = "";
+    private String Gender = "";
+    private String Definition = "";
+    private String Hypernym = "";
+    private String Hyponym = "";
+    private String Variant = "";
+    private String Synonym = "";
 
     public TermInfo(Triple triple) {
         termString = triple.getObject().getLiteralLexicalForm().toLowerCase().trim();
@@ -28,6 +37,7 @@ public class TermInfo {
         //termUrl =termUrl.replace(conts, "");
         try {
             //termUrl = termUrl.substring(0, termUrl.lastIndexOf('#'));
+            termUrl = StringMatcherUtil.getUrl(termUrl);
             termUrl = StringMatcherUtil.modifyUrl(termUrl);
         } catch (Exception ie) {
             termUrl = triple.getSubject().toString();
@@ -44,13 +54,14 @@ public class TermInfo {
         this.termString = term;
         this.termUrl = url;
     }*/
-    public TermInfo(Object term, Object url, SubjectInfo subject) {
+    public TermInfo(Object term, Object url, Object alternativeUrl, SubjectInfo subject) {
         this(term, url);
         this.subject = subject;
+        this.alternativeUrl = alternativeUrl.toString();
     }
 
-    public TermInfo(Object term, Object url, Object reliabilityCode, Object administrativeStatus, SubjectInfo subjectInfo) {
-        this(term, url, subjectInfo);
+    public TermInfo(Object term, Object url, Object alternativeUrl, Object reliabilityCode, Object administrativeStatus, SubjectInfo subjectInfo) {
+        this(term, url, alternativeUrl, subjectInfo);
         if (reliabilityCode != null) {
             this.reliabilityCode = reliabilityCode.toString();
         }
@@ -86,6 +97,51 @@ public class TermInfo {
 
     public String getSubjectId() {
         return this.subject.getSubjectId();
+    }
+
+    public String getAlternativeUrl() {
+        return alternativeUrl;
+    }
+
+    public SubjectInfo getSubject() {
+        return subject;
+    }
+
+    public String getPOST() {
+        return POST;
+    }
+
+    public String getNumber() {
+        return Number;
+    }
+
+    public String getGender() {
+        return Gender;
+    }
+
+    public String getDefinition() {
+        return Definition;
+    }
+
+    public String getHypernym() {
+        return Hypernym;
+    }
+
+    public String getHyponym() {
+        return Hyponym;
+    }
+
+    public String getVariant() {
+        return Variant;
+    }
+
+    public String getSynonym() {
+        return Synonym;
+    }
+    
+    @Override
+    public String toString() {
+        return "TermInfo{" + "termString=" + termString + ", termUrl=" + termUrl + ", alternativeUrl=" + alternativeUrl + ", subject=" + subject + ", reliabilityCode=" + reliabilityCode + ", administrativeStatus=" + administrativeStatus + '}';
     }
 
 }

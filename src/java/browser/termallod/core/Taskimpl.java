@@ -46,13 +46,15 @@ public class Taskimpl implements Tasks {
     private Boolean indexCreated = false;
     private static FileAndLocationConst constants = null;
     private DataBaseTemp dataBaseTemp=null;
+    private String CONFIG_PATH=null;
 
-    public Taskimpl(File LANGUAGE_CONFIG_FILE, Set<String> givenBrowserSet, FileAndLocationConst fileAndCategory, Boolean alternativeFlag,DataBaseTemp dataBaseTemp) throws Exception {
+    public Taskimpl(File LANGUAGE_CONFIG_FILE, Set<String> givenBrowserSet, FileAndLocationConst fileAndCategory, Boolean alternativeFlag,DataBaseTemp dataBaseTemp,String configDir) throws Exception {
         this.languageManager = new LanguageAlphabetPro(LANGUAGE_CONFIG_FILE);
         this.givenBrowserSet = givenBrowserSet;
         this.alternativeFlag = alternativeFlag;
         this.constants = fileAndCategory;
         this.dataBaseTemp=dataBaseTemp;
+        this.CONFIG_PATH=configDir;
     }
 
     //add decline page seperate creation
@@ -65,13 +67,9 @@ public class Taskimpl implements Tasks {
             Logger.getLogger(Taskimpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }*/
-    @Override
+    /*@Override
     public void createHtmlFromSavedFiles(FileAndLocationConst constants, Set<String> browserSet, Set<String> lang, HtmlParameters htmlCreateParameters) throws Exception, IOException {
-        //hard coded codes ..need to be change in future..
-        /*if(MatchingTerminologies.getLangTermDetails().isEmpty()){
-              this.matchTerminologies(GENTERM,IATE,alternativeFlag);
-        }*/
-
+      
         Set<String> categorySet = constants.BROWSER_GROUPS;
         String MODEL_EXTENSION = constants.TEXT_EXTENSION;
         FileRelatedUtils.cleanDirectory(constants.CATEGORY_ONTOLOGIES, constants.getBASE_PATH(), constants.DATA_PATH);
@@ -83,10 +81,10 @@ public class Taskimpl implements Tasks {
                 htmlCreator.createHtmlForEachCategory(categoties, source, MODEL_EXTENSION, browser);
             }
         }
-    }
+    }*/
 
     @Override
-    public void createHtmlFromSavedFiles(FileAndLocationConst constants, Set<String> browserSet, Set<String> lang, HtmlParameters htmlCreateParameters, MergingTermInfo merging) throws Exception, IOException {
+    public void createHtmlFromSavedFiles(FileAndLocationConst constants, Set<String> browserSet, Set<String> lang, HtmlParameters htmlCreateParameters,DataBaseTemp dataBaseTemp) throws Exception, IOException {
         Set<String> categorySet = constants.BROWSER_GROUPS;
         String MODEL_EXTENSION = constants.TEXT_EXTENSION;
         FileRelatedUtils.cleanDirectory(constants.CATEGORY_ONTOLOGIES, constants.getBASE_PATH(), constants.DATA_PATH);
@@ -94,7 +92,7 @@ public class Taskimpl implements Tasks {
             if (browserSet.contains(browser)) {
                 String source = FileRelatedUtils.getSourcePath(constants.getBASE_PATH(), browser);
                 List<String> categoties = constants.BROWSER_CATEGORIES.get(browser);
-                HtmlCreator htmlCreator = new HtmlCreator(constants, lang, htmlCreateParameters, merging);
+                HtmlCreator htmlCreator = new HtmlCreator(constants, lang, htmlCreateParameters,dataBaseTemp);
                 htmlCreator.createHtmlForEachCategory(categoties, source, MODEL_EXTENSION, browser);
             }
         }

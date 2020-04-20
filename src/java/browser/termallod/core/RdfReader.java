@@ -40,16 +40,16 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
 
-public class RdfReader implements IATE{
+public class RdfReader implements IATE {
 
     private String MODEL_TYPE;
     private LanguageManager languageInfo;
     private DataBaseTemp dataBaseTemp;
 
-    public RdfReader(String rdfDir, LanguageManager languageInfo, String MODEL_TYPE, String MODEL_EXTENSION, String dataSaveDir,DataBaseTemp dataBaseTemp) throws Exception {
+    public RdfReader(String rdfDir, LanguageManager languageInfo, String MODEL_TYPE, String MODEL_EXTENSION, String dataSaveDir, DataBaseTemp dataBaseTemp) throws Exception {
         this.MODEL_TYPE = MODEL_TYPE;
         this.languageInfo = languageInfo;
-        this.dataBaseTemp=dataBaseTemp;
+        this.dataBaseTemp = dataBaseTemp;
         File[] files = FileRelatedUtils.getFiles(rdfDir, MODEL_EXTENSION);
         for (File categoryFile : files) {
             String categoryName = NameExtraction.getCategoryName(rdfDir, categoryFile, MODEL_EXTENSION);
@@ -63,13 +63,13 @@ public class RdfReader implements IATE{
     // dont change List to set. then the sorting breaks;
     // temporarliy closed.
     private void extractInformation(String fileNameOrUri, String dataSaveDir, String categoryName) throws Exception {
-       
+
         TreeMap<String, TreeMap<String, List<TermInfo>>> langTerms = new TreeMap<String, TreeMap<String, List<TermInfo>>>();
         Map<String, String> langSensList = new TreeMap<String, String>();
         Map<String, String> urlCanonicalForm = new TreeMap<String, String>();
         Map<String, String> urlSense = new TreeMap<String, String>();
-        Map<String, TreeMap<String, String> > reliabilityCode = new TreeMap<String, TreeMap<String, String> >();
-        Map<String, TreeMap<String, String> > administrativeStatus = new TreeMap<String, TreeMap<String, String> >();
+        Map<String, TreeMap<String, String>> reliabilityCode = new TreeMap<String, TreeMap<String, String>>();
+        Map<String, TreeMap<String, String>> administrativeStatus = new TreeMap<String, TreeMap<String, String>>();
         Model model = ModelFactory.createDefaultModel();
         InputStream is = FileManager.get().open(fileNameOrUri);
         String idSubjectID = "";
@@ -80,7 +80,7 @@ public class RdfReader implements IATE{
             while (stmtIterator.hasNext()) {
                 Statement statement = stmtIterator.nextStatement();
                 Triple triple = statement.asTriple();
-               
+
                 if (triple.toString().contains(HTTP_IATE)) {
                     if (triple.toString().contains(RELIABILITY_CODE)) {
                         reliabilityCode = getreliabilityCode(triple, reliabilityCode);
@@ -102,7 +102,7 @@ public class RdfReader implements IATE{
                     if (triple.toString().contains(SENSE)) {
                         langSensList = this.getSense(triple, langSensList);
                     }
-                   
+
                 } else {
                     /*if (triple.toString().contains("CanonicalForm") && !triple.getObject().toString().contains(LANGUAGE_SEPERATE_SYMBOLE)) {
                         urlCanonicalForm = this.getCanonicalForm(triple, urlCanonicalForm, "CanonicalForm");
@@ -133,14 +133,14 @@ public class RdfReader implements IATE{
             //System.err.println("cannot read " + fileNameOrUri);;
         }
 
-        FileRelatedUtils.writeFile(idSubjectID, dataSaveDir + File.separator +dataBaseTemp.getSubjectFileName());
+        FileRelatedUtils.writeFile(idSubjectID, dataSaveDir + File.separator + dataBaseTemp.getSubjectFileName());
         FileRelatedUtils.writeFile(langTerms, dataSaveDir + categoryName);
-        FileRelatedUtils.writeLangFile2(langSensList, dataSaveDir,dataBaseTemp.getSENSE());
+        FileRelatedUtils.writeLangFile2(langSensList, dataSaveDir, dataBaseTemp.getSENSE());
         //FileRelatedUtils.writeFileNew(urlCanonicalForm, dataSaveDir + File.separator + "canonicalForm.txt");
         //FileRelatedUtils.writeFileNew(urlSense, dataSaveDir + File.separator + "sense.txt");
-        FileRelatedUtils.writeLangFile(reliabilityCode, dataSaveDir,dataBaseTemp.getRELIABILITY_CODE());
-         //System.out.println("administrativeStatus:"+administrativeStatus.keySet());
-        FileRelatedUtils.writeLangFile(administrativeStatus, dataSaveDir,dataBaseTemp.getADMINISTRATIVE_STATUS());
+        FileRelatedUtils.writeLangFile(reliabilityCode, dataSaveDir, dataBaseTemp.getRELIABILITY_CODE());
+        //System.out.println("administrativeStatus:"+administrativeStatus.keySet());
+        FileRelatedUtils.writeLangFile(administrativeStatus, dataSaveDir, dataBaseTemp.getADMINISTRATIVE_STATUS());
 
     }
 
@@ -219,7 +219,7 @@ public class RdfReader implements IATE{
 
         }
         if (IATE_ID != null && senseField != null) {
-             id = StringMatcherUtil.modifyId(id);
+            id = StringMatcherUtil.modifyId(id);
             language = StringMatcherUtil.getLanguage(senseField);
             if (!languageInfo.isLanguageExist(language)) {
                 return langSensList;
@@ -228,13 +228,13 @@ public class RdfReader implements IATE{
             if (langSensList.containsKey(language)) {
                 String idSense = langSensList.get(language);
                 OrgSenseField = StringMatcherUtil.modifyUrl(OrgSenseField);
-                String line = id + "=" + OrgSenseField;
+                String line = id + " = " + OrgSenseField;
                 idSense += line + "\n";
                 langSensList.put(language, idSense);
             } else {
                 String idSense = "";
                 OrgSenseField = StringMatcherUtil.modifyUrl(OrgSenseField);
-                String line = id + "=" + OrgSenseField;
+                String line = id + " = " + OrgSenseField;
                 idSense += line + "\n";
                 langSensList.put(language, idSense);
             }
@@ -262,7 +262,7 @@ public class RdfReader implements IATE{
                 //System.out.println(url+".."+checkField);
                 id = StringMatcherUtil.modifyId(id);
                 checkField = StringMatcherUtil.modifySubject(checkField);
-                String line = id + "=" + checkField;
+                String line = id + " = " + checkField;
                 idSubjectID += line + "\n";
             }
 
@@ -303,7 +303,7 @@ public class RdfReader implements IATE{
         return idSubjectFieldID;
     }
 
-    private Map<String, TreeMap<String, String>>  getreliabilityCode(Triple statement, Map<String, TreeMap<String, String>> langReliabiltyList) throws Exception {
+    private Map<String, TreeMap<String, String>> getreliabilityCode(Triple statement, Map<String, TreeMap<String, String>> langReliabiltyList) throws Exception {
         String string = statement.toString();
         String[] infos = string.split(" ");
         List<String> wordList = Arrays.asList(infos);
@@ -317,32 +317,32 @@ public class RdfReader implements IATE{
                     language = StringMatcherUtil.getLanguage(url);
                 } else if (http.contains("integer")) {
                     checkField = http.trim();
-                    checkField=StringMatcherUtil.modifyReliabiltyCode(checkField);
+                    checkField = StringMatcherUtil.modifyReliabiltyCode(checkField);
                 }
             }
         }
         if (orgUrl != null && checkField != null) {
-            url=StringMatcherUtil.modifyUrl(orgUrl);
-           
-             if (langReliabiltyList.containsKey(language)) {
-                  TreeMap<String, String> urlReliabilityCode = langReliabiltyList.get(language);
-                  urlReliabilityCode.put(url, checkField);
+            url = StringMatcherUtil.modifyUrl(orgUrl);
+
+            if (langReliabiltyList.containsKey(language)) {
+                TreeMap<String, String> urlReliabilityCode = langReliabiltyList.get(language);
+                urlReliabilityCode.put(url, checkField);
                 langReliabiltyList.put(language, urlReliabilityCode);
             } else {
-                  TreeMap<String, String> urlReliabilityCode=new TreeMap<String, String>();
-                  urlReliabilityCode.put(url, checkField);
-                  langReliabiltyList.put(language, urlReliabilityCode);
+                TreeMap<String, String> urlReliabilityCode = new TreeMap<String, String>();
+                urlReliabilityCode.put(url, checkField);
+                langReliabiltyList.put(language, urlReliabilityCode);
             }
-        
+
         }
-        
+
         return langReliabiltyList;
     }
 
     private Map<String, TreeMap<String, String>> getAdministrativeStatus(Triple statement, Map<String, TreeMap<String, String>> lang) throws Exception {
         String string = statement.toString();
         String[] infos = string.split(" ");
-        TreeMap<String, String> urlAdministrative=new TreeMap<String, String>();
+        TreeMap<String, String> urlAdministrative = new TreeMap<String, String>();
         List<String> wordList = Arrays.asList(infos);
         String url = null, checkField = null, language = null, orgUrl = null;
         for (String http : wordList) {
@@ -350,9 +350,9 @@ public class RdfReader implements IATE{
                 if (http.contains(HTTP_IATE)) {
                     orgUrl = http.trim();
                     url = orgUrl;
-                    
+
                     language = StringMatcherUtil.getLanguage(url);
-                   
+
                 } else if (http.contains("@" + HTTP)) {
                     // checkField = http.trim();
                 } else if (http.contains(HTTP)) {
@@ -363,20 +363,18 @@ public class RdfReader implements IATE{
         }
         if (orgUrl != null && checkField != null) {
             url = StringMatcherUtil.modifyUrl(orgUrl);
-            
-             if (lang.containsKey(language)) {
-                  urlAdministrative = lang.get(language);
-                  urlAdministrative.put(url, checkField);
-                  lang.put(language, urlAdministrative);
+
+            if (lang.containsKey(language)) {
+                urlAdministrative = lang.get(language);
+                urlAdministrative.put(url, checkField);
+                lang.put(language, urlAdministrative);
             } else {
                 urlAdministrative.put(url, checkField);
                 lang.put(language, urlAdministrative);
             }
-            
+
         }
         return lang;
     }
-
-   
 
 }

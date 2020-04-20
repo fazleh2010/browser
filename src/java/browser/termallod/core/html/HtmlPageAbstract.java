@@ -16,18 +16,16 @@ import org.jsoup.nodes.Document;
  */
 public class HtmlPageAbstract {
 
-    public final MergingTermInfo merging;
     public final FileAndLocationConst constants;
     public final HtmlReaderWriter htmlReaderWriter;
     public final HtmlParameters htmlCreateParameters;
     public final OntologyInfo info;
 
-    public HtmlPageAbstract(HtmlParameters htmlCreateParameters, OntologyInfo info, HtmlReaderWriter htmlReaderWriter, MergingTermInfo merging, FileAndLocationConst constants) {
+    public HtmlPageAbstract(HtmlParameters htmlCreateParameters, OntologyInfo info, HtmlReaderWriter htmlReaderWriter, FileAndLocationConst constants) {
         this.constants = constants;
         this.htmlReaderWriter = htmlReaderWriter;
         this.htmlCreateParameters = htmlCreateParameters;
         this.info = info;
-        this.merging = merging;
     }
 
    

@@ -33,11 +33,12 @@ public class Main {
     public static Set<String> browserSet;
     private static Set<String> lang = new TreeSet<String>();
     private static String BASE_PATH = "src/java/resources/data/";
+    private static String CONFIG_PATH = "src/java/resources/data/conf/";
     private static Set<String> browsersToRun = new HashSet<String>();
 
     private static Tasks tasks = null;
     private static String location = "src/resources/data/iate/txt/";
-    private static DataBaseTemp dataBaseTemp = new DataBaseTemp();
+    private static DataBaseTemp dataBaseTemp = new DataBaseTemp(BASE_PATH);
 
     private static Boolean listOfTemPageFlag = true;
     private static Boolean termPageFlag = true;
@@ -76,16 +77,16 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         HtmlParameters htmlCreateParameters = null;
-        MergingTermInfo subjectFieldMerging = null;
+        MergingTermInfo mergingTermInfo = null;
         alternativeFlag = true;
         lang = new TreeSet<String>(languageMapper.keySet());
         constants = new FileAndLocationConst(BASE_PATH);
-        browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
-        cleanDirectory();
+        browserSet = new HashSet<String>(Arrays.asList(constants.IATE,constants.GENTERM));
+        //cleanDirectory();
 
-        //tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp);
+         /*tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
         //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
-        //tasks.saveDataIntoFiles(browserSet);
+         tasks.saveDataIntoFiles(browserSet);*/
         
         
         // run before comit..................
@@ -100,34 +101,34 @@ public class Main {
       
          
          ////////////////////////////////////////////////////
-        //cleanDirectory();
+        cleanDirectory();
 
         //1. create .txt file first
-        textFileModifyFlag = true;
+       textFileModifyFlag = true;
         listOfTemPageFlag = false;
         termPageFlag = false;
+        alternativeFlag = true;
+        browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE));
 
-        //tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet,constants, alternativeFlag);
-        //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
-        //tasks.saveDataIntoFiles(browserSet);
-        /*htmlCreateParameters=new HtmlParameters( true, false,  false);
-         subjectFieldMerging=new MergingTermInfo(alphabetFileName,conceptFileName,subjectFileName,cannonical,sense,subjectDetail);
-         browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE));
-         tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,merging);
-         */
+
+         /*tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
+         //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
+         //tasks.saveDataIntoFiles(browserSet);
+          //Boolean textFileModifyFlag, Boolean listOfTemPageFlag, Boolean termPageFlag, Boolean alternativeFlag)
+         htmlCreateParameters = new HtmlParameters(textFileModifyFlag, listOfTemPageFlag,  termPageFlag,alternativeFlag);
+         tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);*/
+         
         //2. generate alternative url
         //3. generate HTML
         //textFileModifyFlag = false;
         //listOfTemPageFlag = true;
         //termPageFlag = true;
         /*htmlCreateParameters=new HtmlParameters( false, true,  true, true);
-        subjectFieldMerging=new MergingTermInfo(alphabetFileName,conceptFileName,subjectFileName,cannonical,sense,subjectDetail);
-        //tasks = new Taskimpl(constants.LANGUAGE_CONFIG_FILE, browserSet, alternativeFlag);
-        tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet,constants, alternativeFlag);
-        tasks.matchTerminologies(constants.GENTERM, constants.IATE);
+        tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
+        //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
         //testMatching();
         browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE));
-        tasks.createHtmlFromSavedFiles(constants, browsersToRun, lang, htmlCreateParameters,subjectFieldMerging);*/
+        tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);*/
         System.out.println("Processing finished!!!");
 
         //create java script files

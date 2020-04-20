@@ -7,14 +7,18 @@ package browser.termallod.core.html;
 
 import static browser.termallod.api.HtmlStringConts.divClassEnd;
 import static browser.termallod.api.HtmlStringConts.divClassStr;
+import static browser.termallod.api.IATE.ADMINISTRATIVE_STATUS;
+import static browser.termallod.api.IATE.RELIABILITY_CODE;
+import static browser.termallod.api.IATE.SUBJECT_FIELD;
 import browser.termallod.constants.FileAndLocationConst;
 import static browser.termallod.constants.Languages.languageMapper;
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.MergingTermInfo;
-import static browser.termallod.core.html.ListOfTerms.termAlterUrl;
+import static browser.termallod.core.html.HtmlListOfTerms.termAlterUrl;
 import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.term.TermDetail;
 import browser.termallod.core.term.TermInfo;
+import browser.termallod.utils.StringMatcherUtil;
 import browser.termallod.utils.UrlMatching;
 import java.io.File;
 import java.util.ArrayList;
@@ -29,15 +33,15 @@ import org.jsoup.nodes.Element;
  *
  * @author elahi
  */
-public class TermPage extends HtmlPageAbstract{
+public class TermPage extends HtmlPageAbstract {
 
     private Document templateHtml;
     private TermDetail termDetail;
-    private  String url;
-    private  String termFileName;
-    
-    public TermPage (HtmlParameters htmlCreateParameters, OntologyInfo info, HtmlReaderWriter htmlReaderWriter, MergingTermInfo merging, FileAndLocationConst constants){
-        super(htmlCreateParameters, info, htmlReaderWriter, merging, constants);
+    private String url;
+    private String termFileName;
+
+    public TermPage(HtmlParameters htmlCreateParameters, OntologyInfo info, HtmlReaderWriter htmlReaderWriter, FileAndLocationConst constants) {
+        super(htmlCreateParameters, info, htmlReaderWriter, constants);
     }
 
     public void test(Document templateHtml, TermDetail termDetail, String url, String termFileName) {
@@ -52,23 +56,22 @@ public class TermPage extends HtmlPageAbstract{
         }
 
     }
-    
 
     public TermDetail createTerms(TermDetail termDetail, Integer index, File htmlFileName) throws Exception {
         Document generatedHtmlPage = null;
 
         Document termTemplate = info.getTermPageTemplate(constants.TEMPLATE_LOCATION, ".html");
         if (htmlCreateParameters.getAlternativeFlag()) {
-            String termFileName = htmlFileName.getName().replace(".html", "");
-            termFileName = termFileName + "_" + "term" + "_" + index + ".html";
-            termDetail.setAlternativeUrl(termFileName);
+            String url = htmlFileName.getName().replace(".html", "");
+            url = url + "_" + "term" + "_" + index + ".html";
+            termDetail.setAlternativeUrl(url);
 
             if (htmlCreateParameters.getTermPageFlag()) {
                 String term = termDetail.getTerm();
-                String url = info.getAlphabetTermPage().getProps().getProperty(term);
-                termFileName = TermDetail.getAlternativeUrl(url, htmlCreateParameters.getAlternativeFlag());
-                File TermhtmlFileName = new File(constants.getBASE_PATH() + info.getOntologyFileName() + "/" + termFileName);
-                test(termTemplate, termDetail, url, termFileName);
+                String urls = info.getAlphabetTermPage().getProps().getProperty(term);
+                url = StringMatcherUtil.getAlternativeUrl(urls, htmlCreateParameters.getAlternativeFlag());
+                File TermhtmlFileName = new File(constants.getBASE_PATH() + info.getOntologyFileName() + "/" + url);
+                test(termTemplate, termDetail, url, url);
                 generatedHtmlPage = this.getTemplateHtml();
                 super.htmlReaderWriter.writeHtml(generatedHtmlPage, TermhtmlFileName);
             }
@@ -76,7 +79,7 @@ public class TermPage extends HtmlPageAbstract{
 
         return termDetail;
     }
-    
+
     public String getTermLi(TermDetail termDetail) {
         String term = termDetail.getTerm();
         String title = "title=" + '"' + term + " definition" + '"';
@@ -97,7 +100,6 @@ public class TermPage extends HtmlPageAbstract{
 
         return li;
     }
-
 
     private void createTermPage() throws Exception {
         String langDetail = languageMapper.get(info.getLanguage());
@@ -123,11 +125,9 @@ public class TermPage extends HtmlPageAbstract{
         divLang.append(langDiv);
 
         List<String> divStrS = new ArrayList<String>();
-
         List<TermDetail> matchedTerms = MatchingTerminologies.getTermDetails(info.getLanguage(), termDetail.getTerm());
-        
 
-        divStrS = createTermLink(matchedTerms, term,url);
+        divStrS = createTermInfo(matchedTerms, term, url);
 
         if (!divStrS.isEmpty()) {
             Integer index = 0;
@@ -145,40 +145,100 @@ public class TermPage extends HtmlPageAbstract{
 
     }
 
-    private List<String> createTermLink(List<TermDetail> matchedTerms, String term,String url) throws Exception {
+    private List<String> createTermInfo(List<TermDetail> matchedTerms, String term, String url) throws Exception {
+       /* @Fazleh wrt the field names to be shown in the interface, as we said yesterday, these are the ones I would add:
+- POS
+- Number
+- Gender
+- Definition
+- Hypernym
+- Hyponym
+- Variant
+- Synonym*/
+        
+        
+        List<String> divStrS = new ArrayList<String>();
+        String subjectFieldTr = "", ReferenceTr = "", languageTr = "", reliabilityCodeTr = "", administrativeTr = "", subjectID = "";;
+        String posTr = "", numberTr = "", genderTr = "", definitionTr = "", hypernymTr = "", hyponymTr = "",variantTr="",synonymTr="";
+        
         TermInfo termInfo = this.getTermInformation(url);
         if (termInfo != null) {
             System.out.println(term + " " + termFileName + " " + termInfo.getSubjectId() + termInfo.getTermID());
         }
-        List<String> divStrS = new ArrayList<String>();
+
         String langValueStr = languageMapper.get(info.getLanguage());
+        languageTr = getTr(getProperty("Language"), getValueNew(langValueStr));
 
         if (termInfo != null) {
-            String subjectID = termInfo.getSubjectId();
-            String termID = termInfo.getTermID();
-            String subjectDetail = termInfo.getSubjectDescription();
-            //String subjectDetail = merging.getSubjectDetailsProps(termInfo.getSubjectId()).toString();
-            //subjectDetail=subjectDetail+"("+" subject ID: "+subjectID+")";
-            String subjectFieldPro = " SubjectField:" + "(" + subjectID + ")";
-            String firstTr = getTr(getProperty("Language"), getValueNew(langValueStr));
-            String secondTr = getTr(getProperty(subjectFieldPro), getValueNew(subjectDetail));
-            String thirdTr = getTr(getProperty("Reference"), getValueNew(termID));
-            String table = this.getTable(this.getTbody(firstTr + secondTr + thirdTr));
-            String divStr = table;
-            divStrS.add(divStr);
+
+            if (termInfo.getReliabilityCode() != null) {
+                reliabilityCodeTr = getTr(getProperty("Reliability Code:"), getValueNew(termInfo.getReliabilityCode()));
+            }
+            if (termInfo.getAdministrativeStatus() != null) {
+                administrativeTr = getTr(getProperty("Administrative Status:"), getValueNew(termInfo.getAdministrativeStatus()));
+            }
+            if (termInfo.getSubjectId() != null) {
+                String subjectFieldPro = " " + SUBJECT_FIELD + ":";
+                if (termInfo.getSubjectId().length() != 0) {
+                    subjectID = "(" + termInfo.getSubjectId() + ")";
+                } else {
+                    subjectID = "";
+                }
+                subjectFieldTr = getTr(getProperty(subjectFieldPro), getValueNew(subjectID + termInfo.getSubjectDescription()));
+            }
+            if (termInfo.getTermID() != null) {
+                ReferenceTr = getTr(getProperty("Reference:"), getValueNew(termInfo.getTermID()));
+            }
+            if (termInfo.getPOST() != null) {
+                posTr = getTr(getProperty("POS:"), getValueNew(termInfo.getPOST()));
+            }
+            if (termInfo.getNumber() != null) {
+                numberTr = getTr(getProperty("Number:"), getValueNew(termInfo.getNumber()));
+            }
+            if (termInfo.getGender() != null) {
+                genderTr = getTr(getProperty("Gender:"), getValueNew(termInfo.getGender()));
+            }
+            if (termInfo.getDefinition() != null) {
+                definitionTr = getTr(getProperty("Definition:"), getValueNew(termInfo.getDefinition()));
+            }
+            if (termInfo.getHypernym() != null) {
+                hypernymTr = getTr(getProperty("Hypernym:"), getValueNew(termInfo.getHypernym()));
+            }
+            if (termInfo.getHyponym() != null) {
+                hyponymTr = getTr(getProperty("Hyponym:"), getValueNew(termInfo.getHyponym()));
+            }
+            if (termInfo.getVariant() != null) {
+                variantTr = getTr(getProperty("Variant:"), getValueNew(termInfo.getVariant()));
+            }
+            if (termInfo.getSynonym() != null) {
+                synonymTr = getTr(getProperty("Synonym:"), getValueNew(termInfo.getSynonym()));
+            }
         }
-        
-        divStrS=this.generateTermLink(matchedTerms,divStrS);
 
         
+        
+        
+        
+        
+        String table = this.getTable(this.getTbody(languageTr +definitionTr+reliabilityCodeTr + administrativeTr+ subjectFieldTr + ReferenceTr
+                                                   +posTr+numberTr+genderTr+hypernymTr+hyponymTr+variantTr+synonymTr));
+        String divStr = table;
+        divStrS.add(divStr);
+
+        divStrS = this.generateTermLink(matchedTerms, divStrS);
+
         return divStrS;
     }
 
     private TermInfo getTermInformation(String termUrl) {
-        UrlMatching urlMatching = new UrlMatching(merging, termUrl);
-        return urlMatching.getTermInfo();
+        return super.info.getAlphabetTermPage().getTermInfo(termUrl);
+
     }
 
+    /*private TermInfo getTermInformation(String termUrl) {
+        UrlMatching urlMatching = new UrlMatching(merging, termUrl);
+        return urlMatching.getTermInfo();
+    }*/
     private String getAcceptDenyButton() {
         String yesNoButtonDiv
                 = "<div class=" + this.getWithinQuote("w3-container") + ">"
@@ -269,7 +329,7 @@ public class TermPage extends HtmlPageAbstract{
         return templateHtml;
     }
 
-    private List<String> generateTermLink(List<TermDetail> matchedTerms,List<String> divStrS) {
+    private List<String> generateTermLink(List<TermDetail> matchedTerms, List<String> divStrS) {
 
         for (TermDetail termDetail : matchedTerms) {
             String otherTerminology = termDetail.getOtherCategory(info.getCategoryType());
@@ -300,11 +360,11 @@ public class TermPage extends HtmlPageAbstract{
             //firstTr = "";
 
             /*String termValue = this.getValueNew(this.getSpanProp(spanPropUrl1, spanPropUrl2, spanPropStr) + this.getSpanValue(spanTerminologyUrl, spanTerminologyName));
-            String secondTr = getTr(getProperty(langTermUrl, langTermStr), termValue);
-            secondTr = "";
+            String subjectFieldTr = getTr(getProperty(langTermUrl, langTermStr), termValue);
+            subjectFieldTr = "";
 
-            String firstTr = getTr(getProperty(matchPropUrl, matchPropStr), getValueNew(matchValueUrl1, matchValueUrl2, matchValueStr));
-            firstTr = "";*/
+            String languageTr = getTr(getProperty(matchPropUrl, matchPropStr), getValueNew(matchValueUrl1, matchValueUrl2, matchValueStr));
+            languageTr = "";*/
             String table = this.getTable(this.getTbody(thirdTr));
 
             /*String yesNoButtonDiv = getAcceptDenyButton();
@@ -312,7 +372,6 @@ public class TermPage extends HtmlPageAbstract{
             yesNoButtonDiv = "";*/
             String divStr = panelHeadingStart + table + panelHeadingEnd;
             divStrS.add(divStr);
-           
 
         }
         return divStrS;

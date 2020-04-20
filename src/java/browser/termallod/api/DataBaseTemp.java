@@ -20,7 +20,12 @@ public class DataBaseTemp {
     private String subjectDescriptions = "conf/subjectFields.txt";
     private String administrativeStatus = "administrativeStatus.txt";
     private String reliabilityCode = "reliabilityCode.txt";
+    private String location ;
 
+    public DataBaseTemp(String location) {
+        this.location=location;
+    }
+            
     public String getConceptFileName() {
         return this.conceptFileName;
     }
@@ -37,7 +42,7 @@ public class DataBaseTemp {
 
 
     public String getSubjectDescriptions() {
-        return subjectDescriptions;
+        return this.location+subjectDescriptions;
     }
 
     public String getAdministrativeStatus() {

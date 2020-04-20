@@ -32,9 +32,9 @@ public interface Tasks {
 
     public  void  readDataFromSavedFiles(String givenBrowser) throws IOException, Exception;
 
-    public void createHtmlFromSavedFiles(FileAndLocationConst constants, Set<String> browserSet, Set<String> lang,HtmlParameters htmlCreateParameters) throws Exception, IOException;
+    public void createHtmlFromSavedFiles(FileAndLocationConst constants, Set<String> browserSet, Set<String> lang,HtmlParameters htmlCreateParameters,DataBaseTemp dataBaseTemp) throws Exception, IOException;
 
-    public void createHtmlFromSavedFiles(FileAndLocationConst constants, Set<String> browserSet, Set<String> lang, HtmlParameters htmlCreateParameters, MergingTermInfo merging) throws Exception, IOException;
+    //public void createHtmlFromSavedFiles(FileAndLocationConst constants, Set<String> browserSet, Set<String> lang, HtmlParameters htmlCreateParameters, MergingTermInfo merging) throws Exception, IOException;
 
     public void createIndexing() throws IOException, ParseException, Exception;
 

@@ -13,6 +13,8 @@ import java.net.URI;
  * @author elahi
  */
 public class StringMatcherUtil implements IATE {
+    private  static Integer orginalIndex=0;
+    private  static Integer alternativeIndex=1;
 
     public static String encripted(String term) {
         return term.replaceAll("\\s+", "_");
@@ -55,5 +57,20 @@ public class StringMatcherUtil implements IATE {
         checkField = checkField.substring(0,checkField.lastIndexOf('#'));
         return checkField;
     }
+     
+     public static  String getAlternativeUrl(String value,Boolean alternativeUrlFlag) {
+        if (value.contains("=")) {
+                String[] urls = value.split("=");
+                String orgUrl = urls[orginalIndex];
+                String alterUrl = urls[alternativeIndex];
+                if (alternativeUrlFlag) {
+                    value = alterUrl;
+                } else {
+                    value = orgUrl;
+                }
+            }
+        return value;
+    }
+     
 
 }

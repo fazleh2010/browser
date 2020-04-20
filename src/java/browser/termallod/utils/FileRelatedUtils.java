@@ -212,7 +212,7 @@ public class FileRelatedUtils {
     public static void writeFile(Map<String, String> terms, String fileName) throws IOException {
         String str = "";
         for (String term : terms.keySet()) {
-            String line = term + "=" + terms.get(term);
+            String line = term + " = " + terms.get(term);
             str += line + "\n";
         }
         stringToFile_If_Exists(str, fileName);
@@ -437,5 +437,13 @@ public class FileRelatedUtils {
         Browser browser = new Browser();
         return browser.getBrowserFromOntologyName(ontologyName);
     }
+    
+     public static Properties getProperties(String subjectFileName) throws IOException {
+        File propFile = new File(subjectFileName);
+        Properties props = new Properties();
+        props.load(new InputStreamReader(new FileInputStream(propFile), "UTF-8"));
+        return props;
+    }
+
 
 }

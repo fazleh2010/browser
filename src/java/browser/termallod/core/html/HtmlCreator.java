@@ -5,9 +5,10 @@
  */
 package browser.termallod.core.html;
 
+import browser.termallod.api.DataBaseTemp;
 import browser.termallod.constants.FileAndLocationConst;
 import browser.termallod.core.AlphabetTermPage;
-import browser.termallod.core.CategoryInfo;
+import browser.termallod.core.TxtFileProcessing;
 import browser.termallod.core.MergingTermInfo;
 import browser.termallod.core.PageContentGenerator;
 import browser.termallod.core.term.TermDetail;
@@ -31,11 +32,13 @@ public class HtmlCreator  {
     private FileAndLocationConst constants;
     private MergingTermInfo merging;
     private HtmlParameters htmlCreateParameters;
+    private DataBaseTemp dataBaseTemp;
     
-    public HtmlCreator(FileAndLocationConst constants, Set<String> lang,HtmlParameters htmlCreateParameters,MergingTermInfo merging) {
+    public HtmlCreator(FileAndLocationConst constants, Set<String> lang,HtmlParameters htmlCreateParameters,DataBaseTemp dataBaseTemp) {
         this.lang = lang;
         this.constants=constants;
-        this.merging=merging;
+        //this.merging=merging;
+        this.dataBaseTemp=dataBaseTemp;
         this.htmlCreateParameters=htmlCreateParameters;
     }
 
@@ -44,16 +47,16 @@ public class HtmlCreator  {
         for (String categoryBrowser : browsers) {
             String ontologyName = constants.CATEGORY_ONTOLOGIES.get(categoryBrowser);
             List<File> files = FileRelatedUtils.getFiles(source + constants.TEXT_PATH, ontologyName, MODEL_EXTENSION);
-            TreeMap<String, CategoryInfo> langSortedTerms = new TreeMap<String, CategoryInfo>();
+            TreeMap<String, TxtFileProcessing> langSortedTerms = new TreeMap<String, TxtFileProcessing>();
             String categoryName = null;
             Map<String, List<File>> languageFiles = FileRelatedUtils.getLanguageFiles(files, MODEL_EXTENSION);
             for (String langCode : languageFiles.keySet()) {
                 if (lang.contains(langCode)) {
                     List<File> temFiles = languageFiles.get(langCode);
-                    CategoryInfo category = new CategoryInfo(source, langCode, temFiles, MODEL_EXTENSION);
+                    TxtFileProcessing category = new TxtFileProcessing(source, langCode, temFiles, MODEL_EXTENSION);
                     langSortedTerms.put(category.getLangCode(), category);
                     categoryName = category.getCategoryName();
-                    category.print(category.getLangSortedTerms());
+                    //category.print(category.getLangSortedTerms());
                 }
             }
             if (!langSortedTerms.isEmpty()) {
@@ -68,8 +71,8 @@ public class HtmlCreator  {
         }
     }
     
-    private void createHtmlForEachLanguage(TreeMap<String, CategoryInfo> langSortedTerms, String categoryName, String browser) throws Exception {
-        PageContentGenerator pageContentGenerator = new PageContentGenerator(langSortedTerms);
+    private void createHtmlForEachLanguage(TreeMap<String, TxtFileProcessing> langSortedTerms, String categoryName, String browser) throws Exception {
+        PageContentGenerator pageContentGenerator = new PageContentGenerator(langSortedTerms,dataBaseTemp,htmlCreateParameters.getAlternativeFlag());
         for (String language : pageContentGenerator.getLanguages()) {
             List<AlphabetTermPage> alphabetTermPageList = pageContentGenerator.getLangPages(language);
             for (AlphabetTermPage alphabetTermPage : alphabetTermPageList) {
@@ -85,7 +88,7 @@ public class HtmlCreator  {
     
     private void createHtmlForEachAlphabetPair(String categoryName, File templateFile, String language, AlphabetTermPage alphabetTermPage, PageContentGenerator pageContentGenerator) throws Exception {
         Partition partition = alphabetTermPage.getPartition();
-        ListOfTerms.termAlterUrl = new TreeMap<String, String>();
+        HtmlListOfTerms.termAlterUrl = new TreeMap<String, String>();
 
         for (Integer page = 0; page < partition.size(); page++) {
             Integer currentPageNumber = page + 1;
@@ -94,7 +97,8 @@ public class HtmlCreator  {
             HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
             Document templateHtml = htmlReaderWriter.getInputDocument();
             OntologyInfo info = new OntologyInfo(language, categoryName, alphabetTermPage);
-            ListOfTerms htmlPage = new ListOfTerms(constants, htmlCreateParameters, info, htmlReaderWriter, this.merging);
+            //MergingTermInfo merging=null;
+            HtmlListOfTerms htmlPage = new HtmlListOfTerms(constants, htmlCreateParameters, info, htmlReaderWriter);
             File htmlFileName = info.makeHtmlFileName(constants.getBASE_PATH(), currentPageNumber);
             Document listOfTermHtmlPage = htmlPage.createAllElements(templateHtml, termDetails, pageContentGenerator,htmlFileName,currentPageNumber);
             if (this.htmlCreateParameters.getListOfTemPageFlag()) {
@@ -104,7 +108,7 @@ public class HtmlCreator  {
         }
         if (htmlCreateParameters.getTextFileModifyFlag()) {
             String textInputFile = FileRelatedUtils.getSpecificFile(constants.getBASE_PATH(), categoryName, language, alphabetTermPage.getAlpahbetPair(), ".txt");
-            FileRelatedUtils.writeFile(ListOfTerms.termAlterUrl, textInputFile);
+            FileRelatedUtils.writeFile(HtmlListOfTerms.termAlterUrl, textInputFile);
         }
 
     }

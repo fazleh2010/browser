@@ -183,7 +183,9 @@ public class MatchingTerminologies implements Languages {
     }
 
     public static Map<String, List<TermDetail>> getCategroyTerms(String langCode) {
-        return langTermDetails.get(langCode);
+        if(langTermDetails.containsKey(langCode))
+           return langTermDetails.get(langCode);
+        return  new HashMap<String, List<TermDetail>> ();
     }
 
     /*public static List<TermDetail> getTermDetails(String langCode,String term) {
