@@ -85,7 +85,7 @@ public class UrlMatchingTest {
 
     }*/
 
-    @Test
+    @Ignore
     public void testMatchingUrls_WhenMatchedEveything() throws Exception {
 
         MergingTermInfo merging = new MergingTermInfo(location,iate_folder,"en",alphabetFileName, dataBaseTemp);

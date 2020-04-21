@@ -84,9 +84,7 @@ public class Main {
         browserSet = new HashSet<String>(Arrays.asList(constants.IATE,constants.GENTERM));
         
         cleanDirectory();
-        
-        /*cleanDirectory();
-         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
+        /*tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
         //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
          tasks.saveDataIntoFiles(browserSet);
         
@@ -95,7 +93,7 @@ public class Main {
         termPageFlag = false;
         alternativeFlag = true;
         browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE,constants.GENTERM));
-         
+         //tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
          htmlCreateParameters = new HtmlParameters(textFileModifyFlag, listOfTemPageFlag,  termPageFlag,alternativeFlag);
          tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);*/
         
@@ -103,24 +101,18 @@ public class Main {
 
     
 
-        /* tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
-         //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
-         //tasks.saveDataIntoFiles(browserSet);
-          //Boolean textFileModifyFlag, Boolean listOfTemPageFlag, Boolean termPageFlag, Boolean alternativeFlag)
-         htmlCreateParameters = new HtmlParameters(textFileModifyFlag, listOfTemPageFlag,  termPageFlag,alternativeFlag);
-         tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);*/
-         
+       
         //2. generate alternative url
         //3. generate HTML
-        /*textFileModifyFlag = true;
-        listOfTemPageFlag = false;
-        termPageFlag = false;
+        /*textFileModifyFlag = false;
+        listOfTemPageFlag = true;
+        termPageFlag = true;
         alternativeFlag = true;
         htmlCreateParameters=new HtmlParameters( false, true,  true, true);
         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
         tasks.matchTerminologies(constants.GENTERM, constants.IATE);
         //testMatching();
-        browsersToRun=new HashSet<String>(Arrays.asList(constants.GENTERM));
+        browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE));
         tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);*/
         System.out.println("Processing finished!!!");
 

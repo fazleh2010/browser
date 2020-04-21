@@ -173,7 +173,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>tbx2rdf.Main</mainClass>
+                            <mainClass>browser.termallod.app.Main</mainClass>LS
                         </manifest>
                     </archive>
                 </configuration>

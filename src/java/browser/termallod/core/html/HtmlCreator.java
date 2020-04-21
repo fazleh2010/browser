@@ -66,13 +66,13 @@ public class HtmlCreator  {
                     createHtmlForEachLanguage(langSortedTerms, categoryName, browser);
                 }
                 //temporary implemented code
-                break;
+                //break;
             }
         }
     }
     
     private void createHtmlForEachLanguage(TreeMap<String, TxtFileProcessing> langSortedTerms, String categoryName, String browser) throws Exception {
-        PageContentGenerator pageContentGenerator = new PageContentGenerator(langSortedTerms,dataBaseTemp,htmlCreateParameters.getAlternativeFlag());
+        PageContentGenerator pageContentGenerator = new PageContentGenerator(langSortedTerms,dataBaseTemp,htmlCreateParameters);
         for (String language : pageContentGenerator.getLanguages()) {
             List<AlphabetTermPage> alphabetTermPageList = pageContentGenerator.getLangPages(language);
             for (AlphabetTermPage alphabetTermPage : alphabetTermPageList) {
@@ -104,7 +104,7 @@ public class HtmlCreator  {
             if (this.htmlCreateParameters.getListOfTemPageFlag()) {
                 htmlReaderWriter.writeHtml(listOfTermHtmlPage, htmlFileName);
             }
-            break;
+            //break;
         }
         if (htmlCreateParameters.getTextFileModifyFlag()) {
             String textInputFile = FileRelatedUtils.getSpecificFile(constants.getBASE_PATH(), categoryName, language, alphabetTermPage.getAlpahbetPair(), ".txt");

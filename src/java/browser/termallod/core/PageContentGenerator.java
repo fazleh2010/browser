@@ -6,6 +6,7 @@
 package browser.termallod.core;
 
 import browser.termallod.api.DataBaseTemp;
+import browser.termallod.core.html.HtmlParameters;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -27,13 +28,13 @@ public class PageContentGenerator {
     private TreeSet<String> languages=new TreeSet();
     private Map<String, String> languageInitpage = new HashMap<String, String>();
     private DataBaseTemp dataBaseTemp;
-    private Boolean alternativeFlag=false;
+    private HtmlParameters htmlParameters;
     
 
 
-    public PageContentGenerator( TreeMap<String, TxtFileProcessing> langSortedTerms,DataBaseTemp dataBaseTemp,Boolean alternativeFlag) throws Exception {
+    public PageContentGenerator( TreeMap<String, TxtFileProcessing> langSortedTerms,DataBaseTemp dataBaseTemp,HtmlParameters htmlParameters) throws Exception {
         this.dataBaseTemp=dataBaseTemp;
-        this.alternativeFlag=alternativeFlag;
+        this.htmlParameters=htmlParameters;
         if (!langSortedTerms.isEmpty()) {
             this.langPages = this.preparePageTerms(langSortedTerms);
             this.languages=new TreeSet(langPages.keySet());
@@ -58,7 +59,7 @@ public class PageContentGenerator {
                 List<String>termList=new ArrayList<String>(termSet);
                 Collections.sort(termList);
                 Partition<String> partition = Partition.ofSize(termList, this.numberofElementEachPage);
-                AlphabetTermPage alphabetTermPage = new AlphabetTermPage(language,alphabetPair,categoryInfo.getPairFile(alphabetPair), partition,numericalValueOfPair,this.dataBaseTemp,this.alternativeFlag);
+                AlphabetTermPage alphabetTermPage = new AlphabetTermPage(language,alphabetPair,categoryInfo.getPairFile(alphabetPair), partition,numericalValueOfPair,this.dataBaseTemp,this.htmlParameters);
                 alphabetTermPageList.add(alphabetTermPage);
                 numericalValueOfPair++;
             }
