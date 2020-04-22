@@ -48,7 +48,7 @@ public class Main {
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
             put("en", "English");
-            put("nl", "Dutch");
+           // put("nl", "Dutch");
             //put("nl", "Dutch");
             //currently dutch does not work...
             /* put("bg", "Bulgarian");
@@ -85,12 +85,12 @@ public class Main {
         browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
         
         //cleanDirectory();
-        cleanDirectory();
+        /*cleanDirectory();
         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
         //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
-         tasks.saveDataIntoFiles(browserSet);
+         tasks.saveDataIntoFiles(browserSet);*/
         
-        textFileModifyFlag = true;
+        /*textFileModifyFlag = true;
         listOfTemPageFlag = false;
         termPageFlag = false;
         alternativeFlag = true;
@@ -98,7 +98,7 @@ public class Main {
         browsersToRun=new HashSet<String>(Arrays.asList(constants.GENTERM));
          //tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
          htmlCreateParameters = new HtmlParameters(textFileModifyFlag, listOfTemPageFlag,  termPageFlag,alternativeFlag);
-         tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);
+         tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);*/
         
          ////////////////////////////////////////////////////
 
@@ -107,7 +107,7 @@ public class Main {
        
         //2. generate alternative url
         //3. generate HTML
-        /*textFileModifyFlag = false;
+        textFileModifyFlag = false;
         listOfTemPageFlag = true;
         termPageFlag = true;
         alternativeFlag = true;
@@ -116,7 +116,7 @@ public class Main {
         tasks.matchTerminologies(constants.GENTERM, constants.IATE);
         //testMatching();
         browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE));
-        tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);*/
+        tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);
         System.out.println("Processing finished!!!");
         //create java script files
         //it works seperately

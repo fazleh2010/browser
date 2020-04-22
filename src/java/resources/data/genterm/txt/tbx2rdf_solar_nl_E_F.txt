@@ -1,5 +1,0 @@
-ecn = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/ECN-NL=browser_nl_3_1_term_0.html
-ecn2007 = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/ECN2007-NL=browser_nl_3_1_term_1.html
-ecolis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Ecolis-NL=browser_nl_3_1_term_2.html
-euroinvester = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Euroinvester-NL=browser_nl_3_1_term_3.html
-fom = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/FOM-NL=browser_nl_3_1_term_4.html

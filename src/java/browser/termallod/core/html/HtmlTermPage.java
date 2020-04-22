@@ -230,7 +230,7 @@ public class HtmlTermPage extends HtmlPageAbstract {
                 }
             }
             
-            //System.out.println(term+" "+url+" "+otherTerminology+" "+spanTerminologyUrl+" Iate:"+termFileName);
+            System.out.println(term+" "+url+" "+otherTerminology+" "+spanTerminologyUrl+" Iate:"+termFileName);
 
             //temporary closed
             String panelHeadingStart = divClassStr + this.getWithinQuote("panel-heading") + ">"
