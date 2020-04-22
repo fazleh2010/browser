@@ -1,0 +1,4 @@
+p-doping = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/p-doping-EN=browser_en_O_P_1_term_0.html
+p-n_junction = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/p-n+junction-EN=browser_en_O_P_1_term_1.html
+p-type_doping = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/p-type+doping-EN=browser_en_O_P_1_term_2.html
+p-type_semiconductor = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/p-type+semiconductor-EN=browser_en_O_P_1_term_3.html

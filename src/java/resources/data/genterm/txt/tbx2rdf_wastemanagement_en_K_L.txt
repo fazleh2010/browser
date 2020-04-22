@@ -1,0 +1,10 @@
+landfill = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/landfill-EN=browser_en_K_L_1_term_0.html
+lca = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/LCA-EN=browser_en_K_L_1_term_1.html
+lci = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/LCI-EN=browser_en_K_L_1_term_2.html
+lcia = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/LCIA-EN=browser_en_K_L_1_term_3.html
+life_cycle = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/life+cycle-EN=browser_en_K_L_1_term_4.html
+life_cycle_assessment = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/life+cycle+assessment-EN=browser_en_K_L_1_term_5.html
+life_cycle_costing = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/life+cycle+costing-EN=browser_en_K_L_1_term_6.html
+life_cycle_impact_assessment = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/Life+Cycle+Impact+Assessment-EN=browser_en_K_L_1_term_7.html
+life_cycle_inventory = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/life+cycle+inventory-EN=browser_en_K_L_1_term_8.html
+life_cycle_thinking = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/life+cycle+thinking-EN=browser_en_K_L_1_term_9.html

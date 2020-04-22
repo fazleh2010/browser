@@ -1,0 +1,13 @@
+chemisch_manuele_diepdrukvorm = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/chemisch+manuele+diepdrukvorm-NL=browser_nl_2_1_term_0.html
+craquelé = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/craquel%C3%A9-NL=browser_nl_2_1_term_1.html
+crayonets = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/crayonets-NL=browser_nl_2_1_term_2.html
+crayonmanier = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/crayonmanier-NL=browser_nl_2_1_term_3.html
+creeping_bite = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/creeping+bite-NL=browser_nl_2_1_term_4.html
+crevé = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/crev%C3%A9-NL=browser_nl_2_1_term_5.html
+damarhars = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/damarhars-NL=browser_nl_2_1_term_6.html
+damasceren = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/damasceren-NL=browser_nl_2_1_term_7.html
+diepdrukgrafiek = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/diepdrukgrafiek-NL=browser_nl_2_1_term_8.html
+diepets = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/diepets-NL=browser_nl_2_1_term_9.html
+droge_naald = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/droge+naald-NL=browser_nl_2_1_term_10.html
+dutch_bath = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/Dutch+bath-NL=browser_nl_2_1_term_11.html
+dutch_mordant = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/Dutch+mordant-NL=browser_nl_2_1_term_12.html

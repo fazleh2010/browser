@@ -1,0 +1,9 @@
+kaliumchloraat = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/kaliumchloraat-NL=browser_nl_6_1_term_0.html
+korrelaquatint = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/korrelaquatint-NL=browser_nl_6_1_term_1.html
+krijtlitho = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/krijtlitho-NL=browser_nl_6_1_term_2.html
+liftground = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/liftground-NL=browser_nl_6_1_term_3.html
+lijndifferentiatie = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/lijndifferentiatie-NL=browser_nl_6_1_term_4.html
+lijnets = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/lijnets-NL=browser_nl_6_1_term_5.html
+lijnvoering = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/lijnvoering-NL=browser_nl_6_1_term_6.html
+lithografisch_krijt = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/lithografisch+krijt-NL=browser_nl_6_1_term_7.html
+luitbouwer = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/luitbouwer-NL=browser_nl_6_1_term_8.html

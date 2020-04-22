@@ -1,0 +1,1 @@
+wafer = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/wafer-EN=browser_en_W_X_1_term_0.html
