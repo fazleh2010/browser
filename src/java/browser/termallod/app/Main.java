@@ -105,7 +105,7 @@ public class Main {
        
         //2. generate alternative url
         //3. generate HTML
-        /*textFileModifyFlag = false;
+        textFileModifyFlag = false;
         listOfTemPageFlag = true;
         termPageFlag = true;
         alternativeFlag = true;
@@ -114,7 +114,7 @@ public class Main {
         tasks.matchTerminologies(constants.GENTERM, constants.IATE);
         //testMatching();
         browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE));
-        tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);*/
+        tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);
         System.out.println("Processing finished!!!");
         //create java script files
         //it works seperately
