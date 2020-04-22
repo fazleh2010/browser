@@ -116,7 +116,7 @@ public class Conversion {
         Integer index = 0;
         for (index = 0; index < 1000000; index++) {
             String line = fileContents.next();
-            System.out.println(line);
+            //System.out.println(line);
         }
     }
     

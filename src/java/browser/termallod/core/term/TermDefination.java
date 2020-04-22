@@ -29,11 +29,11 @@ public class TermDefination {
         for (URI uri : links) {
             if (uri.toString().contains(SENSE)) {
                 this.senseUri = uri;
-                System.out.println(uri);
+                //System.out.println(uri);
             }
             if (uri.toString().contains(CANONICALFORM)) {
                 this.canonicalFormUri = uri;
-                System.out.println(uri);
+                //System.out.println(uri);
             }
 
         }

@@ -65,13 +65,13 @@ public class TermPageTest {
         termList.add("Apple");
         termList.add("An appple");
         termList.add("All");
-        System.out.println(termList);
+        //System.out.println(termList);
         Collections.sort(termList);
         this.partition = Partition.ofSize(termList, 100);
 
     }
 
-    @Test
+    @Ignore
     public void testTermPage_WhenWIthoutLinks() throws Exception {
         /*String categoryName="tbx2rdf_iate";
         String language="en";

@@ -103,8 +103,8 @@ public class LuceneIndexing {
                 }
                 datas.put((countIndex++).toString(), term);
             }
-            System.out.println(langCode.toString());
-            System.out.println(datas.toString());
+            //System.out.println(langCode.toString());
+            //System.out.println(datas.toString());
             Directory index = loadData(datas);
             land.setIndex(index);
             langTermUrls.put(langCode, land);
@@ -117,14 +117,14 @@ public class LuceneIndexing {
     public List<String> search(String category, String langCode, String searchQuery) throws IOException, ParseException, Exception {
         Browser browserInfo = indexedBrowsers.get(category);
         LangSpecificBrowser langSpecificBrowser = browserInfo.getLangTermUrls(langCode);
-        System.out.println(langSpecificBrowser.getTermUrls());
+        //System.out.println(langSpecificBrowser.getTermUrls());
         Directory index = langSpecificBrowser.getIndex();
         Query query = createQuery(analyzer, searchQuery);
         IndexReader reader = DirectoryReader.open(index);
         IndexSearcher searcher = new IndexSearcher(reader);
         Pair<IndexSearcher, ScoreDoc[]> pair = getScore(searcher, query);
         List<String> terms = scoreGenerator(pair.getKey(), pair.getValue());
-        System.out.println(langCode + "    result:" + terms.toString());
+        //System.out.println(langCode + "    result:" + terms.toString());
         reader.close();
         return terms;
     }
@@ -164,7 +164,7 @@ public class LuceneIndexing {
 
     private List<String> scoreGenerator(IndexSearcher searcher, ScoreDoc[] hits) throws IOException, ParseException {
         List<String> termList = new ArrayList<String>();
-        System.out.println("Found " + hits.length + " hits.");
+        //System.out.println("Found " + hits.length + " hits.");
         for (int i = 0; i < hits.length; ++i) {
             int docId = hits[i].doc;
             Document d = searcher.doc(docId);
@@ -194,6 +194,6 @@ public class LuceneIndexing {
         IndexSearcher searcher = new IndexSearcher(reader);
         Pair<IndexSearcher, ScoreDoc[]> pair = luceneJavaImpl.getScore(searcher, query);
         List<String> terms = luceneJavaImpl.search(pair.getKey(), pair.getValue());
-        System.out.println(terms.toString());
+        //System.out.println(terms.toString());
         reader.close();*/
 }

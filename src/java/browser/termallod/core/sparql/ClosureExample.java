@@ -58,7 +58,7 @@ public class ClosureExample {
 		 */
 		ResultSet results = test.executeQuery(query);
 		String textResults = ResultSetFormatter.asText(results);
-		System.out.println(textResults);
+		//System.out.println(textResults);
 		
 		/**
 		 * Same query with hierarchy closure.
@@ -67,7 +67,7 @@ public class ClosureExample {
 		 */
 		results = test.executeQuery(query,"SUBC");
 		textResults = ResultSetFormatter.asText(results);
-		System.out.println(textResults);
+		//System.out.println(textResults);
 		
 		/**
 		 * prefNames and closures.
@@ -92,6 +92,6 @@ public class ClosureExample {
 				"?super skos:prefLabel ?label }";
 		results = test.executeQuery(queryLabelsAndClosure,"SUBC+SUBP");
 		textResults = ResultSetFormatter.asText(results);
-		System.out.println(textResults);
+		//System.out.println(textResults);
 	}
 }

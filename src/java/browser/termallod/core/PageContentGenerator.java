@@ -92,7 +92,7 @@ public class PageContentGenerator {
         for (String language : this.langPages.keySet()) {
             List<AlphabetTermPage> pages = langPages.get(language);
             for (AlphabetTermPage page : pages) {
-                System.out.print(page);
+                //System.out.print(page);
             }
 
         }

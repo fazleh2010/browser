@@ -65,6 +65,6 @@ public class SimpleTest {
 		//Accept formats can be: "text/plain", "application/json", 
 		// "application/rdfxml", "text/csv", text/tab-separated-values
 		String response = test.executeQuery(query,"text/tab-separated-values");
-		System.out.println(response);
+		//System.out.println(response);
 	}
 }

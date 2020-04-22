@@ -97,16 +97,16 @@ public class GetAllTerms {
 			/* Remove comments to print resultset
 
 			Iterator<String> varnames = sol.varNames();
-			System.out.print("Term Data : ");
+			//System.out.print("Term Data : ");
 			while (varnames.hasNext()) {
 				String var = varnames.next();
 				if (!sol.get(var).isLiteral())
-					System.out.print(var+"="+sol.get(var).toString()+"   ");
+					//System.out.print(var+"="+sol.get(var).toString()+"   ");
 				else
-					System.out.print(var+"="+sol.get(var).asLiteral().getValue().toString()+"   ");
+					//System.out.print(var+"="+sol.get(var).asLiteral().getValue().toString()+"   ");
 				
 			} 
-			System.out.println();
+			//System.out.println();
 			*/
 		}
 	}	
@@ -122,7 +122,7 @@ public class GetAllTerms {
 				batch = new ArrayList<Resource>();
 			}
 			if (queueResources.size() % 1000 == 0) {
-				System.out.println("Count Down " + queueResources.size());
+				//System.out.println("Count Down " + queueResources.size());
 			}
 		}
 		if (batch.size() > 0) {
@@ -161,9 +161,9 @@ public class GetAllTerms {
 		traverseAllTerms(allURIs,properties);
                 
                 for(Resource uri:allURIs){
-                    System.out.println(uri);
+                    //System.out.println(uri);
                 }
 
-		System.out.printf("%d terms retrieved in %.2f s\n",allURIs.size(),(System.currentTimeMillis() - t0)/1000.0);
+		//System.out.printf("%d terms retrieved in %.2f s\n",allURIs.size(),(System.currentTimeMillis() - t0)/1000.0);
 	}
 }

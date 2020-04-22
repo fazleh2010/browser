@@ -72,11 +72,11 @@ public class Lucene_1 {
         ScoreDoc[] hits = collector.topDocs().scoreDocs;
 
         // 4. display results
-        System.out.println("Found " + hits.length + " hits.");
+        //System.out.println("Found " + hits.length + " hits.");
         for (int i = 0; i < hits.length; ++i) {
             int docId = hits[i].doc;
             Document d = searcher.doc(docId);
-            System.out.println((i + 1) + ". " + d.get("isbn") + "\t" + d.get("title"));
+            //System.out.println((i + 1) + ". " + d.get("isbn") + "\t" + d.get("title"));
         }
 
         // reader can only be closed when there

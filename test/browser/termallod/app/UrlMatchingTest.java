@@ -60,7 +60,7 @@ public class UrlMatchingTest {
         List<File> files = FileRelatedUtils.getFiles("test/resources/data/iate/txt/", "tbx2rdf_iate", ".txt");
         for (File file : files) {
             if (file.getName().contains("en")) {
-                System.out.println(file.getName());
+                //System.out.println(file.getName());
                 Properties alphabetPropsFiles = getProperties("test/resources/data/iate/txt/" + file.getName());
                 for (Object key : alphabetPropsFiles.keySet()) {
                     Object value = alphabetPropsFiles.get(key);
@@ -69,9 +69,9 @@ public class UrlMatchingTest {
                     UrlMatching urlMatchTesting = new UrlMatching(merging, termUrl);
                     TermInfo termInfo = urlMatchTesting.getTermInfo();
                     if (termInfo != null) {
-                        System.out.println(key + " " + termUrl + " " + termInfo.getSubjectId() + termInfo.getTermID());
+                        //System.out.println(key + " " + termUrl + " " + termInfo.getSubjectId() + termInfo.getTermID());
                         String detail = merging.getSubjectDetailsProps(termInfo.getSubjectId()).toString();
-                        System.out.println(detail);
+                        //System.out.println(detail);
                         index = index + 1;
                         //break;
                     }
@@ -80,7 +80,7 @@ public class UrlMatchingTest {
             }
 
         }
-        System.out.println("number of matched" + index);
+        //System.out.println("number of matched" + index);
 
 
     }*/
@@ -89,9 +89,9 @@ public class UrlMatchingTest {
     public void testMatchingUrls_WhenMatchedEveything() throws Exception {
 
         MergingTermInfo merging = new MergingTermInfo(location,iate_folder,"en",alphabetFileName, dataBaseTemp);
-        System.out.println("finished");
+        //System.out.println("finished");
 
-//        System.out.println("finished");*/
+//        //System.out.println("finished");*/
 
         /*TermInfo subjectInfo = new TermInfo(id, subjectField, senseUrl);
         UrlMatching urlMatchTesting = new UrlMatching(merging, termUrl);

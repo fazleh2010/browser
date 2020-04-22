@@ -58,7 +58,7 @@ public class MatchingTerminologies implements Languages {
             for (String langCode : this.langFrequency.keySet()) {
                 Map<String, Integer> fequency = this.langFrequency.get(langCode);
                 if (!fequency.isEmpty()) {
-                    System.out.println(langCode + "..." + fequency);
+                    //System.out.println(langCode + "..." + fequency);
                 }
             }
         }
@@ -94,7 +94,7 @@ public class MatchingTerminologies implements Languages {
                         String url = langSpecificBrowser.getTermUrls().get(term);
                         TermDetail termDetail = new TermDetail(givenCategory, langCode, term, url);
                         termDetails.add(termDetail);
-                        System.out.println(termDetails.toString());
+                        //System.out.println(termDetails.toString());
                     }
                     MatchingTerminologies.termDetails.put(langCode, termDetails);
                 }
@@ -132,11 +132,11 @@ public class MatchingTerminologies implements Languages {
                 String key = category + "_" + givenCategory + "_" + langCode;
                 Integer value = answer.size();
                 fequency.put(key, value);
-                System.out.println(key + " " + value);
+                //System.out.println(key + " " + value);
                 //List<String> terms = new ArrayList<String>();
                 List<TermDetail> termsDetails = new ArrayList<TermDetail>();
                 for (String term : answer) {
-                     System.out.println(term);
+                     //System.out.println(term);
                     String givenUrl = givenLangSpecificBrowser.getTermUrls(term);
                     String url = otherLangSpecificBrowser.getTermUrls(term);
                     termsDetails = this.getMatchedTermsDetail(category, langCode, term, url, givenCategory, givenUrl);
@@ -147,9 +147,9 @@ public class MatchingTerminologies implements Languages {
                 }
                 //Collections.sort(terms);
                 /*for(String term:terms){
-                     System.out.println(term);
+                     //System.out.println(term);
                  }*/
-                System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+                //System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
             }
 
@@ -160,8 +160,8 @@ public class MatchingTerminologies implements Languages {
     }
 
     private Set<String> match(LangSpecificBrowser browser1, LangSpecificBrowser browser2) {
-        System.out.println(browser1.getTermUrls().keySet());
-        System.out.println(browser2.getTermUrls().keySet());
+        //System.out.println(browser1.getTermUrls().keySet());
+        //System.out.println(browser2.getTermUrls().keySet());
         return match(browser1.getTermUrls().keySet(), browser2.getTermUrls().keySet());
 
         /*for (String term : answer) {

@@ -44,12 +44,7 @@ public interface Tasks {
     public void generateScript(String category) throws IOException, Exception;
 
     public Set<TermDetail> matchTerminologies(String firstTerminology, String secondTerminology) throws IOException, Exception;
-
-    //term page seperate creation...
-    //public void createTermDetailHtmlPage(String browser,Set<String>givenLangs) throws IOException, Exception;
     
     public Map<String, Browser> getBrowsersInfor();
     
-    //add decline page seperate creation..
-    //public void createAddDeclineHtmlPage(String category,String lang,TermDetail termdetail,Set<String>givenLangs);
-}
+  }

@@ -147,11 +147,12 @@ public class FileRelatedUtils {
         }
         return files;
     }*/
-    public static List<File> writeFile(TreeMap<String, TreeMap<String, List<TermInfo>>> langSortedTerms, String path) throws IOException {
+    /*public static List<File> writeFile(TreeMap<String, TreeMap<String, List<TermInfo>>> langSortedTerms, String path) throws IOException {
         List<File> files = new ArrayList<File>();
         for (String language : langSortedTerms.keySet()) {
             String str = "";
             TreeMap<String, List<TermInfo>> alphabetPairTerms = langSortedTerms.get(language);
+            Integer index=0;
             for (String pair : alphabetPairTerms.keySet()) {
                 String fileName = path + "_" + language + "_" + pair + ".txt";
                 List<TermInfo> terms = alphabetPairTerms.get(pair);
@@ -165,7 +166,71 @@ public class FileRelatedUtils {
 
         }
         return files;
+    }*/
+    
+    /*public static List<File> writeFile(TreeMap<String, TreeMap<String, List<TermInfo>>> langSortedTerms, String path) throws IOException {
+        List<File> files = new ArrayList<File>();
+        for (String language : langSortedTerms.keySet()) {
+            String str = "";
+            TreeMap<String, List<TermInfo>> alphabetPairTerms = langSortedTerms.get(language);
+             Integer pairIndex=0;
+            for (String pair : alphabetPairTerms.keySet()) {
+                String fileName = path + "_" + language + "_" + pair + ".txt";
+                List<TermInfo> terms = alphabetPairTerms.get(pair);
+                str = "";
+                pairIndex++;
+                Integer termIndex=0;
+                for (TermInfo term : terms) {
+                    String pairNote=null;
+                    
+                    if(language.contains("en"))
+                        pairNote=pair;
+                    else
+                        pairNote=pairIndex.toString();
+                    
+                        
+                    String line = term.getTermString() + " = " + term.getTermUrl()
+                                  + " = " +"browser"+ "_" + language+ "_" + pairNote+ "_" +"term" + "_" + (termIndex++) + ".html";
+                    str += line + "\n";
+                }
+                stringToFile_ApendIf_Exists(str, fileName);
+            }
+
+        }
+        return files;
+    }*/
+    
+    public static List<File> writeFile(TreeMap<String, TreeMap<String, List<TermInfo>>> langSortedTerms, String path) throws IOException {
+        List<File> files = new ArrayList<File>();
+        for (String language : langSortedTerms.keySet()) {
+            String str = "";
+            TreeMap<String, List<TermInfo>> alphabetPairTerms = langSortedTerms.get(language);
+             Integer pairIndex=0;
+            for (String pair : alphabetPairTerms.keySet()) {
+                String fileName = path + "_" + language + "_" + pair + ".txt";
+                List<TermInfo> terms = alphabetPairTerms.get(pair);
+                str = "";
+                pairIndex++;
+                Integer termIndex=0;
+                for (TermInfo term : terms) {
+                    String pairNote=null;
+                    
+                    if(language.contains("en"))
+                        pairNote=pair;
+                    else
+                        pairNote=pairIndex.toString();
+                    
+                        
+                    String line = term.getTermString() + " = " + term.getTermUrl();
+                    str += line + "\n";
+                }
+                stringToFile_ApendIf_Exists(str, fileName);
+            }
+
+        }
+        return files;
     }
+    
 
     public static void writeLangFile(Map<String, TreeMap<String, String>> langHash, String path) throws IOException {
         for (String language : langHash.keySet()) {

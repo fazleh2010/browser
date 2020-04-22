@@ -78,7 +78,7 @@ public class GeneralCompScriptGen {
             LangSpecificBrowser langSpecificBrowser = generalBrowser.getLangTermUrls().get(langCode);
             Map<String, String> allkeysValues = langSpecificBrowser.getTermUrls();
             String str = getTerms(allkeysValues);
-            System.out.println(str);
+            //System.out.println(str);
             File templateFile = new File(AUTO_COMPLETION_TEMPLATE_LOCATION + "autoComp" + ".js");
             String outputFileName = AUTO_COMPLETION_TEMPLATE_LOCATION + ontologyName + "_" + langCode + ".js";
 
@@ -86,7 +86,7 @@ public class GeneralCompScriptGen {
                 throw new Exception(" no template find found for autocompletion!!");
             }
 
-            System.out.println(outputFileName);
+           // System.out.println(outputFileName);
             createAutoCompletionTemplate(templateFile, str, outputFileName);
         }
 

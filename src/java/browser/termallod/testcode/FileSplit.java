@@ -108,7 +108,7 @@ public class FileSplit {
             BufferedWriter writer = Files.newBufferedWriter(splitFile, StandardOpenOption.CREATE);
             while ((line = reader.readLine()) != null) {
                 if (lineNum == 1) {
-                    System.out.print("new file created '" + splitFile.toString());
+                    //System.out.print("new file created '" + splitFile.toString());
                     if (header != null && header.length() > 0) {
                         writer.append(header);
                         writer.newLine();
@@ -122,7 +122,7 @@ public class FileSplit {
                         writer.append(footer);
                     }
                     writer.close();
-                    System.out.println(", " + lineNum + " lines written to file");
+                    //System.out.println(", " + lineNum + " lines written to file");
                     lineNum = 1;
                     i++;
                     splitFile = Paths.get(newDir.getPath() + "\\" + fileNoExt + "_" + String.format("%02d", i) + ext);
@@ -141,10 +141,10 @@ public class FileSplit {
                 }
             }
             writer.close();
-            System.out.println(", " + lineNum + " lines written to file");
+            //System.out.println(", " + lineNum + " lines written to file");
         }
 
-        System.out.println("file '" + bigFile.getName() + "' split into " + i + " files");
+        //System.out.println("file '" + bigFile.getName() + "' split into " + i + " files");
     }
 
     public void join(String FilePath) {
@@ -211,7 +211,7 @@ public class FileSplit {
         try {
             while (it.hasNext()) {
                 String line = it.nextLine();
-                System.out.println(line);
+                //System.out.println(line);
                 count++;
                 if (count == 100) {
                     break;
@@ -238,7 +238,7 @@ public class FileSplit {
             while (sc.hasNextLine()) {
                 count = count + 1;
                 String line = sc.nextLine();
-                System.out.println(line);
+                //System.out.println(line);
                 str+=line+"\n”";
                 if (count == 50000) {
                     StringToFile(str,  path+"output"+fileNumber+".ttl");

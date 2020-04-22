@@ -52,7 +52,7 @@ public class JenaARQTest {
 		      RDFNode ontUri = soln.get("ont") ;
 		      Literal name = soln.getLiteral("name") ;
 		      Literal acr = soln.getLiteral("acr") ;
-		      System.out.println(ontUri + " ---- " + name + " ---- " + acr);
+		      //System.out.println(ontUri + " ---- " + name + " ---- " + acr);
 		    }
 	}
 }

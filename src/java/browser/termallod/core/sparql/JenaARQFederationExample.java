@@ -48,7 +48,7 @@ public class JenaARQFederationExample {
 		ResultSet results = test.executeQuery(query);
 	    for ( ; results.hasNext() ; ) {
 	      QuerySolution soln = results.nextSolution() ;
-	      System.out.println(soln);
+	      //System.out.println(soln);
 	    }
 	}
 }

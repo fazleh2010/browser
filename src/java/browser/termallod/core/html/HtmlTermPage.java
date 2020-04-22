@@ -56,14 +56,16 @@ public class HtmlTermPage extends HtmlPageAbstract {
 
         Document termTemplate = info.getTermPageTemplate(constants.TEMPLATE_LOCATION, ".html");
         if (htmlCreateParameters.getAlternativeFlag()) {
-            String url = htmlFileName.getName().replace(".html", "");
-            url = url + "_" + "term" + "_" + index + ".html";
-            termDetail.setAlternativeUrl(url);
+             String url = htmlFileName.getName().replace(".html", "");
+             url = url + "_" + "term" + "_" + index + ".html";
+             termDetail.setAlternativeUrl(url);
+            
 
             if (htmlCreateParameters.getTermPageFlag()) {
                 String term = termDetail.getTerm();
                 String urls = info.getAlphabetTermPage().getProps().getProperty(term);
                 url = StringMatcherUtil.getAlternativeUrl(urls, htmlCreateParameters.getAlternativeFlag());
+                
                 File TermhtmlFileName = new File(constants.getBASE_PATH() + info.getOntologyFileName() + "/" + url);
                 test(termTemplate, termDetail, url, url);
                 generatedHtmlPage = this.getTemplateHtml();
@@ -145,9 +147,9 @@ public class HtmlTermPage extends HtmlPageAbstract {
         String posTr = "", numberTr = "", genderTr = "", definitionTr = "", hypernymTr = "", hyponymTr = "", variantTr = "", synonymTr = "";
 
         TermInfo termInfo = this.getTermInformation(url);
-        if (termInfo != null) {
-            System.out.println(term + " " + termFileName + " " + termInfo.getSubjectId() + termInfo.getTermID());
-        }
+        /*if (termInfo != null) {
+           // System.out.println(term + " " + termFileName + " " + termInfo.getSubjectId() + termInfo.getTermID());
+        }*/
 
         String langValueStr = languageMapper.get(info.getLanguage());
         languageTr = getTr(getProperty("Language"), getValueNew(langValueStr));

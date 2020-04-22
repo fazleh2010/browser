@@ -97,6 +97,7 @@ public class MergingTermInfo {
             }
             if (urlSubjectInfo.containsKey(orgUrl)) {
                 subjectTermInfo = urlSubjectInfo.get(orgUrl);
+                System.out.println(term+" "+alterUrl);
 
             }
             TermInfo termInfo = new TermInfo(term, orgUrl, alterUrl, reliabilityCode, administrativeSTatus, subjectTermInfo);
