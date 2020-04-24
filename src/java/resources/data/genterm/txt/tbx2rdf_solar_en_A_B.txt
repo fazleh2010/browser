@@ -1,2 +1,0 @@
-amorphous_semiconductor = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/amorphous+semiconductor-EN=browser_en_A_B_1_term_0.html
-amorphous_silicon = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/amorphous+silicon-EN=browser_en_A_B_1_term_1.html
