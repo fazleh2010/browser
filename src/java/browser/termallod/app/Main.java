@@ -84,7 +84,7 @@ public class Main {
         constants = new FileAndLocationConst(BASE_PATH);
         browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
         
-        cleanDirectory();
+        //cleanDirectory();
         /*cleanDirectory();
         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
         //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
@@ -107,7 +107,7 @@ public class Main {
        
         //2. generate alternative url
         //3. generate HTML
-        /*textFileModifyFlag = false;
+        textFileModifyFlag = false;
         listOfTemPageFlag = true;
         termPageFlag = true;
         alternativeFlag = true;
@@ -116,7 +116,7 @@ public class Main {
         tasks.matchTerminologies(constants.GENTERM, constants.IATE);
         //testMatching();
         browsersToRun=new HashSet<String>(Arrays.asList(constants.GENTERM));
-        tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);*/
+        tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);
         System.out.println("Processing finished!!!");
         //create java script files
         //it works seperately
