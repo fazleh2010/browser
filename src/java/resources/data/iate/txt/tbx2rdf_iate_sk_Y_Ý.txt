@@ -1,0 +1,10 @@
+york-antverpy_pravidlá = York-Antverpy+pravidl%C3%A1-sk
+yamoussoukro = Yamoussoukro-sk
+yersinióza = yersini%C3%B3za-sk
+yessotoxín = yessotox%C3%ADn-sk
+ypg = YPG-sk
+yo!fest = YO%21Fest-sk
+ytrium = ytrium-sk
+yaren = Yaren-sk
+yaoundé = Yaound%C3%A9-sk
+yterbium = yterbium-sk

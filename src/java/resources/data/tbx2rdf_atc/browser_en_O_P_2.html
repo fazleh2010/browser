@@ -1,0 +1,311 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"> 
+  <meta name="_csrf_header" content="X-CSRF-TOKEN"> 
+  <!--this location is for testing in local machine--> 
+  <!--link href="/css/interface.css" rel="stylesheet" type="text/css" />
+      <link href="/css/oxford.css" rel="stylesheet" type="text/css" />
+      <link href="/css/responsive.css" rel="stylesheet" type="text/css" /--> 
+  <!--this location is for original for production--> 
+  <link href="/css/interface.css" rel="stylesheet" type="text/css"> 
+  <link href="/css/oxford.css" rel="stylesheet" type="text/css"> 
+  <link href="/css/responsive.css" rel="stylesheet" type="text/css"> 
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;  
+}
+
+/*the container must be positioned relative:*/
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+      </style> 
+ </head> 
+ <body> 
+  <div id="ox-header" class=""> 
+   <div class="responsive_row flush-below top"> 
+    <div class="responsive_container responsive_display_on_smartphone"> 
+     <div class="menu_button"></div> 
+    </div> 
+    <div class="nav responsive_container main_nav"> 
+     <ul class="menu"> 
+      <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+      <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+     </ul> 
+    </div> 
+   </div> 
+   <div class="responsive_row"> 
+    <div id="ad_leftslot_container" class="ad_leftslot_container responsive_entry_left"> 
+     <div class="ac_leftslot sticky"> 
+      <div id="ad_leftslot_a" class="am-default "> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="responsive_entry_center"> 
+     <div class="responsive_display_on_hd" id="leaderboardHD"> 
+      <div class=""> 
+       <div id="ad_topslot_b" class="am-default "> 
+       </div> 
+      </div> 
+     </div> 
+     <div id="main_column" class="responsive_row"> 
+      <div class="middle_wrap wordlist-page"> 
+       <div class="responsive_row"> 
+        <h4>Language Selection:</h4> 
+        <div class="langauge selection box"> 
+         <table style="width:60%"> 
+          <tbody> 
+           <tr> 
+            <td><a href="browser_en_A_B_1.html">English</a></td> 
+            <td><a href="browser_nl_1_1.html">Dutch</a></td> 
+           </tr> 
+          </tbody> 
+         </table> 
+        </div> 
+        <h4>Search terms</h4> 
+        <!--Make sure the form has the autocomplete function switched off:--> 
+        <form autocomplete="off" id="form_id"> 
+         <div class="autocomplete" style="width:300px;"> 
+          <input id="myInput" type="text" placeholder="Search.."> 
+         </div> 
+         <input id="submit" type="submit"> 
+        </form> 
+        <script type="text/javascript" src="../files/browser/js/tbx2rdf_atc_en.js"></script> 
+        <!--div class="mainsearch">
+                           <form id="search-form" method="get" action="browser_hu_10_1.html">
+                              <div class="dictionarySelector">
+                                 <div id="select_div">
+                                    <div>English</div>
+                                 </div>
+                              </div>
+                              <div class="searchfield">
+                                 <input type="text" id="q" name="q"
+                                    class="searchfield_input"/>
+                                 <a id="keyboard_icon" class="oup_icons responsive_hide_on_smartphone responsive_hide_on_tablet"></a>
+                                 <div id="keyboard_letters"></div>
+                              </div>
+                              <div class="inputSuggestions"></div>
+                              <label id="search-btn" class="oup_icons">
+                              <input type="submit" value="" />
+                              </label>
+                           </form>
+                        </div>
+                     </div--> 
+        <div class="side-selector clear_fix"> 
+         <div class="side-selector__left"> 
+          <!-- the topics --> 
+          <div id="entries-selector" class=""> 
+           <ul class="hide_phone"> 
+            <li class="currentpage"> <span>O_P</span> <li><a href="browser_en_A_B_1.html">A_B</a></li>  <li><a href="browser_en_C_D_1.html">C_D</a></li>  <li><a href="browser_en_E_F_1.html">E_F</a></li>  <li><a href="browser_en_G_H_1.html">G_H</a></li>  <li><a href="browser_en_I_J_1.html">I_J</a></li>  <li><a href="browser_en_K_L_1.html">K_L</a></li>  <li><a href="browser_en_M_N_1.html">M_N</a></li>  <li><a href="browser_en_Q_R_1.html">Q_R</a></li>  <li><a href="browser_en_S_T_1.html">S_T</a></li>  <li><a href="browser_en_U_V_1.html">U_V</a></li>  <li><a href="browser_en_W_X_1.html">W_X</a></li>  <li><a href="browser_en_Y_Z_1.html">Y_Z</a></li> </li> 
+           </ul> 
+           <div class="wl-select hide_all display_phone"> 
+           </div> 
+          </div> 
+          <!-- entries-selector --> 
+         </div> 
+         <div class="side-selector__right"> 
+          <!-- the items of the selected topic --> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner"> 
+             <li class="activepageUpper"> </li>  
+             <li><a href="browser_en_O_P_1.html">Previous</a></li>  
+             <li><a href="browser_en_O_P_3.html">3</a></li>  
+             <li><a href="browser_en_O_P_4.html">4</a></li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="entrylist1"> 
+           <ul class="result-list1 wordlist-oxford3000 list-plain">  
+            <li><a href="browser_en_O_P_2_term_0.html" title="papillomavirus_(human_types_6,_11,_16,_18,_31,_33,_45,_52,_58) definition">papillomavirus (human types 6, 11, 16, 18, 31, 33, 45, 52, 58)</a></li>  
+            <li><a href="browser_en_O_P_2_term_1.html" title="paracetamol definition">paracetamol</a></li>  
+            <li><a href="browser_en_O_P_2_term_2.html" title="paracetamol,_combinations_excl._psycholeptics definition">paracetamol, combinations excl. psycholeptics</a></li>  
+            <li><a href="browser_en_O_P_2_term_3.html" title="paramethasone definition">paramethasone</a></li>  
+            <li><a href="browser_en_O_P_2_term_4.html" title="parathyroid_hormone definition">parathyroid hormone</a></li>  
+            <li><a href="browser_en_O_P_2_term_5.html" title="parecoxib definition">parecoxib</a></li>  
+            <li><a href="browser_en_O_P_2_term_6.html" title="paromomycin definition">paromomycin</a></li>  
+            <li><a href="browser_en_O_P_2_term_7.html" title="paroxetine definition">paroxetine</a></li>  
+            <li><a href="browser_en_O_P_2_term_8.html" title="patient_at_risk definition">patient at risk</a></li>  
+            <li><a href="browser_en_O_P_2_term_9.html" title="patient_population definition">patient population</a></li>  
+            <li><a href="browser_en_O_P_2_term_10.html" title="pazopanib definition">pazopanib</a></li>  
+            <li><a href="browser_en_O_P_2_term_11.html" title="peak_plasma_concentration definition">peak plasma concentration</a></li>  
+            <li><a href="browser_en_O_P_2_term_12.html" title="pectin definition">pectin</a></li>  
+            <li><a href="browser_en_O_P_2_term_13.html" title="pefloxacin definition">pefloxacin</a></li>  
+            <li><a href="browser_en_O_P_2_term_14.html" title="pegaptanib definition">pegaptanib</a></li>  
+            <li><a href="browser_en_O_P_2_term_15.html" title="pegfilgrastim definition">pegfilgrastim</a></li>  
+            <li><a href="browser_en_O_P_2_term_16.html" title="peginterferon_alfa-2a definition">peginterferon alfa-2a</a></li>  
+            <li><a href="browser_en_O_P_2_term_17.html" title="peginterferon_alfa-2b definition">peginterferon alfa-2b</a></li>  
+            <li><a href="browser_en_O_P_2_term_18.html" title="pegvisomant definition">pegvisomant</a></li>  
+            <li><a href="browser_en_O_P_2_term_19.html" title="pembrolizumab definition">pembrolizumab</a></li>  
+            <li><a href="browser_en_O_P_2_term_20.html" title="pemetrexed definition">pemetrexed</a></li>  
+            <li><a href="browser_en_O_P_2_term_21.html" title="pemoline definition">pemoline</a></li>  
+            <li><a href="browser_en_O_P_2_term_22.html" title="penciclovir definition">penciclovir</a></li>  
+            <li><a href="browser_en_O_P_2_term_23.html" title="penfluridol definition">penfluridol</a></li>  
+            <li><a href="browser_en_O_P_2_term_24.html" title="penicillamine definition">penicillamine</a></li>  
+            <li><a href="browser_en_O_P_2_term_25.html" title="penicillins,_combinations_with_other_antibacterial definition">penicillins, combinations with other antibacterial</a></li>  
+            <li><a href="browser_en_O_P_2_term_26.html" title="pentamidine_isethionate definition">pentamidine isethionate</a></li>  
+            <li><a href="browser_en_O_P_2_term_27.html" title="pentazocine definition">pentazocine</a></li>  
+            <li><a href="browser_en_O_P_2_term_28.html" title="penthienate definition">penthienate</a></li>  
+            <li><a href="browser_en_O_P_2_term_29.html" title="pentoxifylline definition">pentoxifylline</a></li>  
+            <li><a href="browser_en_O_P_2_term_30.html" title="pentoxyverine definition">pentoxyverine</a></li>  
+            <li><a href="browser_en_O_P_2_term_31.html" title="pepsin_and_acid_preparations definition">pepsin and acid preparations</a></li>  
+            <li><a href="browser_en_O_P_2_term_32.html" title="perampanel definition">perampanel</a></li>  
+            <li><a href="browser_en_O_P_2_term_33.html" title="perennial_allergic_rhinitis definition">perennial allergic rhinitis</a></li>  
+            <li><a href="browser_en_O_P_2_term_34.html" title="pergolide definition">pergolide</a></li>  
+            <li><a href="browser_en_O_P_2_term_35.html" title="perhexiline definition">perhexiline</a></li>  
+            <li><a href="browser_en_O_P_2_term_36.html" title="periciazine definition">periciazine</a></li>  
+            <li><a href="browser_en_O_P_2_term_37.html" title="perindopril definition">perindopril</a></li>  
+            <li><a href="browser_en_O_P_2_term_38.html" title="perindopril,_amlodipine_and_indapamide definition">perindopril, amlodipine and indapamide</a></li>  
+            <li><a href="browser_en_O_P_2_term_39.html" title="perindopril_and_amlodipine definition">perindopril and amlodipine</a></li>  
+            <li><a href="browser_en_O_P_2_term_40.html" title="perindopril_and_bisoprolol definition">perindopril and bisoprolol</a></li>  
+            <li><a href="browser_en_O_P_2_term_41.html" title="perindopril_and_diuretics definition">perindopril and diuretics</a></li>  
+            <li><a href="browser_en_O_P_2_term_42.html" title="permethrin definition">permethrin</a></li>  
+            <li><a href="browser_en_O_P_2_term_43.html" title="permethrin,_combinations definition">permethrin, combinations</a></li>  
+            <li><a href="browser_en_O_P_2_term_44.html" title="perphenazine definition">perphenazine</a></li>  
+            <li><a href="browser_en_O_P_2_term_45.html" title="pertussis,_inactivated,_whole_cell,_combinations_w definition">pertussis, inactivated, whole cell, combinations w</a></li>  
+            <li><a href="browser_en_O_P_2_term_46.html" title="pertussis,_purified_antigen,_combinations_with_tox definition">pertussis, purified antigen, combinations with tox</a></li>  
+            <li><a href="browser_en_O_P_2_term_47.html" title="pertuzumab definition">pertuzumab</a></li>  
+            <li><a href="browser_en_O_P_2_term_48.html" title="pethidine definition">pethidine</a></li>  
+            <li><a href="browser_en_O_P_2_term_49.html" title="pharmaceutical_form definition">pharmaceutical form</a></li>  
+            <li><a href="browser_en_O_P_2_term_50.html" title="pharmacodynamic_property definition">pharmacodynamic property</a></li>  
+            <li><a href="browser_en_O_P_2_term_51.html" title="pharmacokinetic_properties definition">pharmacokinetic properties</a></li>  
+            <li><a href="browser_en_O_P_2_term_52.html" title="pharmacotherapeutic_group definition">pharmacotherapeutic group</a></li>  
+            <li><a href="browser_en_O_P_2_term_53.html" title="phenacetin,_combinations_excl._psycholeptics definition">phenacetin, combinations excl. psycholeptics</a></li>  
+            <li><a href="browser_en_O_P_2_term_54.html" title="phenacetin,_combinations_with_psycholeptics definition">phenacetin, combinations with psycholeptics</a></li>  
+            <li><a href="browser_en_O_P_2_term_55.html" title="phenazone,_combinations_excl._psycholeptics definition">phenazone, combinations excl. psycholeptics</a></li>  
+            <li><a href="browser_en_O_P_2_term_56.html" title="phenazopyridine definition">phenazopyridine</a></li>  
+            <li><a href="browser_en_O_P_2_term_57.html" title="phenelzine definition">phenelzine</a></li>  
+            <li><a href="browser_en_O_P_2_term_58.html" title="pheneturide definition">pheneturide</a></li>  
+            <li><a href="browser_en_O_P_2_term_59.html" title="pheniramine definition">pheniramine</a></li>  
+            <li><a href="browser_en_O_P_2_term_60.html" title="phenobarbital definition">phenobarbital</a></li>  
+            <li><a href="browser_en_O_P_2_term_61.html" title="phenolphthalein definition">phenolphthalein</a></li>  
+            <li><a href="browser_en_O_P_2_term_62.html" title="phenothrin definition">phenothrin</a></li>  
+            <li><a href="browser_en_O_P_2_term_63.html" title="phenoxybenzamine definition">phenoxybenzamine</a></li>  
+            <li><a href="browser_en_O_P_2_term_64.html" title="phenoxymethylpenicillin definition">phenoxymethylpenicillin</a></li>  
+            <li><a href="browser_en_O_P_2_term_65.html" title="phenprocoumon definition">phenprocoumon</a></li>  
+            <li><a href="browser_en_O_P_2_term_66.html" title="phentermine definition">phentermine</a></li>  
+            <li><a href="browser_en_O_P_2_term_67.html" title="phentolamine definition">phentolamine</a></li>  
+            <li><a href="browser_en_O_P_2_term_68.html" title="phenylbutazone definition">phenylbutazone</a></li>  
+            <li><a href="browser_en_O_P_2_term_69.html" title="phenylephrine definition">phenylephrine</a></li>  
+            <li><a href="browser_en_O_P_2_term_70.html" title="phenylephrine,_combinations definition">phenylephrine, combinations</a></li>  
+            <li><a href="browser_en_O_P_2_term_71.html" title="phenylmercuric_borate definition">phenylmercuric borate</a></li>  
+            <li><a href="browser_en_O_P_2_term_72.html" title="phenylpropanolamine,_combinations definition">phenylpropanolamine, combinations</a></li>  
+            <li><a href="browser_en_O_P_2_term_73.html" title="phenytoin definition">phenytoin</a></li>  
+            <li><a href="browser_en_O_P_2_term_74.html" title="phenytoin,_combinations definition">phenytoin, combinations</a></li>  
+            <li><a href="browser_en_O_P_2_term_75.html" title="phloroglucinol definition">phloroglucinol</a></li>  
+            <li><a href="browser_en_O_P_2_term_76.html" title="pholcodine definition">pholcodine</a></li>  
+            <li><a href="browser_en_O_P_2_term_77.html" title="phthalylsulfathiazole definition">phthalylsulfathiazole</a></li>  
+            <li><a href="browser_en_O_P_2_term_78.html" title="phytomenadione definition">phytomenadione</a></li>  
+            <li><a href="browser_en_O_P_2_term_79.html" title="pilocarpine definition">pilocarpine</a></li>  
+            <li><a href="browser_en_O_P_2_term_80.html" title="pilocarpine,_combinations definition">pilocarpine, combinations</a></li>  
+            <li><a href="browser_en_O_P_2_term_81.html" title="pimecrolimus definition">pimecrolimus</a></li>  
+            <li><a href="browser_en_O_P_2_term_82.html" title="pimozide definition">pimozide</a></li>  
+            <li><a href="browser_en_O_P_2_term_83.html" title="pinacidil definition">pinacidil</a></li>  
+            <li><a href="browser_en_O_P_2_term_84.html" title="pinaverium definition">pinaverium</a></li>  
+            <li><a href="browser_en_O_P_2_term_85.html" title="pindolol definition">pindolol</a></li>  
+            <li><a href="browser_en_O_P_2_term_86.html" title="pindolol_and_other_diuretics definition">pindolol and other diuretics</a></li>  
+            <li><a href="browser_en_O_P_2_term_87.html" title="pioglitazone definition">pioglitazone</a></li>  
+            <li><a href="browser_en_O_P_2_term_88.html" title="pipamperone definition">pipamperone</a></li>  
+            <li><a href="browser_en_O_P_2_term_89.html" title="pipemidic_acid definition">pipemidic acid</a></li>  
+            <li><a href="browser_en_O_P_2_term_90.html" title="pipenzolate definition">pipenzolate</a></li>  
+            <li><a href="browser_en_O_P_2_term_91.html" title="piperacillin definition">piperacillin</a></li>  
+            <li><a href="browser_en_O_P_2_term_92.html" title="piperacillin_and_enzyme_inhibitor definition">piperacillin and enzyme inhibitor</a></li>  
+            <li><a href="browser_en_O_P_2_term_93.html" title="pipotiazine definition">pipotiazine</a></li>  
+            <li><a href="browser_en_O_P_2_term_94.html" title="piracetam definition">piracetam</a></li>  
+            <li><a href="browser_en_O_P_2_term_95.html" title="pirbuterol definition">pirbuterol</a></li>  
+            <li><a href="browser_en_O_P_2_term_96.html" title="pirfenidone definition">pirfenidone</a></li>  
+            <li><a href="browser_en_O_P_2_term_97.html" title="pirisudanol definition">pirisudanol</a></li>  
+            <li><a href="browser_en_O_P_2_term_98.html" title="piritramide definition">piritramide</a></li>  
+            <li><a href="browser_en_O_P_2_term_99.html" title="piroxicam definition">piroxicam</a></li> 
+           </ul> 
+          </div> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner_down"> 
+             <li class="activepageLower"> </li>  
+             <li><a href="browser_en_O_P_1.html">Previous</a></li>  
+             <li><a href="browser_en_O_P_3.html">3</a></li>  
+             <li><a href="browser_en_O_P_4.html">4</a></li> 
+            </ul> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <div id="ox-footer" class=""> 
+    <div class="responsive_row flush-below top"> 
+     <div class="responsive_container responsive_display_on_smartphone"> 
+      <div class="menu_button"></div> 
+     </div> 
+     <div class="nav responsive_container main_nav"> 
+      <ul class="menu"> 
+       <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+       <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+      </ul> 
+     </div> 
+    </div>  
+   </div>
+  </div>
+ </body>
+</html>

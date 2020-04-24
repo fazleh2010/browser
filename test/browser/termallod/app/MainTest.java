@@ -15,8 +15,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import browser.termallod.api.Tasks;
-import static browser.termallod.app.Main.browserSet;
-import static browser.termallod.app.Main.constants;
 import browser.termallod.constants.FileAndLocationConst;
 import browser.termallod.core.MergingTermInfo;
 import browser.termallod.core.html.HtmlParameters;

@@ -1,0 +1,13 @@
+quantification = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/quantification-EN=browser_en_Q_R_1_term_0.html
+raw_material = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/raw+material-EN=browser_en_Q_R_1_term_1.html
+raw_material_extraction = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/raw+material+extraction-EN=browser_en_Q_R_1_term_2.html
+recovery = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/recovery-EN=browser_en_Q_R_1_term_3.html
+recovery_technology = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/recovery+technology-EN=browser_en_Q_R_1_term_4.html
+recyclables = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/recyclables-EN=browser_en_Q_R_1_term_5.html
+recycled_content_approach = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/recycled+content+approach-EN=browser_en_Q_R_1_term_6.html
+recycling = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/recycling-EN=browser_en_Q_R_1_term_7.html
+recycling_scheme = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/recycling+scheme-EN=browser_en_Q_R_1_term_8.html
+reference_flow = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/reference+flow-EN=browser_en_Q_R_1_term_9.html
+resource_overexploitation = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/resource+overexploitation-EN=browser_en_Q_R_1_term_10.html
+reuse = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/reuse-EN=browser_en_Q_R_1_term_11.html
+reverse_logistics = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/reverse+logistics-EN=browser_en_Q_R_1_term_12.html
