@@ -54,7 +54,7 @@ public class HtmlTermPage extends HtmlPageAbstract {
     public TermDetail createTerms(TermDetail termDetail, Integer index, File htmlFileName) throws Exception {
         Document generatedHtmlPage = null;
 
-        Document termTemplate = info.getTermPageTemplate(constants.TEMPLATE_LOCATION, ".html");
+        
         if (htmlCreateParameters.getAlternativeFlag()) {
              String url = htmlFileName.getName().replace(".html", "");
              url = url + "_" + "term" + "_" + index + ".html";
@@ -62,6 +62,7 @@ public class HtmlTermPage extends HtmlPageAbstract {
             
 
             if (htmlCreateParameters.getTermPageFlag()) {
+                Document termTemplate = info.getTermPageTemplate(constants.TEMPLATE_LOCATION, ".html");
                 String term = termDetail.getTerm();
                 String urls = info.getAlphabetTermPage().getProps().getProperty(term);
                 url = StringMatcherUtil.getAlternativeUrl(urls, htmlCreateParameters.getAlternativeFlag());

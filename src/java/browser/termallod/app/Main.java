@@ -47,17 +47,19 @@ public class Main {
 
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
-            put("en", "English");
+            put("nl", "Dutch");
+            //put("en", "English");
            // put("nl", "Dutch");
             //put("nl", "Dutch");
             //currently dutch does not work...
-            /* put("bg", "Bulgarian");
+            /*put("bg", "Bulgarian");
             put("cs", "Czech");
             put("da", "Danish");
             put("de", "German");
             put("el", "Greek");
-            put("en", "English");
+            //put("en", "English");
             put("es", "German");
+            put("nl", "Dutch");
             put("et", "Estonian");
             put("fi", "Finnish");
             put("fr", "French");
@@ -84,7 +86,7 @@ public class Main {
         constants = new FileAndLocationConst(BASE_PATH);
         browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
         
-        //cleanDirectory();
+        cleanDirectory();
         /*cleanDirectory();
         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
         //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
@@ -95,7 +97,7 @@ public class Main {
         termPageFlag = false;
         alternativeFlag = true;
         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
-        browsersToRun=new HashSet<String>(Arrays.asList(constants.GENTERM));
+        browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE,constants.GENTERM));
          //tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
          htmlCreateParameters = new HtmlParameters(textFileModifyFlag, listOfTemPageFlag,  termPageFlag,alternativeFlag);
          tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);*/
@@ -107,7 +109,7 @@ public class Main {
        
         //2. generate alternative url
         //3. generate HTML
-        textFileModifyFlag = false;
+        /*textFileModifyFlag = false;
         listOfTemPageFlag = true;
         termPageFlag = true;
         alternativeFlag = true;
@@ -115,8 +117,8 @@ public class Main {
         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
         tasks.matchTerminologies(constants.GENTERM, constants.IATE);
         //testMatching();
-        browsersToRun=new HashSet<String>(Arrays.asList(constants.GENTERM));
-        tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);
+        browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE));
+        tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);*/
         System.out.println("Processing finished!!!");
         //create java script files
         //it works seperately
