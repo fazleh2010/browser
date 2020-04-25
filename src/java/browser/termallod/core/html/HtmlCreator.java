@@ -66,7 +66,7 @@ public class HtmlCreator  {
                     createHtmlForEachLanguage(langSortedTerms, categoryName, browser);
                 }
                 //temporary implemented code
-                //break;
+                break;
             }
         }
     }
@@ -79,10 +79,10 @@ public class HtmlCreator  {
                 File MAIN_PAGE_TEMPLATE = getTemplate(categoryName, language, ".html");
                 createHtmlForEachAlphabetPair(categoryName, MAIN_PAGE_TEMPLATE, language, alphabetTermPage, pageContentGenerator);
                 //temporay added....
-                  //break;
+                  break;
             }
             //temporary added..
-            //break;
+            break;
         }
     }
     
@@ -104,7 +104,7 @@ public class HtmlCreator  {
             if (this.htmlCreateParameters.getListOfTemPageFlag()) {
                 htmlReaderWriter.writeHtml(listOfTermHtmlPage, htmlFileName);
             }
-            //break;
+            break;
         }
         if (htmlCreateParameters.getTextFileModifyFlag()) {
             String textInputFile = FileRelatedUtils.getSpecificFile(constants.getBASE_PATH(), categoryName, language, alphabetTermPage.getAlpahbetPair(), ".txt");

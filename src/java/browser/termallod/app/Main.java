@@ -47,17 +47,18 @@ public class Main {
 
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
-            put("nl", "Dutch");
+            //put("nl", "Dutch");
             //put("en", "English");
            // put("nl", "Dutch");
             //put("nl", "Dutch");
             //currently dutch does not work...
-            /*put("bg", "Bulgarian");
+            
+            put("bg", "Bulgarian");
             put("cs", "Czech");
             put("da", "Danish");
             put("de", "German");
             put("el", "Greek");
-            //put("en", "English");
+            put("en", "English");
             put("es", "German");
             put("nl", "Dutch");
             put("et", "Estonian");
@@ -74,7 +75,7 @@ public class Main {
             put("ro", "Romanian");
             put("sk", "Slovak");
             put("sl", "Slovenian");
-            put("sv", "Swedish");*/
+            put("sv", "Swedish");
         }
     };
 
