@@ -61,11 +61,11 @@ public class Main {
             //put("en", "English");
             put("es", "Spanish");
             put("nl", "Dutch");
-            /*put("et", "Estonian");
+            put("et", "Estonian");
             put("fi", "Finnish");
             put("fr", "French");
             put("ga", "Irish");
-            put("hr", "Croatian");*/
+            put("hr", "Croatian");
             put("hu", "Hungarian");
             put("it", "Italian");
             /*put("lt", "Lithuanian");
