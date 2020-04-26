@@ -55,10 +55,10 @@ public class Main {
             //put("da", "Danish");
             //put("de", "German");
             //put("en", "English");
-             put("el", "Greek");
-             put("es", "Spanish");
+            /* put("el", "Greek");
+             put("es", "Spanish");*?
              put("nl", "Dutch");
-             put("et", "Estonian");
+             /*put("et", "Estonian");
              put("fi", "Finnish");
              put("fr", "French");
              put("ga", "Irish");
@@ -72,7 +72,7 @@ public class Main {
             put("ro", "Romanian");
             put("sk", "Slovak");
             put("sl", "Slovenian");
-            put("sv", "Swedish");
+            put("sv", "Swedish");*/
             
         }
     };
@@ -117,7 +117,7 @@ public class Main {
         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
         tasks.matchTerminologies(constants.GENTERM, constants.IATE);
         //testMatching();
-        browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE));
+        browsersToRun=new HashSet<String>(Arrays.asList(constants.GENTERM,constants.IATE));
         tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);
         System.out.println("Processing finished!!!");
         //create java script files
