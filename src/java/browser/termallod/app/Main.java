@@ -55,24 +55,23 @@ public class Main {
             //put("da", "Danish");
             //put("de", "German");
             //put("en", "English");
-            /* put("el", "Greek");
-             put("es", "Spanish");*?
-             put("nl", "Dutch");
-             /*put("et", "Estonian");
+             put("el", "Greek");
+             put("es", "Spanish");
+             put("et", "Estonian");
              put("fi", "Finnish");
              put("fr", "French");
              put("ga", "Irish");
-            put("hr", "Croatian");
-            put("hu", "Hungarian");
-            put("it", "Italian");
-            put("lt", "Lithuanian");
-            put("lv", "Latvian");
-            put("mt", "Maltese");
-            put("nl", "Dutch");
-            put("ro", "Romanian");
-            put("sk", "Slovak");
-            put("sl", "Slovenian");
-            put("sv", "Swedish");*/
+             put("hr", "Croatian");
+             put("hu", "Hungarian");
+             put("it", "Italian");
+             put("lt", "Lithuanian");
+             put("lv", "Latvian");
+             put("mt", "Maltese");
+             put("nl", "Dutch");
+             put("ro", "Romanian");
+             put("sk", "Slovak");
+             put("sl", "Slovenian");
+             put("sv", "Swedish");
             
         }
     };
