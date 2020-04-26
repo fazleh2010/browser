@@ -148,9 +148,10 @@ public class HtmlTermPage extends HtmlPageAbstract {
         String posTr = "", numberTr = "", genderTr = "", definitionTr = "", hypernymTr = "", hyponymTr = "", variantTr = "", synonymTr = "";
 
         TermInfo termInfo = this.getTermInformation(url);
-        /*if (termInfo != null) {
-           // System.out.println(term + " " + termFileName + " " + termInfo.getSubjectId() + termInfo.getTermID());
-        }*/
+        if (termInfo != null) {
+           System.out.println(term + " " + termFileName + " " );
+           //+ termInfo.getSubjectId() + termInfo.getTermID()
+        }
 
         String langValueStr = languageMapper.get(info.getLanguage());
         languageTr = getTr(getProperty("Language"), getValueNew(langValueStr));

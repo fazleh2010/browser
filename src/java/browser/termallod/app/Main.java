@@ -49,22 +49,19 @@ public class Main {
         {
             //put("nl", "Dutch");
             //put("en", "English");
-           // put("nl", "Dutch");
-            //put("nl", "Dutch");
-            //currently dutch does not work...
             
             //put("bg", "Bulgarian");
             //put("cs", "Czech");
             //put("da", "Danish");
             //put("de", "German");
-            put("el", "Greek");
             //put("en", "English");
-            put("es", "Spanish");
-            put("nl", "Dutch");
-            put("et", "Estonian");
-            put("fi", "Finnish");
-            put("fr", "French");
-            put("ga", "Irish");
+             put("el", "Greek");
+             put("es", "Spanish");
+             put("nl", "Dutch");
+             put("et", "Estonian");
+             put("fi", "Finnish");
+             put("fr", "French");
+             put("ga", "Irish");
             put("hr", "Croatian");
             put("hu", "Hungarian");
             put("it", "Italian");
@@ -95,7 +92,7 @@ public class Main {
         //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
          tasks.saveDataIntoFiles(browserSet);*/
         
-        textFileModifyFlag = true;
+        /*textFileModifyFlag = true;
         listOfTemPageFlag = false;
         termPageFlag = false;
         alternativeFlag = true;
@@ -103,7 +100,7 @@ public class Main {
         browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE,constants.GENTERM));
          //tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
          htmlCreateParameters = new HtmlParameters(textFileModifyFlag, listOfTemPageFlag,  termPageFlag,alternativeFlag);
-         tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);
+         tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);*/
         
          ////////////////////////////////////////////////////
 
