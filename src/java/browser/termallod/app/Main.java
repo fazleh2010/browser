@@ -53,22 +53,22 @@ public class Main {
             //put("nl", "Dutch");
             //currently dutch does not work...
             
-            put("bg", "Bulgarian");
-            put("cs", "Czech");
-            put("da", "Danish");
-            put("de", "German");
+            //put("bg", "Bulgarian");
+            //put("cs", "Czech");
+            //put("da", "Danish");
+            //put("de", "German");
             put("el", "Greek");
-            put("en", "English");
-            put("es", "German");
+            //put("en", "English");
+            put("es", "Spanish");
             put("nl", "Dutch");
-            put("et", "Estonian");
+            /*put("et", "Estonian");
             put("fi", "Finnish");
             put("fr", "French");
             put("ga", "Irish");
-            put("hr", "Croatian");
+            put("hr", "Croatian");*/
             put("hu", "Hungarian");
             put("it", "Italian");
-            put("lt", "Lithuanian");
+            /*put("lt", "Lithuanian");
             put("lv", "Latvian");
             put("mt", "Maltese");
             put("nl", "Dutch");
@@ -76,8 +76,10 @@ public class Main {
             put("sk", "Slovak");
             put("sl", "Slovenian");
             put("sv", "Swedish");
+            */
         }
     };
+    
 
     public static void main(String[] args) throws Exception {
         HtmlParameters htmlCreateParameters = null;
