@@ -68,7 +68,7 @@ public class Main {
             put("hr", "Croatian");
             put("hu", "Hungarian");
             put("it", "Italian");
-            /*put("lt", "Lithuanian");
+            put("lt", "Lithuanian");
             put("lv", "Latvian");
             put("mt", "Maltese");
             put("nl", "Dutch");
@@ -76,7 +76,7 @@ public class Main {
             put("sk", "Slovak");
             put("sl", "Slovenian");
             put("sv", "Swedish");
-            */
+            
         }
     };
     
