@@ -95,7 +95,7 @@ public class Main {
         //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
          tasks.saveDataIntoFiles(browserSet);*/
         
-        /*textFileModifyFlag = true;
+        textFileModifyFlag = true;
         listOfTemPageFlag = false;
         termPageFlag = false;
         alternativeFlag = true;
@@ -103,7 +103,7 @@ public class Main {
         browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE,constants.GENTERM));
          //tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
          htmlCreateParameters = new HtmlParameters(textFileModifyFlag, listOfTemPageFlag,  termPageFlag,alternativeFlag);
-         tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);*/
+         tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);
         
          ////////////////////////////////////////////////////
 
