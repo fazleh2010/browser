@@ -55,7 +55,7 @@ public class Main {
             //put("da", "Danish");
             //put("de", "German");
             //put("en", "English");
-             put("el", "Greek");
+             //put("el", "Greek");
              put("es", "Spanish");
              put("et", "Estonian");
              put("fi", "Finnish");
