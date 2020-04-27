@@ -1,7 +1,0 @@
-inlevercontainer = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/inlevercontainer-NL=browser_nl_5_1_term_0.html=browser_nl_5_1_term_0.html
-inleversysteem = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/inleversysteem-NL=browser_nl_5_1_term_1.html=browser_nl_5_1_term_1.html
-interpretatie = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/interpretatie-NL=browser_nl_5_1_term_2.html=browser_nl_5_1_term_2.html
-inventarisatie = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/inventarisatie-NL=browser_nl_5_1_term_3.html=browser_nl_5_1_term_3.html
-invoer = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/invoer-NL=browser_nl_5_1_term_4.html=browser_nl_5_1_term_4.html
-inzameldienst = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/inzameldienst-NL=browser_nl_5_1_term_5.html=browser_nl_5_1_term_5.html
-inzamelingssysteem_voor_vast_afval = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/inzamelingssysteem+voor+vast+afval-NL=browser_nl_5_1_term_6.html=browser_nl_5_1_term_6.html

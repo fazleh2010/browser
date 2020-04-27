@@ -48,20 +48,20 @@ public class Main {
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
             //put("nl", "Dutch");
-             put("en", "English");
+             //put("en", "English");
             //put("bg", "Bulgarian");
             //put("cs", "Czech");
             //put("da", "Danish");
             //put("de", "German");
             //put("en", "English");
              //put("el", "Greek");
-             /*put("es", "Spanish");
-             put("et", "Estonian");
+             //put("es", "Spanish");
+             //put("et", "Estonian");
              put("fi", "Finnish");
-             put("fr", "French");
-             put("ga", "Irish");
-             put("hr", "Croatian");
-             put("hu", "Hungarian");
+             //put("fr", "French");
+             //put("ga", "Irish");
+             //put("hr", "Croatian");
+             //put("hu", "Hungarian");
              put("it", "Italian");
              put("lt", "Lithuanian");
              put("lv", "Latvian");
@@ -70,7 +70,7 @@ public class Main {
              put("ro", "Romanian");
              put("sk", "Slovak");
              put("sl", "Slovenian");
-             put("sv", "Swedish");*/
+             put("sv", "Swedish");
             
         }
     };

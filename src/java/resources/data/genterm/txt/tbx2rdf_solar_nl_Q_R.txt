@@ -1,7 +1,0 @@
-raymond,_c.f. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Raymond%2C+C.F.-NL=browser_nl_9_1_term_0.html=browser_nl_9_1_term_0.html
-redfield,_d. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Redfield%2C+D.-NL=browser_nl_9_1_term_1.html=browser_nl_9_1_term_1.html
-renkema,_j. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Renkema%2C+J.-NL=browser_nl_9_1_term_2.html=browser_nl_9_1_term_2.html
-rickerby,_d.g. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Rickerby%2C+D.G.-NL=browser_nl_9_1_term_3.html=browser_nl_9_1_term_3.html
-rittal = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Rittal-NL=browser_nl_9_1_term_4.html=browser_nl_9_1_term_4.html
-roger,_a.m. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Roger%2C+A.M.-NL=browser_nl_9_1_term_5.html=browser_nl_9_1_term_5.html
-ryckevelde = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Ryckevelde-NL=browser_nl_9_1_term_6.html=browser_nl_9_1_term_6.html

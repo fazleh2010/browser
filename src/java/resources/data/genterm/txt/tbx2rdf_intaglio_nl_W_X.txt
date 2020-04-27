@@ -1,2 +1,0 @@
-wapensmederij = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/wapensmederij-NL=browser_nl_12_1_term_0.html=browser_nl_12_1_term_0.html
-watertoon = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/watertoon-NL=browser_nl_12_1_term_1.html=browser_nl_12_1_term_1.html
