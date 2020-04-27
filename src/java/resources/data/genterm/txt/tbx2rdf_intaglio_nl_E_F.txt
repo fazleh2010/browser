@@ -1,0 +1,12 @@
+enkelvoudige_bijting = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/enkelvoudige+bijting-NL=browser_nl_3_1_term_0.html=browser_nl_3_1_term_0.html
+etsbad = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/etsbad-NL=browser_nl_3_1_term_1.html=browser_nl_3_1_term_1.html
+etsbak = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/etsbak-NL=browser_nl_3_1_term_2.html=browser_nl_3_1_term_2.html
+etsdruk = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/etsdruk-NL=browser_nl_3_1_term_3.html=browser_nl_3_1_term_3.html
+etsgaatje = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/etsgaatje-NL=browser_nl_3_1_term_4.html=browser_nl_3_1_term_4.html
+etsing = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/etsing-NL=browser_nl_3_1_term_5.html=browser_nl_3_1_term_5.html
+etskunst = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/etskunst-NL=browser_nl_3_1_term_6.html=browser_nl_3_1_term_6.html
+etslijn = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/etslijn-NL=browser_nl_3_1_term_7.html=browser_nl_3_1_term_7.html
+etsmiddel = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/etsmiddel-NL=browser_nl_3_1_term_8.html=browser_nl_3_1_term_8.html
+etsoven = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/etsoven-NL=browser_nl_3_1_term_9.html=browser_nl_3_1_term_9.html
+etswater = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/etswater-NL=browser_nl_3_1_term_10.html=browser_nl_3_1_term_10.html
+facetteren = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/facetteren-NL=browser_nl_3_1_term_11.html=browser_nl_3_1_term_11.html

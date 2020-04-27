@@ -1,0 +1,11 @@
+orton,_j.w. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Orton%2C+J.W.-NL=browser_nl_8_1_term_0.html=browser_nl_8_1_term_0.html
+p-dopering = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/p-dopering-NL=browser_nl_8_1_term_1.html=browser_nl_8_1_term_1.html
+p-dotering = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/p-dotering-NL=browser_nl_8_1_term_2.html=browser_nl_8_1_term_2.html
+p-type_halfgeleider = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/p-type+halfgeleider-NL=browser_nl_8_1_term_3.html=browser_nl_8_1_term_3.html
+pawley,_j.b = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Pawley%2C+J.B-NL=browser_nl_8_1_term_4.html=browser_nl_8_1_term_4.html
+physics = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Physics-NL=browser_nl_8_1_term_5.html=browser_nl_8_1_term_5.html
+plak = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/plak-NL=browser_nl_8_1_term_6.html=browser_nl_8_1_term_6.html
+pn-junctie = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/pn-junctie-NL=browser_nl_8_1_term_7.html=browser_nl_8_1_term_7.html
+pn-overgang = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/pn-overgang-NL=browser_nl_8_1_term_8.html=browser_nl_8_1_term_8.html
+pollefliet,_j. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Pollefliet%2C+J.-NL=browser_nl_8_1_term_9.html=browser_nl_8_1_term_9.html
+poly-elektronica = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/poly-elektronica-NL=browser_nl_8_1_term_10.html=browser_nl_8_1_term_10.html

@@ -1,0 +1,8 @@
+maagdenwas = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/maagdenwas-NL=browser_nl_7_1_term_0.html=browser_nl_7_1_term_0.html
+manuele_diepdruk = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/manuele+diepdruk-NL=browser_nl_7_1_term_1.html=browser_nl_7_1_term_1.html
+mattoir = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/mattoir-NL=browser_nl_7_1_term_2.html=browser_nl_7_1_term_2.html
+mechanisch_manuele_diepdruk = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/mechanisch+manuele+diepdruk-NL=browser_nl_7_1_term_3.html=browser_nl_7_1_term_3.html
+mengmethode = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/mengmethode-NL=browser_nl_7_1_term_4.html=browser_nl_7_1_term_4.html
+methode_van_haden = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/methode+van+Haden-NL=browser_nl_7_1_term_5.html=browser_nl_7_1_term_5.html
+monotypie = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/monotypie-NL=browser_nl_7_1_term_6.html=browser_nl_7_1_term_6.html
+moulette = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/moulette-NL=browser_nl_7_1_term_7.html=browser_nl_7_1_term_7.html

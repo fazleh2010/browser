@@ -1,0 +1,14 @@
+wafer = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/wafer-NL=browser_nl_12_1_term_0.html=browser_nl_12_1_term_0.html
+websters = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Websters-NL=browser_nl_12_1_term_1.html=browser_nl_12_1_term_1.html
+weitering,_h.h. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Weitering%2C+H.H.-NL=browser_nl_12_1_term_2.html=browser_nl_12_1_term_2.html
+werkenindeindustrie = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Werkenindeindustrie-NL=browser_nl_12_1_term_3.html=browser_nl_12_1_term_3.html
+whitaker,_j.c. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Whitaker%2C+J.C.-NL=browser_nl_12_1_term_4.html=browser_nl_12_1_term_4.html
+white,_r.e. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/White%2C+R.E.-NL=browser_nl_12_1_term_5.html=browser_nl_12_1_term_5.html
+wikipedia_en = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Wikipedia_en-NL=browser_nl_12_1_term_6.html=browser_nl_12_1_term_6.html
+wikipedia_nl = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Wikipedia_nl-NL=browser_nl_12_1_term_7.html=browser_nl_12_1_term_7.html
+willardson,_r.k.1 = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Willardson%2C+R.K.1-NL=browser_nl_12_1_term_8.html=browser_nl_12_1_term_8.html
+willardson,_r.k.2 = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Willardson%2C+R.K.2-NL=browser_nl_12_1_term_9.html=browser_nl_12_1_term_9.html
+willemen,_j.a._willemen,_j.a. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Willemen%2C+J.A.+Willemen%2C+J.A.-NL=browser_nl_12_1_term_10.html=browser_nl_12_1_term_10.html
+wissenburgh,_c. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Wissenburgh%2C+C.-NL=browser_nl_12_1_term_11.html=browser_nl_12_1_term_11.html
+witte,_h._de = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Witte%2C+H.+de-NL=browser_nl_12_1_term_12.html=browser_nl_12_1_term_12.html
+woordenlijst = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Woordenlijst-NL=browser_nl_12_1_term_13.html=browser_nl_12_1_term_13.html

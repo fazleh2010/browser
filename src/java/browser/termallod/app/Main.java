@@ -48,14 +48,14 @@ public class Main {
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
             //put("nl", "Dutch");
-            //put("en", "English");
+             put("en", "English");
             //put("bg", "Bulgarian");
             //put("cs", "Czech");
             //put("da", "Danish");
             //put("de", "German");
             //put("en", "English");
              //put("el", "Greek");
-             put("es", "Spanish");
+             /*put("es", "Spanish");
              put("et", "Estonian");
              put("fi", "Finnish");
              put("fr", "French");
@@ -70,7 +70,7 @@ public class Main {
              put("ro", "Romanian");
              put("sk", "Slovak");
              put("sl", "Slovenian");
-             put("sv", "Swedish");
+             put("sv", "Swedish");*/
             
         }
     };
@@ -115,7 +115,7 @@ public class Main {
         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
         tasks.matchTerminologies(constants.GENTERM, constants.IATE);
         //testMatching();
-        browsersToRun=new HashSet<String>(Arrays.asList(constants.GENTERM,constants.IATE));
+        browsersToRun=new HashSet<String>(Arrays.asList(constants.IATE));
         tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);
         System.out.println("Processing finished!!!");
         //create java script files

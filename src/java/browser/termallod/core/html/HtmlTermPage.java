@@ -149,7 +149,7 @@ public class HtmlTermPage extends HtmlPageAbstract {
 
         TermInfo termInfo = this.getTermInformation(url);
         if (termInfo != null) {
-           System.out.println(term + " " + termFileName + " " );
+           //System.out.println(term + " " + termFileName + " " );
            //+ termInfo.getSubjectId() + termInfo.getTermID()
         }
 
@@ -232,7 +232,9 @@ public class HtmlTermPage extends HtmlPageAbstract {
                 }
             }
             
-            System.out.println(term+" "+url+" "+otherTerminology+" "+spanTerminologyUrl+" Iate:"+termFileName);
+            //System.out.println(term+" "+url+" "+otherTerminology+" "+spanTerminologyUrl+" Iate:"+termFileName);
+             System.out.println(term+" = "+termFileName);
+
 
             //temporary closed
             String panelHeadingStart = divClassStr + this.getWithinQuote("panel-heading") + ">"
