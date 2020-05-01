@@ -1,0 +1,5 @@
+variety_of_line = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/variety+of+line-EN=browser_en_U_V_1_term_0.html
+verdigris = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/verdigris-EN=browser_en_U_V_1_term_1.html
+vernis_dur = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/vernis+dur-EN=browser_en_U_V_1_term_2.html
+vernis_mol = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/vernis+mol-EN=browser_en_U_V_1_term_3.html
+virgin_wax = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/virgin+wax-EN=browser_en_U_V_1_term_4.html

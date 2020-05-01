@@ -84,14 +84,15 @@ public class Main {
         browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM,constants.IATE));
         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
 
-        /*cleanDirectory();
-        tasks.saveDataIntoFiles(browserSet);         
-        tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);*/
+        //cleanDirectory();
+        //tasks.saveDataIntoFiles(browserSet);         
+        //tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);
         
         
-        tasks.matchTerminologies(constants.GENTERM, constants.IATE);
-        browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
-        tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(false, true,  true, true),dataBaseTemp);
+        //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
+        //browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
+        //tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(false, true,  true, true),dataBaseTemp);
+        
         tasks.createJavaScriptForAutoComp(constants.GENTERM);
         System.out.println("Processing finished!!!");
 

@@ -1,0 +1,245 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"> 
+  <meta name="_csrf_header" content="X-CSRF-TOKEN"> 
+  <!--this location is for testing in local machine--> 
+  <!--link href="/css/interface.css" rel="stylesheet" type="text/css" />
+      <link href="/css/oxford.css" rel="stylesheet" type="text/css" />
+      <link href="/css/responsive.css" rel="stylesheet" type="text/css" /--> 
+  <!--this location is for original for production--> 
+  <link href="../static/css/interface.css" rel="stylesheet" type="text/css"> 
+  <link href="../static/css/oxford.css" rel="stylesheet" type="text/css"> 
+  <link href="../static/css/responsive.css" rel="stylesheet" type="text/css"> 
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;  
+}
+
+/*the container must be positioned relative:*/
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+      </style> 
+ </head> 
+ <body> 
+  <div id="ox-header" class=""> 
+   <div class="responsive_row flush-below top"> 
+    <div class="responsive_container responsive_display_on_smartphone"> 
+     <div class="menu_button"></div> 
+    </div> 
+    <div class="nav responsive_container main_nav"> 
+     <ul class="menu"> 
+      <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+      <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+     </ul> 
+    </div> 
+   </div> 
+   <div class="responsive_row"> 
+    <div id="ad_leftslot_container" class="ad_leftslot_container responsive_entry_left"> 
+     <div class="ac_leftslot sticky"> 
+      <div id="ad_leftslot_a" class="am-default "> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="responsive_entry_center"> 
+     <div class="responsive_display_on_hd" id="leaderboardHD"> 
+      <div class=""> 
+       <div id="ad_topslot_b" class="am-default "> 
+       </div> 
+      </div> 
+     </div> 
+     <div id="main_column" class="responsive_row"> 
+      <div class="middle_wrap wordlist-page"> 
+       <div class="responsive_row"> 
+        <h4>Language Selection:</h4> 
+        <div class="langauge selection box"> 
+         <table style="width:60%"> 
+          <tbody> 
+           <tr> 
+            <td><a href="browser_en_A_B_1.html">English</a></td> 
+            <td><a href="browser_nl_1_1.html">Dutch</a></td> 
+           </tr> 
+          </tbody> 
+         </table> 
+        </div> 
+        <h4>Search terms</h4> 
+        <!--Make sure the form has the autocomplete function switched off:--> 
+        <form autocomplete="off" id="form_id"> 
+         <div class="autocomplete" style="width:300px;"> 
+          <input id="myInput" type="text" placeholder="Search.."> 
+         </div> 
+         <input id="submit" type="submit"> 
+        </form> 
+        <script type="text/javascript" src="../files/browser/js/tbx2rdf_diseases_nl.js"></script> 
+        <!--div class="mainsearch">
+                           <form id="search-form" method="get" action="browser_hu_10_1.html">
+                              <div class="dictionarySelector">
+                                 <div id="select_div">
+                                    <div>English</div>
+                                 </div>
+                              </div>
+                              <div class="searchfield">
+                                 <input type="text" id="q" name="q"
+                                    class="searchfield_input"/>
+                                 <a id="keyboard_icon" class="oup_icons responsive_hide_on_smartphone responsive_hide_on_tablet"></a>
+                                 <div id="keyboard_letters"></div>
+                              </div>
+                              <div class="inputSuggestions"></div>
+                              <label id="search-btn" class="oup_icons">
+                              <input type="submit" value="" />
+                              </label>
+                           </form>
+                        </div>
+                     </div--> 
+        <div class="side-selector clear_fix"> 
+         <div class="side-selector__left"> 
+          <!-- the topics --> 
+          <div id="entries-selector" class=""> 
+           <ul class="hide_phone"> 
+            <li class="currentpage"> <span>W_X</span> <li><a href="browser_nl_1_1.html">A_B</a></li>  <li><a href="browser_nl_2_1.html">C_D</a></li>  <li><a href="browser_nl_3_1.html">E_F</a></li>  <li><a href="browser_nl_4_1.html">G_H</a></li>  <li><a href="browser_nl_5_1.html">I_J</a></li>  <li><a href="browser_nl_6_1.html">K_L</a></li>  <li><a href="browser_nl_7_1.html">M_N</a></li>  <li><a href="browser_nl_8_1.html">O_P</a></li>  <li><a href="browser_nl_9_1.html">Q_R</a></li>  <li><a href="browser_nl_10_1.html">S_T</a></li>  <li><a href="browser_nl_11_1.html">U_V</a></li>  <li><a href="browser_nl_13_1.html">Y_Z</a></li> </li> 
+           </ul> 
+           <div class="wl-select hide_all display_phone"> 
+           </div> 
+          </div> 
+          <!-- entries-selector --> 
+         </div> 
+         <div class="side-selector__right"> 
+          <!-- the items of the selected topic --> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner"> 
+             <li class="activepageUpper"> </li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="entrylist1"> 
+           <ul class="result-list1 wordlist-oxford3000 list-plain">  
+            <li><a href="browser_nl_12_1_term_0.html" title="wadensjö,_c.,_dimitrova,_b.e._&amp;_nilsson,_a._(2007)._the_critical_link_4._amsterdam definition">wadensjö, c., dimitrova, b.e. &amp; nilsson, a. (2007). the critical link 4. amsterdam</a></li>  
+            <li><a href="browser_nl_12_1_term_1.html" title="wadensjö,_c.,_et_al._2007 definition">wadensjö, c., et al. 2007</a></li>  
+            <li><a href="browser_nl_12_1_term_2.html" title="wang,_j.b.s.,_cortina,_g.,_wu,_s.v.,_tran,_r.,_cho,_j._&amp;_tsai,m._(2006)._mutant_neurogenin-3_in_congenital_malabsorptive_diarrhea._the_new_england_journal_for_medicine,_355,_270-280._[online]_http definition">wang, j.b.s., cortina, g., wu, s.v., tran, r., cho, j. &amp; tsai,m. (2006). mutant neurogenin-3 in congenital malabsorptive diarrhea. the new england journal for medicine, 355, 270-280. [online] http</a></li>  
+            <li><a href="browser_nl_12_1_term_3.html" title="wang,_j.b.s.,_et_al._2006 definition">wang, j.b.s., et al. 2006</a></li>  
+            <li><a href="browser_nl_12_1_term_4.html" title="wang,_t.j.,_et_al._2004 definition">wang, t.j., et al. 2004</a></li>  
+            <li><a href="browser_nl_12_1_term_5.html" title="wang,_t.j.,_larson,_m.g.,_levy,_d.,_benjamin,_e.j.,_leip,_e.p.,_omland,_t.,_et_al._(2004)._plasma_natriuretic_peptide_levels_and_the_risk_of_cardiovascular_events_and_death._the_new_england_journal_of_medicine,_350,_655-63._[online]_http definition">wang, t.j., larson, m.g., levy, d., benjamin, e.j., leip, e.p., omland, t., et al. (2004). plasma natriuretic peptide levels and the risk of cardiovascular events and death. the new england journal of medicine, 350, 655-63. [online] http</a></li>  
+            <li><a href="browser_nl_12_1_term_6.html" title="weber,_w.e.j._(2002)._cerebrale_blindheid._nederlands_tijdschrift_voor_geneeskunde,_146,_2013-6._[onine]_http definition">weber, w.e.j. (2002). cerebrale blindheid. nederlands tijdschrift voor geneeskunde, 146, 2013-6. [onine] http</a></li>  
+            <li><a href="browser_nl_12_1_term_7.html" title="weber,_w.e.j._2002 definition">weber, w.e.j. 2002</a></li>  
+            <li><a href="browser_nl_12_1_term_8.html" title="weinstein,_s.l.,_dolan,_l.a.,_wright,_j.g._&amp;_dobbs,_m.b._(2013)._effects_of_bracing_in_adolescents_with_idiopathic_scoliosis._the_new_england_journal_of_medicine,_369,_1512-1521._[online]_http definition">weinstein, s.l., dolan, l.a., wright, j.g. &amp; dobbs, m.b. (2013). effects of bracing in adolescents with idiopathic scoliosis. the new england journal of medicine, 369, 1512-1521. [online] http</a></li>  
+            <li><a href="browser_nl_12_1_term_9.html" title="weinstein,_s.l.,_et_al._2013 definition">weinstein, s.l., et al. 2013</a></li>  
+            <li><a href="browser_nl_12_1_term_10.html" title="wells,_j.m.,_et_al._2012 definition">wells, j.m., et al. 2012</a></li>  
+            <li><a href="browser_nl_12_1_term_11.html" title="wells,_j.m.,_washko,_g.r.,_han,_m.k.,_abbas,_n.,_nath,_h.,_mamary,_j.,_et_al._(2012)._pulmonary_arterial_enlargement_and_acute_exacerbations_of_copd._the_new_england_journal_of_medicine,_367,_913-921._[online]_http definition">wells, j.m., washko, g.r., han, m.k., abbas, n., nath, h., mamary, j., et al. (2012). pulmonary arterial enlargement and acute exacerbations of copd. the new england journal of medicine, 367, 913-921. [online] http</a></li>  
+            <li><a href="browser_nl_12_1_term_12.html" title="wenzel,_r.p._&amp;_fowler,_a.a._(2006)._acute_bronchitis._the_new_england_journal_of_medicine,_355,_2125-2130._[online]_http definition">wenzel, r.p. &amp; fowler, a.a. (2006). acute bronchitis. the new england journal of medicine, 355, 2125-2130. [online] http</a></li>  
+            <li><a href="browser_nl_12_1_term_13.html" title="wenzel,_r.p._&amp;_fowler,_a.a._2006 definition">wenzel, r.p. &amp; fowler, a.a. 2006</a></li>  
+            <li><a href="browser_nl_12_1_term_14.html" title="whyte,_m.,_et_al.2012 definition">whyte, m., et al.2012</a></li>  
+            <li><a href="browser_nl_12_1_term_15.html" title="whyte,_m.,_greenberg,_c.r.,_salman,_n.j.,_bober,_m.b,_mcalister,_w.h.,_wenkert,_d.,_et_al._(2012)._enzyme-replacement_therapy_in_life-threatening_hypophosphatasia._the_new_england_journal_of_medicine,_366,_904-13._[online]_http definition">whyte, m., greenberg, c.r., salman, n.j., bober, m.b, mcalister, w.h., wenkert, d., et al. (2012). enzyme-replacement therapy in life-threatening hypophosphatasia. the new england journal of medicine, 366, 904-13. [online] http</a></li>  
+            <li><a href="browser_nl_12_1_term_16.html" title="wiemer,_n.g.m.,_et_al._2006 definition">wiemer, n.g.m., et al. 2006</a></li>  
+            <li><a href="browser_nl_12_1_term_17.html" title="wiemer,_n.g.m.,_polak,_b.c.p._&amp;_veckeneer,_m.a.h._(2006)._behandelingsmogelijkheden_voor_diabetisch_macula-oedeem._nederlands_tijdschrift_voor_geneeskunde,_150,_2183-7_[online]_http definition">wiemer, n.g.m., polak, b.c.p. &amp; veckeneer, m.a.h. (2006). behandelingsmogelijkheden voor diabetisch macula-oedeem. nederlands tijdschrift voor geneeskunde, 150, 2183-7 [online] http</a></li>  
+            <li><a href="browser_nl_12_1_term_18.html" title="wiersinga,_w.j._&amp;_van_der_poll,_t._(2010)._sepsis definition">wiersinga, w.j. &amp; van der poll, t. (2010). sepsis</a></li>  
+            <li><a href="browser_nl_12_1_term_19.html" title="wiersinga,_w.j._&amp;_van_der_poll,_t._2010 definition">wiersinga, w.j. &amp; van der poll, t. 2010</a></li>  
+            <li><a href="browser_nl_12_1_term_20.html" title="wijsbek,_h._(2013)._euthanasie_bij_gevorderde_dementie definition">wijsbek, h. (2013). euthanasie bij gevorderde dementie</a></li>  
+            <li><a href="browser_nl_12_1_term_21.html" title="wijsbek,_h._2013 definition">wijsbek, h. 2013</a></li>  
+            <li><a href="browser_nl_12_1_term_22.html" title="willemsen,_w.n.p.,_de_kruif,_j.h.,_velthausz,_m.b.f._&amp;_meelen,_b.t.h.m._(2000)._myomen_en_vruchtbaarheid._nederlands_tijdschrift_voor_geneeskunde,_144,_789-91._[online]_http definition">willemsen, w.n.p., de kruif, j.h., velthausz, m.b.f. &amp; meelen, b.t.h.m. (2000). myomen en vruchtbaarheid. nederlands tijdschrift voor geneeskunde, 144, 789-91. [online] http</a></li>  
+            <li><a href="browser_nl_12_1_term_23.html" title="willemsen,_w.n.p.,_et_al_2000 definition">willemsen, w.n.p., et al 2000</a></li>  
+            <li><a href="browser_nl_12_1_term_24.html" title="william,_j.m.g.,_barnhofer,_t.,_crane,_c.,_duggan,_d.s.,_shah,_d.,_brennan,_k.,_et_al._(2012)._pre-adult_onset_and_patterns_of_suicidality_in_patients_with_a_history_of_recurrent_depression._journal_of_affective_disorders;_138(1-2),_173-179._[online]_http definition">william, j.m.g., barnhofer, t., crane, c., duggan, d.s., shah, d., brennan, k., et al. (2012). pre-adult onset and patterns of suicidality in patients with a history of recurrent depression. journal of affective disorders; 138(1-2), 173-179. [online] http</a></li>  
+            <li><a href="browser_nl_12_1_term_25.html" title="william,_j.m.g.,_et_al._2012 definition">william, j.m.g., et al. 2012</a></li>  
+            <li><a href="browser_nl_12_1_term_26.html" title="williams,_n._&amp;_ogden,_j._(2004)._the_impact_of_matching_the_patient's_vocabulary definition">williams, n. &amp; ogden, j. (2004). the impact of matching the patient's vocabulary</a></li>  
+            <li><a href="browser_nl_12_1_term_27.html" title="williams,_n._&amp;_ogden,_j._2004 definition">williams, n. &amp; ogden, j. 2004</a></li>  
+            <li><a href="browser_nl_12_1_term_28.html" title="willmott,_f.e._(1988)._mucopurulent_cervicitis definition">willmott, f.e. (1988). mucopurulent cervicitis</a></li>  
+            <li><a href="browser_nl_12_1_term_29.html" title="willmott,_f.e._1988 definition">willmott, f.e. 1988</a></li>  
+            <li><a href="browser_nl_12_1_term_30.html" title="winterberg,_d.h._(2005)._diagnose_in_beeld_(233)._een_meisje_met_gegroefde_nagels._nederlands_tijdschrift_voor_geneeskunde,_149,_702._[online]_http definition">winterberg, d.h. (2005). diagnose in beeld (233). een meisje met gegroefde nagels. nederlands tijdschrift voor geneeskunde, 149, 702. [online] http</a></li>  
+            <li><a href="browser_nl_12_1_term_31.html" title="winterberg,_d.h._2005 definition">winterberg, d.h. 2005</a></li>  
+            <li><a href="browser_nl_12_1_term_32.html" title="witsenburg,_m.,_et_al._2004 definition">witsenburg, m., et al. 2004</a></li>  
+            <li><a href="browser_nl_12_1_term_33.html" title="witsenburg,_m.,_van_osch-gevers,_m.,_&amp;_strengers,_j._(2004).&nbsp;cardiologie,_vol._6._houten definition">witsenburg, m., van osch-gevers, m., &amp; strengers, j. (2004).&nbsp;cardiologie, vol. 6. houten</a></li>  
+            <li><a href="browser_nl_12_1_term_34.html" title="woorden-boek.nl definition">woorden-boek.nl</a></li>  
+            <li><a href="browser_nl_12_1_term_35.html" title="woorden-boek.nl._(s.d.)._[online]_http definition">woorden-boek.nl. (s.d.). [online] http</a></li>  
+            <li><a href="browser_nl_12_1_term_36.html" title="woordenboek_nederlands definition">woordenboek nederlands</a></li>  
+            <li><a href="browser_nl_12_1_term_37.html" title="woordenboek_nederlands._(2014)._[online]_http definition">woordenboek nederlands. (2014). [online] http</a></li>  
+            <li><a href="browser_nl_12_1_term_38.html" title="wright,_s.e._&amp;_budin,_g._(1997)._handbook_of_terminology_management definition">wright, s.e. &amp; budin, g. (1997). handbook of terminology management</a></li>  
+            <li><a href="browser_nl_12_1_term_39.html" title="wright,_s.e._&amp;_budin,_g._1997 definition">wright, s.e. &amp; budin, g. 1997</a></li> 
+           </ul> 
+          </div> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner_down"> 
+             <li class="activepageLower"> </li> 
+            </ul> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <div id="ox-footer" class=""> 
+    <div class="responsive_row flush-below top"> 
+     <div class="responsive_container responsive_display_on_smartphone"> 
+      <div class="menu_button"></div> 
+     </div> 
+     <div class="nav responsive_container main_nav"> 
+      <ul class="menu"> 
+       <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+       <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+      </ul> 
+     </div> 
+    </div>           
+   </div>
+  </div>
+ </body>
+</html>
