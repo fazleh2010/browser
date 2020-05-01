@@ -32,14 +32,13 @@ public class Main {
     public static Set<String> browserSet;
     private static Set<String> lang = new TreeSet<String>();
     private static String BASE_PATH = "src/java/resources/data/";
-    private static String HTML_OUTPUT_PATH = "/home/melahi/codes/data/output/";
-    private static String INPUT_PATH = "/home/melahi/codes/data/input/";
+    private static String HTML_OUTPUT_PATH = "src/java/resources/data/";
+    private static String INPUT_PATH = "src/java/resources/data/";
 
     private static String CONFIG_PATH = "src/java/resources/data/conf/";
     private static Set<String> browsersToRun = new HashSet<String>();
 
     private static Taskimpl tasks = null;
-    private static String location = "src/resources/data/iate/txt/";
     private static DataBaseTemp dataBaseTemp = new DataBaseTemp(BASE_PATH);
 
     private static Boolean listOfTemPageFlag = true;
@@ -113,7 +112,7 @@ public class Main {
         //testMatching();
         browsersToRun=new HashSet<String>(Arrays.asList(constants.GENTERM));
         tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);
-        runJavaScript();
+        //runJavaScript();
 
 //create java script files
         //it works seperately
