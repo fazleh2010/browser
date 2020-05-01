@@ -1,9 +1,0 @@
-uncertainty = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/uncertainty-EN=browser_en_U_V_1_term_0.html
-uncertainty_analysis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/uncertainty+analysis-EN=browser_en_U_V_1_term_1.html
-uncertainty_propagation = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/uncertainty+propagation-EN=browser_en_U_V_1_term_2.html
-unit_process = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/unit+process-EN=browser_en_U_V_1_term_3.html
-upstream = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/upstream-EN=browser_en_U_V_1_term_4.html
-upstream_environmental_impact = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/upstream+environmental+impact-EN=browser_en_U_V_1_term_5.html
-use_phase = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/use+phase-EN=browser_en_U_V_1_term_6.html
-useful_life = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/useful+life-EN=browser_en_U_V_1_term_7.html
-validation = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/validation-EN=browser_en_U_V_1_term_8.html

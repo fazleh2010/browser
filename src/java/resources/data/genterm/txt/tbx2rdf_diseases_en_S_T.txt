@@ -1,7 +1,0 @@
-scoliosis = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/scoliosis-EN=browser_en_S_T_1_term_0.html
-systolic = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/systolic-EN=browser_en_S_T_1_term_1.html
-tachycardia = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/tachycardia-EN=browser_en_S_T_1_term_2.html
-tachypnea = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/tachypnea-EN=browser_en_S_T_1_term_3.html
-tachypnoea = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/tachypnoea-EN=browser_en_S_T_1_term_4.html
-thyroid = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/thyroid-EN=browser_en_S_T_1_term_5.html
-thyroid_gland = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_diseases/data/diseases/thyroid+gland-EN=browser_en_S_T_1_term_6.html

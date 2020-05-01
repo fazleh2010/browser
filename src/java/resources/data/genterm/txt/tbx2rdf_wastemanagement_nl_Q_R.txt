@@ -1,5 +1,0 @@
-recycleerbare_materialen = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/recycleerbare+materialen-NL=browser_nl_9_1_term_0.html
-recycling = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/recycling-NL=browser_nl_9_1_term_1.html
-recyclingprogramma = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/recyclingprogramma-NL=browser_nl_9_1_term_2.html
-referentiestroom = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/referentiestroom-NL=browser_nl_9_1_term_3.html
-retourlogistiek = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_wastemanagement/data/wastemanagement/retourlogistiek-NL=browser_nl_9_1_term_4.html

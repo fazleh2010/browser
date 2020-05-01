@@ -93,7 +93,7 @@ public class Main {
         //browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
         //tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(false, true,  true, true),dataBaseTemp);
         
-        tasks.createJavaScriptForAutoComp(constants.GENTERM);
+        //tasks.createJavaScriptForAutoComp(constants.GENTERM);
         System.out.println("Processing finished!!!");
 
         // System.out.println(termDetails.toString());
