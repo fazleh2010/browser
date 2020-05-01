@@ -32,8 +32,8 @@ public class Main {
     public static Set<String> browserSet;
     private static Set<String> lang = new TreeSet<String>();
     private static String BASE_PATH = "src/java/resources/data/";
-    private static String HTML_OUTPUT_PATH = "/home/elahi/NetBeansProjects/data/";
-    private static String INPUT_PATH = "/home/elahi/NetBeansProjects/data/";
+    private static String HTML_OUTPUT_PATH = "/home/melahi/codes/data/output/";
+    private static String INPUT_PATH = "/home/melahi/codes/data/input/";
 
     private static String CONFIG_PATH = "src/java/resources/data/conf/";
     private static Set<String> browsersToRun = new HashSet<String>();
