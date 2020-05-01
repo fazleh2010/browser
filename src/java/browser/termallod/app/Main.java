@@ -81,15 +81,14 @@ public class Main {
         lang = new TreeSet<String>(languageMapper.keySet());
         constants = new FileAndLocationConst(BASE_PATH, INPUT_PATH, OUTPUT_PATH);
         browserSet = new HashSet<String>(Arrays.asList(constants.IATE,constants.GENTERM));
-         cleanDirectory();
-        
-        /*tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
+        cleanDirectory();
+        tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
         tasks.saveDataIntoFiles(browserSet);         
         tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);
         tasks.matchTerminologies(constants.GENTERM, constants.IATE);
         browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
         tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(false, true,  true, true),dataBaseTemp);
-        tasks.createJavaScriptForAutoComp(constants.GENTERM);*/
+        tasks.createJavaScriptForAutoComp(constants.GENTERM);
         System.out.println("Processing finished!!!");
 
         // System.out.println(termDetails.toString());
