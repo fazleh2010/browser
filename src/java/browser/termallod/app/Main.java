@@ -77,6 +77,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         HtmlParameters htmlCreateParameters = null;
         MergingTermInfo mergingTermInfo = null;
+        
         alternativeFlag = true;
         lang = new TreeSet<String>(languageMapper.keySet());
         constants = new FileAndLocationConst(BASE_PATH, INPUT_PATH, OUTPUT_PATH);
