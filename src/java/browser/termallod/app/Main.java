@@ -34,7 +34,7 @@ public class Main {
     ///home/melahi/NetBeansProjects/data
     private static String BASE_PATH = "src/java/resources/data/";
     private static String HTML_OUTPUT_PATH = "/home/melahi/NetBeansProjects/data/";
-    private static String INPUT_PATH = "/home/melahi/NetBeansProjects/data";
+    private static String INPUT_PATH = "/home/melahi/NetBeansProjects/data/";
 
     private static String CONFIG_PATH = "src/java/resources/data/conf/";
     private static Set<String> browsersToRun = new HashSet<String>();
