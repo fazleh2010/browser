@@ -84,8 +84,11 @@ public class OntologyInfo {
         return browser + UNDERSCORE + this.language + UNDERSCORE + pair.toString() + UNDERSCORE + pageNumber + HTML_EXTENSION;
     }
 
-    public File makeHtmlFileName(String base_path, Integer currentPageNumber,AlphabetTermPage alphabetTermPage) {
+    /*public File makeHtmlFileName(String base_path, Integer currentPageNumber,AlphabetTermPage alphabetTermPage) {
         return new File(base_path + this.ontologyFileName + "/" + this.createFileNameUnicode(currentPageNumber,alphabetTermPage));
+    }*/
+    public String creatHtmlFileName(Integer currentPageNumber,AlphabetTermPage alphabetTermPage) {
+        return this.ontologyFileName + "/" + this.createFileNameUnicode(currentPageNumber,alphabetTermPage);
     }
 
 }

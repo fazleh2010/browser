@@ -60,7 +60,7 @@ public class GeneralCompScriptGen {
             LangSpecificBrowser langSpecificBrowser = generalBrowser.getLangTermUrls().get(langCode);
             Map<String, String> allkeysValues = langSpecificBrowser.getTermUrls();
             String str = getTerms(allkeysValues);
-            String outputFileName =  constants.AUTO_COMPLETION_TEMPLATE_LOCATION + ontologyName + "_" + langCode + ".js";
+            String outputFileName = constants.getOUTPUT_PATH(category)+"js"+File.separator+ontologyName + "_" + langCode + ".js";
             createAutoCompletionTemplate(templateFile, str, outputFileName);
         }
     }
@@ -139,6 +139,7 @@ public class GeneralCompScriptGen {
     }
 
     private  void createAutoCompletionTemplate(File templatefileName, String str, String outputFile) throws FileNotFoundException, IOException {
+
         InputStream input = new FileInputStream(templatefileName);
         String line = IOUtils.toString(input, "UTF-8");
         str += line + "\n";

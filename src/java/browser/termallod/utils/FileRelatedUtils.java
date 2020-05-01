@@ -22,6 +22,7 @@ import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -395,18 +396,28 @@ public class FileRelatedUtils {
         }
     }
 
-    public static void cleanDirectory(Map<String, String> categoryOntologyMapper, String PATH, String dataPath) throws IOException {
+    public static void cleanDirectory(Map<String, String> categoryOntologyMapper, String PATH) throws IOException {
 
-        //deleting all html files previous files
         for (String key : categoryOntologyMapper.keySet()) {
             key = categoryOntologyMapper.get(key);
             String mainDir = PATH + key;
-            String[] infor = key.split("_");
-            String termDir = PATH + key + File.separator + dataPath + infor[1];
             FileRelatedUtils.deleteDirectory(mainDir);
-            //FileRelatedUtils.deleteDirectory(termDir);
             FileRelatedUtils.createDirectory(mainDir);
-            //FileRelatedUtils.createDirectory(termDir);
+        }
+
+    }
+    
+    public static void cleanDirectory(Map<String, String> categoryOntologyMapper, String PATH,String DIR) throws IOException {
+
+        for (String key : categoryOntologyMapper.keySet()) {
+            key = categoryOntologyMapper.get(key);
+            String mainDir = PATH + key;
+            String jsDir = mainDir+File.separator+DIR+File.separator;
+             FileRelatedUtils.deleteDirectory(mainDir);
+             FileRelatedUtils.createDirectory(mainDir);
+             FileRelatedUtils.deleteDirectory(jsDir);
+             FileRelatedUtils.createDirectory(jsDir);
+         
         }
 
     }

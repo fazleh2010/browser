@@ -51,12 +51,12 @@ public class HtmlTermPage extends HtmlPageAbstract {
 
     }
 
-    public TermDetail createTerms(TermDetail termDetail, Integer index, File htmlFileName) throws Exception {
+    public TermDetail createTerms(TermDetail termDetail, Integer index, String htmlFileName) throws Exception {
         Document generatedHtmlPage = null;
 
         
         if (htmlCreateParameters.getAlternativeFlag()) {
-             String url = htmlFileName.getName().replace(".html", "");
+             String url = htmlFileName.replace(".html", "");
              url = url + "_" + "term" + "_" + index + ".html";
              termDetail.setAlternativeUrl(url);
             
@@ -67,7 +67,7 @@ public class HtmlTermPage extends HtmlPageAbstract {
                 String urls = info.getAlphabetTermPage().getProps().getProperty(term);
                 url = StringMatcherUtil.getAlternativeUrl(urls, htmlCreateParameters.getAlternativeFlag());
                 
-                File TermhtmlFileName = new File(constants.getBASE_PATH() + info.getOntologyFileName() + "/" + url);
+                File TermhtmlFileName = new File(constants.getOUTPUT_PATH() + info.getOntologyFileName() + "/" + url);
                 test(termTemplate, termDetail, url, url);
                 generatedHtmlPage = this.getTemplateHtml();
                 super.htmlReaderWriter.writeHtml(generatedHtmlPage, TermhtmlFileName);

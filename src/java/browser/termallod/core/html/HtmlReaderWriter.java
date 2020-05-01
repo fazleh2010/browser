@@ -73,6 +73,7 @@ public class HtmlReaderWriter {
         try {
             FileUtils.writeStringToFile(outputFile, outputDocument.outerHtml(), "UTF-8");
         } catch (IOException ex) {
+            System.out.println(outputFile.getName());
             Logger.getLogger(HtmlReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

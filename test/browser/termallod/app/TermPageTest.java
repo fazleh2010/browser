@@ -58,7 +58,7 @@ public class TermPageTest {
 
     public TermPageTest() {
         lang = new TreeSet<String>(languageMapper.keySet());
-        constants = new FileAndLocationConst(BASE_PATH);
+        constants = new FileAndLocationConst(BASE_PATH,"","");
         browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
         List<String> termList = new ArrayList<String>();
         termList.add("A");

@@ -14,7 +14,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-import browser.termallod.api.Tasks;
 import browser.termallod.constants.FileAndLocationConst;
 import browser.termallod.core.MergingTermInfo;
 import browser.termallod.core.html.HtmlParameters;
@@ -37,7 +36,6 @@ public class MainTest {
     private Boolean textFileModifyFlag = true;
     private Boolean listOfTemPageFlag = true;
     private Boolean termPageFlag = true;
-    private Tasks tasks = null;
     private static Set<String> browsersToRun=new HashSet<String>();
     public String location = "test/resources/data/iate/txt/";
     private static String CONFIG_PATH = "src/java/resources/data/conf/";
@@ -76,7 +74,7 @@ public class MainTest {
 
     public MainTest() throws Exception {
         lang = new TreeSet<String>(languageMapper.keySet());
-        constants = new FileAndLocationConst(BASE_PATH);
+        constants = new FileAndLocationConst(BASE_PATH,"","");
         browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
     }
 

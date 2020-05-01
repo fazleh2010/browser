@@ -37,7 +37,7 @@ public class HtmlListOfTerms extends HtmlPageAbstract implements HtmlPage, Langu
         this.termPage=new HtmlTermPage(htmlCreateParameters, info, htmlReaderWriter,constants);
     }
 
-    public Document createAllElements(Document templateHtml, List<TermDetail> terms, PageContentGenerator pageContentGenerator, File htmlFileName, Integer currentPageNumber) throws Exception {
+    public Document createAllElements(Document templateHtml, List<TermDetail> terms, PageContentGenerator pageContentGenerator, String htmlFileName, Integer currentPageNumber) throws Exception {
         AlphabetTermPage alphabetTermPage = super.info.getAlphabetTermPage();
         Element body = templateHtml.body();
         String alphebetPair = alphabetTermPage.getAlpahbetPair();
@@ -107,7 +107,7 @@ public class HtmlListOfTerms extends HtmlPageAbstract implements HtmlPage, Langu
     }
 
    
-    public void createTerms(Element body, List<TermDetail> terms, String alphebetPair, Integer emptyTerm, File htmlFileName) throws Exception {
+    public void createTerms(Element body, List<TermDetail> terms, String alphebetPair, Integer emptyTerm, String htmlFileName) throws Exception {
         Element divTerm = body.getElementsByClass("result-list1 wordlist-oxford3000 list-plain").get(0);
         Integer index = 0;
         for (TermDetail termDetail : terms) {

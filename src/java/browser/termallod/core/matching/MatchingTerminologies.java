@@ -58,7 +58,7 @@ public class MatchingTerminologies implements Languages {
             for (String langCode : this.langFrequency.keySet()) {
                 Map<String, Integer> fequency = this.langFrequency.get(langCode);
                 if (!fequency.isEmpty()) {
-                    //System.out.println(langCode + "..." + fequency);
+                    System.out.println(langCode + "..." + fequency);
                 }
             }
         }
@@ -136,7 +136,7 @@ public class MatchingTerminologies implements Languages {
                 //List<String> terms = new ArrayList<String>();
                 List<TermDetail> termsDetails = new ArrayList<TermDetail>();
                 for (String term : answer) {
-                     //System.out.println(term);
+                     System.out.println(term);
                     String givenUrl = givenLangSpecificBrowser.getTermUrls(term);
                     String url = otherLangSpecificBrowser.getTermUrls(term);
                     termsDetails = this.getMatchedTermsDetail(category, langCode, term, url, givenCategory, givenUrl);

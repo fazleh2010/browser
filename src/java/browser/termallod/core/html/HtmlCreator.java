@@ -33,11 +33,14 @@ public class HtmlCreator  {
     private MergingTermInfo merging;
     private HtmlParameters htmlCreateParameters;
     private DataBaseTemp dataBaseTemp;
+    private String INPUT_PATH;
+     private String OUTPUT_PATH;
     
     public HtmlCreator(FileAndLocationConst constants, Set<String> lang,HtmlParameters htmlCreateParameters,DataBaseTemp dataBaseTemp) {
         this.lang = lang;
         this.constants=constants;
-        //this.merging=merging;
+        this.INPUT_PATH=constants.getINPUT_PATH();
+        this.OUTPUT_PATH=constants.getOUTPUT_PATH();
         this.dataBaseTemp=dataBaseTemp;
         this.htmlCreateParameters=htmlCreateParameters;
     }
@@ -97,17 +100,18 @@ public class HtmlCreator  {
             HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
             Document templateHtml = htmlReaderWriter.getInputDocument();
             OntologyInfo info = new OntologyInfo(language, categoryName, alphabetTermPage);
-            //MergingTermInfo merging=null;
             HtmlListOfTerms htmlPage = new HtmlListOfTerms(constants, htmlCreateParameters, info, htmlReaderWriter);
-            File htmlFileName = info.makeHtmlFileName(constants.getBASE_PATH(), currentPageNumber,alphabetTermPage);
+            File outputFileName =new File( OUTPUT_PATH+info.creatHtmlFileName(currentPageNumber,alphabetTermPage));
+            String htmlFileName= outputFileName.getName();
+            
             Document listOfTermHtmlPage = htmlPage.createAllElements(templateHtml, termDetails, pageContentGenerator,htmlFileName,currentPageNumber);
             if (this.htmlCreateParameters.getListOfTemPageFlag()) {
-                htmlReaderWriter.writeHtml(listOfTermHtmlPage, htmlFileName);
+                htmlReaderWriter.writeHtml(listOfTermHtmlPage, new File(OUTPUT_PATH+htmlFileName));
             }
             //break;
         }
         if (htmlCreateParameters.getTextFileModifyFlag()) {
-            String textInputFile = FileRelatedUtils.getSpecificFile(constants.getBASE_PATH(), categoryName, language, alphabetTermPage.getAlpahbetPair(), ".txt");
+            String textInputFile = FileRelatedUtils.getSpecificFile(INPUT_PATH, categoryName, language, alphabetTermPage.getAlpahbetPair(), ".txt");
             FileRelatedUtils.writeFile(HtmlListOfTerms.termAlterUrl, textInputFile);
         }
 

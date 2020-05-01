@@ -33,7 +33,7 @@ public class GentermAutoCompTest {
     private String ontologyName = "tbx2rdf_iate";
     private String langCode = "en";
 
-    @Ignore
+    @Test
     public void testAutoCompletion() throws IOException, Exception {
         String fileName = BASE_PATH + ontologyName + ".txt";
         Map<String, String> allkeysValues = FileRelatedUtils.getHash(fileName);
@@ -41,6 +41,7 @@ public class GentermAutoCompTest {
         //System.out.println(str);
         File templateFile = new File(constants.AUTO_COMPLETION_TEMPLATE_LOCATION + "autoComp" + ".js");
         String outputFileName = BASE_PATH + ontologyName + "_" + langCode + ".js";
+        System.out.println(outputFileName);
         if (!templateFile.exists()) {
             throw new Exception(" no template find found for autocompletion!!");
         }

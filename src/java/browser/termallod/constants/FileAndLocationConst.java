@@ -20,9 +20,31 @@ import java.util.Set;
  */
 public class FileAndLocationConst {
 
-    private String BASE_PATH;
+    private final String BASE_PATH;
+    private final String OUTPUT_PATH;
+    private final String INPUT_PATH;
     private String GENTERM_PATH;
     private File LANGUAGE_CONFIG_FILE;
+
+
+    public FileAndLocationConst(String BASE_PATH,String INPUT_PATH,String OUTPUT_PATH) {
+        this.BASE_PATH = BASE_PATH;
+        this.INPUT_PATH=INPUT_PATH;
+        this.OUTPUT_PATH=OUTPUT_PATH;
+        this.GENTERM_PATH = BASE_PATH + File.separator;
+        this.LANGUAGE_CONFIG_FILE = new File(BASE_PATH + "conf/" + "language.conf");
+    }
+    
+    public String getOUTPUT_PATH(String category) {
+        return OUTPUT_PATH+CATEGORY_ONTOLOGIES.get(category)+File.separator;
+    }
+    public String getOUTPUT_PATH() {
+        return OUTPUT_PATH;
+    }
+
+    public String getINPUT_PATH() {
+        return INPUT_PATH;
+    }
 
     public String getGENTERM_PATH() {
         return GENTERM_PATH;
@@ -34,12 +56,6 @@ public class FileAndLocationConst {
 
     public String getBASE_PATH() {
         return BASE_PATH;
-    }
-
-    public FileAndLocationConst(String BASE_PATH) {
-        this.BASE_PATH = BASE_PATH;
-        this.GENTERM_PATH = BASE_PATH + File.separator;
-        this.LANGUAGE_CONFIG_FILE = new File(BASE_PATH + "conf/" + "language.conf");
     }
     public static String DATA_PATH = "data/";
     public static String TEXT_PATH = "txt/";
