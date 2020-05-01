@@ -5,6 +5,7 @@
  */
 package browser.termallod.constants;
 
+import static browser.termallod.app.Main.constants;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,6 +46,12 @@ public class FileAndLocationConst {
     public String getINPUT_PATH() {
         return INPUT_PATH;
     }
+    public String getINPUT_RDF_PATH(String category) {
+        return INPUT_PATH +category+File.separator+ RDF_PATH;
+    }
+     public String getINPUT_TXT_PATH(String category) {
+        return INPUT_PATH +category+File.separator+ constants.TEXT_PATH;
+    }
 
     public String getGENTERM_PATH() {
         return GENTERM_PATH;
@@ -57,7 +64,6 @@ public class FileAndLocationConst {
     public String getBASE_PATH() {
         return BASE_PATH;
     }
-    public static String DATA_PATH = "data/";
     public static String TEXT_PATH = "txt/";
     public static String RDF_PATH = "rdf/";
     public static String NTRIPLE_EXTENSION = ".ntriple";

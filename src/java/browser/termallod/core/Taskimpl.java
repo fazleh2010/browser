@@ -104,9 +104,9 @@ public class Taskimpl  {
 
     }
 
-    public void createJavaScriptForAutoComp(String category) throws IOException, Exception {
+    public void createJavaScriptForAutoComp(String browser) throws IOException, Exception {
         if (this.browsersInfor.isEmpty()) {
-            this.readDataFromSavedFiles(category);
+            this.readDataFromSavedFiles(browser);
         }
         File templateFile = new File(constants.AUTO_COMPLETION_TEMPLATE_LOCATION + "autoComp" + ".js");
         this.javaScriptCode = new GeneralCompScriptGen(this.browsersInfor, templateFile, constants, this.alternativeFlag);
@@ -115,17 +115,16 @@ public class Taskimpl  {
 
     public void readDataFromSavedFiles() throws IOException, Exception {
         Map<String, Browser> browsersInfor = new HashMap<String, Browser>();
-        this.checkGeneratedTextFiles(constants.BROWSER_GROUPS);
-        /*Map<String,Boolean> textFilesGenerated=this.isTextFileGenerated(BROWSER_GROUPS);
-        for(String browser:textFilesGenerated.keySet()){
-            if(!textFilesGenerated.get(browser))
-                this.saveDataIntoFiles(browser);
-        }*/
+        if (this.checkGeneratedTextFiles(constants.BROWSER_GROUPS)) {
+            for (String browser : constants.BROWSER_GROUPS) {
+                List<String> categories = constants.BROWSER_CATEGORIES.get(browser);
+                readDataFromSavedFiles(browser, categories, alternativeFlag);
+            }
+        } else  {
+                throw new Exception("Text folder can not be empty!!!");
+            }
 
-        for (String browser : constants.BROWSER_GROUPS) {
-            List<String> categories = constants.BROWSER_CATEGORIES.get(browser);
-            readDataFromSavedFiles(browser, categories, alternativeFlag);
-        }
+
 
     }
 
@@ -180,8 +179,6 @@ public class Taskimpl  {
 
   
     public void saveDataIntoFiles(Set<String> browserSet) throws Exception, IOException {
-        FileRelatedUtils.cleanDirectory(constants.BROWSER_GROUPS, INPUT_PATH, constants.TEXT_PATH);
-        FileRelatedUtils.cleanDirectory(constants.CATEGORY_ONTOLOGIES, INPUT_PATH);
         for (String browser : constants.BROWSER_GROUPS) {
             if (browserSet.contains(browser)) {
                 saveDataIntoFiles(browser);
@@ -191,8 +188,6 @@ public class Taskimpl  {
     }
 
     public void saveDataIntoFiles(Set<String> browserSet, String browser) throws Exception, IOException {
-        FileRelatedUtils.cleanDirectory(constants.BROWSER_GROUPS, INPUT_PATH, constants.TEXT_PATH);
-        FileRelatedUtils.cleanDirectory(constants.CATEGORY_ONTOLOGIES, INPUT_PATH);
         if (browserSet.contains(browser)) {
             saveDataIntoFiles(browser);
         }
@@ -200,16 +195,7 @@ public class Taskimpl  {
     }
 
     private void saveDataIntoFiles(String browser) throws Exception {
-        String source = FileRelatedUtils.getSourcePath(constants.getINPUT_PATH(), browser);
-        File[] files = FileRelatedUtils.getFiles(source, constants.TURTLE_EXTENSION);
-        String inputDir = INPUT_PATH +browser+File.separator+ constants.RDF_PATH;
-        String outputDir = INPUT_PATH  +browser+File.separator+ constants.TEXT_PATH;
-        File[] turtleFiles = FileRelatedUtils.getFiles(inputDir, constants.TURTLE_EXTENSION);
-        if (turtleFiles.length > 0) {
-            new RdfReader(inputDir, languageManager, constants.TURTLE, constants.TURTLE_EXTENSION, outputDir,this.dataBaseTemp);
-        } else {
-            throw new Exception("No rdf file to process!!!");
-        }
+        new RdfReader(browser, dataBaseTemp, languageManager, constants.TURTLE, constants.TURTLE_EXTENSION);
     }
 
     public List<String> search(String category, String langCode, String searchQuery) throws IOException, ParseException, Exception {
@@ -255,28 +241,17 @@ public class Taskimpl  {
         return browsersInfor;
     }
 
-    /*private boolean isTextFileGenerated(List<String> BROWSER_GROUPS) {
+  
+    private Boolean checkGeneratedTextFiles(Set<String> BROWSER_GROUPS) throws Exception {
         for (String browser : BROWSER_GROUPS) {
-           String source = FileRelatedUtils.getSourcePath(BASE_PATH, browser);
-             File sourceTextDir=new File(source);
-             if (sourceTextDir.isDirectory()) {
-                if (!(sourceTextDir.list().length > 0)) 
-                      System.out.println("Directory is not empty!"); 
-             }      
-        }
-        
-         }*/
-    private void checkGeneratedTextFiles(Set<String> BROWSER_GROUPS) throws Exception {
-        for (String browser : BROWSER_GROUPS) {
-            String source = FileRelatedUtils.getSourcePath(this.INPUT_PATH, browser) + constants.TEXT_PATH;
-            File sourceTextDir = new File(source);
-            if (sourceTextDir.isDirectory()) {
-                if (!(sourceTextDir.list().length > 0)) {
-                    this.saveDataIntoFiles(browser);
-                }
+            String txtDir = constants.getINPUT_TXT_PATH(browser);
+            File[] txtFiles = FileRelatedUtils.getFiles(txtDir, constants.TEXT_EXTENSION);
+       
+            if (txtFiles.length > 0) {
+               return true;
             }
         }
-
+       return false;
     }
 
 }

@@ -83,7 +83,6 @@ public class MainTest {
         
         HtmlParameters htmlCreateParameters=null;
         MergingTermInfo subjectFieldMerging=null;
-         cleanDirectory();
          
          
         //tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
@@ -111,10 +110,5 @@ public class MainTest {
     }
     // run before comit..................to clean all folder
 
-    private static void cleanDirectory() throws IOException {
-        FileRelatedUtils.cleanDirectory(constants.CATEGORY_ONTOLOGIES, constants.getBASE_PATH(), constants.DATA_PATH);
-        FileRelatedUtils.cleanDirectory(constants.BROWSER_GROUPS, constants.getBASE_PATH(), constants.TEXT_PATH);
-        FileRelatedUtils.cleanDirectory(constants.CATEGORY_ONTOLOGIES, constants.getBASE_PATH(), constants.DATA_PATH);
-    }
-
+   
 }

@@ -13,6 +13,7 @@ import browser.termallod.api.DataBaseTemp;
 import browser.termallod.api.IATE;
 import browser.termallod.core.term.TermInfo;
 import browser.termallod.api.LanguageManager;
+import static browser.termallod.app.Main.constants;
 import browser.termallod.utils.NameExtraction;
 import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.utils.StringMatcherUtil;
@@ -46,16 +47,25 @@ public class RdfReader implements IATE {
     private LanguageManager languageInfo;
     private DataBaseTemp dataBaseTemp;
 
-    public RdfReader(String rdfDir, LanguageManager languageInfo, String MODEL_TYPE, String MODEL_EXTENSION, String dataSaveDir, DataBaseTemp dataBaseTemp) throws Exception {
+    public RdfReader(String browser,DataBaseTemp dataBaseTemp,LanguageManager languageInfo, String MODEL_TYPE, String MODEL_EXTENSION) throws Exception {
         this.MODEL_TYPE = MODEL_TYPE;
         this.languageInfo = languageInfo;
         this.dataBaseTemp = dataBaseTemp;
-        File[] files = FileRelatedUtils.getFiles(rdfDir, MODEL_EXTENSION);
-        for (File categoryFile : files) {
-            String categoryName = NameExtraction.getCategoryName(rdfDir, categoryFile, MODEL_EXTENSION);
-            String fileNameOrUri = rdfDir + categoryFile.getName();
-            this.extractInformation(fileNameOrUri, dataSaveDir, categoryName);
+        String rdfDir = constants.getINPUT_RDF_PATH(browser);
+        String txtDir = constants.getINPUT_TXT_PATH(browser);
+         System.out.println(rdfDir);
+        System.out.println(txtDir);
 
+        File[] turtleFiles = FileRelatedUtils.getFiles(rdfDir, MODEL_EXTENSION);
+
+        if (turtleFiles.length > 0) {
+            for (File categoryFile : turtleFiles) {
+                String categoryName = NameExtraction.getCategoryName(rdfDir, categoryFile, MODEL_EXTENSION);
+                String fileNameOrUri = rdfDir + categoryFile.getName();
+                this.extractInformation(fileNameOrUri, txtDir, categoryName);
+            }
+        } else {
+            throw new Exception("No rdf file to process!!!");
         }
 
     }
