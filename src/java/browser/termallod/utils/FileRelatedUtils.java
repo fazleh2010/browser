@@ -402,7 +402,7 @@ public class FileRelatedUtils {
             key = categoryOntologyMapper.get(key);
             String mainDir = PATH + key;
             FileRelatedUtils.deleteDirectory(mainDir);
-            FileRelatedUtils.createDirectory(mainDir);
+            //FileRelatedUtils.createDirectory(mainDir);
         }
 
     }
@@ -413,10 +413,10 @@ public class FileRelatedUtils {
             key = categoryOntologyMapper.get(key);
             String mainDir = PATH + key;
             String jsDir = mainDir+File.separator+DIR+File.separator;
-             /*FileRelatedUtils.deleteDirectory(mainDir);
+             FileRelatedUtils.deleteDirectory(mainDir);
              FileRelatedUtils.createDirectory(mainDir);
              FileRelatedUtils.deleteDirectory(jsDir);
-             FileRelatedUtils.createDirectory(jsDir);*/
+             FileRelatedUtils.createDirectory(jsDir);
          
         }
 

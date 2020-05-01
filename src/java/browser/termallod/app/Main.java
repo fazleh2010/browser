@@ -33,8 +33,8 @@ public class Main {
     private static Set<String> lang = new TreeSet<String>();
     ///home/melahi/NetBeansProjects/data
     private static String BASE_PATH = "src/java/resources/data/";
-    private static String HTML_OUTPUT_PATH = "/home/melahi/NetBeansProjects/data/";
-    private static String INPUT_PATH = "/home/melahi/NetBeansProjects/data/";
+    private static String HTML_OUTPUT_PATH = "src/java/resources/data/";
+    private static String INPUT_PATH = "src/java/resources/data/";
 
     private static String CONFIG_PATH = "src/java/resources/data/conf/";
     private static Set<String> browsersToRun = new HashSet<String>();
@@ -85,6 +85,7 @@ public class Main {
         constants = new FileAndLocationConst(BASE_PATH, INPUT_PATH, HTML_OUTPUT_PATH);
         browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
 
+        cleanDirectory();
         /*cleanDirectory();
         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
         //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
@@ -103,7 +104,7 @@ public class Main {
         ////////////////////////////////////////////////////
         //2. generate alternative url
         //3. generate HTML
-        textFileModifyFlag = false;
+        /*textFileModifyFlag = false;
         listOfTemPageFlag = true;
         termPageFlag = true;
         alternativeFlag = true;
@@ -113,7 +114,7 @@ public class Main {
         //testMatching();
         browsersToRun=new HashSet<String>(Arrays.asList(constants.GENTERM));
         tasks.createHtmlFromSavedFiles(constants,browsersToRun,lang, htmlCreateParameters,dataBaseTemp);
-        runJavaScript();
+        runJavaScript();*/
 
 //create java script files
         //it works seperately
@@ -150,7 +151,7 @@ public class Main {
 
     private static void cleanDirectory() throws IOException {
         FileRelatedUtils.cleanDirectory(constants.CATEGORY_ONTOLOGIES, constants.getOUTPUT_PATH());
-        // FileRelatedUtils.cleanDirectory(constants.BROWSER_GROUPS, constants.getBASE_PATH(), constants.TEXT_PATH);
+         FileRelatedUtils.cleanDirectory(constants.BROWSER_GROUPS, constants.getBASE_PATH(), constants.TEXT_PATH);
     }
 
     private static void testMatching() {
