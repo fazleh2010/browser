@@ -71,16 +71,14 @@ public class Taskimpl  {
 
     public void createHtmlFromSavedFiles(FileAndLocationConst constants, Set<String> browserSet, Set<String> lang, HtmlParameters htmlCreateParameters,DataBaseTemp dataBaseTemp) throws Exception, IOException {
         Set<String> categorySet = constants.BROWSER_GROUPS;
-        String MODEL_EXTENSION = constants.TEXT_EXTENSION;
-        //FileRelatedUtils.cleanDirectory(constants.CATEGORY_ONTOLOGIES, INPUT_PATH);
-
         FileRelatedUtils.cleanDirectory(constants.CATEGORY_ONTOLOGIES, INPUT_PATH, "js");
+        
         for (String browser : categorySet) {
             if (browserSet.contains(browser)) {
                 String source = FileRelatedUtils.getSourcePath(INPUT_PATH, browser);
                 List<String> categoties = constants.BROWSER_CATEGORIES.get(browser);
                 HtmlCreator htmlCreator = new HtmlCreator(constants, lang, htmlCreateParameters,dataBaseTemp);
-                htmlCreator.createHtmlForEachCategory(categoties, source, MODEL_EXTENSION, browser);
+                htmlCreator.createHtmlForEachCategory(categoties, source, constants.TEXT_EXTENSION, browser);
             }
         }
          
@@ -205,6 +203,7 @@ public class Taskimpl  {
     public Set<TermDetail> matchTerminologies(String firstTerminology, String secondTerminology) throws IOException, Exception {
         //currently does not work properly..
         //MatchingTerminologies matchTerminologies = new MatchingTerminologies(browsersInforFirst,browsersInfoSecond);
+        System.out.println("Matching terms!!!");
         if (!this.indexCreated) {
             this.createIndexing();
         }

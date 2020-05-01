@@ -81,11 +81,14 @@ public class Main {
         alternativeFlag = true;
         lang = new TreeSet<String>(languageMapper.keySet());
         constants = new FileAndLocationConst(BASE_PATH, INPUT_PATH, OUTPUT_PATH);
-        browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
-        ///cleanDirectory();
+        browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM,constants.IATE));
         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
-        //tasks.saveDataIntoFiles(browserSet);         
-        //tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);
+
+        /*cleanDirectory();
+        tasks.saveDataIntoFiles(browserSet);         
+        tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);*/
+        
+        
         tasks.matchTerminologies(constants.GENTERM, constants.IATE);
         browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
         tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(false, true,  true, true),dataBaseTemp);
@@ -98,7 +101,7 @@ public class Main {
 
     private static void cleanDirectory() throws IOException {
         FileRelatedUtils.cleanDirectory(constants.CATEGORY_ONTOLOGIES, constants.getOUTPUT_PATH());
-         FileRelatedUtils.cleanDirectory(constants.BROWSER_GROUPS, constants.getBASE_PATH(), constants.TEXT_PATH);
+        FileRelatedUtils.cleanDirectory(constants.BROWSER_GROUPS, constants.getBASE_PATH(), constants.TEXT_PATH);
     }
 
     private static void testMatching() {

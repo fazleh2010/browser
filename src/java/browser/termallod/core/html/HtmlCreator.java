@@ -106,7 +106,7 @@ public class HtmlCreator  {
             
             Document listOfTermHtmlPage = htmlPage.createAllElements(templateHtml, termDetails, pageContentGenerator,htmlFileName,currentPageNumber);
             if (this.htmlCreateParameters.getListOfTemPageFlag()) {
-                htmlReaderWriter.writeHtml(listOfTermHtmlPage, new File(OUTPUT_PATH+htmlFileName));
+                htmlReaderWriter.writeHtml(listOfTermHtmlPage, outputFileName);
             }
             //break;
         }
