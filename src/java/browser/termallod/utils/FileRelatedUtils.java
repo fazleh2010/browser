@@ -499,6 +499,19 @@ public class FileRelatedUtils {
         return fineName;
 
     }
+    
+    public static void cleanDirectory(Set<String> categorySet, String PATH, String TEXT_DIR, String givenBrowser) throws IOException {
+        //deleting all generated term filkes
+        for (String browser : categorySet) {
+            if (browser.contains(givenBrowser)) {
+                String sourceTextDir = getSourcePath(PATH, browser) + TEXT_DIR;
+                FileRelatedUtils.deleteDirectory(sourceTextDir);
+                FileRelatedUtils.createDirectory(sourceTextDir);
+            }
+
+        }
+    }
+
 
     public static void deleteFile(String fileName) {
         new File(fileName).delete();

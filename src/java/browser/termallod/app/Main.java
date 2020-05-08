@@ -48,10 +48,10 @@ public class Main {
 
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
-             put("mt", "Maltese");
-             put("lt", "Lithuanian");
+             //put("mt", "Maltese");
+             //put("lt", "Lithuanian");
            
-             /*put("bg", "Bulgarian");
+             put("bg", "Bulgarian");
              put("cs", "Czech");
              put("da", "Danish");
              put("de", "German");
@@ -72,7 +72,7 @@ public class Main {
              put("ro", "Romanian");
              put("sk", "Slovak");
              put("sl", "Slovenian");
-             put("sv", "Swedish");*/
+             put("sv", "Swedish");
         }
     };
     
@@ -89,42 +89,45 @@ public class Main {
         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
 
         //Running and testing genterm
-         cleanDirectoryInput();
-        /* //
+         cleanDirectoryInput(constants.GENTERM);
+         cleanDirectoryInput(constants.IATE);
+         cleanDirectoryOutput();
+         //
+         /*cleanDirectoryInput(constants.GENTERM);
+         browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
+         tasks.saveDataIntoFiles(browserSet);         
+         tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);*/
+         
+         //Running and testing iate
+         /* cleanDirectoryInput(constants.IATE);
+          browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
+          tasks.saveDataIntoFiles(browserSet);         
+          tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);*/
         
-         //browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
-         //tasks.saveDataIntoFiles(browserSet);         
-         //tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);
+        //Running Genterm html
+         /*tasks.matchTerminologies(constants.GENTERM, constants.IATE);
+         browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
+         tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(false, true,  true, true),dataBaseTemp);*/
         
-        
-         //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
-         //browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
-         //tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(false, true,  true, true),dataBaseTemp);
-        
-        //tasks.createJavaScriptForAutoComp(constants.GENTERM);*/
+        //tasks.createJavaScriptForAutoComp(constants.GENTERM);
         System.out.println("Processing genterm finished!!!");
         
         
-        //Running and testing iate
-        /* //cleanDirectory();
-         //browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
-         //tasks.saveDataIntoFiles(browserSet);         
-         //tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);*/
+         
         
-         cleanDirectoryOutput();
-          /*tasks.matchTerminologies(constants.GENTERM, constants.IATE);
+          /*cleanDirectoryOutput();
+          tasks.matchTerminologies(constants.GENTERM, constants.IATE);
           browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
           tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(false, true,  true, true),dataBaseTemp);*/
         
-        //tasks.createJavaScriptForAutoComp(constants.GENTERM);*/
+        //tasks.createJavaScriptForAutoComp(constants.GENTERM);
         System.out.println("Processing iate finished!!!");
 
-        // System.out.println(termDetails.toString());
     }
     // run before comit..................to clean all folder
 
-    private static void cleanDirectoryInput() throws IOException {
-        FileRelatedUtils.cleanDirectory(constants.BROWSER_GROUPS, constants.getBASE_PATH(), constants.TEXT_PATH);
+    private static void cleanDirectoryInput(String browser) throws IOException {
+        FileRelatedUtils.cleanDirectory(constants.BROWSER_GROUPS, constants.getBASE_PATH(), constants.TEXT_PATH,browser);
     }
     
     private static void cleanDirectoryOutput() throws IOException {
