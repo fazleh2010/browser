@@ -101,8 +101,8 @@ public class Main {
          tasks.saveDataIntoFiles(browserSet);         
          tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);*/
          
-         /*//Running and testing iate
-          cleanDirectoryInput(constants.IATE);
+          //Running and testing iate
+          /*cleanDirectoryInput(constants.IATE);
           browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
           tasks.saveDataIntoFiles(browserSet);         
           tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);*/
