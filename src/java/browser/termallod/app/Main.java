@@ -89,6 +89,7 @@ public class Main {
         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
 
         //Running and testing genterm
+        //before commit run it
          cleanDirectoryInput(constants.GENTERM);
          cleanDirectoryInput(constants.IATE);
          cleanDirectoryOutput();
@@ -99,7 +100,7 @@ public class Main {
          tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);*/
          
          //Running and testing iate
-         /* cleanDirectoryInput(constants.IATE);
+          /*cleanDirectoryInput(constants.IATE);
           browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
           tasks.saveDataIntoFiles(browserSet);         
           tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);*/
