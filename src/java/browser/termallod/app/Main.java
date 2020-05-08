@@ -50,8 +50,10 @@ public class Main {
         {
              //put("mt", "Maltese");
              //put("lt", "Lithuanian");
+            
+             put("en", "English");
            
-             put("bg", "Bulgarian");
+             /*put("bg", "Bulgarian");
              put("cs", "Czech");
              put("da", "Danish");
              put("de", "German");
@@ -72,7 +74,7 @@ public class Main {
              put("ro", "Romanian");
              put("sk", "Slovak");
              put("sl", "Slovenian");
-             put("sv", "Swedish");
+             put("sv", "Swedish");*/
         }
     };
     
@@ -99,8 +101,8 @@ public class Main {
          tasks.saveDataIntoFiles(browserSet);         
          tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);*/
          
-         //Running and testing iate
-          /*cleanDirectoryInput(constants.IATE);
+         /*//Running and testing iate
+          cleanDirectoryInput(constants.IATE);
           browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
           tasks.saveDataIntoFiles(browserSet);         
           tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);*/
@@ -116,12 +118,12 @@ public class Main {
         
          
         
-          /*cleanDirectoryOutput();
-          tasks.matchTerminologies(constants.GENTERM, constants.IATE);
+          //cleanDirectoryOutput();
+          /*tasks.matchTerminologies(constants.GENTERM, constants.IATE);
           browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
           tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(false, true,  true, true),dataBaseTemp);*/
         
-        //tasks.createJavaScriptForAutoComp(constants.GENTERM);
+        //tasks.createJavaScriptForAutoComp(constants.IATE);
         System.out.println("Processing iate finished!!!");
 
     }
