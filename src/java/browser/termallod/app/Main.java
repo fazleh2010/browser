@@ -92,9 +92,9 @@ public class Main {
 
         //Running and testing genterm
         //before commit run it
-         cleanDirectoryInput(constants.GENTERM);
+         /*cleanDirectoryInput(constants.GENTERM);
          cleanDirectoryInput(constants.IATE);
-         cleanDirectoryOutput();
+         cleanDirectoryOutput();*/
          //
          /*cleanDirectoryInput(constants.GENTERM);
          browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
@@ -102,10 +102,10 @@ public class Main {
          tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);*/
          
           //Running and testing iate
-          /*cleanDirectoryInput(constants.IATE);
+          cleanDirectoryInput(constants.IATE);
           browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
           tasks.saveDataIntoFiles(browserSet);         
-          tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);*/
+          tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);
         
         //Running Genterm html
          /*tasks.matchTerminologies(constants.GENTERM, constants.IATE);
