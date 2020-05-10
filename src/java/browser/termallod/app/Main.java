@@ -56,17 +56,17 @@ public class Main {
              //put("bg", "Bulgarian");
              //put("cs", "Czech");
              //put("da", "Danish");
-             //put("de", "German");
-             //put("en", "English");
+              put("de", "German");
+              put("en", "English");
              //put("el", "Greek");
              //put("es", "Spanish");
              //put("et", "Estonian");
-             //put("fr", "French");
+              put("fr", "French");
              //put("ga", "Irish");
              //put("hr", "Croatian");
              //put("hu", "Hungarian");
              //put("fi", "Finnish");
-             //put("it", "Italian");
+              put("it", "Italian");
              //put("lt", "Lithuanian");
              //put("lv", "Latvian");
              //put("mt", "Maltese");
@@ -102,10 +102,10 @@ public class Main {
          tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);*/
          
           //Running and testing iate
-          cleanDirectoryInput(constants.IATE);
+          /*cleanDirectoryInput(constants.IATE);
           browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
           tasks.saveDataIntoFiles(browserSet);         
-          tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);
+          tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);*/
         
         //Running Genterm html
          /*tasks.matchTerminologies(constants.GENTERM, constants.IATE);
@@ -119,9 +119,9 @@ public class Main {
          
         
           //cleanDirectoryOutput();
-          /*tasks.matchTerminologies(constants.GENTERM, constants.IATE);
+          tasks.matchTerminologies(constants.GENTERM, constants.IATE);
           browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
-          tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(false, true,  true, true),dataBaseTemp);*/
+          tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(false, true,  true, true),dataBaseTemp);
         
         //tasks.createJavaScriptForAutoComp(constants.IATE);
         System.out.println("Processing iate finished!!!");
