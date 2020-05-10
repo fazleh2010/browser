@@ -36,6 +36,7 @@ public class GentermAutoCompTest {
     @Test
     public void testAutoCompletion() throws IOException, Exception {
         String fileName = BASE_PATH + ontologyName + ".txt";
+        System.out.println(fileName);
         Map<String, String> allkeysValues = FileRelatedUtils.getHash(fileName);
         String str = GentermAutoGen.getTerms(allkeysValues);
         //System.out.println(str);
