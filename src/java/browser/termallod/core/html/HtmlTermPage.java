@@ -33,6 +33,9 @@ public class HtmlTermPage extends HtmlPageAbstract {
     private TermDetail termDetail;
     private String url;
     private String termFileName;
+    private Boolean reliabilityFlag=false;
+    //private Boolean administrativeStatusFlaq=false;
+    //private Boolean subjectFielsFlag=false;
 
     public HtmlTermPage(HtmlParameters htmlCreateParameters, OntologyInfo info, HtmlReaderWriter htmlReaderWriter, FileAndLocationConst constants) {
         super(htmlCreateParameters, info, htmlReaderWriter, constants);
@@ -70,7 +73,9 @@ public class HtmlTermPage extends HtmlPageAbstract {
                 File TermhtmlFileName = new File(constants.getOUTPUT_PATH() + info.getOntologyFileName() + "/" + url);
                 test(termTemplate, termDetail, url, url);
                 generatedHtmlPage = this.getTemplateHtml();
-                super.htmlReaderWriter.writeHtml(generatedHtmlPage, TermhtmlFileName);
+                
+                if(this.reliabilityFlag)
+                   super.htmlReaderWriter.writeHtml(generatedHtmlPage, TermhtmlFileName);
             }
         }
 
@@ -145,7 +150,7 @@ public class HtmlTermPage extends HtmlPageAbstract {
     private List<String> createTermInfo(List<TermDetail> matchedTerms, String term, String url) throws Exception {
         List<String> divStrS = new ArrayList<String>();
         String subjectFieldTr = "", ReferenceTr = "", languageTr = "", reliabilityCodeTr = "", administrativeTr = "", subjectID = "";;
-        String posTr = "", numberTr = "", genderTr = "", definitionTr = "", hypernymTr = "", hyponymTr = "", variantTr = "", synonymTr = "";
+        String posTr = "", numberTr = "", genderTr = "", definitionTr = "", hypernymTr = "", hyponymTr = "", variantTr = "", synonymTr = "",writtenFormTr="";
 
         TermInfo termInfo = this.getTermInformation(url);
         if (termInfo != null) {
@@ -157,12 +162,23 @@ public class HtmlTermPage extends HtmlPageAbstract {
         languageTr = getTr(getProperty("Language"), getValueNew(langValueStr));
 
         if (termInfo != null) {
+            writtenFormTr = getTr(getProperty("writtenRep:"), getValueNew(term));
 
             if (termInfo.getReliabilityCode() != null) {
                 reliabilityCodeTr = getTr(getProperty("Reliability Code:"), getValueNew(termInfo.getReliabilityCode()));
+                
+                if(!termInfo.getReliabilityCode().isEmpty()){
+                     //System.out.println(termInfo.getReliabilityCode());
+                     this.reliabilityFlag=true;
+                }
+                    
             }
             if (termInfo.getAdministrativeStatus() != null) {
                 administrativeTr = getTr(getProperty("Administrative Status:"), getValueNew(termInfo.getAdministrativeStatus()));
+                  /*if(!termInfo.getAdministrativeStatus().isEmpty()){
+                     //System.out.println(termInfo.getReliabilityCode());
+                     this.administrativeStatusFlaq=true;
+                }*/
             }
             if (termInfo.getSubjectId() != null) {
                 String subjectFieldPro = " " + SUBJECT_FIELD + ":";
@@ -172,6 +188,10 @@ public class HtmlTermPage extends HtmlPageAbstract {
                     subjectID = "";
                 }
                 subjectFieldTr = getTr(getProperty(subjectFieldPro), getValueNew(subjectID + termInfo.getSubjectDescription()));
+                 /*if(!termInfo.getSubjectId().isEmpty()){
+                     //System.out.println(termInfo.getReliabilityCode());
+                     this.subjectFielsFlag=true;
+                }*/
             }
             if (termInfo.getTermID() != null) {
                 ReferenceTr = getTr(getProperty("Reference:"), getValueNew(termInfo.getTermID()));
@@ -200,9 +220,10 @@ public class HtmlTermPage extends HtmlPageAbstract {
             if (termInfo.getSynonym() != null) {
                 synonymTr = getTr(getProperty("Synonym:"), getValueNew(termInfo.getSynonym()));
             }
+              
         }
 
-        String table = this.getTable(this.getTbody(languageTr + definitionTr + reliabilityCodeTr + administrativeTr + subjectFieldTr + ReferenceTr
+        String table = this.getTable(this.getTbody(writtenFormTr+languageTr + definitionTr + reliabilityCodeTr + administrativeTr + subjectFieldTr + ReferenceTr
                 + posTr + numberTr + genderTr + hypernymTr + hyponymTr + variantTr + synonymTr));
         String divStr = table;
         divStrS.add(divStr);
@@ -361,6 +382,10 @@ public class HtmlTermPage extends HtmlPageAbstract {
 
     public Document getTemplateHtml() {
         return templateHtml;
+    }
+
+    public Boolean isReliabilityFlag() {
+        return reliabilityFlag;
     }
 
    

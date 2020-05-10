@@ -51,30 +51,30 @@ public class Main {
              //put("mt", "Maltese");
              //put("lt", "Lithuanian");
             
-             put("en", "English");
+             //put("en", "English");
            
-             /*put("bg", "Bulgarian");
-             put("cs", "Czech");
-             put("da", "Danish");
-             put("de", "German");
-             put("en", "English");
-             put("el", "Greek");
-             put("es", "Spanish");
-             put("et", "Estonian");
-             put("fr", "French");
-             put("ga", "Irish");
-             put("hr", "Croatian");
-             put("hu", "Hungarian");
-             put("fi", "Finnish");
-             put("it", "Italian");
-             put("lt", "Lithuanian");
-             put("lv", "Latvian");
-             put("mt", "Maltese");
-             put("nl", "Dutch");
-             put("ro", "Romanian");
-             put("sk", "Slovak");
-             put("sl", "Slovenian");
-             put("sv", "Swedish");*/
+             //put("bg", "Bulgarian");
+             //put("cs", "Czech");
+             //put("da", "Danish");
+             //put("de", "German");
+             //put("en", "English");
+             //put("el", "Greek");
+             //put("es", "Spanish");
+             //put("et", "Estonian");
+             //put("fr", "French");
+             //put("ga", "Irish");
+             //put("hr", "Croatian");
+             //put("hu", "Hungarian");
+             //put("fi", "Finnish");
+             //put("it", "Italian");
+             //put("lt", "Lithuanian");
+             //put("lv", "Latvian");
+             //put("mt", "Maltese");
+             //put("nl", "Dutch");
+             //put("ro", "Romanian");
+             //put("sk", "Slovak");
+             //put("sl", "Slovenian");
+             //put("sv", "Swedish");
         }
     };
     

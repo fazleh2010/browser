@@ -113,7 +113,8 @@ public class HtmlListOfTerms extends HtmlPageAbstract implements HtmlPage, Langu
         for (TermDetail termDetail : terms) {
             TermDetail newTermDetail = termPage.createTerms(termDetail, index++, htmlFileName);
             String liString = termPage.getTermLi(newTermDetail);
-            divTerm.append(liString);
+               if(termPage.isReliabilityFlag())
+                 divTerm.append(liString);
         }
     }
 
