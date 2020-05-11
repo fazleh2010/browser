@@ -33,7 +33,7 @@ public class GeneralCompScriptGen {
     private static Integer orginalIndex = 0;
     private static Integer alternativeIndex = 1;
     private FileAndLocationConst constants;
-    private Integer maximumNumber=2;
+    private Integer maximumNumber=50000;
 
     public GeneralCompScriptGen(Map<String, Browser> inputBrowsers, File templateFile, FileAndLocationConst constants, Boolean alternativeFlag) throws Exception {
         this.inputBrowsers = inputBrowsers;
