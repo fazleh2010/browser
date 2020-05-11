@@ -45,6 +45,8 @@ public class Main {
     private static Boolean termPageFlag = true;
     private static Boolean alternativeFlag = true;
     private static Boolean textFileModifyFlag = true;
+    
+    //run german english french italian and all other languages
 
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
@@ -53,7 +55,7 @@ public class Main {
             
              //put("en", "English");
            
-             put("bg", "Bulgarian");
+             /*put("bg", "Bulgarian");
              put("cs", "Czech");
              put("da", "Danish");
               //put("de", "German");
@@ -74,7 +76,8 @@ public class Main {
              put("ro", "Romanian");
              put("sk", "Slovak");
              put("sl", "Slovenian");
-             put("sv", "Swedish");
+             put("sv", "Swedish");*/
+            put("sv", "Swedish");
         }
     };
     
@@ -95,6 +98,7 @@ public class Main {
          /*cleanDirectoryInput(constants.GENTERM);
          cleanDirectoryInput(constants.IATE);
          cleanDirectoryOutput();*/
+          //cleanDirectoryOutput();
          //
          /*cleanDirectoryInput(constants.GENTERM);
          browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
@@ -110,10 +114,10 @@ public class Main {
         //Running Genterm html
          /*tasks.matchTerminologies(constants.GENTERM, constants.IATE);
          browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
-         tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(false, true,  true, true),dataBaseTemp);*/
+         tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(false, true,  true, true),dataBaseTemp);
         
-        //tasks.createJavaScriptForAutoComp(constants.GENTERM);
-        System.out.println("Processing genterm finished!!!");
+        tasks.createJavaScriptForAutoComp(constants.GENTERM);
+        System.out.println("Processing genterm finished!!!");*/
         
         
          
@@ -123,8 +127,8 @@ public class Main {
           browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
           tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(false, true,  true, true),dataBaseTemp);
         
-        //tasks.createJavaScriptForAutoComp(constants.IATE);
-        System.out.println("Processing iate finished!!!");
+          tasks.createJavaScriptForAutoComp(constants.IATE);
+          System.out.println("Processing iate finished!!!");
 
     }
     // run before comit..................to clean all folder

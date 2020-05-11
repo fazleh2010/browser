@@ -16,9 +16,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.io.IOUtils;
+
 /**
  *
  * @author elahi
@@ -28,15 +30,16 @@ public class GeneralCompScriptGen {
     private final Map<String, Browser> inputBrowsers;
     private final File templateFile;
     private final Boolean alternativeUrlFlag;
-    private  static Integer orginalIndex=0;
-    private  static Integer alternativeIndex=1;
-    private   FileAndLocationConst constants;
+    private static Integer orginalIndex = 0;
+    private static Integer alternativeIndex = 1;
+    private FileAndLocationConst constants;
+    private Integer maximumNumber=2;
 
-    public GeneralCompScriptGen(Map<String, Browser> inputBrowsers, File templateFile,FileAndLocationConst constants,Boolean alternativeFlag) throws Exception {
+    public GeneralCompScriptGen(Map<String, Browser> inputBrowsers, File templateFile, FileAndLocationConst constants, Boolean alternativeFlag) throws Exception {
         this.inputBrowsers = inputBrowsers;
-        this.alternativeUrlFlag=alternativeFlag;
+        this.alternativeUrlFlag = alternativeFlag;
         this.templateFile = templateFile;
-        this.constants=constants;
+        this.constants = constants;
         if (!templateFile.exists()) {
             throw new Exception(" no template find found for autocompletion!!");
         }
@@ -45,22 +48,21 @@ public class GeneralCompScriptGen {
         }
     }
 
-   
     public void generateScript() throws IOException, Exception {
         for (String category : inputBrowsers.keySet()) {
             generateScript(category);
         }
     }
 
-
     public void generateScript(String category) throws IOException, Exception {
         Browser generalBrowser = inputBrowsers.get(category);
         String ontologyName = Taskimpl.getOntologyName(category);
         for (String langCode : generalBrowser.getLangTermUrls().keySet()) {
             LangSpecificBrowser langSpecificBrowser = generalBrowser.getLangTermUrls().get(langCode);
-            Map<String, String> allkeysValues = langSpecificBrowser.getTermUrls();
+            Map<String, String> allkeysValuesRaw = langSpecificBrowser.getTermUrls();
+            Map<String, String> allkeysValues = this.cutHash(allkeysValuesRaw, maximumNumber);
             String str = getTerms(allkeysValues);
-            String outputFileName = constants.getOUTPUT_PATH(category)+"js"+File.separator+ontologyName + "_" + langCode + ".js";
+            String outputFileName = constants.getOUTPUT_PATH(category) + "js" + File.separator + ontologyName + "_" + langCode + ".js";
             createAutoCompletionTemplate(templateFile, str, outputFileName);
         }
     }
@@ -91,7 +93,7 @@ public class GeneralCompScriptGen {
         }
 
     }*/
-    private  String getTerms(Map<String, String> allKeysValues) throws IOException {
+    private String getTerms(Map<String, String> allKeysValues) throws IOException {
         String str = "window.termUrls = new Map();" + "\n";
         str += "";
         List<String> termList = new ArrayList<String>(allKeysValues.keySet());
@@ -101,7 +103,7 @@ public class GeneralCompScriptGen {
             String term = termList.get(i);
             term = term.trim();
             String value = allKeysValues.get(term);
-            value=getUrl(value);
+            value = getUrl(value);
             //value=value.replace("=", " = ");
             term = quote(term);
             if (i == termList.size()) {
@@ -138,7 +140,7 @@ public class GeneralCompScriptGen {
         return text;
     }
 
-    private  void createAutoCompletionTemplate(File templatefileName, String str, String outputFile) throws FileNotFoundException, IOException {
+    private void createAutoCompletionTemplate(File templatefileName, String str, String outputFile) throws FileNotFoundException, IOException {
 
         InputStream input = new FileInputStream(templatefileName);
         String line = IOUtils.toString(input, "UTF-8");
@@ -147,18 +149,32 @@ public class GeneralCompScriptGen {
 
     }
 
-    private  String getUrl(String value) {
+    private String getUrl(String value) {
         if (value.contains("=")) {
-                String[] urls = value.split("=");
-                String orgUrl = urls[orginalIndex];
-                String alterUrl = urls[alternativeIndex];
-                if (alternativeUrlFlag) {
-                    value = alterUrl;
-                } else {
-                    value = orgUrl;
-                }
+            String[] urls = value.split("=");
+            String orgUrl = urls[orginalIndex];
+            String alterUrl = urls[alternativeIndex];
+            if (alternativeUrlFlag) {
+                value = alterUrl;
+            } else {
+                value = orgUrl;
             }
+        }
         return value;
+    }
+
+    private Map<String, String> cutHash(Map<String, String> allkeysValuesRaw, int size) {
+        Integer index = 0;
+        Map<String, String> allkeysValues = new HashMap<String, String>();
+        for (String key : allkeysValuesRaw.keySet()) {
+            index++;
+            String value = allkeysValuesRaw.get(key);
+            allkeysValues.put(key, value);
+            if (index > size) {
+                break;
+            }
+        }
+        return allkeysValues;
     }
 
 }
