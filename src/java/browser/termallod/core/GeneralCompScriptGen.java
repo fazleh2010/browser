@@ -169,7 +169,8 @@ public class GeneralCompScriptGen {
         for (String key : allkeysValuesRaw.keySet()) {
             index++;
             String value = allkeysValuesRaw.get(key);
-            allkeysValues.put(key, value);
+            value = value.replaceAll("\\s+","").trim();
+            allkeysValues.put(key, value).trim();
             if (index > size) {
                 break;
             }

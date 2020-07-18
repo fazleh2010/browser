@@ -193,7 +193,7 @@ public class Taskimpl  {
     }
 
     private void saveDataIntoFiles(String browser) throws Exception {
-        new RdfReader(browser, dataBaseTemp, languageManager, constants.TURTLE, constants.TURTLE_EXTENSION);
+        new RdfToDatabase(browser, dataBaseTemp, languageManager, constants.TURTLE, constants.TURTLE_EXTENSION);
     }
 
     public List<String> search(String category, String langCode, String searchQuery) throws IOException, ParseException, Exception {

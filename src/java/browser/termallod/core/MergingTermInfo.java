@@ -11,18 +11,10 @@ import browser.termallod.core.term.TermInfo;
 import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.utils.StringMatcherUtil;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

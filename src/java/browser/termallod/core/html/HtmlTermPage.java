@@ -254,7 +254,10 @@ public class HtmlTermPage extends HtmlPageAbstract {
             }
             
             //System.out.println(term+" "+url+" "+otherTerminology+" "+spanTerminologyUrl+" Iate:"+termFileName);
-             System.out.println(term+" = "+termFileName);
+             if(this.reliabilityFlag){
+                  System.out.println(term+" = "+termFileName+" = "+termFileName);
+             }
+              
 
 
             //temporary closed

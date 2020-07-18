@@ -337,6 +337,14 @@ public class FileRelatedUtils {
         }
 
     }
+    
+    public static void stringToFile(String str, String fileName)
+            throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+        writer.write(str);
+        writer.close();
+
+    }
 
     public static void stringToFile_DeleteIf_Exists(String str, String fileName)
             throws IOException {

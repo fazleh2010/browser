@@ -14,8 +14,10 @@ import browser.termallod.api.IATE;
 import browser.termallod.core.term.TermInfo;
 import browser.termallod.api.LanguageManager;
 import static browser.termallod.app.Main.constants;
+import browser.termallod.utils.DataBaseTests;
 import browser.termallod.utils.NameExtraction;
 import browser.termallod.utils.FileRelatedUtils;
+import browser.termallod.utils.MySQLAccess;
 import browser.termallod.utils.StringMatcherUtil;
 import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.query.Query;
@@ -41,20 +43,29 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
 
-public class RdfReader implements IATE {
+public class RdfToDatabase implements IATE {
 
     private String MODEL_TYPE;
     private LanguageManager languageInfo;
     private DataBaseTemp dataBaseTemp;
 
-    public RdfReader(String browser,DataBaseTemp dataBaseTemp,LanguageManager languageInfo, String MODEL_TYPE, String MODEL_EXTENSION) throws Exception {
+    public RdfToDatabase(String browser, DataBaseTemp dataBaseTemp, LanguageManager languageInfo, String MODEL_TYPE, String MODEL_EXTENSION) throws Exception {
         this.MODEL_TYPE = MODEL_TYPE;
         this.languageInfo = languageInfo;
         this.dataBaseTemp = dataBaseTemp;
         String rdfDir = constants.getINPUT_RDF_PATH(browser);
         String txtDir = constants.getINPUT_TXT_PATH(browser);
-         System.out.println(rdfDir);
-        System.out.println(txtDir);
+
+        /*ResultSet first_results = getResult(tbx2rdf_iate_endpoint, tbx2rdf_iate__query);
+         ResultSet sec_results = getResult(dbpedia_endpoint, dbpedia_query);*/
+        //ResultSet first_results = getResult(tbx2rdftest, tbx2rdf_iate__query);
+        //mySQLAccess.createTermTable("iate_en_A_B");
+        //mySQLAccess.createTermTable("atc_en_A_B");
+        //mySQLAccess.createLinkingTable("linking_terms");
+        //mySQLAccess.deleteTable("en_A_B_term");
+        //mySQLAccess.deleteTable("linking_terms");
+        //mySQLAccess.insertDataTermTable("en_A_B_term");
+        //mySQLAccess.insertDataLinkTable("linking_terms");
 
         File[] turtleFiles = FileRelatedUtils.getFiles(rdfDir, MODEL_EXTENSION);
 
@@ -62,7 +73,9 @@ public class RdfReader implements IATE {
             for (File categoryFile : turtleFiles) {
                 String categoryName = NameExtraction.getCategoryName(rdfDir, categoryFile, MODEL_EXTENSION);
                 String fileNameOrUri = rdfDir + categoryFile.getName();
-                this.extractInformation(fileNameOrUri, txtDir, categoryName);
+                 //MySQLAccess mySQLAccess = new MySQLAccess();
+                this.extractInformation(fileNameOrUri,  categoryName);
+                break;
             }
         } else {
             throw new Exception("No rdf file to process!!!");
@@ -72,8 +85,8 @@ public class RdfReader implements IATE {
 
     // dont change List to set. then the sorting breaks;
     // temporarliy closed.
-    private void extractInformation(String fileNameOrUri, String dataSaveDir, String categoryName) throws Exception {
-
+    private void extractInformation(String fileNameOrUri, String categoryName) throws Exception {
+       
         TreeMap<String, TreeMap<String, List<TermInfo>>> langTerms = new TreeMap<String, TreeMap<String, List<TermInfo>>>();
         Map<String, String> langSensList = new TreeMap<String, String>();
         Map<String, String> urlCanonicalForm = new TreeMap<String, String>();
@@ -114,12 +127,12 @@ public class RdfReader implements IATE {
                     }
 
                 } else {
-                    /*if (triple.toString().contains("CanonicalForm") && !triple.getObject().toString().contains(LANGUAGE_SEPERATE_SYMBOLE)) {
+                    if (triple.toString().contains("CanonicalForm") && !triple.getObject().toString().contains(LANGUAGE_SEPERATE_SYMBOLE)) {
                         urlCanonicalForm = this.getCanonicalForm(triple, urlCanonicalForm, "CanonicalForm");
                     }
                     if (triple.toString().contains("Sense")) {
                         urlSense = this.getCanonicalForm(triple, urlSense, "Sense");
-                    }*/
+                    }
                 }
 
                 if (triple.getObject().toString().contains(LANGUAGE_SEPERATE_SYMBOLE)) {
@@ -142,15 +155,14 @@ public class RdfReader implements IATE {
         } else {
             //System.err.println("cannot read " + fileNameOrUri);;
         }
+        
+        //MySQLAccess.insertDataTermTable(langTerms,categoryName);
 
-        FileRelatedUtils.writeFile(idSubjectID, dataSaveDir + File.separator + dataBaseTemp.getSubjectFileName());
+        /*FileRelatedUtils.writeFile(idSubjectID, dataSaveDir + File.separator + dataBaseTemp.getSubjectFileName());
         FileRelatedUtils.writeFile(langTerms, dataSaveDir + categoryName);
         FileRelatedUtils.writeLangFile2(langSensList, dataSaveDir, dataBaseTemp.getSENSE());
-        //FileRelatedUtils.writeFileNew(urlCanonicalForm, dataSaveDir + File.separator + "canonicalForm.txt");
-        //FileRelatedUtils.writeFileNew(urlSense, dataSaveDir + File.separator + "sense.txt");
         FileRelatedUtils.writeLangFile(reliabilityCode, dataSaveDir, dataBaseTemp.getRELIABILITY_CODE());
-        //System.out.println("administrativeStatus:"+administrativeStatus.keySet());
-        FileRelatedUtils.writeLangFile(administrativeStatus, dataSaveDir, dataBaseTemp.getADMINISTRATIVE_STATUS());
+        FileRelatedUtils.writeLangFile(administrativeStatus, dataSaveDir, dataBaseTemp.getADMINISTRATIVE_STATUS());*/
 
     }
 
@@ -211,6 +223,7 @@ public class RdfReader implements IATE {
     }
 
     private Map<String, String> getSense(Triple statement, Map<String, String> langSensList) throws Exception {
+        System.out.println(statement);
         String string = statement.toString();
         String[] infos = string.split(" ");
         List<String> wordList = Arrays.asList(infos);
@@ -254,6 +267,7 @@ public class RdfReader implements IATE {
     }
 
     private String getSubjectField(Triple statement, String idSubjectID) throws Exception {
+        //System.out.println(statement);
         String string = statement.toString();
         String[] infos = string.split(" ");
         List<String> wordList = Arrays.asList(infos);
@@ -281,6 +295,7 @@ public class RdfReader implements IATE {
     }
 
     private Map<String, String> getCanonicalForm(Triple statement, Map<String, String> idSubjectFieldID, String match) throws Exception {
+        //System.out.println(statement);
         String string = statement.toString();
         String[] infos = string.split(" ");
         List<String> wordList = Arrays.asList(infos);
@@ -314,6 +329,7 @@ public class RdfReader implements IATE {
     }
 
     private Map<String, TreeMap<String, String>> getreliabilityCode(Triple statement, Map<String, TreeMap<String, String>> langReliabiltyList) throws Exception {
+        //System.out.println(statement);
         String string = statement.toString();
         String[] infos = string.split(" ");
         List<String> wordList = Arrays.asList(infos);
@@ -350,6 +366,7 @@ public class RdfReader implements IATE {
     }
 
     private Map<String, TreeMap<String, String>> getAdministrativeStatus(Triple statement, Map<String, TreeMap<String, String>> lang) throws Exception {
+        System.out.println(statement);
         String string = statement.toString();
         String[] infos = string.split(" ");
         TreeMap<String, String> urlAdministrative = new TreeMap<String, String>();

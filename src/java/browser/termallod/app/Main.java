@@ -19,6 +19,9 @@ import browser.termallod.core.html.HtmlParameters;
 import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.term.TermDetail;
 import browser.termallod.utils.FileRelatedUtils;
+import citec.core.sparql.CurlSparqlQuery;
+import citec.core.sparql.SparqlEndpoint;
+import citec.core.termbase.Termbase;
 import java.io.IOException;
 import java.util.List;
 
@@ -26,7 +29,7 @@ import java.util.List;
  *
  * @author elahi
  */
-public class Main {
+public class Main implements SparqlEndpoint{
 
     public static FileAndLocationConst constants;
     public static Set<String> browserSet;
@@ -45,17 +48,25 @@ public class Main {
     private static Boolean termPageFlag = true;
     private static Boolean alternativeFlag = true;
     private static Boolean textFileModifyFlag = true;
-    
-    //run german english french italian and all other languages
+    private String htmlString = "<!DOCTYPE html>\n"
+            + "<html>\n"
+            + "    <head>\n"
+            + "        <title>Example</title>\n"
+            + "    </head>\n"
+            + "    <body>\n"
+            + "        <p>This is an example of a simple HTML page with one paragraph.</p>\n"
+            + "    </body>\n"
+            + "</html>";
 
+    //run german english french italian and all other languages
     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
-             //put("mt", "Maltese");
-             //put("lt", "Lithuanian");
-            
-             //put("en", "English");
-           
-             /*put("bg", "Bulgarian");
+            //put("mt", "Maltese");
+            //put("lt", "Lithuanian");
+
+            put("en", "English");
+            put("nl", "Dutch");
+            /*put("bg", "Bulgarian");
              put("cs", "Czech");
              put("da", "Danish");
               //put("de", "German");
@@ -77,66 +88,95 @@ public class Main {
              put("sk", "Slovak");
              put("sl", "Slovenian");
              put("sv", "Swedish");*/
-            put("sv", "Swedish");
+            // put("sv", "Swedish");
         }
     };
-    
-    //maltsease is wrong currently
 
+    //maltsease is wrong currently
     public static void main(String[] args) throws Exception {
-        HtmlParameters htmlCreateParameters = null;
+        Integer index = 1;
+
+        String myTermTableName = "myTerminology", otherTermTableName = "otherTerminology", matchedTermTable = "link";
+        String myTermSparqlEndpoint = null, outputLocation = null, list = null;
+
+        System.out.println("called");
+        System.out.println("arguments: " + args.length);
+        if (args.length > 0) {
+            myTermSparqlEndpoint = args[0];
+            System.out.println("SparqlEndpoint: " + myTermSparqlEndpoint);
+        } else {
+            myTermSparqlEndpoint = endpoint_solar;
+            System.err.println("no sparql endpoint in arguments");
+        }
+        if (args.length > 1) {
+            outputLocation = args[1];
+            System.out.println("output folder: " + outputLocation);
+        } else {
+            System.err.println("no output folder in arguments");
+            outputLocation = BASE_PATH;
+        }
+        if (args.length > 2) {
+            list = args[2];
+            System.out.println("output folder: " + list);
+        } else {
+        }
+
+        //my terminology
+        Termbase myTerminology = new CurlSparqlQuery(myTermSparqlEndpoint, query_writtenRep, myTermTableName).getTermbase();
+        System.out.println(myTerminology.getTerms().toString());
+        //System.out.println(htmlString);
+        //FileRelatedUtils.stringToFile(htmlString, outputLocation + "ListofTerm.html");
+
+        /*
+          HtmlParameters htmlCreateParameters = null;
         MergingTermInfo mergingTermInfo = null;
+        
         
         alternativeFlag = true;
         lang = new TreeSet<String>(languageMapper.keySet());
         constants = new FileAndLocationConst(BASE_PATH, INPUT_PATH, OUTPUT_PATH);
-        browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM,constants.IATE));
+        browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
         tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
 
         //Running and testing genterm
         //before commit run it
-         /*cleanDirectoryInput(constants.GENTERM);
-         cleanDirectoryInput(constants.IATE);
-         cleanDirectoryOutput();*/
+         cleanDirectoryInput(constants.GENTERM);
+         //cleanDirectoryInput(constants.IATE);
+         cleanDirectoryOutput();
           //cleanDirectoryOutput();
          //
-         /*cleanDirectoryInput(constants.GENTERM);
+         cleanDirectoryInput(constants.GENTERM);
          browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
          tasks.saveDataIntoFiles(browserSet);         
-         tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);*/
+         tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);
          
           //Running and testing iate
           /*cleanDirectoryInput(constants.IATE);
           browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
           tasks.saveDataIntoFiles(browserSet);         
-          tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);*/
-        
+          //tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(true, false,  false,true),dataBaseTemp);*/
         //Running Genterm html
-         /*tasks.matchTerminologies(constants.GENTERM, constants.IATE);
+        /*tasks.matchTerminologies(constants.GENTERM, constants.IATE);
          browserSet = new HashSet<String>(Arrays.asList(constants.GENTERM));
          tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(false, true,  true, true),dataBaseTemp);
         
-        tasks.createJavaScriptForAutoComp(constants.GENTERM);
-        System.out.println("Processing genterm finished!!!");*/
-        
-        
-         
-        
-          //cleanDirectoryOutput();
-          tasks.matchTerminologies(constants.GENTERM, constants.IATE);
-          browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
-          tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(false, true,  true, true),dataBaseTemp);
-        
-          tasks.createJavaScriptForAutoComp(constants.IATE);
-          System.out.println("Processing iate finished!!!");
+        tasks.createJavaScriptForAutoComp(constants.GENTERM);*/
+        System.out.println("Hello world!!!");
+
+        //cleanDirectoryOutput();
+        //tasks.matchTerminologies(constants.GENTERM, constants.IATE);
+        //browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
+        //tasks.createHtmlFromSavedFiles(constants,browserSet,lang, new HtmlParameters(false, true,  true, true),dataBaseTemp);
+        //tasks.createJavaScriptForAutoComp(constants.IATE);
+        System.out.println("Processing iate finished!!!");
 
     }
     // run before comit..................to clean all folder
 
     private static void cleanDirectoryInput(String browser) throws IOException {
-        FileRelatedUtils.cleanDirectory(constants.BROWSER_GROUPS, constants.getBASE_PATH(), constants.TEXT_PATH,browser);
+        FileRelatedUtils.cleanDirectory(constants.BROWSER_GROUPS, constants.getBASE_PATH(), constants.TEXT_PATH, browser);
     }
-    
+
     private static void cleanDirectoryOutput() throws IOException {
         FileRelatedUtils.cleanDirectory(constants.CATEGORY_ONTOLOGIES, constants.getOUTPUT_PATH());
     }
@@ -164,43 +204,35 @@ public class Main {
         Taskimpl tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp, CONFIG_PATH);
         tasks.createJavaScriptForAutoComp(browser);
     }
-    
+
     /*
             
         //Generated java script...
        Taskimpl tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp, CONFIG_PATH);
         tasks.createJavaScriptForAutoComp(constants.GENTERM);*/
-        
-        
-
 //create java script files
-        //it works seperately
-        //tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
-        
-
-        //  System.out.println("Processing finished!!!");
-        //this is necessary for other applications!!
-        //tasks.readDataFromSavedFiles(GENTERM,alternativeFlag);
-        // tasks.readDataFromSavedFiles(GENTERM);
-        //tasks.createTermDetailHtmlPage(ATC);
-        //tasks.createTermDetailHtmlPage(terms);
-        //tasks.matchBrowsers();
-        //search Text
-        /*tasks.createIndexing(IATE);
+    //it works seperately
+    //tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
+    //  System.out.println("Processing finished!!!");
+    //this is necessary for other applications!!
+    //tasks.readDataFromSavedFiles(GENTERM,alternativeFlag);
+    // tasks.readDataFromSavedFiles(GENTERM);
+    //tasks.createTermDetailHtmlPage(ATC);
+    //tasks.createTermDetailHtmlPage(terms);
+    //tasks.matchBrowsers();
+    //search Text
+    /*tasks.createIndexing(IATE);
         tasks.search(IATE, "en", querystr);*/
-        //tasks.createTermDetailHtmlPage(GENTERM,lang);
-
-        //TermDetail termDetail=new TermDetail(ATC,"eng","test", "http");
-        //tasks.createAddDeclineHtmlPage(ATC,"en", termDetail, lang);
-        //create java script files
-        //tasks.createJavaScriptForAutoComp();
-        //tasks.generateScript();
-        //match terms..
-        //tasks.readDataFromSavedFiles(GENTERM, alternativeFlag);
-        //tasks.readDataFromSavedFiles(IATE,false);
-        //tasks.createIndexing(IATE);
-        //Map<String, Browser> browsersInfoSecond = tasks.readDataFromSavedFiles(IATE,false);
-        // List<TermDetail> termDetails=MatchingTerminologies.getTermDetails("alcaftadine");
-   
-
+    //tasks.createTermDetailHtmlPage(GENTERM,lang);
+    //TermDetail termDetail=new TermDetail(ATC,"eng","test", "http");
+    //tasks.createAddDeclineHtmlPage(ATC,"en", termDetail, lang);
+    //create java script files
+    //tasks.createJavaScriptForAutoComp();
+    //tasks.generateScript();
+    //match terms..
+    //tasks.readDataFromSavedFiles(GENTERM, alternativeFlag);
+    //tasks.readDataFromSavedFiles(IATE,false);
+    //tasks.createIndexing(IATE);
+    //Map<String, Browser> browsersInfoSecond = tasks.readDataFromSavedFiles(IATE,false);
+    // List<TermDetail> termDetails=MatchingTerminologies.getTermDetails("alcaftadine");
 }
