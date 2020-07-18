@@ -47,16 +47,13 @@ public class FileRelatedUtils {
     }
 
     public static File[] getFiles(String fileDir, String ntriple) throws Exception {
-
         File dir = new File(fileDir);
         FileFilter fileFilter = new WildcardFileFilter("*" + ntriple);
         File[] files = dir.listFiles(fileFilter);
         return files;
-
     }
 
     public static List<File> getFiles(String fileDir, String category, String extension) {
-        System.out.println(fileDir);
         String[] files = new File(fileDir).list();
         List<File> selectedFiles = new ArrayList<File>();
         for (String fileName : files) {

@@ -102,4 +102,17 @@ public class AlphabetFiles {
         return langTerms;
     }
 
+    public void display() {
+        for (String language : this.langTerms.keySet()) {
+            System.out.println(language);
+            TreeMap<String, List<TermDetailNew>> terms = this.langTerms.get(language);
+            for (String termString : terms.keySet()) {
+                List<TermDetailNew> termDetailNews = terms.get(termString);
+                for (TermDetailNew termDetailNew : termDetailNews) {
+                    System.out.println(termDetailNew.getTermUrl() + " " + termDetailNew.getTermUrl());
+                }
+            }
+        }
+    }
+
 }

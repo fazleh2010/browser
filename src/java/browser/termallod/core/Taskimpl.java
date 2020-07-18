@@ -77,8 +77,8 @@ public class Taskimpl  {
             if (browserSet.contains(browser)) {
                 String source = FileRelatedUtils.getSourcePath(INPUT_PATH, browser);
                 List<String> categoties = constants.BROWSER_CATEGORIES.get(browser);
-                HtmlCreator htmlCreator = new HtmlCreator(constants, lang, htmlCreateParameters,dataBaseTemp);
-                htmlCreator.createHtmlForEachCategory(categoties, source, constants.TEXT_EXTENSION, browser);
+                //HtmlCreator htmlCreator = new HtmlCreator(constants, lang, htmlCreateParameters,dataBaseTemp);
+                //htmlCreator.createHtmlForEachCategory(categoties, source, constants.TEXT_EXTENSION, browser);
             }
         }
          

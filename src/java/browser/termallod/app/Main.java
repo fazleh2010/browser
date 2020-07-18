@@ -18,6 +18,7 @@ import java.util.TreeSet;
 import browser.termallod.constants.FileAndLocationConst;
 import browser.termallod.core.LanguageAlphabetPro;
 import browser.termallod.core.MergingTermInfo;
+import browser.termallod.core.html.HtmlCreator;
 import browser.termallod.core.html.HtmlParameters;
 import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.term.TermDetail;
@@ -40,14 +41,10 @@ import java.util.TreeMap;
 public class Main implements SparqlEndpoint {
 
     public static FileAndLocationConst constants;
-    public static Set<String> browserSet;
-    private static Set<String> lang = new TreeSet<String>();
-    ///home/melahi/NetBeansProjects/data
     private static String BASE_PATH = "src/java/resources/data/";
-    private static String OUTPUT_PATH = "src/java/resources/data/";
-    private static String INPUT_PATH = "src/java/resources/data/input/";
-
-    private static String CONFIG_FILE = BASE_PATH+"/conf/"+"language.conf";
+    private static String OUTPUT_PATH = BASE_PATH+"/output/";
+    private static String INPUT_PATH =BASE_PATH+ "/input/";
+    private static String CONFIG_PATH = BASE_PATH+"/conf/";
      private static LanguageManager languageInfo;
 
     private static Taskimpl tasks = null;
@@ -104,10 +101,10 @@ public class Main implements SparqlEndpoint {
     //maltsease is wrong currently
     public static void main(String[] args) throws Exception {
         Integer index = 1;
-        languageInfo = new LanguageAlphabetPro(new File(CONFIG_FILE));
+       
 
         String myTermTableName = "myTerminology", otherTermTableName = "otherTerminology", matchedTermTable = "link";
-        String myTermSparqlEndpoint = null, outputLocation = null, list = null;
+        String myTermSparqlEndpoint = null,list=null;
 
         System.out.println("called");
         System.out.println("arguments: " + args.length);
@@ -119,11 +116,11 @@ public class Main implements SparqlEndpoint {
             System.err.println("no sparql endpoint in arguments");
         }
         if (args.length > 1) {
-            outputLocation = args[1];
-            System.out.println("output folder: " + outputLocation);
+            OUTPUT_PATH = args[1];
+            System.out.println("output folder: " + OUTPUT_PATH);
         } else {
             System.err.println("no output folder in arguments");
-            outputLocation = BASE_PATH;
+           
         }
         if (args.length > 2) {
             list = args[2];
@@ -131,23 +128,12 @@ public class Main implements SparqlEndpoint {
         } else {
         }
         
+        languageInfo = new LanguageAlphabetPro(new File(BASE_PATH+"/conf/"+"language.conf"));
         Termbase myTerminology = new CurlSparqlQuery(myTermSparqlEndpoint, query_writtenRep, myTermTableName).getTermbase();
         
         AlphabetFiles alphabetFiles=new AlphabetFiles(languageInfo,myTerminology);
-        System.out.println(alphabetFiles.getLangTerms().keySet());
-         //FileRelatedUtils.writeFile(alphabetFiles.getLangTerms(), INPUT_PATH);
-        //FileRelatedUtils.writeFile(alphabetFiles.getLangTerms(), INPUT_PATH);
-        
-        /*for (String language : alphabetFiles.getLangTerms().keySet()) {
-            System.out.println(language);
-            TreeMap<String, List<TermDetailNew>> terms=alphabetFiles.getLangTerms().get(language);
-            for (String termString : terms.keySet()) {
-                List<TermDetailNew> termDetailNews=terms.get(termString);
-                 for (TermDetailNew termDetailNew : termDetailNews) {
-                      System.out.println(termDetailNew.getTermUrl()+" "+termDetailNew.getTermUrl());
-                 }
-            }
-        }*/
+        FileRelatedUtils.writeFile(alphabetFiles.getLangTerms(), INPUT_PATH);        
+        HtmlCreator htmlCreator = new HtmlCreator(INPUT_PATH,alphabetFiles.getLangTerms().keySet(), OUTPUT_PATH);
 
 
         //System.out.println(htmlString);
@@ -162,7 +148,7 @@ public class Main implements SparqlEndpoint {
         lang = new TreeSet<String>(languageMapper.keySet());
         constants = new FileAndLocationConst(BASE_PATH, INPUT_PATH, OUTPUT_PATH);
         browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
-        tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_FILE);
+        tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
 
         //Running and testing genterm
         //before commit run it
@@ -226,39 +212,10 @@ public class Main implements SparqlEndpoint {
         }
     }
 
-    private static void runJavaScript(String browser) throws Exception {
-        Taskimpl tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp, CONFIG_FILE);
+    /*private static void runJavaScript(String browser) throws Exception {
+        Taskimpl tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp, CONFIG_PATH);
         tasks.createJavaScriptForAutoComp(browser);
-    }
+    }*/
 
-    /*
-            
-        //Generated java script...
-       Taskimpl tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp, CONFIG_FILE);
-        tasks.createJavaScriptForAutoComp(constants.GENTERM);*/
-//create java script files
-    //it works seperately
-    //tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_FILE);
-    //  System.out.println("Processing finished!!!");
-    //this is necessary for other applications!!
-    //tasks.readDataFromSavedFiles(GENTERM,alternativeFlag);
-    // tasks.readDataFromSavedFiles(GENTERM);
-    //tasks.createTermDetailHtmlPage(ATC);
-    //tasks.createTermDetailHtmlPage(terms);
-    //tasks.matchBrowsers();
-    //search Text
-    /*tasks.createIndexing(IATE);
-        tasks.search(IATE, "en", querystr);*/
-    //tasks.createTermDetailHtmlPage(GENTERM,lang);
-    //TermDetail termDetail=new TermDetail(ATC,"eng","test", "http");
-    //tasks.createAddDeclineHtmlPage(ATC,"en", termDetail, lang);
-    //create java script files
-    //tasks.createJavaScriptForAutoComp();
-    //tasks.generateScript();
-    //match terms..
-    //tasks.readDataFromSavedFiles(GENTERM, alternativeFlag);
-    //tasks.readDataFromSavedFiles(IATE,false);
-    //tasks.createIndexing(IATE);
-    //Map<String, Browser> browsersInfoSecond = tasks.readDataFromSavedFiles(IATE,false);
-    // List<TermDetail> termDetails=MatchingTerminologies.getTermDetails("alcaftadine");
+    
 }
