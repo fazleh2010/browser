@@ -18,14 +18,14 @@ import java.util.Map;
 public class Termbase {
 
     private final String termbaseName;
-    private Map<String, TermInfo> terms = new HashMap<String, TermInfo>();
+    private Map<String, TermDetailNew> terms = new HashMap<String, TermDetailNew>();
 
-    public Termbase(String termbaseName, Map<String, TermInfo> terms) throws IOException {
+    public Termbase(String termbaseName, Map<String, TermDetailNew> terms) throws IOException {
         this.termbaseName = termbaseName;
         this.terms =terms;
     }
 
-    public Map<String, TermInfo> getTerms() {
+    public Map<String, TermDetailNew> getTerms() {
         return terms;
     }
 
@@ -36,7 +36,7 @@ public class Termbase {
     
     public void display() {
         for(String term:terms.keySet()){
-            TermInfo terminfo=terms.get(term);
+            TermDetailNew terminfo=terms.get(term);
             System.out.println(terminfo);
             
         }

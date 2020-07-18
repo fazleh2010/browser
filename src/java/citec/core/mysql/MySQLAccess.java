@@ -5,7 +5,7 @@
  */
 package citec.core.mysql;
 import citec.core.sparql.SparqlGenerator;
-import citec.core.termbase.TermInfo;
+import citec.core.termbase.TermDetailNew;
 import citec.core.termbase.Termbase;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -152,7 +152,7 @@ public class MySQLAccess implements DataBaseConst {
             Integer index = 1;
 
             for (String url : languageTerms.getTerms().keySet()) {
-                TermInfo termInfo = languageTerms.getTerms().get(url);
+                TermDetailNew termInfo = languageTerms.getTerms().get(url);
                 index = index + 1;
 
                 if (!(limit == -1)) {
@@ -203,11 +203,11 @@ public class MySQLAccess implements DataBaseConst {
                 //String language = rs.getString("language");
                 String term = rs.getString("term");
                 String orginalUrl = rs.getString("originalUrl");
-                TermInfo myterm = new TermInfo(term, orginalUrl);
+                TermDetailNew myterm = new TermDetailNew(term, orginalUrl);
                 //System.out.println(term + " " + orginalUrl + " ");
                 if (otherTermTable.getTerms().containsKey(term)) {
-                    TermInfo othertermInfo = otherTermTable.getTerms().get(term);
-                    TermInfo otherTerm = new TermInfo(term, othertermInfo.getTermUrl());
+                    TermDetailNew othertermInfo = otherTermTable.getTerms().get(term);
+                    TermDetailNew otherTerm = new TermDetailNew(term, othertermInfo.getTermUrl());
                     //System.out.println(term + " " + orginalUrl + " " + othertermInfo.getTermUrl());
                     index++;
                     insertDataLinkTable(myterm, otherTerm, matchedTermTable, index);
@@ -246,7 +246,7 @@ public class MySQLAccess implements DataBaseConst {
 
     }
 
-    public void insertDataLinkTable(TermInfo myTerminology, TermInfo linkTerminology, String linkTableName, Integer index) {
+    public void insertDataLinkTable(TermDetailNew myTerminology, TermDetailNew linkTerminology, String linkTableName, Integer index) {
 
         try {
 
@@ -296,9 +296,9 @@ public class MySQLAccess implements DataBaseConst {
 
     }
     
-    public List<TermInfo> readMatchedTermTable(String termTableName) throws SQLException, Exception {
+    public List<TermDetailNew> readMatchedTermTable(String termTableName) throws SQLException, Exception {
         System.out.println("running read table command");
-        List<TermInfo> termInfos=new ArrayList<TermInfo>();
+        List<TermDetailNew> termInfos=new ArrayList<TermDetailNew>();
       
         try {
 
@@ -314,7 +314,7 @@ public class MySQLAccess implements DataBaseConst {
                 String myTermOrginalUrl = rs.getString("myTermUrl");
                 String OtherTermOrginalUrl = rs.getString("otherTermUrl");                
                 System.out.println(termOrg + " " + term + " " + myTermOrginalUrl+" "+OtherTermOrginalUrl);
-                TermInfo terminfo=new TermInfo(termOrg,myTermOrginalUrl,OtherTermOrginalUrl);
+                TermDetailNew terminfo=new TermDetailNew(termOrg,myTermOrginalUrl,OtherTermOrginalUrl);
                 termInfos.add(terminfo);
                 //SparqlGenerator.linkSparqlGenerator(termOrg,myTermOrginalUrl,"other",OtherTermOrginalUrl);
             }

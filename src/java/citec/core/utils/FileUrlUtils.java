@@ -7,7 +7,7 @@ package citec.core.utils;
 
 import citec.core.sparql.SparqlEndpoint;
 import citec.core.sparql.SparqlEndpoint;
-import citec.core.termbase.TermInfo;
+import citec.core.termbase.TermDetailNew;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
@@ -115,7 +115,7 @@ public class FileUrlUtils implements SparqlEndpoint{
                 str = "";
                 pairIndex++;
                 Integer termIndex = 0;
-                for (TermInfo term : terms) {
+                for (TermDetailNew term : terms) {
                     String pairNote = null;
 
                     if (language.contains("en")) {
@@ -133,8 +133,8 @@ public class FileUrlUtils implements SparqlEndpoint{
         }
         return files;
     }*/
-    public static Map<String, TermInfo> getHashFromFile(File fileName) throws FileNotFoundException, IOException {
-        Map<String, TermInfo> hash = new HashMap<String, TermInfo>();
+    public static Map<String, TermDetailNew> getHashFromFile(File fileName) throws FileNotFoundException, IOException {
+        Map<String, TermDetailNew> hash = new HashMap<String, TermDetailNew>();
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(fileName));
@@ -144,7 +144,7 @@ public class FileUrlUtils implements SparqlEndpoint{
                 // read next line
                 line = reader.readLine();
                 if (line != null) {
-                    TermInfo termInfo=new TermInfo(line);
+                    TermDetailNew termInfo=new TermDetailNew(line);
                     /*String[] info = line.split("=");
                     System.out.println(line);
                     hash.put(info[0], info[1]);*/

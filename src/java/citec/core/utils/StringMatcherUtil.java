@@ -5,7 +5,7 @@
  */
 package citec.core.utils;
 
-import static citec.core.termbase.TermInfo.HASH_SYMBOLE;
+import static citec.core.termbase.TermDetailNew.HASH_SYMBOLE;
 
 /**
  *

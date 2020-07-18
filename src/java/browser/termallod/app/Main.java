@@ -6,6 +6,8 @@
 package browser.termallod.app;
 
 import browser.termallod.api.DataBaseTemp;
+import static browser.termallod.api.IATE.LANGUAGE_SEPERATE_SYMBOLE;
+import browser.termallod.api.LanguageManager;
 import browser.termallod.core.Taskimpl;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,22 +16,28 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import browser.termallod.constants.FileAndLocationConst;
+import browser.termallod.core.LanguageAlphabetPro;
 import browser.termallod.core.MergingTermInfo;
 import browser.termallod.core.html.HtmlParameters;
 import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.term.TermDetail;
+import browser.termallod.core.term.TermInfo;
 import browser.termallod.utils.FileRelatedUtils;
 import citec.core.sparql.CurlSparqlQuery;
 import citec.core.sparql.SparqlEndpoint;
+import citec.core.termbase.TermDetailNew;
 import citec.core.termbase.Termbase;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 /**
  *
  * @author elahi
  */
-public class Main implements SparqlEndpoint{
+public class Main implements SparqlEndpoint {
 
     public static FileAndLocationConst constants;
     public static Set<String> browserSet;
@@ -39,7 +47,8 @@ public class Main implements SparqlEndpoint{
     private static String OUTPUT_PATH = "src/java/resources/data/";
     private static String INPUT_PATH = "src/java/resources/data/";
 
-    private static String CONFIG_PATH = "src/java/resources/data/conf/";
+    private static String CONFIG_FILE = BASE_PATH+"/conf/"+"language.conf";
+     private static LanguageManager languageInfo;
 
     private static Taskimpl tasks = null;
     private static DataBaseTemp dataBaseTemp = new DataBaseTemp(BASE_PATH);
@@ -95,6 +104,7 @@ public class Main implements SparqlEndpoint{
     //maltsease is wrong currently
     public static void main(String[] args) throws Exception {
         Integer index = 1;
+        languageInfo = new LanguageAlphabetPro(new File(CONFIG_FILE));
 
         String myTermTableName = "myTerminology", otherTermTableName = "otherTerminology", matchedTermTable = "link";
         String myTermSparqlEndpoint = null, outputLocation = null, list = null;
@@ -123,7 +133,33 @@ public class Main implements SparqlEndpoint{
 
         //my terminology
         Termbase myTerminology = new CurlSparqlQuery(myTermSparqlEndpoint, query_writtenRep, myTermTableName).getTermbase();
-        System.out.println(myTerminology.getTerms().toString());
+        //System.out.println(myTerminology.getTerms().toString());
+
+        TreeMap<String, TreeMap<String, List<TermDetailNew>>> langTerms = new TreeMap<String, TreeMap<String, List<TermDetailNew>>>();
+
+        for (String term : myTerminology.getTerms().keySet()) {
+            TermDetailNew termDetailNew = myTerminology.getTerms().get(term);
+            String language = termDetailNew.getLanguage();
+
+            if (langTerms.containsKey(termDetailNew.getLanguage())) {
+                langTerms = ifElementExist(language, termDetailNew, langTerms);
+            } else {
+                langTerms = ifElementNotExist(language, termDetailNew, langTerms);
+            }
+        }
+        
+        for (String language : langTerms.keySet()) {
+            System.out.println(language);
+            TreeMap<String, List<TermDetailNew>> terms=langTerms.get(language);
+            for (String termString : terms.keySet()) {
+                List<TermDetailNew> termDetailNews=terms.get(termString);
+                 for (TermDetailNew termDetailNew : termDetailNews) {
+                      System.out.println(termDetailNew.getTermUrl()+" "+termDetailNew.getTermUrl());
+                 }
+            }
+        }
+
+
         //System.out.println(htmlString);
         //FileRelatedUtils.stringToFile(htmlString, outputLocation + "ListofTerm.html");
 
@@ -136,7 +172,7 @@ public class Main implements SparqlEndpoint{
         lang = new TreeSet<String>(languageMapper.keySet());
         constants = new FileAndLocationConst(BASE_PATH, INPUT_PATH, OUTPUT_PATH);
         browserSet = new HashSet<String>(Arrays.asList(constants.IATE));
-        tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
+        tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_FILE);
 
         //Running and testing genterm
         //before commit run it
@@ -173,6 +209,62 @@ public class Main implements SparqlEndpoint{
     }
     // run before comit..................to clean all folder
 
+    private static TreeMap<String, TreeMap<String, List<TermDetailNew>>> ifElementExist(String language, TermDetailNew term, TreeMap<String, TreeMap<String, List<TermDetailNew>>> langTerms) {
+        String pair;
+        pair = getAlphabetPair(language, term.getTermOrg());
+        TreeMap<String, List<TermDetailNew>> alpahbetTerms = langTerms.get(language);
+        try {
+            if (alpahbetTerms.containsKey(pair)) {
+                List<TermDetailNew> terms = alpahbetTerms.get(pair);
+                terms.add(term);
+                alpahbetTerms.put(pair, terms);
+                langTerms.put(language, alpahbetTerms);
+            } else {
+                List<TermDetailNew> terms = new ArrayList<TermDetailNew>();
+                terms.add(term);
+                alpahbetTerms.put(pair, terms);
+                langTerms.put(language, alpahbetTerms);
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Null pointer:" + language + " " + term);
+
+        }
+        return langTerms;
+    }
+
+    private static TreeMap<String, TreeMap<String, List<TermDetailNew>>> ifElementNotExist(String language, TermDetailNew term, TreeMap<String, TreeMap<String, List<TermDetailNew>>> langTerms) {
+        String pair;
+        try {
+            pair = getAlphabetPair(language, term.getTermOrg());
+            TreeMap<String, List<TermDetailNew>> alpahbetTerms = new TreeMap<String, List<TermDetailNew>>();
+            List<TermDetailNew> terms = new ArrayList<TermDetailNew>();
+            terms.add(term);
+            alpahbetTerms.put(pair, terms);
+            langTerms.put(language, alpahbetTerms);
+        } catch (NullPointerException e) {
+            System.out.println("Null pointer:" + language + " " + term);
+
+        }
+        return langTerms;
+    }
+
+    private static String getAlphabetPair(String language, String term) {
+        HashMap<String, String> alphabetPairs;
+        try {
+            alphabetPairs = languageInfo.getLangAlphabetHash(language);
+            term = term.trim();
+            String letter = term.substring(0, 1);
+            if (alphabetPairs.containsKey(letter)) {
+                String pair = alphabetPairs.get(letter);
+                return pair;
+            }
+        } catch (Exception ex) {
+            //System.out.println("No alphebet found for the lanague" + language);
+        }
+
+        return null;
+    }
+
     private static void cleanDirectoryInput(String browser) throws IOException {
         FileRelatedUtils.cleanDirectory(constants.BROWSER_GROUPS, constants.getBASE_PATH(), constants.TEXT_PATH, browser);
     }
@@ -201,18 +293,18 @@ public class Main implements SparqlEndpoint{
     }
 
     private static void runJavaScript(String browser) throws Exception {
-        Taskimpl tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp, CONFIG_PATH);
+        Taskimpl tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp, CONFIG_FILE);
         tasks.createJavaScriptForAutoComp(browser);
     }
 
     /*
             
         //Generated java script...
-       Taskimpl tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp, CONFIG_PATH);
+       Taskimpl tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp, CONFIG_FILE);
         tasks.createJavaScriptForAutoComp(constants.GENTERM);*/
 //create java script files
     //it works seperately
-    //tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_PATH);
+    //tasks = new Taskimpl(constants.getLANGUAGE_CONFIG_FILE(), browserSet, constants, alternativeFlag, dataBaseTemp,CONFIG_FILE);
     //  System.out.println("Processing finished!!!");
     //this is necessary for other applications!!
     //tasks.readDataFromSavedFiles(GENTERM,alternativeFlag);

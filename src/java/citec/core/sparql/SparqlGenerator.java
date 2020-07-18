@@ -5,7 +5,7 @@
  */
 package citec.core.sparql;
 
-import citec.core.termbase.TermInfo;
+import citec.core.termbase.TermDetailNew;
 import java.util.List;
 
 /**
@@ -16,7 +16,7 @@ public class SparqlGenerator implements SparqlEndpoint {
 
     private final String sparqlQuery;
 
-    public SparqlGenerator(List<TermInfo> termInfos, String prefix,String ontoNotation) {
+    public SparqlGenerator(List<TermDetailNew> termInfos, String prefix,String ontoNotation) {
         String tripples = this.generateTripples(termInfos, ontoNotation);
         sparqlQuery = insertSparql(prefix, tripples);
     }
@@ -34,10 +34,10 @@ public class SparqlGenerator implements SparqlEndpoint {
         return sparqlQuery;
     }
 
-    public String generateTripples(List<TermInfo> termInfos, String ontoNotation) {
+    public String generateTripples(List<TermDetailNew> termInfos, String ontoNotation) {
         String content = "\n";
         for (int i = 0; i < termInfos.size(); i++) {
-            TermInfo termInfo = termInfos.get(i);
+            TermDetailNew termInfo = termInfos.get(i);
             String tripple = this.getTripple(termInfo,ontoNotation);
             if (i == termInfos.size() - 1) {
                 tripple = tripple + ".";
@@ -57,7 +57,7 @@ public class SparqlGenerator implements SparqlEndpoint {
         return "<http://example/book3> dc:title \"A new book\"";
     }
 
-    private String getTripple(TermInfo termInfo, String ontologyNotation) {
+    private String getTripple(TermDetailNew termInfo, String ontologyNotation) {
         //return termInfo.getTermUrl() + "\n" + "     "+ontologyNotation + " " + termInfo.getLinks().get(linkTerminologyName);
          return termInfo.getTermUrl() + " "+ontologyNotation + " " + termInfo.getLinks().iterator().next();
     }

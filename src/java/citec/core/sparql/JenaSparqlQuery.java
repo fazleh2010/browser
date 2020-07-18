@@ -5,7 +5,7 @@
  */
 package citec.core.sparql;
 
-import citec.core.termbase.TermInfo;
+import citec.core.termbase.TermDetailNew;
 import citec.core.termbase.Termbase;
 /*
 import com.hp.hpl.jena.query.Query;
@@ -33,14 +33,14 @@ public class JenaSparqlQuery {
     }
 
     /* private Termbase getTermBaseFromSparqlEndpoint(String sparqlEndpoint, String termBaseName) throws Exception {
-        Map<String, TermInfo> allkeysValues = new HashMap<String, TermInfo>();
+        Map<String, TermDetailNew> allkeysValues = new HashMap<String, TermDetailNew>();
         ResultSet results = getResultSparql(sparqlEndpoint, query_writtenRep);
         while (results != null && results.hasNext()) {
             QuerySolution querySolution = results.next();
             RDFNode subject = querySolution.get("?s");
             RDFNode predicate = querySolution.get("?p");
             RDFNode object = querySolution.get("?o");
-            TermInfo termInfo = new TermInfo(subject, object);
+            TermDetailNew termInfo = new TermDetailNew(subject, object);
             allkeysValues.put(termInfo.getTermOrg(), termInfo);
         }
 

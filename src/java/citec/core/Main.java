@@ -10,7 +10,7 @@ import citec.core.termbase.Termbase;
 import citec.core.mysql.MySQLAccess;
 import citec.core.sparql.CurlSparqlQuery;
 import citec.core.sparql.SparqlGenerator;
-import citec.core.termbase.TermInfo;
+import citec.core.termbase.TermDetailNew;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -72,7 +72,7 @@ public class Main implements SparqlEndpoint {
 
         System.out.println("inserting linked terminologies in host terminology!!");
         List<TermInfo> termList = matchWithDataBase(myTermTableName, otherTerminology, matchedTermTable);
-        TermInfo.display(termList);
+        TermDetailNew.display(termList);
         /*SparqlGenerator sparqlGenerator = new SparqlGenerator(termList, ontolex_prefix, ontolex_owl_sameAs);
         CurlSparqlQuery curlSparqlQuery=new CurlSparqlQuery(myTermSparqlEndpoint,sparqlGenerator.getSparqlQuery());*/
 
@@ -95,9 +95,9 @@ public class Main implements SparqlEndpoint {
 
     }
 
-    private static List<TermInfo> matchWithDataBase(String myTermTable, Termbase otherTerminology, String matchedTermTable) {
+    private static List<TermDetailNew> matchWithDataBase(String myTermTable, Termbase otherTerminology, String matchedTermTable) {
         Integer index = 0;
-        List<TermInfo> termInfos = new ArrayList<TermInfo>();
+        List<TermDetailNew> termInfos = new ArrayList<TermDetailNew>();
         try {
             mySQLAccess.deleteTable(matchedTermTable);
             mySQLAccess.createLinkingTable(matchedTermTable);
@@ -115,10 +115,10 @@ public class Main implements SparqlEndpoint {
     /*private static Termbase getTermBaseFromTxtFiles(String termBaseName, String path, String extension) throws Exception {
         //System.out.println(termBaseName+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         File[] myTerminologyfiles = FileUrlUtils.getFiles(path, extension);
-        Map<String, TermInfo> allkeysValues = new HashMap<String, TermInfo>();
+        Map<String, TermDetailNew> allkeysValues = new HashMap<String, TermDetailNew>();
         for (File file : myTerminologyfiles) {
             //System.out.println(file.getAbsolutePath());
-            Map<String, TermInfo> terms = new HashMap<String, TermInfo>();
+            Map<String, TermDetailNew> terms = new HashMap<String, TermDetailNew>();
             terms = FileUrlUtils.getHashFromFile(file);
             allkeysValues.putAll(terms);
         }

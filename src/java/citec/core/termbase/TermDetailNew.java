@@ -15,7 +15,7 @@ import java.util.Map;
  *
  * @author elahi
  */
-public class TermInfo {
+public class TermDetailNew {
 
     public static String LANGUAGE_SEPERATE_SYMBOLE = "@";
     public static String HASH_SYMBOLE = "#";
@@ -37,7 +37,7 @@ public class TermInfo {
     private String language = "";
     private List<String> links = new ArrayList<String>();
 
-    public TermInfo(String subject, String predicate, String object, Boolean flag) {
+    public TermDetailNew(String subject, String predicate, String object, Boolean flag) {
         if (flag) {
            this.termUrl=makeTermUrl(subject);
            this.termOrg=object;
@@ -50,34 +50,34 @@ public class TermInfo {
         }
     }
     
-     public TermInfo() {
+     public TermDetailNew() {
         
     }
 
-    public TermInfo(String line) {
+    public TermDetailNew(String line) {
         String[] info = line.split("=");
         this.termOrg = info[0].toLowerCase().trim();
         this.termUrl = info[1];
 
     }
 
-    public TermInfo(String term, String url) {
+    public TermDetailNew(String term, String url) {
         this.termOrg = term;
         this.termUrl = url;
     }
     
-    public TermInfo(String term, String termUrl, String otherTermUrl) {
+    public TermDetailNew(String term, String termUrl, String otherTermUrl) {
         this(term,termUrl);
         this.links.add(otherTermUrl);
     }
 
-    public TermInfo(String term, String url, String alternativeUrl, SubjectInfo subject) {
+    public TermDetailNew(String term, String url, String alternativeUrl, SubjectInfo subject) {
         this(term, url);
         this.subject = subject;
         this.alternativeUrl = alternativeUrl.toString();
     }
 
-    public TermInfo(String term, String url, String alternativeUrl, String reliabilityCode, String administrativeStatus, SubjectInfo subjectInfo) {
+    public TermDetailNew(String term, String url, String alternativeUrl, String reliabilityCode, String administrativeStatus, SubjectInfo subjectInfo) {
         this(term, url, alternativeUrl, subjectInfo);
         if (reliabilityCode != null) {
             this.reliabilityCode = reliabilityCode;
@@ -211,8 +211,8 @@ public class TermInfo {
         return links;
     }
     
-     public static void display(List<TermInfo> termList) {
-         for (TermInfo termInfo:termList){
+     public static void display(List<TermDetailNew> termList) {
+         for (TermDetailNew termInfo:termList){
                System.out.println(termInfo.getTermOrg()+" "+termInfo.getTermUrl()+" "+termInfo.getLinks().iterator().next()+ "\n");
          }
     }
