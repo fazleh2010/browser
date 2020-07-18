@@ -144,7 +144,7 @@ public class RdfReader_1 implements IATE {
         }
 
         FileRelatedUtils.writeFile(idSubjectID, dataSaveDir + File.separator + dataBaseTemp.getSubjectFileName());
-        FileRelatedUtils.writeFile(langTerms, dataSaveDir + categoryName);
+        //FileRelatedUtils.writeFile(langTerms, dataSaveDir + categoryName);
         FileRelatedUtils.writeLangFile2(langSensList, dataSaveDir, dataBaseTemp.getSENSE());
         //FileRelatedUtils.writeFileNew(urlCanonicalForm, dataSaveDir + File.separator + "canonicalForm.txt");
         //FileRelatedUtils.writeFileNew(urlSense, dataSaveDir + File.separator + "sense.txt");

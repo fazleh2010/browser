@@ -9,6 +9,7 @@ import browser.termallod.constants.TermBase;
 import browser.termallod.constants.FileAndLocationConst;
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.term.TermInfo;
+import citec.core.termbase.TermDetailNew;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -201,19 +202,19 @@ public class FileRelatedUtils {
         return files;
     }*/
     
-    public static List<File> writeFile(TreeMap<String, TreeMap<String, List<TermInfo>>> langSortedTerms, String path) throws IOException {
+    public static List<File> writeFile(TreeMap<String, TreeMap<String, List<TermDetailNew>>> langSortedTerms, String path) throws IOException {
         List<File> files = new ArrayList<File>();
         for (String language : langSortedTerms.keySet()) {
             String str = "";
-            TreeMap<String, List<TermInfo>> alphabetPairTerms = langSortedTerms.get(language);
+            TreeMap<String, List<TermDetailNew>> alphabetPairTerms = langSortedTerms.get(language);
              Integer pairIndex=0;
             for (String pair : alphabetPairTerms.keySet()) {
                 String fileName = path + "_" + language + "_" + pair + ".txt";
-                List<TermInfo> terms = alphabetPairTerms.get(pair);
+                List<TermDetailNew> terms = alphabetPairTerms.get(pair);
                 str = "";
                 pairIndex++;
                 Integer termIndex=0;
-                for (TermInfo term : terms) {
+                for (TermDetailNew term : terms) {
                     String pairNote=null;
                     
                     if(language.contains("en"))
@@ -222,7 +223,7 @@ public class FileRelatedUtils {
                         pairNote=pairIndex.toString();
                     
                         
-                    String line = term.getTermString() + " = " + term.getTermUrl();
+                    String line = term.getTermOrg() + " = " + term.getTermUrl();
                     str += line + "\n";
                 }
                 stringToFile_ApendIf_Exists(str, fileName);

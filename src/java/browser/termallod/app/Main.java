@@ -45,7 +45,7 @@ public class Main implements SparqlEndpoint {
     ///home/melahi/NetBeansProjects/data
     private static String BASE_PATH = "src/java/resources/data/";
     private static String OUTPUT_PATH = "src/java/resources/data/";
-    private static String INPUT_PATH = "src/java/resources/data/";
+    private static String INPUT_PATH = "src/java/resources/data/input/";
 
     private static String CONFIG_FILE = BASE_PATH+"/conf/"+"language.conf";
      private static LanguageManager languageInfo;
@@ -130,34 +130,24 @@ public class Main implements SparqlEndpoint {
             System.out.println("output folder: " + list);
         } else {
         }
-
-        //my terminology
-        Termbase myTerminology = new CurlSparqlQuery(myTermSparqlEndpoint, query_writtenRep, myTermTableName).getTermbase();
-        //System.out.println(myTerminology.getTerms().toString());
-
-        TreeMap<String, TreeMap<String, List<TermDetailNew>>> langTerms = new TreeMap<String, TreeMap<String, List<TermDetailNew>>>();
-
-        for (String term : myTerminology.getTerms().keySet()) {
-            TermDetailNew termDetailNew = myTerminology.getTerms().get(term);
-            String language = termDetailNew.getLanguage();
-
-            if (langTerms.containsKey(termDetailNew.getLanguage())) {
-                langTerms = ifElementExist(language, termDetailNew, langTerms);
-            } else {
-                langTerms = ifElementNotExist(language, termDetailNew, langTerms);
-            }
-        }
         
-        for (String language : langTerms.keySet()) {
+        Termbase myTerminology = new CurlSparqlQuery(myTermSparqlEndpoint, query_writtenRep, myTermTableName).getTermbase();
+        
+        AlphabetFiles alphabetFiles=new AlphabetFiles(languageInfo,myTerminology);
+        System.out.println(alphabetFiles.getLangTerms().keySet());
+         //FileRelatedUtils.writeFile(alphabetFiles.getLangTerms(), INPUT_PATH);
+        //FileRelatedUtils.writeFile(alphabetFiles.getLangTerms(), INPUT_PATH);
+        
+        /*for (String language : alphabetFiles.getLangTerms().keySet()) {
             System.out.println(language);
-            TreeMap<String, List<TermDetailNew>> terms=langTerms.get(language);
+            TreeMap<String, List<TermDetailNew>> terms=alphabetFiles.getLangTerms().get(language);
             for (String termString : terms.keySet()) {
                 List<TermDetailNew> termDetailNews=terms.get(termString);
                  for (TermDetailNew termDetailNew : termDetailNews) {
                       System.out.println(termDetailNew.getTermUrl()+" "+termDetailNew.getTermUrl());
                  }
             }
-        }
+        }*/
 
 
         //System.out.println(htmlString);
@@ -208,62 +198,6 @@ public class Main implements SparqlEndpoint {
 
     }
     // run before comit..................to clean all folder
-
-    private static TreeMap<String, TreeMap<String, List<TermDetailNew>>> ifElementExist(String language, TermDetailNew term, TreeMap<String, TreeMap<String, List<TermDetailNew>>> langTerms) {
-        String pair;
-        pair = getAlphabetPair(language, term.getTermOrg());
-        TreeMap<String, List<TermDetailNew>> alpahbetTerms = langTerms.get(language);
-        try {
-            if (alpahbetTerms.containsKey(pair)) {
-                List<TermDetailNew> terms = alpahbetTerms.get(pair);
-                terms.add(term);
-                alpahbetTerms.put(pair, terms);
-                langTerms.put(language, alpahbetTerms);
-            } else {
-                List<TermDetailNew> terms = new ArrayList<TermDetailNew>();
-                terms.add(term);
-                alpahbetTerms.put(pair, terms);
-                langTerms.put(language, alpahbetTerms);
-            }
-        } catch (NullPointerException e) {
-            System.out.println("Null pointer:" + language + " " + term);
-
-        }
-        return langTerms;
-    }
-
-    private static TreeMap<String, TreeMap<String, List<TermDetailNew>>> ifElementNotExist(String language, TermDetailNew term, TreeMap<String, TreeMap<String, List<TermDetailNew>>> langTerms) {
-        String pair;
-        try {
-            pair = getAlphabetPair(language, term.getTermOrg());
-            TreeMap<String, List<TermDetailNew>> alpahbetTerms = new TreeMap<String, List<TermDetailNew>>();
-            List<TermDetailNew> terms = new ArrayList<TermDetailNew>();
-            terms.add(term);
-            alpahbetTerms.put(pair, terms);
-            langTerms.put(language, alpahbetTerms);
-        } catch (NullPointerException e) {
-            System.out.println("Null pointer:" + language + " " + term);
-
-        }
-        return langTerms;
-    }
-
-    private static String getAlphabetPair(String language, String term) {
-        HashMap<String, String> alphabetPairs;
-        try {
-            alphabetPairs = languageInfo.getLangAlphabetHash(language);
-            term = term.trim();
-            String letter = term.substring(0, 1);
-            if (alphabetPairs.containsKey(letter)) {
-                String pair = alphabetPairs.get(letter);
-                return pair;
-            }
-        } catch (Exception ex) {
-            //System.out.println("No alphebet found for the lanague" + language);
-        }
-
-        return null;
-    }
 
     private static void cleanDirectoryInput(String browser) throws IOException {
         FileRelatedUtils.cleanDirectory(constants.BROWSER_GROUPS, constants.getBASE_PATH(), constants.TEXT_PATH, browser);
