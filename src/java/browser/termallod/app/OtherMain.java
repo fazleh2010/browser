@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  *
  * @author elahi
  */
-public class OtherMainMain implements SparqlEndpoint {
+public class OtherMain implements SparqlEndpoint {
 
     private static String path = "src/main/resources/";
     private static Integer limitOfTerms = -1;
@@ -88,7 +88,7 @@ public class OtherMainMain implements SparqlEndpoint {
             mySQLAccess.insertDataTermTable(myTermTableName, myTerminology, limitOfTerms);
             mySQLAccess.readTermTable(myTermTableName);
         } catch (Exception ex) {
-            Logger.getLogger(OtherMainMain.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OtherMain.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         return true;
@@ -106,7 +106,7 @@ public class OtherMainMain implements SparqlEndpoint {
             //display(matchedTermTable);
             System.out.println(matchedTermTable + "  number of matched found:  " + index);
         } catch (Exception ex) {
-            Logger.getLogger(OtherMainMain.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OtherMain.class.getName()).log(Level.SEVERE, null, ex);
         }
         return termInfos;
 
