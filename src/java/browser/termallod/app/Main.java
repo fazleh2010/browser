@@ -5,7 +5,7 @@
  */
 package browser.termallod.app;
 
-import browser.termallod.app.process.CreateAlphabetFiles;
+import browser.termallod.process.CreateAlphabetFiles;
 import browser.termallod.core.html.HtmlCreator;
 import browser.termallod.api.LanguageManager;
 import browser.termallod.core.LanguageAlphabetPro;

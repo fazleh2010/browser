@@ -5,7 +5,7 @@
  */
 package browser.termallod.core.html;
 
-import browser.termallod.app.process.RetrieveAlphabetInfo;
+import browser.termallod.process.RetrieveAlphabetInfo;
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.PageContentGenerator;
 import browser.termallod.core.html.HtmlReaderWriter;

@@ -5,7 +5,7 @@
  */
 package browser.termallod.core;
 
-import browser.termallod.app.process.RetrieveAlphabetInfo;
+import browser.termallod.process.RetrieveAlphabetInfo;
 import browser.termallod.utils.FileRelatedUtils;
 import java.util.Collections;
 import java.util.HashMap;
