@@ -18,7 +18,6 @@ import java.util.TreeSet;
 import browser.termallod.constants.FileAndLocationConst;
 import browser.termallod.core.LanguageAlphabetPro;
 import browser.termallod.core.MergingTermInfo;
-import browser.termallod.core.html.HtmlCreator;
 import browser.termallod.core.html.HtmlParameters;
 import browser.termallod.core.matching.MatchingTerminologies;
 import browser.termallod.core.term.TermDetail;
@@ -45,6 +44,8 @@ public class Main implements SparqlEndpoint {
     private static String OUTPUT_PATH = BASE_PATH+"/output/";
     private static String INPUT_PATH =BASE_PATH+ "/input/";
     private static String CONFIG_PATH = BASE_PATH+"/conf/";
+    private static String TEMPLATE_PATH = BASE_PATH+"/template/";
+    
      private static LanguageManager languageInfo;
 
     private static Taskimpl tasks = null;
@@ -131,9 +132,12 @@ public class Main implements SparqlEndpoint {
         languageInfo = new LanguageAlphabetPro(new File(BASE_PATH+"/conf/"+"language.conf"));
         Termbase myTerminology = new CurlSparqlQuery(myTermSparqlEndpoint, query_writtenRep, myTermTableName).getTermbase();
         
-        AlphabetFiles alphabetFiles=new AlphabetFiles(languageInfo,myTerminology);
-        FileRelatedUtils.writeFile(alphabetFiles.getLangTerms(), INPUT_PATH);        
-        HtmlCreator htmlCreator = new HtmlCreator(INPUT_PATH,alphabetFiles.getLangTerms().keySet(), OUTPUT_PATH);
+        
+        CreateAlphabetFiles alphabetFiles=new CreateAlphabetFiles(languageInfo,myTerminology);
+        FileRelatedUtils.deleteDirectory(INPUT_PATH);
+        FileRelatedUtils.createDirectory(INPUT_PATH);
+        FileRelatedUtils.writeFile(alphabetFiles.getLangTerms(), INPUT_PATH);   
+        HtmlCreator htmlCreator = new HtmlCreator(INPUT_PATH,alphabetFiles.getLangTerms().keySet(), TEMPLATE_PATH,OUTPUT_PATH,"ListOfTerms");
 
 
         //System.out.println(htmlString);

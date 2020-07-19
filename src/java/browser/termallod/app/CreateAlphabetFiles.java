@@ -9,22 +9,24 @@ import browser.termallod.api.LanguageManager;
 import browser.termallod.utils.FileRelatedUtils;
 import citec.core.termbase.TermDetailNew;
 import citec.core.termbase.Termbase;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import java.util.TreeMap;
 
 /**
  *
  * @author Mohammad Fazleh Elahi
  */
-public class AlphabetFiles {
+public class CreateAlphabetFiles {
 
     private Termbase myTerminology = null;
     private LanguageManager languageInfo = null;
     private TreeMap<String, TreeMap<String, List<TermDetailNew>>> langTerms = new TreeMap<String, TreeMap<String, List<TermDetailNew>>>();
 
-    public AlphabetFiles(LanguageManager languageInfo, Termbase myTerminology) throws Exception {
+    public CreateAlphabetFiles(LanguageManager languageInfo, Termbase myTerminology) throws Exception {
         this.languageInfo = languageInfo;
         this.myTerminology = myTerminology;
         this.generate();
@@ -59,7 +61,7 @@ public class AlphabetFiles {
                 langTerms.put(language, alpahbetTerms);
             }
         } catch (NullPointerException e) {
-            System.out.println("Null pointer:" + language + " " + term);
+            //System.out.println("Null pointer:" + language + " " + term);
 
         }
         return langTerms;
@@ -75,7 +77,7 @@ public class AlphabetFiles {
             alpahbetTerms.put(pair, terms);
             langTerms.put(language, alpahbetTerms);
         } catch (NullPointerException e) {
-            System.out.println("Null pointer:" + language + " " + term);
+            //System.out.println("Null pointer:" + language + " " + term);
 
         }
         return langTerms;
@@ -101,6 +103,7 @@ public class AlphabetFiles {
     public TreeMap<String, TreeMap<String, List<TermDetailNew>>> getLangTerms() {
         return langTerms;
     }
+    
 
     public void display() {
         for (String language : this.langTerms.keySet()) {

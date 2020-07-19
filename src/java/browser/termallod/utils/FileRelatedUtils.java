@@ -206,7 +206,7 @@ public class FileRelatedUtils {
             TreeMap<String, List<TermDetailNew>> alphabetPairTerms = langSortedTerms.get(language);
              Integer pairIndex=0;
             for (String pair : alphabetPairTerms.keySet()) {
-                String fileName = path + "_" + language + "_" + pair + ".txt";
+                String fileName = path + language + "-" + pair + ".txt";
                 List<TermDetailNew> terms = alphabetPairTerms.get(pair);
                 str = "";
                 pairIndex++;

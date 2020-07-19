@@ -25,20 +25,21 @@ import java.util.TreeMap;
  *
  * @author elahi //this is super dirty and horrible codes ever!!
  */
-public class HtmlListOfTerms extends HtmlPageAbstract implements HtmlPage, Languages, HtmlStringConts {
+public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
 
     public static Map<String, String> termAlterUrl = new TreeMap<String, String>();
-    private final Integer maximumNumberOfPages = 4;
-    private final HtmlTermPage termPage;
+    private  Integer maximumNumberOfPages = 4;
+    private  HtmlTermPage termPage;
+    private OntologyInfo info=null;
 
 
-    public HtmlListOfTerms(FileAndLocationConst constants, HtmlParameters htmlCreateParameters, OntologyInfo info, HtmlReaderWriter htmlReaderWriter) throws Exception {
-        super(htmlCreateParameters, info, htmlReaderWriter,constants);
-        this.termPage=new HtmlTermPage(htmlCreateParameters, info, htmlReaderWriter,constants);
+    public HtmlListOfTerms(OntologyInfo info, HtmlReaderWriter htmlReaderWriter) throws Exception {
+        this.info=info;
+        //this.termPage=new HtmlTermPage(info, htmlReaderWriter);
     }
 
     public Document createAllElements(Document templateHtml, List<TermDetail> terms, PageContentGenerator pageContentGenerator, String htmlFileName, Integer currentPageNumber) throws Exception {
-        AlphabetTermPage alphabetTermPage = super.info.getAlphabetTermPage();
+        AlphabetTermPage alphabetTermPage = info.getAlphabetTermPage();
         Element body = templateHtml.body();
         String alphebetPair = alphabetTermPage.getAlpahbetPair();
         Integer numberofPages = alphabetTermPage.getNumberOfPages();
@@ -85,7 +86,7 @@ public class HtmlListOfTerms extends HtmlPageAbstract implements HtmlPage, Langu
     private String createAlphabet(Element body, String alphebetPair, PageContentGenerator pageContentGenerator) throws Exception {
         Element divAlphabet = body.getElementsByClass("currentpage").get(0);
         divAlphabet.append("<span>" + alphebetPair + "</span>");
-        List<AlphabetTermPage> alphabetPairs = pageContentGenerator.getLangPages(super.info.getLanguage());
+        List<AlphabetTermPage> alphabetPairs = pageContentGenerator.getLangPages(info.getLanguage());
         for (AlphabetTermPage alphabetTermPage : alphabetPairs) {
             if (!alphabetTermPage.getAlpahbetPair().contains(alphebetPair)) {
                 String li = getAlphebetLi(INITIAL_PAGE, alphabetTermPage);
@@ -97,7 +98,7 @@ public class HtmlListOfTerms extends HtmlPageAbstract implements HtmlPage, Langu
 
     private void createPageNumber(Element body, String elementName, String alphebetPair, Integer numberofPages, Integer currentPageNumber) {
         Element divPage = body.getElementsByClass(elementName).get(0);
-        List<String> liS = getPageLi(alphebetPair, numberofPages, super.info.getAlphabetTermPage(), currentPageNumber);
+        List<String> liS = getPageLi(alphebetPair, numberofPages, info.getAlphabetTermPage(), currentPageNumber);
         if (liS.isEmpty()) {
             return;
         }
@@ -111,10 +112,11 @@ public class HtmlListOfTerms extends HtmlPageAbstract implements HtmlPage, Langu
         Element divTerm = body.getElementsByClass("result-list1 wordlist-oxford3000 list-plain").get(0);
         Integer index = 0;
         for (TermDetail termDetail : terms) {
-            TermDetail newTermDetail = termPage.createTerms(termDetail, index++, htmlFileName);
+            //temporarily closed..
+           /* TermDetail newTermDetail = termPage.createTerms(termDetail, index++, htmlFileName);
             String liString = termPage.getTermLi(newTermDetail);
                if(termPage.isReliabilityFlag())
-                 divTerm.append(liString);
+                 divTerm.append(liString);*/
         }
     }
 
@@ -134,7 +136,7 @@ public class HtmlListOfTerms extends HtmlPageAbstract implements HtmlPage, Langu
         String url = this.createUrlLink(pageNumber,alphabetTermPage);
         //String url = LOCALHOST_URL_LIST_OF_TERMS_PAGE + alphabetFileName;
 
-        if (super.info.getLanguage().contains("hu") && alphabetTermPage.getNumericalValueOfPair() == 1) {
+        if (info.getLanguage().contains("hu") && alphabetTermPage.getNumericalValueOfPair() == 1) {
             url = "browser_hu_A_1_1.html";
         }
 

@@ -23,21 +23,17 @@ public class AlphabetTermPage {
     private Integer numberOfPages = null;
     private Integer emptyTerm = null;
     private String alpahbetPair = null;
-    private File alphabetFile = null;
     private Properties props = null;
     private Integer numericalValueOfPair = 0;
     private MergingTermInfo mergingTermInfo;
 
-    public AlphabetTermPage(String language, String alpahbetPair, File file, Partition<String> partition, Integer numericalValueOfPair, DataBaseTemp dataBaseTemp, HtmlParameters htmlParameters) throws Exception {
+    public AlphabetTermPage(String language, String alpahbetPair,  Properties props, Partition<String> partition, Integer numericalValueOfPair) throws Exception {
         this.alpahbetPair = alpahbetPair;
         this.partition = partition;
         this.numberOfPages = partition.size();
         this.numericalValueOfPair = numericalValueOfPair;
-        this.alphabetFile = file;
-        this.props = FileRelatedUtils.getPropertyHash(this.alphabetFile);
-        if(!htmlParameters.getTextFileModifyFlag())
-           this.mergingTermInfo = new MergingTermInfo(alphabetFile, language, dataBaseTemp, htmlParameters.getAlternativeFlag());
-    }
+        this.props = props;
+     }
 
     /*public String getUrl(String term) {
         //Properties props;

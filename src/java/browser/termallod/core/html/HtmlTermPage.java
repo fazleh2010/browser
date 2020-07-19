@@ -27,7 +27,7 @@ import org.jsoup.nodes.Element;
  *
  * @author elahi
  */
-public class HtmlTermPage extends HtmlPageAbstract {
+public class HtmlTermPage  {
 
     private Document templateHtml;
     private TermDetail termDetail;
@@ -37,8 +37,7 @@ public class HtmlTermPage extends HtmlPageAbstract {
     //private Boolean administrativeStatusFlaq=false;
     //private Boolean subjectFielsFlag=false;
 
-    public HtmlTermPage(HtmlParameters htmlCreateParameters, OntologyInfo info, HtmlReaderWriter htmlReaderWriter, FileAndLocationConst constants) {
-        super(htmlCreateParameters, info, htmlReaderWriter, constants);
+    public HtmlTermPage(OntologyInfo info, HtmlReaderWriter htmlReaderWriter, FileAndLocationConst constants) {
     }
 
     public void test(Document templateHtml, TermDetail termDetail, String url, String termFileName) {
@@ -47,37 +46,36 @@ public class HtmlTermPage extends HtmlPageAbstract {
         this.url = url;
         this.termFileName = termFileName;
         try {
-            this.createTermPage();
+           // this.createTermPage();
         } catch (Exception ex) {
             Logger.getLogger(HtmlTermPage.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    public TermDetail createTerms(TermDetail termDetail, Integer index, String htmlFileName) throws Exception {
+    /*public TermDetail createTerms(TermDetail termDetail, Integer index, String htmlFileName) throws Exception {
         Document generatedHtmlPage = null;
 
-        
-        if (htmlCreateParameters.getAlternativeFlag()) {
-             String url = htmlFileName.replace(".html", "");
-             url = url + "_" + "term" + "_" + index + ".html";
-             termDetail.setAlternativeUrl(url);
-            
+      
+            String url = htmlFileName.replace(".html", "");
+            url = url + "_" + "term" + "_" + index + ".html";
+            termDetail.setAlternativeUrl(url);
 
-            if (htmlCreateParameters.getTermPageFlag()) {
+            
                 Document termTemplate = info.getTermPageTemplate(constants.TEMPLATE_LOCATION, ".html");
                 String term = termDetail.getTerm();
                 String urls = info.getAlphabetTermPage().getProps().getProperty(term);
-                url = StringMatcherUtil.getAlternativeUrl(urls, htmlCreateParameters.getAlternativeFlag());
-                
+                url = StringMatcherUtil.getAlternativeUrl(urls, false);
+
                 File TermhtmlFileName = new File(constants.getOUTPUT_PATH() + info.getOntologyFileName() + "/" + url);
                 test(termTemplate, termDetail, url, url);
                 generatedHtmlPage = this.getTemplateHtml();
-                
-                if(this.reliabilityFlag)
-                   super.htmlReaderWriter.writeHtml(generatedHtmlPage, TermhtmlFileName);
-            }
-        }
+
+                if (this.reliabilityFlag) {
+                    super.htmlReaderWriter.writeHtml(generatedHtmlPage, TermhtmlFileName);
+                }
+           
+       
 
         return termDetail;
     }
@@ -175,10 +173,7 @@ public class HtmlTermPage extends HtmlPageAbstract {
             }
             if (termInfo.getAdministrativeStatus() != null) {
                 administrativeTr = getTr(getProperty("Administrative Status:"), getValueNew(termInfo.getAdministrativeStatus()));
-                  /*if(!termInfo.getAdministrativeStatus().isEmpty()){
-                     //System.out.println(termInfo.getReliabilityCode());
-                     this.administrativeStatusFlaq=true;
-                }*/
+                 
             }
             if (termInfo.getSubjectId() != null) {
                 String subjectFieldPro = " " + SUBJECT_FIELD + ":";
@@ -188,10 +183,7 @@ public class HtmlTermPage extends HtmlPageAbstract {
                     subjectID = "";
                 }
                 subjectFieldTr = getTr(getProperty(subjectFieldPro), getValueNew(subjectID + termInfo.getSubjectDescription()));
-                 /*if(!termInfo.getSubjectId().isEmpty()){
-                     //System.out.println(termInfo.getReliabilityCode());
-                     this.subjectFielsFlag=true;
-                }*/
+                
             }
             if (termInfo.getTermID() != null) {
                 ReferenceTr = getTr(getProperty("Reference:"), getValueNew(termInfo.getTermID()));
@@ -268,19 +260,8 @@ public class HtmlTermPage extends HtmlPageAbstract {
             panelHeadingStart = "<h3>Links to other terminologies</h3>";
             String panelHeadingEnd = "</div>";
             String thirdTr = getTr(getProperty(spanTerminologyUrl, otherTerminology), getValue(url, url, term));
-            //firstTr = "";
+                    String table = this.getTable(this.getTbody(thirdTr));
 
-            /*String termValue = this.getValueNew(this.getSpanProp(spanPropUrl1, spanPropUrl2, spanPropStr) + this.getSpanValue(spanTerminologyUrl, spanTerminologyName));
-            String subjectFieldTr = getTr(getProperty(langTermUrl, langTermStr), termValue);
-            subjectFieldTr = "";
-
-            String languageTr = getTr(getProperty(matchPropUrl, matchPropStr), getValueNew(matchValueUrl1, matchValueUrl2, matchValueStr));
-            languageTr = "";*/
-            String table = this.getTable(this.getTbody(thirdTr));
-
-            /*String yesNoButtonDiv = getAcceptDenyButton();
-            //yes no button is closed for time being.
-            yesNoButtonDiv = "";*/
             String divStr = panelHeadingStart + table + panelHeadingEnd;
             divStrS.add(divStr);
 
@@ -293,10 +274,7 @@ public class HtmlTermPage extends HtmlPageAbstract {
 
     }
 
-    /*private TermInfo getTermInformation(String termUrl) {
-        UrlMatching urlMatching = new UrlMatching(merging, termUrl);
-        return urlMatching.getTermInfo();
-    }*/
+   
     private String getAcceptDenyButton() {
         String yesNoButtonDiv
                 = "<div class=" + this.getWithinQuote("w3-container") + ">"
@@ -390,7 +368,7 @@ public class HtmlTermPage extends HtmlPageAbstract {
     public Boolean isReliabilityFlag() {
         return reliabilityFlag;
     }
-
+*/
    
 
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.core;
+package browser.termallod.app;
 
 import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.utils.NameExtraction;
@@ -22,25 +22,19 @@ import java.util.TreeMap;
  *
  * @author elahi
  */
-public class TxtFileProcessing {
+public class RetrieveAlphabetInfo {
 
-    private String browser = null;
-    private String langCode = null;
-    private String categoryName = null;
     private Map<String, File> pairFile = new TreeMap<String, File>();
     private TreeMap<String, List<String>> langSortedTerms = new TreeMap<String, List<String>>();
 
-    public TxtFileProcessing(String browser, String langCode, List<File> files, String model_extension) throws IOException, IOException, IOException, IOException, IOException {
-        this.browser = browser;
-        this.langCode = langCode;
+    public RetrieveAlphabetInfo(String INPUT_PATH, String langCode) throws IOException, IOException, IOException, IOException, IOException {
+        List<File> files = FileRelatedUtils.getFiles(INPUT_PATH,langCode, ".txt");
         for (File file : files) {
-            //System.out.println(file.getAbsolutePath());
-            this.categoryName = NameExtraction.getCategoryName(browser, file, model_extension);
-            String pair = NameExtraction.getPairName(file, categoryName, langCode, model_extension);
+            String []info= file.getName().split("-");
+            String pair=info[1];
             this.pairFile.put(pair, file);
             this.getValuesFromTextFile(file, pair);
         }
-        //this.print(langSortedTerms);
 
     }
 
@@ -49,37 +43,17 @@ public class TxtFileProcessing {
         Set<String> termSet = props.stringPropertyNames();
         List<String> termList = new ArrayList<String>(termSet);
         Collections.sort(termList);
-        //System.out.println(termList.toString());
         langSortedTerms.put(pair, termList);
 
-    }
-
-    public String getBrowser() {
-        return browser;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
     }
 
     public TreeMap<String, List<String>> getLangSortedTerms() {
         return langSortedTerms;
     }
 
-    public String getLangCode() {
-        return langCode;
-    }
-
     public File getPairFile(String pair) {
         return pairFile.get(pair);
     }
 
-    /*public void print(TreeMap<String, List<String>> langSortedTerms) {
-        for (String pair : langSortedTerms.keySet()) {
-            String line = pair + "\n";
-            List<String> terms = langSortedTerms.get(pair);
-            System.out.println(line + terms.toString());
-        }
-    }*/
-
+   
 }

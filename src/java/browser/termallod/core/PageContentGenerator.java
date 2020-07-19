@@ -5,16 +5,16 @@
  */
 package browser.termallod.core;
 
-import browser.termallod.api.DataBaseTemp;
-import browser.termallod.core.html.HtmlParameters;
+import browser.termallod.app.RetrieveAlphabetInfo;
+import browser.termallod.utils.FileRelatedUtils;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 import java.util.TreeMap;
 import browser.termallod.utils.Partition;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Properties;
 import java.util.TreeSet;
 
 /**
@@ -27,14 +27,10 @@ public class PageContentGenerator {
     public Integer numberofElementEachPage = 100;
     private TreeSet<String> languages=new TreeSet();
     private Map<String, String> languageInitpage = new HashMap<String, String>();
-    private DataBaseTemp dataBaseTemp;
-    private HtmlParameters htmlParameters;
     
 
 
-    public PageContentGenerator( TreeMap<String, TxtFileProcessing> langSortedTerms,DataBaseTemp dataBaseTemp,HtmlParameters htmlParameters) throws Exception {
-        this.dataBaseTemp=dataBaseTemp;
-        this.htmlParameters=htmlParameters;
+    public PageContentGenerator( TreeMap<String, RetrieveAlphabetInfo> langSortedTerms) throws Exception {
         if (!langSortedTerms.isEmpty()) {
             this.langPages = this.preparePageTerms(langSortedTerms);
             this.languages=new TreeSet(langPages.keySet());
@@ -44,11 +40,11 @@ public class PageContentGenerator {
         this.display();
     }
 
-    private HashMap<String, List<AlphabetTermPage>> preparePageTerms(TreeMap<String, TxtFileProcessing> langSortedTerms) throws Exception {
+    private HashMap<String, List<AlphabetTermPage>> preparePageTerms(TreeMap<String, RetrieveAlphabetInfo> langSortedTerms) throws Exception {
         HashMap<String, List<AlphabetTermPage>> langTerms = new HashMap<String, List<AlphabetTermPage>>();
         for (String language : langSortedTerms.keySet()) {
-            TxtFileProcessing categoryInfo= langSortedTerms.get(language);
-            TreeMap<String, List<String>> alpahbetTerms =categoryInfo.getLangSortedTerms();
+            RetrieveAlphabetInfo retrieveAlphabetInfo= langSortedTerms.get(language);
+            TreeMap<String, List<String>> alpahbetTerms =retrieveAlphabetInfo.getLangSortedTerms();
             List<AlphabetTermPage> alphabetTermPageList = new ArrayList<AlphabetTermPage>();
             if(!alpahbetTerms.isEmpty()) {
                this.languageInitpage.put(language, alpahbetTerms.keySet().iterator().next());
@@ -59,7 +55,8 @@ public class PageContentGenerator {
                 List<String>termList=new ArrayList<String>(termSet);
                 Collections.sort(termList);
                 Partition<String> partition = Partition.ofSize(termList, this.numberofElementEachPage);
-                AlphabetTermPage alphabetTermPage = new AlphabetTermPage(language,alphabetPair,categoryInfo.getPairFile(alphabetPair), partition,numericalValueOfPair,this.dataBaseTemp,this.htmlParameters);
+                Properties props=FileRelatedUtils.getPropertyHash(retrieveAlphabetInfo.getPairFile(alphabetPair));
+                AlphabetTermPage alphabetTermPage = new AlphabetTermPage(language,alphabetPair,props, partition,numericalValueOfPair);
                 alphabetTermPageList.add(alphabetTermPage);
                 numericalValueOfPair++;
             }

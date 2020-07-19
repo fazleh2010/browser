@@ -26,8 +26,7 @@ public class OntologyInfo {
     public OntologyInfo(String language, String categoryName, AlphabetTermPage alphabetTermPage) {
         this.language = language;
         this.ontologyFileName = categoryName;
-        String[] ontology = ontologyFileName.split("_");
-        this.categoryType = ontology[1];
+        this.categoryType =ontologyFileName;
         this.alphabetTermPage = alphabetTermPage;
 
     }

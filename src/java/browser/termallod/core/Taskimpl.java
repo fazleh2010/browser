@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import browser.termallod.core.html.HtmlCreator;
+import browser.termallod.app.HtmlCreator;
 import java.util.Set;
 import static browser.termallod.app.Main.constants;
 import browser.termallod.constants.FileAndLocationConst;
