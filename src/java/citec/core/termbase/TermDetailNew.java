@@ -39,19 +39,19 @@ public class TermDetailNew {
 
     public TermDetailNew(String subject, String predicate, String object, Boolean flag) {
         if (flag) {
-           this.termUrl=makeTermUrl(subject);
-           this.termOrg=object;
-           this.termDecrpt=StringMatcherUtil.decripted(termOrg);
-           this.language=this.setLanguage(this.termUrl);
-          
+            this.termUrl = makeTermUrl(subject);
+            this.termOrg =StringMatcherUtil.encripted(object).trim();
+            this.termDecrpt = StringMatcherUtil.decripted(termOrg).trim();
+            this.language = this.setLanguage(this.termUrl);
+
         } else {
-            this.termUrl=this.makeTermUrl(subject);
+            this.termUrl = this.makeTermUrl(subject);
             this.setTermAndLanguage(object);
         }
     }
-    
-     public TermDetailNew() {
-        
+
+    public TermDetailNew() {
+
     }
 
     public TermDetailNew(String line) {
@@ -62,12 +62,12 @@ public class TermDetailNew {
     }
 
     public TermDetailNew(String term, String url) {
-        this.termOrg = term;
+        this.termOrg = termOrg.replaceAll("\\s","_");
+        this.termDecrpt=termOrg.replaceAll("_","\\s");
         this.termUrl = url;
     }
-    
     public TermDetailNew(String term, String termUrl, String otherTermUrl) {
-        this(term,termUrl);
+        this(term, termUrl);
         this.links.add(otherTermUrl);
     }
 
@@ -159,7 +159,7 @@ public class TermDetailNew {
     public String getSynonym() {
         return Synonym;
     }
-
+    
     private String findTermUrl(String subject) {
         boolean isSubjectFound = subject.toString().indexOf(HASH_SYMBOLE) != -1 ? true : false;
         if (isSubjectFound) {
@@ -194,12 +194,12 @@ public class TermDetailNew {
 
     @Override
     public String toString() {
-        return "TermInfo{" + "language=" + language + ",termOrg=" + termOrg + ", termDecrpt=" + termDecrpt + ", termUrl=" + termUrl
-                + ", alternativeUrl=" + alternativeUrl + ", subject=" + subject
-                + ", reliabilityCode=" + reliabilityCode + ", administrativeStatus=" + administrativeStatus + ", POST=" + POST
-                + ", Number=" + Number + ", Gender=" + Gender + ", Definition=" + Definition
-                + ", Hypernym=" + Hypernym + ", Hyponym=" + Hyponym + ", Variant=" + Variant
-                + ", links=" + this.links.toString()
+        return "TermInfo{" + "language=" + language + ",termOrg=" + termOrg //+ ", termDecrpt=" + termDecrpt + ", termUrl=" + termUrl
+                //+ ", alternativeUrl=" + alternativeUrl + ", subject=" + subject
+                //+ ", reliabilityCode=" + reliabilityCode + ", administrativeStatus=" + administrativeStatus + ", POST=" + POST
+                //+ ", Number=" + Number + ", Gender=" + Gender + ", Definition=" + Definition
+                //+ ", Hypernym=" + Hypernym + ", Hyponym=" + Hyponym + ", Variant=" + Variant
+                //+ ", links=" + this.links.toString()
                 + ", Synonym=" + Synonym + '}';
     }
 
@@ -210,11 +210,7 @@ public class TermDetailNew {
     public List<String> getLinks() {
         return links;
     }
+
     
-     public static void display(List<TermDetailNew> termList) {
-         for (TermDetailNew termInfo:termList){
-               System.out.println(termInfo.getTermOrg()+" "+termInfo.getTermUrl()+" "+termInfo.getLinks().iterator().next()+ "\n");
-         }
-    }
 
 }

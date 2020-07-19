@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
 import browser.termallod.utils.Partition;
+import citec.core.termbase.TermDetailNew;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Properties;
@@ -54,7 +55,7 @@ public class PageContentGenerator {
                 List<String> termSet = alpahbetTerms.get(alphabetPair);
                 List<String>termList=new ArrayList<String>(termSet);
                 Collections.sort(termList);
-                Partition<String> partition = Partition.ofSize(termList, this.numberofElementEachPage);
+                Partition<String> partition = Partition.ofSize(termList, this.numberofElementEachPage);               
                 Properties props=FileRelatedUtils.getPropertyHash(retrieveAlphabetInfo.getPairFile(alphabetPair));
                 AlphabetTermPage alphabetTermPage = new AlphabetTermPage(language,alphabetPair,props, partition,numericalValueOfPair);
                 alphabetTermPageList.add(alphabetTermPage);

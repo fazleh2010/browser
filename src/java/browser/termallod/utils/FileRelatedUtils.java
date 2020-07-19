@@ -5,8 +5,6 @@
  */
 package browser.termallod.utils;
 
-import browser.termallod.constants.TermBase;
-import browser.termallod.constants.FileAndLocationConst;
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.term.TermInfo;
 import citec.core.termbase.TermDetailNew;
@@ -38,13 +36,6 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
  * @author elahi
  */
 public class FileRelatedUtils {
-
-    private static FileAndLocationConst constants;
-
-    public FileRelatedUtils(FileAndLocationConst constants) {
-        this.constants = constants;
-
-    }
 
     public static File[] getFiles(String fileDir, String ntriple) throws Exception {
         File dir = new File(fileDir);
@@ -357,6 +348,7 @@ public class FileRelatedUtils {
     }
 
     public static Properties getPropertyHash(File propFile) throws FileNotFoundException, IOException {
+      
         FileReader fr = new FileReader(propFile);
         BufferedReader br = new BufferedReader(fr);
         Properties props = new Properties();
@@ -477,35 +469,7 @@ public class FileRelatedUtils {
         return source;
     }
 
-    public static File getSepecificInputTextFile(String PATH, String browser, String categoryName, String langCode, AlphabetTermPage alphabetTermPage) throws Exception {
-        String source = getSourcePath(PATH, browser);
-        List<File> files = getFiles(source + constants.TEXT_PATH, categoryName, ".txt");
-        if (files.isEmpty()) {
-            throw new Exception("Text folder can not be empty!!!");
-        }
-        Map<String, List<File>> languageFiles = getLanguageFiles(files, ".txt");
-        List<File> langFiles = languageFiles.get(langCode);
-        for (File file : langFiles) {
-            String fileName = file.getName().replace(categoryName, "").replace(langCode, "").toLowerCase().trim();
-            String pair = alphabetTermPage.getAlpahbetPair().toLowerCase();
-            if (fileName.contains(pair)) {
-                return file;
-            }
-        }
-
-        return null;
-    }
-
-    public static String getSpecificFile(String PATH, String ontologyName, String langCode, String pair, String extension) {
-        TermBase browser = new TermBase();
-        //String browserName = browser.getBrowserFromOntologyName(ontologyName);
-        String inputDir = getInputLocation(PATH, ontologyName);
-        String fineName = inputDir + ontologyName + "_" + langCode + "_" + pair + extension;
-        //src/java/resources/data/genterm/text/tbx2rdf_atc_en_A_B.txt
-        return fineName;
-
-    }
-    
+  
     public static void cleanDirectory(Set<String> categorySet, String PATH, String TEXT_DIR, String givenBrowser) throws IOException {
         //deleting all generated term filkes
         for (String browser : categorySet) {
@@ -523,16 +487,7 @@ public class FileRelatedUtils {
         new File(fileName).delete();
     }
 
-    public static String getInputLocation(String PATH, String ontologyName) {
-        TermBase browser = new TermBase();
-        return PATH + browser.getBrowserFromOntologyName(ontologyName) + File.separator + constants.TEXT_PATH;
-    }
-
-    public static String getBrowser(String ontologyName) {
-        TermBase browser = new TermBase();
-        return browser.getBrowserFromOntologyName(ontologyName);
-    }
-    
+   
      public static Properties getProperties(String subjectFileName) throws IOException {
         File propFile = new File(subjectFileName);
         Properties props = new Properties();

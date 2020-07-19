@@ -31,7 +31,7 @@ public class RetrieveAlphabetInfo {
         List<File> files = FileRelatedUtils.getFiles(INPUT_PATH,langCode, ".txt");
         for (File file : files) {
             String []info= file.getName().split("-");
-            String pair=info[1];
+            String pair=info[1].replace(".txt","");
             this.pairFile.put(pair, file);
             this.getValuesFromTextFile(file, pair);
         }

@@ -47,7 +47,7 @@ public class CurlSparqlQuery {
 
     public CurlSparqlQuery(String endpoint, String query) throws Exception {
         String resultSparql = executeSparqlQuery(endpoint, query);
-        System.out.println(resultSparql);
+        //System.out.println(resultSparql);
     }
 
     private String executeSparqlQuery(String endpoint, String query)   {
@@ -57,6 +57,7 @@ public class CurlSparqlQuery {
             resultUnicode = FileUrlUtils.stringToUrlUnicode(query);
             command = "curl " + endpoint + "?query=" + resultUnicode;
             process = Runtime.getRuntime().exec(command);
+            System.out.print(command);
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(CurlSparqlQuery.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("error in unicode in sparql query!"+ex.getMessage());

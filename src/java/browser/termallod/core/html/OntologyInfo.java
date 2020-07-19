@@ -87,7 +87,7 @@ public class OntologyInfo {
         return new File(base_path + this.ontologyFileName + "/" + this.createFileNameUnicode(currentPageNumber,alphabetTermPage));
     }*/
     public String creatHtmlFileName(Integer currentPageNumber,AlphabetTermPage alphabetTermPage) {
-        return this.ontologyFileName + "/" + this.createFileNameUnicode(currentPageNumber,alphabetTermPage);
+        return this.createFileNameUnicode(currentPageNumber,alphabetTermPage);
     }
 
 }

@@ -10,6 +10,7 @@ package browser.termallod.constants;
  * @author elahi
  */
 public interface Symbols {
+    
      public String UNDERSCORE = "_";
      public String SPACE =" ";
     
