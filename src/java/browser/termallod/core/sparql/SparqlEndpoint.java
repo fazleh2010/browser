@@ -1,7 +1,7 @@
 /*
  * 
  */
-package browser.termallod.core.sparqlworks;
+package browser.termallod.core.sparql;
 
 import java.util.Arrays;
 import java.util.HashSet;

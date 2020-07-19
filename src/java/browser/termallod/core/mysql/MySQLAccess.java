@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package browser.termallod.core.mysql;
-import browser.termallod.core.sparqlworks.SparqlGenerator;
+import browser.termallod.core.sparql.SparqlGenerator;
 import browser.termallod.core.termbase.TermDetailNew;
 import browser.termallod.core.termbase.Termbase;
 import java.sql.Connection;

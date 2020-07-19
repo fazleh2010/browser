@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.core.sparqlworks;
+package browser.termallod.core.sparql;
 
 import browser.termallod.core.termbase.TermDetailNew;
 import java.util.List;

@@ -1,4 +1,4 @@
-package browser.termallod.core.sparql.other;
+package browser.termallod.testcode.sparql;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecutionFactory;

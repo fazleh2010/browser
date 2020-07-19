@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.core.sparqlworks;
+package browser.termallod.core.sparql;
 
-import static browser.termallod.core.sparqlworks.SparqlEndpoint.iate_query1;
+import static browser.termallod.core.sparql.SparqlEndpoint.iate_query1;
 import browser.termallod.core.termbase.TermDetailNew;
 import browser.termallod.core.termbase.Termbase;
 import browser.termallod.utils.FileUrlUtils;

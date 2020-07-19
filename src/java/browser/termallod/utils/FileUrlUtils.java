@@ -5,8 +5,8 @@
  */
 package browser.termallod.utils;
 
-import browser.termallod.core.sparqlworks.SparqlEndpoint;
-import browser.termallod.core.sparqlworks.SparqlEndpoint;
+import browser.termallod.core.sparql.SparqlEndpoint;
+import browser.termallod.core.sparql.SparqlEndpoint;
 import browser.termallod.core.termbase.TermDetailNew;
 import java.io.BufferedReader;
 import java.io.File;

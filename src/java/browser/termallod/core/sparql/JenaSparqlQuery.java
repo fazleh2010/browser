@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.core.sparqlworks;
+package browser.termallod.core.sparql;
 
 import browser.termallod.core.termbase.TermDetailNew;
 import browser.termallod.core.termbase.Termbase;
@@ -17,7 +17,7 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.RDFNode;*/
 import java.util.HashMap;
 import java.util.Map;
-import static browser.termallod.core.sparqlworks.SparqlEndpoint.query_writtenRep;
+import static browser.termallod.core.sparql.SparqlEndpoint.query_writtenRep;
 
 /**
  *

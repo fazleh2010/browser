@@ -5,11 +5,11 @@
  */
 package browser.termallod.app;
 
-import browser.termallod.core.sparqlworks.SparqlEndpoint;
+import browser.termallod.core.sparql.SparqlEndpoint;
 import browser.termallod.core.termbase.Termbase;
 import browser.termallod.core.mysql.MySQLAccess;
-import browser.termallod.core.sparqlworks.CurlSparqlQuery;
-import browser.termallod.core.sparqlworks.SparqlGenerator;
+import browser.termallod.core.sparql.CurlSparqlQuery;
+import browser.termallod.core.sparql.SparqlGenerator;
 import browser.termallod.core.termbase.TermDetailNew;
 import java.util.ArrayList;
 import java.util.List;
