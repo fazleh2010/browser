@@ -9,7 +9,7 @@ import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.PageContentGenerator;
 import browser.termallod.core.html.HtmlReaderWriter;
 import browser.termallod.core.html.OntologyInfo;
-import browser.termallod.core.term.TermDetail;
+import citec.core.termbase.TermLinker;
 import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.utils.Partition;
 import citec.core.termbase.TermDetailNew;

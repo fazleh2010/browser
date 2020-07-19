@@ -5,7 +5,7 @@
  */
 package browser.termallod.constants;
 
-import browser.termallod.core.term.TermDetail;
+import citec.core.termbase.TermLinker;
 import java.io.File;
 import java.util.List;
 import org.jsoup.nodes.Element;

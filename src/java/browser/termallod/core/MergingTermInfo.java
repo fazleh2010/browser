@@ -5,9 +5,7 @@
  */
 package browser.termallod.core;
 
-import browser.termallod.core.term.SubjectInfo;
 import browser.termallod.api.DataBaseTemp;
-import browser.termallod.core.term.TermInfo;
 import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.utils.StringMatcherUtil;
 import java.io.File;
@@ -22,7 +20,7 @@ import java.util.TreeMap;
  */
 public class MergingTermInfo {
 
-    private TreeMap<String, TermInfo> urlInfo = new TreeMap<String, TermInfo>();
+    /*private TreeMap<String, TermInfo> urlInfo = new TreeMap<String, TermInfo>();
     private Properties reliabilityCodeProps = new Properties();
     private Properties administrativeSTatusProps = new Properties();
     private String iate_txt_dir;
@@ -133,6 +131,6 @@ public class MergingTermInfo {
 
     public TreeMap<String, TermInfo> getUrlInfo() {
         return urlInfo;
-    }
+    }*/
 
 }

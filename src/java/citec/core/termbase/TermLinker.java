@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.core.term;
+package citec.core.termbase;
 
 import browser.termallod.utils.StringMatcherUtil;
 import java.util.HashMap;
@@ -15,7 +15,7 @@ import java.util.Set;
  *
  * @author elahi
  */
-public class TermDetail {
+public class TermLinker {
 
     private final String term;
     private final String termModified;
@@ -27,35 +27,35 @@ public class TermDetail {
     private String url;
   
 
-    public TermDetail(String category, String langCode, String term) {
+    public TermLinker(String category, String langCode, String term) {
         this.category = category;
         this.langCode = langCode;
         this.term = term;
         this.termModified = StringMatcherUtil.decripted(term);
     }
 
-    public TermDetail(String category, String langCode, String term, String url) {
+    public TermLinker(String category, String langCode, String term, String url) {
         this(category, langCode, term);
         this.url = url;
     }
 
-    public TermDetail(String category, String langCode, String term, String url, String alternativeUrl) {
+    public TermLinker(String category, String langCode, String term, String url, String alternativeUrl) {
         this(category, langCode, term, url);
         this.alternativeUrl = alternativeUrl;
     }
 
-    public TermDetail(String category, String langCode, String term, String url, String givenCategory, String givenUrl) {
+    public TermLinker(String category, String langCode, String term, String url, String givenCategory, String givenUrl) {
         this(category, langCode, term, url, url);
         this.termLinks.put(category, url);
         this.termLinks.put(givenCategory, givenUrl);
     }
 
-    /*public TermDetail(String categoryName,String langCode, String term,String url, String alternativeUrl) {
+    /*public TermLinker(String categoryName,String langCode, String term,String url, String alternativeUrl) {
         this(categoryName,langCode,term);
         this.url = url;
         this.alternativeUrl = alternativeUrl;
     }*/
-    public TermDetail(TermDetail termDetail, String url, String alternativeUrl) {
+    public TermLinker(TermLinker termDetail, String url, String alternativeUrl) {
         this(termDetail.getCategory(), termDetail.getLangCode(), termDetail.getTerm(), url, alternativeUrl);
     }
 

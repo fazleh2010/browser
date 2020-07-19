@@ -6,8 +6,6 @@
 package browser.termallod.core;
 
 import browser.termallod.api.DataBaseTemp;
-import browser.termallod.core.html.HtmlParameters;
-import browser.termallod.core.term.TermInfo;
 import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.utils.Partition;
 import java.io.File;
@@ -27,13 +25,13 @@ public class AlphabetTermPage {
     private Integer numericalValueOfPair = 0;
     private MergingTermInfo mergingTermInfo;
 
-    public AlphabetTermPage(String language, String alpahbetPair,  Properties props, Partition<String> partition, Integer numericalValueOfPair) throws Exception {
+    public AlphabetTermPage(String language, String alpahbetPair, Properties props, Partition<String> partition, Integer numericalValueOfPair) throws Exception {
         this.alpahbetPair = alpahbetPair;
         this.partition = partition;
         this.numberOfPages = partition.size();
         this.numericalValueOfPair = numericalValueOfPair;
         this.props = props;
-     }
+    }
 
     /*public String getUrl(String term) {
         //Properties props;
@@ -73,10 +71,6 @@ public class AlphabetTermPage {
 
     public Properties getProps() {
         return props;
-    }
-
-    public TermInfo getTermInfo(String url) {
-        return mergingTermInfo.getUrlInfo().get(url);
     }
 
     @Override
