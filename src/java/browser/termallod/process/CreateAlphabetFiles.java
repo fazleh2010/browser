@@ -13,6 +13,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -45,8 +46,9 @@ public class CreateAlphabetFiles {
     }
 
     private TreeMap<String, TreeMap<String, List<TermDetailNew>>> ifElementExist(String language, TermDetailNew term, TreeMap<String, TreeMap<String, List<TermDetailNew>>> langTerms) {
-        String pair;
+        String pair = null;
         pair = getAlphabetPair(language, term.getTermOrg());
+
         TreeMap<String, List<TermDetailNew>> alpahbetTerms = langTerms.get(language);
         try {
             if (alpahbetTerms.containsKey(pair)) {
@@ -61,49 +63,54 @@ public class CreateAlphabetFiles {
                 langTerms.put(language, alpahbetTerms);
             }
         } catch (NullPointerException e) {
-            //System.out.println("Null pointer:" + language + " " + term);
+            System.out.println("Null pointer:" + language + " " + term + " " + pair);
 
         }
         return langTerms;
     }
 
     private TreeMap<String, TreeMap<String, List<TermDetailNew>>> ifElementNotExist(String language, TermDetailNew term, TreeMap<String, TreeMap<String, List<TermDetailNew>>> langTerms) {
-        String pair;
+        String pair = null;
         try {
             pair = getAlphabetPair(language, term.getTermOrg());
+
             TreeMap<String, List<TermDetailNew>> alpahbetTerms = new TreeMap<String, List<TermDetailNew>>();
             List<TermDetailNew> terms = new ArrayList<TermDetailNew>();
             terms.add(term);
             alpahbetTerms.put(pair, terms);
             langTerms.put(language, alpahbetTerms);
         } catch (NullPointerException e) {
-            //System.out.println("Null pointer:" + language + " " + term);
+            System.out.println("Null pointer:" + language + " " + term + " " + pair);
 
         }
         return langTerms;
     }
 
     private String getAlphabetPair(String language, String term) {
-        HashMap<String, String> alphabetPairs;
+        Map<String, String> alphabetPairs = new HashMap<String, String>();
+        String pair = null;
         try {
             alphabetPairs = languageInfo.getLangAlphabetHash(language);
             term = term.trim();
-            String letter = term.substring(0, 1);
+
+            String letter = term.substring(0, 1).toLowerCase();
+
             if (alphabetPairs.containsKey(letter)) {
-                String pair = alphabetPairs.get(letter);
-                return pair;
+                pair = alphabetPairs.get(letter);
+
             }
+
         } catch (Exception ex) {
-            //System.out.println("No alphebet found for the lanague" + language);
+            System.out.println("language:" + language);
+            System.out.println("term:" + term);
         }
 
-        return null;
+        return pair;
     }
 
     public TreeMap<String, TreeMap<String, List<TermDetailNew>>> getLangTerms() {
         return langTerms;
     }
-    
 
     public void display() {
         for (String language : this.langTerms.keySet()) {

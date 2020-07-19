@@ -15,9 +15,9 @@ public class StringMatcherUtil2 {
 
     private static Integer orginalIndex = 0;
     private static Integer alternativeIndex = 1;
-    
-    public static void main(String args []){
-        String language=getLanguage("http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/fatigue-EN");
+
+    public static void main(String args[]) {
+        String language = getLanguage("http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/fatigue-EN");
         System.out.println(language);
     }
 
@@ -49,15 +49,16 @@ public class StringMatcherUtil2 {
     }
 
     public static String getLanguage(String subject) {
+        String language = null;
         int index = subject.lastIndexOf('/');
         String lastString = subject.substring(index + 1);
-        
-         boolean isSubjectFound = lastString.indexOf("-") != -1 ? true : false;
+
+        boolean isSubjectFound = lastString.indexOf("-") != -1 ? true : false;
         if (isSubjectFound) {
             String[] info = lastString.split("-");
-            return info[1].toLowerCase();
+            language = info[info.length - 1].toLowerCase();
         }
-       return null;
+        return language;
     }
 
 }

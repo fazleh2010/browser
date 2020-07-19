@@ -66,14 +66,25 @@ public class Main implements SparqlEndpoint {
             System.out.println("output folder: " + list);
         } else {
         }
-
+         if (args.length > 3) {
+            list = args[3];
+            BASE_PATH=args[3]+BASE_PATH;
+            
+            System.out.println("output folder: " + BASE_PATH);
+        } else {
+        }
+        INPUT_PATH = BASE_PATH + "input/";
+        TEMPLATE_PATH = BASE_PATH + "template/";
+        
         languageInfo = new LanguageAlphabetPro(new File(BASE_PATH + "/conf/" + "language.conf"));
         System.out.println("reading terms");
         Termbase myTerminology = new CurlSparqlQuery(myTermSparqlEndpoint, query_writtenRep, myTermTableName).getTermbase();
         System.out.println("saving terms");
         CreateAlphabetFiles alphabetFiles = new CreateAlphabetFiles(languageInfo, myTerminology);
-        cleanDirectory();
+        
+        //cleanDirectory();
         System.out.println("saving files");
+        System.out.println("INPUT_PATH:"+INPUT_PATH);
         FileRelatedUtils.writeFile(alphabetFiles.getLangTerms(), INPUT_PATH);
         System.out.println("creating html");
         HtmlCreator htmlCreator = new HtmlCreator(INPUT_PATH, alphabetFiles.getLangTerms().keySet(), TEMPLATE_PATH, OUTPUT_PATH, ListOfTermPage);

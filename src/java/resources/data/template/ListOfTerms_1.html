@@ -7,10 +7,19 @@
       <meta name='viewport' content='width=device-width, initial-scale=1' />
       <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"/>
       <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
-       <link href="../static/css/interface.css" rel="stylesheet" type="text/css" />
+      <!--this location is for testing in local machine-->
+      <!--link href="/css/interface.css" rel="stylesheet" type="text/css" />
+      <link href="/css/oxford.css" rel="stylesheet" type="text/css" />
+      <link href="/css/responsive.css" rel="stylesheet" type="text/css" /-->
+      
+       <!--this location is for original for production-->
+      <link href="../static/css/interface.css" rel="stylesheet" type="text/css" />
       <link href="../static/css/oxford.css" rel="stylesheet" type="text/css" />
       <link href="../static/css/responsive.css" rel="stylesheet" type="text/css" />
-
+      
+      
+      
+      
       <style>
 * {
   box-sizing: border-box;
@@ -85,10 +94,8 @@ input[type=submit] {
             </div>
             <div class="nav responsive_container main_nav">
                <ul class="menu">
-                  <li><a  href="http://localhost:8080/status?view=status">status</a></li>
-                  <li><a  href="http://localhost:8080/describe">browser</a></li>
-                  <li><a  href="http://localhost:8080/status?view=sparql">sparql</a></li>
-                  <li><a  href="http://localhost:8080/status?view=search">terms</a></li>
+                  <li><a  href="http://localhost:8080/status/">Home</a></li>
+                  <li><a  href="http://localhost:8080/status?view=search">Search</a></li>
                </ul>
             </div>
          </div>
@@ -121,16 +128,16 @@ input[type=submit] {
                            </table>
                         </div>
                         
-                         <!--h4>Search terms</h4-->
+                         <h4>Search terms</h4>
                         <!--Make sure the form has the autocomplete function switched off:-->
-                        <!--form autocomplete="off" id="form_id"> 
+                        <form autocomplete="off" id="form_id"> 
                             <div class="autocomplete" style="width:300px;"> 
                                 <input id="myInput" type="text" placeholder="Search.."> 
                             </div> 
                             <input id="submit" type="submit"> 
-                        </form--> 
+                        </form> 
                          <!--script type="text/javascript" src="../files/browser/js/tbx2rdf_atc_en.js"></script-->
-                          <!--script type="text/javascript" src="../files/browser/js/tbx2rdf_atc_en.js"></script-->
+                          <script type="text/javascript" src="../files/browser/js/tbx2rdf_atc_en.js"></script>
                          
         
                         
@@ -204,10 +211,8 @@ input[type=submit] {
          </div>
          <div class="nav responsive_container main_nav">
             <ul class="menu">
-                <li><a  href="http://localhost:8080/status?view=status">status</a></li>
-                  <li><a  href="http://localhost:8080/describe">browser</a></li>
-                  <li><a  href="http://localhost:8080/status?view=sparql">sparql</a></li>
-                  <li><a  href="http://localhost:8080/status?view=search">terms</a></li>
+               <li><a  href="http://localhost:8080/status">Home</a></li>
+               <li><a  href="http://localhost:8080/status?view=search">Search</a></li>
             </ul>
          </div>
       </div>

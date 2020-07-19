@@ -16,6 +16,7 @@ import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.PageContentGenerator;
 import browser.termallod.core.html.HtmlReaderWriter;
 import browser.termallod.core.html.HtmlParameter;
+import browser.termallod.utils.StringMatcherUtil;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -110,7 +111,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         Element divTerm = body.getElementsByClass("result-list1 wordlist-oxford3000 list-plain").get(0);
         Integer index = 0;
         for (String term : terms) {
-            System.out.println(term);
+            //System.out.println(term);
             /*TermDetail newTermDetail = termPage.createTerms(termDetail, index++, htmlFileName);
             String liString = termPage.getTermLi(newTermDetail);
             if (termPage.isReliabilityFlag()) {
@@ -118,12 +119,15 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
             }*/
             String url = info.getAlphabetTermPage().getProps().getProperty(term);
             String liString = getTermLi(term,url);
-            System.out.println(term+".."+url);
             divTerm.append(liString);
         }
     }
 
     public String getTermLi(String term,String url) {
+        //System.out.println("Term Original:"+term);
+        term=StringMatcherUtil.decripted(term);
+        term=term.toLowerCase().trim();
+        //System.out.println("Term decripted:"+term);
         String title = "title=" + '"' + term + " definition" + '"';
         String a = "<a href=" + url + " " + title + ">" + term + "</a>";
         String li = "\n<li>" + a + "</li>\n";
@@ -131,18 +135,9 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
     }
 
     private String getAlphebetLi(Integer pageNumber, AlphabetTermPage alphabetTermPage) {
-        //there is an error in Hungarian langauge link in HTML template, 
-        //since all static htmls are already generated so the problem is now solved by hardcoded.
-        //extreme bad solution but quick solution. 
-
-        //Elements divAlphabet = body.getElementsByClass("side-selector__left");
-        //Element content = body.getElementById("entries-selector");
-        /*String ontologyLocation="";
-        if(categoryOntologyMapper.containsKey(this.categoryName)){
-            ontologyLocation=categoryOntologyMapper.get(categoryName);
-        }*/
         String url = this.createUrlLink(pageNumber, alphabetTermPage);
         //String url = LOCALHOST_URL_LIST_OF_TERMS_PAGE + alphabetFileName;
+        url="listOfTerms?page="+url;
 
         if (info.getLanguage().contains("hu") && alphabetTermPage.getNumericalValueOfPair() == 1) {
             url = "browser_hu_A_1_1.html";

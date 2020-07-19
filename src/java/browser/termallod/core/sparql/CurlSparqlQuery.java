@@ -57,7 +57,7 @@ public class CurlSparqlQuery {
             resultUnicode = FileUrlUtils.stringToUrlUnicode(query);
             command = "curl " + endpoint + "?query=" + resultUnicode;
             process = Runtime.getRuntime().exec(command);
-            System.out.print(command);
+            //System.out.print(command);
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(CurlSparqlQuery.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("error in unicode in sparql query!"+ex.getMessage());
@@ -166,7 +166,6 @@ public class CurlSparqlQuery {
 
                     }
                     TermDetailNew termInfo = new TermDetailNew(url, null, term, true);
-                    //System.out.println(termInfo.getTermUrl());
                     allkeysValues.put(termInfo.getTermOrg(), termInfo);
                 }
             }

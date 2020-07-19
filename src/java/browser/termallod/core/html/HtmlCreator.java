@@ -42,30 +42,33 @@ public class HtmlCreator {
 
     public void getInfoFromSavedFiles(String INPUT_PATH) throws Exception {
         TreeMap<String, RetrieveAlphabetInfo> langSortedTerms = new TreeMap<String, RetrieveAlphabetInfo>();
-        String langCode = null;
+        /*String langCode = null;
         if (languages.contains("en")) {
             langCode = "en";
         } else {
             langCode = languages.iterator().next();
+        }*/
+
+        for (String langCode : languages) {
+            RetrieveAlphabetInfo retrieveAlphabetInfo = new RetrieveAlphabetInfo(INPUT_PATH, ".txt");
+            langSortedTerms.put(langCode, retrieveAlphabetInfo);
         }
 
-        RetrieveAlphabetInfo retrieveAlphabetInfo = new RetrieveAlphabetInfo(INPUT_PATH, ".txt");
-        langSortedTerms.put(langCode, retrieveAlphabetInfo);
         createHtmlForEachLanguage(langSortedTerms);
     }
 
     private void createHtmlForEachLanguage(TreeMap<String, RetrieveAlphabetInfo> langSortedTerms) throws Exception {
         PageContentGenerator pageContentGenerator = new PageContentGenerator(langSortedTerms);
         for (String language : pageContentGenerator.getLanguages()) {
+            File LIST_OF_Terms = getTemplate(language, ".html");
             List<AlphabetTermPage> alphabetTermPageList = pageContentGenerator.getLangPages(language);
             for (AlphabetTermPage alphabetTermPage : alphabetTermPageList) {
-                File LIST_OF_Terms = getTemplate(language, ".html");
                 createHtmlForEachAlphabetPair( LIST_OF_Terms, language, alphabetTermPage, pageContentGenerator);
-                //temporay added....
-                break;
+                //Alpahbet pair pages
+                //break;
             }
-            //temporary added..
-            break;
+            //language pages..
+            //break;
         }
     }
 
@@ -83,6 +86,8 @@ public class HtmlCreator {
             String htmlFileName = outputFileName.getName();
             Document listOfTermHtmlPage = htmlPage.createAllElements(templateHtml,terms, pageContentGenerator, htmlFileName, currentPageNumber);
             htmlReaderWriter.writeHtml(listOfTermHtmlPage, outputFileName);
+            //System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+htmlFileName);
+            //page indexes..number of pages of same alphabet..
             break;
         }
 
