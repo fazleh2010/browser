@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.app;
+package browser.termallod.core.html;
 
 import browser.termallod.api.HtmlStringConts;
 import java.util.ArrayList;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.app;
+package browser.termallod.app.process;
 
 import browser.termallod.api.LanguageManager;
 import browser.termallod.utils.FileRelatedUtils;
