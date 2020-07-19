@@ -15,7 +15,7 @@ import browser.termallod.constants.Languages;
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.PageContentGenerator;
 import browser.termallod.core.html.HtmlReaderWriter;
-import browser.termallod.core.html.OntologyInfo;
+import browser.termallod.core.html.HtmlParameter;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -27,11 +27,11 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
 
     public static Map<String, String> termAlterUrl = new TreeMap<String, String>();
     private Integer maximumNumberOfPages = 4;
-    private OntologyInfo info;
+    private HtmlParameter info;
     private Document templateHtml;
     private Document termPageTemplate;
 
-    public HtmlListOfTerms(OntologyInfo info, HtmlReaderWriter htmlReaderWriter, Document templateHtml) throws Exception {
+    public HtmlListOfTerms(HtmlParameter info, HtmlReaderWriter htmlReaderWriter, Document templateHtml) throws Exception {
         this.info = info;
         //this.termPageTemplate = termPageTemplate;
         //this.termPage = new HtmlTermPage(info, htmlReaderWriter, termPageTemplate);

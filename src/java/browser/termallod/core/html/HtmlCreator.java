@@ -9,7 +9,7 @@ import browser.termallod.app.process.RetrieveAlphabetInfo;
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.PageContentGenerator;
 import browser.termallod.core.html.HtmlReaderWriter;
-import browser.termallod.core.html.OntologyInfo;
+import browser.termallod.core.html.HtmlParameter;
 import browser.termallod.core.termbase.TermLinker;
 import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.utils.Partition;
@@ -77,7 +77,7 @@ public class HtmlCreator {
             List<String> terms = partition.get(page);
             HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
             Document templateHtml = htmlReaderWriter.getInputDocument();
-            OntologyInfo info = new OntologyInfo(language, categoryName, alphabetTermPage);
+            HtmlParameter info = new HtmlParameter(language, categoryName, alphabetTermPage);
             HtmlListOfTerms htmlPage = new HtmlListOfTerms(info, htmlReaderWriter,templateHtml);
             File outputFileName = new File(OUTPUT_PATH + info.creatHtmlFileName(currentPageNumber, alphabetTermPage));
             String htmlFileName = outputFileName.getName();

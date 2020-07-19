@@ -16,14 +16,14 @@ import org.jsoup.nodes.Document;
  *
  * @author elahi
  */
-public class OntologyInfo {
+public class HtmlParameter {
 
     private String language;
     private String ontologyFileName;
     private String categoryType;
     private AlphabetTermPage alphabetTermPage;
 
-    public OntologyInfo(String language, String categoryName, AlphabetTermPage alphabetTermPage) {
+    public HtmlParameter(String language, String categoryName, AlphabetTermPage alphabetTermPage) {
         this.language = language;
         this.ontologyFileName = categoryName;
         this.categoryType =ontologyFileName;
