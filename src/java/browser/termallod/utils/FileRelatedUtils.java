@@ -6,7 +6,7 @@
 package browser.termallod.utils;
 
 import browser.termallod.core.AlphabetTermPage;
-import citec.core.termbase.TermDetailNew;
+import browser.termallod.core.termbase.TermDetailNew;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;

@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package citec.core.sparql;
+package browser.termallod.core.sparqlworks;
 
-import citec.core.termbase.TermDetailNew;
-import citec.core.termbase.Termbase;
+import browser.termallod.core.termbase.TermDetailNew;
+import browser.termallod.core.termbase.Termbase;
 /*
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
@@ -17,7 +17,7 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.RDFNode;*/
 import java.util.HashMap;
 import java.util.Map;
-import static citec.core.sparql.SparqlEndpoint.query_writtenRep;
+import static browser.termallod.core.sparqlworks.SparqlEndpoint.query_writtenRep;
 
 /**
  *

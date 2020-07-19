@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package citec.core.sparql;
+package browser.termallod.core.sparqlworks;
 
-import static citec.core.sparql.SparqlEndpoint.iate_query1;
-import citec.core.termbase.TermDetailNew;
-import citec.core.termbase.Termbase;
-import citec.core.utils.FileUrlUtils;
+import static browser.termallod.core.sparqlworks.SparqlEndpoint.iate_query1;
+import browser.termallod.core.termbase.TermDetailNew;
+import browser.termallod.core.termbase.Termbase;
+import browser.termallod.utils.FileUrlUtils;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

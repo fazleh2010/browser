@@ -8,9 +8,9 @@ package browser.termallod.app;
 import browser.termallod.api.LanguageManager;
 import browser.termallod.core.LanguageAlphabetPro;
 import browser.termallod.utils.FileRelatedUtils;
-import citec.core.sparql.CurlSparqlQuery;
-import citec.core.sparql.SparqlEndpoint;
-import citec.core.termbase.Termbase;
+import browser.termallod.core.sparqlworks.CurlSparqlQuery;
+import browser.termallod.core.sparqlworks.SparqlEndpoint;
+import browser.termallod.core.termbase.Termbase;
 import java.io.File;
 import java.io.IOException;
 

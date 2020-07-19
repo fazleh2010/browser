@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package citec.core.termbase;
+package browser.termallod.core.termbase;
 
-import citec.core.utils.FileUrlUtils;
+import browser.termallod.utils.FileUrlUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;

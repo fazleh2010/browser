@@ -7,8 +7,8 @@ package browser.termallod.app;
 
 import browser.termallod.api.LanguageManager;
 import browser.termallod.utils.FileRelatedUtils;
-import citec.core.termbase.TermDetailNew;
-import citec.core.termbase.Termbase;
+import browser.termallod.core.termbase.TermDetailNew;
+import browser.termallod.core.termbase.Termbase;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;

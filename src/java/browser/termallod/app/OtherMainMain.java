@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package citec.core;
+package browser.termallod.app;
 
-import citec.core.sparql.SparqlEndpoint;
-import citec.core.termbase.Termbase;
-import citec.core.mysql.MySQLAccess;
-import citec.core.sparql.CurlSparqlQuery;
-import citec.core.sparql.SparqlGenerator;
-import citec.core.termbase.TermDetailNew;
+import browser.termallod.core.sparqlworks.SparqlEndpoint;
+import browser.termallod.core.termbase.Termbase;
+import browser.termallod.core.mysql.MySQLAccess;
+import browser.termallod.core.sparqlworks.CurlSparqlQuery;
+import browser.termallod.core.sparqlworks.SparqlGenerator;
+import browser.termallod.core.termbase.TermDetailNew;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  *
  * @author elahi
  */
-public class Main implements SparqlEndpoint {
+public class OtherMainMain implements SparqlEndpoint {
 
     private static String path = "src/main/resources/";
     private static Integer limitOfTerms = -1;
@@ -88,7 +88,7 @@ public class Main implements SparqlEndpoint {
             mySQLAccess.insertDataTermTable(myTermTableName, myTerminology, limitOfTerms);
             mySQLAccess.readTermTable(myTermTableName);
         } catch (Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OtherMainMain.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         return true;
@@ -106,7 +106,7 @@ public class Main implements SparqlEndpoint {
             //display(matchedTermTable);
             System.out.println(matchedTermTable + "  number of matched found:  " + index);
         } catch (Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OtherMainMain.class.getName()).log(Level.SEVERE, null, ex);
         }
         return termInfos;
 

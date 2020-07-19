@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package citec.core.termbase;
+package browser.termallod.core.termbase;
 
-import citec.core.utils.StringMatcherUtil;
+import browser.termallod.utils.StringMatcherUtil2;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,8 +40,8 @@ public class TermDetailNew {
     public TermDetailNew(String subject, String predicate, String object, Boolean flag) {
         if (flag) {
             this.termUrl = makeTermUrl(subject);
-            this.termOrg =StringMatcherUtil.encripted(object).trim();
-            this.termDecrpt = StringMatcherUtil.decripted(termOrg).trim();
+            this.termOrg =StringMatcherUtil2.encripted(object).trim();
+            this.termDecrpt = StringMatcherUtil2.decripted(termOrg).trim();
             this.language = this.setLanguage(this.termUrl);
 
         } else {
@@ -93,7 +93,7 @@ public class TermDetailNew {
     }
 
     public String getTermDecrpt() {
-        return StringMatcherUtil.decripted(termOrg);
+        return StringMatcherUtil2.decripted(termOrg);
     }
 
     public String getTermUrl() {
@@ -187,7 +187,7 @@ public class TermDetailNew {
         if (isObjectFound) {
             String[] info = object.toString().split(LANGUAGE_SEPERATE_SYMBOLE);
             this.termOrg = info[0].toLowerCase().trim();
-            this.termDecrpt = StringMatcherUtil.decripted(termOrg);
+            this.termDecrpt = StringMatcherUtil2.decripted(termOrg);
             this.language = info[1].toLowerCase().trim();
         }
     }
@@ -204,7 +204,7 @@ public class TermDetailNew {
     }
 
     private String setLanguage(String subject) {
-        return StringMatcherUtil.getLanguage(subject);
+        return StringMatcherUtil2.getLanguage(subject);
     }
 
     public List<String> getLinks() {

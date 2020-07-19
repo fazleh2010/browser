@@ -1,4 +1,4 @@
-package browser.termallod.core.sparql;
+package browser.termallod.core.sparql.other;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

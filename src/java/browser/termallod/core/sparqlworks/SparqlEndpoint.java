@@ -1,7 +1,7 @@
 /*
  * 
  */
-package citec.core.sparql;
+package browser.termallod.core.sparqlworks;
 
 import java.util.Arrays;
 import java.util.HashSet;

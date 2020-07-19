@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package citec.core.mysql;
-import citec.core.sparql.SparqlGenerator;
-import citec.core.termbase.TermDetailNew;
-import citec.core.termbase.Termbase;
+package browser.termallod.core.mysql;
+import browser.termallod.core.sparqlworks.SparqlGenerator;
+import browser.termallod.core.termbase.TermDetailNew;
+import browser.termallod.core.termbase.Termbase;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

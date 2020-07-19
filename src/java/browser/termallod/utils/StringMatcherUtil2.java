@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package citec.core.utils;
+package browser.termallod.utils;
 
-import static citec.core.termbase.TermDetailNew.HASH_SYMBOLE;
+import static browser.termallod.core.termbase.TermDetailNew.HASH_SYMBOLE;
 
 /**
  *
  * @author elahi
  */
-public class StringMatcherUtil {
+public class StringMatcherUtil2 {
 
     private static Integer orginalIndex = 0;
     private static Integer alternativeIndex = 1;

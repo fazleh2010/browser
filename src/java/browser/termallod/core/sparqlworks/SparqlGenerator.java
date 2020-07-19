@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package citec.core.sparql;
+package browser.termallod.core.sparqlworks;
 
-import citec.core.termbase.TermDetailNew;
+import browser.termallod.core.termbase.TermDetailNew;
 import java.util.List;
 
 /**
