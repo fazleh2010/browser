@@ -11,7 +11,7 @@ import browser.termallod.api.LanguageManager;
 import browser.termallod.core.LanguageAlphabetPro;
 import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.core.sparql.CurlSparqlQuery;
-import browser.termallod.core.sparql.SparqlEndpoint;
+import browser.termallod.constants.SparqlEndpoint;
 import browser.termallod.core.termbase.Termbase;
 import java.io.File;
 import java.io.IOException;
@@ -82,9 +82,9 @@ public class Main implements SparqlEndpoint {
         System.out.println("saving terms");
         CreateAlphabetFiles alphabetFiles = new CreateAlphabetFiles(languageInfo, myTerminology);
         
-        //cleanDirectory();
+        cleanDirectory();
         System.out.println("saving files");
-        System.out.println("INPUT_PATH:"+INPUT_PATH);
+        //System.out.println("INPUT_PATH:"+INPUT_PATH);
         FileRelatedUtils.writeFile(alphabetFiles.getLangTerms(), INPUT_PATH);
         System.out.println("creating html");
         HtmlCreator htmlCreator = new HtmlCreator(INPUT_PATH, alphabetFiles.getLangTerms().keySet(), TEMPLATE_PATH, OUTPUT_PATH, ListOfTermPage);

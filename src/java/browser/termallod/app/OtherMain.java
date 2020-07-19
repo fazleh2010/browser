@@ -5,7 +5,7 @@
  */
 package browser.termallod.app;
 
-import browser.termallod.core.sparql.SparqlEndpoint;
+import browser.termallod.constants.SparqlEndpoint;
 import browser.termallod.core.termbase.Termbase;
 import browser.termallod.core.mysql.MySQLAccess;
 import browser.termallod.core.sparql.CurlSparqlQuery;

@@ -5,7 +5,7 @@
  */
 package browser.termallod.core.sparql;
 
-import static browser.termallod.core.sparql.SparqlEndpoint.iate_query1;
+import static browser.termallod.constants.SparqlEndpoint.iate_query1;
 import browser.termallod.core.termbase.TermDetailNew;
 import browser.termallod.core.termbase.Termbase;
 import browser.termallod.utils.FileUrlUtils;

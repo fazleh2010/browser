@@ -17,7 +17,7 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.RDFNode;*/
 import java.util.HashMap;
 import java.util.Map;
-import static browser.termallod.core.sparql.SparqlEndpoint.query_writtenRep;
+import static browser.termallod.constants.SparqlEndpoint.query_writtenRep;
 
 /**
  *

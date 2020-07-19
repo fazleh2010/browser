@@ -50,8 +50,10 @@ public class HtmlCreator {
         }*/
 
         for (String langCode : languages) {
-            RetrieveAlphabetInfo retrieveAlphabetInfo = new RetrieveAlphabetInfo(INPUT_PATH, ".txt");
+            RetrieveAlphabetInfo retrieveAlphabetInfo = new RetrieveAlphabetInfo(INPUT_PATH, langCode);
             langSortedTerms.put(langCode, retrieveAlphabetInfo);
+            //System.out.println("terms:"+retrieveAlphabetInfo.getLangSortedTerms().get("G_H"));
+             break;
         }
 
         createHtmlForEachLanguage(langSortedTerms);

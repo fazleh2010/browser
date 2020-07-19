@@ -29,6 +29,7 @@ public class RetrieveAlphabetInfo {
 
     public RetrieveAlphabetInfo(String INPUT_PATH, String langCode) throws IOException, IOException, IOException, IOException, IOException {
         List<File> files = FileRelatedUtils.getFiles(INPUT_PATH,langCode, ".txt");
+       
         for (File file : files) {
             String []info= file.getName().split("-");
             String pair=info[1].replace(".txt","");
@@ -43,8 +44,9 @@ public class RetrieveAlphabetInfo {
         Set<String> termSet = props.stringPropertyNames();
         List<String> termList = new ArrayList<String>(termSet);
         Collections.sort(termList);
+        //System.out.println("pair:"+pair);
+        //System.out.println("termList:"+termList);
         langSortedTerms.put(pair, termList);
-
     }
 
     public TreeMap<String, List<String>> getLangSortedTerms() {
