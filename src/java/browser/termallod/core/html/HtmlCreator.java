@@ -27,20 +27,15 @@ import org.jsoup.nodes.Document;
  */
 public class HtmlCreator {
 
-    private final Set<String> languages;
-    private String OUTPUT_PATH;
-    private String TEMPLATE_LOCATION;
-    private String categoryName;
+    private final String OUTPUT_PATH;
+    private final String TEMPLATE_LOCATION;
 
-    public HtmlCreator(String INPUT_PATH, Set<String> languages, String TEMPLATE_LOCATION, String OUTPUT_PATH, String categoryName) throws Exception {
-        this.languages = languages;
+    public HtmlCreator(String TEMPLATE_LOCATION,String OUTPUT_PATH) {
         this.TEMPLATE_LOCATION = TEMPLATE_LOCATION;
         this.OUTPUT_PATH = OUTPUT_PATH;
-        this.categoryName = categoryName;
-        this.getInfoFromSavedFiles(INPUT_PATH);
     }
 
-    public void getInfoFromSavedFiles(String INPUT_PATH) throws Exception {
+    public void createHtmlPage(String INPUT_PATH,Set<String> languages,String categoryName) throws Exception {
         TreeMap<String, RetrieveAlphabetInfo> langSortedTerms = new TreeMap<String, RetrieveAlphabetInfo>();
         /*String langCode = null;
         if (languages.contains("en")) {
@@ -52,20 +47,19 @@ public class HtmlCreator {
         for (String langCode : languages) {
             RetrieveAlphabetInfo retrieveAlphabetInfo = new RetrieveAlphabetInfo(INPUT_PATH, langCode);
             langSortedTerms.put(langCode, retrieveAlphabetInfo);
-            //System.out.println("terms:"+retrieveAlphabetInfo.getLangSortedTerms().get("G_H"));
              break;
         }
 
-        createHtmlForEachLanguage(langSortedTerms);
+        createHtmlForEachLanguage(langSortedTerms,categoryName);
     }
 
-    private void createHtmlForEachLanguage(TreeMap<String, RetrieveAlphabetInfo> langSortedTerms) throws Exception {
+    private void createHtmlForEachLanguage(TreeMap<String, RetrieveAlphabetInfo> langSortedTerms,String categoryName) throws Exception {
         PageContentGenerator pageContentGenerator = new PageContentGenerator(langSortedTerms);
         for (String language : pageContentGenerator.getLanguages()) {
-            File LIST_OF_Terms = getTemplate(language, ".html");
+            File LIST_OF_Terms = getTemplate(categoryName, ".html");
             List<AlphabetTermPage> alphabetTermPageList = pageContentGenerator.getLangPages(language);
             for (AlphabetTermPage alphabetTermPage : alphabetTermPageList) {
-                createHtmlForEachAlphabetPair( LIST_OF_Terms, language, alphabetTermPage, pageContentGenerator);
+                createHtmlForEachAlphabetPair( LIST_OF_Terms, language, alphabetTermPage, pageContentGenerator,categoryName);
                 //Alpahbet pair pages
                 //break;
             }
@@ -74,7 +68,7 @@ public class HtmlCreator {
         }
     }
 
-    private void createHtmlForEachAlphabetPair( File templateFile, String language, AlphabetTermPage alphabetTermPage, PageContentGenerator pageContentGenerator) throws Exception {
+    private void createHtmlForEachAlphabetPair( File templateFile, String language, AlphabetTermPage alphabetTermPage, PageContentGenerator pageContentGenerator, String categoryName) throws Exception {
         Partition partition = alphabetTermPage.getPartition();
 
         for (Integer page = 0; page < partition.size(); page++) {
@@ -106,7 +100,7 @@ public class HtmlCreator {
         return termDetails;
     }*/
 
-    private File getTemplate(String langCode, String extension) throws Exception {
+    private File getTemplate(String categoryName,String extension) throws Exception {
         return new File(TEMPLATE_LOCATION + categoryName + extension);
     }
 

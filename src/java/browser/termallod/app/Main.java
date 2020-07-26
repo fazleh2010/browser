@@ -15,6 +15,7 @@ import browser.termallod.constants.SparqlEndpoint;
 import browser.termallod.core.termbase.Termbase;
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
 
 /**
  *
@@ -43,7 +44,7 @@ public class Main implements SparqlEndpoint {
 
         String myTermTableName = "myTerminology", otherTermTableName = "otherTerminology", matchedTermTable = "link";
         String myTermSparqlEndpoint = null, list = null;
-        String ListOfTermPage = "ListOfTerms", TermPage = "TermPage";
+        String ListOfTermPage = "ListOfTerms", TermPage = "TermPage",htmltype=null;
 
         System.out.println("called");
         System.out.println("arguments: " + args.length);
@@ -73,6 +74,14 @@ public class Main implements SparqlEndpoint {
             System.out.println("output folder: " + BASE_PATH);
         } else {
         }
+         
+         if (args.length > 4) {
+            htmltype = args[4];            
+            System.out.println("htmltype: " + htmltype);
+        } else {
+              htmltype = "ListOfTerms";     
+        }
+         
         INPUT_PATH = BASE_PATH + "input/";
         TEMPLATE_PATH = BASE_PATH + "template/";
         
@@ -87,7 +96,15 @@ public class Main implements SparqlEndpoint {
         //System.out.println("INPUT_PATH:"+INPUT_PATH);
         FileRelatedUtils.writeFile(alphabetFiles.getLangTerms(), INPUT_PATH);
         System.out.println("creating html");
-        HtmlCreator htmlCreator = new HtmlCreator(INPUT_PATH, alphabetFiles.getLangTerms().keySet(), TEMPLATE_PATH, OUTPUT_PATH, ListOfTermPage);
+        
+        HtmlCreator htmlCreator = new HtmlCreator(TEMPLATE_PATH, OUTPUT_PATH);
+        
+        if(htmltype.contains("ListOfTerms"))
+            htmlCreator.createHtmlPage(INPUT_PATH,alphabetFiles.getLangTerms().keySet(),htmltype);
+        /*if(categoryName.contains("TermPage"))
+          this.createTermPage(termDetail);
+        HtmlCreator htmlCreator = new HtmlCreator(INPUT_PATH, alphabetFiles.getLangTerms().keySet(), 
+                                                  TEMPLATE_PATH, OUTPUT_PATH, "TermPage");*/
         System.out.println("Processing iate finished!!!");
 
     }
