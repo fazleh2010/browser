@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
 import browser.termallod.utils.Partition;
-import browser.termallod.core.termbase.TermDetailNew;
+import browser.termallod.core.termbase.TermDetail;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Properties;

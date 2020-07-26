@@ -5,7 +5,7 @@
  */
 package browser.termallod.utils;
 
-import static browser.termallod.core.termbase.TermDetailNew.HASH_SYMBOLE;
+import static browser.termallod.core.termbase.TermDetail.HASH_SYMBOLE;
 
 /**
  *

@@ -6,7 +6,7 @@
 package browser.termallod.utils;
 
 import browser.termallod.core.AlphabetTermPage;
-import browser.termallod.core.termbase.TermDetailNew;
+import browser.termallod.core.termbase.TermDetail;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -189,19 +189,19 @@ public class FileRelatedUtils {
         return files;
     }*/
     
-    public static List<File> writeFile(TreeMap<String, TreeMap<String, List<TermDetailNew>>> langSortedTerms, String path) throws IOException {
+    public static List<File> writeFile(TreeMap<String, TreeMap<String, List<TermDetail>>> langSortedTerms, String path) throws IOException {
         List<File> files = new ArrayList<File>();
         for (String language : langSortedTerms.keySet()) {
             String str = "";
-            TreeMap<String, List<TermDetailNew>> alphabetPairTerms = langSortedTerms.get(language);
+            TreeMap<String, List<TermDetail>> alphabetPairTerms = langSortedTerms.get(language);
              Integer pairIndex=0;
             for (String pair : alphabetPairTerms.keySet()) {
                 String fileName = path + language + "-" + pair + ".txt";
-                List<TermDetailNew> terms = alphabetPairTerms.get(pair);
+                List<TermDetail> terms = alphabetPairTerms.get(pair);
                 str = "";
                 pairIndex++;
                 Integer termIndex=0;
-                for (TermDetailNew term : terms) {
+                for (TermDetail term : terms) {
                     String pairNote=null;
                     
                     if(language.contains("en"))

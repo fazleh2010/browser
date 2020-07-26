@@ -7,7 +7,7 @@ package browser.termallod.utils;
 
 import browser.termallod.constants.SparqlEndpoint;
 import browser.termallod.constants.SparqlEndpoint;
-import browser.termallod.core.termbase.TermDetailNew;
+import browser.termallod.core.termbase.TermDetail;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
@@ -133,8 +133,8 @@ public class FileUrlUtils implements SparqlEndpoint{
         }
         return files;
     }*/
-    public static Map<String, TermDetailNew> getHashFromFile(File fileName) throws FileNotFoundException, IOException {
-        Map<String, TermDetailNew> hash = new HashMap<String, TermDetailNew>();
+    public static Map<String, TermDetail> getHashFromFile(File fileName) throws FileNotFoundException, IOException {
+        Map<String, TermDetail> hash = new HashMap<String, TermDetail>();
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(fileName));
@@ -144,7 +144,7 @@ public class FileUrlUtils implements SparqlEndpoint{
                 // read next line
                 line = reader.readLine();
                 if (line != null) {
-                    TermDetailNew termInfo=new TermDetailNew(line);
+                    TermDetail termInfo=new TermDetail(line);
                     /*String[] info = line.split("=");
                     System.out.println(line);
                     hash.put(info[0], info[1]);*/

@@ -67,17 +67,23 @@ public class HtmlReaderWriter {
         return fileString;
     }
 
-    public void writeHtml(Document outputDocument, File outputFile) {
+    public void writeHtml(Document outputDocument, File outputFile) throws Exception {
         this.outputDocument = outputDocument;
         this.outputFile = outputFile;
         try {
            if (!outputFile.getName().contains(".html")) {
                 System.out.println("Cannot process the File" + outputFile);
             } else {
-                FileUtils.writeStringToFile(outputFile, outputDocument.outerHtml(), "UTF-8");
+               if(outputDocument!=null){
+                   FileUtils.writeStringToFile(outputFile, outputDocument.outerHtml(), "UTF-8"); 
+               }
+               else
+                   throw new Exception("No output HTML file is found to write!!");
             }
         } catch (IOException ex) {
-            System.out.println(outputFile.getName());
+            Logger.getLogger(HtmlReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (NullPointerException ex) {
             Logger.getLogger(HtmlReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

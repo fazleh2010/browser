@@ -12,6 +12,7 @@ import browser.termallod.core.LanguageAlphabetPro;
 import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.core.sparql.CurlSparqlQuery;
 import browser.termallod.constants.SparqlEndpoint;
+import browser.termallod.core.termbase.TermDetail;
 import browser.termallod.core.termbase.Termbase;
 import java.io.File;
 import java.io.IOException;
@@ -79,7 +80,8 @@ public class Main implements SparqlEndpoint {
             htmltype = args[4];            
             System.out.println("htmltype: " + htmltype);
         } else {
-              htmltype = "ListOfTerms";     
+              htmltype = "TermPage";   
+              htmltype = "ListOfTerms";
         }
          
         INPUT_PATH = BASE_PATH + "input/";
@@ -100,7 +102,11 @@ public class Main implements SparqlEndpoint {
         HtmlCreator htmlCreator = new HtmlCreator(TEMPLATE_PATH, OUTPUT_PATH);
         
         if(htmltype.contains("ListOfTerms"))
-            htmlCreator.createHtmlPage(INPUT_PATH,alphabetFiles.getLangTerms().keySet(),htmltype);
+            htmlCreator.createListOfTermHtmlPage(INPUT_PATH,alphabetFiles.getLangTerms().keySet(),htmltype);
+        
+        /*TermDetail termDetail=new TermDetail();
+        if(htmltype.contains("TermPage"))
+            htmlCreator.createHtmlTermPage(termDetail,htmltype);*/
         /*if(categoryName.contains("TermPage"))
           this.createTermPage(termDetail);
         HtmlCreator htmlCreator = new HtmlCreator(INPUT_PATH, alphabetFiles.getLangTerms().keySet(), 

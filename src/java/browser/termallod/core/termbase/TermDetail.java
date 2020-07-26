@@ -15,7 +15,7 @@ import java.util.Map;
  *
  * @author elahi
  */
-public class TermDetailNew {
+public class TermDetail {
 
     public static String LANGUAGE_SEPERATE_SYMBOLE = "@";
     public static String HASH_SYMBOLE = "#";
@@ -37,7 +37,7 @@ public class TermDetailNew {
     private String language = "";
     private List<String> links = new ArrayList<String>();
 
-    public TermDetailNew(String subject, String predicate, String object, Boolean flag) {
+    public TermDetail(String subject, String predicate, String object, Boolean flag) {
         if (flag) {
             this.termUrl = makeTermUrl(subject);
             this.termOrg =StringMatcherUtil2.encripted(object).trim();
@@ -50,34 +50,34 @@ public class TermDetailNew {
         }
     }
 
-    public TermDetailNew() {
+    public TermDetail() {
 
     }
 
-    public TermDetailNew(String line) {
+    public TermDetail(String line) {
         String[] info = line.split("=");
         this.termOrg = info[0].toLowerCase().trim();
         this.termUrl = info[1];
 
     }
 
-    public TermDetailNew(String term, String url) {
+    public TermDetail(String term, String url) {
         this.termOrg = termOrg.replaceAll("\\s","_");
         this.termDecrpt=termOrg.replaceAll("_","\\s");
         this.termUrl = url;
     }
-    public TermDetailNew(String term, String termUrl, String otherTermUrl) {
+    public TermDetail(String term, String termUrl, String otherTermUrl) {
         this(term, termUrl);
         this.links.add(otherTermUrl);
     }
 
-    public TermDetailNew(String term, String url, String alternativeUrl, SubjectInfo subject) {
+    public TermDetail(String term, String url, String alternativeUrl, SubjectInfo subject) {
         this(term, url);
         this.subject = subject;
         this.alternativeUrl = alternativeUrl.toString();
     }
 
-    public TermDetailNew(String term, String url, String alternativeUrl, String reliabilityCode, String administrativeStatus, SubjectInfo subjectInfo) {
+    public TermDetail(String term, String url, String alternativeUrl, String reliabilityCode, String administrativeStatus, SubjectInfo subjectInfo) {
         this(term, url, alternativeUrl, subjectInfo);
         if (reliabilityCode != null) {
             this.reliabilityCode = reliabilityCode;

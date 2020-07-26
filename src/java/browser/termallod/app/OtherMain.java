@@ -10,7 +10,7 @@ import browser.termallod.core.termbase.Termbase;
 import browser.termallod.core.mysql.MySQLAccess;
 import browser.termallod.core.sparql.CurlSparqlQuery;
 import browser.termallod.core.sparql.SparqlGenerator;
-import browser.termallod.core.termbase.TermDetailNew;
+import browser.termallod.core.termbase.TermDetail;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -95,9 +95,9 @@ public class OtherMain implements SparqlEndpoint {
 
     }
 
-    private static List<TermDetailNew> matchWithDataBase(String myTermTable, Termbase otherTerminology, String matchedTermTable) {
+    private static List<TermDetail> matchWithDataBase(String myTermTable, Termbase otherTerminology, String matchedTermTable) {
         Integer index = 0;
-        List<TermDetailNew> termInfos = new ArrayList<TermDetailNew>();
+        List<TermDetail> termInfos = new ArrayList<TermDetail>();
         try {
             mySQLAccess.deleteTable(matchedTermTable);
             mySQLAccess.createLinkingTable(matchedTermTable);

@@ -6,7 +6,7 @@
 package browser.termallod.core.sparql;
 
 import static browser.termallod.constants.SparqlEndpoint.iate_query1;
-import browser.termallod.core.termbase.TermDetailNew;
+import browser.termallod.core.termbase.TermDetail;
 import browser.termallod.core.termbase.Termbase;
 import browser.termallod.utils.FileUrlUtils;
 import java.io.BufferedReader;
@@ -96,11 +96,11 @@ public class CurlSparqlQuery {
         return result;
     }
 
-    public Map<String, TermDetailNew> parseResult(String xmlStr) {
+    public Map<String, TermDetail> parseResult(String xmlStr) {
         Document doc = convertStringToXMLDocument(xmlStr);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder=null;
-        Map<String, TermDetailNew> terms=new HashMap<String, TermDetailNew>();
+        Map<String, TermDetail> terms=new HashMap<String, TermDetail>();
         try {
             builder = factory.newDocumentBuilder();
             terms=this.parseResult(builder, xmlStr);
@@ -137,8 +137,8 @@ public class CurlSparqlQuery {
         return null;
     }
 
-    private Map<String, TermDetailNew> parseResult(DocumentBuilder builder, String xmlStr) throws SAXException, IOException, DOMException, Exception {
-        Map<String, TermDetailNew> allkeysValues = new HashMap<String, TermDetailNew>();
+    private Map<String, TermDetail> parseResult(DocumentBuilder builder, String xmlStr) throws SAXException, IOException, DOMException, Exception {
+        Map<String, TermDetail> allkeysValues = new HashMap<String, TermDetail>();
         Document document = builder.parse(new InputSource(new StringReader(
                 xmlStr)));
         NodeList results = document.getElementsByTagName("results");
@@ -165,7 +165,7 @@ public class CurlSparqlQuery {
                         }
 
                     }
-                    TermDetailNew termInfo = new TermDetailNew(url, null, term, true);
+                    TermDetail termInfo = new TermDetail(url, null, term, true);
                     allkeysValues.put(termInfo.getTermOrg(), termInfo);
                 }
             }

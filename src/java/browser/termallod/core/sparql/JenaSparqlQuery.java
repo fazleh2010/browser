@@ -5,7 +5,7 @@
  */
 package browser.termallod.core.sparql;
 
-import browser.termallod.core.termbase.TermDetailNew;
+import browser.termallod.core.termbase.TermDetail;
 import browser.termallod.core.termbase.Termbase;
 /*
 import com.hp.hpl.jena.query.Query;

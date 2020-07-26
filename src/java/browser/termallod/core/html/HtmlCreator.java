@@ -13,7 +13,7 @@ import browser.termallod.core.html.HtmlParameter;
 import browser.termallod.core.termbase.TermLinker;
 import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.utils.Partition;
-import browser.termallod.core.termbase.TermDetailNew;
+import browser.termallod.core.termbase.TermDetail;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,7 @@ public class HtmlCreator {
         this.OUTPUT_PATH = OUTPUT_PATH;
     }
 
-    public void createHtmlPage(String INPUT_PATH,Set<String> languages,String categoryName) throws Exception {
+    public void createListOfTermHtmlPage(String INPUT_PATH,Set<String> languages,String categoryName) throws Exception {
         TreeMap<String, RetrieveAlphabetInfo> langSortedTerms = new TreeMap<String, RetrieveAlphabetInfo>();
         /*String langCode = null;
         if (languages.contains("en")) {
@@ -51,6 +51,16 @@ public class HtmlCreator {
         }
 
         createHtmlForEachLanguage(langSortedTerms,categoryName);
+    }
+    
+    public void createHtmlTermPage(TermDetail termDetail,String categoryName) throws Exception {
+            File templateFile = getTemplate(categoryName, ".html");
+            HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
+            Document templateHtml = htmlReaderWriter.getInputDocument();
+            HtmlTermDetail htmlTermDetail = new HtmlTermDetail(termDetail,templateHtml);
+            File outputFileName = new File(OUTPUT_PATH + termDetail.getTermUrl()+".html");
+            Document termPage = htmlTermDetail.getOutputHtml();
+            htmlReaderWriter.writeHtml(termPage, outputFileName);
     }
 
     private void createHtmlForEachLanguage(TreeMap<String, RetrieveAlphabetInfo> langSortedTerms,String categoryName) throws Exception {
