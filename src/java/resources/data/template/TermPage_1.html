@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
+<html lang="en">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,13 +8,18 @@
         <link href="oxford.css" rel="stylesheet" type="text/css" />
         <link href="responsive.css" rel="stylesheet" type="text/css" />
     </head>
-
     <body>
-
-        <div class="header">
-            <h3>GENTERM Pharmaceutical Terminology</h3>
+        <div id="header">
+            <h1 class="tpl_service_name">Prêt-à-LLOD</h1>
+            <ul id="topnav">
+                <li><a class="btn btntopnav" href="?view=status">status</a></li>
+                <li><a class="btn btntopnav" href="describe/?url=http%3A%2F%2Fwww.w3.org%2Fns%2Flemon%2Fontolex%23LexicalEntry">browser</a></li>
+                <li><a class="btn btntopnav" href="?view=sparql">sparql</a></li>
+                <li><a class="btn btntopnav" href="?view=search">terms</a></li>
+            </ul>
         </div>
-
+        
+        
         <div id="ox-header" class="">
             <div class="responsive_row flush-below top">
                 <div class="responsive_container responsive_display_on_smartphone">
@@ -134,7 +137,6 @@
 
                 </div>
             </div>
-
+        <footer>&copy; 2020 - <a href="http://www.pret-a-llod.eu/">PRÊT-À-LLOD - <span class="tpl_service_name">{{service_name}}</span></a></footer>
     </body>
-
 </html>

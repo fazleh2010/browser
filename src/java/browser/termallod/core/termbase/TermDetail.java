@@ -35,7 +35,7 @@ public class TermDetail {
     private String Variant = "";
     private String Synonym = "";
     private String language = "";
-    private List<String> links = new ArrayList<String>();
+    private Map<String,String> termLinks = new HashMap<String,String>();
 
     public TermDetail(String subject, String predicate, String object, Boolean flag) {
         if (flag) {
@@ -66,9 +66,9 @@ public class TermDetail {
         this.termDecrpt=termOrg.replaceAll("_","\\s");
         this.termUrl = url;
     }
-    public TermDetail(String term, String termUrl, String otherTermUrl) {
+    public TermDetail(String term, String termUrl, String terminologyName,String otherTermUrl) {
         this(term, termUrl);
-        this.links.add(otherTermUrl);
+        this.termLinks.put(terminologyName,otherTermUrl);
     }
 
     public TermDetail(String term, String url, String alternativeUrl, SubjectInfo subject) {
@@ -207,10 +207,8 @@ public class TermDetail {
         return StringMatcherUtil2.getLanguage(subject);
     }
 
-    public List<String> getLinks() {
-        return links;
+    public Map<String, String> getTermLinks() {
+        return termLinks;
     }
-
-    
 
 }

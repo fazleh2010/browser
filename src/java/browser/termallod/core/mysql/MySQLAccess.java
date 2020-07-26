@@ -314,7 +314,7 @@ public class MySQLAccess implements DataBaseConst {
                 String myTermOrginalUrl = rs.getString("myTermUrl");
                 String OtherTermOrginalUrl = rs.getString("otherTermUrl");                
                 System.out.println(termOrg + " " + term + " " + myTermOrginalUrl+" "+OtherTermOrginalUrl);
-                TermDetail terminfo=new TermDetail(termOrg,myTermOrginalUrl,OtherTermOrginalUrl);
+                TermDetail terminfo=new TermDetail(termOrg,myTermOrginalUrl,"",OtherTermOrginalUrl);
                 termInfos.add(terminfo);
                 //SparqlGenerator.linkSparqlGenerator(termOrg,myTermOrginalUrl,"other",OtherTermOrginalUrl);
             }

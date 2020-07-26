@@ -60,7 +60,8 @@ public class SparqlGenerator implements SparqlEndpoint {
 
     private String getTripple(TermDetail termInfo, String ontologyNotation) {
         //return termInfo.getTermUrl() + "\n" + "     "+ontologyNotation + " " + termInfo.getLinks().get(linkTerminologyName);
-         return termInfo.getTermUrl() + " "+ontologyNotation + " " + termInfo.getLinks().iterator().next();
+        String key = termInfo.getTermLinks().keySet().iterator().next();
+        return termInfo.getTermUrl() + " " + ontologyNotation + " " + termInfo.getTermLinks().get(key);
     }
 
 }
