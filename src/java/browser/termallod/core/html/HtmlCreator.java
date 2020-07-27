@@ -58,7 +58,8 @@ public class HtmlCreator {
             HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
             Document templateHtml = htmlReaderWriter.getInputDocument();
             HtmlTermDetail htmlTermDetail = new HtmlTermDetail(termDetail,templateHtml);
-            File outputFileName = new File(OUTPUT_PATH + termDetail.getTermUrl()+".html");
+            //File outputFileName = new File(OUTPUT_PATH + termDetail.getTermUrl()+".html");
+            File outputFileName = new File(OUTPUT_PATH + categoryName+".html");
             Document termPage = htmlTermDetail.getOutputHtml();
             htmlReaderWriter.writeHtml(termPage, outputFileName);
     }
