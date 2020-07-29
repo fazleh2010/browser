@@ -25,9 +25,11 @@ public final class HtmlTermDetail {
     private Document templateHtml;
     private TermDetail termDetail;
 
-    public HtmlTermDetail(TermDetail termDetail, Document templateHtml) {
+    public HtmlTermDetail(TermDetail termDetail, Document templateHtml) throws Exception {
         this.templateHtml = templateHtml;
         this.termDetail = termDetail;
+        System.out.println("term detail:"+termDetail);
+        this.createTermPage();
 
     }
 
@@ -55,10 +57,8 @@ public final class HtmlTermDetail {
         langDiv += "<span class=" + "\"" + "heading" + "\"" + ">" + langDetail + "</span></span>";
         divLang.append(langDiv);
 
-        List<String> divStrS = new ArrayList<String>();
         Map<String, String> matchedTerms = termDetail.getTermLinks();
-
-        divStrS = createTermInfo(matchedTerms, term, url);
+        List<String> divStrS = createTermInfo(matchedTerms, term, url);
 
         if (!divStrS.isEmpty()) {
             Integer index = 0;
@@ -83,19 +83,14 @@ public final class HtmlTermDetail {
 
         String langValueStr = languageMapper.get(this.termDetail.getLanguage());
         languageTr = getTr(getProperty("Language"), getValueNew(langValueStr));
-
-        writtenFormTr = getTr(getProperty("writtenRep:"), getValueNew(term));
-
+        writtenFormTr = getTr(getProperty("written form:"), getValueNew(term));
+        String termUrlTr=getTr(getProperty("Url:"), getValueNew(url));
+        
         if (this.termDetail.getReliabilityCode() != null) {
             reliabilityCodeTr = getTr(getProperty("Reliability Code:"), getValueNew(this.termDetail.getReliabilityCode()));
-
         }
         if (this.termDetail.getAdministrativeStatus() != null) {
             administrativeTr = getTr(getProperty("Administrative Status:"), getValueNew(this.termDetail.getAdministrativeStatus()));
-            /*if(!termInfo.getAdministrativeStatus().isEmpty()){
-                     //System.out.println(termInfo.getReliabilityCode());
-                     this.administrativeStatusFlaq=true;
-                }*/
         }
         if (this.termDetail.getSubjectId() != null) {
             String subjectFieldPro = " " + SUBJECT_FIELD + ":";
@@ -105,10 +100,6 @@ public final class HtmlTermDetail {
                 subjectID = "";
             }
             subjectFieldTr = getTr(getProperty(subjectFieldPro), getValueNew(subjectID + this.termDetail.getSubjectDescription()));
-            /*if(!termInfo.getSubjectId().isEmpty()){
-                     //System.out.println(termInfo.getReliabilityCode());
-                     this.subjectFielsFlag=true;
-                }*/
         }
         if (this.termDetail.getReferenceID() != null) {
             ReferenceTr = getTr(getProperty("Reference:"), getValueNew(this.termDetail.getReferenceID()));
@@ -138,7 +129,7 @@ public final class HtmlTermDetail {
             synonymTr = getTr(getProperty("Synonym:"), getValueNew(this.termDetail.getSynonym()));
         }
 
-        String table = this.getTable(this.getTbody(writtenFormTr + languageTr + definitionTr + reliabilityCodeTr + administrativeTr + subjectFieldTr + ReferenceTr
+        String table = this.getTable(this.getTbody(writtenFormTr + languageTr + termUrlTr+ definitionTr + reliabilityCodeTr + administrativeTr + subjectFieldTr + ReferenceTr
                 + posTr + numberTr + genderTr + hypernymTr + hyponymTr + variantTr + synonymTr));
         String divStr = table;
         divStrS.add(divStr);

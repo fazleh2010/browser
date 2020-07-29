@@ -13,7 +13,7 @@ import java.util.Map;
  * @author elahi
  */
 public interface Languages {
-     public Map<String, String> languageMapper = new HashMap<String, String>() {
+     public static Map<String, String> languageMapper = new HashMap<String, String>() {
         {
             put("bg", "Bulgarian");
             put("cs", "Czech");
@@ -29,7 +29,6 @@ public interface Languages {
             put("hr", "Croatian");
             put("hu", "Hungarian");
             put("it", "Italian");
-            //it's originla id is It. but then it becomes same like it (case sensitive). so it is changed.
             put("lt", "Lithuanian");
             put("lv", "Latvian");
             put("mt", "Maltese");

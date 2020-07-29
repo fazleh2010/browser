@@ -104,7 +104,7 @@ public class Main implements SparqlEndpoint {
         if(htmltype.contains("ListOfTerms"))
             htmlCreator.createListOfTermHtmlPage(INPUT_PATH,alphabetFiles.getLangTerms().keySet(),htmltype);
         
-        TermDetail termDetail=new TermDetail();
+        TermDetail termDetail=new TermDetail("term_term_term = url = en");
         if(htmltype.contains("TermPage"))
             htmlCreator.createHtmlTermPage(termDetail,htmltype);
         /*if(categoryName.contains("TermPage"))

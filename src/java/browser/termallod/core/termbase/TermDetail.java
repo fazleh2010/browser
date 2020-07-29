@@ -6,9 +6,7 @@
 package browser.termallod.core.termbase;
 
 import browser.termallod.utils.StringMatcherUtil2;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -57,14 +55,17 @@ public class TermDetail {
     public TermDetail(String line) {
         String[] info = line.split("=");
         this.termOrg = info[0].toLowerCase().trim();
+        this.termDecrpt = StringMatcherUtil2.decripted(termOrg).trim();
         this.termUrl = info[1];
-
+        this.language= info[2].toLowerCase().trim();
     }
 
     public TermDetail(String term, String url) {
+        this.termOrg=term;
         this.termOrg = termOrg.replaceAll("\\s","_");
         this.termDecrpt=termOrg.replaceAll("_","\\s");
         this.termUrl = url;
+        this.language = this.setLanguage(this.termUrl);
     }
     public TermDetail(String term, String termUrl, String terminologyName,String otherTermUrl) {
         this(term, termUrl);
@@ -194,12 +195,12 @@ public class TermDetail {
 
     @Override
     public String toString() {
-        return "TermInfo{" + "language=" + language + ",termOrg=" + termOrg //+ ", termDecrpt=" + termDecrpt + ", termUrl=" + termUrl
-                //+ ", alternativeUrl=" + alternativeUrl + ", subject=" + subject
-                //+ ", reliabilityCode=" + reliabilityCode + ", administrativeStatus=" + administrativeStatus + ", POST=" + POST
-                //+ ", Number=" + Number + ", Gender=" + Gender + ", Definition=" + Definition
-                //+ ", Hypernym=" + Hypernym + ", Hyponym=" + Hyponym + ", Variant=" + Variant
-                //+ ", links=" + this.links.toString()
+        return "TermInfo{" + "language=" + language + ",termOrg=" + termOrg + ", termDecrpt=" + termDecrpt + ", termUrl=" + termUrl
+                + ", alternativeUrl=" + alternativeUrl + ", subject=" + subject
+                + ", reliabilityCode=" + reliabilityCode + ", administrativeStatus=" + administrativeStatus + ", POST=" + POST
+                + ", Number=" + Number + ", Gender=" + Gender + ", Definition=" + Definition
+                + ", Hypernym=" + Hypernym + ", Hyponym=" + Hyponym + ", Variant=" + Variant
+                + ", links=" + this.termLinks.toString()
                 + ", Synonym=" + Synonym + '}';
     }
 
