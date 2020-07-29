@@ -79,12 +79,12 @@ public final class HtmlTermDetail {
     private List<String> createTermInfo(Map<String, String> matchedTerms, String term, String url) throws Exception {
         List<String> divStrS = new ArrayList<String>();
         String subjectFieldTr = "", ReferenceTr = "", languageTr = "", reliabilityCodeTr = "", administrativeTr = "", subjectID = "";;
-        String posTr = "", numberTr = "", genderTr = "", definitionTr = "", hypernymTr = "", hyponymTr = "", variantTr = "", synonymTr = "", writtenFormTr = "";
+        String posTr = "", numberTr = "", genderTr = "", definitionTr = "", hypernymTr = "", hyponymTr = "", variantTr = "", synonymTr = "", writtenFormTr = "",termUrlTr="";
 
         String langValueStr = languageMapper.get(this.termDetail.getLanguage());
-        languageTr = getTr(getProperty("Language"), getValueNew(langValueStr));
-        writtenFormTr = getTr(getProperty("written form:"), getValueNew(term));
-        String termUrlTr=getTr(getProperty("Url:"), getValueNew(url));
+        //languageTr = getTr(getProperty("Language"), getValueNew(langValueStr));
+        //writtenFormTr = getTr(getProperty("written form:"), getValueNew(term));
+        //termUrlTr=getTr(getProperty("Url:"), getValueNew(url));
         
         if (this.termDetail.getReliabilityCode() != null) {
             reliabilityCodeTr = getTr(getProperty("Reliability Code:"), getValueNew(this.termDetail.getReliabilityCode()));
