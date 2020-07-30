@@ -16,6 +16,8 @@ import browser.termallod.core.termbase.TermDetail;
 import browser.termallod.core.termbase.Termbase;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -104,7 +106,10 @@ public class Main implements SparqlEndpoint {
         if(htmltype.contains("ListOfTerms"))
             htmlCreator.createListOfTermHtmlPage(INPUT_PATH,alphabetFiles.getLangTerms().keySet(),htmltype);
         
-        TermDetail termDetail=new TermDetail("term_term_term = url = en");
+        Map<String,String> termLinks = new HashMap<String,String>();
+        termLinks.put("atc", "link1");
+        termLinks.put("disease", "link2");
+        TermDetail termDetail=new TermDetail("term_term_term = url = en",termLinks);
         if(htmltype.contains("TermPage"))
             htmlCreator.createHtmlTermPage(termDetail,htmltype);
         /*if(categoryName.contains("TermPage"))

@@ -138,37 +138,50 @@ public final class HtmlTermDetail {
         return divStrS;
     }
 
-    private List<String> generateTermLink(Map<String, String> matchedTerms, List<String> divStrS) {
+    /*private List<String> generateTermLink(Map<String, String> matchedTerms, List<String> divStrS) {
+        String panelHeadingStart = "<h3>Links to other terminologies</h3>";
+        String panelHeadingEnd = "</div>";
+        divStrS.add(panelHeadingStart);
 
         for (String otherTerminology : matchedTerms.keySet()) {
-            //String langValueStr = languageMapper.get(language);
             String spanTerminologyName = otherTerminology;
             String spanTerminologyUrl = "http";
             String term = matchedTerms.get(otherTerminology);
             String url = matchedTerms.get(otherTerminology);
-            String panelHeadingStart = divClassStr + this.getWithinQuote("panel-heading") + ">"
-                    + "<a href=" + this.getWithinQuote(url) + " class="
-                    + this.getWithinQuote("rdf_link") + ">" + term + "</a>" + divClassEnd;
-
-            panelHeadingStart = "<h3>Links to other terminologies</h3>";
-            String panelHeadingEnd = "</div>";
             String thirdTr = getTr(getProperty(spanTerminologyUrl, otherTerminology), getValue(url, url, url));
-            //firstTr = "";
-
-            /*String termValue = this.getValueNew(this.getSpanProp(spanPropUrl1, spanPropUrl2, spanPropStr) + this.getSpanValue(spanTerminologyUrl, spanTerminologyName));
-            String subjectFieldTr = getTr(getProperty(langTermUrl, langTermStr), termValue);
-            subjectFieldTr = "";
-            String languageTr = getTr(getProperty(matchPropUrl, matchPropStr), getValueNew(matchValueUrl1, matchValueUrl2, matchValueStr));
-            languageTr = "";*/
             String table = this.getTable(this.getTbody(thirdTr));
-
-            /*String yesNoButtonDiv = getAcceptDenyButton();
-            //yes no button is closed for time being.
-            yesNoButtonDiv = "";*/
-            String divStr = panelHeadingStart + table + panelHeadingEnd;
+            String divStr = table;
             divStrS.add(divStr);
 
         }
+        divStrS.add(panelHeadingEnd);
+        return divStrS;
+    }*/
+    
+    private List<String> generateTermLink(Map<String, String> matchedTerms, List<String> divStrS) {
+        String panelHeadingStart = "<h3>Links to other terminologies</h3>";
+        String panelHeadingEnd = "</div>";
+        String tableStart="<table>";
+        String tableEnd="</table>";
+        String columnNames="<tr>"
+                          +"<th>Terminology</th>"
+                          +"<th>Link</th>"
+                          +"<th>Match</th>"
+                          +"</tr>";
+
+        String rows="";
+        String rowStart="<tr>",rowEnd="</tr>",colStart="<td>",colEnd="</td>";  
+        for (String otherTerminology : matchedTerms.keySet()) {
+            String term = matchedTerms.get(otherTerminology);
+            String url = matchedTerms.get(otherTerminology);
+            String col1=colStart+otherTerminology+colEnd;
+            String col2=colStart+url+colEnd;
+            String col3=colStart+"exact"+colEnd;
+            String row=rowStart+col1+col2+col3+rowEnd;
+            rows+=row;  
+        }
+        rows=panelHeadingStart+tableStart+columnNames+rows+tableEnd+panelHeadingEnd;
+        divStrS.add(rows);
         return divStrS;
     }
 

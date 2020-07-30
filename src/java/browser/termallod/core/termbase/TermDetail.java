@@ -59,6 +59,15 @@ public class TermDetail {
         this.termUrl = info[1];
         this.language= info[2].toLowerCase().trim();
     }
+    
+    public TermDetail(String line,Map<String,String> termLinks) {
+        String[] info = line.split("=");
+        this.termOrg = info[0].toLowerCase().trim();
+        this.termDecrpt = StringMatcherUtil2.decripted(termOrg).trim();
+        this.termUrl = info[1];
+        this.language= info[2].toLowerCase().trim();
+        this.termLinks=termLinks;
+    }
 
     public TermDetail(String term, String url) {
         this.termOrg=term;
@@ -67,6 +76,7 @@ public class TermDetail {
         this.termUrl = url;
         this.language = this.setLanguage(this.termUrl);
     }
+    
     public TermDetail(String term, String termUrl, String terminologyName,String otherTermUrl) {
         this(term, termUrl);
         this.termLinks.put(terminologyName,otherTermUrl);
